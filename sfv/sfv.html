@@ -1,14 +1,87 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Street Fighter V Combo Deterministic Finite Automata</title>
-  <meta name="description" content="Street Fighter V Combo Deterministic Finite Automata">
-  <meta name="author" content="William Emerison Six">
-</head>
-<body>
-  <ul>
-    <li>  <img src="ryu.png"> </li>
+  <head>
+    <meta charset="utf-8">
+    <title>Street Fighter V Combo Deterministic Finite Automata</title>
+    <meta name="description" content="Street Fighter V Combo 
+                                      Deterministic Finite Automata">
+    <meta name="author" content="William Emerison Six">
+  </head>
+  <style>
+    div.maintext {
+    width:1000px;
+    margin: auto;
+    }
+    
+</style>
+  <body>
 
-</body>
+    <div class="maintext">
+      <center>
+        <h1>SFV Deterministic Finite Automata</h1>
+      </center>
+      <br/>
+      <center>
+        <h2>by Bill Six</h2>
+      </center>
+      <br/>
+
+      In fighting games, a successful player is able to string together
+      multiple attacks which, once started, the opponent is unable to defend.
+      Since this string of attacks does much more damage to the opponent
+      than a series of stray hits (i.e. one attack followed by a pause,
+      thus allowing
+      the opponent either to block or to counter-attack), a player who
+      knows combos well is
+      at a significant advantage over one who does not.
+      <br/>
+      <br/>
+      How does one interested in combos learn them?
+      <br/>
+      <br/>
+      Mainly, combos are put into lists; but there is a problem with that
+      approach.
+      Each character has many combos, many of which have common substrings.
+      To list out every combo would have too much repetition to be reasonable.
+      Experienced players can look at a long combo and instinctively deduce
+      sub-combos which can be used in a different context (i.e., a listed combo
+      that start with a jumping HP followed by standing MP, can also just start
+      at standing MP).
+      <br/>
+      <br/>
+      But how does a novice who lacks experience learn from these condense lists?
+      <br/>
+      <br/>
+      Here, I attempt alleviate some of the aforementioned problems for the novice
+      and experienced player alike  by representing combos using
+      Deterministic Finite Automata.
+      Nodes surrounded by squares represent starting states/distances. Nodes
+      surrounded by circles represent moves, and arrows point to new moves
+      which may be linked/canceled from the previous move.  Nodes surrounded
+      by two circles are "end states". 
+    </div>
+    
+    <ul>
+      <li><a href="#chun">Chun-Li</a>
+      <li><a href="#dhalsim">Dhalsim</a>
+      <li><a href="#ryu">Ryu</a>
+    </ul>
+
+    
+    <h2 id="chun">Chun-Li</h2>
+    <br/>
+    <!-- <img src="ryu.png"> </li> -->
+    <br/>
+
+    <h2 id="dhalsim">Dhalsim</h2>
+    <br/>
+    <!-- <img src="ryu.png"> </li> -->
+    <br/>
+
+    <h2 id="ryu">Ryu</h2>
+    <br/>
+    <img src="ryu.png"> </li>
+    <br/>
+    
+  </body>
 </html>
