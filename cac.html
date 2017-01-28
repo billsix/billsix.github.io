@@ -22,11 +22,11 @@
     <div>
       <a href="http://www.lulu.com/shop/bill-six/computation-at-compile-time/hardcover/product-23045340.html">
 	<img src="cac.jpeg"/>
-      </a> 
+      </a>
     </div>
-    
+
   </center>
-  
+
   <style>
     div.maintext {
     width:1000px;
@@ -36,14 +36,16 @@
     <div class="maintext">
       <ul>
 	<li>Buy the <a href="http://www.lulu.com/shop/bill-six/computation-at-compile-time/hardcover/product-23045340.html">book</a> </li>
-	<li>Get the <a href="https://github.com/billsix/bug">source</a> </li>
+	<li>Get the open <a href="https://github.com/billsix/bug">source</a> </li>
       </ul>
 
-      Computation at Compile-Time introduces a revolutionary way to test code.  Tests are embedded within the source code 
-      itself, directly after a procedure's definition.
-      
-      <!-- insert gist -->
-      
+      Computation at Compile-Time is both the documentation for and the implementation of libbug, a library for Gambit Scheme. Libbug
+      introduces a truly revolutionary way to test code.  Tests are collocated with the procedures under test,
+      typically directly after a procedure's definition.
+
+      <br>
+      <br>
+      <script src="https://gist.github.com/billsix/89a2b2cee4b63750256342f349957f22.js"></script>
       <br>
       <br>
       But wait.  Doesn't this mean that the test will be in the executable, and that it will run every time the
@@ -51,7 +53,19 @@
       execute during compile-time, and they are not compiled into the executable.
       <br>
       <br>
-      How does that work?
+      How does that work?  It works because every procedure is loaded into the compiler as code to be
+      interpreted (by evaling during macroexpansion), and afterword it is treated as code to be compiled.  Thus,
+      libbug treats the compiler as an interpreter, both of which use the same language and have the same libraries
+      (in stark contrast to C++'s template metaprogramming.
+      <br>
+      The definition of "unit-test" uses the same trick, but if any of the tests fail, the compiler exits in error, just like
+      a type-error in a statically-typed language.  If all of the tests pass, return the symbol "noop", which the Gambit compiler
+      eliminates as dead code.
+      <br>
+      <br>
+      <script src="https://gist.github.com/billsix/8517f189b67ec513287c3e9d1fa0887c.js"></script>
+      <br>
+      <br>
 
     </div>
 
