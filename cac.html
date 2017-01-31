@@ -13,7 +13,7 @@
     <div class="pure-menu pure-menu-horizontal">
       <ul class="pure-menu-list">
         <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Home</a></li>
-        <li class="pure-menu-item"><a href="cac.html" class="pure-menu-link">Books</a></li>
+        <li class="pure-menu-item"><a href="cac.html" class="pure-menu-link">Book</a></li>
         <li class="pure-menu-item"><a href="sfv.html" class="pure-menu-link">SFV</a></li>
       </ul>
     </div>
@@ -29,7 +29,7 @@
 
   <style>
     div.maintext {
-    width:1000px;
+    max-width:1000px;
     margin: auto;
     }
   </style>
@@ -48,6 +48,14 @@
       <script src="https://gist.github.com/billsix/89a2b2cee4b63750256342f349957f22.js"></script>
       <br>
       <br>
+      It's "programmer-tested, rapper-approved".
+      <br>
+      <br>
+      <center>
+        <img src="thurr.jpg"/>
+      </center>
+      <br>
+      <br>
       But wait.  Doesn't this mean that the test will be in the executable, and that it will run every time the
       program runs?  That would be unacceptable.  Fortunately, the answer to both is no, because the tests
       execute during compile-time, and they are not compiled into the executable.
@@ -56,16 +64,20 @@
       How does that work?  It works because every procedure is loaded into the compiler as code to be
       interpreted (by evaling during macroexpansion), and afterword it is treated as code to be compiled.  Thus,
       libbug treats the compiler as an interpreter, both of which use the same language and have the same libraries
-      (in stark contrast to C++'s template metaprogramming.
+      (in stark contrast to C++'s template metaprogramming).
       <br>
       The definition of "unit-test" uses the same trick, but if any of the tests fail, the compiler exits in error, just like
-      a type-error in a statically-typed language.  If all of the tests pass, return the symbol "noop", which the Gambit compiler
+      a type-error in a statically-typed language.  If all of the tests pass, the "unit-test" evaluates to the
+      symbol "noop", which the Gambit compiler
       eliminates as dead code.
       <br>
       <br>
       <script src="https://gist.github.com/billsix/8517f189b67ec513287c3e9d1fa0887c.js"></script>
       <br>
       <br>
+      <center>
+        <img src="Xzibit.jpg"/>
+      </center>
 
     </div>
 

@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Street Fighter V Combo Deterministic Finite Automata</title>
-    <meta name="description" content="Street Fighter V Combo 
+    <title>Street Fighter V Combos</title>
+    <meta name="description" content="Street Fighter V Combo
                                       Deterministic Finite Automata">
     <meta name="author" content="William Emerison Six">
     <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
@@ -11,7 +11,7 @@
   </head>
   <style>
     div.maintext {
-    width:1000px;
+    max-width:1000px;
     margin: auto;
     }
   </style>
@@ -22,12 +22,12 @@
 	<div class="pure-menu pure-menu-horizontal">
 	  <ul class="pure-menu-list">
             <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Home</a></li>
-            <li class="pure-menu-item"><a href="cac.html" class="pure-menu-link">Books</a></li>
+            <li class="pure-menu-item"><a href="cac.html" class="pure-menu-link">Book</a></li>
             <li class="pure-menu-item"><a href="sfv.html" class="pure-menu-link">SFV</a></li>
 	  </ul>
 	</div>
-	
-        <h1>SFV Deterministic Finite Automata</h1>
+
+        <h1>SFV Combo DFAs</h1>
       </center>
       <br/>
       <center>
@@ -36,7 +36,7 @@
       <br/>
 
       In fighting games, a successful player is able to string together
-      multiple attacks which, once started, the opponent is unable to defend.
+      multiple attacks which, once started, are unabled to be defended.
       Since this string of attacks does much more damage to the opponent
       than a series of stray hits (i.e. one attack followed by a pause,
       thus allowing
@@ -52,7 +52,7 @@
       approach.
       Each character has many combos, many of which have common substrings.
       To list out every combo would have too much repetition to be reasonable.
-      Experienced players can look at a long combo and instinctively deduce
+      Experienced players (I assume) can look at a long combo and instinctively deduce
       sub-combos which can be used in a different context (i.e., a listed combo
       that start with a jumping HP followed by standing MP, can also just start
       at standing MP).
@@ -61,36 +61,25 @@
       But how does a novice who lacks experience learn from these condense lists?
       <br/>
       <br/>
-      Here, I attempt alleviate some of the aforementioned problems for the novice
-      and experienced player alike  by representing combos using
+      Here, I attempt alleviate some of the aforementioned problems, at least for myself,
+      by representing combos using
       Deterministic Finite Automata.
       Nodes surrounded by squares represent starting states/distances. Nodes
       surrounded by circles represent moves, and arrows point to new moves
       which may be linked/canceled from the previous move.  Nodes surrounded
-      by two circles are "end states". 
+      by two circles are "end states".
     </div>
-    
+
     <ul>
-      <li><a href="#chun">Chun-Li</a>
-      <li><a href="#dhalsim">Dhalsim</a>
       <li><a href="#ryu">Ryu</a>
     </ul>
 
-    
-    <h2 id="chun">Chun-Li</h2>
-    <br/>
-    <!-- <img src="ryu.png"> </li> -->
-    <br/>
 
-    <h2 id="dhalsim">Dhalsim</h2>
-    <br/>
-    <!-- <img src="ryu.png"> </li> -->
-    <br/>
 
     <h2 id="ryu">Ryu</h2>
     <br/>
     <img src="ryu.png"> </li>
     <br/>
-    
+
   </body>
 </html>
