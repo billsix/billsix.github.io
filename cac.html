@@ -78,7 +78,7 @@
       </center>
       <br>
       <br>
-      But wait.  Doesn't this mean that the test will be in the executable, and that it will run every time the
+      But wait.  Doesn't this mean that the tests will be in the executable, and that they will execute every time the
       program runs?  That would be unacceptable.  Fortunately, the answer to both is no, because the tests
       execute during compile-time, and they are not compiled into the executable.
       <br>
@@ -94,7 +94,7 @@
       <br>
       <br>
       How does that work?  It works because every procedure is loaded into the compiler as code to be
-      interpreted (by evaling during macroexpansion), and afterword it is treated as code to be compiled.  Thus,
+      interpreted (by evaling during macroexpansion), and afterwords it is treated as code to be compiled.  Thus,
       libbug treats the compiler as an interpreter, both of which use the same language and have the same libraries
       (in stark contrast to C++'s template metaprogramming).
       <br>
