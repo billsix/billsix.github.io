@@ -26,11 +26,18 @@
     </div>
 
   </center>
-
   <style>
+    body {
+    background-color: #fdfdfd;
+    } 
     div.maintext {
     max-width:1000px;
     margin: auto;
+    }
+    div.foo {
+    color: #333333;
+    font-family: Copperplate / Copperplate Gothic Light, sans-serif;
+    font-size: 200%;
     }
   </style>
     <div class="maintext">
@@ -39,6 +46,16 @@
 	<li>Get the open <a href="https://github.com/billsix/bug">source</a> </li>
       </ul>
 
+      <br>
+      <br>
+      <center>
+        <div class="foo">
+          The Best Unit-Test Framework Ever Made
+        </div>
+      </center>
+      <br>
+      <br>
+
       Computation at Compile-Time is both the documentation for and the implementation of libbug, a library for Gambit Scheme. Libbug
       introduces a truly revolutionary way to test code.  Tests are collocated with the procedures under test,
       typically directly after a procedure's definition.
@@ -46,9 +63,14 @@
       <br>
       <br>
       <script src="https://gist.github.com/billsix/89a2b2cee4b63750256342f349957f22.js"></script>
+
       <br>
       <br>
-      It's "programmer-tested, rapper-approved".
+      <center>
+        <div class="foo">
+          It's "programmer-tested, rapper-approved".
+        </div>
+      </center>
       <br>
       <br>
       <center>
@@ -59,6 +81,16 @@
       But wait.  Doesn't this mean that the test will be in the executable, and that it will run every time the
       program runs?  That would be unacceptable.  Fortunately, the answer to both is no, because the tests
       execute during compile-time, and they are not compiled into the executable.
+      <br>
+      <br>
+      <center>
+        <div class="foo">
+          Code So Condense, It Fits on a T-Shirt
+        </div>
+        <br>
+        <br>
+        <img src="tshirt.jpg" width=500px/>
+      </center>
       <br>
       <br>
       How does that work?  It works because every procedure is loaded into the compiler as code to be
