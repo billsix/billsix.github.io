@@ -56,7 +56,8 @@
       <br>
       <br>
 
-      Computation at Compile-Time is both the documentation for and the implementation of libbug, a library for Gambit Scheme. Libbug
+      <a href="http://www.lulu.com/shop/bill-six/computation-at-compile-time/hardcover/product-23045340.html">"Computation
+        at Compile-Time"</a> is both the documentation for and the implementation of libbug, a library for Gambit Scheme. Libbug
       introduces a truly revolutionary way to test code.  Tests are collocated with the procedures under test,
       typically directly after a procedure's definition.
 
@@ -85,7 +86,7 @@
       <br>
       <center>
         <div class="foo">
-          Code So Condense, It Fits on a T-Shirt
+          Testing Framework is So Dense, It Fits on a T-Shirt
         </div>
         <br>
         <br>
@@ -94,12 +95,13 @@
       <br>
       <br>
       How does that work?  It works because every procedure is loaded into the compiler as code to be
-      interpreted (by evaling during macroexpansion), and afterwords it is treated as code to be compiled.  Thus,
+      interpreted (by evaling during macroexpansion), and afterwords it is also treated as code to be compiled.  Thus,
       libbug treats the compiler as an interpreter, both of which use the same language and have the same libraries
       (in stark contrast to C++'s template metaprogramming).
       <br>
-      The definition of "unit-test" uses the same trick, but if any of the tests fail, the compiler exits in error, just like
-      a type-error in a statically-typed language.  If all of the tests pass, the application of "unit-test" will evaluate to the
+      <br>
+      The definition of "unit-test" uses the same trick, but if any of the tests fail during compile-time, the compiler exits in error, just like
+      a type-error in a statically-typed language.  Otherwise, if all of the tests pass, the application of "unit-test" will evaluate to the
       symbol "noop", which the Gambit compiler
       eliminates as dead code.
       <br>
