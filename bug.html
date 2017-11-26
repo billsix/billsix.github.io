@@ -5088,7 +5088,7 @@ well-known languages to illustrate that
 most compilers are also interpreters for a subset of the language.  This
 appendix provides a baseline demonstration of compile-time computation
 so that the reader may contrast these languages' capabilities with libbug&#8217;s.
-But first, let&#8217;s discuss was is meant by the words "language","compiler", and
+But first, let&#8217;s discuss what is meant by the words "language","compiler", and
 "interpreter".</p></div>
 <div class="paragraph"><p>In "Introduction to Automata Theory, Languages, and Computation", Hopcroft,
 Motwani, and Ullman define language as "A set of strings all of which are chosen
@@ -5167,10 +5167,7 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #000000">    1:</span>   <span style="font-weight: bold"><span style="color: #000000">printf</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"%d</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">,</span><span style="font-weight: bold"><span style="color: #000000">square</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #000000">fact</span></span><span style="color: #990000">(</span>argc<span style="color: #990000">)));</span></tt></pre></div></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>\noindent expands into</pre>
-</div></div>
+<div class="paragraph"><p>expands into</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -5272,7 +5269,7 @@ http://www.gnu.org/software/src-highlite -->
 <p>
 The instructions at memory locations 400850 through 40085a correspond to the
 printing of the compile-time expanded call to factorial&lt;3&gt;::value.
-The immediate value 6 is loaded into the "esi" register; then the second
+The immediate value 6 is loaded into the "esi" register; then the following
 two lines call the printing routine<span class="footnote"><br>[at least I assume, because
 I don&#8217;t completely understand how C&#43;&#43; name-mangling works]<br></span>.
 </p>
@@ -5585,8 +5582,7 @@ Aron Barath and Zoltan Porkolab, Eotvos Lorand University,
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated
- 2017-11-08 14:30:06 EST
+Last updated 2017-11-26 16:06:12 EST
 </div>
 </div>
 </body>
