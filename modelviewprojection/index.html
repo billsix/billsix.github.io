@@ -1177,7 +1177,7 @@ let&#8217;s draw something, say, two rectangles.
 Where should they be, and what color should they be?</p></div>
 <div class="paragraph"><p>"glColor3f" sets a global variable, which makes it the color to be used
 for the subsequently-drawn graphical shape.  The background will be black,
-so lets make the first paddle white, and a second paddle yellow.</p></div>
+so lets make the first paddle purple, and a second paddle red.</p></div>
 <div class="paragraph"><p>"glBegin(GL_QUADS)" tells OpenGL that we will soon specify 4 <strong>vertices</strong>,
 (i.e. points) which define the
 quadrilateral.  The vertices will be specified by calling "glVertex2f" 4 times.</p></div>
@@ -1189,9 +1189,9 @@ http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #000000">    1:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">2</span><span style="color: #990000">)</span>
 <span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo2</span></span><span style="color: #990000">():</span>
 <span style="color: #000000">    3:</span>     <span style="font-style: italic"><span style="color: #9A1900"># draw paddle 1</span></span>
-<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">glColor3f</span></span><span style="color: #990000">(</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#r</span></span>
-<span style="color: #000000">    5:</span>               <span style="color: #993399">1.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#g</span></span>
-<span style="color: #000000">    6:</span>               <span style="color: #993399">1.0</span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">#b</span></span>
+<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">glColor3f</span></span><span style="color: #990000">(</span><span style="color: #993399">0.578123</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#r</span></span>
+<span style="color: #000000">    5:</span>               <span style="color: #993399">0.0</span><span style="color: #990000">,</span>      <span style="font-style: italic"><span style="color: #9A1900">#g</span></span>
+<span style="color: #000000">    6:</span>               <span style="color: #993399">1.0</span><span style="color: #990000">)</span>      <span style="font-style: italic"><span style="color: #9A1900">#b</span></span>
 <span style="color: #000000">    7:</span>     <span style="font-weight: bold"><span style="color: #000000">glBegin</span></span><span style="color: #990000">(</span>GL_QUADS<span style="color: #990000">)</span>
 <span style="color: #000000">    8:</span>     <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(-</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#x</span></span>
 <span style="color: #000000">    9:</span>                <span style="color: #990000">-</span><span style="color: #993399">0.3</span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">#y</span></span>
@@ -1215,7 +1215,7 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #000000">    1:</span>     <span style="font-style: italic"><span style="color: #9A1900"># draw paddle 2</span></span>
 <span style="color: #000000">    2:</span>     <span style="font-weight: bold"><span style="color: #000000">glColor3f</span></span><span style="color: #990000">(</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span>
-<span style="color: #000000">    3:</span>               <span style="color: #993399">1.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">    3:</span>               <span style="color: #993399">0.0</span><span style="color: #990000">,</span>
 <span style="color: #000000">    4:</span>               <span style="color: #993399">0.0</span><span style="color: #990000">)</span>
 <span style="color: #000000">    5:</span>     <span style="font-weight: bold"><span style="color: #000000">glBegin</span></span><span style="color: #990000">(</span>GL_QUADS<span style="color: #990000">)</span>
 <span style="color: #000000">    6:</span>
@@ -1448,8 +1448,8 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   16:</span>                            <span style="font-weight: bold"><span style="color: #000000">Vertex</span></span><span style="color: #990000">(-</span><span style="color: #993399">0.8</span><span style="color: #990000">,-</span><span style="color: #993399">0.3</span><span style="color: #990000">),</span>
 <span style="color: #000000">   17:</span>                            <span style="font-weight: bold"><span style="color: #000000">Vertex</span></span><span style="color: #990000">(-</span><span style="color: #993399">0.8</span><span style="color: #990000">,</span><span style="color: #993399">0.3</span><span style="color: #990000">),</span>
 <span style="color: #000000">   18:</span>                            <span style="font-weight: bold"><span style="color: #000000">Vertex</span></span><span style="color: #990000">(-</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span><span style="color: #993399">0.3</span><span style="color: #990000">)],</span>
-<span style="color: #000000">   19:</span>                  r<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span>
-<span style="color: #000000">   20:</span>                  g<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">   19:</span>                  r<span style="color: #990000">=</span><span style="color: #993399">0.578123</span><span style="color: #990000">,</span>
+<span style="color: #000000">   20:</span>                  g<span style="color: #990000">=</span><span style="color: #993399">0.0</span><span style="color: #990000">,</span>
 <span style="color: #000000">   21:</span>                  b<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">)</span>
 <span style="color: #000000">   22:</span>
 <span style="color: #000000">   23:</span> paddle2 <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">Paddle</span></span><span style="color: #990000">(</span>vertices<span style="color: #990000">=[</span><span style="font-weight: bold"><span style="color: #000000">Vertex</span></span><span style="color: #990000">(</span><span style="color: #993399">0.8</span><span style="color: #990000">,-</span><span style="color: #993399">0.3</span><span style="color: #990000">),</span>
@@ -1457,7 +1457,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   25:</span>                            <span style="font-weight: bold"><span style="color: #000000">Vertex</span></span><span style="color: #990000">(</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span><span style="color: #993399">0.3</span><span style="color: #990000">),</span>
 <span style="color: #000000">   26:</span>                            <span style="font-weight: bold"><span style="color: #000000">Vertex</span></span><span style="color: #990000">(</span><span style="color: #993399">0.8</span><span style="color: #990000">,</span><span style="color: #993399">0.3</span><span style="color: #990000">)],</span>
 <span style="color: #000000">   27:</span>                  r<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span>
-<span style="color: #000000">   28:</span>                  g<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">   28:</span>                  g<span style="color: #990000">=</span><span style="color: #993399">0.0</span><span style="color: #990000">,</span>
 <span style="color: #000000">   29:</span>                  b<span style="color: #990000">=</span><span style="color: #993399">0.0</span><span style="color: #990000">)</span>
 <span style="color: #000000">   30:</span>
 <span style="color: #000000">   31:</span>
@@ -1711,6 +1711,25 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   28:</span>                    ndcSpace<span style="color: #990000">.</span>y<span style="color: #990000">)</span>
 <span style="color: #000000">   29:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span>
 <span style="color: #000000">   30:</span> Paddle<span style="color: #990000">.</span>draw <span style="color: #990000">=</span> draw</tt></pre></div></div>
+<div class="paragraph"><p>Model-space to World-space.</p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddle1.png" alt="modelspacePaddle1.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddle2.png" alt="modelspacePaddle2.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddle3.png" alt="modelspacePaddle3.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddle4.png" alt="modelspacePaddle4.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddle5.png" alt="modelspacePaddle5.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddle6.png" alt="modelspacePaddle6.png" title="Foo">
+</span></p></div>
 <div class="sect2">
 <h3 id="_scaling">8.1. Scaling</h3>
 <div class="paragraph"><p><span class="image">
@@ -1728,6 +1747,13 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">scale</span></span><span style="color: #990000">(</span>self<span style="color: #990000">,</span> x<span style="color: #990000">,</span> y<span style="color: #990000">):</span>
 <span style="color: #000000">    3:</span>     <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #000000">Vertex</span></span><span style="color: #990000">(</span>x<span style="color: #990000">=</span>self<span style="color: #990000">.</span>x <span style="color: #990000">*</span> x<span style="color: #990000">,</span> y<span style="color: #990000">=</span>self<span style="color: #990000">.</span>y <span style="color: #990000">*</span> y<span style="color: #990000">)</span>
 <span style="color: #000000">    4:</span> Vertex<span style="color: #990000">.</span>scale <span style="color: #990000">=</span> scale</tt></pre></div></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddle7.png" alt="modelspacePaddle7.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p>World-space to NDC-space.</p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddle8.png" alt="modelspacePaddle8.png" title="Foo">
+</span></p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
@@ -2743,7 +2769,7 @@ http://www.gnu.org/software/src-highlite -->
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-05-25 15:43:16 EST
+ 2018-05-26 17:54:35 EST
 </div>
 </div>
 </body>
