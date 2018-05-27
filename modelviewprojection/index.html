@@ -1712,33 +1712,10 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   29:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span>
 <span style="color: #000000">   30:</span> Paddle<span style="color: #990000">.</span>draw <span style="color: #990000">=</span> draw</tt></pre></div></div>
 <div class="paragraph"><p>Model-space to World-space.</p></div>
-<div class="paragraph"><p>You can view the transformations incrementally by mentally
-applying each transformation in one, fixed, global coordinate
-system.  (this works well for world-space to camera-space,
+<div class="paragraph"><p>You can view the transformations from first transformation to last,
+where all transformations happen relative to the world-space origin.
+(this works well for world-space to camera-space,
 but not so well for model-space transformations)</p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddle1.png" alt="modelspacePaddle1.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddle2.png" alt="modelspacePaddle2.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddle3.png" alt="modelspacePaddle3.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddle4.png" alt="modelspacePaddle4.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddle5.png" alt="modelspacePaddle5.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddle6.png" alt="modelspacePaddle6.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p>Instead, for model-space to world-space transformations,
-it&#8217;s easier to look at each transformation from modelspace
-to world space as a relative change of coordinate systems, where the origin
-and the axis move to new locations, and then the modelspace coordinates
-are drawn in that transformed coordinate system.</p></div>
 <div class="paragraph"><p><span class="image">
 <img src="modelspacePaddleMovingFrame1.png" alt="modelspacePaddleMovingFrame1.png" title="Foo">
 </span></p></div>
@@ -1766,6 +1743,44 @@ are drawn in that transformed coordinate system.</p></div>
 <div class="paragraph"><p><span class="image">
 <img src="modelspacePaddleMovingFrame6.5.png" alt="modelspacePaddleMovingFrame6.5.png" title="Foo">
 </span></p></div>
+<div class="paragraph"><p>Instead, for model-space to world-space transformations (and for these transformations only),
+it&#8217;s easier to read the transformations backwards, where the transformations
+aren&#8217;t relative to the global origin, instead it&#8217;s from the local frame of reference.</p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFramebackwards1.png" alt="modelspacePaddleMovingFramebackwards1.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFramebackwards2.png" alt="modelspacePaddleMovingFramebackwards2.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFramebackwards3.png" alt="modelspacePaddleMovingFramebackwards3.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFramebackwards3.5.png" alt="modelspacePaddleMovingFramebackwards3.5.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFramebackwards4.png" alt="modelspacePaddleMovingFramebackwards4.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFramebackwards4.png" alt="modelspacePaddleMovingFramebackwards4.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFramebackwards5.png" alt="modelspacePaddleMovingFramebackwards5.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFramebackwards6.png" alt="modelspacePaddleMovingFramebackwards6.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFramebackwards6.5.png" alt="modelspacePaddleMovingFramebackwards6.5.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p>Why do the two different views of the transformations matter?  In model-space
+to world-space transformations, especially once rotation and scaling of model-space
+is used, it allows the programmer to forget about most details, just specify
+where new objects are relative to that which you are already drawing.</p></div>
+<div class="paragraph"><p>With that said, that doesn&#8217;t mean that reading the transformations front to back
+has no value.  But it only has value in world-space to camera-space conversions,
+and from camera-space to ndc-space.</p></div>
+<div class="paragraph"><p>This will make more sense once rotation is involved.</p></div>
 <div class="sect2">
 <h3 id="_scaling">8.1. Scaling</h3>
 <div class="paragraph"><p><span class="image">
@@ -2838,7 +2853,7 @@ http://www.gnu.org/software/src-highlite -->
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-05-26 18:58:31 EST
+ 2018-05-26 19:39:36 EST
 </div>
 </div>
 </body>
