@@ -1712,6 +1712,10 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   29:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span>
 <span style="color: #000000">   30:</span> Paddle<span style="color: #990000">.</span>draw <span style="color: #990000">=</span> draw</tt></pre></div></div>
 <div class="paragraph"><p>Model-space to World-space.</p></div>
+<div class="paragraph"><p>You can view the transformations incrementally by mentally
+applying each transformation in one, fixed, global coordinate
+system.  (this works well for world-space to camera-space,
+but not so well for model-space transformations)</p></div>
 <div class="paragraph"><p><span class="image">
 <img src="modelspacePaddle1.png" alt="modelspacePaddle1.png" title="Foo">
 </span></p></div>
@@ -1729,6 +1733,38 @@ http://www.gnu.org/software/src-highlite -->
 </span></p></div>
 <div class="paragraph"><p><span class="image">
 <img src="modelspacePaddle6.png" alt="modelspacePaddle6.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p>Instead, for model-space to world-space transformations,
+it&#8217;s easier to look at each transformation from modelspace
+to world space as a relative change of coordinate systems, where the origin
+and the axis move to new locations, and then the modelspace coordinates
+are drawn in that transformed coordinate system.</p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFrame1.png" alt="modelspacePaddleMovingFrame1.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFrame2.png" alt="modelspacePaddleMovingFrame2.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFrame3.png" alt="modelspacePaddleMovingFrame3.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFrame3.5.png" alt="modelspacePaddleMovingFrame3.5.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFrame4.png" alt="modelspacePaddleMovingFrame4.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFrame4.png" alt="modelspacePaddleMovingFrame4.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFrame5.png" alt="modelspacePaddleMovingFrame5.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFrame6.png" alt="modelspacePaddleMovingFrame6.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacePaddleMovingFrame6.5.png" alt="modelspacePaddleMovingFrame6.5.png" title="Foo">
 </span></p></div>
 <div class="sect2">
 <h3 id="_scaling">8.1. Scaling</h3>
@@ -1963,6 +1999,39 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   26:</span>
 <span style="color: #000000">   27:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
 <span style="color: #000000">   28:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation.png" alt="modelspacerotation.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation2.png" alt="modelspacerotation2.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation2.5.png" alt="modelspacerotation2.5.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation3.png" alt="modelspacerotation3.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation4.png" alt="modelspacerotation4.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation4.5.png" alt="modelspacerotation4.5.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation5.png" alt="modelspacerotation5.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation6.png" alt="modelspacerotation6.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation7.png" alt="modelspacerotation7.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation7.5.png" alt="modelspacerotation7.5.png" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="modelspacerotation8.png" alt="modelspacerotation8.png" title="Foo">
+</span></p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
@@ -2769,7 +2838,7 @@ http://www.gnu.org/software/src-highlite -->
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-05-26 17:54:35 EST
+ 2018-05-26 18:58:31 EST
 </div>
 </div>
 </body>
