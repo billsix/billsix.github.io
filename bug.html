@@ -3021,11 +3021,13 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #000000">    1:</span> {define-macro aif
-<span style="color: #000000">    2:</span>   [|bool body|
+<span style="color: #000000">    2:</span>   [|bool ifTrue #!rest ifFalse|
 <span style="color: #000000">    3:</span>    `{<span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>bug#it ,bool<span style="color: #FF0000">))</span>
 <span style="color: #000000">    4:</span>       <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> bug#it
-<span style="color: #000000">    5:</span>           [,body]
-<span style="color: #000000">    6:</span>           [<span style="color: #009900">#f</span>]<span style="color: #FF0000">)</span>}]}</tt></pre></div></div>
+<span style="color: #000000">    5:</span>           ,ifTrue
+<span style="color: #000000">    6:</span>           ,@<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">not</span></span> <span style="color: #FF0000">(</span>null? ifFalse<span style="color: #FF0000">))</span>
+<span style="color: #000000">    7:</span>                 [ifFalse]
+<span style="color: #000000">    8:</span>                 [<span style="color: #FF0000">(</span>list '[<span style="color: #009900">#f</span>]<span style="color: #FF0000">)</span>]<span style="color: #FF0000">))</span>}]}</tt></pre></div></div>
 <div class="paragraph"><p>Although variable capture &lt;<a href="#onlisp">[onlisp]</a>&gt; is generally avoided,
 there are instances in which variable capture is desirable &lt;<a href="#onlisp">[onlisp]</a>&gt;.
 Within libbug, variables intended for capture are fully qualified with a namespace
@@ -3037,17 +3039,33 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #000000">    1:</span> {unit-test
-<span style="color: #000000">    2:</span>  <span style="color: #FF0000">(</span>equal? {aif <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">10</span><span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>}
-<span style="color: #000000">    3:</span>          <span style="color: #993399">30</span><span style="color: #FF0000">)</span>
-<span style="color: #000000">    4:</span>  <span style="color: #FF0000">(</span>equal? {aif <span style="color: #009900">#f</span> <span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>}
-<span style="color: #000000">    5:</span>          <span style="color: #009900">#f</span><span style="color: #FF0000">)</span>
-<span style="color: #000000">    6:</span>  <span style="color: #FF0000">(</span>equal? {macroexpand-1 {aif <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">10</span><span style="color: #FF0000">)</span>
-<span style="color: #000000">    7:</span>                              <span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>}}
-<span style="color: #000000">    8:</span>          '{<span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>bug#it <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">10</span><span style="color: #FF0000">)))</span>
-<span style="color: #000000">    9:</span>             <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> bug#it
-<span style="color: #000000">   10:</span>                 [<span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>]
-<span style="color: #000000">   11:</span>                 [<span style="color: #009900">#f</span>]<span style="color: #FF0000">)</span>}<span style="color: #FF0000">)</span>
-<span style="color: #000000">   12:</span>  }</tt></pre></div></div>
+<span style="color: #000000">    2:</span>  <span style="color: #FF0000">(</span>equal? {macroexpand-1 {aif <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">10</span><span style="color: #FF0000">)</span>
+<span style="color: #000000">    3:</span>                              [<span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>]}}
+<span style="color: #000000">    4:</span>          '{<span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>bug#it <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">10</span><span style="color: #FF0000">)))</span>
+<span style="color: #000000">    5:</span>             <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> bug#it
+<span style="color: #000000">    6:</span>                 [<span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>]
+<span style="color: #000000">    7:</span>                 [<span style="color: #009900">#f</span>]<span style="color: #FF0000">)</span>}<span style="color: #FF0000">)</span>
+<span style="color: #000000">    8:</span>  <span style="color: #FF0000">(</span>equal? {aif <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">10</span><span style="color: #FF0000">)</span>
+<span style="color: #000000">    9:</span>               [<span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>]}
+<span style="color: #000000">   10:</span>          <span style="color: #993399">30</span><span style="color: #FF0000">)</span>
+<span style="color: #000000">   11:</span>  <span style="color: #FF0000">(</span>equal? {aif <span style="color: #009900">#f</span>
+<span style="color: #000000">   12:</span>               [<span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>]}
+<span style="color: #000000">   13:</span>          <span style="color: #009900">#f</span><span style="color: #FF0000">)</span>
+<span style="color: #000000">   14:</span>  <span style="color: #FF0000">(</span>equal? {aif <span style="color: #009900">#f</span>
+<span style="color: #000000">   15:</span>               [<span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>]}
+<span style="color: #000000">   16:</span>          <span style="color: #009900">#f</span><span style="color: #FF0000">)</span>
+<span style="color: #000000">   17:</span>  <span style="color: #FF0000">(</span>equal? {macroexpand-1 {aif <span style="color: #009900">#f</span>
+<span style="color: #000000">   18:</span>                              [<span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>]
+<span style="color: #000000">   19:</span>                              [<span style="color: #993399">5</span>]}}
+<span style="color: #000000">   20:</span>          '{<span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>bug#it <span style="color: #009900">#f</span><span style="color: #FF0000">))</span>
+<span style="color: #000000">   21:</span>             <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> bug#it
+<span style="color: #000000">   22:</span>                 [<span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>]
+<span style="color: #000000">   23:</span>                 [<span style="color: #993399">5</span>]<span style="color: #FF0000">)</span>}<span style="color: #FF0000">)</span>
+<span style="color: #000000">   24:</span>  <span style="color: #FF0000">(</span>equal? {aif <span style="color: #009900">#f</span>
+<span style="color: #000000">   25:</span>               [<span style="color: #FF0000">(</span>* <span style="color: #993399">2</span> bug#it<span style="color: #FF0000">)</span>]
+<span style="color: #000000">   26:</span>               [<span style="color: #993399">5</span>]}
+<span style="color: #000000">   27:</span>          <span style="color: #993399">5</span><span style="color: #FF0000">)</span>
+<span style="color: #000000">   28:</span>  }</tt></pre></div></div>
 </div>
 <div class="sect2">
 <h3 id="_with_gensyms">4.3. with-gensyms</h3>
@@ -3672,7 +3690,94 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 </div>
 <div class="sect1">
-<h2 id="_streams">6. Streams</h2>
+<h2 id="_coroutines">6. Coroutines</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_make_generator">6.1. make-generator</h3>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> {<span style="font-weight: bold"><span style="color: #0000FF">define</span></span> make-generator
+<span style="color: #000000">    2:</span>   [|f|
+<span style="color: #000000">    3:</span>    <span style="font-style: italic"><span style="color: #9A1900">;; will be defined to something useful before it is called,</span></span>
+<span style="color: #000000">    4:</span>    <span style="font-style: italic"><span style="color: #9A1900">;; but for now, the environment needs a variable defined</span></span>
+<span style="color: #000000">    5:</span>    {##<span style="font-weight: bold"><span style="color: #0000FF">define</span></span> return-to-callee 'ignore}
+<span style="color: #000000">    6:</span>    <span style="font-style: italic"><span style="color: #9A1900">;; do the work of the generator</span></span>
+<span style="color: #000000">    7:</span>    {##<span style="font-weight: bold"><span style="color: #0000FF">define</span></span> <span style="color: #FF0000">(</span>eval-until-yield send<span style="color: #FF0000">)</span>
+<span style="color: #000000">    8:</span>      {<span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>value-passed-to-yield <span style="color: #FF0000">(</span>f [|value|
+<span style="color: #000000">    9:</span>                                       <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">call/cc</span></span> [|stack-of-yield-exp|
+<span style="color: #000000">   10:</span>                                                 {setf! eval-until-yield stack-of-yield-exp}
+<span style="color: #000000">   11:</span>                                                 <span style="color: #FF0000">(</span>return-to-callee value<span style="color: #FF0000">)</span>]<span style="color: #FF0000">)</span>]<span style="color: #FF0000">)))</span>
+<span style="color: #000000">   12:</span>        <span style="color: #FF0000">(</span>return-to-callee value-passed-to-yield<span style="color: #FF0000">)</span>}}
+<span style="color: #000000">   13:</span>    [|#!rest send|
+<span style="color: #000000">   14:</span>     {<span style="font-weight: bold"><span style="color: #0000FF">call/cc</span></span> [|stack-of-callee|
+<span style="color: #000000">   15:</span>               {setf! return-to-callee stack-of-callee}
+<span style="color: #000000">   16:</span>               <span style="color: #FF0000">(</span>eval-until-yield <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span>null? send<span style="color: #FF0000">)</span>
+<span style="color: #000000">   17:</span>                                     ['ignore]
+<span style="color: #000000">   18:</span>                                     [<span style="color: #FF0000">(</span>car send<span style="color: #FF0000">)</span>]<span style="color: #FF0000">))</span>]}]]}</tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> {unit-test
+<span style="color: #000000">    2:</span>  {<span style="font-weight: bold"><span style="color: #0000FF">begin</span></span>
+<span style="color: #000000">    3:</span>    {<span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>test <span style="color: #FF0000">(</span>make-generator
+<span style="color: #000000">    4:</span>                 [|yield|
+<span style="color: #000000">    5:</span>                  {<span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>time <span style="color: #993399">0</span><span style="color: #FF0000">))</span>
+<span style="color: #000000">    6:</span>                    {setf! time <span style="color: #FF0000">(</span>+ time <span style="color: #FF0000">(</span>yield 'event-one<span style="color: #FF0000">))</span>}
+<span style="color: #000000">    7:</span>                    {setf! time <span style="color: #FF0000">(</span>+ time <span style="color: #FF0000">(</span>yield 'event-two<span style="color: #FF0000">))</span>}
+<span style="color: #000000">    8:</span>                    {setf! time <span style="color: #FF0000">(</span>+ time <span style="color: #FF0000">(</span>yield 'event-three<span style="color: #FF0000">))</span>}
+<span style="color: #000000">    9:</span>                    <span style="color: #FF0000">(</span>yield time<span style="color: #FF0000">)</span>
+<span style="color: #000000">   10:</span>                    'end-of-generator}]<span style="color: #FF0000">)))</span>
+<span style="color: #000000">   11:</span>      {<span style="font-weight: bold"><span style="color: #0000FF">and</span></span> <span style="color: #FF0000">(</span>equal? 'event-one <span style="color: #FF0000">(</span>test<span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; just like python, nothing to send on first use</span></span>
+<span style="color: #000000">   12:</span>           <span style="color: #FF0000">(</span>equal? 'event-two <span style="color: #FF0000">(</span>test <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'event-one)"</span></span>
+<span style="color: #000000">   13:</span>           <span style="color: #FF0000">(</span>equal? 'event-three <span style="color: #FF0000">(</span>test <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'event-two)"</span></span>
+<span style="color: #000000">   14:</span>           <span style="color: #FF0000">(</span>equal? <span style="color: #993399">30</span> <span style="color: #FF0000">(</span>test <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'event-three)"</span></span>
+<span style="color: #000000">   15:</span>           <span style="color: #FF0000">(</span>equal? 'end-of-generator <span style="color: #FF0000">(</span>test <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; end of the generator</span></span>
+<span style="color: #000000">   16:</span>           }}}}
+<span style="color: #000000">   17:</span> </tt></pre></div></div>
+</div>
+<div class="sect2">
+<h3 id="_generator">6.2. generator</h3>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> {define-macro generator
+<span style="color: #000000">    2:</span>   [|body|
+<span style="color: #000000">    3:</span>    `<span style="color: #FF0000">(</span>make-generator
+<span style="color: #000000">    4:</span>      [|yield|
+<span style="color: #000000">    5:</span>       {<span style="font-weight: bold"><span style="color: #0000FF">begin</span></span>
+<span style="color: #000000">    6:</span>         ,body
+<span style="color: #000000">    7:</span>         'end-of-generator}]<span style="color: #FF0000">)</span>]}</tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> {unit-test
+<span style="color: #000000">    2:</span>  {<span style="font-weight: bold"><span style="color: #0000FF">begin</span></span>
+<span style="color: #000000">    3:</span>    {<span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>test <span style="color: #FF0000">(</span>generator
+<span style="color: #000000">    4:</span>                  {<span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>time <span style="color: #993399">0</span><span style="color: #FF0000">))</span>
+<span style="color: #000000">    5:</span>                    {setf! time <span style="color: #FF0000">(</span>+ time <span style="color: #FF0000">(</span>yield 'event-one<span style="color: #FF0000">))</span>}
+<span style="color: #000000">    6:</span>                    {setf! time <span style="color: #FF0000">(</span>+ time <span style="color: #FF0000">(</span>yield 'event-two<span style="color: #FF0000">))</span>}
+<span style="color: #000000">    7:</span>                    {setf! time <span style="color: #FF0000">(</span>+ time <span style="color: #FF0000">(</span>yield 'event-three<span style="color: #FF0000">))</span>}
+<span style="color: #000000">    8:</span>                    <span style="color: #FF0000">(</span>yield time<span style="color: #FF0000">)</span>}]<span style="color: #FF0000">))</span>
+<span style="color: #000000">    9:</span>      {<span style="font-weight: bold"><span style="color: #0000FF">and</span></span> <span style="color: #FF0000">(</span>equal? 'event-one <span style="color: #FF0000">(</span>test<span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; just like python, nothing to send on first use</span></span>
+<span style="color: #000000">   10:</span>           <span style="color: #FF0000">(</span>equal? 'event-two <span style="color: #FF0000">(</span>test <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'event-one)"</span></span>
+<span style="color: #000000">   11:</span>           <span style="color: #FF0000">(</span>equal? 'event-three <span style="color: #FF0000">(</span>test <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'event-two)"</span></span>
+<span style="color: #000000">   12:</span>           <span style="color: #FF0000">(</span>equal? <span style="color: #993399">30</span> <span style="color: #FF0000">(</span>test <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'event-three)"</span></span>
+<span style="color: #000000">   13:</span>           <span style="color: #FF0000">(</span>equal? 'end-of-generator <span style="color: #FF0000">(</span>test <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; end of the generator</span></span>
+<span style="color: #000000">   14:</span>           }}}}</tt></pre></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_streams">7. Streams</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Streams are sequential collections like lists, but the
 "cdr" of each pair must be a zero-argument lambda expression.  This lambda
@@ -3683,7 +3788,7 @@ For more information, consult &lt;<a href="#sicp">[sicp]</a>&gt; <span class="fo
 define "stream-cons" as syntax instead of passing a lambda
 to the second argument]<br></span>.</p></div>
 <div class="sect2">
-<h3 id="_stream_structure">6.1. Stream structure</h3>
+<h3 id="_stream_structure">7.1. Stream structure</h3>
 <div class="paragraph"><p>"libbug-private#define-structure" <span class="footnote"><br>[defined in section <a href="#definestructure">[definestructure]</a>]<br></span>
 takes the name of the datatype and a variable
 number of fields as parameters.</p></div>
@@ -3704,7 +3809,7 @@ and "stream-cdr"
 are to be used.</p></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_cons">6.2. stream-cons</h3>
+<h3 id="_stream_cons">7.2. stream-cons</h3>
 <div class="paragraph"><p>Like "cons", creates a pair.  The second argument must be a zero-argument
 lambda value.</p></div>
 <div class="paragraph"><p></p></div>
@@ -3725,7 +3830,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>&lt;<a href="#sicp">[sicp]</a>&gt;.</p></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_car">6.3. stream-car</h3>
+<h3 id="_stream_car">7.3. stream-car</h3>
 <div class="paragraph"><p>Get the first element of the stream.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
@@ -3738,7 +3843,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>&lt;<a href="#sicp">[sicp]</a>&gt;.</p></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_cdr">6.4. stream-cdr</h3>
+<h3 id="_stream_cdr">7.4. stream-cdr</h3>
 <div class="paragraph"><p>Forces the evaluation of the next element of the stream.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
@@ -3765,7 +3870,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    8:</span>  }</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_null">6.5. stream-null</h3>
+<h3 id="_stream_null">7.5. stream-null</h3>
 <div class="paragraph"><p>The sentinel value for streams is the same value as the sentinel value
 for lists.</p></div>
 <div class="paragraph"><p></p></div>
@@ -3779,7 +3884,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    3:</span>   }</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_null_2">6.6. stream-null?</h3>
+<h3 id="_stream_null_2">7.6. stream-null?</h3>
 <div class="paragraph"><p>But to test for the sentinel value, use "stream-null?".</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
@@ -3802,7 +3907,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>  }</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_list_8594_stream">6.7. list&#8594;stream</h3>
+<h3 id="_list_8594_stream">7.7. list&#8594;stream</h3>
 <div class="paragraph"><p>Converts a list into a stream.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
@@ -3837,7 +3942,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   14:</span>                        foo<span style="color: #FF0000">))</span>}}}</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_8594_list">6.8. stream&#8594;list</h3>
+<h3 id="_stream_8594_list">7.8. stream&#8594;list</h3>
 <div class="paragraph"><p>Converts a stream into a list.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
@@ -3863,7 +3968,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span>  }</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_ref">6.9. stream-ref</h3>
+<h3 id="_stream_ref">7.9. stream-ref</h3>
 <div class="paragraph"><p>The analogous procedure of "list-ref".</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
@@ -3912,7 +4017,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   22:</span>  }</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_integers_from">6.10. integers-from</h3>
+<h3 id="_integers_from">7.10. integers-from</h3>
 <div class="paragraph"><p></p></div>
 <div class="paragraph"><p>Creates an infinite <span class="footnote"><br>[bounded by memory constraints of course. Scheme
 isn&#8217;t a Turing machine.]<br></span> stream of integers.</p></div>
@@ -3948,7 +4053,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   16:</span>  }</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_take">6.11. stream-take</h3>
+<h3 id="_stream_take">7.11. stream-take</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
@@ -3980,7 +4085,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   10:</span>     <span style="color: #FF0000">))</span>}</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_filter">6.12. stream-filter</h3>
+<h3 id="_stream_filter">7.12. stream-filter</h3>
 <div class="paragraph"><p>The analogous procedure of filter.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
@@ -4077,7 +4182,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   26:</span> </tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_primes">6.13. primes</h3>
+<h3 id="_primes">7.13. primes</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
@@ -4108,7 +4213,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    7:</span>  }</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_drop">6.14. stream-drop</h3>
+<h3 id="_stream_drop">7.14. stream-drop</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
@@ -4146,7 +4251,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   17:</span>  }</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_drop_while">6.15. stream-drop-while</h3>
+<h3 id="_stream_drop_while">7.15. stream-drop-while</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
@@ -4182,7 +4287,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   14:</span>     <span style="color: #FF0000">))</span>}</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_map">6.16. stream-map</h3>
+<h3 id="_stream_map">7.16. stream-map</h3>
 <div class="paragraph"><p>The analogous procedure of "map".</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
@@ -4218,7 +4323,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   12:</span> </tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_enumerate_interval">6.17. stream-enumerate-interval</h3>
+<h3 id="_stream_enumerate_interval">7.17. stream-enumerate-interval</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
@@ -4246,7 +4351,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    7:</span>          '<span style="color: #FF0000">(</span><span style="color: #993399">1</span> <span style="color: #993399">3</span> <span style="color: #993399">5</span> <span style="color: #993399">7</span> <span style="color: #993399">9</span><span style="color: #FF0000">))</span>}</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_stream_take_while">6.18. stream-take-while</h3>
+<h3 id="_stream_take_while">7.18. stream-take-while</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
@@ -4279,7 +4384,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    9:</span>  }</tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_the_end_of_compilation">6.19. The End of Compilation</h3>
+<h3 id="_the_end_of_compilation">7.19. The End of Compilation</h3>
 <div class="paragraph"><p>At the beginning of the book, in chapter <a href="#beginninglibbug">[beginninglibbug]</a>, "bug-language.scm"
 was imported, so that "libbug-private#define", and "libbug-private#define-macro" could be used.
 This chapter is the end of the file "main.bug.scm".  However, as will be shown
@@ -5585,7 +5690,7 @@ Aron Barath and Zoltan Porkolab, Eotvos Lorand University,
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-02-18 09:33:06 EST
+ 2018-06-10 13:55:43 EST
 </div>
 </div>
 </body>
