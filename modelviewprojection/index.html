@@ -1142,10 +1142,11 @@ to <strong>screen-coordinates</strong>.</p></div>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">    1:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">)</span>
-<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo1</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">    3:</span>     <span style="font-style: italic"><span style="color: #9A1900"># The baseline behavior.  A black screen.</span></span>
-<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #0000FF">pass</span></span></tt></pre></div></div>
+<pre><tt><span style="color: #000000">    1:</span> demoNumberDevPurposes <span style="color: #990000">=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">    2:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">    3:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo1</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">    4:</span>     <span style="font-style: italic"><span style="color: #9A1900"># The baseline behavior.  A black screen.</span></span>
+<span style="color: #000000">    5:</span>     <span style="font-weight: bold"><span style="color: #0000FF">pass</span></span></tt></pre></div></div>
 <div class="paragraph"><p>When this code returns, the event loop flushes (i.e) sends the frame to the monitor.  Since
 no geometry was drawn, the color value for each pixel is still black.</p></div>
 <div class="paragraph"><p>Each color is represented by a number, so the frame is something like this:</p></div>
@@ -1186,22 +1187,23 @@ quadrilateral.  The vertices will be specified by calling "glVertex2f" 4 times.<
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">    1:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">2</span><span style="color: #990000">)</span>
-<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo2</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">    3:</span>     <span style="font-style: italic"><span style="color: #9A1900"># draw paddle 1</span></span>
-<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">glColor3f</span></span><span style="color: #990000">(</span><span style="color: #993399">0.578123</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#r</span></span>
-<span style="color: #000000">    5:</span>               <span style="color: #993399">0.0</span><span style="color: #990000">,</span>      <span style="font-style: italic"><span style="color: #9A1900">#g</span></span>
-<span style="color: #000000">    6:</span>               <span style="color: #993399">1.0</span><span style="color: #990000">)</span>      <span style="font-style: italic"><span style="color: #9A1900">#b</span></span>
-<span style="color: #000000">    7:</span>     <span style="font-weight: bold"><span style="color: #000000">glBegin</span></span><span style="color: #990000">(</span>GL_QUADS<span style="color: #990000">)</span>
-<span style="color: #000000">    8:</span>     <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(-</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#x</span></span>
-<span style="color: #000000">    9:</span>                <span style="color: #990000">-</span><span style="color: #993399">0.3</span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">#y</span></span>
-<span style="color: #000000">   10:</span>     <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(-</span><span style="color: #993399">0.8</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#x</span></span>
-<span style="color: #000000">   11:</span>                <span style="color: #990000">-</span><span style="color: #993399">0.3</span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">#y</span></span>
-<span style="color: #000000">   12:</span>     <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(-</span><span style="color: #993399">0.8</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#x</span></span>
-<span style="color: #000000">   13:</span>                <span style="color: #993399">0.3</span><span style="color: #990000">)</span>  <span style="font-style: italic"><span style="color: #9A1900">#y</span></span>
-<span style="color: #000000">   14:</span>     <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(-</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#x</span></span>
-<span style="color: #000000">   15:</span>                <span style="color: #993399">0.3</span><span style="color: #990000">)</span>  <span style="font-style: italic"><span style="color: #9A1900">#y</span></span>
-<span style="color: #000000">   16:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<pre><tt><span style="color: #000000">    1:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">    2:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">    3:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo2</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">    4:</span>     <span style="font-style: italic"><span style="color: #9A1900"># draw paddle 1</span></span>
+<span style="color: #000000">    5:</span>     <span style="font-weight: bold"><span style="color: #000000">glColor3f</span></span><span style="color: #990000">(</span><span style="color: #993399">0.578123</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#r</span></span>
+<span style="color: #000000">    6:</span>               <span style="color: #993399">0.0</span><span style="color: #990000">,</span>      <span style="font-style: italic"><span style="color: #9A1900">#g</span></span>
+<span style="color: #000000">    7:</span>               <span style="color: #993399">1.0</span><span style="color: #990000">)</span>      <span style="font-style: italic"><span style="color: #9A1900">#b</span></span>
+<span style="color: #000000">    8:</span>     <span style="font-weight: bold"><span style="color: #000000">glBegin</span></span><span style="color: #990000">(</span>GL_QUADS<span style="color: #990000">)</span>
+<span style="color: #000000">    9:</span>     <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(-</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#x</span></span>
+<span style="color: #000000">   10:</span>                <span style="color: #990000">-</span><span style="color: #993399">0.3</span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">#y</span></span>
+<span style="color: #000000">   11:</span>     <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(-</span><span style="color: #993399">0.8</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#x</span></span>
+<span style="color: #000000">   12:</span>                <span style="color: #990000">-</span><span style="color: #993399">0.3</span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">#y</span></span>
+<span style="color: #000000">   13:</span>     <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(-</span><span style="color: #993399">0.8</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#x</span></span>
+<span style="color: #000000">   14:</span>                <span style="color: #993399">0.3</span><span style="color: #990000">)</span>  <span style="font-style: italic"><span style="color: #9A1900">#y</span></span>
+<span style="color: #000000">   15:</span>     <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(-</span><span style="color: #993399">1.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#x</span></span>
+<span style="color: #000000">   16:</span>                <span style="color: #993399">0.3</span><span style="color: #990000">)</span>  <span style="font-style: italic"><span style="color: #9A1900">#y</span></span>
+<span style="color: #000000">   17:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span></tt></pre></div></div>
 <div class="paragraph"><p>"glEnd()" tells OpenGL that we have finished providing vertices for
 the begun quadrilateral.</p></div>
 <div class="paragraph"><p>The framebuffer, which has not yet been flushed to the monitor, has geometry which looks like this:</p></div>
@@ -1238,12 +1240,12 @@ http://www.gnu.org/software/src-highlite -->
 <pre>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-wwwwwbbbbbbbbbbbbbbbbbbbbbbbbbbbyyyyy
-wwwwwbbbbbbbbbbbbbbbbbbbbbbbbbbbyyyyy
-wwwwwbbbbbbbbbbbbbbbbbbbbbbbbbbbyyyyy
-wwwwwbbbbbbbbbbbbbbbbbbbbbbbbbbbyyyyy
-wwwwwbbbbbbbbbbbbbbbbbbbbbbbbbbbyyyyy
-wwwwwbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+pppppbbbbbbbbbbbbbbbbbbbbbbbbbbbrrrrr
+pppppbbbbbbbbbbbbbbbbbbbbbbbbbbbrrrrr
+pppppbbbbbbbbbbbbbbbbbbbbbbbbbbbrrrrr
+pppppbbbbbbbbbbbbbbbbbbbbbbbbbbbrrrrr
+pppppbbbbbbbbbbbbbbbbbbbbbbbbbbbrrrrr
+pppppbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</pre>
@@ -1380,10 +1382,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">    1:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">3</span><span style="color: #990000">)</span>
-<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo3</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">    3:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">demo2</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<pre><tt><span style="color: #000000">    1:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">    2:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">    3:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo3</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">    5:</span>     <span style="font-weight: bold"><span style="color: #000000">demo2</span></span><span style="color: #990000">()</span></tt></pre></div></div>
 </div>
 </div>
 </div>
@@ -1514,10 +1517,11 @@ accumulate across frames.</p></div>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">    1:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">4</span><span style="color: #990000">)</span>
-<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo4</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">    3:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<pre><tt><span style="color: #000000">    1:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">    2:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">    3:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo4</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">    5:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span></tt></pre></div></div>
 <div class="paragraph"><p>Draw paddle 1, relative to the world-space origin.
 Add paddle1.offsetY to the "y" component of every vertex</p></div>
 <div class="listingblock">
@@ -1586,7 +1590,10 @@ of computer graphics.</p></div>
 instead call "translate" on the vertex, and call "glVertex2f"
 on the translated vertex.</p></div>
 <div class="paragraph"><p><span class="image">
-<img src="translate.png" alt="translate.png" title="Foo">
+<img src="translationF.gif" alt="translationF.gif" title="Foo">
+</span></p></div>
+<div class="paragraph"><p><span class="image">
+<img src="translation2F.gif" alt="translation2F.gif" title="Foo">
 </span></p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1616,13 +1623,14 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   17:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span>
 <span style="color: #000000">   18:</span> Paddle<span style="color: #990000">.</span>draw <span style="color: #990000">=</span> draw
 <span style="color: #000000">   19:</span>
-<span style="color: #000000">   20:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">5</span><span style="color: #990000">)</span>
-<span style="color: #000000">   21:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo5</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">   22:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   23:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   24:</span>
-<span style="color: #000000">   25:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   26:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<span style="color: #000000">   20:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">   21:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">   22:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo5</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">   23:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   24:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   25:</span>
+<span style="color: #000000">   26:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   27:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
 </div>
 </div>
 </div>
@@ -1716,63 +1724,9 @@ http://www.gnu.org/software/src-highlite -->
 where all transformations happen relative to the world-space origin.
 (this works well for world-space to camera-space,
 but not so well for model-space transformations)</p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFrame1.png" alt="modelspacePaddleMovingFrame1.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFrame2.png" alt="modelspacePaddleMovingFrame2.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFrame3.png" alt="modelspacePaddleMovingFrame3.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFrame3.5.png" alt="modelspacePaddleMovingFrame3.5.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFrame4.png" alt="modelspacePaddleMovingFrame4.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFrame4.png" alt="modelspacePaddleMovingFrame4.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFrame5.png" alt="modelspacePaddleMovingFrame5.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFrame6.png" alt="modelspacePaddleMovingFrame6.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFrame6.5.png" alt="modelspacePaddleMovingFrame6.5.png" title="Foo">
-</span></p></div>
 <div class="paragraph"><p>Instead, for model-space to world-space transformations (and for these transformations only),
 it&#8217;s easier to read the transformations backwards, where the transformations
 aren&#8217;t relative to the global origin, instead it&#8217;s from the local frame of reference.</p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFramebackwards1.png" alt="modelspacePaddleMovingFramebackwards1.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFramebackwards2.png" alt="modelspacePaddleMovingFramebackwards2.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFramebackwards3.png" alt="modelspacePaddleMovingFramebackwards3.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFramebackwards3.5.png" alt="modelspacePaddleMovingFramebackwards3.5.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFramebackwards4.png" alt="modelspacePaddleMovingFramebackwards4.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFramebackwards4.png" alt="modelspacePaddleMovingFramebackwards4.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFramebackwards5.png" alt="modelspacePaddleMovingFramebackwards5.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFramebackwards6.png" alt="modelspacePaddleMovingFramebackwards6.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacePaddleMovingFramebackwards6.5.png" alt="modelspacePaddleMovingFramebackwards6.5.png" title="Foo">
-</span></p></div>
 <div class="paragraph"><p>Why do the two different views of the transformations matter?  In model-space
 to world-space transformations, especially once rotation and scaling of model-space
 is used, it allows the programmer to forget about most details, just specify
@@ -1801,7 +1755,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p><span class="image">
 <img src="modelspacePaddle7.png" alt="modelspacePaddle7.png" title="Foo">
 </span></p></div>
-<div class="paragraph"><p>World-space to NDC-space.</p></div>
+<div class="paragraph"><p>#World-space to NDC-space.</p></div>
 <div class="paragraph"><p><span class="image">
 <img src="modelspacePaddle8.png" alt="modelspacePaddle8.png" title="Foo">
 </span></p></div>
@@ -1828,12 +1782,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">    1:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">6</span><span style="color: #990000">)</span>
-<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo6</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">    3:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">    5:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">    6:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<pre><tt><span style="color: #000000">    1:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">    2:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">    3:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo6</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">    5:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">    6:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">    7:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
 </div>
 <div class="sect2">
 <h3 id="_rotation_around_origin_0_0">8.2. Rotation Around Origin (0,0)</h3>
@@ -1993,6 +1948,122 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span>
 <span style="color: #000000">    6:</span>     <span style="font-weight: bold"><span style="color: #000000">glBegin</span></span><span style="color: #990000">(</span>GL_QUADS<span style="color: #990000">)</span>
 <span style="color: #000000">    7:</span>     <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> modelspace <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> self<span style="color: #990000">.</span>vertices<span style="color: #990000">:</span>
+<span style="color: #000000">    8:</span>         worldSpace <span style="color: #990000">=</span> modelspace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>self<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">    9:</span>                                           ty<span style="color: #990000">=</span>self<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>y<span style="color: #990000">)</span> <span style="color: #990000">\</span>
+<span style="color: #000000">   10:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span><span style="color: #993399">0.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">   11:</span>                                           ty<span style="color: #990000">=</span>self<span style="color: #990000">.</span>offsetY<span style="color: #990000">)</span> <span style="color: #990000">\</span>
+<span style="color: #000000">   12:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rotate</span></span><span style="color: #990000">(</span>self<span style="color: #990000">.</span>rotation<span style="color: #990000">)</span>
+<span style="color: #000000">   13:</span>         ndcSpace <span style="color: #990000">=</span> worldSpace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">scale</span></span><span style="color: #990000">(</span>x<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">/</span><span style="color: #993399">100.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">   14:</span>                                     y<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">/</span><span style="color: #993399">100.0</span><span style="color: #990000">)</span>
+<span style="color: #000000">   15:</span>         <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(</span>ndcSpace<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">   16:</span>                    ndcSpace<span style="color: #990000">.</span>y<span style="color: #990000">)</span>
+<span style="color: #000000">   17:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   18:</span> Paddle<span style="color: #990000">.</span>draw <span style="color: #990000">=</span> draw
+<span style="color: #000000">   19:</span>
+<span style="color: #000000">   20:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">   21:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">   22:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo7</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">   23:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   24:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   25:</span>
+<span style="color: #000000">   26:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   27:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<div class="paragraph"><p>TODO - Explain how this does not do what we want.  Show example graphs.</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> <span style="font-style: italic"><span style="color: #9A1900"># add rotate around method to Vertex</span></span>
+<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">rotate_around</span></span><span style="color: #990000">(</span>self<span style="color: #990000">,</span> angle_in_radians<span style="color: #990000">,</span> center<span style="color: #990000">):</span>
+<span style="color: #000000">    3:</span>     translateToCenter <span style="color: #990000">=</span> self<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=-</span>center<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">    4:</span>                                        ty<span style="color: #990000">=-</span>center<span style="color: #990000">.</span>y<span style="color: #990000">)</span>
+<span style="color: #000000">    5:</span>     rotatedAroundOrigin <span style="color: #990000">=</span> translateToCenter<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rotate</span></span><span style="color: #990000">(</span>angle_in_radians<span style="color: #990000">)</span>
+<span style="color: #000000">    6:</span>     backToCenter <span style="color: #990000">=</span> rotatedAroundOrigin<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>center<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">    7:</span>                                                  ty<span style="color: #990000">=</span>center<span style="color: #990000">.</span>y<span style="color: #990000">)</span>
+<span style="color: #000000">    8:</span>     <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> backToCenter
+<span style="color: #000000">    9:</span> Vertex<span style="color: #990000">.</span>rotate_around <span style="color: #990000">=</span> rotate_around</tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">(</span>self<span style="color: #990000">):</span>
+<span style="color: #000000">    2:</span>     <span style="font-weight: bold"><span style="color: #000000">glColor3f</span></span><span style="color: #990000">(</span>self<span style="color: #990000">.</span>r<span style="color: #990000">,</span>
+<span style="color: #000000">    3:</span>               self<span style="color: #990000">.</span>g<span style="color: #990000">,</span>
+<span style="color: #000000">    4:</span>               self<span style="color: #990000">.</span>b<span style="color: #990000">)</span>
+<span style="color: #000000">    5:</span>
+<span style="color: #000000">    6:</span>     <span style="font-weight: bold"><span style="color: #000000">glBegin</span></span><span style="color: #990000">(</span>GL_QUADS<span style="color: #990000">)</span>
+<span style="color: #000000">    7:</span>     <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> modelspace <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> self<span style="color: #990000">.</span>vertices<span style="color: #990000">:</span>
+<span style="color: #000000">    8:</span>         rotatePoint <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">Vertex</span></span><span style="color: #990000">(</span><span style="color: #993399">0.0</span><span style="color: #990000">,</span><span style="color: #993399">0.0</span><span style="color: #990000">).</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>self<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">    9:</span>                                                 ty<span style="color: #990000">=</span>self<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>y<span style="color: #990000">)</span> <span style="color: #990000">\</span>
+<span style="color: #000000">   10:</span>                                      <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span><span style="color: #993399">0.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">   11:</span>                                                 ty<span style="color: #990000">=</span>self<span style="color: #990000">.</span>offsetY<span style="color: #990000">)</span>
+<span style="color: #000000">   12:</span>         worldSpace <span style="color: #990000">=</span> modelspace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>self<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">   13:</span>                                           ty<span style="color: #990000">=</span>self<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>y<span style="color: #990000">)</span> <span style="color: #990000">\</span>
+<span style="color: #000000">   14:</span>                                 <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span><span style="color: #993399">0.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">   15:</span>                                            ty<span style="color: #990000">=</span>self<span style="color: #990000">.</span>offsetY<span style="color: #990000">)</span>
+<span style="color: #000000">   16:</span>         worldSpace <span style="color: #990000">=</span> worldSpace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rotate_around</span></span><span style="color: #990000">(</span>self<span style="color: #990000">.</span>rotation<span style="color: #990000">,</span> rotatePoint<span style="color: #990000">)</span>
+<span style="color: #000000">   17:</span>         ndcSpace <span style="color: #990000">=</span> worldSpace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">scale</span></span><span style="color: #990000">(</span>x<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">/</span><span style="color: #993399">100.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">   18:</span>                                     y<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">/</span><span style="color: #993399">100.0</span><span style="color: #990000">)</span>
+<span style="color: #000000">   19:</span>         <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(</span>ndcSpace<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">   20:</span>                    ndcSpace<span style="color: #990000">.</span>y<span style="color: #990000">)</span>
+<span style="color: #000000">   21:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   22:</span> Paddle<span style="color: #990000">.</span>draw <span style="color: #990000">=</span> draw
+<span style="color: #000000">   23:</span>
+<span style="color: #000000">   24:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">   25:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">   26:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo8</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">   27:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   28:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   29:</span>
+<span style="color: #000000">   30:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   31:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   32:</span> </tt></pre></div></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>TODO - explain that translate each points and the origin.  We then rotate around the new origin
+by translating back to the global origin, doing the rotation, and then redoing the translation.
+Regardless of the inefficiency of this calculation, it should be clear to the reader
+that we are not thinking about this correctly.  The initial translate is effectively canceled out,
+leaving a rotation and then a translation.</pre>
+</div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">(</span>self<span style="color: #990000">):</span>
+<span style="color: #000000">    2:</span>     <span style="font-weight: bold"><span style="color: #000000">glColor3f</span></span><span style="color: #990000">(</span>self<span style="color: #990000">.</span>r<span style="color: #990000">,</span>
+<span style="color: #000000">    3:</span>               self<span style="color: #990000">.</span>g<span style="color: #990000">,</span>
+<span style="color: #000000">    4:</span>               self<span style="color: #990000">.</span>b<span style="color: #990000">)</span>
+<span style="color: #000000">    5:</span>
+<span style="color: #000000">    6:</span>     <span style="font-weight: bold"><span style="color: #000000">glBegin</span></span><span style="color: #990000">(</span>GL_QUADS<span style="color: #990000">)</span>
+<span style="color: #000000">    7:</span>     <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> modelspace <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> self<span style="color: #990000">.</span>vertices<span style="color: #990000">:</span>
+<span style="color: #000000">    8:</span>         worldSpace <span style="color: #990000">=</span> modelspace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rotate</span></span><span style="color: #990000">(</span>self<span style="color: #990000">.</span>rotation<span style="color: #990000">)</span> <span style="color: #990000">\</span>
+<span style="color: #000000">    9:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>self<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">   10:</span>                                           ty<span style="color: #990000">=</span>self<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>y<span style="color: #990000">)</span> <span style="color: #990000">\</span>
+<span style="color: #000000">   11:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span><span style="color: #993399">0.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">   12:</span>                                           ty<span style="color: #990000">=</span>self<span style="color: #990000">.</span>offsetY<span style="color: #990000">)</span>
+<span style="color: #000000">   13:</span>
+<span style="color: #000000">   14:</span>         ndcSpace <span style="color: #990000">=</span> worldSpace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">scale</span></span><span style="color: #990000">(</span>x<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">/</span><span style="color: #993399">100.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">   15:</span>                                     y<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">/</span><span style="color: #993399">100.0</span><span style="color: #990000">)</span>
+<span style="color: #000000">   16:</span>         <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(</span>ndcSpace<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">   17:</span>                    ndcSpace<span style="color: #990000">.</span>y<span style="color: #990000">)</span>
+<span style="color: #000000">   18:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   19:</span> Paddle<span style="color: #990000">.</span>draw <span style="color: #990000">=</span> draw</tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">(</span>self<span style="color: #990000">):</span>
+<span style="color: #000000">    2:</span>     <span style="font-weight: bold"><span style="color: #000000">glColor3f</span></span><span style="color: #990000">(</span>self<span style="color: #990000">.</span>r<span style="color: #990000">,</span>
+<span style="color: #000000">    3:</span>               self<span style="color: #990000">.</span>g<span style="color: #990000">,</span>
+<span style="color: #000000">    4:</span>               self<span style="color: #990000">.</span>b<span style="color: #990000">)</span>
+<span style="color: #000000">    5:</span>
+<span style="color: #000000">    6:</span>     <span style="font-weight: bold"><span style="color: #000000">glBegin</span></span><span style="color: #990000">(</span>GL_QUADS<span style="color: #990000">)</span>
+<span style="color: #000000">    7:</span>     <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> modelspace <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> self<span style="color: #990000">.</span>vertices<span style="color: #990000">:</span>
 <span style="color: #000000">    8:</span>         worldSpace <span style="color: #990000">=</span> modelspace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rotate</span></span><span style="color: #990000">(</span>self<span style="color: #990000">.</span>rotation<span style="color: #990000">)</span> <span style="color: #990000">\</span>
 <span style="color: #000000">    9:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>self<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
 <span style="color: #000000">   10:</span>                                           ty<span style="color: #990000">=</span>self<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>y<span style="color: #990000">)</span> <span style="color: #990000">\</span>
@@ -2007,61 +2078,26 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   19:</span> Paddle<span style="color: #990000">.</span>draw <span style="color: #990000">=</span> draw
 <span style="color: #000000">   20:</span>
 <span style="color: #000000">   21:</span>
-<span style="color: #000000">   22:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">7</span><span style="color: #990000">)</span>
-<span style="color: #000000">   23:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo7</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">   24:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   25:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   26:</span>
-<span style="color: #000000">   27:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   28:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<span style="color: #000000">   22:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">   23:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">   24:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo9</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">   25:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   26:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   27:</span>
+<span style="color: #000000">   28:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   29:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
 <div class="paragraph"><p><span class="image">
-<img src="modelspacerotation.png" alt="modelspacerotation.png" title="Foo">
+<img src="rotation1F.gif" alt="rotation1F.gif" title="Foo">
 </span></p></div>
 <div class="paragraph"><p><span class="image">
-<img src="modelspacerotation2.png" alt="modelspacerotation2.png" title="Foo">
+<img src="rotation1B.gif" alt="rotation1B.gif" title="Foo">
 </span></p></div>
 <div class="paragraph"><p><span class="image">
-<img src="modelspacerotation2.5.png" alt="modelspacerotation2.5.png" title="Foo">
+<img src="rotation2F.gif" alt="rotation2F.gif" title="Foo">
 </span></p></div>
 <div class="paragraph"><p><span class="image">
-<img src="modelspacerotation3.png" alt="modelspacerotation3.png" title="Foo">
+<img src="rotation2B.gif" alt="rotation2B.gif" title="Foo">
 </span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacerotation4.png" alt="modelspacerotation4.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacerotation4.5.png" alt="modelspacerotation4.5.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacerotation5.png" alt="modelspacerotation5.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacerotation6.png" alt="modelspacerotation6.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacerotation7.png" alt="modelspacerotation7.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacerotation7.5.png" alt="modelspacerotation7.5.png" title="Foo">
-</span></p></div>
-<div class="paragraph"><p><span class="image">
-<img src="modelspacerotation8.png" alt="modelspacerotation8.png" title="Foo">
-</span></p></div>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">    1:</span> <span style="font-style: italic"><span style="color: #9A1900"># add rotate around method to Vertex</span></span>
-<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">rotate_around</span></span><span style="color: #990000">(</span>angle_in_radians<span style="color: #990000">,</span> center<span style="color: #990000">):</span>
-<span style="color: #000000">    3:</span>     translateToCenter <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(-</span>center<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
-<span style="color: #000000">    4:</span>                                   <span style="color: #990000">-</span>center<span style="color: #990000">.</span>y<span style="color: #990000">)</span>
-<span style="color: #000000">    5:</span>     rotatedAroundOrigin <span style="color: #990000">=</span> translateToCenter<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rotate</span></span><span style="color: #990000">(</span>angle_in_radians<span style="color: #990000">)</span>
-<span style="color: #000000">    6:</span>     backToCenter <span style="color: #990000">=</span> rotatedAroundOrigin<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>center<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
-<span style="color: #000000">    7:</span>                                                  ty<span style="color: #990000">=</span>center<span style="color: #990000">.</span>y<span style="color: #990000">)</span>
-<span style="color: #000000">    8:</span>     <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> backToCenter
-<span style="color: #000000">    9:</span>
-<span style="color: #000000">   10:</span> Vertex<span style="color: #990000">.</span>rotate_around <span style="color: #990000">=</span> rotate_around</tt></pre></div></div>
 </div>
 </div>
 <div class="sect1">
@@ -2198,13 +2234,14 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   20:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span>
 <span style="color: #000000">   21:</span> Paddle<span style="color: #990000">.</span>draw <span style="color: #990000">=</span> draw
 <span style="color: #000000">   22:</span>
-<span style="color: #000000">   23:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">8</span><span style="color: #990000">)</span>
-<span style="color: #000000">   24:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo8</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">   25:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   26:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   27:</span>
-<span style="color: #000000">   28:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   29:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<span style="color: #000000">   23:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">   24:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">   25:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo10</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">   26:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   27:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   28:</span>
+<span style="color: #000000">   29:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   30:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
 </div>
 </div>
 <div class="sect1">
@@ -2298,34 +2335,35 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    4:</span>           <span style="font-weight: bold"><span style="color: #000000">Vertex</span></span><span style="color: #990000">(</span>x<span style="color: #990000">=-</span><span style="color: #993399">5.0</span><span style="color: #990000">,</span> y<span style="color: #990000">=</span> <span style="color: #993399">5.0</span><span style="color: #990000">)]</span>
 <span style="color: #000000">    5:</span>
 <span style="color: #000000">    6:</span>
-<span style="color: #000000">    7:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">9</span><span style="color: #990000">)</span>
-<span style="color: #000000">    8:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo9</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">    9:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   10:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   11:</span>
-<span style="color: #000000">   12:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   13:</span>
-<span style="color: #000000">   14:</span>     <span style="font-style: italic"><span style="color: #9A1900"># draw the square relative to paddle 1</span></span>
-<span style="color: #000000">   15:</span>     <span style="font-weight: bold"><span style="color: #000000">glColor3f</span></span><span style="color: #990000">(</span><span style="color: #993399">0.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#r</span></span>
-<span style="color: #000000">   16:</span>               <span style="color: #993399">0.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#g</span></span>
-<span style="color: #000000">   17:</span>               <span style="color: #993399">1.0</span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">#b</span></span>
-<span style="color: #000000">   18:</span>     <span style="font-weight: bold"><span style="color: #000000">glBegin</span></span><span style="color: #990000">(</span>GL_QUADS<span style="color: #990000">)</span>
-<span style="color: #000000">   19:</span>     <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> modelspace <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> square<span style="color: #990000">:</span>
-<span style="color: #000000">   20:</span>         worldSpace <span style="color: #990000">=</span> modelspace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span><span style="color: #993399">20.0</span><span style="color: #990000">,</span> ty<span style="color: #990000">=</span><span style="color: #993399">0.0</span><span style="color: #990000">)</span> <span style="color: #990000">\</span>
-<span style="color: #000000">   21:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rotate</span></span><span style="color: #990000">(</span>paddle1<span style="color: #990000">.</span>rotation<span style="color: #990000">)</span> <span style="color: #990000">\</span>
-<span style="color: #000000">   22:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>paddle1<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
-<span style="color: #000000">   23:</span>                                           ty<span style="color: #990000">=</span>paddle1<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>y<span style="color: #990000">)</span> <span style="color: #990000">\</span>
-<span style="color: #000000">   24:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>paddle1<span style="color: #990000">.</span>offsetX<span style="color: #990000">,</span>
-<span style="color: #000000">   25:</span>                                           ty<span style="color: #990000">=</span>paddle1<span style="color: #990000">.</span>offsetY<span style="color: #990000">)</span>
-<span style="color: #000000">   26:</span>         cameraSpace <span style="color: #990000">=</span> worldSpace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=-</span>camera_x<span style="color: #990000">,</span>
-<span style="color: #000000">   27:</span>                                            ty<span style="color: #990000">=-</span>camera_y<span style="color: #990000">)</span>
-<span style="color: #000000">   28:</span>         ndcSpace <span style="color: #990000">=</span> cameraSpace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">scale</span></span><span style="color: #990000">(</span>x<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">/</span><span style="color: #993399">100.0</span><span style="color: #990000">,</span>
-<span style="color: #000000">   29:</span>                                      y<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">/</span><span style="color: #993399">100.0</span><span style="color: #990000">)</span>
-<span style="color: #000000">   30:</span>         <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(</span>ndcSpace<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
-<span style="color: #000000">   31:</span>                    ndcSpace<span style="color: #990000">.</span>y<span style="color: #990000">)</span>
-<span style="color: #000000">   32:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   33:</span>
-<span style="color: #000000">   34:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<span style="color: #000000">    7:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">    8:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">    9:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo11</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">   10:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   11:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   12:</span>
+<span style="color: #000000">   13:</span>     paddle1<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   14:</span>
+<span style="color: #000000">   15:</span>     <span style="font-style: italic"><span style="color: #9A1900"># draw the square relative to paddle 1</span></span>
+<span style="color: #000000">   16:</span>     <span style="font-weight: bold"><span style="color: #000000">glColor3f</span></span><span style="color: #990000">(</span><span style="color: #993399">0.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#r</span></span>
+<span style="color: #000000">   17:</span>               <span style="color: #993399">0.0</span><span style="color: #990000">,</span> <span style="font-style: italic"><span style="color: #9A1900">#g</span></span>
+<span style="color: #000000">   18:</span>               <span style="color: #993399">1.0</span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">#b</span></span>
+<span style="color: #000000">   19:</span>     <span style="font-weight: bold"><span style="color: #000000">glBegin</span></span><span style="color: #990000">(</span>GL_QUADS<span style="color: #990000">)</span>
+<span style="color: #000000">   20:</span>     <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> modelspace <span style="font-weight: bold"><span style="color: #0000FF">in</span></span> square<span style="color: #990000">:</span>
+<span style="color: #000000">   21:</span>         worldSpace <span style="color: #990000">=</span> modelspace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span><span style="color: #993399">20.0</span><span style="color: #990000">,</span> ty<span style="color: #990000">=</span><span style="color: #993399">0.0</span><span style="color: #990000">)</span> <span style="color: #990000">\</span>
+<span style="color: #000000">   22:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">rotate</span></span><span style="color: #990000">(</span>paddle1<span style="color: #990000">.</span>rotation<span style="color: #990000">)</span> <span style="color: #990000">\</span>
+<span style="color: #000000">   23:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>paddle1<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">   24:</span>                                           ty<span style="color: #990000">=</span>paddle1<span style="color: #990000">.</span>globalPosition<span style="color: #990000">.</span>y<span style="color: #990000">)</span> <span style="color: #990000">\</span>
+<span style="color: #000000">   25:</span>                                <span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=</span>paddle1<span style="color: #990000">.</span>offsetX<span style="color: #990000">,</span>
+<span style="color: #000000">   26:</span>                                           ty<span style="color: #990000">=</span>paddle1<span style="color: #990000">.</span>offsetY<span style="color: #990000">)</span>
+<span style="color: #000000">   27:</span>         cameraSpace <span style="color: #990000">=</span> worldSpace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">translate</span></span><span style="color: #990000">(</span>tx<span style="color: #990000">=-</span>camera_x<span style="color: #990000">,</span>
+<span style="color: #000000">   28:</span>                                            ty<span style="color: #990000">=-</span>camera_y<span style="color: #990000">)</span>
+<span style="color: #000000">   29:</span>         ndcSpace <span style="color: #990000">=</span> cameraSpace<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">scale</span></span><span style="color: #990000">(</span>x<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">/</span><span style="color: #993399">100.0</span><span style="color: #990000">,</span>
+<span style="color: #000000">   30:</span>                                      y<span style="color: #990000">=</span><span style="color: #993399">1.0</span><span style="color: #990000">/</span><span style="color: #993399">100.0</span><span style="color: #990000">)</span>
+<span style="color: #000000">   31:</span>         <span style="font-weight: bold"><span style="color: #000000">glVertex2f</span></span><span style="color: #990000">(</span>ndcSpace<span style="color: #990000">.</span>x<span style="color: #990000">,</span>
+<span style="color: #000000">   32:</span>                    ndcSpace<span style="color: #990000">.</span>y<span style="color: #990000">)</span>
+<span style="color: #000000">   33:</span>     <span style="font-weight: bold"><span style="color: #000000">glEnd</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   34:</span>
+<span style="color: #000000">   35:</span>     paddle2<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">draw</span></span><span style="color: #990000">()</span></tt></pre></div></div>
 </div>
 </div>
 <div class="sect1">
@@ -2433,10 +2471,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">    1:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">10</span><span style="color: #990000">)</span>
-<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo10</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">    3:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<pre><tt><span style="color: #000000">    1:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">    2:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">    3:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo12</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">    5:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span></tt></pre></div></div>
 <div class="paragraph"><p>Handle the rotation.</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
@@ -2578,10 +2617,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">    1:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">11</span><span style="color: #990000">)</span>
-<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo11</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">    3:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span></tt></pre></div></div>
+<pre><tt><span style="color: #000000">    1:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">    2:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">    3:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo13</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">    4:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">    5:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span></tt></pre></div></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
@@ -2757,11 +2797,12 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   29:</span> Paddle<span style="color: #990000">.</span>draw <span style="color: #990000">=</span> draw
 <span style="color: #000000">   30:</span>
 <span style="color: #000000">   31:</span>
-<span style="color: #000000">   32:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span><span style="color: #993399">12</span><span style="color: #990000">)</span>
-<span style="color: #000000">   33:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo12</span></span><span style="color: #990000">():</span>
-<span style="color: #000000">   34:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   35:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">   36:</span> </tt></pre></div></div>
+<span style="color: #000000">   32:</span> demoNumberDevPurposes <span style="color: #990000">+=</span> <span style="color: #993399">1</span>
+<span style="color: #000000">   33:</span> @<span style="font-weight: bold"><span style="color: #000000">demoNumber</span></span><span style="color: #990000">(</span>demoNumberDevPurposes<span style="color: #990000">)</span>
+<span style="color: #000000">   34:</span> <span style="font-weight: bold"><span style="color: #0000FF">def</span></span> <span style="font-weight: bold"><span style="color: #000000">demo14</span></span><span style="color: #990000">():</span>
+<span style="color: #000000">   35:</span>     <span style="font-weight: bold"><span style="color: #000000">draw_in_square_viewport</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   36:</span>     <span style="font-weight: bold"><span style="color: #000000">handle_inputs</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">   37:</span> </tt></pre></div></div>
 <div class="paragraph"><p>Draw square, relative to paddle 1.</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
@@ -2853,7 +2894,7 @@ http://www.gnu.org/software/src-highlite -->
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-05-26 19:53:29 EST
+ 2018-06-14 19:07:37 EST
 </div>
 </div>
 </body>
