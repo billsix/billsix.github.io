@@ -1169,21 +1169,6 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span>         <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span>car l<span style="color: #FF0000">)</span>
 <span style="color: #000000">    6:</span>             <span style="color: #FF0000">(</span>all? <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))</span>
 <span style="color: #000000">    7:</span>             <span style="color: #009900">#f</span><span style="color: #FF0000">))))</span></tt></pre></div></div>
-<div class="ulist"><ul>
-<li>
-<p>
-On line 3, "if", Libbug pretends that #t and #f are
-"Church Booleans" &lt;<a href="#tapl">[tapl]</a>&gt;.
-</p>
-</li>
-</ul></div>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">define</span></span> <span style="color: #009900">#t</span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>t f<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>t<span style="color: #FF0000">)))</span>
-<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">define</span></span> <span style="color: #009900">#f</span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>t f<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>f<span style="color: #FF0000">)))</span></tt></pre></div></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight
 by Lorenzo Bettini
@@ -5680,7 +5665,7 @@ Aron Barath and Zoltan Porkolab, Eotvos Lorand University,
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-11-05 18:02:43 EST
+ 2018-11-05 18:15:17 EST
 </div>
 </div>
 </body>
