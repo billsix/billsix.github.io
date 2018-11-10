@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.10">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>Computation at Compile-Time</title>
 <style type="text/css">
 /*
@@ -376,9 +376,6 @@ em {
   letter-spacing:+0.08em ! important;
 }
 
-span.underline { text-decoration: underline; }
-span.overline { text-decoration: overline; }
-span.line-through { text-decoration: line-through; }
 
 /*
  * html5 specific
@@ -715,21 +712,20 @@ now. This is a book about "Testing at Compile-Time"!</p></div>
 <div class="paragraph"><p>What do I mean by that?  Let&#8217;s say you&#8217;re looking at source code with which
 you are unfamiliar, such as the following:</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">define</span></span> <span style="font-weight: bold"><span style="color: #000000">permutations</span></span>
- <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>l<span style="color: #FF0000">)</span>
-  <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span>null? l<span style="color: #FF0000">)</span>
-      '<span style="color: #FF0000">()</span>
-      <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="font-weight: bold"><span style="color: #000000">permutations</span></span> <span style="color: #FF0000">((</span>l l<span style="color: #FF0000">))</span>
-        <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span>null? <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))</span>
-            <span style="color: #FF0000">(</span>list l<span style="color: #FF0000">)</span>
-            <span style="color: #FF0000">(</span>flatmap <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>x<span style="color: #FF0000">)</span>
-                      <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>y<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>cons x y<span style="color: #FF0000">))</span>
-                           <span style="color: #FF0000">(</span>permutations <span style="color: #FF0000">(</span>remove x l<span style="color: #FF0000">))))</span>
-                     l<span style="color: #FF0000">)</span>]<span style="color: #FF0000">))</span>]<span style="color: #FF0000">)))</span></tt></pre></div></div>
+  <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>l<span style="color: #FF0000">)</span>
+    <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span>null? l<span style="color: #FF0000">)</span>
+        '<span style="color: #FF0000">()</span>
+        <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="font-weight: bold"><span style="color: #000000">permutations</span></span> <span style="color: #FF0000">((</span>l l<span style="color: #FF0000">))</span>
+          <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span>null? <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))</span>
+              <span style="color: #FF0000">(</span>list l<span style="color: #FF0000">)</span>
+              <span style="color: #FF0000">(</span>flatmap <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>x<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>y<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>cons x y<span style="color: #FF0000">))</span>
+                                        <span style="color: #FF0000">(</span>permutations <span style="color: #FF0000">(</span>remove x l<span style="color: #FF0000">))))</span>
+                       l<span style="color: #FF0000">))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>What does the code do?  How did the author intend for it to be used?
 In trying to answer those questions, fans of statically-typed programming
 languages might lament the lack of types, as types help them to reason about
@@ -752,7 +748,7 @@ Should any test fail the compiler will
 exit in error, like a type error in a
 statically-typed language.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -843,7 +839,7 @@ The Gambit compiler, however, compiles Part 2 first, then Part 1.</p></div>
 <div class="paragraph"><p>Code which is part of libbug will be outlined and
 will have line numbers on the left.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -851,17 +847,15 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Example code which is not part of libbug will not be outlined nor will it have line
 numbers.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #FF0000">(</span>+ <span style="color: #993399">1</span> <span style="color: #FF0000">(</span><span style="color: #FF0000">"This is NOT part of libbug"</span><span style="color: #FF0000">))</span></tt></pre></div></div>
-<div class="paragraph"><p>Some examples within this book show interaction with "bug-gsi"  <span class="footnote"><br>[Gambit&#8217;s
-Read-Evaluate-Print-Loop (REPL), both with libbug&#8217;s procedures loaded, and with libbug&#8217;s
-syntactic extensions.]<br></span>
+<div class="paragraph"><p>Some examples within this book show interaction with "gsi".
 Such examples will look like the following:</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -870,46 +864,6 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>The line on which the user entered text begins with a "&gt;".  The result
 of evaluating that line appears on the subsequent line. In this case, 1 added to 2
 evaluates to 3.</p></div>
-<div class="sect3">
-<h4 id="_syntactic_conventions">1.3.1. Syntactic Conventions</h4>
-<div class="paragraph"><p>In libbug, the notation</p></div>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #FF0000">(</span>fun arg1 arg2<span style="color: #FF0000">)</span></tt></pre></div></div>
-<div class="paragraph"><p>means evaluate "fun", "arg1"
-and "arg2" in any order, then apply "fun" to "arg1" and "arg2";
-standard Scheme semantics for invoking a procedure.  But since macros
-are not normal procedures and do
-not necessarily respect those semantics, in libbug, the notation</p></div>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #FF0000">(</span>fun1 arg1 arg2<span style="color: #FF0000">)</span></tt></pre></div></div>
-<div class="paragraph"><p>is used to denote to
-the reader that the standard evaluation rules do not necessarily
-apply.  For instance, in</p></div>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">define</span></span> <span style="font-weight: bold"><span style="color: #000000">x</span></span> <span style="color: #993399">5</span><span style="color: #FF0000">)</span></tt></pre></div></div>
-<div class="paragraph"><p>() are used because "x"
-may be a new variable.  As such, "x" might not currently evaluate to anything.</p></div>
-<div class="paragraph"><p>Not all macro applications use ().  If the macro always respects Scheme&#8217;s standard
-order of evaluation, macro application may use standard Scheme notation:</p></div>
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">    1:</span> <span style="color: #FF0000">((</span>compose <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>x<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>* x <span style="color: #993399">2</span><span style="color: #FF0000">)))</span> <span style="color: #993399">5</span><span style="color: #FF0000">)</span></tt></pre></div></div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_getting_the_source_code_and_building">1.4. Getting the Source Code And Building</h3>
@@ -922,12 +876,12 @@ Autoconf, Automake, and Gambit
 Scheme <span class="footnote"><br>[<a href="http://gambitscheme.org">http://gambitscheme.org</a>]<br></span> version 4.8 or newer.</p></div>
 <div class="paragraph"><p>To compile the book and library, execute the following on the command line:</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt>$ ./autogen.sh
-$ ./configure --prefix=$BUG_HOME --enable-pdf
+$ ./configure --prefix=$BUG_HOME --enable-html
 $ make
 $ make install</tt></pre></div></div>
 <div class="ulist"><ul>
@@ -941,14 +895,14 @@ environment variable that I have not defined, so the reader should substitute
 </li>
 <li>
 <p>
-"--enable-pdf" means to build this book as a PDF.  To disable the creation of the PDF,
-substitute "--enable-pdf=no".
+"--enable-html" means to build this book as a HTML via asciidoc.  To disable the creation of the html,
+substitute "--enable-html=no".
 </p>
 </li>
 </ul></div>
 <div class="paragraph"><p>After installing libbug, you should set the following environment variables.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -960,7 +914,7 @@ export LIBRARY_PATH=$BUG_HOME/lib:$LIBRARY_PATH</tt></pre></div></div>
 <div class="sect2">
 <h3 id="_creating_your_own_project">1.5. Creating Your Own Project</h3>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1025,7 +979,7 @@ How they are implemented is not relevant yet, since the use of these
 procedure-defining procedures will be explained
 incrementally.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1059,7 +1013,7 @@ On line 3, all unnamespaced uses of "if" will use libbug&#8217;s version.
 takes zero arguments and
 which evaluates to the symbol 'noop.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1087,20 +1041,20 @@ into lambdas.  In this case, "bug-gscpp" expands
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt>['noop]</tt></pre></div></div>
 <div class="paragraph"><p>into</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">()</span> 'noop<span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1136,7 +1090,7 @@ procedures within libbug.</p></div>
 its argument. &lt;<a href="#calculi">[calculi]</a>&gt;</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1144,7 +1098,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    2:</span>   <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>x<span style="color: #FF0000">)</span> x<span style="color: #FF0000">))</span></tt></pre></div></div>
 <div class="paragraph"><p>"unit-test" can take more than one test as parameters.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1158,7 +1112,7 @@ http://www.gnu.org/software/src-highlite -->
 all elements of the list are evaluated before "all?" is applied.</p></div>
 <div class="paragraph" id="langiffirstuse"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1170,7 +1124,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>             <span style="color: #FF0000">(</span>all? <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))</span>
 <span style="color: #000000">    7:</span>             <span style="color: #009900">#f</span><span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1198,7 +1152,7 @@ of input/output pairs <span class="footnote"><br>[Within libbug, a parameter nam
 a procedure.]<br></span>.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1208,7 +1162,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    4:</span>                                       <span style="color: #FF0000">(</span>cadr pair<span style="color: #FF0000">)))</span>
 <span style="color: #000000">    5:</span>                list-of-pairs<span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1242,7 +1196,7 @@ those looping constructs yourself?  "Take the red pill."  <span class="footnote"
 a parameter named "pred?" or "p?" usually means the parameter
 is a predicate, meaning a procedure which returns true or false.]<br></span></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1253,7 +1207,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span>           <span style="color: #FF0000">(</span>while <span style="color: #FF0000">(</span>body<span style="color: #FF0000">))</span>
 <span style="color: #000000">    6:</span>           val<span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1278,7 +1232,7 @@ optional arguments, each with their default value as the value in the "noop"
 variable.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1292,7 +1246,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>&lt;<a href="#onlisp">[onlisp]</a>&gt;</p></div>
 <div class="paragraph"><p>Keyword arguments are optionally passed to the procedure, and use the following syntax.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1323,7 +1277,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_atom">1.7. atom?</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1337,7 +1291,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p><span class="footnote"><br>[Within libbug, a parameter named "x" usually means the parameter can
 be of any type.]<br></span></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1362,7 +1316,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_complement">1.8. complement</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1372,7 +1326,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    4:</span>       <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">not</span></span> <span style="color: #FF0000">(</span>apply f args<span style="color: #FF0000">)))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#onlisp">[onlisp]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1403,7 +1357,7 @@ to which each node points.]<br></span> <span class="footnote"><br>[Within libbug
 a list.]<br></span>.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1411,7 +1365,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    2:</span>   <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>l<span style="color: #FF0000">)</span>
 <span style="color: #000000">    3:</span>     <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> identity l<span style="color: #FF0000">)))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1428,7 +1382,7 @@ http://www.gnu.org/software/src-highlite -->
 Will not terminate on a circular list.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1440,7 +1394,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>             <span style="color: #FF0000">(</span>proper? <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))</span>
 <span style="color: #000000">    7:</span>             <span style="color: #009900">#f</span><span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1459,7 +1413,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_first">2.3. first</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1470,7 +1424,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span>         <span style="color: #FF0000">(</span>car l<span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#ss">[ss]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1492,7 +1446,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_but_first">2.4. but-first</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1503,7 +1457,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span>         <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#ss">[ss]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1525,7 +1479,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_last">2.5. last</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1539,7 +1493,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    8:</span>               <span style="color: #FF0000">(</span>last <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#ss">[ss]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1562,7 +1516,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_but_last">2.6. but-last</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1577,7 +1531,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    9:</span>                     <span style="color: #FF0000">(</span>but-last <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#ss">[ss]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1602,7 +1556,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_filter">2.7. filter</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1618,7 +1572,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>&lt;<a href="#ss">[ss]</a>&gt; <span class="footnote"><br>[Simply Scheme has an excellent discussion on section
 on Higher-Order Functions and their combinations &lt;<a href="#ss">[ss]</a>&gt;]<br></span>. &lt;<a href="#sicp">[sicp]</a>&gt;.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1638,7 +1592,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_remove">2.8. remove</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1647,7 +1601,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    3:</span>     <span style="color: #FF0000">(</span>filter <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>y<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">not</span></span> <span style="color: #FF0000">(</span>equal? x y<span style="color: #FF0000">)))</span>
 <span style="color: #000000">    4:</span>             l<span style="color: #FF0000">)))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1666,7 +1620,7 @@ parameter named "acc" usually means the parameter
 is an accumulated value.]<br></span>.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1680,7 +1634,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    8:</span>                      <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#sicp">[sicp]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1697,7 +1651,7 @@ http://www.gnu.org/software/src-highlite -->
 "fold-left".  To understand how "fold-left" really works, understand
 how it works with non-commutative procedures, such as "-".</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1713,7 +1667,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_sum">2.10. sum</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1721,7 +1675,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    2:</span>   <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>l<span style="color: #FF0000">)</span>
 <span style="color: #000000">    3:</span>     <span style="color: #FF0000">(</span>fold-left + <span style="color: #993399">0</span> l<span style="color: #FF0000">)))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1740,7 +1694,7 @@ procedure repeatedly,
 starting from the "right" side of the list</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1753,7 +1707,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    7:</span>              <span style="color: #FF0000">(</span>fold-right <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#sicp">[sicp]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1781,7 +1735,7 @@ http://www.gnu.org/software/src-highlite -->
 of "fold-left"s accumulator is an element in the resulting list of "scan-left".</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1801,7 +1755,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   14:</span>                            <span style="color: #FF0000">(</span>set-cdr! last-cell <span style="color: #FF0000">(</span>list newacc<span style="color: #FF0000">))</span>
 <span style="color: #000000">   15:</span>                            <span style="color: #FF0000">(</span>cdr last-cell<span style="color: #FF0000">)))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1838,7 +1792,7 @@ http://www.gnu.org/software/src-highlite -->
 efficient computation at the expense of mutating the input.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1855,7 +1809,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   11:</span>                            head<span style="color: #FF0000">)))))</span>
 <span style="color: #000000">   12:</span>       <span style="color: #FF0000">(</span>fold-left append! '<span style="color: #FF0000">()</span> <span style="color: #FF0000">(</span>reverse ls<span style="color: #FF0000">)))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1880,7 +1834,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_flatmap">2.14. flatmap</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1889,7 +1843,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    3:</span>     <span style="color: #FF0000">(</span>fold-left append! '<span style="color: #FF0000">()</span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> f l<span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#sicp">[sicp]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1911,7 +1865,7 @@ from the caller&#8217;s point of view.</p></div>
 <h3 id="_take">2.15. take</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1924,7 +1878,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    7:</span>               <span style="color: #FF0000">(</span>take <span style="color: #FF0000">(</span>- n <span style="color: #993399">1</span><span style="color: #FF0000">)</span>
 <span style="color: #000000">    8:</span>                     <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1943,7 +1897,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_take_while">2.16. take-while</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1957,7 +1911,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    8:</span>             <span style="color: #FF0000">(</span>cons <span style="color: #FF0000">(</span>car l<span style="color: #FF0000">)</span>
 <span style="color: #000000">    9:</span>                   <span style="color: #FF0000">(</span>take-while <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1976,7 +1930,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_drop">2.17. drop</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -1988,7 +1942,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>         <span style="color: #FF0000">(</span>drop <span style="color: #FF0000">(</span>- n <span style="color: #993399">1</span><span style="color: #FF0000">)</span>
 <span style="color: #000000">    7:</span>               <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">)))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2007,7 +1961,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_drop_while">2.18. drop-while</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2020,7 +1974,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    7:</span>             l
 <span style="color: #000000">    8:</span>             <span style="color: #FF0000">(</span>drop-while <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2040,7 +1994,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_enumerate_interval">2.19. enumerate-interval</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2052,7 +2006,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>           <span style="color: #FF0000">(</span>cons low
 <span style="color: #000000">    7:</span>                 <span style="color: #FF0000">(</span>enumerate-interval <span style="color: #FF0000">(</span>+ low step<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2066,7 +2020,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_any">2.20. any?</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2078,7 +2032,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>             <span style="color: #009900">#t</span>
 <span style="color: #000000">    7:</span>             <span style="color: #FF0000">(</span>any? <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2098,7 +2052,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_zip">2.21. zip</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2110,7 +2064,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>           <span style="color: #FF0000">(</span>cons <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> car lsts<span style="color: #FF0000">)</span>
 <span style="color: #000000">    7:</span>                 <span style="color: #FF0000">(</span>zip <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> cdr lsts<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2132,7 +2086,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   16:</span>          '<span style="color: #FF0000">())</span>
 <span style="color: #000000">   17:</span>  <span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2147,7 +2101,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    9:</span>            <span style="color: #FF0000">(</span><span style="color: #993399">3</span> <span style="color: #993399">6</span> <span style="color: #993399">9</span><span style="color: #FF0000">)))</span>
 <span style="color: #000000">   10:</span>  <span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2167,7 +2121,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_zip_with">2.22. zip-with</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2179,7 +2133,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>           <span style="color: #FF0000">(</span>cons <span style="color: #FF0000">(</span>apply f <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> car lsts<span style="color: #FF0000">))</span>
 <span style="color: #000000">    7:</span>                 <span style="color: #FF0000">(</span>zip <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> cdr lsts<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2210,7 +2164,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   25:</span>          '<span style="color: #FF0000">())</span>
 <span style="color: #000000">   26:</span>  <span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2227,7 +2181,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   11:</span>          '<span style="color: #FF0000">(</span><span style="color: #993399">12</span> <span style="color: #993399">15</span> <span style="color: #993399">18</span><span style="color: #FF0000">))</span>
 <span style="color: #000000">   12:</span>  <span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2250,7 +2204,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_permutations">2.23. permutations</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2265,7 +2219,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    9:</span>                                         <span style="color: #FF0000">(</span>permutations <span style="color: #FF0000">(</span>remove x l<span style="color: #FF0000">))))</span>
 <span style="color: #000000">   10:</span>                        l<span style="color: #FF0000">))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2293,7 +2247,7 @@ evaluates to '(()), instead of '().</p></div>
 <h3 id="_cartesian_product">2.24. cartesian-product</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2311,7 +2265,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   12:</span>     <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">cond</span></span> <span style="color: #FF0000">((</span>null? lol<span style="color: #FF0000">)</span> '<span style="color: #FF0000">())</span>
 <span style="color: #000000">   13:</span>           <span style="color: #FF0000">(</span><span style="color: #009900">#t</span> <span style="color: #FF0000">(</span>cp lol<span style="color: #FF0000">)))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2332,7 +2286,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   15:</span>            <span style="color: #FF0000">(</span><span style="color: #993399">3</span> <span style="color: #993399">5</span><span style="color: #FF0000">)</span>
 <span style="color: #000000">   16:</span>            <span style="color: #FF0000">(</span><span style="color: #993399">3</span> <span style="color: #993399">6</span><span style="color: #FF0000">)))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2373,7 +2327,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>The inverse of list-ref.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2389,7 +2343,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   10:</span>                   <span style="color: #FF0000">(</span>onMissing<span style="color: #FF0000">)</span>
 <span style="color: #000000">   11:</span>                   <span style="color: #FF0000">(</span>ref-of <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>+ index <span style="color: #993399">1</span><span style="color: #FF0000">))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2404,7 +2358,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    9:</span>     <span style="color: #FF0000">))</span>
 <span style="color: #000000">   10:</span>  <span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2419,7 +2373,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    9:</span>     <span style="color: #FF0000">))</span>
 <span style="color: #000000">   10:</span>  <span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2438,7 +2392,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_list_set">2.26. list-set!</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2451,7 +2405,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    7:</span>         <span style="color: #FF0000">(</span>set-car! l val<span style="color: #FF0000">)</span>
 <span style="color: #000000">    8:</span>         <span style="color: #FF0000">(</span>list-set! <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>- index <span style="color: #993399">1</span><span style="color: #FF0000">)</span> val<span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2472,7 +2426,7 @@ the application of the  procedure "p?" to each element of the input list evaluat
 to true or false.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2492,7 +2446,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   14:</span>                            trueList
 <span style="color: #000000">   15:</span>                            <span style="color: #FF0000">(</span>cons head falseList<span style="color: #FF0000">))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2508,7 +2462,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>In section <a href="#dbind">[dbind]</a>, "destructuring-bind" allows for a more convenient syntax when
 using "partition".</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2527,7 +2481,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_sort">2.28. sort</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2543,7 +2497,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   10:</span>                      <span style="color: #FF0000">(</span>cons current-node
 <span style="color: #000000">   11:</span>                            <span style="color: #FF0000">(</span>sort <span style="color: #FF0000">(</span>cadr p<span style="color: #FF0000">)))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2560,7 +2514,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Reverses the list more efficiently by mutating cons cells</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2578,7 +2532,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   12:</span>                 <span style="color: #FF0000">(</span>set-cdr! current-cons-cell reversed-list<span style="color: #FF0000">)</span>
 <span style="color: #000000">   13:</span>                 <span style="color: #FF0000">(</span>reverse! rest current-cons-cell<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2614,7 +2568,7 @@ be treated as lists( <span class="footnote"><br>[Within libbug, a parameter name
 "s" usually means the parameter is of type string.]<br></span>.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2630,7 +2584,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_string_reverse">3.2. string-reverse</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2638,7 +2592,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    2:</span>   <span style="color: #FF0000">(</span>string-lift-list reverse!<span style="color: #FF0000">))</span>
 <span style="color: #000000">    3:</span> </tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2656,7 +2610,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_string_take">3.3. string-take</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2666,7 +2620,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    4:</span>       <span style="color: #FF0000">(</span>string-take-n s<span style="color: #FF0000">))))</span>
 <span style="color: #000000">    5:</span> </tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2683,7 +2637,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_string_drop">3.4. string-drop</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2693,7 +2647,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    4:</span>       <span style="color: #FF0000">(</span>string-drop-n s<span style="color: #FF0000">))))</span>
 <span style="color: #000000">    5:</span> </tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2716,7 +2670,7 @@ allows the creation of a context in which the characters may
 be treated as integers.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2728,7 +2682,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>               <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> char-&gt;integer c<span style="color: #FF0000">))))))</span>
 <span style="color: #000000">    7:</span> </tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2745,7 +2699,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_string_map">3.6. string-map</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2756,7 +2710,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span> </tt></pre></div></div>
 <div class="paragraph"><p>The "Caesar Cipher". &lt;<a href="#crypto">[crypto]</a>&gt;.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2788,7 +2742,7 @@ allows the creation of a context in which the symbols may
 be treated as lists.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2800,7 +2754,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>               <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> symbol-&gt;string sym<span style="color: #FF0000">))))))</span>
 <span style="color: #000000">    7:</span> </tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2849,7 +2803,7 @@ recommends reading
 <h3 id="_compose">4.1. compose</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2890,7 +2844,7 @@ for consumption by programs which link against libbug.
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2921,7 +2875,7 @@ Although testing code within libbug "eval"s code generated from "macroexpand-1",
 the author advises against doing such in compiled code.
 ]<br></span>.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2973,7 +2927,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_aif">4.2. aif</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -2991,7 +2945,7 @@ Within libbug, variables intended for capture are fully qualified with a namespa
 to ensure that the variable is captured.</p></div>
 <div class="paragraph"><p>&lt;<a href="#onlisp">[onlisp]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3030,7 +2984,7 @@ http://www.gnu.org/software/src-highlite -->
 to minimize repetitive calls to "gensym".</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3041,7 +2995,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span>        ,@body<span style="color: #FF0000">)))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#onlisp">[onlisp]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3069,7 +3023,7 @@ But that can cause that form to be evaluated multiple times,
 possibly with side-effects,
 which is seldom expected by the caller.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3079,7 +3033,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>The caller of "double" should reasonably expect the argument to "double"
 only to be evaluated once only, because that&#8217;s how Scheme usually works.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3090,7 +3044,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>"once-only" allows a macro-writer to ensure that a variable is evaluated
 only once in the generated code.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3106,7 +3060,7 @@ later macro-expansions, "once-only" needs to defer binding the variable to a
 "gensym"-ed variable until the second macro-expansion.  As such, it is the
 most difficult macro is this book.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3136,7 +3090,7 @@ causes no side effects, thus causes no problems from multiple evaluation.</p></d
 <div class="sect3">
 <h4 id="_first_macro_expansion">4.4.1. First Macro-expansion</h4>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3160,7 +3114,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sect3">
 <h4 id="_the_second_macro_expansion">4.4.2. The Second Macro-expansion</h4>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3192,7 +3146,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sect3">
 <h4 id="_the_evaluation_of_the_twice_expanded_code">4.4.3. The Evaluation of the twice-expanded Code</h4>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3223,7 +3177,7 @@ arguments as a <em>name</em> for the storage location." &lt;<a href="#cl">[cl]</
 implementation is inspired by &lt;<a href="#setf">[setf]</a>&gt;.]<br></span>.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3280,7 +3234,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sect3">
 <h4 id="_updating_a_variable_directly">5.1.1. Updating a Variable Directly</h4>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3296,7 +3250,7 @@ http://www.gnu.org/software/src-highlite -->
 <h5 id="_updating_car_cdr_8230_through_cddddr">Updating Car, Cdr, &#8230; Through Cddddr</h5>
 <div class="paragraph"><p>Test updating "car".</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3310,7 +3264,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    8:</span>  <span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="paragraph"><p>Test updating "cdr".</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3330,7 +3284,7 @@ be quite
 repetitive.  Instead, create a list which has an element at each of those
 accessor procedures, and test each.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3365,7 +3319,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Test updating procedures where the updating procedure is
 the name of the getting procedure, suffixed by <em>-set!</em>.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3389,7 +3343,7 @@ http://www.gnu.org/software/src-highlite -->
 the name of the getting procedure, with the "-ref" suffix removed, replaced
 with "-set".</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3423,7 +3377,7 @@ it allows the new procedure to remain anonymous, as compared
 to making a new name like "toggle" &lt;<a href="#onlisp">[onlisp]</a>&gt;.]<br></span>.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3443,7 +3397,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   14:</span>              <span style="color: #FF0000">(</span>setf! <span style="color: #FF0000">(</span>,<span style="color: #FF0000">(</span>car exp<span style="color: #FF0000">)</span> ,@args-of-generalized-var<span style="color: #FF0000">)</span>
 <span style="color: #000000">   15:</span>                     <span style="color: #FF0000">(</span>,f <span style="color: #FF0000">(</span>,<span style="color: #FF0000">(</span>car exp<span style="color: #FF0000">)</span> ,@args-of-generalized-var<span style="color: #FF0000">))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3460,7 +3414,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   11:</span>       <span style="color: #FF0000">(</span>equal? foo <span style="color: #009900">#t</span><span style="color: #FF0000">))))</span>
 <span style="color: #000000">   12:</span>  <span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3479,7 +3433,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   13:</span>            <span style="color: #FF0000">(</span>vector <span style="color: #993399">0</span> <span style="color: #993399">0</span> <span style="color: #993399">1</span><span style="color: #FF0000">)))</span>
 <span style="color: #000000">   14:</span>  <span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3522,7 +3476,7 @@ be tested independently, as well as part of "destructuring-bind", "tree-of-acces
 takes a procedure named "gensym" as an argument, defaulting to whatever value
 "gensym" is by default in the environment.]<br></span>.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3548,7 +3502,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   20:</span>                                       lst
 <span style="color: #000000">   21:</span>                                       <span style="color: #FF0000">(</span>+ <span style="color: #993399">1</span> n<span style="color: #FF0000">))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3566,7 +3520,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   12:</span>            <span style="color: #FF0000">(</span>b <span style="color: #FF0000">(</span>drop <span style="color: #993399">1</span> gensym-for-list<span style="color: #FF0000">))))</span>
 <span style="color: #000000">   13:</span>  <span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3588,7 +3542,7 @@ fall victim to unintended multiple evaluations <span class="footnote"><br>[Altho
 "tree-of-accessors" into the definition of "destructuring-bind", thus making it safe,
 he could not determine how to write tests for a nested definition.]<br></span>.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3612,7 +3566,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   18:</span>                                                  bindings<span style="color: #FF0000">)))))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#onlisp">[onlisp]</a>&gt;</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3652,7 +3606,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sect2">
 <h3 id="_em_make_generator_em">6.1. <em>make-generator</em></h3>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3679,7 +3633,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   21:</span>                  <span style="color: #FF0000">(</span>setf! return-to-callee stack-of-callee<span style="color: #FF0000">)</span>
 <span style="color: #000000">   22:</span>                  <span style="color: #FF0000">(</span>apply eval-f-until-yield send<span style="color: #FF0000">))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3729,7 +3683,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sect2">
 <h3 id="_generator">6.2. generator</h3>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3739,7 +3693,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    4:</span>       <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>yield<span style="color: #FF0000">)</span>
 <span style="color: #000000">    5:</span>         ,@body<span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3761,7 +3715,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sect2">
 <h3 id="_yield_from">6.3. yield-from</h3>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3776,7 +3730,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    9:</span>                  <span style="color: #FF0000">(</span>,loop <span style="color: #FF0000">(</span>,g<span style="color: #FF0000">)))</span>
 <span style="color: #000000">   10:</span>                <span style="color: #009900">#f</span><span style="color: #FF0000">)))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3821,7 +3775,7 @@ to the second argument]<br></span>.</p></div>
 takes the name of the datatype and a variable
 number of fields as parameters.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3842,7 +3796,7 @@ are to be used.</p></div>
 lambda value.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3862,7 +3816,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Get the first element of the stream.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3875,7 +3829,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Forces the evaluation of the next element of the stream.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3884,7 +3838,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    3:</span>     <span style="color: #FF0000">(</span>force <span style="color: #FF0000">(</span>stream-d s<span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#sicp">[sicp]</a>&gt;.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3903,7 +3857,7 @@ http://www.gnu.org/software/src-highlite -->
 for lists.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3916,14 +3870,14 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>But to test for the sentinel value, use "stream-null?".</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #000000">    1:</span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">define</span></span> <span style="font-weight: bold"><span style="color: #000000">stream-null?</span></span>
 <span style="color: #000000">    2:</span>   null?<span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3940,7 +3894,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Converts a list into a stream.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3951,7 +3905,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span>         <span style="color: #FF0000">(</span>stream-cons <span style="color: #FF0000">(</span>car l<span style="color: #FF0000">)</span>
 <span style="color: #000000">    6:</span>                      <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">()</span> <span style="color: #FF0000">(</span>list-&gt;stream <span style="color: #FF0000">(</span>cdr l<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3975,7 +3929,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Converts a stream into a list.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -3986,7 +3940,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span>         <span style="color: #FF0000">(</span>cons <span style="color: #FF0000">(</span>stream-car s<span style="color: #FF0000">)</span>
 <span style="color: #000000">    6:</span>               <span style="color: #FF0000">(</span>stream-&gt;list <span style="color: #FF0000">(</span>stream-cdr s<span style="color: #FF0000">))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4001,7 +3955,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>The analogous procedure of "list-ref".</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4018,7 +3972,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   11:</span>                               <span style="color: #FF0000">(</span>- n <span style="color: #993399">1</span><span style="color: #FF0000">))))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#sicp">[sicp]</a>&gt;.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4051,7 +4005,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Creates an infinite <span class="footnote"><br>[bounded by memory constraints of course. Scheme
 isn&#8217;t a Turing machine.]<br></span> stream of integers.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4060,7 +4014,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    3:</span>     <span style="color: #FF0000">(</span>stream-cons n <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">()</span> <span style="color: #FF0000">(</span>integers-from <span style="color: #FF0000">(</span>+ n <span style="color: #993399">1</span><span style="color: #FF0000">))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#sicp">[sicp]</a>&gt;.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4085,7 +4039,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_stream_take">7.11. stream-take</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4098,7 +4052,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    7:</span>                      <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">()</span> <span style="color: #FF0000">(</span>stream-take <span style="color: #FF0000">(</span>- n <span style="color: #993399">1</span><span style="color: #FF0000">)</span>
 <span style="color: #000000">    8:</span>                                              <span style="color: #FF0000">(</span>stream-cdr s<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4118,7 +4072,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>The analogous procedure of filter.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4133,7 +4087,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    9:</span>                              <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">()</span> <span style="color: #FF0000">(</span>stream-filter <span style="color: #FF0000">(</span>stream-cdr s<span style="color: #FF0000">))))</span>
 <span style="color: #000000">   10:</span>                 <span style="color: #FF0000">(</span>stream-filter <span style="color: #FF0000">(</span>stream-cdr s<span style="color: #FF0000">))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4146,7 +4100,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Understanding the following tests is crucial to understanding
 the definition of "primes".</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4180,7 +4134,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   28:</span>  <span style="color: #FF0000">)</span>
 <span style="color: #000000">   29:</span> </tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4218,7 +4172,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_primes">7.13. primes</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4234,7 +4188,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   10:</span>                                <span style="color: #FF0000">(</span>stream-cdr s<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>&lt;<a href="#sicp">[sicp]</a>&gt;.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4250,7 +4204,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_stream_drop">7.14. stream-drop</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4262,7 +4216,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>         <span style="color: #FF0000">(</span>stream-drop <span style="color: #FF0000">(</span>- n <span style="color: #993399">1</span><span style="color: #FF0000">)</span>
 <span style="color: #000000">    7:</span>                      <span style="color: #FF0000">(</span>stream-cdr s<span style="color: #FF0000">)))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4288,7 +4242,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_stream_drop_while">7.15. stream-drop-while</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4301,7 +4255,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    7:</span>             s
 <span style="color: #000000">    8:</span>             <span style="color: #FF0000">(</span>stream-drop-while <span style="color: #FF0000">(</span>stream-cdr s<span style="color: #FF0000">)))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4325,7 +4279,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>The analogous procedure of "map".</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4339,7 +4293,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    8:</span>                   <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> stream-car list-of-streams<span style="color: #FF0000">))</span>
 <span style="color: #000000">    9:</span>            <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">()</span> <span style="color: #FF0000">(</span>stream-map <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">map</span></span> stream-cdr list-of-streams<span style="color: #FF0000">))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4360,7 +4314,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_stream_enumerate_interval">7.17. stream-enumerate-interval</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4372,7 +4326,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    6:</span>           <span style="color: #FF0000">(</span>stream-cons low
 <span style="color: #000000">    7:</span>                        <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">()</span> <span style="color: #FF0000">(</span>stream-enumerate-interval <span style="color: #FF0000">(</span>+ low step<span style="color: #FF0000">))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4388,7 +4342,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_stream_take_while">7.18. stream-take-while</h3>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4403,7 +4357,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    9:</span>                          <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">()</span> <span style="color: #FF0000">(</span>stream-take-while
 <span style="color: #000000">   10:</span>                                      <span style="color: #FF0000">(</span>stream-cdr s<span style="color: #FF0000">)))))))))</span></tt></pre></div></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4426,7 +4380,7 @@ in the next chapter, "bug-languge.scm" opened files for writing during compile-t
 and they must be closed, accomplished by executing "at-end-of-compilation".</p></div>
 <div class="paragraph"><p>;;[[call-end-of-compilation</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4456,7 +4410,7 @@ run-time &lt;<a href="#evalduringmacroexpansion">[evalduringmacroexpansion]</a>&
 thus treating the compiler as an interpreter.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4483,7 +4437,7 @@ form will not evaluate at run-time.
 <div class="paragraph"><p>"at-both-times", like "at-compile-time", "eval"s the forms
 in the compile-time environment, but also in the run-time environment.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4514,7 +4468,7 @@ they are defined in the run-time environment.
 <div class="paragraph"><p></p></div>
 <div class="paragraph"><p>"at-compile-time-expand" allows any procedure to act as a macro.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4525,7 +4479,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    5:</span>              ,@forms<span style="color: #FF0000">))))</span></tt></pre></div></div>
 <div class="paragraph"><p>This allows the programmer to create "anonymous" macros.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4555,7 +4509,7 @@ external files, why not generate them during compile-time?</p></div>
 ("libbug-macros.scm").  These files will be pure Gambit scheme code, no
 libbug syntax enhancements.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4571,7 +4525,7 @@ mappings as well.  Towards that goal, open a file
 during compile-time and write the namespace mappings
 to the file.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4594,7 +4548,7 @@ but not to programs which link against libbug.  To rectify that, open a file
 during compile-time, and write the macro definitions
 to the file.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4660,7 +4614,7 @@ files. Also, the namespace within the generated macro file
 is reset to the default namespace<span class="footnote"><br>[This procedure
 is called in section <a href="#call-end-of-compilation">[call-end-of-compilation]</a>]<br></span>.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4689,7 +4643,7 @@ it<span class="footnote"><br>[any procedure which is namespaced to "libbug-priva
 not exported to the namespace file nor the macro file]<br></span>.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4711,7 +4665,7 @@ compile-time, run-time, and in the namespace file
 for inclusion in projects which link to libbug.</p></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4746,7 +4700,7 @@ continues compiling subsequent definitions.
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4768,7 +4722,7 @@ throughout libbug.  "libbug-private#define" takes a variable name and
 a value to be stored in the variable.</p></div>
 <div class="paragraph" id="libbugdefine"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4819,7 +4773,7 @@ Define the macro.
 </ul></div>
 <div class="paragraph" id="libbugdefinemacro"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4829,7 +4783,7 @@ http://www.gnu.org/software/src-highlite -->
 <h4 id="_write_the_macro_to_file">1.9.1. Write the Macro to File</h4>
 <div class="listingblock">
 <a id="writemacrotofile"></a>
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4844,7 +4798,7 @@ To ensure that the macro works correctly in other contexts, the
 appropriate namespace
 mappings must be loaded for the definition of this macro definition.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -4870,11 +4824,11 @@ argument list as the argument list passed to "libbug-private#define-macro"
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>   &gt; <span style="color: #FF0000">(</span>cadr '[|foo bar| <span style="color: #FF0000">(</span>quasiquote <span style="color: #993399">5</span><span style="color: #FF0000">)</span>]<span style="color: #FF0000">)</span>
+<pre><tt>   &gt; <span style="color: #FF0000">(</span>cadr '<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>foo bar<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>quasiquote <span style="color: #993399">5</span><span style="color: #FF0000">)))</span>
    <span style="color: #FF0000">(</span>foo bar<span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="ulist"><ul>
 <li>
@@ -4911,11 +4865,11 @@ On line 8-10, check to see if the unevaluated form is quasiquoted.
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>   &gt; <span style="color: #FF0000">(</span>caaddr '[|foo bar| <span style="color: #FF0000">(</span>quasiquote <span style="color: #993399">5</span><span style="color: #FF0000">)</span>]<span style="color: #FF0000">)</span>
+<pre><tt>   &gt; <span style="color: #FF0000">(</span>caaddr '<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>foo bar<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>quasiquote <span style="color: #993399">5</span><span style="color: #FF0000">)))</span>
    quasiquote</tt></pre></div></div>
 <div class="ulist"><ul>
 <li>
@@ -4926,20 +4880,20 @@ list minus the quasiquoting.
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>   &gt; <span style="color: #FF0000">(</span>car <span style="color: #FF0000">(</span>cdaddr '[|foo bar| <span style="color: #FF0000">(</span>quasiquote <span style="color: #993399">5</span><span style="color: #FF0000">)</span>]<span style="color: #FF0000">))</span>
+<pre><tt>   &gt; <span style="color: #FF0000">(</span>car <span style="color: #FF0000">(</span>cdaddr '<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>foo bar<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>quasiquote <span style="color: #993399">5</span><span style="color: #FF0000">))))</span>
    <span style="color: #993399">5</span></tt></pre></div></div>
 <div class="paragraph"><p>Remember that this value gets wrapped in a quasiquote from line 5</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>   &gt; <span style="color: #FF0000">(</span>list 'quasiquote <span style="color: #FF0000">(</span>car <span style="color: #FF0000">(</span>cdaddr '[|foo bar|
-                                        <span style="color: #FF0000">(</span>quasiquote <span style="color: #993399">5</span><span style="color: #FF0000">)</span>]<span style="color: #FF0000">)))</span>
+<pre><tt>   &gt; <span style="color: #FF0000">(</span>list 'quasiquote <span style="color: #FF0000">(</span>car <span style="color: #FF0000">(</span>cdaddr '<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>foo bar<span style="color: #FF0000">)</span>
+                                        <span style="color: #FF0000">(</span>quasiquote <span style="color: #993399">5</span><span style="color: #FF0000">)))))</span>
    `<span style="color: #993399">5</span></tt></pre></div></div>
 <div class="ulist"><ul>
 <li>
@@ -4950,25 +4904,25 @@ the form, and "unquote" it.
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>   &gt; <span style="color: #FF0000">(</span>append <span style="color: #FF0000">(</span>list 'unquote<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>cddr '[|foo bar| <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">5</span><span style="color: #FF0000">)</span>]<span style="color: #FF0000">))</span>
+<pre><tt>   &gt; <span style="color: #FF0000">(</span>append <span style="color: #FF0000">(</span>list 'unquote<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>cddr '<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>foo bar<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">5</span><span style="color: #FF0000">))))</span>
    ,<span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">5</span><span style="color: #FF0000">)</span></tt></pre></div></div>
 <div class="paragraph"><p>Remember, this value gets wrapped in a quasiquote from line 4</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt>   &gt; <span style="color: #FF0000">(</span>list 'quasiquote <span style="color: #FF0000">(</span>append <span style="color: #FF0000">(</span>list 'unquote<span style="color: #FF0000">)</span>
-                               <span style="color: #FF0000">(</span>cddr '[|foo bar|
-                                         <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">5</span><span style="color: #FF0000">)</span>]<span style="color: #FF0000">)))</span>
+                               <span style="color: #FF0000">(</span>cddr '<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>foo bar<span style="color: #FF0000">)</span>
+                                            <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">5</span><span style="color: #FF0000">)))))</span>
    `,<span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">5</span><span style="color: #FF0000">)</span>
    &gt; <span style="color: #FF0000">(</span>eval <span style="color: #FF0000">(</span>list 'quasiquote <span style="color: #FF0000">(</span>append <span style="color: #FF0000">(</span>list 'unquote<span style="color: #FF0000">)</span>
-                                     <span style="color: #FF0000">(</span>cddr '[|foo bar|
-                                               <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">5</span><span style="color: #FF0000">)</span>]<span style="color: #FF0000">)))</span>
+                                     <span style="color: #FF0000">(</span>cddr '<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>foo bar<span style="color: #FF0000">)</span>
+                                               <span style="color: #FF0000">(</span>+ <span style="color: #993399">5</span> <span style="color: #993399">5</span><span style="color: #FF0000">)))))</span>
    <span style="color: #993399">10</span></tt></pre></div></div>
 </div>
 <div class="sect4">
@@ -4984,7 +4938,7 @@ creates a unique symbol which the programmer can not directly input, making test
 impossible.
 Thus, the problem is solved by locally defining a new "gensym" procedure.]<br></span>.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5002,7 +4956,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   12:</span>              <span style="color: #FF0000">(</span>list 'quote ,@<span style="color: #FF0000">(</span>cddr lambda-value<span style="color: #FF0000">))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>Finish writing the macro to file which was started in section <a href="#writemacrotofile">[writemacrotofile]</a>.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5015,14 +4969,14 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>The macro has been exported to a file for use by projects which link against libbug,
 but it must also be defined during compilation.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #000000">    1:</span>     `<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">begin</span></span></tt></pre></div></div>
 <div class="paragraph"><p>Namespace the procedure and the expander.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5032,7 +4986,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    4:</span>                                                   <span style="color: #FF0000">"-expand"</span><span style="color: #FF0000">)))</span></tt></pre></div></div>
 <div class="paragraph"><p>Create the expander similarly to the previous section.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5053,7 +5007,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   15:</span>               <span style="color: #FF0000">(</span>list 'quote ,@<span style="color: #FF0000">(</span>cddr lambda-value<span style="color: #FF0000">))))))</span></tt></pre></div></div>
 <div class="paragraph"><p>Define the macro.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5068,7 +5022,7 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_macroexpand_1">1.10. macroexpand-1</h3>
 <div class="paragraph"><p>"macroexpand-1" is syntactic sugar which allows the programmer to test macro-expansion by writing</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5080,7 +5034,7 @@ http://www.gnu.org/software/src-highlite -->
              <span style="color: #009900">#f</span><span style="color: #FF0000">)))</span></tt></pre></div></div>
 <div class="paragraph"><p>instead of</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5092,7 +5046,7 @@ http://www.gnu.org/software/src-highlite -->
              <span style="color: #009900">#f</span><span style="color: #FF0000">)))</span></tt></pre></div></div>
 <div class="paragraph"><p></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5112,7 +5066,7 @@ http://www.gnu.org/software/src-highlite -->
 to file<span class="footnote"><br>[In the following, "define-structure" is defined at
 compile-time, because Gambit does not define "##define-structure" at compile-time.]<br></span>.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5198,7 +5152,7 @@ they vary in expressive power?</p></div>
 <h3 id="_c">2.1. C</h3>
 <div class="paragraph"><p>Consider the following C code:</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5244,14 +5198,14 @@ else.  For example, using GCC as a compiler, if you run the C preprocessor
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="color: #000000">    1:</span>   <span style="font-weight: bold"><span style="color: #000000">printf</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"%d</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">,</span><span style="font-weight: bold"><span style="color: #000000">square</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #000000">fact</span></span><span style="color: #990000">(</span>argc<span style="color: #990000">)));</span></tt></pre></div></div>
 <div class="paragraph"><p>expands into</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5281,7 +5235,7 @@ expressive power?</p></div>
 3; using C&#43;&#43; procedures for run-time calulation, and C&#43;&#43;'s templates for compile-time
 calculation.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5331,7 +5285,7 @@ specific case first.  So the compiler will terminate.]<br></span>.</p></div>
 <h4 id="_disassembling_the_object_file">2.2.1. Disassembling the Object File</h4>
 <div class="paragraph"><p>The drastic difference in the generated code can be observed by using "objdump -D".</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5374,18 +5328,19 @@ printing routine is called.
 <div class="paragraph"><p>Like C&#43;&#43;'s compile-time language, libbug&#8217;s is Turing complete.  But libbug&#8217;s compile-time
 language is the exact same language as the run-time language!</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">    1:</span>  {at-both-times
-<span style="color: #000000">    2:</span>   {<span style="font-weight: bold"><span style="color: #0000FF">define</span></span> fact
-<span style="color: #000000">    3:</span>     [|n| <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span>= n <span style="color: #993399">0</span><span style="color: #FF0000">)</span>
-<span style="color: #000000">    4:</span>              [<span style="color: #993399">1</span>]
-<span style="color: #000000">    5:</span>              [<span style="color: #FF0000">(</span>* n <span style="color: #FF0000">(</span>fact <span style="color: #FF0000">(</span>- n <span style="color: #993399">1</span><span style="color: #FF0000">)))</span>]<span style="color: #FF0000">)</span>]}}
-<span style="color: #000000">    6:</span>
-<span style="color: #000000">    7:</span>  <span style="color: #FF0000">(</span>pp {at-compile-time-expand <span style="color: #FF0000">(</span>fact <span style="color: #993399">3</span><span style="color: #FF0000">)</span>}<span style="color: #FF0000">)</span>
-<span style="color: #000000">    8:</span>  <span style="color: #FF0000">(</span>pp <span style="color: #FF0000">(</span>fact <span style="color: #993399">3</span><span style="color: #FF0000">))</span></tt></pre></div></div>
+<pre><tt><span style="color: #000000">    1:</span>  <span style="color: #FF0000">(</span>at-both-times
+<span style="color: #000000">    2:</span>   <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">define</span></span> <span style="font-weight: bold"><span style="color: #000000">fact</span></span>
+<span style="color: #000000">    3:</span>     <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>n<span style="color: #FF0000">)</span>
+<span style="color: #000000">    4:</span>       <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span>= n <span style="color: #993399">0</span><span style="color: #FF0000">)</span>
+<span style="color: #000000">    5:</span>           <span style="color: #993399">1</span>
+<span style="color: #000000">    6:</span>           <span style="color: #FF0000">(</span>* n <span style="color: #FF0000">(</span>fact <span style="color: #FF0000">(</span>- n <span style="color: #993399">1</span><span style="color: #FF0000">)))))))</span>
+<span style="color: #000000">    7:</span>
+<span style="color: #000000">    8:</span>  <span style="color: #FF0000">(</span>pp <span style="color: #FF0000">(</span>at-compile-time-expand <span style="color: #FF0000">(</span>fact <span style="color: #993399">3</span><span style="color: #FF0000">)))</span>
+<span style="color: #000000">    9:</span>  <span style="color: #FF0000">(</span>pp <span style="color: #FF0000">(</span>fact <span style="color: #993399">3</span><span style="color: #FF0000">))</span></tt></pre></div></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -5417,7 +5372,7 @@ On line 8, the run-time calculation of "(fact 3)".
 <div class="paragraph"><p>By compiling the Scheme source to the "gvm" intermediate
 representation, the previously stated behavior can be verified.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -5436,7 +5391,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="ulist"><ul>
 <li>
 <p>
-Lines 1-4 correspond to "(pp {at-compile-time-expand (fact 3)})".  The precomputed
+Lines 1-4 correspond to "(pp (at-compile-time-expand (fact 3)))".  The precomputed
 value of "(fact 3)" is 6, which is directly stored into a GVM register, and
 then the "pp" routine is called to print it.
 </p>
@@ -5665,7 +5620,7 @@ Aron Barath and Zoltan Porkolab, Eotvos Lorand University,
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-11-05 18:15:17 EST
+ 2018-11-10 12:56:56 EST
 </div>
 </div>
 </body>
