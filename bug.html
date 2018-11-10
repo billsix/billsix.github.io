@@ -3603,8 +3603,31 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sect1">
 <h2 id="_coroutines">6. Coroutines</h2>
 <div class="sectionbody">
+<div class="paragraph"><p><a href="https://en.wikipedia.org/wiki/Coroutine">https://en.wikipedia.org/wiki/Coroutine</a></p></div>
+<div class="paragraph"><p><a href="https://en.wikipedia.org/wiki/Generator_(computer_science">https://en.wikipedia.org/wiki/Generator_(computer_science</a>)</p></div>
 <div class="sect2">
-<h3 id="_em_make_generator_em">6.1. <em>make-generator</em></h3>
+<h3 id="_end_of_generator">6.1. end-of-generator</h3>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">define</span></span> <span style="font-weight: bold"><span style="color: #000000">end-of-generator</span></span>
+<span style="color: #000000">    2:</span>   <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">()</span>
+<span style="color: #000000">    3:</span>     'end-of-generator<span style="color: #FF0000">))</span></tt></pre></div></div>
+</div>
+<div class="sect2">
+<h3 id="_end_of_generator_2">6.2. end-of-generator?</h3>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">define</span></span> <span style="font-weight: bold"><span style="color: #000000">end-of-generator?</span></span>
+<span style="color: #000000">    2:</span>   <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>x<span style="color: #FF0000">)</span> <span style="color: #FF0000">(</span>equal? x <span style="color: #FF0000">(</span>end-of-generator<span style="color: #FF0000">))))</span></tt></pre></div></div>
+</div>
+<div class="sect2">
+<h3 id="_make_generator">6.3. __make-generator_\_</h3>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -3614,24 +3637,77 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    2:</span>   <span style="font-style: italic"><span style="color: #9A1900">;; f is a function which takes one argument, the yield procedure,</span></span>
 <span style="color: #000000">    3:</span>   <span style="font-style: italic"><span style="color: #9A1900">;; which this procedure, __make-generator__, provides</span></span>
 <span style="color: #000000">    4:</span>   <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>f<span style="color: #FF0000">)</span>
-<span style="color: #000000">    5:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; will be defined to something useful before it is called,</span></span>
-<span style="color: #000000">    6:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; but for now, the environment needs a variable defined</span></span>
-<span style="color: #000000">    7:</span>     <span style="color: #FF0000">(</span>##<span style="font-weight: bold"><span style="color: #0000FF">define</span></span> return-to-callee 'ignore<span style="color: #FF0000">)</span>
-<span style="color: #000000">    8:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; do the work of the generator</span></span>
-<span style="color: #000000">    9:</span>     <span style="color: #FF0000">(</span>##<span style="font-weight: bold"><span style="color: #0000FF">define</span></span> eval-f-until-yield
-<span style="color: #000000">   10:</span>       <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>#!rest send<span style="color: #FF0000">)</span>
-<span style="color: #000000">   11:</span>         <span style="font-style: italic"><span style="color: #9A1900">;; switch back and forth between the two routines</span></span>
-<span style="color: #000000">   12:</span>         <span style="color: #FF0000">(</span>f <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>value<span style="color: #FF0000">)</span>
-<span style="color: #000000">   13:</span>              <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">call/cc</span></span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>stack-of-yield-exp<span style="color: #FF0000">)</span>
-<span style="color: #000000">   14:</span>                         <span style="color: #FF0000">(</span>setf! eval-f-until-yield stack-of-yield-exp<span style="color: #FF0000">)</span>
-<span style="color: #000000">   15:</span>                         <span style="color: #FF0000">(</span>return-to-callee value<span style="color: #FF0000">)))))</span>
-<span style="color: #000000">   16:</span>         <span style="font-style: italic"><span style="color: #9A1900">;; all instances of yield have been called, inform the callee</span></span>
-<span style="color: #000000">   17:</span>         <span style="font-style: italic"><span style="color: #9A1900">;; that the generator is done</span></span>
-<span style="color: #000000">   18:</span>         <span style="color: #FF0000">(</span>return-to-callee 'end-of-generator<span style="color: #FF0000">)))</span>
-<span style="color: #000000">   19:</span>     <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>#!rest send<span style="color: #FF0000">)</span>
-<span style="color: #000000">   20:</span>       <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">call/cc</span></span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>stack-of-callee<span style="color: #FF0000">)</span>
-<span style="color: #000000">   21:</span>                  <span style="color: #FF0000">(</span>setf! return-to-callee stack-of-callee<span style="color: #FF0000">)</span>
-<span style="color: #000000">   22:</span>                  <span style="color: #FF0000">(</span>apply eval-f-until-yield send<span style="color: #FF0000">))))))</span></tt></pre></div></div>
+<span style="color: #000000">    5:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; each instance of a generator needs two continuations.</span></span>
+<span style="color: #000000">    6:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; one for the generator instance, and one for the callee</span></span>
+<span style="color: #000000">    7:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; of the generator instance.</span></span>
+<span style="color: #000000">    8:</span>
+<span style="color: #000000">    9:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; so the definition of yield needs to have references</span></span>
+<span style="color: #000000">   10:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; to each of those continuations.</span></span>
+<span style="color: #000000">   11:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; create reference to them in  yield's environment</span></span>
+<span style="color: #000000">   12:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; even though they will not be bound to useful values</span></span>
+<span style="color: #000000">   13:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; until after yield is defined.</span></span>
+<span style="color: #000000">   14:</span>     <span style="color: #FF0000">(</span>##<span style="font-weight: bold"><span style="color: #0000FF">define</span></span> return-to-callee-continuation 'ignore<span style="color: #FF0000">)</span>
+<span style="color: #000000">   15:</span>     <span style="color: #FF0000">(</span>##<span style="font-weight: bold"><span style="color: #0000FF">define</span></span> continue-with-generator-continuation 'ignore<span style="color: #FF0000">)</span>
+<span style="color: #000000">   16:</span>
+<span style="color: #000000">   17:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; define the implementation "yield" for this generator</span></span>
+<span style="color: #000000">   18:</span>     <span style="color: #FF0000">(</span>##<span style="font-weight: bold"><span style="color: #0000FF">define</span></span> yield-defined-for-this-generator-instance
+<span style="color: #000000">   19:</span>       <span style="font-style: italic"><span style="color: #9A1900">;; when yield is appied within the generator, it must</span></span>
+<span style="color: #000000">   20:</span>       <span style="font-style: italic"><span style="color: #9A1900">;; return the value to the callee, but must also remember</span></span>
+<span style="color: #000000">   21:</span>       <span style="font-style: italic"><span style="color: #9A1900">;; where to resume the next time the generator is applied.</span></span>
+<span style="color: #000000">   22:</span>       <span style="font-style: italic"><span style="color: #9A1900">;;</span></span>
+<span style="color: #000000">   23:</span>       <span style="font-style: italic"><span style="color: #9A1900">;; though, just like parameter passing in machine code,</span></span>
+<span style="color: #000000">   24:</span>       <span style="font-style: italic"><span style="color: #9A1900">;; in which values must be passed on the stack/registers</span></span>
+<span style="color: #000000">   25:</span>       <span style="font-style: italic"><span style="color: #9A1900">;; before control is transferred from the caller to the callee,</span></span>
+<span style="color: #000000">   26:</span>       <span style="font-style: italic"><span style="color: #9A1900">;; the continuation of the generator must first be captured before</span></span>
+<span style="color: #000000">   27:</span>       <span style="font-style: italic"><span style="color: #9A1900">;; invoking the callee's continuation with the yielded value.</span></span>
+<span style="color: #000000">   28:</span>       <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>value-to-be-yielded<span style="color: #FF0000">)</span>
+<span style="color: #000000">   29:</span>         <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">call/cc</span></span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>yields-continuation<span style="color: #FF0000">)</span>
+<span style="color: #000000">   30:</span>                    <span style="color: #FF0000">(</span>setf! continue-with-generator-continuation yields-continuation<span style="color: #FF0000">)</span>
+<span style="color: #000000">   31:</span>                    <span style="color: #FF0000">(</span>return-to-callee-continuation value-to-be-yielded<span style="color: #FF0000">)))))</span>
+<span style="color: #000000">   32:</span>
+<span style="color: #000000">   33:</span>
+<span style="color: #000000">   34:</span>     <span style="color: #FF0000">(</span>set! continue-with-generator-continuation
+<span style="color: #000000">   35:</span>           <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>#!rest send<span style="color: #FF0000">)</span>
+<span style="color: #000000">   36:</span>             <span style="font-style: italic"><span style="color: #9A1900">;; switch back and forth between the two routines</span></span>
+<span style="color: #000000">   37:</span>             <span style="color: #FF0000">(</span>f yield-defined-for-this-generator-instance<span style="color: #FF0000">)</span>
+<span style="color: #000000">   38:</span>             <span style="font-style: italic"><span style="color: #9A1900">;; all instances of yield have been called, inform the callee</span></span>
+<span style="color: #000000">   39:</span>             <span style="font-style: italic"><span style="color: #9A1900">;; that the generator is done</span></span>
+<span style="color: #000000">   40:</span>             <span style="color: #FF0000">(</span>return-to-callee-continuation <span style="color: #FF0000">(</span>end-of-generator<span style="color: #FF0000">))))</span>
+<span style="color: #000000">   41:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; this is the code that is invoked every time the generator is applied.</span></span>
+<span style="color: #000000">   42:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; if the yield expression is defined in a context in which the evaluation</span></span>
+<span style="color: #000000">   43:</span>     <span style="font-style: italic"><span style="color: #9A1900">;; of yield must evaluate to a value, then pass that value to "send".</span></span>
+<span style="color: #000000">   44:</span>     <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>#!rest send<span style="color: #FF0000">)</span>
+<span style="color: #000000">   45:</span>       <span style="font-style: italic"><span style="color: #9A1900">;; get the callee's continuation, for use when "yield" is applied</span></span>
+<span style="color: #000000">   46:</span>       <span style="font-style: italic"><span style="color: #9A1900">;; within the generator</span></span>
+<span style="color: #000000">   47:</span>       <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">call/cc</span></span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>callees-continuation<span style="color: #FF0000">)</span>
+<span style="color: #000000">   48:</span>                  <span style="font-style: italic"><span style="color: #9A1900">;; set the callee's continuation into "yield"'s enviroment,</span></span>
+<span style="color: #000000">   49:</span>                  <span style="font-style: italic"><span style="color: #9A1900">;; so that it may be called from within yield.</span></span>
+<span style="color: #000000">   50:</span>                  <span style="color: #FF0000">(</span>setf! return-to-callee-continuation callees-continuation<span style="color: #FF0000">)</span>
+<span style="color: #000000">   51:</span>                  <span style="font-style: italic"><span style="color: #9A1900">;; evaluate f up until the point that yield is invoked.</span></span>
+<span style="color: #000000">   52:</span>
+<span style="color: #000000">   53:</span>                  <span style="font-style: italic"><span style="color: #9A1900">;; when that occurs, both return-to-callee-continuation</span></span>
+<span style="color: #000000">   54:</span>                  <span style="font-style: italic"><span style="color: #9A1900">;; and continue-with-generator-continuation will be</span></span>
+<span style="color: #000000">   55:</span>                  <span style="font-style: italic"><span style="color: #9A1900">;; defined correctly.</span></span>
+<span style="color: #000000">   56:</span>                  <span style="color: #FF0000">(</span>apply continue-with-generator-continuation send<span style="color: #FF0000">))))))</span></tt></pre></div></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="color: #000000">    1:</span> <span style="color: #FF0000">(</span>unit-test
+<span style="color: #000000">    2:</span>  <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>g <span style="color: #FF0000">(</span>__make-generator__
+<span style="color: #000000">    3:</span>            <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>yield<span style="color: #FF0000">)</span>
+<span style="color: #000000">    4:</span>                <span style="color: #FF0000">(</span>yield 'yield-value-one<span style="color: #FF0000">)</span>
+<span style="color: #000000">    5:</span>                <span style="color: #FF0000">(</span>yield 'yield-value-two<span style="color: #FF0000">)</span>
+<span style="color: #000000">    6:</span>                <span style="color: #FF0000">(</span>yield 'yield-value-three<span style="color: #FF0000">)))))</span>
+<span style="color: #000000">    7:</span>    <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">and</span></span> <span style="color: #FF0000">(</span>equal? 'yield-value-one <span style="color: #FF0000">(</span>g<span style="color: #FF0000">))</span>
+<span style="color: #000000">    8:</span>         <span style="color: #FF0000">(</span>equal? 'yield-value-two <span style="color: #FF0000">(</span>g<span style="color: #FF0000">))</span>
+<span style="color: #000000">    9:</span>         <span style="color: #FF0000">(</span>equal? 'yield-value-three <span style="color: #FF0000">(</span>g<span style="color: #FF0000">))</span>
+<span style="color: #000000">   10:</span>         <span style="color: #FF0000">(</span>end-of-generator? <span style="color: #FF0000">(</span>g<span style="color: #FF0000">)))))</span></tt></pre></div></div>
+<div class="paragraph"><p>Yield may be used in a context in which a value is expected.  Unlike
+Python, which distinguishes between these two cases by using either
+"next" or "send", in this library, the generator is just a regular
+procedure which takes 0 or 1 parameters.</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -3649,7 +3725,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   10:</span>         <span style="color: #FF0000">(</span>equal? 'yield-value-two <span style="color: #FF0000">(</span>g <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'yield-value-one)"</span></span>
 <span style="color: #000000">   11:</span>         <span style="color: #FF0000">(</span>equal? 'yield-value-three <span style="color: #FF0000">(</span>g<span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;;</span></span>
 <span style="color: #000000">   12:</span>         <span style="color: #FF0000">(</span>equal? <span style="color: #993399">20</span> <span style="color: #FF0000">(</span>g <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'yield-value-three)"</span></span>
-<span style="color: #000000">   13:</span>         <span style="color: #FF0000">(</span>equal? 'end-of-generator <span style="color: #FF0000">(</span>g<span style="color: #FF0000">))))</span> <span style="font-style: italic"><span style="color: #9A1900">;; end of the generator</span></span>
+<span style="color: #000000">   13:</span>         <span style="color: #FF0000">(</span>end-of-generator? <span style="color: #FF0000">(</span>g<span style="color: #FF0000">)))))</span> <span style="font-style: italic"><span style="color: #9A1900">;; end of the generator</span></span>
 <span style="color: #000000">   14:</span>  <span style="font-style: italic"><span style="color: #9A1900">;; the generators are independent</span></span>
 <span style="color: #000000">   15:</span>  <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">let</span></span> <span style="color: #FF0000">((</span>g <span style="color: #FF0000">(</span>__make-generator__
 <span style="color: #000000">   16:</span>            <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">lambda</span></span> <span style="color: #FF0000">(</span>yield<span style="color: #FF0000">)</span>
@@ -3673,15 +3749,12 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   34:</span>         <span style="color: #FF0000">(</span>equal? 'three <span style="color: #FF0000">(</span>g2<span style="color: #FF0000">))</span>
 <span style="color: #000000">   35:</span>         <span style="color: #FF0000">(</span>equal? <span style="color: #993399">20</span> <span style="color: #FF0000">(</span>g <span style="color: #993399">10</span><span style="color: #FF0000">))</span>
 <span style="color: #000000">   36:</span>         <span style="color: #FF0000">(</span>equal? <span style="color: #993399">2</span> <span style="color: #FF0000">(</span>g2 <span style="color: #993399">1</span><span style="color: #FF0000">))</span>
-<span style="color: #000000">   37:</span>         <span style="color: #FF0000">(</span>equal? 'end-of-generator <span style="color: #FF0000">(</span>g<span style="color: #FF0000">))</span>
-<span style="color: #000000">   38:</span>         <span style="color: #FF0000">(</span>equal? 'end-of-generator <span style="color: #FF0000">(</span>g2<span style="color: #FF0000">))</span>
-<span style="color: #000000">   39:</span>         <span style="color: #FF0000">)))</span>
-<span style="color: #000000">   40:</span>
-<span style="color: #000000">   41:</span>
-<span style="color: #000000">   42:</span> </tt></pre></div></div>
+<span style="color: #000000">   37:</span>         <span style="color: #FF0000">(</span>end-of-generator? <span style="color: #FF0000">(</span>g<span style="color: #FF0000">))</span>
+<span style="color: #000000">   38:</span>         <span style="color: #FF0000">(</span>end-of-generator? <span style="color: #FF0000">(</span>g2<span style="color: #FF0000">))</span>
+<span style="color: #000000">   39:</span>         <span style="color: #FF0000">))</span></tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_generator">6.2. generator</h3>
+<h3 id="_generator">6.4. generator</h3>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -3709,11 +3782,11 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   10:</span>           <span style="color: #FF0000">(</span>equal? 'yield-value-two <span style="color: #FF0000">(</span>g <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'yield-value-one)"</span></span>
 <span style="color: #000000">   11:</span>           <span style="color: #FF0000">(</span>equal? 'yield-value-three <span style="color: #FF0000">(</span>g <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'yield-value-two)"</span></span>
 <span style="color: #000000">   12:</span>           <span style="color: #FF0000">(</span>equal? <span style="color: #993399">30</span> <span style="color: #FF0000">(</span>g <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; send 10 to be the value of "(yield 'yield-value-three)"</span></span>
-<span style="color: #000000">   13:</span>           <span style="color: #FF0000">(</span>equal? 'end-of-generator <span style="color: #FF0000">(</span>g <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; end of the generator</span></span>
+<span style="color: #000000">   13:</span>           <span style="color: #FF0000">(</span>end-of-generator? <span style="color: #FF0000">(</span>g <span style="color: #993399">10</span><span style="color: #FF0000">))</span> <span style="font-style: italic"><span style="color: #9A1900">;; end of the generator)</span></span>
 <span style="color: #000000">   14:</span>           <span style="color: #FF0000">))))</span></tt></pre></div></div>
 </div>
 <div class="sect2">
-<h3 id="_yield_from">6.3. yield-from</h3>
+<h3 id="_yield_from">6.5. yield-from</h3>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
@@ -3724,7 +3797,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">    3:</span>     <span style="color: #FF0000">(</span>with-gensyms
 <span style="color: #000000">    4:</span>      <span style="color: #FF0000">(</span>v loop<span style="color: #FF0000">)</span>
 <span style="color: #000000">    5:</span>      `<span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">let</span></span> ,loop <span style="color: #FF0000">((</span>,v <span style="color: #FF0000">(</span>,g<span style="color: #FF0000">)))</span>
-<span style="color: #000000">    6:</span>            <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">not</span></span> <span style="color: #FF0000">(</span>equal? ,v 'end-of-generator<span style="color: #FF0000">))</span>
+<span style="color: #000000">    6:</span>            <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">not</span></span> <span style="color: #FF0000">(</span>end-of-generator? ,v<span style="color: #FF0000">))</span>
 <span style="color: #000000">    7:</span>                <span style="color: #FF0000">(</span><span style="font-weight: bold"><span style="color: #0000FF">begin</span></span>
 <span style="color: #000000">    8:</span>                  <span style="color: #FF0000">(</span>yield ,v<span style="color: #FF0000">)</span>
 <span style="color: #000000">    9:</span>                  <span style="color: #FF0000">(</span>,loop <span style="color: #FF0000">(</span>,g<span style="color: #FF0000">)))</span>
@@ -3753,7 +3826,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">   17:</span>           <span style="color: #FF0000">(</span>equal? 'a <span style="color: #FF0000">(</span>g3<span style="color: #FF0000">))</span>
 <span style="color: #000000">   18:</span>           <span style="color: #FF0000">(</span>equal? 'b <span style="color: #FF0000">(</span>g3<span style="color: #FF0000">))</span>
 <span style="color: #000000">   19:</span>           <span style="color: #FF0000">(</span>equal? 'c <span style="color: #FF0000">(</span>g3<span style="color: #FF0000">))</span>
-<span style="color: #000000">   20:</span>           <span style="color: #FF0000">(</span>equal? 'end-of-generator <span style="color: #FF0000">(</span>g3<span style="color: #FF0000">))</span>
+<span style="color: #000000">   20:</span>           <span style="color: #FF0000">(</span>end-of-generator? <span style="color: #FF0000">(</span>g3<span style="color: #FF0000">))</span>
 <span style="color: #000000">   21:</span>           <span style="color: #FF0000">))))</span></tt></pre></div></div>
 </div>
 </div>
@@ -5620,7 +5693,7 @@ Aron Barath and Zoltan Porkolab, Eotvos Lorand University,
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-11-10 12:56:56 EST
+ 2018-11-10 13:56:54 EST
 </div>
 </div>
 </body>
