@@ -52,7 +52,7 @@ the begun quadrilateral.
 
 The framebuffer, which has not yet been flushed to the monitor, has geometry which looks like this:
 
-.. figure:: _static/plot1.png
+.. figure:: static/plot1.png
     :align: center
     :alt: Rectangle
     :figclass: align-center
@@ -75,7 +75,7 @@ The framebuffer, which has not yet been flushed to the monitor, has geometry whi
 The framebuffer, which has not yet been flushed to the monitor,
 has geometry which looks like this:
 
-.. figure:: _static/plot2.png
+.. figure:: static/plot2.png
     :align: center
     :alt: Rectangle
     :figclass: align-center
@@ -124,7 +124,7 @@ Screen-space means you're specifically using pixel coordinates, i.e, set pixel (
 
 What looks alright is screen-space on a large monitor...
 
-.. figure:: _static/screenspace2.png
+.. figure:: static/screenspace2.png
     :align: center
     :alt: Screenspace
     :figclass: align-center
@@ -134,7 +134,7 @@ What looks alright is screen-space on a large monitor...
 
 Isn't even the same picture on a smaller monitor.
 
-.. figure:: _static/screenspace.png
+.. figure:: static/screenspace.png
     :align: center
     :alt: Screenspace
     :figclass: align-center
@@ -163,7 +163,7 @@ By specifying geometry using normalized-device-coordinates,
 OpenGL will automatically convert from a continuous, -1.0 to 1.0 space,
 to discrete pixel-space.
 
-.. figure:: _static/ndcSpace.png
+.. figure:: static/ndcSpace.png
     :align: center
     :alt: NDC space
     :figclass: align-center
@@ -173,7 +173,7 @@ to discrete pixel-space.
 
 Whether we own a small monitor
 
-.. figure:: _static/ndcSpace1.png
+.. figure:: static/ndcSpace1.png
     :align: center
     :alt: NDC space
     :figclass: align-center
@@ -182,7 +182,7 @@ Whether we own a small monitor
 
 Or a large monitor.
 
-.. figure:: _static/screenspace2.png
+.. figure:: static/screenspace2.png
     :align: center
     :alt: NDC space
     :figclass: align-center
