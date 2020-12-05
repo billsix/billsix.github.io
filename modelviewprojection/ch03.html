@@ -36,6 +36,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Moving the Paddles - Keyboard Input - Demo 04" href="ch04.html" />
     <link rel="prev" title="Draw A Rectange - Demo 02" href="ch02.html" /> 
 </head>
 
@@ -91,6 +92,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#code">Code</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transforamations - Demo 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
 </ul>
 
             
@@ -158,8 +169,6 @@
             
   <div class="section" id="window-resizing-and-proportionality-demo-03">
 <h1>Window Resizing and Proportionality - Demo 03<a class="headerlink" href="#window-resizing-and-proportionality-demo-03" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-</div>
 <div class="section" id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
 <p>Given the goal of keeping the paddles proportial regardless of window
@@ -196,85 +205,158 @@ in all chapters. “draw_in_square_viewport” is a function.</p>
 </div>
 <div class="section" id="code">
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_in_square_viewport</span><span class="p">():</span>
+<div class="highlight-Python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="nf">draw_in_square_viewport</span><span class="p">():</span>
 
-    <span class="c1"># clear to gray.</span>
-    <span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># r  # g  # b  # a</span>
-    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">)</span>
+      <span class="c1"># clear to gray.</span>
+      <span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># r  # g  # b  # a</span>
+      <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">)</span>
 
-    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-    <span class="c1"># figure out the minimum dimension of the window</span>
-    <span class="nb">min</span> <span class="o">=</span> <span class="n">width</span> <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="n">height</span> <span class="k">else</span> <span class="n">height</span>
+      <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+      <span class="c1"># figure out the minimum dimension of the window</span>
+      <span class="nb">min</span> <span class="o">=</span> <span class="n">width</span> <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="n">height</span> <span class="k">else</span> <span class="n">height</span>
 
-    <span class="c1"># the scissor test allows us to specify a region</span>
-    <span class="c1"># of the framebuffer into which the opengl operations</span>
-    <span class="c1"># will apply.  In this case, in the framebuffer is all gray.</span>
-    <span class="c1"># by calling glScissor, we are setting a value on a square</span>
-    <span class="c1"># of pixels which says &quot;only do the opengl call on these&quot;.</span>
-    <span class="c1"># As we will learn later, OpenGL stores much more information</span>
-    <span class="c1"># per pixel than just it&#39;s current color.</span>
-    <span class="n">glEnable</span><span class="p">(</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
-    <span class="n">glScissor</span><span class="p">(</span>
-        <span class="nb">int</span><span class="p">((</span><span class="n">width</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># min x</span>
-        <span class="nb">int</span><span class="p">((</span><span class="n">height</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># min y</span>
-        <span class="nb">min</span><span class="p">,</span>  <span class="c1"># width x</span>
-        <span class="nb">min</span><span class="p">,</span>
-    <span class="p">)</span>  <span class="c1"># width y</span>
+      <span class="c1"># the scissor test allows us to specify a region</span>
+      <span class="c1"># of the framebuffer into which the opengl operations</span>
+      <span class="c1"># will apply.  In this case, in the framebuffer is all gray.</span>
+      <span class="c1"># by calling glScissor, we are setting a value on a square</span>
+      <span class="c1"># of pixels which says &quot;only do the opengl call on these&quot;.</span>
+      <span class="c1"># As we will learn later, OpenGL stores much more information</span>
+      <span class="c1"># per pixel than just it&#39;s current color.</span>
+      <span class="n">glEnable</span><span class="p">(</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
+      <span class="n">glScissor</span><span class="p">(</span>
+          <span class="nb">int</span><span class="p">((</span><span class="n">width</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># min x</span>
+          <span class="nb">int</span><span class="p">((</span><span class="n">height</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># min y</span>
+          <span class="nb">min</span><span class="p">,</span>  <span class="c1"># width x</span>
+          <span class="nb">min</span><span class="p">,</span>
+      <span class="p">)</span>  <span class="c1"># width y</span>
 
-    <span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># r  # g  # b  # a</span>
-    <span class="c1"># gl clear will only update the square to black values.</span>
-    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">)</span>
-    <span class="c1"># disable the scissor test, so now any opengl calls will</span>
-    <span class="c1"># happen as usual.</span>
-    <span class="n">glDisable</span><span class="p">(</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
+      <span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># r  # g  # b  # a</span>
+      <span class="c1"># gl clear will only update the square to black values.</span>
+      <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">)</span>
+      <span class="c1"># disable the scissor test, so now any opengl calls will</span>
+      <span class="c1"># happen as usual.</span>
+      <span class="n">glDisable</span><span class="p">(</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
 
-    <span class="c1"># But, we only want to draw within the black square.</span>
-    <span class="c1"># We set the viewport, so that the NDC coordinates</span>
-    <span class="c1"># will be mapped the the region of screen coordinates</span>
-    <span class="c1"># that we care about, which is the black square.</span>
-    <span class="n">glViewport</span><span class="p">(</span>
-        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># min x</span>
-        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># min y</span>
-        <span class="nb">min</span><span class="p">,</span>  <span class="c1"># width x</span>
-        <span class="nb">min</span><span class="p">,</span>
-    <span class="p">)</span>  <span class="c1"># width y</span>
+      <span class="c1"># But, we only want to draw within the black square.</span>
+      <span class="c1"># We set the viewport, so that the NDC coordinates</span>
+      <span class="c1"># will be mapped the the region of screen coordinates</span>
+      <span class="c1"># that we care about, which is the black square.</span>
+      <span class="n">glViewport</span><span class="p">(</span>
+          <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># min x</span>
+          <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># min y</span>
+          <span class="nb">min</span><span class="p">,</span>  <span class="c1"># width x</span>
+          <span class="nb">min</span><span class="p">,</span>
+      <span class="p">)</span>  <span class="c1"># width y</span>
 </pre></div>
-</div>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
+</td></tr></table></div>
+<div class="highlight-Python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+      <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
 
-    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
+      <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+      <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+      <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
 
-    <span class="c1"># render scene</span>
-    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
+      <span class="c1"># render scene</span>
+      <span class="n">draw_in_square_viewport</span><span class="p">()</span>
 
-    <span class="c1"># draw paddle 1</span>
-    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># r  # g  # b</span>
-    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># x  # y</span>
-    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># x  # y</span>
-    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># x  # y</span>
-    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># x  # y</span>
-    <span class="n">glEnd</span><span class="p">()</span>
-    <span class="c1"># draw paddle 2</span>
-    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+      <span class="c1"># draw paddle 1</span>
+      <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># r  # g  # b</span>
+      <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+      <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># x  # y</span>
+      <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># x  # y</span>
+      <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># x  # y</span>
+      <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># x  # y</span>
+      <span class="n">glEnd</span><span class="p">()</span>
+      <span class="c1"># draw paddle 2</span>
+      <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+      <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
 
-    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">glEnd</span><span class="p">()</span>
+      <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+      <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+      <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+      <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+      <span class="n">glEnd</span><span class="p">()</span>
 
-    <span class="c1"># done with frame, flush and swap buffers</span>
-    <span class="c1"># Swap front and back buffers</span>
-    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+      <span class="c1"># done with frame, flush and swap buffers</span>
+      <span class="c1"># Swap front and back buffers</span>
+      <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 
-<span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+  <span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 </div>
 </div>
 
@@ -285,6 +367,8 @@ in all chapters. “draw_in_square_viewport” is a function.</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ch04.html" class="btn btn-neutral float-right" title="Moving the Paddles - Keyboard Input - Demo 04" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ch02.html" class="btn btn-neutral float-left" title="Draw A Rectange - Demo 02" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
