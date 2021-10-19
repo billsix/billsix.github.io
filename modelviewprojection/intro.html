@@ -1,68 +1,35 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Introduction &mdash; Model View Projection 0.0.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
+      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
         <script src="static/jquery.js"></script>
         <script src="static/underscore.js"></script>
         <script src="static/doctools.js"></script>
-        <script src="static/language_data.js"></script>
-    
-    <script type="text/javascript" src="static/js/theme.js"></script>
-
-    
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Opening a Window - Demo 01" href="ch01.html" />
     <link rel="prev" title="Model View Projection" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Model View Projection
-          
-
-          
+            <a href="index.html" class="icon icon-home"> Model View Projection
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -70,21 +37,11 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#approach">Approach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-requisities">Pre-requisities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#required-software">Required Software</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#linux">Linux</a></li>
@@ -108,90 +65,38 @@
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Model View Projection</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Introduction</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="sources/intro.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="introduction">
+             
+  <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>Learn how to build 3D graphics using math you already know.
-This codebase demonstrates how to create objects, put
-them where you want them to go, view the scene with a camera
-that can move, and how to project that 3D data to a 2D screen.</p>
-<p>For further information, such as lighting, shadows, and
-OpenGL in more explicit detail, consult</p>
-<ol class="arabic simple">
-<li><p>OpenGL redbook/bluebook. (OpenGL superbible v4, because it covers fixed function and shaders)</p></li>
-<li><p>Mathematics for 3D Game Programming and Computer Graphics</p></li>
-<li><p>Computer Graphics: Principles and Practice in C (2nd Edition)</p></li>
-</ol>
-<p>For RayTracing</p>
-<ol class="arabic simple">
-<li><p>Physically Based Rendering</p></li>
-<li><p>Ray Tracing from the Ground Up</p></li>
-</ol>
-<div class="section" id="approach">
+<p>Learn how to program in 3D computer graphics in Python!</p>
+<section id="approach">
 <h2>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h2>
 <p>This book uses “mistake-driven-development”.  I show incrementally
 how to build a more complex graphics application, making mistakes along
@@ -211,88 +116,102 @@ For advanced graphics topics, you’ll need to consult other references,
 such as the OpenGL “red book” and “blue book”.
 Although this book fills a huge gap that other books do not address,
 those other books are excellent reference books for advanced topics.</p>
-</div>
-<div class="section" id="required-software">
+</section>
+<section id="pre-requisities">
+<h2>Pre-requisities<a class="headerlink" href="#pre-requisities" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Basic programming concepts in Python.</p>
+<ol class="arabic simple">
+<li><p>YouTube videos</p>
+<ol class="arabic simple">
+<li><p>Learn Python with <a class="reference external" href="https://www.youtube.com/watch?v=bY6m6_IIN94&amp;list=PLi01XoE8jYohWFPpC17Z-wWhPOSuh8Er-&amp;index=2">Socratica</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=jFCNu1-Xdsw&amp;list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6">Microsoft</a> Python Tutorials</p></li>
+</ol>
+</li>
+<li><p>Books</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://en.wikibooks.org/wiki/A_Beginner%27s_Python_Tutorial">https://en.wikibooks.org/wiki/A_Beginner%27s_Python_Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://learnbyexample.github.io/100_page_python_intro/preface.html">https://learnbyexample.github.io/100_page_python_intro/preface.html</a></p></li>
+<li><p><a class="reference external" href="https://diveintopython3.problemsolving.io/">https://diveintopython3.problemsolving.io/</a></p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>High school trigonometry</p></li>
+<li><p>Linear Algebra (optional)</p>
+<ol class="arabic simple">
+<li><p>3Blue1Brown - Linear <a class="reference external" href="https://www.youtube.com/watch?v=kYB8IZa5AuE">Transformations</a></p></li>
+<li><p>3Blue1Brown - Matrix Multiplication as <a class="reference external" href="https://www.youtube.com/watch?v=XkY2DOUCWMU">Composition</a></p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="required-software">
 <h2>Required Software<a class="headerlink" href="#required-software" title="Permalink to this headline">¶</a></h2>
-<p>Bbefore running this code, you need a virtual environment,
-with dependencies installed.</p>
-<p>Visual Studio takes care of this for you, but on a Mac or
-on Linux, run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m venv venv
-<span class="nb">source</span> venv/bin/activate
-pip install --upgrade pip setuptools
-pip install -r requirements.txt
+<p>You will need to install Python.  <a class="reference external" href="https://en.wikibooks.org/wiki/A_Beginner%27s_Python_Tutorial/Installing_Python">https://en.wikibooks.org/wiki/A_Beginner%27s_Python_Tutorial/Installing_Python</a></p>
+<p>Before running this code, you need a virtual environment,
+with dependencies installed. <a class="reference external" href="https://docs.python.org/3/tutorial/venv.html">https://docs.python.org/3/tutorial/venv.html</a></p>
+<p>On Windows, if you use the Developer command prompt, run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
+<span class="n">cd</span> <span class="n">venv</span>\<span class="n">Scripts</span>
+<span class="n">activate</span><span class="o">.</span><span class="n">bat</span>
+<span class="n">cd</span> <span class="o">..</span>\<span class="o">..</span>\
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span> <span class="n">setuptools</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<div class="section" id="windows">
+<p>If you use Visual Studio on Windows, it takes care of this for you.</p>
+<p>On a Mac or on Linux, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m venv venv
+<span class="nb">source</span> venv/bin/activate
+python3 -m pip install --upgrade pip setuptools
+python3 -m pip install -r requirements.txt
+</pre></div>
+</div>
+<section id="windows">
 <h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <p>Use Visual Studio 2019 (Tested on community, but I’m sure it will work on others).</p>
-</div>
-<div class="section" id="linux">
+</section>
+<section id="linux">
 <h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
 <p>Install Python3, glfw via a package manager.  Use pip and virtualenv to install dependencies</p>
-</div>
-<div class="section" id="mac">
+</section>
+<section id="mac">
 <h3>Mac<a class="headerlink" href="#mac" title="Permalink to this headline">¶</a></h3>
 <p>Python Python3 (via anaconda, homebrew, macports, whatever), and use pip and virtualenv to install dependencies.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="ch01.html" class="btn btn-neutral float-right" title="Opening a Window - Demo 01" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="Model View Projection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Model View Projection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch01.html" class="btn btn-neutral float-right" title="Opening a Window - Demo 01" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2020, William Emerison Six
-
-    </p>
+    <p>&#169; Copyright 2020, William Emerison Six.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

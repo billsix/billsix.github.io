@@ -7,9 +7,36 @@ Purpose
 Fix the rotation problem from the previous demo in a seemingly intuitive
 way, but do it inelegantly.
 
+Lesson learned by end of Demo 08.  Read function composition from left
+to right, instead of from right to left.
+
+.. figure:: static/screenshots/demo08.png
+    :align: center
+    :alt: Demo 08
+    :figclass: align-center
+
+    Demo 08
+
+
+
+.. figure:: static/rotate-sloppy-forwards.gif
+    :align: center
+    :alt:
+    :figclass: align-center
+
+    Works but sloppy
+
+.. figure:: static/rotate-sloppy-backwards.gif
+    :align: center
+    :alt:
+    :figclass: align-center
+
+    Works but sloppy
+
+
 
 Move the Paddles using the Keyboard
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ==============  ================================
 Keyboard Input  Action
@@ -42,108 +69,204 @@ Taking a look at the various spaces, the code in this demo
 is going to go back and forth between those spaces.  The code
 in this demo is the wrong way to think about rendering.
 
-.. figure:: static/demo06.png
+
+Cayley Graph
+^^^^^^^^^^^^
+
+.. figure:: static/demo08.png
     :align: center
-    :alt: Demo 06
+    :alt: Demo 08
     :figclass: align-center
 
-    Demo 06
 
 
-.. code:: Python
-   :number-lines:
-
-     class Vertex:
-         def __init__(self, x, y):
-             self.x = x
-             self.y = y
-
-         def __repr__(self):
-             return f"Vertex(x={repr(self.x)},y={repr(self.y)})"
-
-         def translate(self, tx, ty):
-             return Vertex(x=self.x + tx, y=self.y + ty)
-
-         def scale(self, scale_x, scale_y):
-             return Vertex(x=self.x * scale_x, y=self.y * scale_y)
-
-         def rotate(self, angle_in_radians):
-             return Vertex(
-                 x=self.x * math.cos(angle_in_radians) - self.y * math.sin(angle_in_radians),
-                 y=self.x * math.sin(angle_in_radians) + self.y * math.cos(angle_in_radians),
-             )
-
-         # NEW
-         # translate the Vertex so that the paddle's center goes
-         # to the origin, call the existing rotate call,
-         # and then translate back to the paddle's position
-         def rotate_around(self, angle_in_radians, center):
-             translate_to_center = self.translate(tx=-center.x, ty=-center.y)
-             rotated_around_origin = translate_to_center.rotate(angle_in_radians)
-             back_to_position = rotated_around_origin.translate(tx=center.x, ty=center.y)
-             return back_to_position
+Code
+^^^^
 
 
-.. code:: Python
-   :number-lines:
 
-     while not glfw.window_should_close(window):
-         while (
-             glfw.get_time() < time_at_beginning_of_previous_frame + 1.0 / TARGET_FRAMERATE
-         ):
-             pass
+.. literalinclude:: ../src/demo08/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 90
+   :lines: 90-111
 
-         time_at_beginning_of_previous_frame = glfw.get_time()
 
-         glfw.poll_events()
+The Event Loop
+~~~~~~~~~~~~~~
 
-         width, height = glfw.get_framebuffer_size(window)
-         glViewport(0, 0, width, height)
-         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-         draw_in_square_viewport()
-         handle_movement_of_paddles()
 
-         glColor3f(paddle1.r, paddle1.g, paddle1.b)
 
-         glBegin(GL_QUADS)
-         # NEW - the point around which paddle 1 must rotate
-         rotatePoint = (
-             Vertex(0.0, 0.0)
-             .translate(tx=paddle1.initial_position.x, ty=paddle1.initial_position.y)
-             .translate(tx=paddle1.input_offset_x, ty=paddle1.input_offset_y)
-         )
-         for model_space in paddle1.vertices:
-             world_space = model_space.translate(
-                 tx=paddle1.initial_position.x, ty=paddle1.initial_position.y
-             ).translate(tx=paddle1.input_offset_x, ty=paddle1.input_offset_y)
-             # NEW
-             # do the rotate around the paddle's center
-             world_space = world_space.rotate_around(paddle1.rotation, rotatePoint)
-             ndc_space = world_space.scale(scale_x=1.0 / 100.0, scale_y=1.0 / 100.0)
-             glVertex2f(ndc_space.x, ndc_space.y)
-         glEnd()
-         # draw paddle1
-         glColor3f(paddle2.r, paddle2.g, paddle2.b)
+.. literalinclude:: ../src/demo08/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 179
+   :lines: 179
 
-         glBegin(GL_QUADS)
-         # NEW - the point around which paddle 2 must rotate
-         rotatePoint = (
-             Vertex(0.0, 0.0)
-             .translate(tx=paddle2.initial_position.x, ty=paddle2.initial_position.y)
-             .translate(tx=paddle2.input_offset_x, ty=paddle2.input_offset_y)
-         )
-         for model_space in paddle2.vertices:
-             world_space = model_space.translate(
-                 tx=paddle2.initial_position.x, ty=paddle2.initial_position.y
-             ).translate(tx=paddle2.input_offset_x, ty=paddle2.input_offset_y)
-             # NEW
-             # do the rotate around the paddle's center
-             world_space = world_space.rotate_around(paddle2.rotation, rotatePoint)
-             ndc_space = world_space.scale(scale_x=1.0 / 100.0, scale_y=1.0 / 100.0)
-             glVertex2f(ndc_space.x, ndc_space.y)
-         glEnd()
+::
 
-         glfw.swap_buffers(window)
+    ...
 
-     glfw.terminate()
+
+.. literalinclude:: ../src/demo08/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 197
+   :lines: 197-206
+
+
+::
+
+    ...
+
+
+.. literalinclude:: ../src/demo08/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 209
+   :lines: 209-218
+
+Math
+^^^^
+
+
+.. math::
+
+    \begin{equation}
+     \vec{T}(\vec{v};\vec{t}) =
+    \begin{bmatrix}
+    v_{x} \\
+    v_{y}
+    \end{bmatrix} +
+    \begin{bmatrix}
+    t_{x} \\
+    t_{y}
+    \end{bmatrix}
+    \end{equation}
+
+.. math::
+
+    \begin{equation}
+     \vec{T}^{-1}(\vec{v};\vec{t}) =
+    \begin{bmatrix}
+    v_{x} \\
+    v_{y}
+    \end{bmatrix} -
+    \begin{bmatrix}
+    t_{x} \\
+    t_{y}
+    \end{bmatrix}
+    \end{equation}
+
+
+.. math::
+
+    \begin{equation}
+    \vec{R}(\vec{v};\theta) = v_x *
+    \begin{bmatrix}
+    cos(\theta) \\
+    sin(\theta)
+    \end{bmatrix} + v_y *
+    \begin{bmatrix}
+    -sin(\theta) \\
+    cos(\theta)
+    \end{bmatrix}
+    \end{equation}
+
+
+.. math::
+
+    \begin{equation}
+    \vec{R}^{-1}(\vec{v};\theta) = v_x *
+    \begin{bmatrix}
+    cos(\theta) \\
+    -sin(\theta)
+    \end{bmatrix} + v_y *
+    \begin{bmatrix}
+    sin(\theta) \\
+    cos(\theta)
+    \end{bmatrix}
+    \end{equation}
+
+
+
+.. math::
+
+    \begin{equation}
+    \vec{S}(\vec{v};\vec{s}) =
+    \begin{bmatrix}
+    s_x * v_x \\
+    s_y * v_y
+    \end{bmatrix}
+    \end{equation}
+
+.. math::
+
+    \begin{equation}
+    \vec{S}^{-1}(\vec{v};\vec{s}) =
+    \begin{bmatrix}
+    1/s_x * v_x \\
+    1/s_y * v_y
+    \end{bmatrix}
+    \end{equation}
+
+
+
+
+
+
+.. math::
+
+    \begin{equation}
+    \vec{g}_{p1}^{w} =
+    \vec{T}(; \vec{v_{offset_{p1}}})
+    \end{equation}
+
+.. math::
+
+    \begin{equation}
+    \vec{g}^{-1}{_{p1}^{w}} =
+    \vec{T}(; -1 * \vec{v_{offset_{p1}}})
+    \end{equation}
+
+
+.. math::
+
+    \begin{equation}
+    \begin{split}
+    \vec{f}_{p1}^{w} & = \vec{g}_{p1}^{w} \circ \vec{R}(;\theta_{p1}) \circ \vec{g}^{-1}{_{p1}^{w}} \circ \vec{g}_{p1}^{w} \\
+                     & = \vec{g}_{p1}^{w} \circ \vec{R}(;\theta_{p1}) \\
+                     & = \vec{T}(; \vec{v_{offset_{p1}}}) \circ \vec{R}(;\theta_{p1})
+    \end{split}
+    \end{equation}
+
+
+and
+
+.. math::
+
+    \begin{equation}
+    \begin{split}
+    \vec{f}_{p2}^{w} & = \vec{g}_{p2}^{w} \circ \vec{R}(;\theta_{p2}) \circ \vec{g}^{-1}{_{p2}^{w}} \circ \vec{g}_{p2}^{w} \\
+                     & = \vec{g}_{p2}^{w} \circ \vec{R}(;\theta_{p2}) \\
+                     & = \vec{T}(; \vec{v_{offset_{p2}}}) \circ \vec{R}(;\theta_{p2})
+    \end{split}
+    \end{equation}
+
+
+
+
+.. math::
+   :label: euler
+
+    \begin{equation}
+    \vec{f}_{w}^{ndc} =
+    \vec{S}(; \begin{bmatrix}
+    1/100 \\
+    1/100
+    \end{bmatrix})
+    \end{equation}
+
+
+foo bar :eq:`euler`

@@ -1,0 +1,9 @@
+digraph {
+    rankdir="BT"
+    nodesep=1
+    ranksep=1
+    "Paddle 1 Space" -> "World Space"[label=<f<SUB>p1</SUB><SUP>w</SUP>>,weight="0.2"];
+    "Paddle 2 Space" -> "World Space"[label=<f<SUB>p2</SUB><SUP>w</SUP>>,weight="0.2"];
+    "World Space" -> "Camera Space" [label=<f<SUB>w</SUB><SUP>c</SUP>>,weight="0.2"];
+    "Camera Space" -> "NDC" [label=<f<SUB>c</SUB><SUP>ndc</SUP>>,weight="0.2"];
+}

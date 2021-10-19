@@ -10,38 +10,17 @@ some in the x direction.
 When the paddle on the left moves or rotates, the blue square
 moves with it, because it is defined relative to it.
 
-.. figure:: static/demo11.png
+
+.. figure:: static/screenshots/demo11.png
     :align: center
     :alt: Demo 11
     :figclass: align-center
 
     Demo 11
 
-Things to note.
-
-#. When dealing with any object space to world space,
-I recommend reading the order of transformations backwards,
-imagining a moving origin, x and y axis.
-
-#. Reading the code from world space to camera space requires
-a different interpretation.  You can think of the camera
-as being defined relative to world space, and you can develop
-a mental model of the transformations in the same manner that
-you would do for any object.  But, because NDC is going to
-be defined relative to camera space, the transformations
-that you need to apply to an object (paddle1, square 1, etc)
-are the inverse of what you would do to the "camera".
-
-#. We in looking at the code for the three objects we are drawing
-you might notice that we are duplicating a lot of code, and
-that if we decide to change paddle1's transformations, that
-we would need to change the code in multiple places.
-Later demos will show how to handle this problem more gracefully.
-
-
 
 Move the Paddles using the Keyboard
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ==============  ==============================================
 Keyboard Input  Action
@@ -66,20 +45,63 @@ Keyboard Input  Action
 Description
 ^^^^^^^^^^^
 
-.. code:: Python
-   :number-lines:
 
-     square = [
-         Vertex(x=-5.0, y=-5.0),
-         Vertex(x=5.0, y=-5.0),
-         Vertex(x=5.0, y=5.0),
-         Vertex(x=-5.0, y=5.0),
-     ]
+Cayley Graph
+^^^^^^^^^^^^
 
+
+.. figure:: static/demo11.png
+    :align: center
+    :alt: Demo 11
+    :figclass: align-center
+
+    Demo 11
+
+.. figure:: static/screenshots/coordinateframes.png
+    :align: center
+    :alt: Coordinate Frames
+    :figclass: align-center
+
+    Coordinate Frames
+
+
+
+Things to note.
+
+#. When dealing with any object space to world space,
+I recommend reading the order of transformations backwards,
+imagining a moving origin, x and y axis.
+
+#. Reading the code from world space to camera space requires
+a different interpretation.  You can think of the camera
+as being defined relative to world space, and you can develop
+a mental model of the transformations in the same manner that
+you would do for any object.  But, because NDC is going to
+be defined relative to camera space, the transformations
+that you need to apply to an object (paddle1, square 1, etc)
+are the inverse of what you would do to the "camera".
+
+#. We in looking at the code for the three objects we are drawing
+you might notice that we are duplicating a lot of code, and
+that if we decide to change paddle1's transformations, that
+we would need to change the code in multiple places.
+Later demos will show how to handle this problem more gracefully.
+
+
+
+Code
+^^^^
+
+
+.. literalinclude:: ../src/demo11/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 154
+   :lines: 154-159
 
 
 Event Loop
-^^^^^^^^^^
+~~~~~~~~~~
 
 .. code:: Python
    :number-lines:
