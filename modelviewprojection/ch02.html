@@ -16,6 +16,7 @@
         <script src="static/jquery.js"></script>
         <script src="static/underscore.js"></script>
         <script src="static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -43,6 +44,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Draw A Rectange - Demo 02</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#glfw-opengl-initialization">GLFW/OpenGL Initialization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-event-loop">The Event Loop</a><ul>
@@ -52,6 +54,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#normalized-device-coordinates">Normalized-Device-Coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#graph-of-spaces">Graph of Spaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction-to-cayley-graphs">Introduction to Cayley Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#learning-what-to-ignore">Learning what to ignore</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
@@ -68,7 +75,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">Game Controller - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
 </ul>
 
         </div>
@@ -99,13 +109,20 @@
 <h1>Draw A Rectange - Demo 02<a class="headerlink" href="#draw-a-rectange-demo-02" title="Permalink to this headline">¶</a></h1>
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
-<p>Learn how to plot a rectangle.  Learn about OpenGL’s coordinate system.</p>
+<p>Learn how to plot a rectangle.  Learn about OpenGL’s coordinate system, normalized-device coordinates,
+which are from -1.0 to 1.0, in the X, Y, and Z directions.  Anything drawn entirely outside
+of this region will not be displayed on the screen.</p>
 <figure class="align-center" id="id1">
 <img alt="Demo 02" src="images/demo02.png" />
 <figcaption>
 <p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
+</section>
+<section id="how-to-execute">
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
+<p>On Linux or on MacOS, in a command prompt, type “python src/demo02/demo.py”.
+On Windows, in a command prompt, type “python src\demo02\demo.py”.</p>
 </section>
 <section id="code">
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
@@ -122,12 +139,15 @@ a game of Pong.</p>
 <section id="draw-paddles">
 <h4>Draw Paddles<a class="headerlink" href="#draw-paddles" title="Permalink to this headline">¶</a></h4>
 <p>A black screen is not particularly interesting, so
-let’s draw something, say, two rectangles.
-Where should they be, and what color should they be?</p>
-<p>“glColor3f” sets a global variable, which makes it the color to be used
-for the subsequently-drawn graphical shape.  The background will be black,
-so lets make the first paddle purple, and a second paddle red.</p>
-<p>“glBegin(GL_QUADS)” tells OpenGL that we will soon specify 4 <em>vertices</em>,
+let’s draw something, say, two rectangles.</p>
+<p>We need to figure out what colors to use, and the positions of the rectangles, defined
+below.</p>
+<p>To set the color, we will use “glColor3f”.
+“glColor3f” sets a global variable, which makes it the color to be used
+for the subsequently-drawn graphical shape(s).  Given that the background will be black,
+lets make the first paddle purple, and a second paddle red.</p>
+<p>To specify the corners of the rectangle,
+“glBegin(GL_QUADS)” tells OpenGL that we will soon specify 4 <em>vertices</em>,
 (i.e. points) which define the
 quadrilateral.  The vertices will be specified by calling “glVertex2f” 4 times.</p>
 <p>“glEnd()” tells OpenGL that we have finished providing vertices for
@@ -141,7 +161,7 @@ the begun quadrilateral.</p>
 <span class="linenos">70</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The framebuffer, which has not yet been flushed to the monitor, has geometry which looks like this:</p>
+<p>The paddle looks like this relative to normalized device coordinates (NDC):</p>
 <figure class="align-center" id="id2">
 <img alt="Rectangle" src="images/plot1.png" />
 <figcaption>
@@ -157,8 +177,7 @@ the begun quadrilateral.</p>
 <span class="linenos">78</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The framebuffer, which has not yet been flushed to the monitor,
-has geometry which looks like this:</p>
+<p>The 2 paddles looks like this relative to normalized device coordinates (NDC):</p>
 <figure class="align-center" id="id3">
 <img alt="Rectangle" src="images/plot2.png" />
 <figcaption>
@@ -187,11 +206,12 @@ has geometry which looks like this:</p>
 <span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
 </pre></div>
 </div>
-<p>What do we have to do to convert from normalized-device-coordinates
-into individual colors for each pixel?  Nothing, OpenGL does that for us; therefore
-we never have to think in terms of pixels, only in terms of vertices of shapes,
-specified by normalized-device-coordinates.</p>
-<p>Why is that desirable?</p>
+<p>What do we have to do to convert from normalized-device-coordinates (i.e. (1.0, 0.8))
+into pixel coordinates (i.e. pixel (10,15))?  Nothing, OpenGL does that for us automatically; therefore
+we never have to think in terms of pixels coordinates, only in terms of vertices of shapes,
+specified by normalized-device-coordinates. OpenGL also automatically colors all of the pixels
+which are inside of the quadrilateral.</p>
+<p>Why do we use normalized-device coordinates instead of pixel coordinates?</p>
 </section>
 </section>
 </section>
@@ -200,8 +220,8 @@ specified by normalized-device-coordinates.</p>
 <p>The author owns two monitors, one which has 1024x768 pixels, and one which has
 1920x1200 pixels.  When he purchases a game from Steam, he expects that his game
 will run correctly on either monitor, in full-screen mode.  If a graphics programmer
-had to explictly set each indiviual pixel’s color, the the programmer would have to
-program using “screen-space”(Any “space” means a system of numbers which you’re using.
+had to explictly set the color of individual pixels using the pixel’s coordinates, the the programmer would have to
+program using “screen-space” (Any “space” means a system of numbers which you’re using.
 Screen-space means you’re specifically using pixel coordinates, i.e, set pixel (5,10) to be red).</p>
 <p>What looks alright is screen-space on a large monitor…</p>
 <figure class="align-center" id="id4">
@@ -210,7 +230,7 @@ Screen-space means you’re specifically using pixel coordinates, i.e, set pixel
 <p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Isn’t even the same picture on a smaller monitor.</p>
+<p>Isn’t the same picture on a smaller monitor.</p>
 <figure class="align-center" id="id5">
 <img alt="Screenspace" src="images/screenspace.png" />
 <figcaption>
@@ -227,12 +247,13 @@ should be able to enter “float foo = 10.3”.  Secondly, it should be a fixed 
 and an fixed range horizontally.  OpenGL will have to convert points from some space to screen-space,
 and since OpenGL does this in hardware (i.e. you can’t programmatically change how the conversion
 happens), it should be a fixed size.</p>
-<p>OpenGL uses <em>normalized-device-coordinates</em>,
+<p>OpenGL uses what’s called <em>normalized-device-coordinates</em>,
 which is a continous space from -1.0 to 1.0 horizontally,
-and -1.0 to 1.0 vertically.</p>
-<p>By specifying geometry using normalized-device-coordinates,
-OpenGL will automatically convert from a continuous, -1.0 to 1.0 space,
-to discrete pixel-space.</p>
+-1.0 to 1.0 vertically, and from -1.0 to 1.0 depthally.  (Is there an
+actual word for that???)</p>
+<p>The programmer specifies geometry using normalized-device-coordinates, and
+OpenGL will convert from a continuous, -1.0 to 1.0 space,
+to discrete pixel-space, and the programmer cannot change this.</p>
 <figure class="align-center" id="id6">
 <img alt="NDC space" src="images/ndcSpace.png" />
 <figcaption>
@@ -253,6 +274,121 @@ to discrete pixel-space.</p>
 <p><span class="caption-text">NDC space</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
+</section>
+<section id="graph-of-spaces">
+<h2>Graph of Spaces<a class="headerlink" href="#graph-of-spaces" title="Permalink to this headline">¶</a></h2>
+<p>The following is a graph (<a class="reference external" href="https://en.wikipedia.org/wiki/Graph_theory">https://en.wikipedia.org/wiki/Graph_theory</a>), specifically
+a Cayley Graph (<a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">https://en.wikipedia.org/wiki/Cayley_graph</a>), of the two spaces
+shown so far.  The nodes represent a coordinate system (i.e. origin and axis),
+and the directed edge reprsents a conversion from coordinates from one
+coordinate system to another.</p>
+<figure class="align-center" id="id9">
+<img alt="Demo 02" src="images/demo021.png" />
+<figcaption>
+<p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The function that converts from NDC to Screen space is named f, subscripted by “NDC”, superscripted
+by “S”.  This is a common notation when creating functions that change basis, i.e. coordinate conversion.</p>
+<section id="introduction-to-cayley-graphs">
+<h3>Introduction to Cayley Graphs<a class="headerlink" href="#introduction-to-cayley-graphs" title="Permalink to this headline">¶</a></h3>
+<p>The wikipedia article for Cayley graphs (<a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">https://en.wikipedia.org/wiki/Cayley_graph</a>) is intimidating,
+but for our purposes, it’s use is very simple.</p>
+<p>For example, as Americans, we use US Currency.  If we were to travel to another country,
+we would like to convert our currency into a currency which is accepted locally.</p>
+<p>Let’s assume that the world still used the Gold Standard, and put that space at the top of the diagram.  All
+other currencies will be defined as their value relative to this standard.
+As such, we create functions that convert currency from each of US, Canada, and EU, into the number of
+ounces of gold.</p>
+<figure class="align-center" id="id10">
+<img alt="Demo 02" src="images/currency.png" />
+<figcaption>
+<p><span class="caption-text">Cayley graph of univariate coordinate conversion for money.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The following conversions are all made up.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="n">US</span> <span class="n">Dollar</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">ounces</span> <span class="n">of</span> <span class="n">gold</span>
+
+<span class="mi">1</span> <span class="n">Canadian</span> <span class="n">Dollar</span> <span class="o">=</span> <span class="mi">4</span> <span class="n">ounces</span> <span class="n">of</span> <span class="n">gold</span>
+
+<span class="mi">1</span> <span class="n">Euro</span> <span class="o">=</span>  <span class="mi">5</span> <span class="n">ounces</span> <span class="n">of</span> <span class="n">gold</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The directed edges in the Cayley graph show the direction that the function, i.e. transformation, applies.
+Another way to think about the arrows, in our hypothetical example, is that the US Dollar is define relative
+to Gold Ounces, since the directed edge goes from US Dollar to Canadian Dollar.  The Canadian Dollar is defined relative to Gold Ounces,
+for the same reason, as is the Euro.  This concept will be important later.</p>
+<p>To convert 15 US Dollars to ounces of Gold,</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation*}
+f_{us}^{gs}(x) = 2 * x
+\end{equation*}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split}
+f_{us}^{gs}(15)  &amp; = 2 * 15\\
+                 &amp; = 30
+\end{split}
+\end{equation}\end{split}\]</div>
+<p>These conversion functions are invertible by taking the reciprical of the coefficient.
+To convert 10 Ounces of Gold to US dollars, we will be going against the direction of the
+edge, so we need to apply the inverse of the function to the number of ounces of gold.</p>
+<p>In order
+to convert from Gold Standard to US Currency, we are going against the arrow, so the inverse
+of the function is to be applied.</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation*}
+f_{gs}^{us}(x) = {f_{us}^{gs}}^{-1}(x)
+\end{equation*}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split}
+f_{gs}^{us}(x)  &amp; = {f_{us}^{gs}}^{-1}(x) \\
+                &amp; = 1/2 * x \\
+                &amp; = 1/2 * 10 \
+                &amp; = 5
+\end{split}
+\end{equation}\end{split}\]</div>
+</section>
+<section id="learning-what-to-ignore">
+<h3>Learning what to ignore<a class="headerlink" href="#learning-what-to-ignore" title="Permalink to this headline">¶</a></h3>
+<p>A big part of being able to understand graphics well is being able
+to figure out what to ignore.  In this book, all of the transformations
+we will use are invertible.  So how would we convert coordinates from space
+D to space B?  (What do those names mean?  It doesn’t matter.  The x has an arrow
+over it, which means it’s a vector.  How many dimensions does it have?  It doesn’t matter.
+All that matters is that the function exists and it is invertible.)</p>
+<figure class="align-center" id="id11">
+<img alt="Generic Cayley Graph" src="images/cayleygraph.png" />
+<figcaption>
+<p><span class="caption-text">Generic Cayley Graph</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Well, D is defined relative to C, C is defined relative to A, and B is defined
+relative to A.  Because of the arrows, we know that we are given a function from
+D to C, a function from C to A, and a function from B to A.  We are not directly
+given their inverses, but we can calculate them easily enough, or have a computer do it
+for us.</p>
+<p>In tracing out the graph, we are going with the first two directed edges,
+and against the last one.  So we compose the functions and take
+the appropriate inverse(s).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split}
+\vec{f}_{d}^{b}(\vec{x})  &amp; = \vec{f}_{a}^{b}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x}))) \\
+                          &amp; = {\vec{f}_{b}^{a}}^{-1}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x})))
+\end{split}
+\end{equation}\end{split}\]</div>
+<p>Since we’re dealing with function composition mainly, we don’t even need to specify the argument</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\begin{split}
+\vec{f}_{d}^{b}  &amp; = {\vec{f}_{b}^{a}}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}
+\end{split}
+\end{equation}\]</div>
+<p>If this seems to abstract for now, don’t worry.  By the end of the course, it should be clear.
+The goal of this book is to make it clear, and then, obvious.</p>
+</section>
 </section>
 </section>
 

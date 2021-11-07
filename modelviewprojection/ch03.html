@@ -44,6 +44,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectange - Demo 02</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Window Resizing and Proportionality - Demo 03</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#problem-with-previous-demo">Problem With Previous Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#keeping-the-paddles-proportional">Keeping the Paddles Proportional</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
@@ -69,7 +70,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">Game Controller - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
 </ul>
 
         </div>
@@ -109,15 +113,20 @@ and then wide.  Look at what happens to the rectangles.</p>
 </figcaption>
 </figure>
 </section>
+<section id="how-to-execute">
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
+<p>On Linux or on MacOS, in a command prompt, type “python src/demo03/demo.py”.
+On Windows, in a command prompt, type “python src\demo03\demo.py”.</p>
+</section>
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
 <p>Modify the previous demo, so that if the user resizes the window
 of the OpenGL program, that the picture does not become distorted.</p>
+<p>Create procedure to ensure proportionality.</p>
 </section>
 <section id="keeping-the-paddles-proportional">
 <h2>Keeping the Paddles Proportional<a class="headerlink" href="#keeping-the-paddles-proportional" title="Permalink to this headline">¶</a></h2>
-<p>Create procedure to ensure proportionality</p>
-<p>In the previous demo, if the user resized the window, the paddles looked bad,
+<p>In the previous demo, if the user resized the window, the paddles appear distorted,
 as they were shrunk in one direction if the window became too thin or too fat.</p>
 <figure class="align-center" id="id2">
 <img alt="Yuck" src="images/disproportionate1.png" />
@@ -131,18 +140,28 @@ as they were shrunk in one direction if the window became too thin or too fat.</
 <p><span class="caption-text">Yuck</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Assume that this is a problem for the application we are making.  What
-would a solution be?  Ideally, we would like to draw our paddles with
+<p>Assume that this is a problem for the application we are making, how could
+we solve it and keep proportionality regardless of the dimensions of the window?
+Ideally, we would like to draw our paddles with
 a black background within a square region in the center of the window, regardless of the dimensions
 of the window.</p>
-<p>OpenGL has a solution for us.  The <em>viewport</em> is a rectangular region
-within the window into which OpenGL will render.  The normalized-device-coordinates
-will therefore resolve to the sub-window space of the viewport, instead of the whole
+<p>OpenGL has a solution for us.  The <em>viewport</em> is a rectangular region contained
+within the window into which OpenGL will render.  By specifing a viewport, OpenGL
+will convert the normalized-device-coordinates
+to the sub-window space of the viewport, instead of the whole
 window.</p>
 <figure class="align-center" id="id4">
 <img alt="Nice" src="images/viewport.png" />
 <figcaption>
 <p><span class="caption-text">Nice</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>N.B, we now have 3 coordinate systems.  NDC, viewport, and screenspace.  In later sections,
+we will will have many, many more.</p>
+<figure class="align-center" id="id5">
+<img alt="Demo 03" src="images/demo031.png" />
+<figcaption>
+<p><span class="caption-text">Demo 03</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Because we will only draw in a subset of the window, and because all subsequent
@@ -153,23 +172,24 @@ in all chapters. “draw_in_square_viewport” is a function.</p>
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
 <section id="glfw-opengl-initialization">
 <h3>GLFW/OpenGL Initialization<a class="headerlink" href="#glfw-opengl-initialization" title="Permalink to this headline">¶</a></h3>
-<p>The setup code is the same.  Initialize GLFW.  Set the OpenGL version.
+<p>The setup code is the same as the previous demo’s setup.  Initialize GLFW.  Set the OpenGL version.
 Create the window.  Set a key handler for closing.
-Execute the event/drawing loop.</p>
+Execute the event/drawing loop.  The only code showed in this book will be the relevant parts.
+Consult the python source for the full, working code.</p>
 <section id="set-to-draw-in-square-subsection-of-window">
 <h4>Set to Draw in Square Subsection Of Window<a class="headerlink" href="#set-to-draw-in-square-subsection-of-window" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">57</span><span class="k">def</span> <span class="nf">draw_in_square_viewport</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>declare a function to draw only in a square subset of the monitor</p></li>
+<li><p>declare a function to configure OpenGL to draw only in a square subset of the monitor, i.e. the viewport</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">59</span>    <span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="linenos">60</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>clear the color of the window to gray</p></li>
+<li><p>set the clear color to be gray.  clear the color of every pixel in the whole frame buffer, not just the viewport</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">62</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 <span class="linenos">63</span>
@@ -189,13 +209,15 @@ Execute the event/drawing loop.</p>
 </pre></div>
 </div>
 <ul class="simple">
+<li><p>Enable the scissor test</p></li>
 <li><p>the scissor test allows us to specify a region
 of the framebuffer into which the opengl operations
-will apply.  In this case, in the framebuffer is all gray.
-by calling glScissor, we are setting a value on a square
-of pixels which says “only do the opengl call on these”.
+will apply.  In this case, the color in every pixel in the framebuffer is gray.
+By calling glScissor, we are setting a value in each fragment (i.e., pixel) on a square
+region of pixels to be true (and false everywhere else) which means “only do the opengl call on these fragments,
+ignore the others”.
 As we will learn later, OpenGL stores much more information
-per pixel than just it’s current color.</p></li>
+per fragment (i.e. pixel) than just it’s current color.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">74</span>    <span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="linenos">75</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">)</span>
@@ -211,8 +233,10 @@ per pixel than just it’s current color.</p></li>
 <li><p>disable the scissor test, so now any opengl calls will
 happen as usual.</p></li>
 </ul>
-<p>But, we only want to draw within the black square.
-We set the viewport, so that the NDC coordinates
+<p>So we’ve drawn gray into a square, but any subsequent OpenGL calls
+will still be drawn into the full framebuffer, as the viewport is
+still set to the whole framebuffer.  But, we only want to draw within the black square.
+We set the viewport again, so that the NDC coordinates
 will be mapped the the region of screen coordinates
 that we care about, which is the black square.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">78</span>    <span class="n">glViewport</span><span class="p">(</span>

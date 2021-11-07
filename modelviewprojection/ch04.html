@@ -45,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Moving the Paddles - Keyboard Input - Demo 04</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#data-structures">Data Structures</a></li>
@@ -66,7 +67,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">Game Controller - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
 </ul>
 
         </div>
@@ -105,6 +109,11 @@
 </figcaption>
 </figure>
 </section>
+<section id="how-to-execute">
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
+<p>On Linux or on MacOS, in a command prompt, type “python src/demo04/demo.py”.
+On Windows, in a command prompt, type “python src\demo04\demo.py”.</p>
+</section>
 <section id="move-the-paddles-using-the-keyboard">
 <h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default">
@@ -141,7 +150,7 @@ and for the collection of verticies that make up a Paddle.</p>
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
 <section id="data-structures">
 <h3>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h3>
-<p>Here we use dataclasses, which allow use to have the constructor, and pretty-printer,
+<p>Here we use dataclasses, which allow use to have the constructor, getters and setters, and pretty-printer,
 auto-generated for us.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">87</span><span class="nd">@dataclass</span>
 <span class="linenos">88</span><span class="k">class</span> <span class="nc">Vertex</span><span class="p">:</span>
@@ -157,6 +166,8 @@ auto-generated for us.</p>
 <span class="linenos">98</span>    <span class="n">b</span><span class="p">:</span> <span class="nb">float</span>
 </pre></div>
 </div>
+<p>Although Python is a dynamically-typed language, we can add type information as helpful hints to the reader,
+and for use with static type-checking tools for Python, such as <a class="reference external" href="http://mypy-lang.org/">mypy</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">101</span><span class="n">paddle1</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
 <span class="linenos">102</span>    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
 <span class="linenos">103</span>        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.3</span><span class="p">),</span>
@@ -180,6 +191,7 @@ auto-generated for us.</p>
 <ul class="simple">
 <li><p>Create two instances of a Paddle.</p></li>
 </ul>
+<p>I make heavy use of <a class="reference external" href="https://www.pythontutorial.net/python-basics/python-keyword-arguments/">keyword arguments</a> in Python.</p>
 </section>
 <section id="apply-user-input">
 <h3>Apply User Input<a class="headerlink" href="#apply-user-input" title="Permalink to this headline">¶</a></h3>
@@ -258,6 +270,10 @@ to only flush the screen at 60 hertz (frames per second).</p>
 <span class="linenos">172</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>on line 163, while rendering, we now loop over the verticies of the paddle.  The callback had updated the values
+based off of the user input, so the paddles may be displaced from their original position.</p></li>
+</ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">174</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>

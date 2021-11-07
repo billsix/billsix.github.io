@@ -5,7 +5,9 @@ Draw A Rectange - Demo 02
 Purpose
 ^^^^^^^
 
-Learn how to plot a rectangle.  Learn about OpenGL's coordinate system.
+Learn how to plot a rectangle.  Learn about OpenGL's coordinate system, normalized-device coordinates,
+which are from -1.0 to 1.0, in the X, Y, and Z directions.  Anything drawn entirely outside
+of this region will not be displayed on the screen.
 
 .. figure:: static/screenshots/demo02.png
     :align: center
@@ -13,6 +15,12 @@ Learn how to plot a rectangle.  Learn about OpenGL's coordinate system.
     :figclass: align-center
 
     Demo 02
+
+How to Execute
+^^^^^^^^^^^^^^
+
+On Linux or on MacOS, in a command prompt, type "python src/demo02/demo.py".
+On Windows, in a command prompt, type "python src\\demo02\\demo.py".
 
 
 Code
@@ -39,12 +47,16 @@ Draw Paddles
 
 A black screen is not particularly interesting, so
 let's draw something, say, two rectangles.
-Where should they be, and what color should they be?
 
+We need to figure out what colors to use, and the positions of the rectangles, defined
+below.
+
+To set the color, we will use "glColor3f".
 "glColor3f" sets a global variable, which makes it the color to be used
-for the subsequently-drawn graphical shape.  The background will be black,
-so lets make the first paddle purple, and a second paddle red.
+for the subsequently-drawn graphical shape(s).  Given that the background will be black,
+lets make the first paddle purple, and a second paddle red.
 
+To specify the corners of the rectangle,
 "glBegin(GL_QUADS)" tells OpenGL that we will soon specify 4 *vertices*,
 (i.e. points) which define the
 quadrilateral.  The vertices will be specified by calling "glVertex2f" 4 times.
@@ -62,7 +74,7 @@ the begun quadrilateral.
 
 
 
-The framebuffer, which has not yet been flushed to the monitor, has geometry which looks like this:
+The paddle looks like this relative to normalized device coordinates (NDC):
 
 .. figure:: static/plot1.png
     :align: center
@@ -78,8 +90,7 @@ The framebuffer, which has not yet been flushed to the monitor, has geometry whi
    :lineno-start: 72
    :lines: 72-78
 
-The framebuffer, which has not yet been flushed to the monitor,
-has geometry which looks like this:
+The 2 paddles looks like this relative to normalized device coordinates (NDC):
 
 .. figure:: static/plot2.png
     :align: center
@@ -98,6 +109,7 @@ has geometry which looks like this:
 * Swap front and back buffers
 
 
+
 The frame sent to the monitor is a set of values like this ::
 
     bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
@@ -114,12 +126,15 @@ The frame sent to the monitor is a set of values like this ::
     bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 
 
-What do we have to do to convert from normalized-device-coordinates
-into individual colors for each pixel?  Nothing, OpenGL does that for us; therefore
-we never have to think in terms of pixels, only in terms of vertices of shapes,
-specified by normalized-device-coordinates.
+What do we have to do to convert from normalized-device-coordinates (i.e. (1.0, 0.8))
+into pixel coordinates (i.e. pixel (10,15))?  Nothing, OpenGL does that for us automatically; therefore
+we never have to think in terms of pixels coordinates, only in terms of vertices of shapes,
+specified by normalized-device-coordinates. OpenGL also automatically colors all of the pixels
+which are inside of the quadrilateral.
 
-Why is that desirable?
+
+
+Why do we use normalized-device coordinates instead of pixel coordinates?
 
 Normalized-Device-Coordinates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -127,8 +142,8 @@ Normalized-Device-Coordinates
 The author owns two monitors, one which has 1024x768 pixels, and one which has
 1920x1200 pixels.  When he purchases a game from Steam, he expects that his game
 will run correctly on either monitor, in full-screen mode.  If a graphics programmer
-had to explictly set each indiviual pixel's color, the the programmer would have to
-program using "screen-space"(Any "space" means a system of numbers which you're using.
+had to explictly set the color of individual pixels using the pixel's coordinates, the the programmer would have to
+program using "screen-space" (Any "space" means a system of numbers which you're using.
 Screen-space means you're specifically using pixel coordinates, i.e, set pixel (5,10) to be red).
 
 What looks alright is screen-space on a large monitor...
@@ -141,7 +156,7 @@ What looks alright is screen-space on a large monitor...
     Screenspace
 
 
-Isn't even the same picture on a smaller monitor.
+Isn't the same picture on a smaller monitor.
 
 .. figure:: static/screenspace.png
     :align: center
@@ -163,14 +178,15 @@ and an fixed range horizontally.  OpenGL will have to convert points from some s
 and since OpenGL does this in hardware (i.e. you can't programmatically change how the conversion
 happens), it should be a fixed size.
 
-OpenGL uses *normalized-device-coordinates*,
+OpenGL uses what's called *normalized-device-coordinates*,
 which is a continous space from -1.0 to 1.0 horizontally,
-and -1.0 to 1.0 vertically.
+-1.0 to 1.0 vertically, and from -1.0 to 1.0 depthally.  (Is there an
+actual word for that???)
 
 
-By specifying geometry using normalized-device-coordinates,
-OpenGL will automatically convert from a continuous, -1.0 to 1.0 space,
-to discrete pixel-space.
+The programmer specifies geometry using normalized-device-coordinates, and
+OpenGL will convert from a continuous, -1.0 to 1.0 space,
+to discrete pixel-space, and the programmer cannot change this.
 
 .. figure:: static/ndcSpace.png
     :align: center
@@ -197,3 +213,164 @@ Or a large monitor.
     :figclass: align-center
 
     NDC space
+
+
+Graph of Spaces
+^^^^^^^^^^^^^^^
+
+The following is a graph (https://en.wikipedia.org/wiki/Graph_theory), specifically
+a Cayley Graph (https://en.wikipedia.org/wiki/Cayley_graph), of the two spaces
+shown so far.  The nodes represent a coordinate system (i.e. origin and axis),
+and the directed edge reprsents a conversion from coordinates from one
+coordinate system to another.
+
+.. figure:: static/demo02.png
+    :align: center
+    :alt: Demo 02
+    :figclass: align-center
+
+    Demo 02
+
+The function that converts from NDC to Screen space is named f, subscripted by "NDC", superscripted
+by "S".  This is a common notation when creating functions that change basis, i.e. coordinate conversion.
+
+
+Introduction to Cayley Graphs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The wikipedia article for Cayley graphs (https://en.wikipedia.org/wiki/Cayley_graph) is intimidating,
+but for our purposes, it's use is very simple.
+
+For example, as Americans, we use US Currency.  If we were to travel to another country,
+we would like to convert our currency into a currency which is accepted locally.
+
+Let's assume that the world still used the Gold Standard, and put that space at the top of the diagram.  All
+other currencies will be defined as their value relative to this standard.
+As such, we create functions that convert currency from each of US, Canada, and EU, into the number of
+ounces of gold.
+
+
+.. figure:: static/currency.png
+    :align: center
+    :alt: Demo 02
+    :figclass: align-center
+
+    Cayley graph of univariate coordinate conversion for money.
+
+The following conversions are all made up.
+
+::
+
+    1 US Dollar = 2 ounces of gold
+
+    1 Canadian Dollar = 4 ounces of gold
+
+    1 Euro =  5 ounces of gold.
+
+The directed edges in the Cayley graph show the direction that the function, i.e. transformation, applies.
+Another way to think about the arrows, in our hypothetical example, is that the US Dollar is define relative
+to Gold Ounces, since the directed edge goes from US Dollar to Canadian Dollar.  The Canadian Dollar is defined relative to Gold Ounces,
+for the same reason, as is the Euro.  This concept will be important later.
+
+
+To convert 15 US Dollars to ounces of Gold,
+
+
+.. math::
+
+    \begin{equation*}
+    f_{us}^{gs}(x) = 2 * x
+    \end{equation*}
+
+.. math::
+
+    \begin{equation}
+    \begin{split}
+    f_{us}^{gs}(15)  & = 2 * 15\\
+                     & = 30
+    \end{split}
+    \end{equation}
+
+
+These conversion functions are invertible by taking the reciprical of the coefficient.
+To convert 10 Ounces of Gold to US dollars, we will be going against the direction of the
+edge, so we need to apply the inverse of the function to the number of ounces of gold.
+
+
+
+In order
+to convert from Gold Standard to US Currency, we are going against the arrow, so the inverse
+of the function is to be applied.
+
+
+.. math::
+
+    \begin{equation*}
+    f_{gs}^{us}(x) = {f_{us}^{gs}}^{-1}(x)
+    \end{equation*}
+
+
+.. math::
+
+    \begin{equation}
+    \begin{split}
+    f_{gs}^{us}(x)  & = {f_{us}^{gs}}^{-1}(x) \\
+                    & = 1/2 * x \\
+                    & = 1/2 * 10 \
+                    & = 5
+    \end{split}
+    \end{equation}
+
+
+Learning what to ignore
+~~~~~~~~~~~~~~~~~~~~~~~
+
+A big part of being able to understand graphics well is being able
+to figure out what to ignore.  In this book, all of the transformations
+we will use are invertible.  So how would we convert coordinates from space
+D to space B?  (What do those names mean?  It doesn't matter.  The x has an arrow
+over it, which means it's a vector.  How many dimensions does it have?  It doesn't matter.
+All that matters is that the function exists and it is invertible.)
+
+
+.. figure:: static/cayleygraph.png
+    :align: center
+    :alt: Generic Cayley Graph
+    :figclass: align-center
+
+    Generic Cayley Graph
+
+
+Well, D is defined relative to C, C is defined relative to A, and B is defined
+relative to A.  Because of the arrows, we know that we are given a function from
+D to C, a function from C to A, and a function from B to A.  We are not directly
+given their inverses, but we can calculate them easily enough, or have a computer do it
+for us.
+
+In tracing out the graph, we are going with the first two directed edges,
+and against the last one.  So we compose the functions and take
+the appropriate inverse(s).
+
+
+.. math::
+
+    \begin{equation}
+    \begin{split}
+    \vec{f}_{d}^{b}(\vec{x})  & = \vec{f}_{a}^{b}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x}))) \\
+                              & = {\vec{f}_{b}^{a}}^{-1}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x})))
+    \end{split}
+    \end{equation}
+
+
+Since we're dealing with function composition mainly, we don't even need to specify the argument
+
+.. math::
+
+    \begin{equation}
+    \begin{split}
+    \vec{f}_{d}^{b}  & = {\vec{f}_{b}^{a}}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}
+    \end{split}
+    \end{equation}
+
+If this seems to abstract for now, don't worry.  By the end of the course, it should be clear.
+The goal of this book is to make it clear, and then, obvious.

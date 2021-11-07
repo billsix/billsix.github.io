@@ -50,10 +50,11 @@
 <li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Rotation Fix Attempt 1 - Demo 08</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cayley-graph">Cayley Graph</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#code">Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cayley-graph">Cayley Graph</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-event-loop">The Event Loop</a></li>
 </ul>
 </li>
@@ -68,7 +69,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">Game Controller - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
 </ul>
 
         </div>
@@ -101,8 +105,6 @@
 <h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
 <p>Fix the rotation problem from the previous demo in a seemingly intuitive
 way, but do it inelegantly.</p>
-<p>Lesson learned by end of Demo 08.  Read function composition from left
-to right, instead of from right to left.</p>
 <figure class="align-center" id="id1">
 <img alt="Demo 08" src="images/demo08.png" />
 <figcaption>
@@ -115,12 +117,11 @@ to right, instead of from right to left.</p>
 <p><span class="caption-text">Works but sloppy</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id3">
-<img alt="" src="images/rotate-sloppy-backwards.gif" />
-<figcaption>
-<p><span class="caption-text">Works but sloppy</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+</section>
+<section id="how-to-execute">
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
+<p>On Linux or on MacOS, in a command prompt, type “python src/demo08/demo.py”.
+On Windows, in a command prompt, type “python src\demo08\demo.py”.</p>
 </section>
 <section id="move-the-paddles-using-the-keyboard">
 <h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this headline">¶</a></h2>
@@ -165,9 +166,9 @@ to right, instead of from right to left.</p>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>The problem in the last demo is that all rotations happen relative
-to (0,0).  By translating our paddles to their position,
+to World Space’s (0,0) and axises.  By translating our paddles to their position,
 they are then rotated not around their modelspace center,
-but by global space’s center.
+but by World Space’s oriign.
 In this demo, we move the paddles to their position,
 back to the origin, rotate, and then back to their position.
 This works, but it should be clear that it’s an inefficient
@@ -176,12 +177,6 @@ the transformations clearly.</p>
 <p>Taking a look at the various spaces, the code in this demo
 is going to go back and forth between those spaces.  The code
 in this demo is the wrong way to think about rendering.</p>
-</section>
-<section id="cayley-graph">
-<h2>Cayley Graph<a class="headerlink" href="#cayley-graph" title="Permalink to this headline">¶</a></h2>
-<figure class="align-center">
-<img alt="Demo 08" src="images/demo081.png" />
-</figure>
 </section>
 <section id="code">
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
@@ -209,6 +204,40 @@ in this demo is the wrong way to think about rendering.</p>
 <span class="linenos">111</span>        <span class="k">return</span> <span class="n">back_to_position</span>
 </pre></div>
 </div>
+<p>“rotate_around” allows us to rotate around a point by taking
+world space vertices</p>
+<figure class="align-center">
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-3.png" />
+</figure>
+<p>translating back to the origin</p>
+<figure class="align-center">
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-4.png" />
+</figure>
+<p>resetting the coordinate system</p>
+<figure class="align-center">
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-5.png" />
+</figure>
+<p>rotating</p>
+<figure class="align-center">
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-6.png" />
+</figure>
+<p>resetting the coordinate system</p>
+<figure class="align-center">
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-7.png" />
+</figure>
+<p>and them translating them back to their original origin</p>
+<figure class="align-center">
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-8.png" />
+</figure>
+</section>
+<section id="cayley-graph">
+<h2>Cayley Graph<a class="headerlink" href="#cayley-graph" title="Permalink to this headline">¶</a></h2>
+<figure class="align-center">
+<img alt="Demo 08" src="images/demo081.png" />
+</figure>
+<p>Although this works for now, this is so sloppy.  We apply a transformation
+from paddle space to world space, then do the inverse, then rotate,
+and then do the first transformation from paddle space to world space again.</p>
 <section id="the-event-loop">
 <h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">179</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>

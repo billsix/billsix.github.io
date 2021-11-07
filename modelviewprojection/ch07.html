@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Rotations - Demo 07</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rotate-the-paddles-about-their-center">Rotate the Paddles About their Center</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rotation-around-origin-0-0">Rotation Around Origin (0,0)</a></li>
@@ -58,7 +59,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#why-it-s-wrong">Why it’s Wrong</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#math">Math</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
@@ -70,7 +70,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">Game Controller - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
 </ul>
 
         </div>
@@ -111,6 +114,11 @@ of how rotations work.</p>
 <p><span class="caption-text">Demo 07</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
+</section>
+<section id="how-to-execute">
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
+<p>On Linux or on MacOS, in a command prompt, type “python src/demo07/demo.py”.
+On Windows, in a command prompt, type “python src\demo07\demo.py”.</p>
 </section>
 <section id="move-the-paddles-using-the-keyboard">
 <h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this headline">¶</a></h2>
@@ -156,21 +164,12 @@ see <a class="reference external" href="https://www.alanzucconi.com/2016/02/03/2
 </section>
 <section id="rotate-the-paddles-about-their-center">
 <h2>Rotate the Paddles About their Center<a class="headerlink" href="#rotate-the-paddles-about-their-center" title="Permalink to this headline">¶</a></h2>
-<p>Normalized-device-coordinates are not a natural system of
-numbers for use by humans.  Imagine that the paddles in the previous
-chapters exist in real life, and are 20 meters wide and 60 meters tall.
-The graphics programmer should be able to use those numbers directly;
-they shouldn’t have to manually transform the distances into normalized-device-coordinates.</p>
-<p>Whatever a convenient numbering system is (i.e. coordinate system) for modeling objects
-is called “model-space”.  Since a paddle has four corners, which corner should be a
-the origin (0,0)?  If you don’t already know what you want at the origin, then
-none of the corners should be; instead put the center of the object
-at the origin (Because by putting the center of the object at the origin,
-scaling and rotating the object are trivial).</p>
+<p>Besides translate and scale, the third main operation in computer
+graphics is to rotate an object.</p>
 </section>
 <section id="rotation-around-origin-0-0">
 <h2>Rotation Around Origin (0,0)<a class="headerlink" href="#rotation-around-origin-0-0" title="Permalink to this headline">¶</a></h2>
-<p>We can also rotate an object around (0,0) by rotating
+<p>We can rotate an object around (0,0) by rotating
 all of the object’s vertices around (0,0).</p>
 <figure class="align-center" id="id2">
 <img alt="Rotate" src="images/rotate0.gif" />
@@ -181,8 +180,8 @@ all of the object’s vertices around (0,0).</p>
 <p>In high school math, you will have learned about sin, cos, and tangent.
 Typically the angles are described on the unit circle, where a rotation
 starts from the positive x axis.  We can expand on this knowledge, allowing
-us to rotate a given vertex around the origin (0,0).  This is done
-by separating the x and y value, rotating each of them seperately,
+us to rotate a given vertex, wherever it is, around the origin (0,0).  This is done
+by separating the x and y value, rotating each component seperately,
 and then adding the results together.</p>
 <p>That might not have been fully clear.  Let me try again.
 The vertex (0.5,0.4) can be separated into two vertices, (0.5,0) and (0,0.4).</p>
@@ -201,34 +200,30 @@ The vertex (0.5,0.4) can be separated into two vertices, (0.5,0) and (0,0.4).</p
 <p>These vertices can be added together to create the original vertex.
 But, before we do that, let’s rotate each of the vertices.</p>
 <p>(0.5,0) is on the x-axis, so rotating it by “angle” degrees, results
-in vertex (0.5*cos(angle), 0.5*sin(angle)).  Notice that both the x and
-y values are multiplied by 0.5.  This is because rotations should not affect
-the distance of the point from the origin (0,0).  (0.5,0) has length 0.5.
-(cos(angle), sin(angle) has length 1. By multipling both the x and y
-component by 0.5, we are scaling the vertex back to its original distance
-from the origin.</p>
+in vertex (0.5*cos(angle), 0.5*sin(angle)).  This is high school
+geometry, and won’t be explained here in detail.</p>
 <figure class="align-center" id="id5">
 <img alt="Rotate" src="images/rotate.png" />
 <figcaption>
-<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Rotate the x component.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>But what may not be obvious, is what happens to the y component?
+Turns out, it’s easy.  Just rotate your point of view, and it’s
+the same thing, with one minor difference, in that the x value
+is negated.</p>
+<figure class="align-center" id="id6">
+<img alt="Rotate" src="images/rotate2.png" />
+<figcaption>
+<p><span class="caption-text">Rotate the y component</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>(0,0.4) is on the y-axis, so rotating it by “angle” degrees, results
 in vertex (0.4*-sin(angle), 0.4*cos(angle)).</p>
-<figure class="align-center" id="id6">
-<img alt="Rotate" src="images/rotate2.png" />
-<figcaption>
-<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
 <p>Wait.  Why is negative sin applied to the angle to make the x value,
-and cos applied to angle to make the y value?
-Trigonometric operations such as sin, cos, and tangent assume that the rotation is happening on
-the unit circle, starting from (1,0) on the x axis.  Since we want
-to rotate an angle starting from (0,1) on the y axis, sin and
-cos must be swapped.  Sin is positive from 0 to 90 degrees, but
-we want a negative value for our rotation of the y axis since the rotation is happening counter-clockwise,
-hence the negative sin.</p>
+and cos applied to angle to make the y value?  It’s because positive
+1 unit on the x axis goes downwards.  The top of the plot is in
+units of -1.</p>
 <p>After the rotations have been applied, sum the results to
 get your vertex rotated around the origin!</p>
 <p>(0.5*cos(angle), 0.5*sin(angle)) + (0.4*-sin(angle), 0.4*cos(angle)) =
@@ -309,6 +304,14 @@ cos and sin are defined in the math module.</p></li>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 </pre></div>
 </div>
+<p>So to rotate paddle 1 about its center,
+we should translate to its position, and then rotate
+around the paddle’s center.</p>
+<p>This composed sequence of function calls is our definion of</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation*}
+\vec{f}_{p1}^{w}
+\end{equation*}\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">188</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
 <span class="linenos">189</span>
 <span class="linenos">190</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
@@ -323,6 +326,14 @@ cos and sin are defined in the math module.</p></li>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 </pre></div>
 </div>
+<p>Likewise, to rotate paddle 2 about its center,
+we should translate to its position, and then rotate
+around the paddle’s center.</p>
+<p>This composed sequence of function calls is our definion of</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation*}
+\vec{f}_{p2}^{w}
+\end{equation*}\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">200</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
 <span class="linenos">201</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 <span class="linenos">202</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> \
@@ -336,22 +347,73 @@ cos and sin are defined in the math module.</p></li>
 </section>
 <section id="why-it-s-wrong">
 <h2>Why it’s Wrong<a class="headerlink" href="#why-it-s-wrong" title="Permalink to this headline">¶</a></h2>
+<p>Turns out, our program doesn’t work as predicted, even though
+translate, scale, and rotate are all correct.</p>
+<p>Let’s take a look in detail about what our paddlespace to
+world space transformations are doing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">192</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> \
+<span class="linenos">193</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+</pre></div>
+</div>
 <figure class="align-center" id="id7">
 <img alt="" src="images/incorrectrotate-forwards.gif" />
 <figcaption>
 <p><span class="caption-text">Not what we wanted</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
+<ul class="simple">
+<li><p>Modelspace vertices</p></li>
+</ul>
+<figure class="align-center">
+<img alt="" src="images/incorrectrotate-forwards-1.png" />
+</figure>
+<ul class="simple">
+<li><p>Translate</p></li>
+</ul>
+<figure class="align-center">
+<img alt="" src="images/incorrectrotate-forwards-2.png" />
+</figure>
+<ul class="simple">
+<li><p>Reset the coordinate system</p></li>
+</ul>
 <figure class="align-center" id="id8">
-<img alt="" src="images/incorrectrotate-backwards.gif" />
+<img alt="" src="images/incorrectrotate-forwards-3.png" />
 <figcaption>
-<p><span class="caption-text">Not what we wanted</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</section>
-<section id="math">
-<h2>Math<a class="headerlink" href="#math" title="Permalink to this headline">¶</a></h2>
-<div class="math notranslate nohighlight">
+<ul class="simple">
+<li><p>Rotate around World Spaces’s origin</p></li>
+</ul>
+<figure class="align-center" id="id9">
+<img alt="" src="images/incorrectrotate-forwards-4.png" />
+<figcaption>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Reset the coordinate system</p></li>
+</ul>
+<figure class="align-center" id="id10">
+<img alt="" src="images/incorrectrotate-forwards-5.png" />
+<figcaption>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Final world space coordinates</p></li>
+</ul>
+<figure class="align-center" id="id11">
+<img alt="" src="images/incorrectrotate-forwards-6.png" />
+<figcaption>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>So then what the heck are we supposed to do in order to
+rotate around an object’s center?  The next section
+provides a solution.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation*}
  \vec{T}(\vec{v};\vec{t}) =
 \begin{bmatrix}
@@ -427,6 +489,7 @@ aoetnsunstaoeu</p>
 1/100
 \end{bmatrix})
 \end{equation*}\end{split}\]</div>
+</div></blockquote>
 </section>
 </section>
 

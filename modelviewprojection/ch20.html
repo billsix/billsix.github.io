@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matrix Stacks - Demo 20 &mdash; Model View Projection 0.0.1 documentation</title>
+      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
+        <script src="static/jquery.js"></script>
+        <script src="static/underscore.js"></script>
+        <script src="static/doctools.js"></script>
+    <script src="static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lambda Stack - Demo 19" href="ch19.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Model View Projection
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectange - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transforamations - Demo 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">Game Controller - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Matrix Stacks - Demo 20</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#draw-paddle-1">draw paddle 1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#draw-the-square-relative-to-paddle-1">draw the square relative to paddle 1</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#draw-paddle-2">draw paddle 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Model View Projection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Matrix Stacks - Demo 20</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="sources/ch20.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="matrix-stacks-demo-20">
+<h1>Matrix Stacks - Demo 20<a class="headerlink" href="#matrix-stacks-demo-20" title="Permalink to this headline">¶</a></h1>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<p>Replace lambda stacks with matrix stacks.  This is how preshader
+opengl worked (well, they provided matrix operations, but I replaced
+them with my own to make the matrix operations transparent).</p>
+<p>The concepts behind the function stack, in which the first function
+added to the stack is the last function applied, hold true for
+matricies as well.  But matricies are a much more efficient
+representation computationally than the function stack,
+and instead of adding fns and later having to remove them,
+we can save onto the current frame of reference with a “glPushStack”,
+and restore the saved state by “glPopStack”</p>
+<p>Use glPushMatrix and glPopMatrix to save/restore a local coordinate
+system, that way a tree of objects can be drawn without one child
+destroying the relative coordinate system of the parent node.</p>
+<p>In mvpVisualization/demoViewWorldTopLevel.py, the grayed out
+coordinate system is one thas has been pushed onto the stack,
+and it regains it’s color when it is reactivated by “glPopMatrix”</p>
+</section>
+<section id="how-to-execute">
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
+<p>On Linux or on MacOS, in a command prompt, type “python src/demo20/demo.py”.
+On Windows, in a command prompt, type “python src\demo20\demo.py”.</p>
+</section>
+<section id="move-the-paddles-using-the-keyboard">
+<h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Keyboard Input</p></th>
+<th class="head"><p>Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>w</em></p></td>
+<td><p>Move Left Paddle Up</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>s</em></p></td>
+<td><p>Move Left Paddle Down</p></td>
+</tr>
+<tr class="row-even"><td><p><em>k</em></p></td>
+<td><p>Move Right Paddle Down</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>i</em></p></td>
+<td><p>Move Right Paddle Up</p></td>
+</tr>
+<tr class="row-even"><td><p><em>d</em></p></td>
+<td><p>Increase Left Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>a</em></p></td>
+<td><p>Decrease Left Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-even"><td><p><em>l</em></p></td>
+<td><p>Increase Right Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>j</em></p></td>
+<td><p>Decrease Right Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-even"><td><p><em>UP</em></p></td>
+<td><p>Move the camera up, moving the objects down</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>DOWN</em></p></td>
+<td><p>Move the camera down, moving the objects up</p></td>
+</tr>
+<tr class="row-even"><td><p><em>LEFT</em></p></td>
+<td><p>Move the camera left, moving the objects right</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>RIGHT</em></p></td>
+<td><p>Move the camera right, moving the objects left</p></td>
+</tr>
+<tr class="row-even"><td><p><em>q</em></p></td>
+<td><p>Rotate the square around it’s center</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>e</em></p></td>
+<td><p>Rotate the square around paddle 1’s center</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p># NEW - TODO - talk about opengl matricies and z pos/neg</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">57</span><span class="n">glEnable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">)</span>
+<span class="linenos">58</span><span class="n">glClearDepth</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">59</span><span class="n">glDepthFunc</span><span class="p">(</span><span class="n">GL_LEQUAL</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>set the model, view, and projection matrix to the identity
+matrix.  This just means that the functions (currently)
+will not transform data.
+In univariate terms, f(x) = x</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">204</span>
+<span class="linenos">205</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
+<span class="linenos">206</span>    <span class="n">handle_inputs</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>change the perspective matrix to convert the frustum
+to NDC.
+set the projection matrix to be perspective.  Since
+the viewport is always square, set the aspect ratio to be 1.0.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">208</span>    <span class="n">axes_list</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_joystick_axes</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">JOYSTICK_1</span><span class="p">)</span>
+<span class="linenos">209</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">axes_list</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+<span class="linenos">210</span>        <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span> <span class="o">&gt;</span> <span class="mf">0.19</span><span class="p">:</span>
+<span class="linenos">211</span>            <span class="n">camera</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
+<span class="linenos">212</span>            <span class="n">camera</span><span class="o">.</span><span class="n">z</span> <span class="o">-=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
+<span class="linenos">213</span>        <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span> <span class="o">&gt;</span> <span class="mf">0.19</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>the ms namespace is pyMatrixStack, located in this folder.
+we need to send the matrix to OpenGL, by setting the matrix
+mode to be projection, and then call “loadmatrix”, which
+we get from pyMatrixStack.  (Don’t sweat the details
+of ascontigousarray, just copy and paste)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">215</span>            <span class="n">camera</span><span class="o">.</span><span class="n">z</span> <span class="o">+=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>ascontiguousarray puts the array in column major order</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">216</span>
+<span class="linenos">217</span>        <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.19</span><span class="p">:</span>
+<span class="linenos">218</span>            <span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span> <span class="o">-=</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.01</span>
+</pre></div>
+</div>
+<p>The camera’s position is described as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ms</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">view</span><span class="p">,</span>
+             <span class="n">camera</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+             <span class="n">camera</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+             <span class="n">camera</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">view</span><span class="p">,</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">view</span><span class="p">,</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Therefore, to take the object’s world space coordinates
+and transform them into camera space, we need to
+do the inverse operations to the view stack.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">220</span>            <span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span> <span class="o">+=</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.01</span>
+<span class="linenos">221</span>
+<span class="linenos">222</span>
+</pre></div>
+</div>
+<p>Each call above actually modifies the matrix, as matricies
+can be premultiplied together for efficiency.</p>
+<blockquote>
+<div><p><a href="#id1"><span class="problematic" id="id2">|a b|</span></a>     <a href="#id3"><span class="problematic" id="id4">|e f|</span></a>         <a href="#id5"><span class="problematic" id="id6">|ae+bg  af+bh|</span></a>
+<a href="#id7"><span class="problematic" id="id8">|c d|</span></a>  *  <a href="#id9"><span class="problematic" id="id10">|g h|</span></a>  =      <a href="#id11"><span class="problematic" id="id12">|ce+dg  cf+dh|</span></a></p>
+</div></blockquote>
+<p>this means that rotate_x, rotate_y, translate, etc
+are destructive operations.  Instead of creating a stack
+of matricies, these operations aggregate the transformations,
+but add no new matricies to the stack</p>
+<p>but many times we need to hold onto a transformation stack (matrix),
+so that we can do something else now, and return to this context later,
+so we have a stack composed of matricies.</p>
+<p>This is what GLPushMatrix, and GLPopMatrix do.</p>
+<p>“with” is a Python keyword which allows for bounded contexts, where
+the library code can specify what happens before execution of the block,
+and after.  This is similar to RAII within C++, in which a constructor
+sets a context, and the destructor destroys it.</p>
+<p>The author uses a debugger to do dynamic analysis of code, as compared
+to static, as the language knows its own control flow, and where modules
+are located in the filesystem.  I recommend using a debugger (PDB on linux/macos,
+the built in functionality in VS Community), to set a breakpoint here, step in,
+step out, etc</p>
+<p>“PushMatrix” describes what the function does, but its purpose is to
+save onto the current coordinate system for later drawing modelspace
+data.</p>
+<p>the model stack is currently the identity matrix, meaning
+it does nothing.  The view and the projection matrix
+are set to transform from world space into camera space,
+and then take the frustum and convert it to NDC.</p>
+<p>save onto the current model stack</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">224</span>    <span class="n">ms</span><span class="o">.</span><span class="n">setToIdentityMatrix</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">view</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="draw-paddle-1">
+<h3>draw paddle 1<a class="headerlink" href="#draw-paddle-1" title="Permalink to this headline">¶</a></h3>
+<p>Unlike in previous demos, because the transformations
+are on a stack, the fns on the model stack can
+be read forwards, where each operation translates/rotates/scales
+the current space</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">226</span>
+<span class="linenos">227</span>    <span class="n">ms</span><span class="o">.</span><span class="n">perspective</span><span class="p">(</span>
+<span class="linenos">228</span>        <span class="n">fov</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span>
+<span class="linenos">229</span>        <span class="n">aspectRatio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="linenos">230</span>        <span class="n">nearZ</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="linenos">231</span>        <span class="n">farZ</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span>
+<span class="linenos">232</span>    <span class="p">)</span>
+<span class="linenos">233</span>
+<span class="linenos">234</span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
+<span class="linenos">235</span>    <span class="n">glLoadMatrixf</span><span class="p">(</span>
+</pre></div>
+</div>
+<p>load our model and view matrix (premultiplied) to
+openGL’s matrix
+set the current matrix (as we don’t want to load into OpenGL’s
+perspective matrix</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">236</span>        <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">getCurrentMatrix</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">projection</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="linenos">237</span>    <span class="p">)</span>
+<span class="linenos">238</span>
+<span class="linenos">239</span>    <span class="n">ms</span><span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">)</span>
+<span class="linenos">240</span>    <span class="n">ms</span><span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>NEW!!! glVertex data is specified in modelspace coordinates,
+but since we loaded the projection matrix and the modelview
+matrix into OpenGL, glVertex3f will apply those transformations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">241</span>    <span class="n">ms</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<span class="linenos">242</span>
+<span class="linenos">243</span>    <span class="k">with</span> <span class="n">ms</span><span class="o">.</span><span class="n">PushMatrix</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">):</span>
+<span class="linenos">244</span>
+</pre></div>
+</div>
+<section id="draw-the-square-relative-to-paddle-1">
+<h4>draw the square relative to paddle 1<a class="headerlink" href="#draw-the-square-relative-to-paddle-1" title="Permalink to this headline">¶</a></h4>
+<p>since the modelstack is already in paddle1’s space
+just add the transformations relative to it
+before paddle 2 is drawn, we need to remove
+the square’s 3 model_space transformations</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">253</span>        <span class="n">ms</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+<span class="linenos">254</span>
+<span class="linenos">255</span>        <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
+<span class="linenos">256</span>        <span class="c1"># ascontiguousarray puts the array in column major order</span>
+<span class="linenos">257</span>        <span class="n">glLoadMatrixf</span><span class="p">(</span>
+<span class="linenos">258</span>            <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">getCurrentMatrix</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">modelview</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="linenos">259</span>        <span class="p">)</span>
+<span class="linenos">260</span>        <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>glPopMatrix was implictly called because of the “with” keyword
+therefore, our model matrix is set to identity.  view is still
+configure correctly, and is the projection matrix</p>
+<p>no Need to push matrix here, as this is the last object that
+we are drawing, and upon the next iteration of the event loop,
+all 3 matricies will be reset to the identity</p>
+</section>
+</section>
+<section id="draw-paddle-2">
+<h3>draw paddle 2<a class="headerlink" href="#draw-paddle-2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">262</span>            <span class="n">glVertex3f</span><span class="p">(</span><span class="n">model_space</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="linenos">263</span>        <span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos">264</span>
+<span class="linenos">265</span>        <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">266</span>
+<span class="linenos">267</span>        <span class="n">ms</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="linenos">268</span>        <span class="n">ms</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">rotation_around_paddle1</span><span class="p">)</span>
+<span class="linenos">269</span>        <span class="n">ms</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">270</span>        <span class="n">ms</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">square_rotation</span><span class="p">)</span>
+<span class="linenos">271</span>
+<span class="linenos">272</span>        <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
+<span class="linenos">273</span>        <span class="n">glLoadMatrixf</span><span class="p">(</span>
+<span class="linenos">274</span>            <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">getCurrentMatrix</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">modelview</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="linenos">275</span>        <span class="p">)</span>
+<span class="linenos">276</span>        <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">277</span>        <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">square_vertices</span><span class="p">:</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ch19.html" class="btn btn-neutral float-left" title="Lambda Stack - Demo 19" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, William Emerison Six.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
