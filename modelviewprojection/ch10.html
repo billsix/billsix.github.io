@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Relative Objects - Demo 11" href="ch11.html" />
-    <link rel="prev" title="Rotation Fixed - Sequence of Transforamations - Demo 09" href="ch09.html" /> 
+    <link rel="prev" title="Rotation Fixed - Sequence of Transformations - Demo 09" href="ch09.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,13 +48,12 @@
 <li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transforamations - Demo 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Camera Space - Demo 10</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cayley-graph">Cayley Graph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-event-loop">The Event Loop</a></li>
 </ul>
@@ -101,8 +100,11 @@
 <h1>Camera Space - Demo 10<a class="headerlink" href="#camera-space-demo-10" title="Permalink to this headline">¶</a></h1>
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
-<p>Demonstrate having a camera space, and how to think about the transformations
-differently.</p>
+<p>Graphical programs in which the viewer never “moves” are boring.
+Model a virtual “camera”, and let the user move the camera around
+in the scene.  In this picture, notice that the purple paddle
+is no longer on the left side of the screen, but towards the right,
+horizontally.</p>
 <figure class="align-center" id="id1">
 <img alt="Demo 10" src="images/demo10.png" />
 <figcaption>
@@ -169,33 +171,93 @@ On Windows, in a command prompt, type “python src\demo10\demo.py”.</p>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>camera space.  The coordinates of the object relative to
-the camera.  Notice that the translation from world space
-to camera space is the negative value of the camera’s x and
-y position.</p>
-<p>If you view the camera as fixed, where NDC is relative to it,
-the world has moved in the opposite direction of the camera.
-If you view the camera space as being defined relative to
-world space, then we need to put the origin of the camera
-space at the origin of the world space, and as such,
-the transformations needed to be applied to the data
-are the inverse of the tranforamiotns from world
-space to camera space.</p>
-</section>
-<section id="cayley-graph">
-<h2>Cayley Graph<a class="headerlink" href="#cayley-graph" title="Permalink to this headline">¶</a></h2>
+<p>“Camera space” means the coordinates of everything relative
+to a camera, not relative to world space.</p>
+<p>Camera space will be between world space and NDC, but
+which way should the direction of the edge be?</p>
+<p>It could be</p>
+<ul class="simple">
+<li><p>From world space to camera space.</p></li>
+</ul>
 <figure class="align-center" id="id2">
 <img alt="Demo 10" src="images/demo101.png" />
 <figcaption>
 <p><span class="caption-text">Demo 10</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
+<ul class="simple">
+<li><p>From camera space to world space.</p></li>
+</ul>
 <figure class="align-center" id="id3">
 <img alt="Demo 10" src="images/demo10-2.png" />
 <figcaption>
 <p><span class="caption-text">Demo 10</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
+<p>Since the camera will be described relative to world space,
+it makes more sense to use the latter, in which the directed edge
+goes from camera space to world space.</p>
+<p>Think about it this way.  Imagine you a driving.  Are you staying
+in a constant position, and the wheels of your car rotate the entire
+earth and solar system around yourself?  That’s one way to look at
+it, and the earth revolves around me too, but the math of it
+is messy.
+The math is easier if you describe your position as moving relative
+to earth.</p>
+<p>But this introduces a new problem.  Follow from the paddle’s modelspace
+to screen space.  Up until this demo, we’ve always been
+following the directed edges.  This time, when going from world
+space to camera space, we’re moving in the opposite direction
+of the edge.</p>
+<p>Going against the direction
+of an edge in a Cayley Graph means that we don’t apply the function,
+but instead we apply the inverse of the function.  This concept
+comes from Group Theory in Abstract Algebra, the details of which won’t
+be discussed here.</p>
+<p>The inverse of</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The inverse of</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The inverse of</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">x</span><span class="p">,</span><span class="mf">1.0</span><span class="o">/</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Think of it this way.  Find a little space, and look forward.
+Keeping your eyes straight ahead, sidestep a few steps to the
+left.  From your perspective, the objects in your room all moved
+to the right.  Now, rotate your head to the right, keeping your eyes
+looking directly in front of your head.  Which way did the room move?
+Towards the left.</p>
+<p>Unfortunately, the author doesn’t have visualizations for this in 2D space.</p>
+<figure class="align-center" id="id4">
+<img alt="Demo 10" src="images/camera3.png" />
+<figcaption>
+<p><span class="caption-text">Camera is 3D space</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Looking at the graph paper on the ground there, that’s world space.
+The camera gets placed in world space just like any other modelspace data.
+In order to render from the camera’s point of view, we need to get -1.0 to 1.0
+box in all three dimensions to match the -1.0 to 1.0 box in world space.</p>
+<p>Run “python mvpVisualization/demo3.py”, and follow along with the Cayley
+graph.  The camera will be placed like any other modelspace data, but then
+the inverse of the transformations will be applied to all of the verticies.</p>
 </section>
 <section id="code">
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
@@ -237,8 +299,16 @@ space to camera space.</p>
 <span class="linenos">216</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 <span class="linenos">217</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
 <span class="linenos">218</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">219</span>        <span class="n">camera_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">220</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The camera’s position is at camera.x, camera.y.  So
+apply the inverse of the camera’s transformations
+to paddle 1’s vertices, i.e. translate with the negative
+values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">219</span>        <span class="n">camera_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">220</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
 <span class="linenos">221</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 <span class="linenos">222</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
@@ -252,8 +322,16 @@ space to camera space.</p>
 <span class="linenos">227</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 <span class="linenos">228</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
 <span class="linenos">229</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">230</span>        <span class="n">camera_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">231</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The camera’s position is at camera.x, camera.y.  So
+apply the inverse of the camera’s  transformations
+to paddle 2’s vertices, i.e. translate with the negative
+values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">230</span>        <span class="n">camera_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">231</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
 <span class="linenos">232</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 <span class="linenos">233</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
@@ -266,7 +344,7 @@ space to camera space.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ch09.html" class="btn btn-neutral float-left" title="Rotation Fixed - Sequence of Transforamations - Demo 09" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch09.html" class="btn btn-neutral float-left" title="Rotation Fixed - Sequence of Transformations - Demo 09" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="ch11.html" class="btn btn-neutral float-right" title="Relative Objects - Demo 11" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

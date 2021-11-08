@@ -74,7 +74,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transforamations - Demo 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
@@ -242,7 +242,7 @@ is unchanged.  That is world space, which has not changed.</p>
 <section id="paddle-1-s-vertices-in-worldspace-coordinates">
 <h3>Paddle 1’s vertices in WorldSpace Coordinates<a class="headerlink" href="#paddle-1-s-vertices-in-worldspace-coordinates" title="Permalink to this headline">¶</a></h3>
 <figure class="align-center" id="id7">
-<img alt="Paddle 1's Verticies in World Space" src="images/translation-forwards-4.png" />
+<img alt="Paddle 1's Verticies in World Space" src="images/translation-forwards-3.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 1’s Verticies in World Space.   Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -282,7 +282,7 @@ are different values.</p>
 <section id="paddle-2-s-vertices-in-worldspace-coordinates">
 <h3>Paddle 2’s vertices in WorldSpace Coordinates<a class="headerlink" href="#paddle-2-s-vertices-in-worldspace-coordinates" title="Permalink to this headline">¶</a></h3>
 <figure class="align-center" id="id11">
-<img alt="Paddle 1's Verticies in World Space" src="images/translation2-forwards-4.png" />
+<img alt="Paddle 1's Verticies in World Space" src="images/translation2-forwards-3.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 2’s Verticies in World Space.  Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -486,9 +486,15 @@ y_{ndc}
 </pre></div>
 </div>
 <figure class="align-center" id="id18">
-<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation-forwards-4.png" />
+<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation-forwards-2.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 1’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id19">
+<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation-forwards-3.png" />
+<figcaption>
+<p><span class="caption-text">Reset coordinate system.</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The coordinate system now resets back to the coordinate system specified
@@ -509,10 +515,10 @@ on the bottom and on the left.</p>
 <span class="linenos">185</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 </pre></div>
 </div>
-<figure class="align-center" id="id19">
+<figure class="align-center" id="id20">
 <img alt="Paddle 2's Modelspace" src="images/translation2-forwards-0.png" />
 <figcaption>
-<p><span class="caption-text">Paddle 2’s Modelspace</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Paddle 2’s Modelspace</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">187</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
@@ -520,10 +526,16 @@ on the bottom and on the left.</p>
 <span class="linenos">189</span>        <span class="p">)</span>
 </pre></div>
 </div>
-<figure class="align-center" id="id20">
-<img alt="Paddle 2's Modelspace Superimposed on World Space" src="images/translation2-forwards-4.png" />
+<figure class="align-center" id="id21">
+<img alt="Paddle 2's Modelspace Superimposed on World Space" src="images/translation2-forwards-2.png" />
 <figcaption>
-<p><span class="caption-text">Paddle 2’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Paddle 2’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id22">
+<img alt="Paddle 2's Modelspace Superimposed on World Space" src="images/translation2-forwards-3.png" />
+<figcaption>
+<p><span class="caption-text">Reset coordinate system.</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The coordinate system is reset.  Now scale everything by 1/200.  I have

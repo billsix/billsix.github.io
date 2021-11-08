@@ -16,7 +16,6 @@
         <script src="static/jquery.js"></script>
         <script src="static/underscore.js"></script>
         <script src="static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -53,12 +52,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#code">Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cayley-graph">Cayley Graph</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-event-loop">The Event Loop</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#math">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cayley-graph">Cayley Graph</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transforamations - Demo 09</a></li>
@@ -206,6 +204,47 @@ in this demo is the wrong way to think about rendering.</p>
 </div>
 <p>“rotate_around” allows us to rotate around a point by taking
 world space vertices</p>
+<section id="the-event-loop">
+<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">179</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">197</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">198</span>
+<span class="linenos">199</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">200</span>    <span class="n">rotatePoint</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span>
+<span class="linenos">201</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">202</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">203</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">rotate_around</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">rotatePoint</span><span class="p">)</span>
+<span class="linenos">204</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+<span class="linenos">205</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">206</span>    <span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">209</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">210</span>
+<span class="linenos">211</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">212</span>    <span class="n">rotatePoint</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span>
+<span class="linenos">213</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">214</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">215</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">rotate_around</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">rotatePoint</span><span class="p">)</span>
+<span class="linenos">216</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+<span class="linenos">217</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">218</span>    <span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Although this works for now and looks like decent code, this is so sloppy, and
+not thought out well at all.  We apply a transformation
+from paddle space to world space, then do the inverse, then rotate,
+and then do the first transformation from paddle space to world space again.</p>
+<p>The images of the transformation sequence below should show how brain-dead it is,
+and the Cayley graph is gross.</p>
 <figure class="align-center">
 <img alt="Demo 08" src="images/rotate-sloppy-forwards-3.png" />
 </figure>
@@ -230,153 +269,12 @@ world space vertices</p>
 <img alt="Demo 08" src="images/rotate-sloppy-forwards-8.png" />
 </figure>
 </section>
+</section>
 <section id="cayley-graph">
 <h2>Cayley Graph<a class="headerlink" href="#cayley-graph" title="Permalink to this headline">¶</a></h2>
 <figure class="align-center">
 <img alt="Demo 08" src="images/demo081.png" />
 </figure>
-<p>Although this works for now, this is so sloppy.  We apply a transformation
-from paddle space to world space, then do the inverse, then rotate,
-and then do the first transformation from paddle space to world space again.</p>
-<section id="the-event-loop">
-<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">179</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">197</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">198</span>
-<span class="linenos">199</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">200</span>    <span class="n">rotatePoint</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">201</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">202</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">203</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">rotate_around</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">rotatePoint</span><span class="p">)</span>
-<span class="linenos">204</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
-<span class="linenos">205</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">206</span>    <span class="n">glEnd</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">209</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">210</span>
-<span class="linenos">211</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">212</span>    <span class="n">rotatePoint</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">213</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">214</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">215</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">rotate_around</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">rotatePoint</span><span class="p">)</span>
-<span class="linenos">216</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
-<span class="linenos">217</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">218</span>    <span class="n">glEnd</span><span class="p">()</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="math">
-<h2>Math<a class="headerlink" href="#math" title="Permalink to this headline">¶</a></h2>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
- \vec{T}(\vec{v};\vec{t}) =
-\begin{bmatrix}
-v_{x} \\
-v_{y}
-\end{bmatrix} +
-\begin{bmatrix}
-t_{x} \\
-t_{y}
-\end{bmatrix}
-\end{equation}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
- \vec{T}^{-1}(\vec{v};\vec{t}) =
-\begin{bmatrix}
-v_{x} \\
-v_{y}
-\end{bmatrix} -
-\begin{bmatrix}
-t_{x} \\
-t_{y}
-\end{bmatrix}
-\end{equation}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\vec{R}(\vec{v};\theta) = v_x *
-\begin{bmatrix}
-cos(\theta) \\
-sin(\theta)
-\end{bmatrix} + v_y *
-\begin{bmatrix}
--sin(\theta) \\
-cos(\theta)
-\end{bmatrix}
-\end{equation}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\vec{R}^{-1}(\vec{v};\theta) = v_x *
-\begin{bmatrix}
-cos(\theta) \\
--sin(\theta)
-\end{bmatrix} + v_y *
-\begin{bmatrix}
-sin(\theta) \\
-cos(\theta)
-\end{bmatrix}
-\end{equation}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\vec{S}(\vec{v};\vec{s}) =
-\begin{bmatrix}
-s_x * v_x \\
-s_y * v_y
-\end{bmatrix}
-\end{equation}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\vec{S}^{-1}(\vec{v};\vec{s}) =
-\begin{bmatrix}
-1/s_x * v_x \\
-1/s_y * v_y
-\end{bmatrix}
-\end{equation}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{equation}
-\vec{g}_{p1}^{w} =
-\vec{T}(; \vec{v_{offset_{p1}}})
-\end{equation}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{equation}
-\vec{g}^{-1}{_{p1}^{w}} =
-\vec{T}(; -1 * \vec{v_{offset_{p1}}})
-\end{equation}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\begin{split}
-\vec{f}_{p1}^{w} &amp; = \vec{g}_{p1}^{w} \circ \vec{R}(;\theta_{p1}) \circ \vec{g}^{-1}{_{p1}^{w}} \circ \vec{g}_{p1}^{w} \\
-                 &amp; = \vec{g}_{p1}^{w} \circ \vec{R}(;\theta_{p1}) \\
-                 &amp; = \vec{T}(; \vec{v_{offset_{p1}}}) \circ \vec{R}(;\theta_{p1})
-\end{split}
-\end{equation}\end{split}\]</div>
-<p>and</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\begin{split}
-\vec{f}_{p2}^{w} &amp; = \vec{g}_{p2}^{w} \circ \vec{R}(;\theta_{p2}) \circ \vec{g}^{-1}{_{p2}^{w}} \circ \vec{g}_{p2}^{w} \\
-                 &amp; = \vec{g}_{p2}^{w} \circ \vec{R}(;\theta_{p2}) \\
-                 &amp; = \vec{T}(; \vec{v_{offset_{p2}}}) \circ \vec{R}(;\theta_{p2})
-\end{split}
-\end{equation}\end{split}\]</div>
-<div class="math notranslate nohighlight" id="equation-euler">
-<span class="eqno">(1)<a class="headerlink" href="#equation-euler" title="Permalink to this equation">¶</a></span>\[\begin{split} \begin{equation}
- \vec{f}_{w}^{ndc} =
- \vec{S}(; \begin{bmatrix}
- 1/100 \\
- 1/100
- \end{bmatrix})
- \end{equation}\end{split}\]</div>
-<p>foo bar <a class="reference internal" href="#equation-euler">(1)</a></p>
 </section>
 </section>
 

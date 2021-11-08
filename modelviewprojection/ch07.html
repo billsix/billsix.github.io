@@ -62,7 +62,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transforamations - Demo 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
@@ -412,84 +412,6 @@ world space transformations are doing.</p>
 <p>So then what the heck are we supposed to do in order to
 rotate around an object’s center?  The next section
 provides a solution.</p>
-<blockquote>
-<div><div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation*}
- \vec{T}(\vec{v};\vec{t}) =
-\begin{bmatrix}
-v_{x} \\
-v_{y}
-\end{bmatrix} +
-\begin{bmatrix}
-t_{x} \\
-t_{y}
-\end{bmatrix}
-\end{equation*}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation*}
-\vec{R}(\vec{v};\theta) = v_x *
-\begin{bmatrix}
-cos(\theta) \\
-sin(\theta)
-\end{bmatrix} + v_y *
-\begin{bmatrix}
--sin(\theta) \\
-cos(\theta)
-\end{bmatrix}
-\end{equation*}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation*}
-\vec{S}(\vec{v};\vec{s}) =
-\begin{bmatrix}
-s_x * v_x \\
-s_y * v_y
-\end{bmatrix}
-\end{equation*}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{equation*}
-\vec{f}_{p1}^{w}(\vec{v_{modelspace_{p1}}}) =
-\vec{R}(\vec{T}(\vec{v_{modelspace_{p1}}}; \vec{v_{offset_{p1}}}), \theta_{p1})
-\end{equation*}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{equation*}
-\vec{f}_{p2}^{w}(\vec{v_{modelspace_{p2}}}) =
-\vec{R}(\vec{T}(\vec{v_{modelspace_{p2}}}; \vec{v_{offset_{p2}}}), \theta_{p2})
-\end{equation*}\]</div>
-<p>where x_p1, y_p1, z_p1  are the modelspace coordinates of the paddle’s vertices,
-and where v_{offset} is the vector offset from the world space’s origin to the center of the paddle, i.e. the translation, and where theta is that paddle’s rotation.</p>
-<div class="math notranslate nohighlight">
-\[\begin{equation*}
-\vec{f}_{p1}^{w}(\vec{v_{modelspace_{p1}}}) =
-(\vec{R}(;\theta_{p1}) \circ \vec{T}(; \vec{v_{offset_{p1}}})) (\vec{v_{modelspace_{p1}}})
-\end{equation*}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{equation*}
-\vec{f}_{p2}^{w}(\vec{v_{modelspace_{p2}}}) =
-(\vec{R}(;\theta_{p2}) \circ \vec{T}(; \vec{v_{offset_{p2}}})) (\vec{v_{modelspace_{p2}}})
-\end{equation*}\]</div>
-<p>aeotsnhaoentsuhan
-tosuns
-aeonsu
-aoetnsunstaoeu</p>
-<div class="math notranslate nohighlight">
-\[\begin{equation*}
-\vec{f}_{p1}^{w} =
-\vec{R}(;\theta_{p1}) \circ \vec{T}(; \vec{v_{offset_{p1}}})
-\end{equation*}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{equation*}
-\vec{f}_{p2}^{w} =
-\vec{R}(;\theta_{p2}) \circ \vec{T}(; \vec{v_{offset_{p2}}})
-\end{equation*}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation*}
-\vec{f}_{w}^{ndc} =
-\vec{S}(; \begin{bmatrix}
-1/100 \\
-1/100
-\end{bmatrix})
-\end{equation*}\end{split}\]</div>
-</div></blockquote>
 </section>
 </section>
 
