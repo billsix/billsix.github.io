@@ -86,6 +86,13 @@
 <li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">May be not needed Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch22.html">OpenGL 3.3  Demo 22</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch23.html">Towards Standard Projection Matrix  Demo 23</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch24.html">Towards Standard Projection Matrix Pt 2 Demo 24</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch25.html">Towards Standard Projection Matrix Pt 3 Demo 25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch26.html">Towards Standard Projection Matrix Pt 4 Demo 26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch27.html">Towards Standard Projection Matrix Pt 5 Demo 26</a></li>
 </ul>
 
         </div>
@@ -169,7 +176,7 @@ is called “model-space”.  Since a paddle has four corners, which corner shou
 the origin (0,0)?  If you don’t already know what you want at the origin, then
 none of the corners should be; instead put the center of the object
 at the origin (Because by putting the center of the object at the origin,
-scaling and rotating the object are trivial).</p>
+scaling and rotating the object are trivial, as shown in later chapters).</p>
 <figure class="align-center" id="id2">
 <img alt="Representing a Paddle using Modelspace" src="images/modelspace.png" />
 <figcaption>
@@ -227,8 +234,8 @@ as doing so</p>
 </section>
 <section id="modelspace-of-paddle-1-superimposed-on-worldspace-after-the-translation">
 <h3>Modelspace of Paddle 1 Superimposed on Worldspace after the translation<a class="headerlink" href="#modelspace-of-paddle-1-superimposed-on-worldspace-after-the-translation" title="Permalink to this headline">¶</a></h3>
-<p>Paddle 1’s graph paper gets -90 units in the x direction, and some
-number of units in the y direction based off of user input.  The origin
+<p>Paddle 1’s graph paper gets translated -90 units in the x direction, and some
+number of units in the y direction, 0 during the first frame, based off of user input.  The origin
 is translated, and the graph paper comes with it, onto which you can
 plot the vertices.  Notice that the coordinate system below and to the left
 is unchanged.  That is world space, which has not changed.</p>
@@ -290,8 +297,15 @@ are different values.</p>
 </section>
 <section id="scaling">
 <h3>Scaling<a class="headerlink" href="#scaling" title="Permalink to this headline">¶</a></h3>
-<p>As a demostration (that we don’t use exactly in this code), let’s make an
-object’s width twice as large, and height three times as large.</p>
+<p>Our paddles are now well outside of NDC, and as such, they would not
+be displayed, as they would be <em>clipped</em> out.  Their values are outside
+of -1.0 to 1.0.  All we will need to do to convert them from
+world space to NDC is divide each component, x and y, by 100.</p>
+<p>As a demonstration of how scaling works, let’s make an
+object’s width twice as large, and height three times as large. (The author
+tried doing the actual scaling in an animated gif, and it looked awful,
+therefore a different scaling gif is showed here, but the concept
+is the same).</p>
 <p>We can expand or shrink the size of an object
 by “scale”ing each component of the vertices by some coefficient.</p>
 <figure class="align-center" id="id12">
@@ -369,6 +383,9 @@ p2\text{_}center\text{_}x_{worldspace} \\
 p2\text{_}center\text{_}y_{worldspace}
 \end{bmatrix}
 \end{equation*}\end{split}\]</div>
+<p>Now, the coordinates for paddle 1 and for paddle 2 are in world
+space, and we need the match to take any world space coordinates
+and convert them to NDC.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation*}
 \begin{split}

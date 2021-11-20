@@ -79,6 +79,13 @@
 <li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">May be not needed Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch22.html">OpenGL 3.3  Demo 22</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch23.html">Towards Standard Projection Matrix  Demo 23</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch24.html">Towards Standard Projection Matrix Pt 2 Demo 24</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch25.html">Towards Standard Projection Matrix Pt 3 Demo 25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch26.html">Towards Standard Projection Matrix Pt 4 Demo 26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch27.html">Towards Standard Projection Matrix Pt 5 Demo 26</a></li>
 </ul>
 
         </div>
@@ -221,7 +228,7 @@ which are inside of the quadrilateral.</p>
 1920x1200 pixels.  When he purchases a game from Steam, he expects that his game
 will run correctly on either monitor, in full-screen mode.  If a graphics programmer
 had to explictly set the color of individual pixels using the pixel’s coordinates, the the programmer would have to
-program using “screen-space” (Any “space” means a system of numbers which you’re using.
+program using “screen-space” (Any <a class="reference external" href="https://en.wikipedia.org/wiki/Space_(mathematics)">space</a> means a system of numbers which you’re using.
 Screen-space means you’re specifically using pixel coordinates, i.e, set pixel (5,10) to be red).</p>
 <p>What looks alright is screen-space on a large monitor…</p>
 <figure class="align-center" id="id4">
@@ -245,7 +252,7 @@ what type of numbers should he use?  Firstly, it should be a continuous space, m
 that it should be in decimal numbers.  Because if a real-world object is 10.3 meters long, a programmer
 should be able to enter “float foo = 10.3”.  Secondly, it should be a fixed range vertically
 and an fixed range horizontally.  OpenGL will have to convert points from some space to screen-space,
-and since OpenGL does this in hardware (i.e. you can’t programmatically change how the conversion
+and since this is done in hardware (i.e. you can’t programmatically change how the conversion
 happens), it should be a fixed size.</p>
 <p>OpenGL uses what’s called <em>normalized-device-coordinates</em>,
 which is a continous space from -1.0 to 1.0 horizontally,
@@ -277,10 +284,10 @@ to discrete pixel-space, and the programmer cannot change this.</p>
 </section>
 <section id="graph-of-spaces">
 <h2>Graph of Spaces<a class="headerlink" href="#graph-of-spaces" title="Permalink to this headline">¶</a></h2>
-<p>The following is a graph (<a class="reference external" href="https://en.wikipedia.org/wiki/Graph_theory">https://en.wikipedia.org/wiki/Graph_theory</a>), specifically
-a Cayley Graph (<a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">https://en.wikipedia.org/wiki/Cayley_graph</a>), of the two spaces
-shown so far.  The nodes represent a coordinate system (i.e. origin and axis),
-and the directed edge reprsents a conversion from coordinates from one
+<p>The following is a <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_theory">graph</a>, specifically
+a <a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">Cayley</a> Graph, of the two spaces
+shown so far.  The nodes represent a coordinate system (i.e. origin and axises),
+and the directed edge represents a function that converts coordinates from one
 coordinate system to another.</p>
 <figure class="align-center" id="id9">
 <img alt="Demo 02" src="images/demo021.png" />
@@ -289,82 +296,116 @@ coordinate system to another.</p>
 </figcaption>
 </figure>
 <p>The function that converts from NDC to Screen space is named f, subscripted by “NDC”, superscripted
-by “S”.  This is a common notation when creating functions that change basis, i.e. coordinate conversion.</p>
+by “S”.  This is a common notation when creating functions that change basis, i.e. coordinate conversion.
+A definition of this function is not provided in this text, because we can’t change it.
+But we must recognize that it exists.</p>
 <section id="introduction-to-cayley-graphs">
 <h3>Introduction to Cayley Graphs<a class="headerlink" href="#introduction-to-cayley-graphs" title="Permalink to this headline">¶</a></h3>
 <p>The wikipedia article for Cayley graphs (<a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">https://en.wikipedia.org/wiki/Cayley_graph</a>) is intimidating,
 but for our purposes, it’s use is very simple.</p>
-<p>For example, as Americans, we use US Currency.  If we were to travel to another country,
-we would like to convert our currency into a currency which is accepted locally.</p>
-<p>Let’s assume that the world still used the Gold Standard, and put that space at the top of the diagram.  All
-other currencies will be defined as their value relative to this standard.
-As such, we create functions that convert currency from each of US, Canada, and EU, into the number of
-ounces of gold.</p>
+<p>An univariate example use of Cayley graphs is exchanging coins with
+a bank.</p>
 <figure class="align-center" id="id10">
 <img alt="Demo 02" src="images/currency.png" />
 <figcaption>
 <p><span class="caption-text">Cayley graph of univariate coordinate conversion for money.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>The following conversions are all made up.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="n">US</span> <span class="n">Dollar</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">ounces</span> <span class="n">of</span> <span class="n">gold</span>
-
-<span class="mi">1</span> <span class="n">Canadian</span> <span class="n">Dollar</span> <span class="o">=</span> <span class="mi">4</span> <span class="n">ounces</span> <span class="n">of</span> <span class="n">gold</span>
-
-<span class="mi">1</span> <span class="n">Euro</span> <span class="o">=</span>  <span class="mi">5</span> <span class="n">ounces</span> <span class="n">of</span> <span class="n">gold</span><span class="o">.</span>
-</pre></div>
-</div>
-<p>The directed edges in the Cayley graph show the direction that the function, i.e. transformation, applies.
-Another way to think about the arrows, in our hypothetical example, is that the US Dollar is define relative
-to Gold Ounces, since the directed edge goes from US Dollar to Canadian Dollar.  The Canadian Dollar is defined relative to Gold Ounces,
-for the same reason, as is the Euro.  This concept will be important later.</p>
-<p>To convert 15 US Dollars to ounces of Gold,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation*}
+  f_{nickel}^{penny}(x) = 5.0 * x \\
+\end{equation*}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation*}
+  f_{dime}^{penny}(x) = 10.0 * x \\
+\end{equation*}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation*}
+  f_{quarter}^{penny}(x) = 25.0 * x \\
+\end{equation*}\end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{equation*}
-f_{us}^{gs}(x) = 2 * x
+  f_{dollar}^{penny}(x) = 100.0 * x
+\end{equation*}\]</div>
+<p>The directed edges in the Cayley graph show the direction that
+the function, i.e. transformation, applies.</p>
+<p>To convert 20 nickels into pennies, start at nickel,
+move to penny, while applying the appropriate function
+along the way.</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation*}
+f_{nickel}^{penny}(x) = 5.0 * x
 \end{equation*}\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation}
 \begin{split}
-f_{us}^{gs}(15)  &amp; = 2 * 15\\
-                 &amp; = 30
+f_{nickel}^{penny}(20)  &amp; = 5.0 * 20\\
+                 &amp; = 100
 \end{split}
 \end{equation}\end{split}\]</div>
-<p>These conversion functions are invertible by taking the reciprical of the coefficient.
-To convert 10 Ounces of Gold to US dollars, we will be going against the direction of the
-edge, so we need to apply the inverse of the function to the number of ounces of gold.</p>
-<p>In order
-to convert from Gold Standard to US Currency, we are going against the arrow, so the inverse
-of the function is to be applied.</p>
+<p>To convert those 100 penny into quarters, move from
+penny to quarter, but since we are moving in the opposite
+direction of the edge, we must apply the inverse
+of that function.  These functions are invertible by
+taking the reciprical of the coefficient, thus satisfying</p>
 <div class="math notranslate nohighlight">
 \[\begin{equation*}
-f_{gs}^{us}(x) = {f_{us}^{gs}}^{-1}(x)
+f_{quarter}^{penny}(x) = 25.0 * x
 \end{equation*}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation*}
+\begin{split}
+f_{penny}^{quarter}(x) &amp; = {f_{penny}^{quarter}}^{-1}(x) \\
+&amp; =  1/25.0 * x
+\end{split}
+\end{equation*}\end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation}
 \begin{split}
-f_{gs}^{us}(x)  &amp; = {f_{us}^{gs}}^{-1}(x) \\
-                &amp; = 1/2 * x \\
-                &amp; = 1/2 * 10 \
-                &amp; = 5
+{f_{penny}^{quarters}}^{-1}(100)  &amp; = 1/25.0 * x\\
+                 &amp; = 4
 \end{split}
 \end{equation}\end{split}\]</div>
+<p>By taking the inverse of the coefficient, we satisfy a definition
+of an inverse</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+(f \circ f^{-1})(x)  = x
+\end{equation}\]</div>
+<p>To convert between any denomination, say dimes to dollars,
+just compose the functions, remembering to take the inverse
+of any directed edge that you against.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split}
+f_{dime}^{dollar}(x)  &amp; = f_{penny}^{dollar}(f_{dime}^{penny}(x)) \\
+                          &amp; = {f_{dollar}^{penny}}^{-1}(f_{dime}^{penny}(x)) \\
+\end{split}
+\end{equation}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\begin{split}
+f_{dime}^{dollar}  &amp; = {f_{dollar}^{penny}}^{-1} \circ f_{dime}^{penny}
+\end{split}
+\end{equation}\]</div>
+<p>Notice in the last equation that we defined the function via function composition,
+and didn’t specify and arguments.  We just focus on the types of units in and the units
+out, but the details of those functions are not relevant when traversing the Cayley graph.</p>
 </section>
 <section id="learning-what-to-ignore">
 <h3>Learning what to ignore<a class="headerlink" href="#learning-what-to-ignore" title="Permalink to this headline">¶</a></h3>
 <p>A big part of being able to understand graphics well is being able
-to figure out what to ignore.  In this book, all of the transformations
-we will use are invertible.  So how would we convert coordinates from space
-D to space B?  (What do those names mean?  It doesn’t matter.  The x has an arrow
-over it, which means it’s a vector.  How many dimensions does it have?  It doesn’t matter.
-All that matters is that the function exists and it is invertible.)</p>
+to figure out what to ignore.  So how would we convert coordinates from space
+D to space B (defined below)?  What do those names mean?  It doesn’t matter.  All that
+matters is that the function exists and that the function is invertible.</p>
 <figure class="align-center" id="id11">
 <img alt="Generic Cayley Graph" src="images/cayleygraph.png" />
 <figcaption>
 <p><span class="caption-text">Generic Cayley Graph</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Well, D is defined relative to C, C is defined relative to A, and B is defined
+<p>Well to convert data fram space D to space B,
+we know that D is defined relative to C, C is defined relative to A, and B is defined
 relative to A.  Because of the arrows, we know that we are given a function from
 D to C, a function from C to A, and a function from B to A.  We are not directly
 given their inverses, but we can calculate them easily enough, or have a computer do it

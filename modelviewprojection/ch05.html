@@ -62,7 +62,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transforamations - Demo 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
@@ -74,6 +74,13 @@
 <li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">May be not needed Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch22.html">OpenGL 3.3  Demo 22</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch23.html">Towards Standard Projection Matrix  Demo 23</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch24.html">Towards Standard Projection Matrix Pt 2 Demo 24</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch25.html">Towards Standard Projection Matrix Pt 3 Demo 25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch26.html">Towards Standard Projection Matrix Pt 4 Demo 26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch27.html">Towards Standard Projection Matrix Pt 5 Demo 26</a></li>
 </ul>
 
         </div>
@@ -200,6 +207,14 @@ t_{y}
 <p>We added a translate method to the Vertex class.  Given a translation amount, the vertex
 will be shifted by that amount.  This is a primitive that we will be using to transform
 from one space to another.</p>
+<p>If the reader wishes to use the data structures to test them out,
+import them and try the methods</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">src.demo05.demo</span> <span class="k">as</span> <span class="nn">demo</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">ty</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 97</span><span class="nd">@dataclass</span>
 <span class="linenos"> 98</span><span class="k">class</span> <span class="nc">Paddle</span><span class="p">:</span>
 <span class="linenos"> 99</span>    <span class="n">vertices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vertex</span><span class="p">]</span>

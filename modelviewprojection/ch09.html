@@ -16,6 +16,7 @@
         <script src="static/jquery.js"></script>
         <script src="static/underscore.js"></script>
         <script src="static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -75,6 +76,13 @@
 <li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">May be not needed Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch22.html">OpenGL 3.3  Demo 22</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch23.html">Towards Standard Projection Matrix  Demo 23</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch24.html">Towards Standard Projection Matrix Pt 2 Demo 24</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch25.html">Towards Standard Projection Matrix Pt 3 Demo 25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch26.html">Towards Standard Projection Matrix Pt 4 Demo 26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch27.html">Towards Standard Projection Matrix Pt 5 Demo 26</a></li>
 </ul>
 
         </div>
@@ -109,9 +117,7 @@
 more clearly.</p>
 <p>We do this by the following:</p>
 <ul class="simple">
-<li><p>Read a sequence of transformations from bottom to top,
-where each transformation of the graph paper is relative
-to the current coordinate system.</p></li>
+<li><p>Read sequence of transformations in the reverse order, from bottom to top.</p></li>
 </ul>
 <figure class="align-center" id="id1">
 <img alt="Demo 09" src="images/demo09.png" />
@@ -167,12 +173,17 @@ On Windows, in a command prompt, type “python src\demo09\demo.py”.</p>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>In the previous demo, The initial translate is effectively canceled out,
-leaving a rotation and then a translation.
-Translate inverse(Translate) Rotate Translate</p>
-<p>So we really just need to do a rotation first, and then a translation.
-But this can be counterintuitive at first because we like to think
-in relative terms.</p>
+<p>In the previous demo, the initial translate is effectively canceled out,
+leaving just a rotation and then a translation.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split}
+\vec{f}_{p}^{w}  &amp; = \vec{t} \circ \vec{r} \circ {\vec{t}}^{-1} \circ \vec{t} \\
+                 &amp; = \vec{t} \circ \vec{r}
+\end{split}
+\end{equation}\end{split}\]</div>
+<p>Where t and r are the translate and rotate functions for a paddle.</p>
+<p>So we really just need to apply the rotation first, and then the translation.</p>
 <p>To understand why the code in this demo works, you can think
 about it in one of two ways, forwards or backwards.</p>
 <section id="reading-transformations-top-down">
@@ -194,9 +205,9 @@ is set back to the origin basis.</p>
 </section>
 <section id="reading-transformations-bottom-up">
 <h3>Reading transformations bottom-up<a class="headerlink" href="#reading-transformations-bottom-up" title="Permalink to this headline">¶</a></h3>
-<p>or, you can read the transformations backwards,
+<p>Alternatively, you can read the transformations backwards,
 where the operations
-all modify the current axises and origin, i.e. basis, to a new basis.
+all cumulatively modify the current axises and origin, i.e. basis, to a new basis.
 All subsequent functions move that relative basis to a new relative basis.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">195</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
 <span class="linenos">196</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
@@ -212,57 +223,43 @@ All subsequent functions move that relative basis to a new relative basis.</p>
 <section id="suggested-order">
 <h3>Suggested Order<a class="headerlink" href="#suggested-order" title="Permalink to this headline">¶</a></h3>
 <p>The author has a strong opinion on the matter for computer graphics.</p>
-<p>Start at world space.</p>
+<p>Start at world space node.  As a reminder, this is the toplevel coordinate
+system that we choose to use.  It’s whatever you want it to be.</p>
 <figure class="align-center" id="id4">
 <img alt="Demo 06" src="images/demo061.png" />
 <figcaption>
 <p><span class="caption-text">Demo 06</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Think of the origin, x and y axises.  Move towards each modelspace,
-imagining a transformed local coordinate system, and read the transformations
-backwards.  The data you plot will be relative to that transformed coordinate
+<p>Think of world space’s origin, x and y axises.  On the Cayley graph, move towards each modelspace node,
+which is against the direction of the edge,  Look at that edge’s correponding
+sequence of function calls in the graphics code.  Read the transformations
+from the bottom up, imagining a transformed local coordinate system against which
+each function in the sequence operates.</p>
+<p>The data you plot that is in its own modelspace will actually be plotted relative to that transformed coordinate
 system.</p>
+<p>For the linear-algebra inclined reader, we’ve used</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+L * (M * \vec{x})     = (L * M) * \vec{x}
+ \end{equation}\]</div>
+<p>to understand a complex system of equations, sometimes looking at the left
+side of the equations, sometimes looking at the right side.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">195</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
 <span class="linenos">196</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now go back to world space.  It’s the origin coordinate system, and think
-of everything of having already been “plotted”.
-For every transformations towards screen space, read the transformations
-from top down, resetting the coordinate system after every transformation.</p>
+<p>Now go back to world space.  Think
+of all modelspace data as having already been “plotted”.  So now follow
+the edges to screen space,
+reading the transformations
+from top down, and resetting the coordinate system after every transformation.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">197</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>I prefer to think graphically instead of symbolically.
-Another way you can think of this is to rotate the the x axis
-and y axis, create graph paper (tick marks) along those new
-axis, and then draw the geometry on that new “basis”,
-instead of the natural basis. (Natural basis just means
-the normal x and y axis).
-Think of basis as an origin, a unit in various directions,
-a graph paper lines drawn.  Then your geometry is drawn
-in that space.</p>
-<p>In revisting demo 6’s space, if we read all of the transformations
-below in order, it’s following the order of function application.</p>
-<p>If instead we read the transformation between spaces backwards in code,
-(and going the opposite direction of the arrows), we can view a coordinate
-system that is changing (origin can move, and axises can rotate/scale)</p>
-<p>ALSO, see mvpVisualization/demo.py and mvpVisualization/demoAnimation.py.
-THESE WILL SHOW THE TRANSMORTAIONS backwards much more intuitively.</p>
-<p>Same thing for the second paddle.</p>
-<figure class="align-center" id="id5">
-<img alt="Rotate Paddle 2 Forwards" src="images/rotate2-forwards.gif" />
-<figcaption>
-<p><span class="caption-text">Rotate Paddle 2 Forwards</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<figure class="align-center" id="id6">
-<img alt="Rotate Paddle 2 Backwards" src="images/rotate2-backwards.gif" />
-<figcaption>
-<p><span class="caption-text">Rotate Paddle 2 Backwards</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p>As a side note, the computer has no notion of coordinate systems.  It just has a sequence of procedures
+to apply on a sequence of numbers.  For us humans to make sense of what we are modeling,
+and to implement it correctly, we need to be able to reason and compose our thoughts clearly.</p>
 </section>
 </section>
 <section id="code">
@@ -286,6 +283,12 @@ THESE WILL SHOW THE TRANSMORTAIONS backwards much more intuitively.</p>
 <span class="linenos">199</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>Read line 196</p></li>
+<li><p>Read line 195</p></li>
+<li><p>Reset the coordinate system</p></li>
+<li><p>Read line 197</p></li>
+</ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 </pre></div>
 </div>
@@ -298,6 +301,13 @@ THESE WILL SHOW THE TRANSMORTAIONS backwards much more intuitively.</p>
 <span class="linenos">210</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>Read line 206</p></li>
+<li><p>Read line 207</p></li>
+<li><p>Reset the coordinate system</p></li>
+<li><p>Read line 208</p></li>
+</ul>
+<p>ALSO, see mvpVisualization/demo2.py.  This is an animation of the code, albeit in 3D space.</p>
 </section>
 </section>
 </section>
