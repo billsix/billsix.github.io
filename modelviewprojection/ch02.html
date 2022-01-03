@@ -75,8 +75,8 @@
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">Game Controller - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">Game Controller - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch21.html">May be not needed Demo 21</a></li>
@@ -128,7 +128,7 @@ of this region will not be displayed on the screen.</p>
 </section>
 <section id="how-to-execute">
 <h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
-<p>On Linux or on MacOS, in a command prompt, type “python src/demo02/demo.py”.
+<p>On Linux or on MacOS, in a shell, type “python src/demo02/demo.py”.
 On Windows, in a command prompt, type “python src\demo02\demo.py”.</p>
 </section>
 <section id="code">
@@ -286,7 +286,7 @@ to discrete pixel-space, and the programmer cannot change this.</p>
 <h2>Graph of Spaces<a class="headerlink" href="#graph-of-spaces" title="Permalink to this headline">¶</a></h2>
 <p>The following is a <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_theory">graph</a>, specifically
 a <a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">Cayley</a> Graph, of the two spaces
-shown so far.  The nodes represent a coordinate system (i.e. origin and axises),
+shown so far.  The nodes represent a coordinate system (i.e. origin and axes),
 and the directed edge represents a function that converts coordinates from one
 coordinate system to another.</p>
 <figure class="align-center" id="id9">
@@ -345,7 +345,7 @@ f_{nickel}^{penny}(20)  &amp; = 5.0 * 20\\
 \end{equation}\end{split}\]</div>
 <p>To convert those 100 penny into quarters, move from
 penny to quarter, but since we are moving in the opposite
-direction of the edge, we must apply the inverse
+direction of the edge, we must apply the multiplicative inverse
 of that function.  These functions are invertible by
 taking the reciprical of the coefficient, thus satisfying</p>
 <div class="math notranslate nohighlight">
@@ -355,7 +355,7 @@ f_{quarter}^{penny}(x) = 25.0 * x
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation*}
 \begin{split}
-f_{penny}^{quarter}(x) &amp; = {f_{penny}^{quarter}}^{-1}(x) \\
+f_{penny}^{quarter}(x) &amp; = {f_{quarter}^{penny}}^{-1}(x) \\
 &amp; =  1/25.0 * x
 \end{split}
 \end{equation*}\end{split}\]</div>
@@ -388,8 +388,8 @@ f_{dime}^{dollar}(x)  &amp; = f_{penny}^{dollar}(f_{dime}^{penny}(x)) \\
 f_{dime}^{dollar}  &amp; = {f_{dollar}^{penny}}^{-1} \circ f_{dime}^{penny}
 \end{split}
 \end{equation}\]</div>
-<p>Notice in the last equation that we defined the function via function composition,
-and didn’t specify and arguments.  We just focus on the types of units in and the units
+<p>Notice in the last equation that we defined the function via function <a class="reference external" href="https://en.wikipedia.org/wiki/Function_composition">composition</a>,
+and didn’t specify any arguments.  We just focus on the types of units in and the units
 out, but the details of those functions are not relevant when traversing the Cayley graph.</p>
 </section>
 <section id="learning-what-to-ignore">

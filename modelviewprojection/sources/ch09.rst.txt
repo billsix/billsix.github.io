@@ -1,3 +1,24 @@
+..
+   Copyright (c) 2018-2021 William Emerison Six
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
 Rotation Fixed - Sequence of Transformations - Demo 09
 ======================================================
 
@@ -9,8 +30,8 @@ more clearly.
 
 We do this by the following:
 
-* Read sequence of transformations in the reverse order, from bottom to top.
-
+* Read sequence of transformations from modelspace to worldspace in the reverse order, from bottom to top.
+* Each subsequent transformation is relative to the current local coordinate system.
 
 .. figure:: static/screenshots/demo09.png
     :align: center
@@ -22,7 +43,7 @@ We do this by the following:
 How to Execute
 ^^^^^^^^^^^^^^
 
-On Linux or on MacOS, in a command prompt, type "python src/demo09/demo.py".
+On Linux or on MacOS, in a shell, type "python src/demo09/demo.py".
 On Windows, in a command prompt, type "python src\\demo09\\demo.py".
 
 
@@ -60,7 +81,7 @@ leaving just a rotation and then a translation.
 
 Where t and r are the translate and rotate functions for a paddle.
 
-    
+
 So we really just need to apply the rotation first, and then the translation.
 
 To understand why the code in this demo works, you can think
@@ -71,14 +92,14 @@ Reading transformations top-down
 
 When reading a composition of function calls top down,
 all the transformations happen relative to the global
-origin and axises, i.e. the natural *basis*.  After each function call, the basis
+origin and axes, i.e. the natural *basis*.  After each function call, the basis
 is set back to the origin basis.
 
 .. literalinclude:: ../src/demo09/demo.py
    :language: python
    :linenos:
    :lineno-start: 195
-   :lines: 195-196
+   :lines: 195-197
 
 
 .. figure:: static/rotate1-forwards.gif
@@ -95,7 +116,7 @@ Reading transformations bottom-up
 
 Alternatively, you can read the transformations backwards,
 where the operations
-all cumulatively modify the current axises and origin, i.e. basis, to a new basis.
+all cumulatively modify the current axes and origin, i.e. basis, to a new basis.
 All subsequent functions move that relative basis to a new relative basis.
 
 
@@ -103,7 +124,7 @@ All subsequent functions move that relative basis to a new relative basis.
    :language: python
    :linenos:
    :lineno-start: 195
-   :lines: 195-196
+   :lines: 195-197
 
 .. figure:: static/rotate1-backwards.gif
     :align: center
@@ -127,7 +148,7 @@ system that we choose to use.  It's whatever you want it to be.
 
     Demo 06
 
-Think of world space's origin, x and y axises.  On the Cayley graph, move towards each modelspace node,
+Think of world space's origin, x and y axes.  On the Cayley graph, move towards each modelspace node,
 which is against the direction of the edge,  Look at that edge's correponding
 sequence of function calls in the graphics code.  Read the transformations
 from the bottom up, imagining a transformed local coordinate system against which
@@ -144,16 +165,16 @@ For the linear-algebra inclined reader, we've used
     L * (M * \vec{x})     = (L * M) * \vec{x}
      \end{equation}
 
-to understand a complex system of equations, sometimes looking at the left
-side of the equations, sometimes looking at the right side.
-     
+to understand a complicated sequence of matrix multiplications, modifying
+L by a right-multiplication of M.
+
 
 
 .. literalinclude:: ../src/demo09/demo.py
    :language: python
    :linenos:
    :lineno-start: 195
-   :lines: 195-196
+   :lines: 195-197
 
 
 Now go back to world space.  Think
@@ -165,8 +186,8 @@ from top down, and resetting the coordinate system after every transformation.
 .. literalinclude:: ../src/demo09/demo.py
    :language: python
    :linenos:
-   :lineno-start: 197
-   :lines: 197
+   :lineno-start: 198
+   :lines: 198-199
 
 
 
@@ -176,7 +197,7 @@ As a side note,	the computer has no notion of coordinate systems.  It just has a
 to apply on a sequence of numbers.  For us humans to make sense of what we are modeling,
 and to implement it correctly, we need to be able to reason and compose our thoughts clearly.
 
-    
+
 Code
 ^^^^
 
@@ -200,13 +221,13 @@ The Event Loop
    :language: python
    :linenos:
    :lineno-start: 191
-   :lines: 191-199
+   :lines: 191-201
 
-* Read line 196
+* Read line 196-197
 * Read line 195
 * Reset the coordinate system
-* Read line 197
-	   
+* Read line 198-199
+
 ::
 
     ...
@@ -215,15 +236,13 @@ The Event Loop
    :language: python
    :linenos:
    :lineno-start: 204
-   :lines: 204-210
+   :lines: 204-214
 
-* Read line 206
-* Read line 207
-* Reset the coordinate system
+* Read line 209-210
 * Read line 208
+* Reset the coordinate system
+* Read line 211-212
 
-	   
+
 
 ALSO, see mvpVisualization/demo2.py.  This is an animation of the code, albeit in 3D space.
-
-	   

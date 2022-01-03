@@ -70,8 +70,8 @@
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">Game Controller - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">Game Controller - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch21.html">May be not needed Demo 21</a></li>
@@ -111,10 +111,10 @@
 <h1>Rotations - Demo 07<a class="headerlink" href="#rotations-demo-07" title="Permalink to this headline">¶</a></h1>
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
-<p>Learn about rotations, and the order in which to read
-a sequence of transformations.  This demo does not
+<p>Attempt to rotate the paddles around their center.
+Learn about rotations.  This demo does not
 work correctly, because of a misunderstanding
-of how rotations work.</p>
+of how to interprete a sequence of transformations.</p>
 <figure class="align-center" id="id1">
 <img alt="Demo 07" src="images/demo07.png" />
 <figcaption>
@@ -124,7 +124,7 @@ of how rotations work.</p>
 </section>
 <section id="how-to-execute">
 <h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
-<p>On Linux or on MacOS, in a command prompt, type “python src/demo07/demo.py”.
+<p>On Linux or on MacOS, in a shell, type “python src/demo07/demo.py”.
 On Windows, in a command prompt, type “python src\demo07\demo.py”.</p>
 </section>
 <section id="move-the-paddles-using-the-keyboard">
@@ -186,7 +186,10 @@ all of the object’s vertices around (0,0).</p>
 </figure>
 <p>In high school math, you will have learned about sin, cos, and tangent.
 Typically the angles are described on the unit circle, where a rotation
-starts from the positive x axis.  We can expand on this knowledge, allowing
+starts from the positive x axis.</p>
+<figure class="align-center">
+<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_1.svg" /></figure>
+<p>We can expand on this knowledge, allowing
 us to rotate a given vertex, wherever it is, around the origin (0,0).  This is done
 by separating the x and y value, rotating each component seperately,
 and then adding the results together.</p>
@@ -215,6 +218,8 @@ geometry, and won’t be explained here in detail.</p>
 <p><span class="caption-text">Rotate the x component.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
+<figure class="align-center">
+<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_2.svg" /></figure>
 <p>But what may not be obvious, is what happens to the y component?
 Turns out, it’s easy.  Just rotate your point of view, and it’s
 the same thing, with one minor difference, in that the x value
@@ -225,6 +230,8 @@ is negated.</p>
 <p><span class="caption-text">Rotate the y component</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
+<figure class="align-center">
+<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_3.svg" /></figure>
 <p>(0,0.4) is on the y-axis, so rotating it by “angle” degrees, results
 in vertex (0.4*-sin(angle), 0.4*cos(angle)).</p>
 <p>Wait.  Why is negative sin applied to the angle to make the x value,
@@ -314,20 +321,30 @@ cos and sin are defined in the math module.</p></li>
 <p>So to rotate paddle 1 about its center,
 we should translate to its position, and then rotate
 around the paddle’s center.</p>
-<p>This composed sequence of function calls is our definion of</p>
-<div class="math notranslate nohighlight">
-\[\begin{equation*}
-\vec{f}_{p1}^{w}
-\end{equation*}\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">188</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
 <span class="linenos">189</span>
 <span class="linenos">190</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
 <span class="linenos">191</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">192</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> \
-<span class="linenos">193</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
-<span class="linenos">194</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
-<span class="linenos">195</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">196</span>    <span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{equation*}
+\vec{f}_{p1}^{w}
+\end{equation*}\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">192</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+<span class="linenos">193</span>                                                    <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> \
+<span class="linenos">194</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{equation*}
+\vec{f}_{w}^{ndc}
+\end{equation*}\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">195</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">196</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">197</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
@@ -336,18 +353,28 @@ around the paddle’s center.</p>
 <p>Likewise, to rotate paddle 2 about its center,
 we should translate to its position, and then rotate
 around the paddle’s center.</p>
-<p>This composed sequence of function calls is our definion of</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">201</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">202</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+</pre></div>
+</div>
 <div class="math notranslate nohighlight">
 \[\begin{equation*}
 \vec{f}_{p2}^{w}
 \end{equation*}\]</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">200</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">201</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">202</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> \
-<span class="linenos">203</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
-<span class="linenos">204</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
-<span class="linenos">205</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">206</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">203</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+<span class="linenos">204</span>                                                    <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> \
+<span class="linenos">205</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{equation*}
+\vec{f}_{w}^{ndc}
+\end{equation*}\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">206</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">207</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">208</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -355,11 +382,13 @@ around the paddle’s center.</p>
 <section id="why-it-s-wrong">
 <h2>Why it’s Wrong<a class="headerlink" href="#why-it-s-wrong" title="Permalink to this headline">¶</a></h2>
 <p>Turns out, our program doesn’t work as predicted, even though
-translate, scale, and rotate are all correct.</p>
+translate, scale, and rotate are all defined correctly.  The paddles
+are not rotating around their center.</p>
 <p>Let’s take a look in detail about what our paddlespace to
 world space transformations are doing.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">192</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> \
-<span class="linenos">193</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">192</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+<span class="linenos">193</span>                                                    <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> \
+<span class="linenos">194</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
 </pre></div>
 </div>
 <figure class="align-center" id="id7">

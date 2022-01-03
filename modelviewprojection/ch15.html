@@ -62,8 +62,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">Game Controller - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">Game Controller - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch21.html">May be not needed Demo 21</a></li>
@@ -115,7 +115,7 @@ is further away from the camera.</p>
 </section>
 <section id="how-to-execute">
 <h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
-<p>On Linux or on MacOS, in a command prompt, type “python src/demo15/demo.py”.
+<p>On Linux or on MacOS, in a shell, type “python src/demo15/demo.py”.
 On Windows, in a command prompt, type “python src\demo15\demo.py”.</p>
 </section>
 <section id="move-the-paddles-using-the-keyboard">
@@ -178,6 +178,27 @@ On Windows, in a command prompt, type “python src\demo15\demo.py”.</p>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Early in this book we used the stencil buffer, but didn’t go into
+much detail about it.  Each pixel in the framebuffer is a fragment,
+which is more information than just the color to be drawn.</p>
+<figure class="align-center">
+<img alt="Fragment" src="images/fragment.png" />
+</figure>
+<p>Besides the color, there is also</p>
+<ul class="simple">
+<li><p>Stecil buffer, being true or false, to specify whether subsequent OpenGL calls
+should affect this fragment or leave it alone</p></li>
+<li><p>Depth - When an object in NDC is drawn, the color is updated to the new
+value, but the z-component of the NDC is placed into the depth buffer.
+When a new object is drawn at this pixel later, its Z value will
+be compared to the existing Z value, to determine which object is in
+front.  If the new object is farther away from the camera than the
+already-draw object, then the fragment will not be updated.</p></li>
+<li><p>Alpha, for transparency, which we have not yet covered.</p></li>
+</ul>
+<p>For a history of what 3D programming for game systems was like
+without having a z-buffer, take a look at some history of
+the <a class="reference external" href="http://shmuplations.com/mario64/">Nintendo</a> 64, and comments on <a class="reference external" href="https://news.ycombinator.com/item?id=12558589">hacker</a> news about it.</p>
 <p>Use the depth buffer to make further objects hidden
 if nearer objects are drawn in front</p>
 <ol class="arabic simple">

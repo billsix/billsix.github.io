@@ -1,3 +1,24 @@
+..
+   Copyright (c) 2018-2021 William Emerison Six
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
 Adding Depth - Enable Depth Buffer - Demo 15
 ============================================
 
@@ -18,7 +39,7 @@ is further away from the camera.
 How to Execute
 ^^^^^^^^^^^^^^
 
-On Linux or on MacOS, in a command prompt, type "python src/demo15/demo.py".
+On Linux or on MacOS, in a shell, type "python src/demo15/demo.py".
 On Windows, in a command prompt, type "python src\\demo15\\demo.py".
 
 
@@ -49,6 +70,35 @@ Keyboard Input  Action
 
 Description
 ^^^^^^^^^^^
+
+Early in this book we used the stencil buffer, but didn't go into
+much detail about it.  Each pixel in the framebuffer is a fragment,
+which is more information than just the color to be drawn.
+
+.. figure:: static/ccbysa3.0/williamsix/fragment.png
+    :align: center
+    :alt: Fragment
+    :figclass: align-center
+
+Besides the color, there is also
+
+* Stecil buffer, being true or false, to specify whether subsequent OpenGL calls
+  should affect this fragment or leave it alone
+* Depth - When an object in NDC is drawn, the color is updated to the new
+  value, but the z-component of the NDC is placed into the depth buffer.
+  When a new object is drawn at this pixel later, its Z value will
+  be compared to the existing Z value, to determine which object is in
+  front.  If the new object is farther away from the camera than the
+  already-draw object, then the fragment will not be updated.
+* Alpha, for transparency, which we have not yet covered.
+
+For a history of what 3D programming for game systems was like
+without having a z-buffer, take a look at some history of
+the Nintendo_ 64, and comments on hacker_ news about it.
+
+.. _Nintendo: http://shmuplations.com/mario64/
+.. _hacker: https://news.ycombinator.com/item?id=12558589
+
 
 Use the depth buffer to make further objects hidden
 if nearer objects are drawn in front

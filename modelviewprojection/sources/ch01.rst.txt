@@ -1,3 +1,24 @@
+..
+   Copyright (c) 2018-2021 William Emerison Six
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
 Opening a Window - Demo 01
 ==========================
 
@@ -17,7 +38,7 @@ the window.
 How to Execute
 ^^^^^^^^^^^^^^
 
-On Linux or on MacOS, in a command prompt, type "python src/demo01/demo.py".
+On Linux or on MacOS, in a shell, type "python src/demo01/demo.py".
 On Windows, in a command prompt, type "python src\\demo01\\demo.py".
 
 
@@ -433,3 +454,58 @@ Each color is represented by a number, so the frame is something like this, wher
 The event loop then calls this code over and over again, and since we retain no state and
 we draw nothing, a black screen will be displayed every frame until the user
 closes the window, and says to himself, "why did I buy Doom 3"?
+
+
+Questions
+^^^^^^^^^
+
+* In the following ASCII-art diagram of the framebuffer,
+  where 'b' represents black, 'R' represents red, and "G"
+  represents green, what is width and height of the framebuffer?
+
+::
+
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+
+* In the above ASCII-art diagram of the framebuffer, where 'b' represents black, 'R' represents red, and "G" represents green,
+  what is the color at pixel (1,1)?
+
+* In the below ASCII-art diagram of the framebuffer, where 'b' represents black, 'R' represents red, and "G" represents green, what is the color at pixel (2,3)? At (36,2)?
+
+::
+
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRRR
+    GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRRR
+    GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRRR
+    GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRRR
+    GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRRR
+    GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRRR
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbRRRRRRR
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+
+*
+
+
+Answers
+^^^^^^^
+
+* width - 37, column 0-36.  Height - 12, rows 0 - 11
+* 'b', for the color black
+* 'G' for Green, 'R' for red

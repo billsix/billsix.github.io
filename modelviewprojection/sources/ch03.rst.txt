@@ -1,3 +1,24 @@
+..
+   Copyright (c) 2018-2021 William Emerison Six
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
 Window Resizing and Proportionality - Demo 03
 =============================================
 
@@ -17,7 +38,7 @@ and then wide.  Look at what happens to the rectangles.
 How to Execute
 ^^^^^^^^^^^^^^
 
-On Linux or on MacOS, in a command prompt, type "python src/demo03/demo.py".
+On Linux or on MacOS, in a shell, type "python src/demo03/demo.py".
 On Windows, in a command prompt, type "python src\\demo03\\demo.py".
 
 
@@ -72,8 +93,6 @@ window.
 
     Nice
 
-N.B, we now have 3 coordinate systems.  NDC, viewport, and screenspace.  In later sections,
-we will will have many, many more.
 
 .. figure:: static/demo03.png
     :align: center
@@ -145,7 +164,7 @@ Set to Draw in Square Subsection Of Window
 
 * Look at the image above of NDC superimposed on Screen Space.  From this,
   the arguments sent to glScissor should be clear.
-  
+
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
    :linenos:
@@ -201,7 +220,7 @@ the window.
 
 * The event loop is the same as the previous demo, except
   that we call draw_in_square_viewport every frame at the beginning.
-	   
+
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
    :linenos:

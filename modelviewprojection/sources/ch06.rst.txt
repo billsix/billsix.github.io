@@ -1,3 +1,24 @@
+..
+   Copyright (c) 2018-2021 William Emerison Six
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
 Modelspace - Demo 06
 ====================
 
@@ -18,7 +39,7 @@ Learn about modelspace.
 How to Execute
 ^^^^^^^^^^^^^^
 
-On Linux or on MacOS, in a command prompt, type "python src/demo06/demo.py".
+On Linux or on MacOS, in a shell, type "python src/demo06/demo.py".
 On Windows, in a command prompt, type "python src\\demo06\\demo.py".
 
 
@@ -61,7 +82,7 @@ scaling and rotating the object are trivial, as shown in later chapters).
     Representing a Paddle using Modelspace
 
 
-Modelspace - the coordinate system (origin plus axises), in which some object's
+Modelspace - the coordinate system (origin plus axes), in which some object's
 verticies are defined.
 
 
@@ -85,8 +106,6 @@ For our demo with paddles, the author arbitralily defines the WorldSpace to be 2
 
 Modelspace to WorldSpace
 ^^^^^^^^^^^^^^^^^^^^^^^^
-
-Model-space to World-space.
 
 The author prefers to view transformations as changes to the graph paper,
 as compared to view tranformations as changes to points.
@@ -212,7 +231,7 @@ Paddle 2's vertices in WorldSpace Coordinates
    aren't relative to the global origin, instead it's from the local frame of reference.
 
    When reading the transformations backwards, I think it's best to think of it
-   as moving the axises, and the plotting the data once the axies are in
+   as moving the axes, and the plotting the data once the axies are in
    their final place.
 
 
@@ -238,7 +257,7 @@ world space to NDC is divide each component, x and y, by 100.
 
 As a demonstration of how scaling works, let's make an
 object's width twice as large, and height three times as large. (The author
-tried doing the actual scaling in an animated gif, and it looked awful,
+tried doing the actual scaling of 1/100 in an animated gif, and it looked awful,
 therefore a different scaling gif is showed here, but the concept
 is the same).
 
@@ -373,7 +392,7 @@ are the offset from the world space's origin to the center of the paddle, i.e. t
 Now, the coordinates for paddle 1 and for paddle 2 are in world
 space, and we need the match to take any world space coordinates
 and convert them to NDC.
-    
+
 
 .. math::
 
@@ -472,7 +491,7 @@ Rendering Paddle 1
    :language: python
    :linenos:
    :lineno-start: 173
-   :lines: 173-175
+   :lines: 173-174
 
 
 .. figure:: static/translation-forwards-2.png
@@ -503,8 +522,8 @@ on the bottom and on the left.
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 177
-   :lines: 177
+   :lineno-start: 175
+   :lines: 175-179
 
 
 
@@ -516,8 +535,8 @@ Rendering Paddle 2
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 182
-   :lines: 182-185
+   :lineno-start: 181
+   :lines: 181-184
 
 
 
@@ -532,8 +551,8 @@ Rendering Paddle 2
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 187
-   :lines: 187-189
+   :lineno-start: 185
+   :lines: 185-186
 
 .. figure:: static/translation2-forwards-2.png
     :align: center
@@ -561,5 +580,5 @@ on the bottom and on the left.
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 191
-   :lines: 191
+   :lineno-start: 187
+   :lines: 187-190
