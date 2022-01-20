@@ -194,27 +194,36 @@ Consult the python source for the full, working code.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>set the clear color to be gray.  clear the color of every pixel in the whole frame buffer, not just the viewport</p></li>
+<li><p>set the clear color to be gray.</p></li>
+<li><p>glClear clear the color of every pixel in the whole frame buffer, independent of viewport.
+So now the entire framebuffer is gray.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">62</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 <span class="linenos">63</span>
-<span class="linenos">64</span>    <span class="nb">min</span> <span class="o">=</span> <span class="n">width</span> <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="n">height</span> <span class="k">else</span> <span class="n">height</span>
+<span class="linenos">64</span>    <span class="n">square_size</span> <span class="o">=</span> <span class="n">width</span> <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="n">height</span> <span class="k">else</span> <span class="n">height</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>figure out the minimum dimension of the window</p></li>
+<li><p>To make a square subregion, we need a number for the distance between vertices of the square.
+By using the minimium of the width and height, we can at least fill up the screen in one dimension.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">66</span>    <span class="n">glEnable</span><span class="p">(</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
 <span class="linenos">67</span>    <span class="n">glScissor</span><span class="p">(</span>
-<span class="linenos">68</span>        <span class="nb">int</span><span class="p">((</span><span class="n">width</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
-<span class="linenos">69</span>        <span class="nb">int</span><span class="p">((</span><span class="n">height</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
-<span class="linenos">70</span>        <span class="nb">min</span><span class="p">,</span>
-<span class="linenos">71</span>        <span class="nb">min</span><span class="p">,</span>
+<span class="linenos">68</span>        <span class="nb">int</span><span class="p">((</span><span class="n">width</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span> <span class="c1"># bottom left x_screenspace</span>
+<span class="linenos">69</span>        <span class="nb">int</span><span class="p">((</span><span class="n">height</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span><span class="c1"># bottom left y_screenspace</span>
+<span class="linenos">70</span>        <span class="n">square_size</span><span class="p">,</span>                      <span class="c1"># x width, screenspace</span>
+<span class="linenos">71</span>        <span class="n">square_size</span><span class="p">,</span>                      <span class="c1"># y height, screenspace</span>
 <span class="linenos">72</span>    <span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Enable the scissor test</p></li>
+<li><p>Enable the scissor test.  Internally, OpenGL drivers likely have global variables
+that we set by calling functions.  Every OpenGL feature isn’t used by every OpenGL
+program.  For instance, we are not using lighting to add realism.  We aren’t using
+texturing.  We are using the scissor test, so we must enable it.  We only enable
+the features that we need so that the OpenGL driver doesn’t waste time doing
+unnecessary computations.</p></li>
 <li><p>the scissor test allows us to specify a region
 of the framebuffer into which the opengl operations
 will apply.  In this case, the color in every pixel in the framebuffer is gray.
@@ -223,6 +232,11 @@ region of pixels to be true (and false everywhere else) which means “only do t
 ignore the others”.
 As we will learn later, OpenGL stores much more information
 per fragment (i.e. pixel) than just it’s current color.</p></li>
+</ul>
+<figure class="align-center">
+<img alt="Fragment" src="images/fragment.png" />
+</figure>
+<ul class="simple">
 <li><p>Look at the image above of NDC superimposed on Screen Space.  From this,
 the arguments sent to glScissor should be clear.</p></li>
 </ul>
@@ -247,17 +261,19 @@ We set the viewport again, so that the NDC coordinates
 will be mapped the the region of screen coordinates
 that we care about, which is the black square.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">78</span>    <span class="n">glViewport</span><span class="p">(</span>
-<span class="linenos">79</span>        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
-<span class="linenos">80</span>        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
-<span class="linenos">81</span>        <span class="nb">min</span><span class="p">,</span>
-<span class="linenos">82</span>        <span class="nb">min</span><span class="p">,</span>
+<span class="linenos">79</span>        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
+<span class="linenos">80</span>        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
+<span class="linenos">81</span>        <span class="n">square_size</span><span class="p">,</span>
+<span class="linenos">82</span>        <span class="n">square_size</span><span class="p">,</span>
 <span class="linenos">83</span>    <span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="the-event-loop">
 <h4>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this headline">¶</a></h4>
-<p>The event loop is just like the previous demo,
+<p>Draw in square viewport is a function definition.  It has not yet
+been run, but will be run in every iteration of the event loop.</p>
+<p>This demo’s event loop is just like the previous demo,
 but this time we call the procedure to
 ensure that we only draw in a square subset of
 the window.</p>
