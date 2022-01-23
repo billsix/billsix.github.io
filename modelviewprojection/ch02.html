@@ -396,8 +396,10 @@ out, but the details of those functions are not relevant when traversing the Cay
 <h3>Learning what to ignore<a class="headerlink" href="#learning-what-to-ignore" title="Permalink to this headline">¶</a></h3>
 <p>A big part of being able to understand graphics well is being able
 to figure out what to ignore.  So how would we convert coordinates from space
-D to space B (defined below)?  What do those names mean?  It doesn’t matter.  All that
-matters is that the function exists and that the function is invertible.</p>
+D to space B (defined below)?  What do those names mean?  It doesn’t matter.
+What is the definition of all of the functions?  It doesn’t matter. All that
+matters is that the function exists, the definition of the function is provided to us,
+the function is invertible, and that we can call a procedure to invert a function.</p>
 <figure class="align-center" id="id11">
 <img alt="Generic Cayley Graph" src="images/cayleygraph.png" />
 <figcaption>
@@ -420,6 +422,8 @@ the appropriate inverse(s).</p>
                           &amp; = {\vec{f}_{b}^{a}}^{-1}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x})))
 \end{split}
 \end{equation}\end{split}\]</div>
+<p>A function from B to A is not provided to us, but is written in the equation as an idea of a function
+that we wish to have.  We can create this function by invoking inverse on the provide function from B to A.</p>
 <p>Since we’re dealing with function composition mainly, we don’t even need to specify the argument</p>
 <div class="math notranslate nohighlight">
 \[\begin{equation}
