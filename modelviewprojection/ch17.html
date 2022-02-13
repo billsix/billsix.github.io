@@ -105,46 +105,46 @@
 <p>Implement a perspective projection so that objects
 further away are smaller than the would be
 if they were close by</p>
-<figure class="align-center" id="id1">
+<figure class="align-center" id="id19">
 <img alt="Demo 17" src="images/demo17.png" />
 <figcaption>
-<p><span class="caption-text">Demo 17</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Demo 17</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id2">
+<figure class="align-center" id="id20">
 <img alt="Frustum 1" src="images/frustum1.png" />
 <figcaption>
-<p><span class="caption-text">Frustum 1</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Frustum 1</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id21">
 <img alt="Frustum 2" src="images/frustum2.png" />
 <figcaption>
-<p><span class="caption-text">Frustum 2</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Frustum 2</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id4">
+<figure class="align-center" id="id22">
 <img alt="Frustum 3" src="images/frustum3.png" />
 <figcaption>
-<p><span class="caption-text">Frustum 3</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Frustum 3</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id5">
+<figure class="align-center" id="id23">
 <img alt="Frustum 4" src="images/frustum4.png" />
 <figcaption>
-<p><span class="caption-text">Frustum 4</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Frustum 4</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id6">
+<figure class="align-center" id="id24">
 <img alt="Frustum 5" src="images/frustum5.png" />
 <figcaption>
-<p><span class="caption-text">Frustum 5</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Frustum 5</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id7">
+<figure class="align-center" id="id25">
 <img alt="Frustum 6" src="images/frustum6.png" />
 <figcaption>
-<p><span class="caption-text">Frustum 6</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Frustum 6</span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -213,50 +213,74 @@ On Windows, in a command prompt, type “python src\demo17\demo.py”.</p>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>             <span class="o">-------------------------------</span> <span class="n">far</span> <span class="n">z</span>
-             \              <span class="o">|</span>              <span class="o">/</span>
-              \             <span class="o">|</span>             <span class="o">/</span>
-               \ <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="o">*----|</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>       <span class="o">/</span>
-                \      <span class="o">|</span>    <span class="o">|</span>           <span class="o">/</span>
-                 \     <span class="o">|</span>    <span class="o">|</span>          <span class="o">/</span>
-                  \    <span class="o">|</span>    <span class="o">|</span>         <span class="o">/</span>
-                   \   <span class="o">|</span>    <span class="o">|</span>        <span class="o">/</span>
-                    \  <span class="o">|</span>    <span class="o">|</span>       <span class="o">/</span>
-                     \ <span class="o">|</span>    <span class="o">|</span>      <span class="o">/</span>
-                      \<span class="o">------------</span> <span class="n">near</span> <span class="n">z</span>
-                       <span class="o">|</span>    <span class="o">|</span>    <span class="o">/</span>
-                       <span class="o">|</span>\   <span class="o">|</span>   <span class="o">/</span>
-                       <span class="o">|</span> \  <span class="o">|</span>  <span class="o">/</span>
-                       <span class="o">|</span>  \ <span class="o">|</span> <span class="o">/</span>
-                       <span class="o">|</span>   \<span class="o">|/</span>
-      <span class="o">-----------------*----*-</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-------------------</span>
-                      <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="n">because</span> <span class="n">right</span> <span class="n">angle</span> <span class="ow">and</span> <span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">=</span> <span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">/</span> <span class="n">z</span> <span class="o">=</span> <span class="n">projX</span> <span class="o">/</span> <span class="n">nearZ</span>
-<span class="n">projX</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">z</span> <span class="o">*</span> <span class="n">nearZ</span>
-
-                       <span class="o">-----------</span> <span class="n">far</span> <span class="n">z</span>
-                       <span class="o">|</span>          <span class="o">|</span>
-                       <span class="o">|</span>          <span class="o">|</span>
-        <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">z</span> <span class="o">*</span> <span class="n">nearZ</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="o">*</span>       <span class="o">|</span>   <span class="n">non</span><span class="o">-</span><span class="n">linear</span> <span class="o">--</span> <span class="n">the</span> <span class="n">transformation</span> <span class="n">of</span> <span class="n">x</span> <span class="n">depends</span> <span class="n">on</span> <span class="n">its</span> <span class="n">z</span> <span class="n">value</span>
-                       <span class="o">|</span>          <span class="o">|</span>
-                       <span class="o">|</span>          <span class="o">|</span>
-                       <span class="o">|</span>          <span class="o">|</span>
-                       <span class="o">|</span>          <span class="o">|</span>
-                       <span class="o">|</span>          <span class="o">|</span>
-                       <span class="o">|</span>          <span class="o">|</span>
-                       <span class="o">|</span>          <span class="o">|</span>
-                       <span class="o">|</span>          <span class="o">|</span>
-                       <span class="o">------------</span> <span class="n">near</span> <span class="n">z</span>
-                       \    <span class="o">|</span>    <span class="o">/</span>
-                        \   <span class="o">|</span>   <span class="o">/</span>
-                         \  <span class="o">|</span>  <span class="o">/</span>
-                          \ <span class="o">|</span> <span class="o">/</span>
-                           \<span class="o">|/</span>
-      <span class="o">----------------------*-</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-------------------</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="o">-------------------------------</span> <span class="n">far</span> <span class="n">z</span>
+       \              <span class="o">|</span>              <span class="o">/</span>
+        \             <span class="o">|</span>             <span class="o">/</span>
+         \ <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="o">*----|</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>       <span class="o">/</span>
+          \      <span class="o">|</span>    <span class="o">|</span>           <span class="o">/</span>
+           \     <span class="o">|</span>    <span class="o">|</span>          <span class="o">/</span>
+            \    <span class="o">|</span>    <span class="o">|</span>         <span class="o">/</span>
+             \   <span class="o">|</span>    <span class="o">|</span>        <span class="o">/</span>
+              \  <span class="o">|</span>    <span class="o">|</span>       <span class="o">/</span>
+               \ <span class="o">|</span>    <span class="o">|</span>      <span class="o">/</span>
+                \<span class="o">---*--------</span> <span class="n">near</span> <span class="n">z</span>
+                 <span class="o">|</span>    <span class="o">|</span>    <span class="o">/</span>
+                 <span class="o">|</span>\   <span class="o">|</span>   <span class="o">/</span>
+                 <span class="o">|</span> \  <span class="o">|</span>  <span class="o">/</span>
+                 <span class="o">|</span>  \ <span class="o">|</span> <span class="o">/</span>
+                 <span class="o">|</span>   \<span class="o">|/</span>
+<span class="o">-----------------*----*-</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-------------------</span>
+                <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>If we draw a straight line between (x,z) and (0,0), we will have a right triangle
+with vertices (0,0), (0,z), and (x,z).</p>
+<p>There also will be a similar right triangle with verticies (0,0), (0,nearZ), and
+whatever point the line above intersects the line at z=nearZ.  Let’s call that point
+(projX, nearZ)</p>
+<blockquote>
+<div><p>because right angle and tan(theta) = tan(theta)
+x / z = projX / nearZ
+projX = x / z * nearZ</p>
+<p>So use projX as the transformed x value, and keep the distance z.</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>———– far z
+|          |
+|          |</p>
+</div></blockquote>
+<dl>
+<dt>(x / z * nearZ,z) *       |   non-linear – the transformation of x depends on its z value</dt><dd><div class="line-block">
+<div class="line"><a href="#id1"><span class="problematic" id="id2">|</span></a></div>
+<div class="line"><a href="#id3"><span class="problematic" id="id4">|</span></a></div>
+<div class="line"><a href="#id5"><span class="problematic" id="id6">|</span></a></div>
+<div class="line"><a href="#id7"><span class="problematic" id="id8">|</span></a></div>
+<div class="line"><a href="#id9"><span class="problematic" id="id10">|</span></a></div>
+<div class="line"><a href="#id11"><span class="problematic" id="id12">|</span></a></div>
+<div class="line"><a href="#id13"><span class="problematic" id="id14">|</span></a></div>
+<div class="line"><a href="#id15"><span class="problematic" id="id16">|</span></a></div>
+</div>
+<p>———— near z
+   |    /</p>
+<blockquote>
+<div><dl class="simple">
+<dt>  |   /</dt><dd><dl class="simple">
+<dt> |  /</dt><dd><dl class="simple">
+<dt>| /</dt><dd><p>|/</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+<p>———————-<a href="#id17"><span class="problematic" id="id18">*</span></a>-(0,0)——————-</p>
+</div></blockquote>
+</div></blockquote>
 <p>Top calculation based off of vertical field of view</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                    <span class="o">/*</span> <span class="n">top</span>
                    <span class="o">/</span> <span class="o">|</span>
