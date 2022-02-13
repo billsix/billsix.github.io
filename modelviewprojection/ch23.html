@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Towards Standard Projection Matrix Demo 23 &mdash; Model View Projection 0.0.1 documentation</title>
+  <title>Towards Standard Projection Matrix Pt 2 Demo 23 &mdash; Model View Projection 0.0.1 documentation</title>
       <link rel="stylesheet" href="static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
@@ -19,8 +19,8 @@
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Towards Standard Projection Matrix Pt 2 Demo 24" href="ch24.html" />
-    <link rel="prev" title="OpenGL 3.3 Demo 22" href="ch22.html" /> 
+    <link rel="next" title="Towards Standard Projection Matrix Pt 3 Demo 24" href="ch24.html" />
+    <link rel="prev" title="Towards Standard Projection Matrix Demo 22" href="ch22.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,22 +57,21 @@
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">Game Controller - Demo 18</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch21.html">May be not needed Demo 21</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch22.html">OpenGL 3.3  Demo 22</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Towards Standard Projection Matrix  Demo 23</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">May be not needed Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL 3.3  Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch22.html">Towards Standard Projection Matrix  Demo 22</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Towards Standard Projection Matrix Pt 2 Demo 23</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ch24.html">Towards Standard Projection Matrix Pt 2 Demo 24</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch25.html">Towards Standard Projection Matrix Pt 3 Demo 25</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch26.html">Towards Standard Projection Matrix Pt 4 Demo 26</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch27.html">Towards Standard Projection Matrix Pt 5 Demo 26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch24.html">Towards Standard Projection Matrix Pt 3 Demo 24</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch25.html">Towards Standard Projection Matrix Pt 4 Demo 25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch26.html">Towards Standard Projection Matrix Pt 5 Demo 26</a></li>
 </ul>
 
         </div>
@@ -89,7 +88,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Towards Standard Projection Matrix  Demo 23</li>
+      <li>Towards Standard Projection Matrix Pt 2 Demo 23</li>
       <li class="wy-breadcrumbs-aside">
             <a href="sources/ch23.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -99,17 +98,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="towards-standard-projection-matrix-demo-23">
-<h1>Towards Standard Projection Matrix  Demo 23<a class="headerlink" href="#towards-standard-projection-matrix-demo-23" title="Permalink to this headline">¶</a></h1>
+  <section id="towards-standard-projection-matrix-pt-2-demo-23">
+<h1>Towards Standard Projection Matrix Pt 2 Demo 23<a class="headerlink" href="#towards-standard-projection-matrix-pt-2-demo-23" title="Permalink to this headline">¶</a></h1>
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
-<p>In the vertex shader, we premultiply the matricies
-together to get one perspective projection matrix.</p>
+<p>Remove cameraSpace.z entirely from the perspective matrix.</p>
+<p>This will allow us to use one perspective projection matrix for
+all vertices, independent of the z coordinate of each input vertex.</p>
 </section>
 <section id="how-to-execute">
 <h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
-<p>On Linux or on MacOS, in a shell, type “python src/demo23/demo.py”.
-On Windows, in a command prompt, type “python src\demo23\demo.py”.</p>
+<p>On Linux or on MacOS, in a shell, type “python src/demo24/demo.py”.
+On Windows, in a command prompt, type “python src\demo24\demo.py”.</p>
 </section>
 <section id="move-the-paddles-using-the-keyboard">
 <h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this headline">¶</a></h2>
@@ -179,8 +179,8 @@ On Windows, in a command prompt, type “python src\demo23\demo.py”.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ch22.html" class="btn btn-neutral float-left" title="OpenGL 3.3 Demo 22" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ch24.html" class="btn btn-neutral float-right" title="Towards Standard Projection Matrix Pt 2 Demo 24" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ch22.html" class="btn btn-neutral float-left" title="Towards Standard Projection Matrix Demo 22" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch24.html" class="btn btn-neutral float-right" title="Towards Standard Projection Matrix Pt 3 Demo 24" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

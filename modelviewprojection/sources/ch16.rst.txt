@@ -25,28 +25,28 @@ Moving Camera in 3D Space - Demo 16
 Purpose
 ^^^^^^^
 
-Make a moving camera in 3D space.  Use Ortho to put a rectangular prism
+Make a moving camera in 3D space.  Use Ortho to transform a rectangular prism, defined relative to camera space,
 into NDC.
 
-.. figure:: static/screenshots/camera1.png
+.. figure:: static/screenshots/ortho.png
     :align: center
     :alt: Camera
     :figclass: align-center
 
-    Camera space
+    Camera space with ortho volume
 
 
 Problem purposefully put in
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When moving front to back, parts of the geometry will disappear.
+When running this demo and moving the viewer, parts of the geometry will disappear.
 This is because it gets "clipped out", as the geometry will be outside
 of NDC, (-1 to 1 on all three axis).  We could fix this by making
 a bigger ortho rectangular prism, but that won't solve the fundamental
 problem.
 
-This doesn't look like a 3D application should, where further away
-objects are smaller.  This will be fixed in demo17.
+This doesn't look like a 3D application should, where objects further away
+from the viewer would appear smaller.  This will be fixed in demo17.
 
 
 .. figure:: static/screenshots/demo16.png
@@ -54,7 +54,7 @@ objects are smaller.  This will be fixed in demo17.
     :alt: Demo 16
     :figclass: align-center
 
-    Demo 16
+    Demo 16, which looks like trash
 
 
 How to Execute
@@ -92,6 +92,14 @@ Keyboard Input  Action
 Description
 ^^^^^^^^^^^
 
+
+Before starting this demo, run mvpVisualization/7/demo7.py, as
+it will show graphically all of the steps in this demo.  In the GUI,
+take a look at the camera options buttons, and once the camera
+is placed and oriented in world space, use the buttons to change the camera's position
+and orientation.  This will demonstrate what we have to do for moving the
+camera in a 3D scene.
+
 There are new keyboard inputs to control the moving camera.
 As you would expect to see
 in a first person game, up moves the camera forward (-z),
@@ -101,24 +109,25 @@ for right. Page UP and Page DOWN rotate the camera to look up
 or to look down.
 
 To enable this, the camera is modeled with a data structure,
-having a position in x,y,z, and two rotations (one around
+having a position in x,y,z relative to world space, and two rotations (one around
 the camera's x axis, and one around the camera's y axis).
 
-To position the camera, with all operations relative to world space,
+To position the camera
 you would
 
 #. translate to the camera's position, using the actual position values
-   of camera position (not their negatives)
-#. rotate around the y axis
-#. rotate around the x axis
+   of camera position in world space coordinates.
+#. rotate around the local y axis
+#. rotate around the local x axis
 
-To visualize this, run "python mvpVisualization/demo3.py"
+To visualize this, run "python mvpVisualization/7/demo7.py"
 
 The ordering of 1) before 2) and 3) should be clear, as
 we are imagining a coordinate system that moves, just
 like we do for the modelspace to world space transformations.
-The ordering of 2) and 3) is very important, and 2 rotations
-across different axes are not commutative.
+The ordering of 2) before 3) is very important, as two rotations
+around different axes are not commutative, meaning that you can't
+change the order and still expect the same results
 https://en.wikipedia.org/wiki/Commutative_property.
 
 
@@ -126,8 +135,9 @@ https://en.wikipedia.org/wiki/Commutative_property.
 Try this.  Rotate your head to the right a little more that
 45 degrees.  Now rotate your head back a little more than 45 degrees.
 
-Now, reset your head (glPopMatrix). Try rotating your head back 45 degrees.  Once it's there,
-rotate your head (not your neck), 45 degrees.  It's different, and uncomfortable!
+Now, reset your head (glPopMatrix, which we have not yet covered).
+Try rotating your head back 45 degrees.  Once it's there,
+rotate your head (not your neck), 45 degrees.  It's different, and quite uncomfortable!
 
 We rotate the camera by the y axis first, then by the relative x axis,
 for the same reason.
@@ -136,8 +146,8 @@ for the same reason.
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 295
-   :lines: 295-297
+   :lineno-start: 305
+   :lines: 305-309
 
 
 (Remember, read bottom up, just like the previous demos
@@ -148,12 +158,15 @@ Back to the point, we are envisioning the camera relative to the world
 space by making a moving coordinate system (composed of an origin, 1 unit
 in the "x" axis, 1 unit in the "y" axis, and 1 unit in the "z" axis), where
 each subsequent transformation is relative to the previous coordinate system.
-(This system is beneficial btw because it allows us to think of one coordinate
-system at a time, and forget how we got there, (similar to a Markov process,
+(This system is beneficial btw because it allows us to think of only one coordinate
+system at a time, and allows us to forget how we got there, (similar to a Markov process,
 https://en.wikipedia.org/wiki/Markov_chain))
 
-But that system of thinking works only when we are placing the camera into
-it's position/orientation.  Looking at
+But this system of thinking works only when we are placing the camera into
+it's position/orientation relative to world space, which is not what we need
+to actually do.  We don't need to place the camera.
+We need to move every already-plotted object in world space towards the origin and
+orientation of NDC.  Looking at the following graph,
 
 .. figure:: static/demo10-2.png
     :align: center
@@ -162,13 +175,10 @@ it's position/orientation.  Looking at
 
     Demo 10
 
-thinking in this way would allow us to transform vertices defined in camera space
-to world space, just like the paddles/square.
-
-But we don't want that.  Instead, we want to take the modelspace geometry from,
+We want to take the modelspace geometry from,
 say Paddle1 space, to world space,
-and then to camera space (which is going in the opposite direction, therefore requires
-an inverse operation.
+and then to camera space (which is going in the opposite direction of the arrow, therefore requires
+an inverse operation, because to plot data we go from modelspace to screen space on the graph.
 
 Given that the inverse of a sequence of transformations is the sequence backwards,
 with each transformations inverted, we must do that to get from world space
@@ -180,159 +190,191 @@ The inverted form is
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 298
-   :lines: 298-300
+   :lineno-start: 310
+   :lines: 310-314
 
 
 
-Trying to reason about the camera's position and orientation is difficult.
-As such, in this demo, I have added the non-inverted transformations for camera
-placement in world space
-in the comments, but will not do so in subsequent demos.
-p
+..
+   Trying to reason about the camera's position and orientation is difficult.
+   As such, in this demo, I have added the non-inverted transformations for camera
+   placement in world space
+   in the comments (listed first), and then the inverted form after, but will not do so in subsequent demos.
 
-Before we start, take a look at ../mvpVisualization/demo.py
-to see the 3D geometry drawn both in world space and in their modelspace.
+..
+   To count in the modelspace, look at a given axis (which I've drawn in units
+   of 10 for ease of viewing, although it should normally be in units of 1)
+   On the red axis, it's 2*10 units wide, and 6*10 units tall, which matches
+   the modelspace data in the constructor for the Paddles.
 
-To count in the modelspace, look at a given axis (which I've drawn in units
-of 10 for ease of viewing, although it should normally be in units of 1)
-On the red axis, it's 2*10 units wide, and 6*10 units tall, which matches
-the modelspace data in the constructor for the Paddles.
+   Take a look at ../mvpVisualization/demoAnimation.py to see an animated
+   version of the axis being moved from into their world space positions,
+   relative to which the modelspace data is drawn.
 
-Take a look at ../mvpVisualization/demoAnimation.py to see an animated
-version of the axis being moved from into their world space positions,
-relative to which the modelspace data is drawn.
+   The gray axis in the middle happens when we hold onto the original
+   axes, as we first draw paddle 1 relative to it, the square relative
+   to paddle1, but we need to later get back to world space so that we
+   can draw paddle2.  In later code, we will use glPushMatrix to
+   save onto a copy of the current axes, and glPopMatrix to discard
+   our "current at the time" axis, returning back to the saved axis.  Like a quicksave
+   in a video game.
 
-The gray axis in the middle happens when we hold onto the original
-axes, as we first draw paddle 1 relative to it, the square relative
-to paddle1, but we need to later get back to world space so that we
-can draw paddle2.  In later code, we will use glPushMatrix to
-save onto a copy of the current axes, and glPopMatrix to discard
-our "current at the time" axis, returning back to the saved axis.  Like a quicksave
-in a video game.
+   To follow along with the code, read the transformations from modelspace
+   to worldspace backwards, and you will see how the axes are moving and
+   why.
 
-To follow along with the code, read the transformations from modelspace
-to worldspace backwards, and you will see how the axes are moving and
-why.
+   Take a look at ../mvpVisualization/demoViewWorldTopLevel.py to see an
+   animated version that shows the objects being placed in world space,
+   the camera being put into it's space using the normal way of thinking
+   of a coordinate system being moved, but then the transformations
+   are inverted, brining the objects in world space with it,
+   in backwards order, to put the NDC cube defined in camera
+   space to the NDC defined in world space.  One way to think of it,
+   is that NDC is defined at the top level of the tree of transformations,
+   so in world space.  We need to get the -1 to 1 space in x,y,z relative
+   to camera space to match the -1 to 1 space in world space.
 
-Take a look at ../mvpVisualization/demoViewWorldTopLevel.py to see an
-animated version that shows the objects being placed in world space,
-the camera being put into it's space using the normal way of thinking
-of a coordinate system being moved, but then the transformations
-are inverted, brining the objects in world space with it,
-in backwards order, to put the NDC cube defined in camera
-space to the NDC defined in world space.  One way to think of it,
-is that NDC is defined at the top level of the tree of transformations,
-so in world space.  We need to get the -1 to 1 space in x,y,z relative
-to camera space to match the -1 to 1 space in world space.
+   eog ../images/demo10.png
 
-eog ../images/demo10.png
+   Why do we do this?  Because it doesn't matter how we think about
+   the coordinate transformations, the computer will always execute
+   the code from top down, take the resulting coordinates, and clip
+   out anything outside of -1 to 1. So, world space. The computer has no notion
+   of camera space, it's our own invention, so we need to get the coordinates
+   that we care about into that space.
 
-Why do we do this?  Because it doesn't matter how we think about
-the coordinate transformations, the computer will always execute
-the code from top down, take the resulting coordinates, and clip
-out anything outside of -1 to 1. So, world space. The computer has no notion
-of camera space, it's our own invention, so we need to get the coordinates
-that we care about into that space.
-
-After looking at the demos and explaining the code, now cover the camera movement code.
+   After looking at the demos and explaining the code, now cover the camera movement code.
 
 Other things added
 Added rotations around the x axis, y axis, and z axis.
 https://en.wikipedia.org/wiki/Rotation_matrix
 
 
+Code
+^^^^
 
-
-.. literalinclude:: ../src/demo16/demo.py
-   :language: python
-   :linenos:
-   :lineno-start: 168
-   :lines: 126-151
+The camera now has two angles as instance variables.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 191
-   :lines: 191-200
+   :lineno-start: 195
+   :lines: 195-199
+
+Since we want the user to be able to control the camera, we need
+to read the input.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 213
-   :lines: 213-240
+   :lineno-start: 217
+   :lines: 217
+
+::
+
+    ...
+
+Left and right rotate the viewer's horizontal
+angle, page up and page down the vertical angle.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 285
-   :lines: 285-326
+   :lineno-start: 228
+   :lines: 228-235
 
+
+The up arrow and down arrow make the user move forwards
+and backwards.  Unlike the camera space to world space
+transformation on line 305-309, here for movement code,
+we don't do the rotate around the x axis.  This is because
+users expect to simulate walking on the ground, not flying
+through the sky.  I.e, we want forward/backwards movement to happen relative
+to the XZ plane at the camera's position, not forward/backwards
+movement relative to camera space.
+
+.. literalinclude:: ../src/demo16/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 236
+   :lines: 236-253
+
+
+
+Ortho is the function call that shrinks the viewable region
+relative to camera space down to NDC, by moving the center of the rectangular
+prism to the origin, and scaling by the inverse of the width, height, and depth
+of the viewable region.
+
+.. literalinclude:: ../src/demo16/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 127
+   :lines: 127-151
+
+We will make a wrapper function camera_space_to_ndc_space_fn which
+calls ortho, setting the size of the rectangular prism.
+
+.. literalinclude:: ../src/demo16/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 152
+   :lines: 152-155
+
+
+
+
+
+
+Event Loop
+~~~~~~~~~~
+
+The amount of repetition in the code below in starting to get brutal,
+as there's too much detail to think about and retype out for every object
+being drawn, and we're only dealing with 3 objects.  The author
+put this repetition into the book on purpose, so that when we
+start using matricies later, the reader will fully appreciate what
+matricies solve for us.
+
+.. literalinclude:: ../src/demo16/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 282
+   :lines: 282
+
+
+::
+
+    ...
+
+Paddle 1
+
+.. literalinclude:: ../src/demo16/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 298
+   :lines: 298-317
+
+
+
+Square
 
 the square should not be visible when hidden behind the paddle1,
-as we did a translate by -10.
-this is because without depth buffering, the object drawn last
-clobbers the color of any previously drawn object at the pixel.
-Try moving the square drawing code to the beginning, and you will
-see that the square can be hidden behind the paddle.
+as we did a translate by -10 in the z direction.
 
 
-NEW
-The input for the camera is completely different
-move multiple
-
-TODO -  explaing movement on XZ-plane, on line 230
-TODO -  show camera movement in graphviz
-
-
-pressing right or left changs the rotation of the y axis,
-making you look left or right
-pressing page up or page down changes how you'll rotate
-on the relative x axis to look up or down, after
-you've rotated left or right
-Don't worry about understanding the movement of the camera in 3D
-space for now, this will be explained in demo18.
-But, if you want a preview, run ../mvpVisualization/demoViewWorldTopLevel.py,
-and look at when the camera translates to it's position, and rotates horizontally.
-(before rotating vertically to look up).  The relative negative z axis is where
-pressing up will take you, strafing to the right would be in the direction of
-the local x axis.
+.. literalinclude:: ../src/demo16/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 319
+   :lines: 319-346
 
 
-on line 288
 
-::
-        #   The camera's position would be placed here, but we need
-        #   to do the inverse transformation to get from worldspace
-        #   to camera space, from which NDC will be defined.
-        #       world_space=   camera_space.rotate_x(camera.rot_x)
-        #                                  .rotate_y(camera.rot_y)
-        #                                  .translate(tx=camera.x,
-        #                                             ty=camera.y,
-        #                                             tz=camera.z)
+Paddle 2
 
-
-on line 310
-
-::
-        #   The camera's position would be placed here, but we need
-        #   to do the inverse transformation to get from worldspace
-        #   to camera space, from which NDC will be defined.
-        #                       world_space.rotate_x(camera.rot_x)
-        #                                  .rotate_y(camera.rot_y)
-        #                                  .translate(tx=camera.x,
-        #                                             ty=camera.y,
-        #                                             tz=camera.z)
-
-on line 326
-
-::
-
-        #   The camera's position would be placed here, but we need
-        #   to do the inverse transformation to get from worldspace
-        #   to camera space, from which NDC will be defined.
-        #                       world_space.rotate_x(camera.rot_x)
-        #                                  .rotate_y(camera.rot_y)
-        #                                  .translate(tx=camera.x,
-        #                                             ty=camera.y,
-        #                                             tz=camera.z)
+.. literalinclude:: ../src/demo16/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 348
+   :lines: 348-367

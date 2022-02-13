@@ -25,7 +25,7 @@
 Purpose
 ^^^^^^^
 
-Implement a perspective project so that objects
+Implement a perspective projection so that objects
 further away are smaller than the would be
 if they were close by
 
@@ -120,23 +120,24 @@ Description
 ::
 
 
-                      ------------------------------ far z
-                      \             |              /
-                       \            |             /
-                        \ (x,z) *   |            /
-                         \          |           /
-                          \         |          /
-                           \        |         /
-                            \       |        /
-                             \      |       /
-                              \     |      /
-                               ------------ near z
-                               \    |    /
-                                \   |   /
-                                 \  |  /
-                                  \ | /
-                                   \|/
-              ----------------------*-(0,0)-------------------
+                     ------------------------------- far z
+                     \              |              /
+                      \             |             /
+                       \ (x,z) *----|(0,z)       /
+                        \      |    |           /
+                         \     |    |          /
+                          \    |    |         /
+                           \   |    |        /
+                            \  |    |       /
+                             \ |    |      /
+                              \------------ near z
+                               |    |    /
+                               |\   |   /
+                               | \  |  /
+                               |  \ | /
+                               |   \|/
+              -----------------*----*-(0,0)-------------------
+                              (x,0)
 
         because right angle and tan(theta) = tan(theta)
         x / z = projX / nearZ
@@ -163,6 +164,59 @@ Description
               ----------------------*-(0,0)-------------------
 
 
+
+Top calculation based off of vertical field of view
+
+::
+
+                              /* top
+                             / |
+                            /  |
+                           /   |
+                          /    |
+                         /     |
+                        /      |
+                       /       |
+                      /        |
+                     /         |
+                    /          |
+                   /           |
+                  /            |
+           origin/             |
+                / fov/2        |
+          z----*---------------*
+               |\              |-nearZ
+               | \             |
+               |  \            |
+               x   \           |
+                    \          |
+                     \         |
+                      \        |
+                       \       |
+                        \      |
+                         \     |
+                          \    |
+                           \   |
+                            \  |
+                             \ |
+                              \|
+
+Right calculation based off of Top and aspect ration
+
+::
+
+                                   top
+           -------------------------------------------------------
+           |                                                     |
+           |                         y                           |
+           |                         |                           |
+           |                         |                           |
+           |                         *----x                      | right =
+           |                            origin                   |   top * aspectRatio
+           |                                                     |
+           |                                                     |  aspect ratio should be the viewport's
+           |                                                     |    width/height, not necessarily the
+           -------------------------------------------------------    window's
 
 
 .. literalinclude:: ../src/demo17/demo.py

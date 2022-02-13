@@ -19,7 +19,7 @@
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Game Controller - Demo 18" href="ch18.html" />
+    <link rel="next" title="Lambda Stack - Demo 18" href="ch18.html" />
     <link rel="prev" title="Moving Camera in 3D Space - Demo 16" href="ch16.html" /> 
 </head>
 
@@ -63,16 +63,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">Game Controller - Demo 18</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch19.html">Lambda Stack - Demo 19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch20.html">Matrix Stacks - Demo 20</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch21.html">May be not needed Demo 21</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch22.html">OpenGL 3.3  Demo 22</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch23.html">Towards Standard Projection Matrix  Demo 23</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch24.html">Towards Standard Projection Matrix Pt 2 Demo 24</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch25.html">Towards Standard Projection Matrix Pt 3 Demo 25</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch26.html">Towards Standard Projection Matrix Pt 4 Demo 26</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch27.html">Towards Standard Projection Matrix Pt 5 Demo 26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">May be not needed Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL 3.3  Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch22.html">Towards Standard Projection Matrix  Demo 22</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch23.html">Towards Standard Projection Matrix Pt 2 Demo 23</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch24.html">Towards Standard Projection Matrix Pt 3 Demo 24</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch25.html">Towards Standard Projection Matrix Pt 4 Demo 25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch26.html">Towards Standard Projection Matrix Pt 5 Demo 26</a></li>
 </ul>
 
         </div>
@@ -103,7 +102,7 @@
 <h1>3D Perspective - Demo 17<a class="headerlink" href="#d-perspective-demo-17" title="Permalink to this headline">¶</a></h1>
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
-<p>Implement a perspective project so that objects
+<p>Implement a perspective projection so that objects
 further away are smaller than the would be
 if they were close by</p>
 <figure class="align-center" id="id1">
@@ -214,23 +213,24 @@ On Windows, in a command prompt, type “python src\demo17\demo.py”.</p>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>              <span class="o">------------------------------</span> <span class="n">far</span> <span class="n">z</span>
-              \             <span class="o">|</span>              <span class="o">/</span>
-               \            <span class="o">|</span>             <span class="o">/</span>
-                \ <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="o">*</span>   <span class="o">|</span>            <span class="o">/</span>
-                 \          <span class="o">|</span>           <span class="o">/</span>
-                  \         <span class="o">|</span>          <span class="o">/</span>
-                   \        <span class="o">|</span>         <span class="o">/</span>
-                    \       <span class="o">|</span>        <span class="o">/</span>
-                     \      <span class="o">|</span>       <span class="o">/</span>
-                      \     <span class="o">|</span>      <span class="o">/</span>
-                       <span class="o">------------</span> <span class="n">near</span> <span class="n">z</span>
-                       \    <span class="o">|</span>    <span class="o">/</span>
-                        \   <span class="o">|</span>   <span class="o">/</span>
-                         \  <span class="o">|</span>  <span class="o">/</span>
-                          \ <span class="o">|</span> <span class="o">/</span>
-                           \<span class="o">|/</span>
-      <span class="o">----------------------*-</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-------------------</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>             <span class="o">-------------------------------</span> <span class="n">far</span> <span class="n">z</span>
+             \              <span class="o">|</span>              <span class="o">/</span>
+              \             <span class="o">|</span>             <span class="o">/</span>
+               \ <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="o">*----|</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>       <span class="o">/</span>
+                \      <span class="o">|</span>    <span class="o">|</span>           <span class="o">/</span>
+                 \     <span class="o">|</span>    <span class="o">|</span>          <span class="o">/</span>
+                  \    <span class="o">|</span>    <span class="o">|</span>         <span class="o">/</span>
+                   \   <span class="o">|</span>    <span class="o">|</span>        <span class="o">/</span>
+                    \  <span class="o">|</span>    <span class="o">|</span>       <span class="o">/</span>
+                     \ <span class="o">|</span>    <span class="o">|</span>      <span class="o">/</span>
+                      \<span class="o">------------</span> <span class="n">near</span> <span class="n">z</span>
+                       <span class="o">|</span>    <span class="o">|</span>    <span class="o">/</span>
+                       <span class="o">|</span>\   <span class="o">|</span>   <span class="o">/</span>
+                       <span class="o">|</span> \  <span class="o">|</span>  <span class="o">/</span>
+                       <span class="o">|</span>  \ <span class="o">|</span> <span class="o">/</span>
+                       <span class="o">|</span>   \<span class="o">|/</span>
+      <span class="o">-----------------*----*-</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-------------------</span>
+                      <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">because</span> <span class="n">right</span> <span class="n">angle</span> <span class="ow">and</span> <span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">=</span> <span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">/</span> <span class="n">z</span> <span class="o">=</span> <span class="n">projX</span> <span class="o">/</span> <span class="n">nearZ</span>
@@ -255,6 +255,55 @@ On Windows, in a command prompt, type “python src\demo17\demo.py”.</p>
                           \ <span class="o">|</span> <span class="o">/</span>
                            \<span class="o">|/</span>
       <span class="o">----------------------*-</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-------------------</span>
+</pre></div>
+</div>
+<p>Top calculation based off of vertical field of view</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                    <span class="o">/*</span> <span class="n">top</span>
+                   <span class="o">/</span> <span class="o">|</span>
+                  <span class="o">/</span>  <span class="o">|</span>
+                 <span class="o">/</span>   <span class="o">|</span>
+                <span class="o">/</span>    <span class="o">|</span>
+               <span class="o">/</span>     <span class="o">|</span>
+              <span class="o">/</span>      <span class="o">|</span>
+             <span class="o">/</span>       <span class="o">|</span>
+            <span class="o">/</span>        <span class="o">|</span>
+           <span class="o">/</span>         <span class="o">|</span>
+          <span class="o">/</span>          <span class="o">|</span>
+         <span class="o">/</span>           <span class="o">|</span>
+        <span class="o">/</span>            <span class="o">|</span>
+ <span class="n">origin</span><span class="o">/</span>             <span class="o">|</span>
+      <span class="o">/</span> <span class="n">fov</span><span class="o">/</span><span class="mi">2</span>        <span class="o">|</span>
+<span class="n">z</span><span class="o">----*---------------*</span>
+     <span class="o">|</span>\              <span class="o">|-</span><span class="n">nearZ</span>
+     <span class="o">|</span> \             <span class="o">|</span>
+     <span class="o">|</span>  \            <span class="o">|</span>
+     <span class="n">x</span>   \           <span class="o">|</span>
+          \          <span class="o">|</span>
+           \         <span class="o">|</span>
+            \        <span class="o">|</span>
+             \       <span class="o">|</span>
+              \      <span class="o">|</span>
+               \     <span class="o">|</span>
+                \    <span class="o">|</span>
+                 \   <span class="o">|</span>
+                  \  <span class="o">|</span>
+                   \ <span class="o">|</span>
+                    \<span class="o">|</span>
+</pre></div>
+</div>
+<p>Right calculation based off of Top and aspect ration</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                        <span class="n">top</span>
+<span class="o">-------------------------------------------------------</span>
+<span class="o">|</span>                                                     <span class="o">|</span>
+<span class="o">|</span>                         <span class="n">y</span>                           <span class="o">|</span>
+<span class="o">|</span>                         <span class="o">|</span>                           <span class="o">|</span>
+<span class="o">|</span>                         <span class="o">|</span>                           <span class="o">|</span>
+<span class="o">|</span>                         <span class="o">*----</span><span class="n">x</span>                      <span class="o">|</span> <span class="n">right</span> <span class="o">=</span>
+<span class="o">|</span>                            <span class="n">origin</span>                   <span class="o">|</span>   <span class="n">top</span> <span class="o">*</span> <span class="n">aspectRatio</span>
+<span class="o">|</span>                                                     <span class="o">|</span>
+<span class="o">|</span>                                                     <span class="o">|</span>  <span class="n">aspect</span> <span class="n">ratio</span> <span class="n">should</span> <span class="n">be</span> <span class="n">the</span> <span class="n">viewport</span><span class="s1">&#39;s</span>
+<span class="o">|</span>                                                     <span class="o">|</span>    <span class="n">width</span><span class="o">/</span><span class="n">height</span><span class="p">,</span> <span class="ow">not</span> <span class="n">necessarily</span> <span class="n">the</span>
+<span class="o">-------------------------------------------------------</span>    <span class="n">window</span><span class="s1">&#39;s</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">94</span><span class="nd">@dataclass</span>
@@ -348,7 +397,7 @@ On Windows, in a command prompt, type “python src\demo17\demo.py”.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="ch16.html" class="btn btn-neutral float-left" title="Moving Camera in 3D Space - Demo 16" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ch18.html" class="btn btn-neutral float-right" title="Game Controller - Demo 18" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ch18.html" class="btn btn-neutral float-right" title="Lambda Stack - Demo 18" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
