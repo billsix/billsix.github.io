@@ -57,8 +57,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#event-loop">Event Loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rotate-z">Rotate Z</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rotate-x">Rotate X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rotate-y">Rotate Y</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#event-loop">Event Loop</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
@@ -223,6 +231,8 @@ moves in the direction that your fingers did.</p></li>
 <span class="linenos">97</span>        <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">tx</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">ty</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">tz</span><span class="p">)</span>
 </pre></div>
 </div>
+<section id="rotate-z">
+<h3>Rotate Z<a class="headerlink" href="#rotate-z" title="Permalink to this headline">¶</a></h3>
 <p>Rotate Z is the same rotate that we’ve used so far, but doesn’t affect
 the z component at all.</p>
 <figure class="align-center">
@@ -235,6 +245,9 @@ the z component at all.</p>
 <span class="linenos">118</span>        <span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="rotate-x">
+<h3>Rotate X<a class="headerlink" href="#rotate-x" title="Permalink to this headline">¶</a></h3>
 <figure class="align-center">
 <img alt="Rotate X" src="images/Sinus_und_Kosinus_am_Einheitskreis_4.svg" /></figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 99</span>    <span class="k">def</span> <span class="nf">rotate_x</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
@@ -245,6 +258,9 @@ the z component at all.</p>
 <span class="linenos">104</span>        <span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="rotate-y">
+<h3>Rotate Y<a class="headerlink" href="#rotate-y" title="Permalink to this headline">¶</a></h3>
 <figure class="align-center">
 <img alt="Rotate Y" src="images/Sinus_und_Kosinus_am_Einheitskreis_5.svg" /></figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">106</span>    <span class="k">def</span> <span class="nf">rotate_y</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
@@ -259,6 +275,10 @@ the z component at all.</p>
 <span class="linenos">121</span>        <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scale_x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scale_y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">scale_z</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
 <p>The only new aspect of the code below is that the paddles have
 a z-coordinate of 0 in their modelspace.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">134</span><span class="n">paddle1</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
@@ -301,9 +321,8 @@ are subject to be different.</p>
 <span class="linenos">177</span><span class="p">]</span>
 </pre></div>
 </div>
-</section>
 <section id="event-loop">
-<h2>Event Loop<a class="headerlink" href="#event-loop" title="Permalink to this headline">¶</a></h2>
+<h3>Event Loop<a class="headerlink" href="#event-loop" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">230</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
@@ -391,6 +410,7 @@ see that the square can be hidden behind the paddle.</p>
 the 2D versions, just with the same process applied to the z axis.</p>
 <p>They direction of the rotation is defined by the right hand rule.</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Right-hand_rule">https://en.wikipedia.org/wiki/Right-hand_rule</a></p>
+</section>
 </section>
 </section>
 
