@@ -355,18 +355,13 @@ all dimensions without flipping, hence the negative sign in front of cameraSpace
                          {y_c}, \\
                          {z_c}, \\
                          {w_c=1}, \\
-               \end{bmatrix}; farZ, nearZ, top, right) &amp; =  \vec{f}_{ndc}^{clip} ( \begin{bmatrix}
-                  nearZ/(right * z_c)&amp;             0.0 &amp;                      0.0 &amp;                0.0 \\
-                  0.0 &amp;                           nearZ/(top*z_c) &amp;           0.0 &amp;                0.0 \\
-                  0.0 &amp;                           0.0 &amp;                       2.0/(nearZ - farZ) &amp; -(farZ + nearZ)/(nearZ - farZ) \\
-                  0.0 &amp;                           0.0 &amp;                       0.0 &amp;                1.0
-               \end{bmatrix} *
+               \end{bmatrix}; farZ, nearZ, top, right) &amp; =  (\vec{f}_{ndc}^{clip} \circ \vec{f}_{c}^{ndc})  *
                 \begin{bmatrix}
                          {x_c}, \\
                          {y_c}, \\
                          {z_c}, \\
                          {w_c=1}, \\
-               \end{bmatrix}) \\
+               \end{bmatrix} \\
                &amp; = \begin{bmatrix}
                          -nearZ/right &amp;         0.0 &amp;        0.0 &amp;                                   0.0 \\
                          0.0 &amp;                  -nearZ/top &amp; 0.0 &amp;                                   0.0 \\
