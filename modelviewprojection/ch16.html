@@ -72,13 +72,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch20.html">May be not needed Demo 20</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL 3.3  Demo 21</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch22.html">Towards Standard Projection Matrix  Demo 22</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch23.html">Towards Standard Projection Matrix Pt 2 Demo 23</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch24.html">Towards Standard Projection Matrix Pt 3 Demo 24</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch25.html">Towards Standard Projection Matrix Pt 4 Demo 25</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch26.html">Towards Standard Projection Matrix Pt 5 Demo 26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 </ul>
 
         </div>
@@ -287,7 +281,7 @@ Added rotations around the x axis, y axis, and z axis.
 <section id="code">
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
 <p>The camera now has two angles as instance variables.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">195</span><span class="nd">@dataclass</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">195</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
 <span class="linenos">196</span><span class="k">class</span> <span class="nc">Camera</span><span class="p">:</span>
 <span class="linenos">197</span>    <span class="n">position_worldspace</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mf">50.0</span><span class="p">)</span>
 <span class="linenos">198</span>    <span class="n">rot_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -396,8 +390,8 @@ matricies solve for us.</p>
 </pre></div>
 </div>
 <p>Paddle 1</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">298</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">299</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">298</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">299</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
 <span class="linenos">300</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 <span class="linenos">301</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
 <span class="linenos">302</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
@@ -414,15 +408,15 @@ matricies solve for us.</p>
 <span class="linenos">313</span>                                           <span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span> \
 <span class="linenos">314</span>                                           <span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">)</span>
 <span class="linenos">315</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">camera_space_to_ndc_space_fn</span><span class="p">()</span>
-<span class="linenos">316</span>        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos">317</span>    <span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos">316</span>        <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<span class="linenos">317</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Square</p>
 <p>the square should not be visible when hidden behind the paddle1,
 as we did a translate by -10 in the z direction.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">319</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">320</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">319</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">320</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
 <span class="linenos">321</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">square</span><span class="p">:</span>
 <span class="linenos">322</span>        <span class="n">paddle_1_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">square_rotation</span><span class="p">)</span> \
 <span class="linenos">323</span>                                            <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span>
@@ -447,13 +441,13 @@ as we did a translate by -10 in the z direction.</p>
 <span class="linenos">342</span>                                          <span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span> \
 <span class="linenos">343</span>                                          <span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">)</span>
 <span class="linenos">344</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">camera_space_to_ndc_space_fn</span><span class="p">()</span>
-<span class="linenos">345</span>        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos">346</span>    <span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos">345</span>        <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<span class="linenos">346</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Paddle 2</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">348</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">349</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">348</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">349</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
 <span class="linenos">350</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 <span class="linenos">351</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
 <span class="linenos">352</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
@@ -470,8 +464,8 @@ as we did a translate by -10 in the z direction.</p>
 <span class="linenos">363</span>                                          <span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span> \
 <span class="linenos">364</span>                                          <span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">)</span>
 <span class="linenos">365</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">camera_space_to_ndc_space_fn</span><span class="p">()</span>
-<span class="linenos">366</span>        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos">367</span>    <span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos">366</span>        <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<span class="linenos">367</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>

@@ -73,13 +73,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch20.html">May be not needed Demo 20</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL 3.3  Demo 21</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch22.html">Towards Standard Projection Matrix  Demo 22</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch23.html">Towards Standard Projection Matrix Pt 2 Demo 23</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch24.html">Towards Standard Projection Matrix Pt 3 Demo 24</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch25.html">Towards Standard Projection Matrix Pt 4 Demo 25</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch26.html">Towards Standard Projection Matrix Pt 5 Demo 26</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 </ul>
 
         </div>
@@ -188,8 +182,8 @@ Consult the python source for the full, working code.</p>
 <ul class="simple">
 <li><p>declare a function to configure OpenGL to draw only in a square subset of the monitor, i.e. the viewport</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">59</span>    <span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">60</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">59</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">60</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glClear</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -207,8 +201,8 @@ So now the entire framebuffer is gray.</p></li>
 <li><p>To make a square subregion, we need a number for the distance between vertices of the square.
 By using the minimium of the width and height, we can at least fill up the screen in one dimension.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">66</span>    <span class="n">glEnable</span><span class="p">(</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
-<span class="linenos">67</span>    <span class="n">glScissor</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">66</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glEnable</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
+<span class="linenos">67</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glScissor</span><span class="p">(</span>
 <span class="linenos">68</span>        <span class="nb">int</span><span class="p">((</span><span class="n">width</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span> <span class="c1"># bottom left x_screenspace</span>
 <span class="linenos">69</span>        <span class="nb">int</span><span class="p">((</span><span class="n">height</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span><span class="c1"># bottom left y_screenspace</span>
 <span class="linenos">70</span>        <span class="n">square_size</span><span class="p">,</span>                      <span class="c1"># x width, screenspace</span>
@@ -239,14 +233,14 @@ per fragment (i.e. pixel) than just it’s current color.</p></li>
 <li><p>Look at the image above of NDC superimposed on Screen Space.  From this,
 the arguments sent to glScissor should be clear.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">74</span>    <span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">75</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">74</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">75</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glClear</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>glClear will only update the square to black values.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">76</span>    <span class="n">glDisable</span><span class="p">(</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">76</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glDisable</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -259,7 +253,7 @@ still set to the whole framebuffer.  But, we only want to draw within the black 
 We set the viewport again, so that the NDC coordinates
 will be mapped the the region of screen coordinates
 that we care about, which is the black square.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">78</span>    <span class="n">glViewport</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">78</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glViewport</span><span class="p">(</span>
 <span class="linenos">79</span>        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
 <span class="linenos">80</span>        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
 <span class="linenos">81</span>        <span class="n">square_size</span><span class="p">,</span>
@@ -280,8 +274,8 @@ the window.</p>
 <span class="linenos">87</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
 <span class="linenos">88</span>
 <span class="linenos">89</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-<span class="linenos">90</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-<span class="linenos">91</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
+<span class="linenos">90</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="linenos">91</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glClear</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">93</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
@@ -291,22 +285,22 @@ the window.</p>
 <li><p>The event loop is the same as the previous demo, except
 that we call draw_in_square_viewport every frame at the beginning.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 95</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos"> 96</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos"> 97</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos"> 98</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos"> 99</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">100</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">101</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 95</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos"> 96</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos"> 97</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos"> 98</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos"> 99</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">100</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">101</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
 <span class="linenos">102</span>
-<span class="linenos">103</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">104</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">103</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">104</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
 <span class="linenos">105</span>
-<span class="linenos">106</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">107</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">108</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">109</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">110</span>    <span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos">106</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">107</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">108</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">109</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">110</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
 <span class="linenos">111</span>
 <span class="linenos">112</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
