@@ -15,8 +15,8 @@
         <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
         <script src="static/jquery.js"></script>
         <script src="static/underscore.js"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -53,12 +53,15 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#draw-paddle-1">Draw Paddle 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#draw-paddle-2">Draw Paddle 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#normalized-device-coordinates">Normalized-Device-Coordinates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#graph-of-spaces">Graph of Spaces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#introduction-to-cayley-graphs">Introduction to Cayley Graphs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#learning-what-to-ignore">Learning what to ignore</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#exercise">Exercise</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
@@ -106,9 +109,9 @@
            <div itemprop="articleBody">
              
   <section id="draw-a-rectange-demo-02">
-<h1>Draw A Rectange - Demo 02<a class="headerlink" href="#draw-a-rectange-demo-02" title="Permalink to this headline">¶</a></h1>
+<h1>Draw A Rectange - Demo 02<a class="headerlink" href="#draw-a-rectange-demo-02" title="Permalink to this heading">¶</a></h1>
 <section id="purpose">
-<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
 <p>Learn how to plot a rectangle.  Learn about OpenGL’s coordinate system, normalized-device coordinates,
 which are from -1.0 to 1.0, in the X, Y, and Z directions.  Anything drawn entirely outside
 of this region will not be displayed on the screen.</p>
@@ -120,24 +123,24 @@ of this region will not be displayed on the screen.</p>
 </figure>
 </section>
 <section id="how-to-execute">
-<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this headline">¶</a></h2>
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this heading">¶</a></h2>
 <p>On Linux or on MacOS, in a shell, type “python src/demo02/demo.py”.
 On Windows, in a command prompt, type “python src\demo02\demo.py”.</p>
 </section>
 <section id="code">
-<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
 <section id="glfw-opengl-initialization">
-<h3>GLFW/OpenGL Initialization<a class="headerlink" href="#glfw-opengl-initialization" title="Permalink to this headline">¶</a></h3>
+<h3>GLFW/OpenGL Initialization<a class="headerlink" href="#glfw-opengl-initialization" title="Permalink to this heading">¶</a></h3>
 <p>The setup code is the same.  Initialize GLFW.  Set the OpenGL version.
 Create the window.  Set a key handler for closing.  Set the background to be black.
 Execute the event/drawing loop.</p>
 </section>
 <section id="the-event-loop">
-<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this headline">¶</a></h3>
+<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
 <p>Within the event loop, demo02/demo.py draws 2 rectangles, as one might see in
 a game of Pong.</p>
 <section id="draw-paddles">
-<h4>Draw Paddles<a class="headerlink" href="#draw-paddles" title="Permalink to this headline">¶</a></h4>
+<h4>Draw Paddles<a class="headerlink" href="#draw-paddles" title="Permalink to this heading">¶</a></h4>
 <p>A black screen is not particularly interesting, so
 let’s draw something, say, two rectangles.</p>
 <p>We need to figure out what colors to use, and the positions of the rectangles, defined
@@ -152,13 +155,18 @@ lets make the first paddle purple, and a second paddle red.</p>
 quadrilateral.  The vertices will be specified by calling “glVertex2f” 4 times.</p>
 <p>“glEnd()” tells OpenGL that we have finished providing vertices for
 the begun quadrilateral.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">64</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">65</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">66</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">67</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">68</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">69</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">70</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+</section>
+</section>
+</section>
+<section id="draw-paddle-1">
+<h2>Draw Paddle 1<a class="headerlink" href="#draw-paddle-1" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">76</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">77</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">78</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">79</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">80</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">81</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">82</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>The paddle looks like this relative to normalized device coordinates (NDC):</p>
@@ -168,13 +176,16 @@ the begun quadrilateral.</p>
 <p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">72</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">73</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">74</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">75</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">76</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">77</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">78</span>    <span class="n">OpenGL</span><span class="o">.</span><span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+</section>
+<section id="draw-paddle-2">
+<h2>Draw Paddle 2<a class="headerlink" href="#draw-paddle-2" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">84</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">85</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">86</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">87</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">88</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">89</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">90</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>The 2 paddles looks like this relative to normalized device coordinates (NDC):</p>
@@ -184,7 +195,7 @@ the begun quadrilateral.</p>
 <p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">80</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">92</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -213,10 +224,8 @@ specified by normalized-device-coordinates. OpenGL also automatically colors all
 which are inside of the quadrilateral.</p>
 <p>Why do we use normalized-device coordinates instead of pixel coordinates?</p>
 </section>
-</section>
-</section>
 <section id="normalized-device-coordinates">
-<h2>Normalized-Device-Coordinates<a class="headerlink" href="#normalized-device-coordinates" title="Permalink to this headline">¶</a></h2>
+<h2>Normalized-Device-Coordinates<a class="headerlink" href="#normalized-device-coordinates" title="Permalink to this heading">¶</a></h2>
 <p>The author owns two monitors, one which has 1024x768 pixels, and one which has
 1920x1200 pixels.  When he purchases a game from Steam, he expects that his game
 will run correctly on either monitor, in full-screen mode.  If a graphics programmer
@@ -276,24 +285,32 @@ to discrete pixel-space, and the programmer cannot change this.</p>
 </figure>
 </section>
 <section id="graph-of-spaces">
-<h2>Graph of Spaces<a class="headerlink" href="#graph-of-spaces" title="Permalink to this headline">¶</a></h2>
+<h2>Graph of Spaces<a class="headerlink" href="#graph-of-spaces" title="Permalink to this heading">¶</a></h2>
 <p>The following is a <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_theory">graph</a>, specifically
 a <a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">Cayley</a> Graph, of the two spaces
 shown so far.  The nodes represent a coordinate system (i.e. origin and axes),
 and the directed edge represents a function that converts coordinates from one
-coordinate system to another.</p>
+coordinate system to another.  If this isn’t clear to the reader, look
+above at the 3 pictures of the 2 quadrilaterals.  The look the same, but
+if you label each vertex on all three graphs, and look at the axes to find
+their plotted values, you will find that they differ.  Changing between
+coordinate systems means to take vertices from one coordinate system and
+changing them to another, like converting from Celcius to Farenheit,
+meters to feet, etc.</p>
 <figure class="align-center" id="id9">
 <img alt="Demo 02" src="images/demo021.png" />
 <figcaption>
 <p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>The function that converts from NDC to Screen space is named f, subscripted by “NDC”, superscripted
-by “S”.  This is a common notation when creating functions that change basis, i.e. coordinate conversion.
+<p>The function that converts from NDC to Screen space is
+arbitrarily named f, subscripted by “NDC”, superscripted
+by “S”.  This is a common notation when creating
+functions that change basis, i.e. coordinate conversion.
 A definition of this function is not provided right now, because we can’t change it in software.
 But we must recognize that it exists.</p>
 <section id="introduction-to-cayley-graphs">
-<h3>Introduction to Cayley Graphs<a class="headerlink" href="#introduction-to-cayley-graphs" title="Permalink to this headline">¶</a></h3>
+<h3>Introduction to Cayley Graphs<a class="headerlink" href="#introduction-to-cayley-graphs" title="Permalink to this heading">¶</a></h3>
 <p>The wikipedia article for Cayley graphs (<a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">https://en.wikipedia.org/wiki/Cayley_graph</a>) is intimidating,
 but for our purposes, it’s use is very simple.</p>
 <p>An univariate example use of Cayley graphs is exchanging coins with
@@ -304,95 +321,66 @@ a bank.</p>
 <p><span class="caption-text">Cayley graph of univariate coordinate conversion for money.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation*}
-  f_{nickel}^{penny}(x) = 5 * x \\
-\end{equation*}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation*}
-  f_{dime}^{penny}(x) = 10 * x \\
-\end{equation*}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation*}
-  f_{quarter}^{penny}(x) = 25 * x \\
-\end{equation*}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{equation*}
-  f_{dollar}^{penny}(x) = 100 * x
-\end{equation*}\]</div>
-<p>The directed edges in the Cayley graph show the direction that
+<div class="math">
+<p><img src="images/math/811e731cc1ad124cc82d58981d91d683cf2b6a85.svg" alt="f_{nickel}^{penny}(x) = 5 * x"/></p>
+</div><div class="math">
+<p><img src="images/math/52326b40e759b334024309f33fc699dbb0725772.svg" alt="f_{dime}^{penny}(x) = 10 * x"/></p>
+</div><div class="math">
+<p><img src="images/math/2fd1c2d23f9945b6125f68e42d49dc8e49c70d77.svg" alt="f_{quarter}^{penny}(x) = 25 * x"/></p>
+</div><div class="math">
+<p><img src="images/math/f154c037afb34a0fb7468dc5d971d4b9e0e79afe.svg" alt="f_{dollar}^{penny}(x) = 100 * x"/></p>
+</div><p>The directed edges in the Cayley graph show the direction that
 the function, i.e. transformation, applies.</p>
 <p>To convert 20 nickels into pennies, start at nickel,
 move to penny, while applying the appropriate function
 along the way.</p>
-<div class="math notranslate nohighlight">
-\[\begin{equation*}
-f_{nickel}^{penny}(x) = 5 * x
-\end{equation*}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\begin{split}
-f_{nickel}^{penny}(20)  &amp; = 5 * 20\\
-                 &amp; = 100
-\end{split}
-\end{equation}\end{split}\]</div>
-<p>To convert those 100 penny into quarters, move from
+<div class="math">
+<p><img src="images/math/811e731cc1ad124cc82d58981d91d683cf2b6a85.svg" alt="f_{nickel}^{penny}(x) = 5 * x"/></p>
+</div><div class="math">
+<p><img src="images/math/23040172d4f4e694caa165e5572f12340d54f838.svg" alt="f_{nickel}^{penny}(20)  &amp; = 5 * 20 \\
+                 &amp; = 100"/></p>
+</div><p>To convert those 100 penny into quarters, move from
 penny to quarter, but since we are moving in the opposite
 direction of the edge, we must apply the multiplicative inverse
 of that function.  These functions are invertible by
 taking the reciprical of the coefficient</p>
-<div class="math notranslate nohighlight">
-\[\begin{equation*}
-f_{quarter}^{penny}(x) = 25 * x
-\end{equation*}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation*}
-\begin{split}
-f_{penny}^{quarter}(x) &amp; = {f_{quarter}^{penny}}^{-1}(x) \\
-&amp; =  1/25 * x
-\end{split}
-\end{equation*}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\begin{split}
-{f_{penny}^{quarter}}(100)  &amp; = 1/25 * x\\
-                 &amp; = 4
-\end{split}
-\end{equation}\end{split}\]</div>
-<p>By taking the inverse of the coefficient, we satisfy a definition
+<div class="math">
+<p><img src="images/math/2fd1c2d23f9945b6125f68e42d49dc8e49c70d77.svg" alt="f_{quarter}^{penny}(x) = 25 * x"/></p>
+</div><div class="math">
+<p><img src="images/math/d8578bc7547a415bfa1cb9efe90d2d5c6664393c.svg" alt="f_{penny}^{quarter}(x) &amp; = {f_{quarter}^{penny}}^{-1}(x) \\
+&amp; =  1/25 * x"/></p>
+</div><div class="math">
+<p><img src="images/math/e685434ea8a647eab32b1e6af852a3d362fa54e4.svg" alt="{f_{penny}^{quarter}}(100)  &amp; = 1/25 * x\\
+                 &amp; = 4"/></p>
+</div><p>By taking the inverse of the coefficient, we satisfy a definition
 of an inverse</p>
-<div class="math notranslate nohighlight">
-\[\begin{equation}
-(f \circ f^{-1})(x)  = x
-\end{equation}\]</div>
-<p>To convert between any denomination, say dimes to dollars,
+<div class="math">
+<p><img src="images/math/9534ecf1c84cf42b3e0f47c8c83e844c25eb9529.svg" alt="(f \circ f^{-1})(x)  = x"/></p>
+</div><p>To convert between any denomination, say dimes to dollars,
 just compose the functions, remembering to take the inverse
 of any directed edge that you against.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\begin{split}
-f_{dime}^{dollar}(x)  &amp; = f_{penny}^{dollar}(f_{dime}^{penny}(x)) \\
-                          &amp; = {f_{dollar}^{penny}}^{-1}(f_{dime}^{penny}(x)) \\
-\end{split}
-\end{equation}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{equation}
-\begin{split}
-f_{dime}^{dollar}  &amp; = {f_{dollar}^{penny}}^{-1} \circ f_{dime}^{penny}
-\end{split}
-\end{equation}\]</div>
-<p>Notice in the last equation that we defined the function via function <a class="reference external" href="https://en.wikipedia.org/wiki/Function_composition">composition</a>,
+<div class="math">
+<p><img src="images/math/03f84c22e47092e7035c0b0c759c7e5f6665d731.svg" alt="f_{dime}^{dollar}(x)  &amp; = f_{penny}^{dollar}(f_{dime}^{penny}(x)) \\
+                          &amp; = {f_{dollar}^{penny}}^{-1}(f_{dime}^{penny}(x)) \\"/></p>
+</div><div class="math">
+<p><img src="images/math/d90030aa1fe79749a2cc54b0a6dce2584684f1fe.svg" alt="f_{dime}^{dollar}   = {f_{dollar}^{penny}}^{-1} \circ f_{dime}^{penny}"/></p>
+</div><p>Notice in the last equation that we defined the function via function <a class="reference external" href="https://en.wikipedia.org/wiki/Function_composition">composition</a>,
 and didn’t specify any arguments.  We just focus on the types of units in and the units
 out, but the details of those functions are not relevant when traversing the Cayley graph.</p>
 </section>
 <section id="learning-what-to-ignore">
-<h3>Learning what to ignore<a class="headerlink" href="#learning-what-to-ignore" title="Permalink to this headline">¶</a></h3>
+<h3>Learning what to ignore<a class="headerlink" href="#learning-what-to-ignore" title="Permalink to this heading">¶</a></h3>
 <p>A big part of being able to understand graphics well is being able
 to figure out what to ignore.  So how would we convert coordinates from space
 D to space B (defined below)?  What do those names mean?  It doesn’t matter.
 What is the definition of all of the functions?  It doesn’t matter. All that
-matters is that the function exists, the definition of the function is provided to us,
-the function is invertible, and that we can call a procedure to invert a function.</p>
+matters</p>
+<ul class="simple">
+<li><p>is that the function exists</p></li>
+<li><p>the definition of the function is provided to us</p></li>
+<li><p>the function is invertible</p></li>
+<li><p>and that we can call a procedure to invert a function.</p></li>
+</ul>
 <figure class="align-center" id="id11">
 <img alt="Generic Cayley Graph" src="images/cayleygraph.png" />
 <figcaption>
@@ -408,26 +396,26 @@ for us.</p>
 <p>In tracing out the graph, we are going with the first two directed edges,
 and against the last one.  So we compose the functions and take
 the appropriate inverse(s).</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\begin{split}
-\vec{f}_{d}^{b}(\vec{x})  &amp; = \vec{f}_{a}^{b}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x}))) \\
-                          &amp; = {\vec{f}_{b}^{a}}^{-1}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x})))
-\end{split}
-\end{equation}\end{split}\]</div>
-<p>A function from A to B is not provided to us, but we wrote it in the equation as an idea of a function
+<div class="math">
+<p><img src="images/math/9a7cc30ccaa409ed21582cc836cd7b4592a9b12b.svg" alt="\vec{f}_{d}^{b}(\vec{x})  &amp; = \vec{f}_{a}^{b}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x}))) \\
+                          &amp; = {\vec{{f}_{b}^{a}}}^{-1}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x})))"/></p>
+</div><p>A function from A to B is not provided to us, but we wrote it in the equation as an idea of a function
 that we wish to have, even though we don’t currently have it.
 However, we can create this function by invoking inverse on the provide function from A to B.</p>
 <p>Since we’re dealing with function composition mainly, we don’t even need to specify the argument</p>
-<div class="math notranslate nohighlight">
-\[\begin{equation}
-\begin{split}
-\vec{f}_{d}^{b}  &amp; = {\vec{f}_{b}^{a}}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}
-\end{split}
-\end{equation}\]</div>
-<p>If this seems to abstract for now, don’t worry.  By the end of the course, it should be clear.
+<div class="math">
+<p><img src="images/math/7e0cb42acf264860b1ea2facbfb32717af50cb48.svg" alt="\vec{f}_{d}^{b}  = {\vec{{f}_{b}^{a}}}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}"/></p>
+</div><p>If this seems to abstract for now, don’t worry.  By the end of the course, it should be clear.
 The goal of this book is to make it clear, and then, obvious.</p>
 </section>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Run Demo 2.  Resize the window using the GUI controls provided
+by the Operating system. first make it skinny, and then wide.
+Observe at what happens to the rectangles.</p></li>
+</ul>
 </section>
 </section>
 

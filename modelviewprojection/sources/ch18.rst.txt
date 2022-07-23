@@ -33,7 +33,7 @@ Each edge of the graph of objects
 should only be specified once per frame.
 
 
-.. figure:: static/demo11.png
+.. figure:: static/demo18-1.png
     :align: center
     :alt: Demo 12
     :figclass: align-center
@@ -59,8 +59,8 @@ Here is paddle 1 code
 .. literalinclude:: ../src/demo17/demo.py
    :language: python
    :linenos:
-   :lineno-start: 336
-   :lines: 336-358
+   :lineno-start: 362
+   :lines: 362-391
 
 
 Here is the square's code:
@@ -69,8 +69,8 @@ Here is the square's code:
 .. literalinclude:: ../src/demo17/demo.py
    :language: python
    :linenos:
-   :lineno-start: 360
-   :lines: 360-384
+   :lineno-start: 393
+   :lines: 393-418
 
 
 
@@ -189,8 +189,8 @@ index
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 290
-   :lines: 290
+   :lineno-start: 302
+   :lines: 302
 
 
 
@@ -203,8 +203,8 @@ returned from the function at the bottom of the stack.
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 292
-   :lines: 292-296
+   :lineno-start: 305
+   :lines: 305-309
 
 
 There is an example at the bottom of src/demo18/demo.py
@@ -212,8 +212,8 @@ There is an example at the bottom of src/demo18/demo.py
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 419
-   :lines: 419-429
+   :lineno-start: 437
+   :lines: 437-450
 
 Define four functions, which we will compose on the stack.
 
@@ -222,44 +222,44 @@ Push identity onto the stack, which will will never pop off of the stack.
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 432
-   :lines: 432-434
+   :lineno-start: 454
+   :lines: 454-456
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 436
-   :lines: 436-438
+   :lineno-start: 458
+   :lines: 458-460
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 440
-   :lines: 440-442
+   :lineno-start: 462
+   :lines: 462-464
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 444
-   :lines: 444-446
+   :lineno-start: 466
+   :lines: 466-468
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 448
-   :lines: 448-450
+   :lineno-start: 470
+   :lines: 470-472
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 452
-   :lines: 452-454
+   :lineno-start: 474
+   :lines: 474-476
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 456
-   :lines: 456-458
+   :lineno-start: 478
+   :lines: 478-480
 
 
 
@@ -270,8 +270,8 @@ Event Loop
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 303
-   :lines: 303
+   :lineno-start: 316
+   :lines: 316
 
 ::
 
@@ -292,16 +292,20 @@ and the end of the list to be the top of the stack.
 .. math::
 
 
-    \begin{equation*}
     \vec{f}_{c}^{ndc}
-    \end{equation*}
+
+.. figure:: static/demo18-2.png
+    :align: center
+    :alt: Demo 12
+    :figclass: align-center
+
 
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 334
-   :lines: 334
+   :lineno-start: 355
+   :lines: 355
 
 
 Unlike in previous demos in which we read the transformations
@@ -316,17 +320,19 @@ to world space like so, read top to bottom:
 .. math::
 
 
-    \begin{equation*}
     \vec{f}_{c}^{w}
-    \end{equation*}
 
+.. figure:: static/demo18-7.png
+    :align: center
+    :alt: Demo 12
+    :figclass: align-center
 
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 337
-   :lines: 337-343
+   :lineno-start: 357
+   :lines: 357-364
 
 But, since we need to transform world-space to camera space,
 they must be inverted by reversing the order, and negating
@@ -338,15 +344,20 @@ camera space are.
 .. math::
 
 
-    \begin{equation*}
     \vec{f}_{w}^{c}
-    \end{equation*}
+
+.. figure:: static/demo18-3.png
+    :align: center
+    :alt: Demo 12
+    :figclass: align-center
+
+
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 346
-   :lines: 346-352
+   :lineno-start: 365
+   :lines: 365-373
 
 draw paddle 1
 ~~~~~~~~~~~~~
@@ -360,15 +371,20 @@ the current space
 .. math::
 
 
-    \begin{equation*}
     \vec{f}_{p1}^{w}
-    \end{equation*}
+
+
+.. figure:: static/demo18-4.png
+    :align: center
+    :alt: Demo 12
+    :figclass: align-center
+
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 353
-   :lines: 353-370
+   :lineno-start: 375
+   :lines: 375-392
 
 for each of the modelspace coordinates, apply all
 of the procedures on the stack from top to bottom
@@ -387,16 +403,19 @@ remove these 4 transformations from the stack (done below)
 .. math::
 
 
-    \begin{equation*}
     \vec{f}_{s}^{p1}
-    \end{equation*}
+
+.. figure:: static/demo18-5.png
+    :align: center
+    :alt: Demo 12
+    :figclass: align-center
 
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 372
-   :lines: 372-387
+   :lineno-start: 394
+   :lines: 394-405
 
 Now we need to remove fns from the stack so that the
 lambda stack will convert from world space to NDC.
@@ -406,8 +425,8 @@ world space to paddle2 space on the stack.
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 389
-   :lines: 389-394
+   :lineno-start: 407
+   :lines: 407-412
 
 since paddle2's model_space is independent of paddle 1's space, only
 leave the view and projection fns (1) - (4)
@@ -420,16 +439,19 @@ draw paddle 2
 .. math::
 
 
-    \begin{equation*}
     \vec{f}_{p2}^{w}
-    \end{equation*}
+
+.. figure:: static/demo18-6.png
+    :align: center
+    :alt: Demo 12
+    :figclass: align-center
 
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 397
-   :lines: 397-410
+   :lineno-start: 414
+   :lines: 414-427
 
 
 remove all fns from the function stack, as the next frame will set them
@@ -439,8 +461,8 @@ the next iteration of the event loop.
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 412
-   :lines: 412
+   :lineno-start: 429
+   :lines: 429
 
 
 Swap buffers and execute another iteration of the event loop
@@ -448,5 +470,5 @@ Swap buffers and execute another iteration of the event loop
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 414
-   :lines: 414
+   :lineno-start: 431
+   :lines: 431

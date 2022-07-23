@@ -86,11 +86,15 @@ quadrilateral.  The vertices will be specified by calling "glVertex2f" 4 times.
 the begun quadrilateral.
 
 
+Draw Paddle 1
+^^^^^^^^^^^^^
+
+
 .. literalinclude:: ../src/demo02/demo.py
    :language: python
    :linenos:
-   :lineno-start: 64
-   :lines: 64-70
+   :lineno-start: 76
+   :lines: 76-82
 
 
 
@@ -105,11 +109,15 @@ The paddle looks like this relative to normalized device coordinates (NDC):
     Rectangle
 
 
+Draw Paddle 2
+^^^^^^^^^^^^^
 .. literalinclude:: ../src/demo02/demo.py
    :language: python
    :linenos:
-   :lineno-start: 72
-   :lines: 72-78
+   :lineno-start: 84
+   :lines: 84-90
+
+
 
 The 2 paddles looks like this relative to normalized device coordinates (NDC):
 
@@ -123,8 +131,8 @@ The 2 paddles looks like this relative to normalized device coordinates (NDC):
 .. literalinclude:: ../src/demo02/demo.py
    :language: python
    :linenos:
-   :lineno-start: 80
-   :lines: 80
+   :lineno-start: 92
+   :lines: 92
 
 * done with frame, flush the current buffer to the monitor
 * Swap front and back buffers
@@ -249,7 +257,13 @@ The following is a graph_, specifically
 a Cayley_ Graph, of the two spaces
 shown so far.  The nodes represent a coordinate system (i.e. origin and axes),
 and the directed edge represents a function that converts coordinates from one
-coordinate system to another.
+coordinate system to another.  If this isn't clear to the reader, look
+above at the 3 pictures of the 2 quadrilaterals.  The look the same, but
+if you label each vertex on all three graphs, and look at the axes to find
+their plotted values, you will find that they differ.  Changing between
+coordinate systems means to take vertices from one coordinate system and
+changing them to another, like converting from Celcius to Farenheit,
+meters to feet, etc.
 
 
 .. _graph: https://en.wikipedia.org/wiki/Graph_theory
@@ -263,8 +277,10 @@ coordinate system to another.
 
     Demo 02
 
-The function that converts from NDC to Screen space is named f, subscripted by "NDC", superscripted
-by "S".  This is a common notation when creating functions that change basis, i.e. coordinate conversion.
+The function that converts from NDC to Screen space is
+arbitrarily named f, subscripted by "NDC", superscripted
+by "S".  This is a common notation when creating
+functions that change basis, i.e. coordinate conversion.
 A definition of this function is not provided right now, because we can't change it in software.
 But we must recognize that it exists.
 
@@ -288,26 +304,18 @@ a bank.
     Cayley graph of univariate coordinate conversion for money.
 
 .. math::
-   \begin{equation*}
-    f_{nickel}^{penny}(x) = 5 * x \\
-  \end{equation*}
+    f_{nickel}^{penny}(x) = 5 * x
 
 .. math::
-   \begin{equation*}
-    f_{dime}^{penny}(x) = 10 * x \\
-  \end{equation*}
+    f_{dime}^{penny}(x) = 10 * x
 
 
 .. math::
-   \begin{equation*}
-    f_{quarter}^{penny}(x) = 25 * x \\
-  \end{equation*}
+    f_{quarter}^{penny}(x) = 25 * x
 
 
 .. math::
-   \begin{equation*}
     f_{dollar}^{penny}(x) = 100 * x
-  \end{equation*}
 
 
 The directed edges in the Cayley graph show the direction that
@@ -320,19 +328,11 @@ along the way.
 
 
 .. math::
-
-    \begin{equation*}
     f_{nickel}^{penny}(x) = 5 * x
-    \end{equation*}
 
 .. math::
-
-    \begin{equation}
-    \begin{split}
-    f_{nickel}^{penny}(20)  & = 5 * 20\\
+    f_{nickel}^{penny}(20)  & = 5 * 20 \\
                      & = 100
-    \end{split}
-    \end{equation}
 
 
 
@@ -347,39 +347,23 @@ taking the reciprical of the coefficient
 
 
 .. math::
-
-    \begin{equation*}
     f_{quarter}^{penny}(x) = 25 * x
-    \end{equation*}
 
 .. math::
-
-    \begin{equation*}
-    \begin{split}
     f_{penny}^{quarter}(x) & = {f_{quarter}^{penny}}^{-1}(x) \\
     & =  1/25 * x
-    \end{split}
-    \end{equation*}
 
 
 .. math::
-
-    \begin{equation}
-    \begin{split}
     {f_{penny}^{quarter}}(100)  & = 1/25 * x\\
                      & = 4
-    \end{split}
-    \end{equation}
 
 
 By taking the inverse of the coefficient, we satisfy a definition
 of an inverse
 
 .. math::
-
-   \begin{equation}
    (f \circ f^{-1})(x)  = x
-   \end{equation}
 
 
 
@@ -389,22 +373,12 @@ of any directed edge that you against.
 
 
 .. math::
-
-    \begin{equation}
-    \begin{split}
     f_{dime}^{dollar}(x)  & = f_{penny}^{dollar}(f_{dime}^{penny}(x)) \\
                               & = {f_{dollar}^{penny}}^{-1}(f_{dime}^{penny}(x)) \\
-    \end{split}
-    \end{equation}
 
 
 .. math::
-
-    \begin{equation}
-    \begin{split}
-    f_{dime}^{dollar}  & = {f_{dollar}^{penny}}^{-1} \circ f_{dime}^{penny}
-    \end{split}
-    \end{equation}
+    f_{dime}^{dollar}   = {f_{dollar}^{penny}}^{-1} \circ f_{dime}^{penny}
 
 
 
@@ -426,8 +400,15 @@ A big part of being able to understand graphics well is being able
 to figure out what to ignore.  So how would we convert coordinates from space
 D to space B (defined below)?  What do those names mean?  It doesn't matter.
 What is the definition of all of the functions?  It doesn't matter. All that
-matters is that the function exists, the definition of the function is provided to us,
-the function is invertible, and that we can call a procedure to invert a function.
+matters
+
+* is that the function exists
+
+* the definition of the function is provided to us
+
+* the function is invertible
+
+* and that we can call a procedure to invert a function.
 
 
 .. figure:: static/cayleygraph.png
@@ -451,13 +432,8 @@ the appropriate inverse(s).
 
 
 .. math::
-
-    \begin{equation}
-    \begin{split}
     \vec{f}_{d}^{b}(\vec{x})  & = \vec{f}_{a}^{b}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x}))) \\
-                              & = {\vec{f}_{b}^{a}}^{-1}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x})))
-    \end{split}
-    \end{equation}
+                              & = {\vec{{f}_{b}^{a}}}^{-1}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x})))
 
 A function from A to B is not provided to us, but we wrote it in the equation as an idea of a function
 that we wish to have, even though we don't currently have it.
@@ -467,12 +443,15 @@ However, we can create this function by invoking inverse on the provide function
 Since we're dealing with function composition mainly, we don't even need to specify the argument
 
 .. math::
-
-    \begin{equation}
-    \begin{split}
-    \vec{f}_{d}^{b}  & = {\vec{f}_{b}^{a}}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}
-    \end{split}
-    \end{equation}
+    \vec{f}_{d}^{b}  = {\vec{{f}_{b}^{a}}}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}
 
 If this seems to abstract for now, don't worry.  By the end of the course, it should be clear.
 The goal of this book is to make it clear, and then, obvious.
+
+
+Exercise
+^^^^^^^^
+
+* Run Demo 2.  Resize the window using the GUI controls provided
+  by the Operating system. first make it skinny, and then wide.
+  Observe at what happens to the rectangles.
