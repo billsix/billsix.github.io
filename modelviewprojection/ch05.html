@@ -171,23 +171,7 @@ vertices will need to be translated to its center relative to NDC.</p>
 rather than mutating the instance variables.  The author
 does this on purpose to enable method-chaining the Python
 methods, which will be useful later on.</p>
-<div class="math">
-<p><img src="images/math/53e3af7287c8ad6f3ae76f54bd7cb463123a5dd1.svg" alt="\vec{t}(\begin{bmatrix}
-v_{x} \\
-v_{y}
-\end{bmatrix};\begin{bmatrix}
-t_{x} \\
-t_{y}
-\end{bmatrix}) =
-\begin{bmatrix}
-v_{x} \\
-v_{y}
-\end{bmatrix} +
-\begin{bmatrix}
-t_{x} \\
-t_{y}
-\end{bmatrix}"/></p>
-</div></section>
+</section>
 <section id="code">
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
 <section id="data-structures">
@@ -276,8 +260,9 @@ paddles, as they were in the previous demo.</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>New!  We put the transformation on the center of the paddle, instead
-of directly on each vertex</p></li>
+<li><p>We put the transformation on the center of the paddle, instead
+of directly on each vertex.  This is because the vertices are
+defined relative to the center of the paddle.</p></li>
 </ul>
 </section>
 <section id="the-event-loop">
@@ -304,20 +289,29 @@ of directly on each vertex</p></li>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">184</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
 <span class="linenos">185</span>
 <span class="linenos">186</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">187</span>    <span class="k">for</span> <span class="n">modelSpace</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">188</span>        <span class="n">ndcSpace</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">modelSpace</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
+<span class="linenos">187</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">188</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
 <span class="linenos">189</span>            <span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span>
 <span class="linenos">190</span>        <span class="p">)</span>
-<span class="linenos">191</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndcSpace</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndcSpace</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">191</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 <span class="linenos">192</span>    <span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here each of paddle 1’s vertices, which are in their “model-space”,
+are converted to NDC by calling the translate method on the vertex.
+This function corresponds to the Cayley graph below, the function
+from Paddle 1 space to NDC.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">192</span>    <span class="n">glEnd</span><span class="p">()</span>
 <span class="linenos">193</span>
 <span class="linenos">194</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
 <span class="linenos">195</span>
 <span class="linenos">196</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">197</span>    <span class="k">for</span> <span class="n">modelSpace</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">198</span>        <span class="n">ndcSpace</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">modelSpace</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
+<span class="linenos">197</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">198</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
 <span class="linenos">199</span>            <span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span>
 <span class="linenos">200</span>        <span class="p">)</span>
+<span class="linenos">201</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">202</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 <figure class="align-center" id="id3">

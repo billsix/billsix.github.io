@@ -254,12 +254,12 @@ meaning to the author, and that’s ok.  The matricies above all of geometric me
 together for computational efficiency, as well as being able to do the next step in clip space, which
 we couldn’t do without having the premultiplied matrix.</p>
 <div class="math">
-<p><img src="images/math/4670d5f48b3578176c22f6bb6a767fb48731c3fb.svg" alt="\begin{bmatrix}
+<p><img src="images/math/c2d1f70b9335b291b69ea2f81452719268943567.svg" alt="\begin{bmatrix}
   {x_{ndc}} \\
   {y_{ndc}} \\
   {z_{ndc}} \\
   {w_{ndc}=1} \\
-\end{bmatrix}  =               \vec{f}_{c}^{ndc}(\begin{bmatrix}
+\end{bmatrix}  =          \vec{f}_{c}^{ndc}(\begin{bmatrix}
                          {x_{c}} \\
                          {y_{c}} \\
                          {z_{c}} \\
@@ -267,7 +267,7 @@ we couldn’t do without having the premultiplied matrix.</p>
                \end{bmatrix}; farZ_c, nearZ_c, top, right) = \begin{bmatrix}
                   {nearZ_c \over {right * \textcolor{red}{z_c}}} &amp;             0 &amp;                      0 &amp;                0 \\
                   0 &amp;                           {nearZ_c \over {top*\textcolor{red}{z_c}}} &amp;           0 &amp;                0 \\
-                  0 &amp;                           0 &amp;                       {2 \over {nearZ_c - farZ_c}} &amp; {-{farZ_c + nearZ_c} \over {nearZ_c - farZ_c}} \\
+                  0 &amp;                           0 &amp;                       {2 \over {nearZ_c - farZ_c}} &amp; {-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}} \\
                   0 &amp;                           0 &amp;                       0 &amp;                1
                \end{bmatrix} *
                 \begin{bmatrix}
@@ -276,7 +276,17 @@ we couldn’t do without having the premultiplied matrix.</p>
                          {z_{c}} \\
                          {w_{c}=1} \\
                \end{bmatrix}"/></p>
-</div></section>
+</div><p>As a quick smoke test to ensure that the aggregate matrix works correctly, let’s
+test the bounds of the frustum and make sure that they map to the NDC cube.</p>
+<p>Given that <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> is negative, assuming <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> is equal to
+<img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, <img class="math" src="images/math/0f77a21eaff96bad0e778aa583143161872b0890.svg" alt="right"/> goes to <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, <img class="math" src="images/math/6508a7b60d8b7288de7439d46fa31b466f1f8929.svg" alt="left"/> which is <img class="math" src="images/math/5e01779897f21802c4df3895a024c9fa2fbf3fad.svg" alt="-right"/>
+goes to <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/>.</p>
+<p>Given that <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> is negative, assuming <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> is equal to
+<img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, <img class="math" src="images/math/bdc70e28dd28e6a281e57c0ccc2bfb53e0e52d31.svg" alt="top"/> goes to <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, <img class="math" src="images/math/d025e192bbf1774ad781b3d9f2d66715c8272a07.svg" alt="bottom"/> which is <img class="math" src="images/math/c4f76e1ddf37aae2c292369b02611b9fd3edec8d.svg" alt="-top"/>
+goes to <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/>.</p>
+<p>Given that <img class="math" src="images/math/caa487cffda5a61e15801b78457f45bc23da79b0.svg" alt="w_c"/> is <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, if <img class="math" src="images/math/7bda46a09b6b5414a509da0461f9724e91fb5865.svg" alt="z_c = nearZ_c"/>, <img class="math" src="images/math/8e69db1a6c584f2d06a386420caf09126294c44b.svg" alt="z_{ndc} = 1"/>.
+Given that <img class="math" src="images/math/caa487cffda5a61e15801b78457f45bc23da79b0.svg" alt="w_c"/> is <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, if <img class="math" src="images/math/efead1510c43f3ea9ce04b0808cb0f2ea2d014fa.svg" alt="z_c = farZ_c"/>, <img class="math" src="images/math/fa84e2d630460f18b94dcecf0f0526f91dd87ec6.svg" alt="z_{ndc} = -1"/>.</p>
+</section>
 </section>
 <section id="clip-space">
 <h3>Clip Space<a class="headerlink" href="#clip-space" title="Permalink to this heading">¶</a></h3>
@@ -355,16 +365,16 @@ and do the inverse of the equation above</p>
 the premultiplie matrix above, we choose
 the following</p>
 <div class="math">
-<p><img src="images/math/052cb12bc763892038d61f8b9f9da5eac73ebe1f.svg" alt="\vec{f}_{ndc}^{clip}(\begin{bmatrix}
+<p><img src="images/math/aed1a364b9532a807a4286223adc6cad1c26e510.svg" alt="\vec{f}_{ndc}^{clip}(\begin{bmatrix}
                          {x_{ndc}} \\
                          {y_{ndc}} \\
                          {z_{ndc}} \\
                          {w_{ndc}=1} \\
                \end{bmatrix}; z_c) =  \begin{bmatrix}
-                  -z_c &amp;  0 &amp; 0 &amp; 0 \\
-                  0 &amp;  -z_c &amp; 0 &amp; 0 \\
-                  0 &amp;  0 &amp; -z_c &amp; 0 \\
-                  0 &amp;  0 &amp; 0 &amp; -z_c
+                  z_c &amp;  0 &amp; 0 &amp; 0 \\
+                  0 &amp;  z_c &amp; 0 &amp; 0 \\
+                  0 &amp;  0 &amp; z_c &amp; 0 \\
+                  0 &amp;  0 &amp; 0 &amp; z_c
                \end{bmatrix} *
                  \begin{bmatrix}
                          {x_{ndc}} \\
@@ -372,59 +382,129 @@ the following</p>
                          {z_{ndc}} \\
                          {w_{ndc}}
                \end{bmatrix}"/></p>
-</div><section id="remove-z-of-camera-space-from-part-of-the-matrix">
+</div><p>because multiplying by this matrix will remove the <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of
+the upper left quadrant.</p>
+<section id="remove-z-of-camera-space-from-part-of-the-matrix">
 <h4>Remove Z of Camera Space from Part of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-part-of-the-matrix" title="Permalink to this heading">¶</a></h4>
 <p>To get camera z out of the matrix, where it’s currently in two denominators, we
 can use knowledge of clip space, wherein we put cameraspace’s z into W.     because cameraSpace’s z coordinate is negative, we want to scale
 all dimensions without reflecting over the origin, hence the negative sign in  <img class="math" src="images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/>.</p>
 <div class="math">
-<p><img src="images/math/2a84c3e38ceaa55050647b2d214d893ef2baaf4c.svg" alt="\vec{f}_{c}^{clip}(\begin{bmatrix}
-                         {x_c} \\
-                         {y_c} \\
-                         {z_c} \\
-                         {w_c=1} \\
-               \end{bmatrix}; farZ_c, nearZ_c, top, right) &amp; =  (\vec{f}_{ndc}^{clip} \circ \vec{f}_{c}^{ndc})  *
-                \begin{bmatrix}
-                         {x_c} \\
-                         {y_c} \\
-                         {z_c} \\
-                         {w_c=1} \\
+<p><img src="images/math/1c2ad0f6a9fb79e14e9b2356b783d5528c18c5de.svg" alt="\begin{bmatrix}
+            {x_{clip}} \\
+            {y_{clip}} \\
+            {z_{clip}} \\
+            {w_{clip}} \\
+  \end{bmatrix}
+  &amp; =  \vec{f}_{c}^{clip}(\begin{bmatrix}
+            {x_c} \\
+            {y_c} \\
+            {z_c} \\
+            {w_c=1} \\
+  \end{bmatrix}; farZ_c, nearZ_c, top, right) \\
+  &amp; =  (\vec{f}_{ndc}^{clip} \circ \vec{f}_{c}^{ndc})  *
+   \begin{bmatrix}
+            {x_c} \\
+            {y_c} \\
+            {z_c} \\
+            {w_c=1} \\
+  \end{bmatrix} \\
+  &amp; = \begin{bmatrix}
+                   \textcolor{red}{z_c} &amp;  0 &amp; 0 &amp; 0 \\
+                   0 &amp;  \textcolor{red}{z_c} &amp; 0 &amp; 0 \\
+                   0 &amp;  0 &amp; \textcolor{red}{z_c} &amp; 0 \\
+                   0 &amp;  0 &amp; 0 &amp; \textcolor{red}{z_c}
+                \end{bmatrix} * \begin{bmatrix}
+                   {nearZ_c \over {right * \textcolor{red}{z_c}}} &amp;             0 &amp;                      0 &amp;                0 \\
+                   0 &amp;                           {nearZ_c \over {top*\textcolor{red}{z_c}}} &amp;           0 &amp;                0 \\
+                   0 &amp;                           0 &amp;                       {2 \over {nearZ_c - farZ_c}} &amp; {-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}} \\
+                   0 &amp;                           0 &amp;                       0 &amp;                1
+                \end{bmatrix} *
+   \begin{bmatrix}
+            {x_c} \\
+            {y_c} \\
+            {z_c} \\
+            {w_c=1} \\
+  \end{bmatrix} \\
+  &amp; = \begin{bmatrix}
+            {nearZ_c \over right} &amp;         0 &amp;        0 &amp;                                   0 \\
+            0 &amp;                  {nearZ_c \over top} &amp; 0 &amp;                                   0 \\
+            0 &amp;                  0 &amp;        { \textcolor{red}{z_c}* {2 \over {nearZ_c - farZ_c}}} &amp;   { \textcolor{red}{z_c}*{-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}} \\
+            0 &amp;                  0 &amp;        0 &amp;                                   \textcolor{red}{z_c}
+  \end{bmatrix} *
+   \begin{bmatrix}
+            {x_c} \\
+            {y_c} \\
+            {z_c} \\
+            {w_c=1} \\
+  \end{bmatrix}"/></p>
+</div><p>The result of this is in clip space, where for the first time, our w component is not 1, but <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/>.</p>
+<p>Turning clip space back into NDC</p>
+<div class="math">
+<p><img src="images/math/c505b83e56ef24d97091a8e93b3b65c3e90e86f8.svg" alt="\begin{bmatrix}
+                          {x_{ndc}} \\
+                          {y_{ndc}} \\
+                          {z_{ndc}} \\
+                          {w_{ndc}} \\
+                \end{bmatrix}
+                &amp; =     \begin{bmatrix}
+                          {x_{clip} / z_{clip}} \\
+                          {y_{clip} / z_{clip}} \\
+                          {z_{clip} / z_{clip}} \\
+                          {w_{clip} / z_{clip}} \\
+                \end{bmatrix} \\
+                &amp; = \begin{bmatrix}
+                   \textcolor{red}{{1 \over {z_c}}} &amp;  0 &amp; 0 &amp; 0 \\
+                   0 &amp;  \textcolor{red}{{1 \over {z_c}}} &amp; 0 &amp; 0 \\
+                   0 &amp;  0 &amp; \textcolor{red}{{1 \over {z_c}}} &amp; 0 \\
+                   0 &amp;  0 &amp; 0 &amp; \textcolor{red}{{1 \over {z_c}}}
+                \end{bmatrix} * \begin{bmatrix}
+                             {{nearZ_c \over right} * x_{c}}   \\
+                             {{nearZ_c \over top} * y_{c}}    \\
+                             {\textcolor{red}{z_c}^2 * {2 \over {nearZ_c - farZ_c}} + {\textcolor{red}{z_c}*{-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}}\\
+                             {\textcolor{red}{z_c}} \\
+                \end{bmatrix}"/></p>
+</div><p>To test a corner of the frustum as a smoke test, say</p>
+<div class="math">
+<p><img src="images/math/2eee068d6b7c2f0ecfc5c422ec0deacceb4fc5e8.svg" alt="\begin{bmatrix}
+  {x_{ndc}} \\
+  {y_{ndc}} \\
+  {z_{ndc}} \\
+  {w_{ndc}=1} \\
+\end{bmatrix} &amp; =               \vec{f}_{c}^{ndc}(\begin{bmatrix}
+                         {x_{c} = right} \\
+                         {y_{c} = top} \\
+                         {z_{c} = nearZ_c} \\
+                         {w_{c}=1} \\
+               \end{bmatrix}; farZ_c, nearZ_c, top, right) \\
+               &amp; = \begin{bmatrix}
+                  \textcolor{red}{{1 \over {z_c}}} &amp;  0 &amp; 0 &amp; 0 \\
+                  0 &amp;  \textcolor{red}{{1 \over {z_c}}} &amp; 0 &amp; 0 \\
+                  0 &amp;  0 &amp; \textcolor{red}{{1 \over {z_c}}} &amp; 0 \\
+                  0 &amp;  0 &amp; 0 &amp; \textcolor{red}{{1 \over {z_c}}}
+               \end{bmatrix} * \begin{bmatrix}
+                            {{nearZ_c \over right} * x_{c}}   \\
+                            {{nearZ_c \over top} * y_{c}}    \\
+                            {\textcolor{red}{z_c}^2 * {2 \over {nearZ_c - farZ_c}} + {\textcolor{red}{z_c}*{-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}}\\
+                            {\textcolor{red}{z_c}} \\
                \end{bmatrix} \\
                &amp; = \begin{bmatrix}
-                         {-nearZ_c \over right} &amp;         0 &amp;        0 &amp;                                   0 \\
-                         0 &amp;                  {-nearZ_c \over top} &amp; 0 &amp;                                   0 \\
-                         0 &amp;                  0 &amp;        {2*\textcolor{red}{-z_c} \over {nearZ_c - farZ_c}} &amp;   {\textcolor{red}{-z_c}*{-{farZ_c + nearZ_c} \over {nearZ_c - farZ_c}}} \\
-                         0 &amp;                  0 &amp;        0 &amp;                                   -z_c
-               \end{bmatrix} *
-                \begin{bmatrix}
-                         {x_c} \\
-                         {y_c} \\
-                         {z_c} \\
-                         {w_c=1} \\
+                            {{nearZ_c \over right} * x_{c}}   \\
+                            {{nearZ_c \over top} * y_{c}}    \\
+                            {\textcolor{red}{z_c} * {2 \over {nearZ_c - farZ_c}} + {-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}\\
+                            {1} \\
+               \end{bmatrix} \\
+               &amp; = \begin{bmatrix}
+                            {1}  \\
+                            {1}  \\
+                            {1} \\
+                            {1} \\
                \end{bmatrix}"/></p>
-</div><p>The result of this is in clip space, where for the first time, our w component is not 1, but <img class="math" src="images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/>.</p>
-<p>Knowing that OpenGL will turn our clip space data back to NDC, let’s verify that after dividing <img class="math" src="images/math/6728ad66f70d04f7c910e848e70b677cb315c265.svg" alt="z_clip"/> by <img class="math" src="images/math/7f6528cd9235dd858e9cd4f39b5911f2f5e02ff3.svg" alt="w_clip"/>, that <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> maps to <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/>
-and that <img class="math" src="images/math/890194c56dbc9dcb1fb78bef0ab7906e19930aac.svg" alt="farZ_c"/> maps to <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>.</p>
-<p>For a given <img class="math" src="images/math/7165e3dbdd379281cd441e830934b272d34fd7eb.svg" alt="z"/></p>
-<div class="math">
-<p><img src="images/math/5607d027c524ca186531b0e2ac11a4d860039cfa.svg" alt="{{z_clip} \over {w_clip}} &amp; =  {{{z * {{2*{-z_c}} \over {nearZ_c - farZ_c}}} +   {-z_c}*{{-{farZ_c + nearZ_c} \over {nearZ_c - farZ_c}}}} \over {z}} \\
-                  &amp; = 2*{{-z_c} \over {nearZ_c - farZ_c}} +   {{farZ_c + nearZ_c} \over {nearZ_c - farZ_c}}"/></p>
-</div><p>Calculating that out for <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/></p>
-<div class="math">
-<p><img src="images/math/cf015f25ff9eed297b8a9e78e78ffec545ec4903.svg" alt="{{z_clip} \over {w_clip}} &amp; = 2*{-nearZ_c \over {nearZ_c - farZ_c}} +   {{{farZ_c + nearZ_c}} \over  {nearZ_c - farZ_c}} \\
-                  &amp; = {{2*{-nearZ_c} + {farZ_c + nearZ_c}} \over {nearZ_c - farZ_c}} \\
-                  &amp; = {{2*{-nearZ_c} + {farZ_c + nearZ_c}} \over {nearZ_c - farZ_c}} \\
-                  &amp; = {{farZ_c - nearZ_c} \over {nearZ_c - farZ_c}} \\
-                  &amp; = {{farZ_c - nearZ_c} \over {nearZ_c - farZ_c}} \\
-                  &amp; = -1"/></p>
-</div><p>Calculating that out for <img class="math" src="images/math/890194c56dbc9dcb1fb78bef0ab7906e19930aac.svg" alt="farZ_c"/></p>
-<div class="math">
-<p><img src="images/math/7421b9705d43ed90ab25b699f6cea592f141179e.svg" alt="{z_clip} \over {w_clip} &amp; = 2* {{-nearZ_c} \over {nearZ_c - farZ_c}} +   {{farZ_c + nearZ_c} \over {nearZ_c - farZ_c}} \\
-                  &amp; =  2*{{-farZ_c} \over {nearZ_c - farZ_c}} +   {{farZ_c + nearZ_c} \over {nearZ_c - farZ_c}} \\
-                  &amp; = {{2*-farZ_c + farZ_c + nearZ_c} \over {nearZ_c - farZ_c}} \\
-                  &amp; = {{ nearZ_c - farZ_c} \over {nearZ_c - farZ_c}} \\
-                  &amp; = 1"/></p>
-</div></section>
+</div><p>And that’s what we’d expect and the top right corner of the near plane of the frustum
+should go to the upper right corner with a z value of 1, as -1 is where the back plane must go.</p>
+<p>If we had used <img class="math" src="images/math/89b4d39e6f5751c582a319e0b1494801aa72ed77.svg" alt="x_c = farZ_c"/>, then <img class="math" src="images/math/fa84e2d630460f18b94dcecf0f0526f91dd87ec6.svg" alt="z_{ndc} = -1"/>, which is what we want, as negative <img class="math" src="images/math/7165e3dbdd379281cd441e830934b272d34fd7eb.svg" alt="z"/> axis
+goes into the monitor.</p>
+</section>
 <section id="remove-z-of-camera-space-from-the-rest-of-the-matrix">
 <h4>Remove Z of Camera Space from the Rest of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-the-rest-of-the-matrix" title="Permalink to this heading">¶</a></h4>
 <p>We successfully moved <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of the upper left quadrant, but in doing so, we moved it down
@@ -433,48 +513,54 @@ to the lower right. Can we get rid of it there too?  Turn out, we can.</p>
 we can put <img class="math" src="images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/> into the <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/> by taking the explicit vesion of it out of the fourth column,
 and put <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/> into the third column’s <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/>.</p>
 <div class="math">
-<p><img src="images/math/2fe838c1bc81eb3f3e655772907cc396a2f4afd1.svg" alt="\begin{bmatrix}
-                          {x_{clip}} \\
-                          {y_{clip}} \\
-                          {z_{clip}} \\
-                          {w_{clip}} \\
+<p><img src="images/math/ca2f255e29326d389ad270323b2a50444d18a798.svg" alt="\begin{bmatrix}
+                          x_{clip} \\
+                          y_{clip} \\
+                          z_{clip} \\
+                          w_{clip} \\
                 \end{bmatrix}
                 &amp; =  \vec{f}_{c}^{clip}(\begin{bmatrix}
-                          {x_c} \\
-                          {y_c} \\
-                          {z_c} \\
-                          {w_c=1} \\
+                          x_c \\
+                          y_c \\
+                          z_c \\
+                          w_c=1 \\
                 \end{bmatrix}; farZ_c, nearZ_c, top, right) \\
                 &amp; =  (\vec{f}_{ndc}^{clip} \circ \vec{f}_{c}^{ndc})  *
                  \begin{bmatrix}
-                          {x_c} \\
-                          {y_c} \\
-                          {z_c} \\
-                          {w_c=1} \\
+                          x_c \\
+                          y_c \\
+                          z_c \\
+                          w_c=1 \\
                 \end{bmatrix} \\
-                &amp; = \begin{bmatrix}
-                          {-nearZ_c \over right} &amp;         0 &amp;        0 &amp;                                   0 \\
-                          0 &amp;                  {-nearZ_c \over top} &amp; 0 &amp;                                   0 \\
-                          0 &amp;                  0 &amp;        {2*(-z_c) \over {nearZ_c - farZ_c}} &amp;   {-z_c*{-{farZ_c + nearZ_c} \over {nearZ_c - farZ_c}}} \\
-                          0 &amp;                  0 &amp;        \textcolor{red}{0} &amp;                                   \textcolor{red}{-z_c}
+                &amp; = {1 \over {z_c}} * \begin{bmatrix}
+                          nearZ_c \over right &amp;         0 &amp;        0 &amp;                                   0 \\
+                          0 &amp;                  nearZ_c \over top &amp; 0 &amp;                                   0 \\
+                          0 &amp;                  0 &amp;        z_c * {2 \over {nearZ_c - farZ_c}} &amp;   z_c * {-{farZ_c + nearZ_c} \over {nearZ_c - farZ_c}} \\
+                          0 &amp;                  0 &amp;        \textcolor{red}{0} &amp;                                   \textcolor{red}{z_c}
                 \end{bmatrix} *
                  \begin{bmatrix}
-                          {x_c} \\
-                          {y_c} \\
-                          {z_c} \\
+                          x_c \\
+                          y_c \\
+                          z_c \\
                           \textcolor{red}{w_c=1} \\
                 \end{bmatrix} \\
-                &amp; = \begin{bmatrix}
-                          {-nearZ_c \over right} &amp;         0 &amp;        0 &amp;                                   0 \\
-                          0 &amp;                  {-nearZ_c \over top} &amp; 0 &amp;                                   0 \\
-                          0 &amp;                  0 &amp;        {2*(-z_c) \over {nearZ_c - farZ_c}} &amp;   {-z_c*{-{farZ_c + nearZ_c} \over {nearZ_c - farZ_c}}} \\
-                          0 &amp;                  0 &amp;        \textcolor{red}{-1} &amp;                                   \textcolor{red}{0}
+                &amp; = {1 \over {z_c}} *  \begin{bmatrix}
+                          nearZ_c \over right &amp;         0 &amp;        0 &amp;                                   0 \\
+                          0 &amp;                  nearZ_c \over top &amp; 0 &amp;                                   0 \\
+                          0 &amp;                  0 &amp;        z_c * {2 \over {nearZ_c - farZ_c}} &amp;  z_c*{-{farZ_c + nearZ_c} \over {nearZ_c - farZ_c}} \\
+                          0 &amp;                  0 &amp;        \textcolor{red}{1} &amp;                                   \textcolor{red}{0}
                 \end{bmatrix} *
                  \begin{bmatrix}
-                          {x_c} \\
-                          {y_c} \\
-                          {z_c} \\
-                          {w_c=1} \\
+                          x_c \\
+                          y_c \\
+                          z_c \\
+                          w_c=1 \\
+                \end{bmatrix} \\
+                &amp; = {1 \over {z_c}} * \begin{bmatrix}
+                             {{nearZ_c \over right} * x_{c}}  \\
+                             {{nearZ_c \over top} * y_{c}}    \\
+                             {\textcolor{red}{z_c}^2 * {2 \over {nearZ_c - farZ_c}} + z_c * {{-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}}\\
+                             \textcolor{red}{z_c} \\
                 \end{bmatrix}"/></p>
 </div><p>To remove <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> from the matrix, all that to do is remove it from row 3, somehow.  We’re about to ride dirty.</p>
 <p>If we were to change row three, it would not be the same transformation.  But if we ensure the following two
