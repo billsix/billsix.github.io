@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -93,10 +93,8 @@ Draw Paddle 1
 .. literalinclude:: ../src/demo02/demo.py
    :language: python
    :linenos:
-   :lineno-start: 76
-   :lines: 76-82
-
-
+   :lineno-start: 77
+   :lines: 77-83
 
 
 The paddle looks like this relative to normalized device coordinates (NDC):
@@ -111,12 +109,12 @@ The paddle looks like this relative to normalized device coordinates (NDC):
 
 Draw Paddle 2
 ^^^^^^^^^^^^^
+
 .. literalinclude:: ../src/demo02/demo.py
    :language: python
    :linenos:
-   :lineno-start: 84
-   :lines: 84-90
-
+   :lineno-start: 87
+   :lines: 87-93
 
 
 The 2 paddles looks like this relative to normalized device coordinates (NDC):
@@ -131,8 +129,9 @@ The 2 paddles looks like this relative to normalized device coordinates (NDC):
 .. literalinclude:: ../src/demo02/demo.py
    :language: python
    :linenos:
-   :lineno-start: 92
-   :lines: 92
+   :lineno-start: 97
+   :lines: 97-97
+
 
 * done with frame, flush the current buffer to the monitor
 * Swap front and back buffers

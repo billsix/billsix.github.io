@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -77,18 +77,17 @@ a lot of boiler plate code.
 .. _dataclasses: https://www.youtube.com/watch?v=vRVVyl9uaZc
 
 
+.. literalinclude:: ../src/demo04/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 104
+   :lines: 104-109
 
 .. literalinclude:: ../src/demo04/demo.py
    :language: python
    :linenos:
-   :lineno-start: 103
-   :lines: 103-106
-
-.. literalinclude:: ../src/demo04/demo.py
-   :language: python
-   :linenos:
-   :lineno-start: 109
-   :lines: 109-114
+   :lineno-start: 114
+   :lines: 114-121
 
 Although Python is a dynamically-typed language, we can add type information as helpful hints to the reader,
 and for use with static type-checking tools for Python, such as `mypy`_.
@@ -99,8 +98,8 @@ and for use with static type-checking tools for Python, such as `mypy`_.
 .. literalinclude:: ../src/demo04/demo.py
    :language: python
    :linenos:
-   :lineno-start: 117
-   :lines: 117-134
+   :lineno-start: 125
+   :lines: 125-142
 
 * Create two instances of a Paddle.
 
@@ -145,8 +144,8 @@ Query User Input and Use It To Animate
 .. literalinclude:: ../src/demo04/demo.py
    :language: python
    :linenos:
-   :lineno-start: 137
-   :lines: 137-150
+   :lineno-start: 147
+   :lines: 147-162
 
 
 - If the user presses 's' this frame, subtract 0.1 from the y component of each of
@@ -178,33 +177,32 @@ to only flush the screen at 60 hertz (frames per second).
 .. literalinclude:: ../src/demo04/demo.py
    :language: python
    :linenos:
-   :lineno-start: 153
-   :lines: 153-155
-
-
-.. literalinclude:: ../src/demo04/demo.py
-   :language: python
-   :linenos:
-   :lineno-start: 158
-   :lines: 158-165
+   :lineno-start: 166
+   :lines: 166-168
 
 .. literalinclude:: ../src/demo04/demo.py
    :language: python
    :linenos:
-   :lineno-start: 167
-   :lines: 167-171
+   :lineno-start: 172
+   :lines: 172-178
 
 .. literalinclude:: ../src/demo04/demo.py
    :language: python
    :linenos:
-   :lineno-start: 173
-   :lines: 173
+   :lineno-start: 182
+   :lines: 182-186
 
 .. literalinclude:: ../src/demo04/demo.py
    :language: python
    :linenos:
-   :lineno-start: 174
-   :lines: 174
+   :lineno-start: 190
+   :lines: 190-190
+
+.. literalinclude:: ../src/demo04/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 194
+   :lines: 194-194
 
 * We're still near the beginning of the event loop, and we
   haven't drawn the paddles yet.  So we call the function
@@ -214,8 +212,8 @@ to only flush the screen at 60 hertz (frames per second).
 .. literalinclude:: ../src/demo04/demo.py
    :language: python
    :linenos:
-   :lineno-start: 176
-   :lines: 176-181
+   :lineno-start: 198
+   :lines: 198-203
 
 
 
@@ -240,8 +238,8 @@ to only flush the screen at 60 hertz (frames per second).
 .. literalinclude:: ../src/demo04/demo.py
    :language: python
    :linenos:
-   :lineno-start: 183
-   :lines: 183-188
+   :lineno-start: 207
+   :lines: 207-212
 
 .. figure:: static/plot4.png
     :align: center
@@ -254,5 +252,5 @@ to only flush the screen at 60 hertz (frames per second).
 .. literalinclude:: ../src/demo04/demo.py
    :language: python
    :linenos:
-   :lineno-start: 190
-   :lines: 190
+   :lineno-start: 216
+   :lines: 216-216

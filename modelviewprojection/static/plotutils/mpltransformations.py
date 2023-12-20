@@ -18,9 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import numpy as np
 import math
-import itertools
+import numpy as np
 
 
 def mapMatplotlibData(f, *pointsOnAxis):
@@ -132,3 +131,8 @@ def translate(tx, ty):
     return lambda xs, ys: mapMatplotlibData(
         lambda point: (point[0] + tx, point[1] + ty), xs, ys
     )
+
+
+if __name__ == "__main__":
+    # np is need for doctest and don't want autoflake to remove it
+    ignore = np.eye()

@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -407,14 +407,14 @@ and convert them to NDC.
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 104
-   :lines: 104-110
+   :lineno-start: 105
+   :lines: 105-112
 
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 112
-   :lines: 112-113
+   :lineno-start: 116
+   :lines: 116-118
 
 * NEW -- Add the ability to scale a vertex, to stretch or to shrink
 
@@ -423,16 +423,16 @@ and convert them to NDC.
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 125
-   :lines: 125-150
+   :lineno-start: 132
+   :lines: 132-156
 
 * paddles are using modelspace coordinates instead of NDC
 
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 152
-   :lines: 152-162
+   :lineno-start: 161
+   :lines: 161-173
 
 
 * Movement code needs to happen in Modelspace's units.
@@ -444,26 +444,23 @@ Code
 The Event Loop
 ~~~~~~~~~~~~~~
 
-
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 169
-   :lines: 169-174
+   :lineno-start: 181
+   :lines: 181-195
 
-::
 
-    ...
+
 
 Rendering Paddle 1
 &&&&&&&&&&&&&&&&&&
 
-
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 187
-   :lines: 187-188
+   :lineno-start: 199
+   :lines: 199-202
 
 
 .. figure:: static/translation-forwards-0.png
@@ -476,8 +473,9 @@ Rendering Paddle 1
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 189
-   :lines: 189-190
+   :lineno-start: 206
+   :lines: 206-207
+
 
 
 .. figure:: static/translation-forwards-2.png
@@ -502,14 +500,18 @@ not included a picture of that here.  Scaling happens relative to
 the origin, so the picture would be the same, just with different labels
 on the bottom and on the left.
 
-
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 210
+   :lines: 210-211
 
 
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 192
-   :lines: 192-195
+   :lineno-start: 215
+   :lines: 215-217
 
 
 
@@ -517,12 +519,12 @@ Rendering Paddle 2
 &&&&&&&&&&&&&&&&&&
 
 
-
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 197
-   :lines: 197-200
+   :lineno-start: 221
+   :lines: 221-224
+
 
 
 
@@ -537,8 +539,8 @@ Rendering Paddle 2
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 201
-   :lines: 201-202
+   :lineno-start: 228
+   :lines: 228-229
 
 .. figure:: static/translation2-forwards-2.png
     :align: center
@@ -556,15 +558,26 @@ Rendering Paddle 2
 
     Reset coordinate system.
 
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 232
+   :lines: 232-233
+
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 238
+   :lines: 238-239
 
 The coordinate system is reset.  Now scale everything by 1/100.  I have
 not included a picture of that here.  Scaling happens relative to
 the origin, so the picture would be the same, just with different labels
 on the bottom and on the left.
 
-
 .. literalinclude:: ../src/demo06/demo.py
    :language: python
    :linenos:
-   :lineno-start: 204
-   :lines: 204-206
+   :lineno-start: 243
+   :lines: 243-243

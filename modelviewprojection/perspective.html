@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Standard Perspective Matrix &mdash; Model View Projection 0.0.1 documentation</title>
@@ -12,11 +12,9 @@
     <script src="static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
-        <script src="static/jquery.js"></script>
-        <script src="static/underscore.js"></script>
-        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="static/doctools.js"></script>
+        <script src="static/documentation_options.js?v=d45e8c67"></script>
+        <script src="static/doctools.js?v=888ff710"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Model View Projection
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Model View Projection
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,8 +96,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Standard Perspective Matrix</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Standard Perspective Matrix</li>
       <li class="wy-breadcrumbs-aside">
             <a href="sources/perspective.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -106,26 +108,26 @@
            <div itemprop="articleBody">
              
   <section id="standard-perspective-matrix">
-<h1>Standard Perspective Matrix<a class="headerlink" href="#standard-perspective-matrix" title="Permalink to this heading">¶</a></h1>
+<h1>Standard Perspective Matrix<a class="headerlink" href="#standard-perspective-matrix" title="Link to this heading">¶</a></h1>
 <section id="purpose">
-<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
+<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">¶</a></h2>
 <p>Derive the standard perspective matrix that OpenGL expects.</p>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <figure class="align-center" id="id1">
 <img alt="Demo 11" src="images/perspective.png" />
 <figcaption>
-<p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <section id="matrix-form-of-perspective-projection">
-<h3>Matrix form of perspective projection<a class="headerlink" href="#matrix-form-of-perspective-projection" title="Permalink to this heading">¶</a></h3>
+<h3>Matrix form of perspective projection<a class="headerlink" href="#matrix-form-of-perspective-projection" title="Link to this heading">¶</a></h3>
 <figure class="align-center">
 <img alt="Frustum 2" src="images/frustum2.png" />
 </figure>
 <section id="scale-camera-space-x-by-camera-space-z">
-<h4>Scale Camera-space x by Camera-space z<a class="headerlink" href="#scale-camera-space-x-by-camera-space-z" title="Permalink to this heading">¶</a></h4>
+<h4>Scale Camera-space x by Camera-space z<a class="headerlink" href="#scale-camera-space-x-by-camera-space-z" title="Link to this heading">¶</a></h4>
 <div class="math">
 <p><img src="images/math/b23cfb38f6931f4cf7085148ee62a840ea50116d.svg" alt="\vec{f}_{1}(\begin{bmatrix}
                           {x_c} \\
@@ -148,12 +150,12 @@
 <figure class="align-center" id="id2">
 <img alt="Frustum 3" src="images/frustum3.png" />
 <figcaption>
-<p><span class="caption-text">Scale the camera space x by the camera space z</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Scale the camera space x by the camera space z</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="scale-camera-space-y-by-camera-space-z">
-<h4>Scale Camera-space y by Camera-space z<a class="headerlink" href="#scale-camera-space-y-by-camera-space-z" title="Permalink to this heading">¶</a></h4>
+<h4>Scale Camera-space y by Camera-space z<a class="headerlink" href="#scale-camera-space-y-by-camera-space-z" title="Link to this heading">¶</a></h4>
 <div class="math">
 <p><img src="images/math/94bb9d61259c65f7ead975132da5efe0331bc084.svg" alt="(\vec{f}_{2} ; nearZ_c) ( \begin{bmatrix}
                      {x_c} \\
@@ -176,12 +178,12 @@
 <figure class="align-center" id="id3">
 <img alt="Frustum 4" src="images/frustum4.png" />
 <figcaption>
-<p><span class="caption-text">Scale the camera space y by the cameraspace z</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Scale the camera space y by the cameraspace z</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="translate-rectangular-prism-s-center-to-center">
-<h4>Translate Rectangular Prism’s Center to Center<a class="headerlink" href="#translate-rectangular-prism-s-center-to-center" title="Permalink to this heading">¶</a></h4>
+<h4>Translate Rectangular Prism’s Center to Center<a class="headerlink" href="#translate-rectangular-prism-s-center-to-center" title="Link to this heading">¶</a></h4>
 <p><img class="math" src="images/math/930e808b5d82af5691d2f4dd35fdd01d2ef979ee.svg" alt="x_{midpoint} = 0"/>  // centered on x</p>
 <p><img class="math" src="images/math/2b812c038c7fd10e9e9d70e00e7d0f0f9202e2a3.svg" alt="y_{midpoint} = 0"/>  // centered on y</p>
 <p><img class="math" src="images/math/aad4a980fc7164f00b1da0f17458e9d2a2e7c272.svg" alt="z_{midpoint} = {{{farZ}_c + {nearZ}_c} \over 2}"/>;</p>
@@ -209,7 +211,7 @@
 </figure>
 </section>
 <section id="scale-by-inverse-of-the-dimensions-of-the-rectangular-prism">
-<h4>Scale by inverse of the dimensions of the Rectangular Prism<a class="headerlink" href="#scale-by-inverse-of-the-dimensions-of-the-rectangular-prism" title="Permalink to this heading">¶</a></h4>
+<h4>Scale by inverse of the dimensions of the Rectangular Prism<a class="headerlink" href="#scale-by-inverse-of-the-dimensions-of-the-rectangular-prism" title="Link to this heading">¶</a></h4>
 <p><img class="math" src="images/math/6c4f0433c32a9e2f1a09ddcc2853c70573b2ff43.svg" alt="x_{length} = right * 2"/>;</p>
 <p><img class="math" src="images/math/2690a3d5eca4385040efadb02d30ada4afcd707c.svg" alt="y_{length} = top * 2"/>;</p>
 <p><img class="math" src="images/math/b06e5a30f5649fcfb0342c582564bc6095eaccd8.svg" alt="z_{length} = {nearZ}_c - {farZ}_c"/>;</p>
@@ -236,7 +238,7 @@
 </figure>
 </section>
 <section id="premultiply-the-matricies">
-<h4>Premultiply the matricies<a class="headerlink" href="#premultiply-the-matricies" title="Permalink to this heading">¶</a></h4>
+<h4>Premultiply the matricies<a class="headerlink" href="#premultiply-the-matricies" title="Link to this heading">¶</a></h4>
 <div class="math">
 <p><img src="images/math/19bceacdfc2f2f2259ea57aa8a75376e9f9c0fad.svg" alt="\begin{bmatrix}
   {x_{ndc}} \\
@@ -289,7 +291,7 @@ Given that <img class="math" src="images/math/caa487cffda5a61e15801b78457f45bc23
 </section>
 </section>
 <section id="clip-space">
-<h3>Clip Space<a class="headerlink" href="#clip-space" title="Permalink to this heading">¶</a></h3>
+<h3>Clip Space<a class="headerlink" href="#clip-space" title="Link to this heading">¶</a></h3>
 <p>convert the data from NDC to clip-space.</p>
 <p>We have never used clip-space in the class, only NDC,
 because 4D space is confusing geometrically, nevermind
@@ -385,7 +387,7 @@ the following</p>
 </div><p>because multiplying by this matrix will remove the <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of
 the upper left quadrant.</p>
 <section id="remove-z-of-camera-space-from-part-of-the-matrix">
-<h4>Remove Z of Camera Space from Part of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-part-of-the-matrix" title="Permalink to this heading">¶</a></h4>
+<h4>Remove Z of Camera Space from Part of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-part-of-the-matrix" title="Link to this heading">¶</a></h4>
 <p>To get camera z out of the matrix, where it’s currently in two denominators, we
 can use knowledge of clip space, wherein we put cameraspace’s z into W.     because cameraSpace’s z coordinate is negative, we want to scale
 all dimensions without reflecting over the origin, hence the negative sign in  <img class="math" src="images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/>.</p>
@@ -506,7 +508,7 @@ should go to the upper right corner with a z value of 1, as -1 is where the back
 goes into the monitor.</p>
 </section>
 <section id="remove-z-of-camera-space-from-the-rest-of-the-matrix">
-<h4>Remove Z of Camera Space from the Rest of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-the-rest-of-the-matrix" title="Permalink to this heading">¶</a></h4>
+<h4>Remove Z of Camera Space from the Rest of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-the-rest-of-the-matrix" title="Link to this heading">¶</a></h4>
 <p>We successfully moved <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of the upper left quadrant, but in doing so, we moved it down
 to the lower right. Can we get rid of it there too?  Turn out, we can.</p>
 <p>Since the vector multiplied by this matrix will provide <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> as it’s third element,

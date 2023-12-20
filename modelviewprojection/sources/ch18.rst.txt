@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -59,8 +59,8 @@ Here is paddle 1 code
 .. literalinclude:: ../src/demo17/demo.py
    :language: python
    :linenos:
-   :lineno-start: 362
-   :lines: 362-391
+   :lineno-start: 377
+   :lines: 377-398
 
 
 Here is the square's code:
@@ -69,8 +69,8 @@ Here is the square's code:
 .. literalinclude:: ../src/demo17/demo.py
    :language: python
    :linenos:
-   :lineno-start: 393
-   :lines: 393-418
+   :lineno-start: 406
+   :lines: 406-427
 
 
 
@@ -189,8 +189,8 @@ index
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 302
-   :lines: 302
+   :lineno-start: 304
+   :lines: 304-304
 
 
 
@@ -203,8 +203,8 @@ returned from the function at the bottom of the stack.
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 305
-   :lines: 305-309
+   :lineno-start: 309
+   :lines: 309-315
 
 
 There is an example at the bottom of src/demo18/demo.py
@@ -212,8 +212,8 @@ There is an example at the bottom of src/demo18/demo.py
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 437
-   :lines: 437-450
+   :lineno-start: 457
+   :lines: 457-472
 
 Define four functions, which we will compose on the stack.
 
@@ -222,44 +222,44 @@ Push identity onto the stack, which will will never pop off of the stack.
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 454
-   :lines: 454-456
+   :lineno-start: 477
+   :lines: 477-479
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 458
-   :lines: 458-460
+   :lineno-start: 483
+   :lines: 483-485
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 462
-   :lines: 462-464
+   :lineno-start: 489
+   :lines: 489-491
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 466
-   :lines: 466-468
+   :lineno-start: 495
+   :lines: 495-497
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 470
-   :lines: 470-472
+   :lineno-start: 501
+   :lines: 501-503
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 474
-   :lines: 474-476
+   :lineno-start: 507
+   :lines: 507-509
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 478
-   :lines: 478-480
+   :lineno-start: 513
+   :lines: 513-515
 
 
 
@@ -270,8 +270,8 @@ Event Loop
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 316
-   :lines: 316
+   :lineno-start: 323
+   :lines: 323-323
 
 ::
 
@@ -304,8 +304,8 @@ and the end of the list to be the top of the stack.
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 355
-   :lines: 355
+   :lineno-start: 364
+   :lines: 364-364
 
 
 Unlike in previous demos in which we read the transformations
@@ -331,8 +331,8 @@ to world space like so, read top to bottom:
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 357
-   :lines: 357-364
+   :lineno-start: 368
+   :lines: 368-374
 
 But, since we need to transform world-space to camera space,
 they must be inverted by reversing the order, and negating
@@ -356,8 +356,8 @@ camera space are.
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 365
-   :lines: 365-373
+   :lineno-start: 379
+   :lines: 379-383
 
 draw paddle 1
 ~~~~~~~~~~~~~
@@ -383,8 +383,8 @@ the current space
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 375
-   :lines: 375-392
+   :lineno-start: 389
+   :lines: 389-392
 
 for each of the modelspace coordinates, apply all
 of the procedures on the stack from top to bottom
@@ -414,8 +414,8 @@ remove these 4 transformations from the stack (done below)
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 394
-   :lines: 394-405
+   :lineno-start: 405
+   :lines: 405-416
 
 Now we need to remove fns from the stack so that the
 lambda stack will convert from world space to NDC.
@@ -425,8 +425,8 @@ world space to paddle2 space on the stack.
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 407
-   :lines: 407-412
+   :lineno-start: 420
+   :lines: 420-425
 
 since paddle2's model_space is independent of paddle 1's space, only
 leave the view and projection fns (1) - (4)
@@ -450,8 +450,8 @@ draw paddle 2
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 414
-   :lines: 414-427
+   :lineno-start: 430
+   :lines: 430-441
 
 
 remove all fns from the function stack, as the next frame will set them
@@ -461,8 +461,8 @@ the next iteration of the event loop.
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 429
-   :lines: 429
+   :lineno-start: 446
+   :lines: 446-446
 
 
 Swap buffers and execute another iteration of the event loop
@@ -470,5 +470,5 @@ Swap buffers and execute another iteration of the event loop
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
    :linenos:
-   :lineno-start: 431
-   :lines: 431
+   :lineno-start: 450
+   :lines: 450-450

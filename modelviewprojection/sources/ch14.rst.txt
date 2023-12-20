@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -130,12 +130,11 @@ Description
 * starting on the z axis, rotating to x axis, thumb is on the positive y axis.
 
 
-
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
    :linenos:
-   :lineno-start: 108
-   :lines: 108-115
+   :lineno-start: 109
+   :lines: 109-117
 
 Rotate Z
 ~~~~~~~~
@@ -150,12 +149,11 @@ the z component at all.
     :figclass: align-center
 
 
-
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
    :linenos:
-   :lineno-start: 131
-   :lines: 131-136
+   :lineno-start: 141
+   :lines: 141-147
 
 Rotate X
 ~~~~~~~~
@@ -168,12 +166,11 @@ Rotate X
     :figclass: align-center
 
 
-
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
    :linenos:
-   :lineno-start: 117
-   :lines: 117-122
+   :lineno-start: 121
+   :lines: 121-127
 
 
 Rotate Y
@@ -185,19 +182,20 @@ Rotate Y
     :figclass: align-center
 
 
+.. literalinclude:: ../src/demo14/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 131
+   :lines: 131-137
+
+Scale
+~~~~~
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
    :linenos:
-   :lineno-start: 124
-   :lines: 124-129
-
-
-.. literalinclude:: ../src/demo14/demo.py
-   :language: python
-   :linenos:
-   :lineno-start: 138
-   :lines: 138-139
+   :lineno-start: 151
+   :lines: 151-153
 
 Code
 ^^^^
@@ -208,8 +206,8 @@ a z-coordinate of 0 in their modelspace.
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
    :linenos:
-   :lineno-start: 152
-   :lines: 152-176
+   :lineno-start: 168
+   :lines: 168-192
 
 The only new aspect of the square below is that the paddles have
 a z-coordinate of 0 in their modelspace.  N.B that since we
@@ -217,23 +215,21 @@ do a sequence transformations to the modelspace data to get
 to worldspace coordinates, the X, Y, and Z coordinates
 are subject to be different.
 
-
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
    :linenos:
-   :lineno-start: 187
-   :lines: 187-192
+   :lineno-start: 204
+   :lines: 204-209
 
 
 Event Loop
 ~~~~~~~~~~
 
-
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
    :linenos:
-   :lineno-start: 245
-   :lines: 245
+   :lineno-start: 264
+   :lines: 264-264
 
 ::
 
@@ -241,12 +237,11 @@ Event Loop
 
 * Draw Paddle 1
 
-
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
    :linenos:
-   :lineno-start: 263
-   :lines: 263-277
+   :lineno-start: 284
+   :lines: 284-298
 
 The square should not be visible when hidden behind the paddle1,
 as we do a translate by -10.  But in running the demo, you see
@@ -258,8 +253,8 @@ that the square is always drawn over the paddle.
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
    :linenos:
-   :lineno-start: 279
-   :lines: 279-298
+   :lineno-start: 304
+   :lines: 304-328
 
 
 This is because without depth_ buffering, the object drawn last
@@ -275,8 +270,8 @@ see that the square can be hidden behind the paddle.
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
    :linenos:
-   :lineno-start: 301
-   :lines: 301-314
+   :lineno-start: 334
+   :lines: 334-349
 
 
 Added translate in 3D.  Added scale in 3D.  These are just like

@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -142,12 +142,11 @@ rotate your head (not your neck), 45 degrees.  It's different, and quite uncomfo
 We rotate the camera by the y axis first, then by the relative x axis,
 for the same reason.
 
-
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 322
-   :lines: 322-330
+   :lineno-start: 349
+   :lines: 349-353
 
 
 (Remember, read bottom up, just like the previous demos
@@ -190,9 +189,8 @@ The inverted form is
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 331
-   :lines: 331-339
-
+   :lineno-start: 356
+   :lines: 356-360
 
 
 ..
@@ -258,8 +256,9 @@ The camera now has two angles as instance variables.
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 213
-   :lines: 213-217
+   :lineno-start: 227
+   :lines: 227-231
+
 
 Since we want the user to be able to control the camera, we need
 to read the input.
@@ -267,8 +266,8 @@ to read the input.
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 233
-   :lines: 233
+   :lineno-start: 249
+   :lines: 249-249
 
 ::
 
@@ -280,8 +279,8 @@ angle, page up and page down the vertical angle.
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 244
-   :lines: 244-251
+   :lineno-start: 262
+   :lines: 262-269
 
 
 The up arrow and down arrow make the user move forwards
@@ -296,9 +295,8 @@ movement relative to camera space.
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 252
-   :lines: 252-271
-
+   :lineno-start: 273
+   :lines: 273-290
 
 
 Ortho is the function call that shrinks the viewable region
@@ -309,8 +307,9 @@ of the viewable region.
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 148
-   :lines: 148-168
+   :lineno-start: 150
+   :lines: 150-172
+
 
 We will make a wrapper function camera_space_to_ndc_space_fn which
 calls ortho, setting the size of the rectangular prism.
@@ -318,11 +317,8 @@ calls ortho, setting the size of the rectangular prism.
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 170
-   :lines: 170-173
-
-
-
+   :lineno-start: 178
+   :lines: 178-184
 
 
 
@@ -339,8 +335,8 @@ matricies solve for us.
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 300
-   :lines: 300
+   :lineno-start: 322
+   :lines: 322-322
 
 
 ::
@@ -352,9 +348,8 @@ Paddle 1
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 316
-   :lines: 316-342
-
+   :lineno-start: 341
+   :lines: 341-364
 
 
 Square
@@ -362,12 +357,11 @@ Square
 the square should not be visible when hidden behind the paddle1,
 as we did a translate by -10 in the z direction.
 
-
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 344
-   :lines: 344-376
+   :lineno-start: 370
+   :lines: 370-398
 
 
 
@@ -376,5 +370,5 @@ Paddle 2
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
    :linenos:
-   :lineno-start: 378
-   :lines: 378-404
+   :lineno-start: 404
+   :lines: 404-425

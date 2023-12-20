@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -115,12 +115,11 @@ Code
 
 Define the geometry of the square in it's own modelspace.
 
-
 .. literalinclude:: ../src/demo11/demo.py
    :language: python
    :linenos:
-   :lineno-start: 167
-   :lines: 167-172
+   :lineno-start: 168
+   :lines: 168-173
 
 
 Event Loop
@@ -129,8 +128,8 @@ Event Loop
 .. literalinclude:: ../src/demo11/demo.py
    :language: python
    :linenos:
-   :lineno-start: 216
-   :lines: 216
+   :lineno-start: 218
+   :lines: 218-218
 
 ::
 
@@ -139,16 +138,16 @@ Event Loop
 
 Draw paddle 1, just as before.
 
-
 .. literalinclude:: ../src/demo11/demo.py
    :language: python
    :linenos:
-   :lineno-start: 234
-   :lines: 234-246
+   :lineno-start: 239
+   :lines: 239-251
 
 As a refresher, the author recommends reading the code from modelspace
 to worldspace from the bottom up, and from worldspace to NDC from top down.
 
+* TODO fix line nos
 * Read line 239-240
 * Read line 238
 * Reset the coordinate system
@@ -160,12 +159,11 @@ Translate the square to the right by 20 units.
 We are dealing with a -100 to 100 world space, which
 later gets scaled down to NDC.
 
-
 .. literalinclude:: ../src/demo11/demo.py
    :language: python
    :linenos:
-   :lineno-start: 248
-   :lines: 248-262
+   :lineno-start: 257
+   :lines: 257-270
 
 Towards that, we need to do all of the transformations to the square
 that we would to the paddle, and then do any extra transformations
@@ -173,16 +171,19 @@ afterwards.
 
 As such, read
 
+* TODO fix line nums
 * Read line 254-255
 * Read line 253
 
 If we were to plot the square now, it would be in paddle 1's space.  We don't want
 that, we want in to be moved in the X direction some units.  Therefore
 
+* TODO Fixd line nos
 * Read line 251-252
 
 Now the square's geometry will be in it's own space!
 
+* TODO Fixd line nos
 * Reset the coordinate system
 * Read line 256-257, the inverse of the transformations from world space to camera space
 * Read line 259-260, shrink the world space of -100, 100, down to NDC (-1 to 1)
@@ -193,5 +194,5 @@ Draw paddle 2 just like before.
 .. literalinclude:: ../src/demo11/demo.py
    :language: python
    :linenos:
-   :lineno-start: 264
-   :lines: 264-276
+   :lineno-start: 276
+   :lines: 276-288

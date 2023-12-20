@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -102,8 +102,8 @@ Code
 .. literalinclude:: ../src/demo19/demo.py
    :language: python
    :linenos:
-   :lineno-start: 83
-   :lines: 83-85
+   :lineno-start: 84
+   :lines: 84-86
 
 
 The Event Loop
@@ -118,8 +118,8 @@ In univariate terms, f(x) = x
 .. literalinclude:: ../src/demo19/demo.py
    :language: python
    :linenos:
-   :lineno-start: 247
-   :lines: 247-251
+   :lineno-start: 251
+   :lines: 251-254
 
 
 change the perspective matrix to convert the frustum
@@ -136,12 +136,11 @@ in the next chapter.
 
     Turn our NDC into Clip Space
 
-
 .. literalinclude:: ../src/demo19/demo.py
    :language: python
    :linenos:
-   :lineno-start: 254
-   :lines: 254-260
+   :lineno-start: 259
+   :lines: 259-265
 
 
 The camera's position is described as follows
@@ -162,8 +161,8 @@ do the inverse operations to the view stack.
 .. literalinclude:: ../src/demo19/demo.py
    :language: python
    :linenos:
-   :lineno-start: 263
-   :lines: 263-267
+   :lineno-start: 270
+   :lines: 270-274
 
 
 
@@ -198,12 +197,11 @@ and then take the frustum and convert it to NDC.
 Save onto the current model stack, so that paddle 2 can be drawn relative
 to it.
 
-
 .. literalinclude:: ../src/demo19/demo.py
    :language: python
    :linenos:
-   :lineno-start: 278
-   :lines: 278
+   :lineno-start: 287
+   :lines: 287-287
 
 
 draw paddle 1
@@ -221,10 +219,8 @@ matrix into OpenGL, glVertex3f will apply those transformations for us!
 .. literalinclude:: ../src/demo19/demo.py
    :language: python
    :linenos:
-   :lineno-start: 280
-   :lines: 280-292
-
-
+   :lineno-start: 291
+   :lines: 291-303
 
 
 
@@ -241,8 +237,8 @@ the square's 3 model_space transformations
 .. literalinclude:: ../src/demo19/demo.py
    :language: python
    :linenos:
-   :lineno-start: 296
-   :lines: 296-318
+   :lineno-start: 309
+   :lines: 309-331
 
 No need to push matrix here, as this is the last object that
 we are drawing, and upon the next iteration of the event loop,
@@ -254,5 +250,5 @@ draw paddle 2
 .. literalinclude:: ../src/demo19/demo.py
    :language: python
    :linenos:
-   :lineno-start: 320
-   :lines: 320-336
+   :lineno-start: 335
+   :lines: 335-351

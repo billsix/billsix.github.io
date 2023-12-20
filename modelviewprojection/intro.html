@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Introduction &mdash; Model View Projection 0.0.1 documentation</title>
@@ -12,11 +12,9 @@
     <script src="static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
-        <script src="static/jquery.js"></script>
-        <script src="static/underscore.js"></script>
-        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="static/doctools.js"></script>
+        <script src="static/documentation_options.js?v=d45e8c67"></script>
+        <script src="static/doctools.js?v=888ff710"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -29,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Model View Projection
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Model View Projection
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -86,8 +88,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Introduction</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
       <li class="wy-breadcrumbs-aside">
             <a href="sources/intro.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -98,13 +100,13 @@
            <div itemprop="articleBody">
              
   <section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
 <p>Learn how to program in 3D computer graphics in Python!</p>
 <figure class="align-center">
 <img alt="frustum1" src="images/frustum1.png" />
 </figure>
 <section id="approach">
-<h2>Approach<a class="headerlink" href="#approach" title="Permalink to this heading">¶</a></h2>
+<h2>Approach<a class="headerlink" href="#approach" title="Link to this heading">¶</a></h2>
 <p>This book uses “mistake-driven-development”; instead of listing math formulae
 in their final form, this book incrementally shows, via working
 code, how to build complex graphics applications, making mistakes along
@@ -126,7 +128,7 @@ Although this book fills a huge gap that other books do not address,
 those other books are excellent reference books for advanced topics.</p>
 </section>
 <section id="pre-requisities">
-<h2>Pre-requisities<a class="headerlink" href="#pre-requisities" title="Permalink to this heading">¶</a></h2>
+<h2>Pre-requisities<a class="headerlink" href="#pre-requisities" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Basic programming concepts in Python.</p>
 <ol class="arabic simple">
@@ -155,7 +157,7 @@ those other books are excellent reference books for advanced topics.</p>
 </ol>
 </section>
 <section id="required-software">
-<h2>Required Software<a class="headerlink" href="#required-software" title="Permalink to this heading">¶</a></h2>
+<h2>Required Software<a class="headerlink" href="#required-software" title="Link to this heading">¶</a></h2>
 <p>You will need to install Python.  <a class="reference external" href="https://en.wikibooks.org/wiki/A_Beginner%27s_Python_Tutorial/Installing_Python">https://en.wikibooks.org/wiki/A_Beginner%27s_Python_Tutorial/Installing_Python</a></p>
 <p>Before running this code, you need a virtual environment,
 with dependencies installed. <a class="reference external" href="https://docs.python.org/3/tutorial/venv.html">https://docs.python.org/3/tutorial/venv.html</a></p>
@@ -170,22 +172,22 @@ with dependencies installed. <a class="reference external" href="https://docs.py
 </div>
 <p>If you use Visual Studio on Windows, it takes care of this for you.</p>
 <p>On a Mac or on Linux, run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m venv venv
-<span class="nb">source</span> venv/bin/activate
-python3 -m pip install --upgrade pip setuptools
-python3 -m pip install -r requirements.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span>setuptools
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
 <section id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h3>
+<h3>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h3>
 <p>Use Visual Studio 2019 (Tested on community, but I’m sure it will work on others).</p>
 </section>
 <section id="linux">
-<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this heading">¶</a></h3>
+<h3>Linux<a class="headerlink" href="#linux" title="Link to this heading">¶</a></h3>
 <p>Install Python3, glfw via a package manager.  Use pip and virtualenv to install dependencies</p>
 </section>
 <section id="mac">
-<h3>Mac<a class="headerlink" href="#mac" title="Permalink to this heading">¶</a></h3>
+<h3>Mac<a class="headerlink" href="#mac" title="Link to this heading">¶</a></h3>
 <p>Python Python3 (via anaconda, homebrew, macports, whatever), and use pip and virtualenv to install dependencies.</p>
 </section>
 </section>

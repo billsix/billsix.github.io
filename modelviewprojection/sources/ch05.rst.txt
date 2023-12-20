@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -99,8 +99,8 @@ Data Structures
 .. literalinclude:: ../src/demo05/demo.py
    :language: python
    :linenos:
-   :lineno-start: 104
-   :lines: 104-110
+   :lineno-start: 105
+   :lines: 105-113
 
 We added a translate method to the Vertex class.  Given a translation amount, the vertex
 will be shifted by that amount.  This is a primitive that we will be using to transform
@@ -121,8 +121,8 @@ import them and try the methods
 .. literalinclude:: ../src/demo05/demo.py
    :language: python
    :linenos:
-   :lineno-start: 113
-   :lines: 113-119
+   :lineno-start: 118
+   :lines: 118-126
 
 Add a position instance variable to the Paddle class.  This position is the center of
 the paddle, defined relative to NDC.  The vertices of the paddle will be defined
@@ -135,8 +135,8 @@ Instantiation of the Paddles
 .. literalinclude:: ../src/demo05/demo.py
    :language: python
    :linenos:
-   :lineno-start: 122
-   :lines: 122-146
+   :lineno-start: 130
+   :lines: 130-154
 
 * The verticies are now defined as relative distances from the center of the paddle.  The centers
   of each paddle are placed in positions relative to NDC that preserve the positions of the
@@ -148,8 +148,8 @@ Handling User Input
 .. literalinclude:: ../src/demo05/demo.py
    :language: python
    :linenos:
-   :lineno-start: 149
-   :lines: 149-159
+   :lineno-start: 159
+   :lines: 159-171
 
 * We put the transformation on the center of the paddle, instead
   of directly on each vertex.  This is because the vertices are
@@ -158,19 +158,17 @@ Handling User Input
 The Event Loop
 ~~~~~~~~~~~~~~
 
-
+.. literalinclude:: ../src/demo05/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 179
+   :lines: 179-194
 
 .. literalinclude:: ../src/demo05/demo.py
    :language: python
    :linenos:
-   :lineno-start: 166
-   :lines: 166-182
-
-.. literalinclude:: ../src/demo05/demo.py
-   :language: python
-   :linenos:
-   :lineno-start: 184
-   :lines: 184-192
+   :lineno-start: 198
+   :lines: 198-206
 
 
 Here each of paddle 1's vertices, which are in their "model-space",
@@ -181,8 +179,8 @@ from Paddle 1 space to NDC.
 .. literalinclude:: ../src/demo05/demo.py
    :language: python
    :linenos:
-   :lineno-start: 192
-   :lines: 192-202
+   :lineno-start: 210
+   :lines: 210-218
 
 
 

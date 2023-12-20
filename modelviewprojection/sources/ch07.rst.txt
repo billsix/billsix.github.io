@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -193,26 +193,28 @@ get your vertex rotated around the origin!
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 106
-   :lines: 106-121
+   :lineno-start: 107
+   :lines: 107-123
 
 
 * Note the definition of rotate, from the description above.
   cos and sin are defined in the math module.
 
+
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 124
-   :lines: 124-131
+   :lineno-start: 128
+   :lines: 128-135
 
 * a rotation instance variable is defined, with a default value of 0
 
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 161
-   :lines: 161-182
+   :lineno-start: 167
+   :lines: 167-188
+
 
 
 Cayley Graph
@@ -238,24 +240,21 @@ The Event Loop
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 189
-   :lines: 189
+   :lineno-start: 197
+   :lines: 197-197
 
-::
-
-    ...
 
 So to rotate paddle 1 about its center,
 we should translate to its position, and then rotate
 around the paddle's center.
 
 
-
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 205
-   :lines: 205-208
+   :lineno-start: 215
+   :lines: 215-218
+
 
 .. math::
 
@@ -266,8 +265,8 @@ around the paddle's center.
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 209
-   :lines: 209-211
+   :lineno-start: 222
+   :lines: 222-224
 
 
 .. math::
@@ -276,20 +275,19 @@ around the paddle's center.
     \vec{f}_{w}^{ndc}
 
 
-.. literalinclude:: ../src/demo07/demo.py
-   :language: python
-   :linenos:
-   :lineno-start: 212
-   :lines: 212
-
-
-
 
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 213
-   :lines: 213-214
+   :lineno-start: 229
+   :lines: 229-230
+
+.. literalinclude:: ../src/demo07/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 234
+   :lines: 234-235
+
 
 
 ::
@@ -304,12 +302,11 @@ around the paddle's center.
 
 
 
-
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 218
-   :lines: 218-219
+   :lineno-start: 241
+   :lines: 241-242
 
 .. math::
 
@@ -320,8 +317,8 @@ around the paddle's center.
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 220
-   :lines: 220-222
+   :lineno-start: 246
+   :lines: 246-248
 
 
 .. math::
@@ -331,17 +328,19 @@ around the paddle's center.
 
 
 
-.. literalinclude:: ../src/demo07/demo.py
-   :language: python
-   :linenos:
-   :lineno-start: 223
-   :lines: 223
 
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 224
-   :lines: 224-225
+   :lineno-start: 253
+   :lines: 253-254
+
+.. literalinclude:: ../src/demo07/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 258
+   :lines: 258-259
+
 
 
 
@@ -358,8 +357,9 @@ world space transformations are doing.
 .. literalinclude:: ../src/demo07/demo.py
    :language: python
    :linenos:
-   :lineno-start: 209
-   :lines: 209-211
+   :lineno-start: 222
+   :lines: 222-224
+
 
 
 

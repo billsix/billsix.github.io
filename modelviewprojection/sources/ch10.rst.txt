@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -298,19 +298,17 @@ Code
 
 
 
+.. literalinclude:: ../src/demo10/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 162
+   :lines: 162-164
 
 .. literalinclude:: ../src/demo10/demo.py
    :language: python
    :linenos:
-   :lineno-start: 161
-   :lines: 161-166
-
-
-.. literalinclude:: ../src/demo10/demo.py
-   :language: python
-   :linenos:
-   :lineno-start: 169
-   :lines: 169-179
+   :lineno-start: 172
+   :lines: 172-182
 
 ::
 
@@ -329,19 +327,16 @@ The Event Loop
 .. literalinclude:: ../src/demo10/demo.py
    :language: python
    :linenos:
-   :lineno-start: 208
-   :lines: 208
+   :lineno-start: 212
+   :lines: 212-212
 
 
-::
-
-    ...
 
 .. literalinclude:: ../src/demo10/demo.py
    :language: python
    :linenos:
-   :lineno-start: 226
-   :lines: 226-232
+   :lineno-start: 232
+   :lines: 232-237
 
 The camera's position is at camera.x, camera.y.  So
 apply the inverse of the camera's transformations
@@ -351,42 +346,37 @@ values.
 .. literalinclude:: ../src/demo10/demo.py
    :language: python
    :linenos:
-   :lineno-start: 233
-   :lines: 233-235
-
-.. literalinclude:: ../src/demo10/demo.py
-   :language: python
-   :linenos:
-   :lineno-start: 236
-   :lines: 236-238
-
-
-
-::
-
-    ...
-
-.. literalinclude:: ../src/demo10/demo.py
-   :language: python
-   :linenos:
    :lineno-start: 240
-   :lines: 240-246
+   :lines: 240-241
+
+.. literalinclude:: ../src/demo10/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 244
+   :lines: 244-247
+
+
+
+
+.. literalinclude:: ../src/demo10/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 253
+   :lines: 253-259
 
 The camera's position is at camera.x, camera.y.  So
 apply the inverse of the camera's  transformations
 to paddle 2's vertices, i.e. translate with the negative
 values.
 
+.. literalinclude:: ../src/demo10/demo.py
+   :language: python
+   :linenos:
+   :lineno-start: 262
+   :lines: 262-263
 
 .. literalinclude:: ../src/demo10/demo.py
    :language: python
    :linenos:
-   :lineno-start: 247
-   :lines: 247-249
-
-
-.. literalinclude:: ../src/demo10/demo.py
-   :language: python
-   :linenos:
-   :lineno-start: 250
-   :lines: 250-252
+   :lineno-start: 269
+   :lines: 269-270

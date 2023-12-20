@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2018-2022 William Emerison Six
+   Copyright (c) 2018-2023 William Emerison Six
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -230,12 +230,12 @@ Right calculation based off of Top and aspect ration
            |                                                     |    width/height, not necessarily the
            -------------------------------------------------------    window's
 
-
 .. literalinclude:: ../src/demo17/demo.py
    :language: python
    :linenos:
-   :lineno-start: 115
-   :lines: 115-116
+   :lineno-start: 116
+   :lines: 116-117
+
 
 ::
 
@@ -244,15 +244,15 @@ Right calculation based off of Top and aspect ration
 .. literalinclude:: ../src/demo17/demo.py
    :language: python
    :linenos:
-   :lineno-start: 170
-   :lines: 170-193
+   :lineno-start: 174
+   :lines: 174-202
 
 
 .. literalinclude:: ../src/demo17/demo.py
    :language: python
    :linenos:
-   :lineno-start: 324
-   :lines: 324
+   :lineno-start: 336
+   :lines: 336-336
 
 ::
 
@@ -262,5 +262,5 @@ Right calculation based off of Top and aspect ration
 .. literalinclude:: ../src/demo17/demo.py
    :language: python
    :linenos:
-   :lineno-start: 362
-   :lines: 362-391
+   :lineno-start: 377
+   :lines: 377-398
