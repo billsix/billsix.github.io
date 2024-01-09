@@ -58,9 +58,9 @@ Here is paddle 1 code
 
 .. literalinclude:: ../src/demo17/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 377
-   :lines: 377-398
+   :start-after: doc-region-begin 2ced82a1c3de464adbfe5d303faffdd2314c17c2
+   :end-before: doc-region-end 2ced82a1c3de464adbfe5d303faffdd2314c17c2
+
 
 
 Here is the square's code:
@@ -68,9 +68,9 @@ Here is the square's code:
 
 .. literalinclude:: ../src/demo17/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 406
-   :lines: 406-427
+   :start-after: doc-region-begin 23cd906b0bec259766279f1a9277922719cf1e2b
+   :end-before: doc-region-end 23cd906b0bec259766279f1a9277922719cf1e2b
+
 
 
 
@@ -188,9 +188,9 @@ index
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 304
-   :lines: 304-304
+   :start-after: doc-region-begin 17f3fd5d2ee2d55faeeff6e71eeb4dbe288c7842
+   :end-before: doc-region-end 17f3fd5d2ee2d55faeeff6e71eeb4dbe288c7842
+
 
 
 
@@ -202,18 +202,18 @@ returned from the function at the bottom of the stack.
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 309
-   :lines: 309-315
+   :start-after: doc-region-begin b10a3979fe71e9a6afb18fa102ceb44ab253abc6
+   :end-before: doc-region-end b10a3979fe71e9a6afb18fa102ceb44ab253abc6
+
 
 
 There is an example at the bottom of src/demo18/demo.py
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 457
-   :lines: 457-472
+   :start-after: doc-region-begin 1b3386db3fb40d61e80828a90a820b3a235ca940
+   :end-before: doc-region-end 1b3386db3fb40d61e80828a90a820b3a235ca940
+
 
 Define four functions, which we will compose on the stack.
 
@@ -221,45 +221,45 @@ Push identity onto the stack, which will will never pop off of the stack.
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 477
-   :lines: 477-479
+   :start-after: doc-region-begin 6e7a7ee4a8493ddc6478bcaf2dbb6fb4a2a9753a
+   :end-before: doc-region-end 6e7a7ee4a8493ddc6478bcaf2dbb6fb4a2a9753a
+
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 483
-   :lines: 483-485
+   :start-after: doc-region-begin ccac3b1b9bc8c759e45929c467274c763f7671c7
+   :end-before: doc-region-end ccac3b1b9bc8c759e45929c467274c763f7671c7
+
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 489
-   :lines: 489-491
+   :start-after: doc-region-begin 24f3367f7ffaefa3d882a20f772ce7f089049391
+   :end-before: doc-region-end 24f3367f7ffaefa3d882a20f772ce7f089049391
+
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 495
-   :lines: 495-497
+   :start-after: doc-region-begin b2d4aee29938ffba8e023e2d523e5a8b7b400bee
+   :end-before: doc-region-end b2d4aee29938ffba8e023e2d523e5a8b7b400bee
+
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 501
-   :lines: 501-503
+   :start-after: doc-region-begin 95d6bcea04206261224089df1734055b9b4196d3
+   :end-before: doc-region-end 95d6bcea04206261224089df1734055b9b4196d3
+
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 507
-   :lines: 507-509
+   :start-after: doc-region-begin 55dd21f698dbbde5bd5d1b332279d099a315f771
+   :end-before: doc-region-end 55dd21f698dbbde5bd5d1b332279d099a315f771
+
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 513
-   :lines: 513-515
+   :start-after: doc-region-begin e09b968f9c8a2f9db13475d1c9ac310d94e54a2a
+   :end-before: doc-region-end e09b968f9c8a2f9db13475d1c9ac310d94e54a2a
+
 
 
 
@@ -269,9 +269,9 @@ Event Loop
 ^^^^^^^^^^
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 323
-   :lines: 323-323
+   :start-after: doc-region-begin 6d86d07154c99ed6e1c3feab73545d184153f9ae
+   :end-before: doc-region-end 6d86d07154c99ed6e1c3feab73545d184153f9ae
+
 
 ::
 
@@ -303,9 +303,9 @@ and the end of the list to be the top of the stack.
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 364
-   :lines: 364-364
+   :start-after: doc-region-begin 48bd13153ce54db3f6b9ea5833e91820b7d8b020
+   :end-before: doc-region-end 48bd13153ce54db3f6b9ea5833e91820b7d8b020
+
 
 
 Unlike in previous demos in which we read the transformations
@@ -330,9 +330,9 @@ to world space like so, read top to bottom:
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 368
-   :lines: 368-374
+   :start-after: doc-region-begin f217e71c7f5a228622d5db86e6fe0dec1e072dca
+   :end-before: doc-region-end f217e71c7f5a228622d5db86e6fe0dec1e072dca
+
 
 But, since we need to transform world-space to camera space,
 they must be inverted by reversing the order, and negating
@@ -355,9 +355,9 @@ camera space are.
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 379
-   :lines: 379-383
+   :start-after: doc-region-begin c0dcf40149c0b85d84f13b4421a114409a274432
+   :end-before: doc-region-end c0dcf40149c0b85d84f13b4421a114409a274432
+
 
 draw paddle 1
 ~~~~~~~~~~~~~
@@ -382,9 +382,9 @@ the current space
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 389
-   :lines: 389-392
+   :start-after: doc-region-begin 7de7248650b2809520898faed65be4050d2b441a
+   :end-before: doc-region-end 7de7248650b2809520898faed65be4050d2b441a
+
 
 for each of the modelspace coordinates, apply all
 of the procedures on the stack from top to bottom
@@ -413,9 +413,9 @@ remove these 4 transformations from the stack (done below)
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 405
-   :lines: 405-416
+   :start-after: doc-region-begin 87d309a76468a5dd49f5805f739932d7a1b4dac1
+   :end-before: doc-region-end 87d309a76468a5dd49f5805f739932d7a1b4dac1
+
 
 Now we need to remove fns from the stack so that the
 lambda stack will convert from world space to NDC.
@@ -424,9 +424,9 @@ world space to paddle2 space on the stack.
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 420
-   :lines: 420-425
+   :start-after: doc-region-begin 6e83cdfe078bb103bf04c3d53a4c4ec7cb22ef60
+   :end-before: doc-region-end 6e83cdfe078bb103bf04c3d53a4c4ec7cb22ef60
+
 
 since paddle2's model_space is independent of paddle 1's space, only
 leave the view and projection fns (1) - (4)
@@ -449,9 +449,9 @@ draw paddle 2
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 430
-   :lines: 430-441
+   :start-after: doc-region-begin 9206a08662c91ad536b41641910f7e8e951f7c9e
+   :end-before: doc-region-end 9206a08662c91ad536b41641910f7e8e951f7c9e
+
 
 
 remove all fns from the function stack, as the next frame will set them
@@ -460,15 +460,14 @@ the next iteration of the event loop.
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 446
-   :lines: 446-446
+   :start-after: doc-region-begin 4d0f02db53413ede074a8693bb19e68292db3bd4
+   :end-before: doc-region-end 4d0f02db53413ede074a8693bb19e68292db3bd4
+
 
 
 Swap buffers and execute another iteration of the event loop
 
 .. literalinclude:: ../src/demo18/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 450
-   :lines: 450-450
+   :start-after: doc-region-begin 64809e2fccc9daa3f97239991d905b7fc3f03d62
+   :end-before: doc-region-end 64809e2fccc9daa3f97239991d905b7fc3f03d62

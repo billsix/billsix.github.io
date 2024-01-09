@@ -130,17 +130,17 @@ Set to Draw in Square Subsection Of Window
 
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 74
-   :lines: 74-74
+   :start-after: doc-region-begin 1a8e13a46337c0e9ac0f9436953d66dec069eb1f
+   :end-before: doc-region-end 1a8e13a46337c0e9ac0f9436953d66dec069eb1f
+
 
 * declare a function to configure OpenGL to draw only in a square subset of the monitor, i.e. the viewport
 
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 78
-   :lines: 78-79
+   :start-after: doc-region-begin 263830783a8fbe25283deaa80688f95592917298
+   :end-before: doc-region-end 263830783a8fbe25283deaa80688f95592917298
+
 
 * set the clear color to be gray.
 * glClear clear the color of every pixel in the whole frame buffer, independent of viewport.
@@ -148,9 +148,9 @@ Set to Draw in Square Subsection Of Window
 
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 83
-   :lines: 83-85
+   :start-after: doc-region-begin 3db7c4975ad4354e344c0a2f0d4d94125195ce32
+   :end-before: doc-region-end 3db7c4975ad4354e344c0a2f0d4d94125195ce32
+
 
 * figure out the minimum dimension of the window.  In the image above, the "square_size" is 1200,
   as the monitor's vertical screenspace is only 1200 pixels tall.
@@ -159,9 +159,9 @@ Set to Draw in Square Subsection Of Window
 
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 89
-   :lines: 89-95
+   :start-after: doc-region-begin a2d0bcb5b525e8a68e0bc1ef213359f165981839enablescissortest
+   :end-before: doc-region-end a2d0bcb5b525e8a68e0bc1ef213359f165981839enablescissortest
+
 
 * Enable the scissor test.  Internally, OpenGL drivers likely have global variables
   that we set by calling functions.  Every OpenGL feature isn't used by every OpenGL
@@ -190,18 +190,18 @@ Set to Draw in Square Subsection Of Window
 
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 99
-   :lines: 99-100
+   :start-after: doc-region-begin db4245dba3c0c229416c97fe84da3cb87b1f439d
+   :end-before: doc-region-end db4245dba3c0c229416c97fe84da3cb87b1f439d
+
 
 *  glClear will only update the square to black values.
 
 
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 103
-   :lines: 103-103
+   :start-after: doc-region-begin 9524935cab9f5725f921d11969872ebd9a54e508
+   :end-before: doc-region-end 9524935cab9f5725f921d11969872ebd9a54e508
+
 
 * disable the scissor test, so now any opengl calls will
   happen as usual.
@@ -218,9 +218,9 @@ that we care about, which is the black square.
 
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 106
-   :lines: 106-111
+   :start-after: doc-region-begin defaeb0e6b9ada0b6c349a4dec907300e4c14acbviewportcall
+   :end-before: doc-region-end defaeb0e6b9ada0b6c349a4dec907300e4c14acbviewportcall
+
 
 
 The Event Loop
@@ -233,21 +233,20 @@ the window.
 
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 116
-   :lines: 116-121
+   :start-after: doc-region-begin 33fecc926105eda74989fb02da7daca03e3bfea8
+   :end-before: doc-region-end 33fecc926105eda74989fb02da7daca03e3bfea8
+
 
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 125
-   :lines: 125-125
+   :start-after: doc-region-begin 415cedbd77f6cc02a34de30d2da1b24cab344c5c
+   :end-before: doc-region-end 415cedbd77f6cc02a34de30d2da1b24cab344c5c
+
 
 * The event loop is the same as the previous demo, except
   that we call draw_in_square_viewport every frame at the beginning.
 
 .. literalinclude:: ../src/demo03/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 128
-   :lines: 128-145
+   :start-after: doc-region-begin bf9a23e3296c75d786d75f7b0e406448b773b23b
+   :end-before: doc-region-end bf9a23e3296c75d786d75f7b0e406448b773b23b

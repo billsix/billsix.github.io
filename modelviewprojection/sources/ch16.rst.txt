@@ -144,9 +144,9 @@ for the same reason.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 349
-   :lines: 349-353
+   :start-after: doc-region-begin d194601529be6fa90270809dd56628cb47360ff2
+   :end-before: doc-region-end d194601529be6fa90270809dd56628cb47360ff2
+
 
 
 (Remember, read bottom up, just like the previous demos
@@ -188,9 +188,9 @@ The inverted form is
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 356
-   :lines: 356-360
+   :start-after: doc-region-begin 21b5929d16e434165544480ad25b7ff015e239f7
+   :end-before: doc-region-end 21b5929d16e434165544480ad25b7ff015e239f7
+
 
 
 ..
@@ -255,9 +255,9 @@ The camera now has two angles as instance variables.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 227
-   :lines: 227-231
+   :start-after: doc-region-begin ec5a4d2515c361a5f311d93c93b2c89b60eb2dfc
+   :end-before: doc-region-end ec5a4d2515c361a5f311d93c93b2c89b60eb2dfc
+
 
 
 Since we want the user to be able to control the camera, we need
@@ -265,9 +265,9 @@ to read the input.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 249
-   :lines: 249-249
+   :start-after: doc-region-begin af7c283e5f33d95279c0b6223af95e9b16826acc
+   :end-before: doc-region-end af7c283e5f33d95279c0b6223af95e9b16826acc
+
 
 ::
 
@@ -278,9 +278,9 @@ angle, page up and page down the vertical angle.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 262
-   :lines: 262-269
+   :start-after: doc-region-begin 33b92ff8834a0e251991d9373983c374449eab36
+   :end-before: doc-region-end 33b92ff8834a0e251991d9373983c374449eab36
+
 
 
 The up arrow and down arrow make the user move forwards
@@ -294,9 +294,9 @@ movement relative to camera space.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 273
-   :lines: 273-290
+   :start-after: doc-region-begin 809cd77769244adb1e3866899e53ba3c203a535a
+   :end-before: doc-region-end 809cd77769244adb1e3866899e53ba3c203a535a
+
 
 
 Ortho is the function call that shrinks the viewable region
@@ -306,9 +306,9 @@ of the viewable region.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 150
-   :lines: 150-172
+   :start-after: doc-region-begin f772cea61c9d02b6a9d8565f5427658c0e40cef3
+   :end-before: doc-region-end f772cea61c9d02b6a9d8565f5427658c0e40cef3
+
 
 
 We will make a wrapper function camera_space_to_ndc_space_fn which
@@ -316,9 +316,9 @@ calls ortho, setting the size of the rectangular prism.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 178
-   :lines: 178-184
+   :start-after: doc-region-begin b23c753f650185c5b1e4a0e6c8008852afae73d9
+   :end-before: doc-region-end b23c753f650185c5b1e4a0e6c8008852afae73d9
+
 
 
 
@@ -334,9 +334,9 @@ matricies solve for us.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 322
-   :lines: 322-322
+   :start-after: doc-region-begin ee882a76ee2962c327841e2a952998acce07cc2a
+   :end-before: doc-region-end ee882a76ee2962c327841e2a952998acce07cc2a
+
 
 
 ::
@@ -347,9 +347,9 @@ Paddle 1
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 341
-   :lines: 341-364
+   :start-after: doc-region-begin 751192ea5ea95537db3cc34c4c3b1549d1fd91e4
+   :end-before: doc-region-end 751192ea5ea95537db3cc34c4c3b1549d1fd91e4
+
 
 
 Square
@@ -359,9 +359,9 @@ as we did a translate by -10 in the z direction.
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 370
-   :lines: 370-398
+   :start-after: doc-region-begin 554eda2bd3b5edf8eee0c1441a1e8c8f366c575b
+   :end-before: doc-region-end 554eda2bd3b5edf8eee0c1441a1e8c8f366c575b
+
 
 
 
@@ -369,6 +369,5 @@ Paddle 2
 
 .. literalinclude:: ../src/demo16/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 404
-   :lines: 404-425
+   :start-after: doc-region-begin ed9eeae978339791ef50c475f26ec4fe8bf018c7
+   :end-before: doc-region-end ed9eeae978339791ef50c475f26ec4fe8bf018c7

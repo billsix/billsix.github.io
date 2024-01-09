@@ -132,9 +132,9 @@ Description
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 109
-   :lines: 109-117
+   :start-after: doc-region-begin d38e00f1c19bce775ae4216e4ed95a31a814eee0
+   :end-before: doc-region-end d38e00f1c19bce775ae4216e4ed95a31a814eee0
+
 
 Rotate Z
 ~~~~~~~~
@@ -151,9 +151,9 @@ the z component at all.
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 141
-   :lines: 141-147
+   :start-after: doc-region-begin 1b96b48e7e572197721cad2a7d082f167159f2d8
+   :end-before: doc-region-end 1b96b48e7e572197721cad2a7d082f167159f2d8
+
 
 Rotate X
 ~~~~~~~~
@@ -168,9 +168,9 @@ Rotate X
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 121
-   :lines: 121-127
+   :start-after: doc-region-begin 3e09ecd4a77c68066fe97bfa4f06e89afb583f9d
+   :end-before: doc-region-end 3e09ecd4a77c68066fe97bfa4f06e89afb583f9d
+
 
 
 Rotate Y
@@ -184,18 +184,18 @@ Rotate Y
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 131
-   :lines: 131-137
+   :start-after: doc-region-begin 256be1d4ab5b90068be656bb99ff1115268d8925
+   :end-before: doc-region-end 256be1d4ab5b90068be656bb99ff1115268d8925
+
 
 Scale
 ~~~~~
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 151
-   :lines: 151-153
+   :start-after: doc-region-begin dd45247963bb4a02bf2430d98a7f52e707c9e15a
+   :end-before: doc-region-end dd45247963bb4a02bf2430d98a7f52e707c9e15a
+
 
 Code
 ^^^^
@@ -205,9 +205,9 @@ a z-coordinate of 0 in their modelspace.
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 168
-   :lines: 168-192
+   :start-after: doc-region-begin d5bd9d04649181c42a65f8a7d52125a0ef86a928
+   :end-before: doc-region-end d5bd9d04649181c42a65f8a7d52125a0ef86a928
+
 
 The only new aspect of the square below is that the paddles have
 a z-coordinate of 0 in their modelspace.  N.B that since we
@@ -217,9 +217,9 @@ are subject to be different.
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 204
-   :lines: 204-209
+   :start-after: doc-region-begin 603eda05b403ac6bd756d050f26d9e6497bf748a
+   :end-before: doc-region-end 603eda05b403ac6bd756d050f26d9e6497bf748a
+
 
 
 Event Loop
@@ -227,9 +227,9 @@ Event Loop
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 264
-   :lines: 264-264
+   :start-after: doc-region-begin ee882a76ee2962c327841e2a952998acce07cc2a
+   :end-before: doc-region-end ee882a76ee2962c327841e2a952998acce07cc2a
+
 
 ::
 
@@ -239,9 +239,9 @@ Event Loop
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 284
-   :lines: 284-298
+   :start-after: doc-region-begin 2f5cb93361c42475b16dec8246c81c711b1a2db3
+   :end-before: doc-region-end 2f5cb93361c42475b16dec8246c81c711b1a2db3
+
 
 The square should not be visible when hidden behind the paddle1,
 as we do a translate by -10.  But in running the demo, you see
@@ -252,9 +252,9 @@ that the square is always drawn over the paddle.
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 304
-   :lines: 304-328
+   :start-after: doc-region-begin 485064c9e30f4471b74d11b8cca3c8f0d142b552
+   :end-before: doc-region-end 485064c9e30f4471b74d11b8cca3c8f0d142b552
+
 
 
 This is because without depth_ buffering, the object drawn last
@@ -269,9 +269,9 @@ see that the square can be hidden behind the paddle.
 
 .. literalinclude:: ../src/demo14/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 334
-   :lines: 334-349
+   :start-after: doc-region-begin 79bca06683ced2f641ea47f14d22bc330f75979f
+   :end-before: doc-region-end 79bca06683ced2f641ea47f14d22bc330f75979f
+
 
 
 Added translate in 3D.  Added scale in 3D.  These are just like

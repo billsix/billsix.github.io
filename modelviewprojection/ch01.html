@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Opening a Window - Demo 01 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
+
+  
   <!--[if lt IE 9]>
     <script src="static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -201,25 +203,25 @@ provides the end-user with the illusion of motion.</p>
 <section id="importing-libraries">
 <h3>Importing Libraries<a class="headerlink" href="#importing-libraries" title="Link to this heading">¶</a></h3>
 <p>Import Python modules, which are Python programmer’s main form of libraries.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">22</span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="linenos">23</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>The “sys” module is imported.  To call functions from this module, the systax is sys.function</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">26</span><span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="linenos">27</span>    <span class="n">glMatrixMode</span><span class="p">,</span>
-<span class="linenos">28</span>    <span class="n">glLoadIdentity</span><span class="p">,</span>
-<span class="linenos">29</span>    <span class="n">GL_PROJECTION</span><span class="p">,</span>
-<span class="linenos">30</span>    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
-<span class="linenos">31</span>    <span class="n">glClear</span><span class="p">,</span>
-<span class="linenos">32</span>    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
-<span class="linenos">33</span>    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
-<span class="linenos">34</span>    <span class="n">glViewport</span><span class="p">,</span>
-<span class="linenos">35</span>    <span class="n">glClearColor</span><span class="p">,</span>
-<span class="linenos">36</span><span class="p">)</span>
-<span class="linenos">37</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">glMatrixMode</span><span class="p">,</span>
+    <span class="n">glLoadIdentity</span><span class="p">,</span>
+    <span class="n">GL_PROJECTION</span><span class="p">,</span>
+    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
+    <span class="n">glClear</span><span class="p">,</span>
+    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
+    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
+    <span class="n">glViewport</span><span class="p">,</span>
+    <span class="n">glClearColor</span><span class="p">,</span>
+<span class="p">)</span>
+
 </pre></div>
 </div>
 <ul class="simple">
@@ -228,8 +230,8 @@ subset of the modules function into our current module.  This is because
 we don’t want to have to write “OpenGL.GL.function” every time, as we use
 these functions frequently</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">41</span><span class="kn">import</span> <span class="nn">glfw</span>
-<span class="linenos">42</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glfw</span>
+
 </pre></div>
 </div>
 <ul class="simple">
@@ -260,8 +262,8 @@ input both from a keyboard input and from game controllers.</p>
 <h3>GLFW/OpenGL Initialization<a class="headerlink" href="#glfw-opengl-initialization" title="Link to this heading">¶</a></h3>
 <section id="initialize-glfw">
 <h4>Initialize GLFW.<a class="headerlink" href="#initialize-glfw" title="Link to this heading">¶</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">46</span><span class="k">if</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
-<span class="linenos">47</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Initialize glfw.  If initialization fails, the program should terminate.
@@ -273,37 +275,37 @@ for later function calls.</p>
 <h4>Set the version of OpenGL<a class="headerlink" href="#set-the-version-of-opengl" title="Link to this heading">¶</a></h4>
 <p>OpenGL has been around a long time, and has multiple, possibly incompatible versions.
 For this demo, we use OpenGL 1.4.  By the end of this book, we will be using OpenGL 3.3.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">51</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="linenos">52</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="create-a-window">
 <h4>Create a Window<a class="headerlink" href="#create-a-window" title="Link to this heading">¶</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">56</span><span class="n">window</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">create_window</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;ModelViewProjection Demo 1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">create_window</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;ModelViewProjection Demo 1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">60</span><span class="k">if</span> <span class="ow">not</span> <span class="n">window</span><span class="p">:</span>
-<span class="linenos">61</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
-<span class="linenos">62</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">window</span><span class="p">:</span>
+    <span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>If GLFW cannot open the window, quit.  Unlike MC Hammer, we are quite legit, yet still
 able to quit.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">66</span><span class="n">glfw</span><span class="o">.</span><span class="n">make_context_current</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">glfw</span><span class="o">.</span><span class="n">make_context_current</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Make the window’s context current.  The details of this do not matter
 for this book.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">71</span><span class="k">def</span> <span class="nf">on_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">scancode</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">mods</span><span class="p">):</span>
-<span class="linenos">72</span>    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_ESCAPE</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">73</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">set_window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="linenos">74</span>
-<span class="linenos">75</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">scancode</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">mods</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_ESCAPE</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+        <span class="n">glfw</span><span class="o">.</span><span class="n">set_window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
 </pre></div>
 </div>
 <ul class="simple">
@@ -325,7 +327,7 @@ and applied later zero, 1, or more times.</p>
 <span class="mi">11</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">81</span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -335,10 +337,10 @@ color.  We are not clearing the framebuffer right now, but setting what
 color will be used for a later clear.  Calling “glClearColor” “0,0,0,1”, means black “0,0,0”, without
 transparency (the “1”).</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">85</span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
-<span class="linenos">86</span><span class="n">glLoadIdentity</span><span class="p">()</span>
-<span class="linenos">87</span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
-<span class="linenos">88</span><span class="n">glLoadIdentity</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
+<span class="n">glLoadIdentity</span><span class="p">()</span>
+<span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
+<span class="n">glLoadIdentity</span><span class="p">()</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -359,13 +361,13 @@ one “frame” at a time.</p>
 Repeat indefinitely
 until the user closes the window, or the program needs
 to terminate.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">93</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-<span class="linenos">94</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
-<span class="linenos">95</span>
-<span class="linenos">96</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-<span class="linenos">97</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-<span class="linenos">98</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
-<span class="linenos">99</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
+
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
+    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">

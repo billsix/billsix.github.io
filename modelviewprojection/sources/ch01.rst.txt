@@ -159,18 +159,18 @@ Import Python modules, which are Python programmer's main form of libraries.
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 22
-   :lines: 22-23
+   :start-after: doc-region-begin 20134134fb054ac6764edfb4764935b86f20a795
+   :end-before: doc-region-end 20134134fb054ac6764edfb4764935b86f20a795
+
 
 *  The "sys" module is imported.  To call functions from this module, the systax is sys.function
 
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 26
-   :lines: 26-37
+   :start-after: doc-region-begin 6901922753dbf8df496fd46ae4a0eeb4e6243ef4
+   :end-before: doc-region-end 6901922753dbf8df496fd46ae4a0eeb4e6243ef4
+
 
 
 * GL is a submodule of the OpenGL module, and we are directly importing a
@@ -181,9 +181,9 @@ Import Python modules, which are Python programmer's main form of libraries.
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 41
-   :lines: 41-42
+   :start-after: doc-region-begin 4b5a486083da608751701fa7e42e37bbc4cfd06e
+   :end-before: doc-region-end 4b5a486083da608751701fa7e42e37bbc4cfd06e
+
 
 
 * GLFW is a library which allows us to create windows, get input both from a
@@ -228,9 +228,9 @@ Initialize GLFW.
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 46
-   :lines: 46-47
+   :start-after: doc-region-begin 0c30d0c1c7c793e097bcfb46208f14998d77dd0a
+   :end-before: doc-region-end 0c30d0c1c7c793e097bcfb46208f14998d77dd0a
+
 
 
 Initialize glfw.  If initialization fails, the program should terminate.
@@ -247,9 +247,9 @@ For this demo, we use OpenGL 1.4.  By the end of this book, we will be using Ope
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 51
-   :lines: 51-52
+   :start-after: doc-region-begin cbb5da55f24c88b41c195f36bbbf99969e95765c
+   :end-before: doc-region-end cbb5da55f24c88b41c195f36bbbf99969e95765c
+
 
 Create a Window
 &&&&&&&&&&&&&&&
@@ -257,16 +257,16 @@ Create a Window
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 56
-   :lines: 56-56
+   :start-after: doc-region-begin d1e099847a03149e01d2ec4dc42bb261524b2a95
+   :end-before: doc-region-end d1e099847a03149e01d2ec4dc42bb261524b2a95
+
 
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 60
-   :lines: 60-62
+   :start-after: doc-region-begin a9948cba6a31fd1774c1a0e1ae634bbad8c6c7f3
+   :end-before: doc-region-end a9948cba6a31fd1774c1a0e1ae634bbad8c6c7f3
+
 
 
 *  If GLFW cannot open the window, quit.  Unlike MC Hammer, we are quite legit, yet still
@@ -275,9 +275,9 @@ Create a Window
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 66
-   :lines: 66-66
+   :start-after: doc-region-begin 7ddbe862d3ff7b6ee489ac7ac565b8a5e72f7f9f
+   :end-before: doc-region-end 7ddbe862d3ff7b6ee489ac7ac565b8a5e72f7f9f
+
 
 
 
@@ -288,9 +288,9 @@ Create a Window
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 71
-   :lines: 71-75
+   :start-after: doc-region-begin 63277c9f3b6e8071722b93baf8e77bb8ee6c677d
+   :end-before: doc-region-end 63277c9f3b6e8071722b93baf8e77bb8ee6c677d
+
 
 * Define an register a key handler.
 
@@ -318,9 +318,9 @@ and applied later zero, 1, or more times.
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 81
-   :lines: 81-81
+   :start-after: doc-region-begin 788fae9aeb2ebe9e911e2c3f6399f1b51a0bd956
+   :end-before: doc-region-end 788fae9aeb2ebe9e911e2c3f6399f1b51a0bd956
+
 
 * Before a frame is drawn, it is first turned into a blank slate,
   where the color of each pixel is set to some value representing a
@@ -331,9 +331,9 @@ and applied later zero, 1, or more times.
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 85
-   :lines: 85-88
+   :start-after: doc-region-begin a3fdb44a76cc8a6b843c780a68e00366176eadab
+   :end-before: doc-region-end a3fdb44a76cc8a6b843c780a68e00366176eadab
+
 
 * Don't worry about the 4 lines here.  Although they are necessary,
   we will cover them in depth later.  After all, this
@@ -357,9 +357,9 @@ to terminate.
 
 .. literalinclude:: ../src/demo01/demo.py
    :language: python
-   :linenos:
-   :lineno-start: 93
-   :lines: 93-99
+   :start-after: doc-region-begin b203706b4d71815e8490a9a65ff9fe1fe1db38cd
+   :end-before: doc-region-end b203706b4d71815e8490a9a65ff9fe1fe1db38cd
+
 
 * On line 69, poll the operating system for any events, such as mouse movements,
   keyboard input, etc.  This does not handle them, just registers

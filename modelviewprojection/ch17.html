@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3D Perspective - Demo 17 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
+
+  
   <!--[if lt IE 9]>
     <script src="static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -307,72 +309,72 @@ whatever point the line above intersects the line at z=nearZ.  Let’s call that
 <span class="o">-------------------------------------------------------</span>    <span class="n">window</span><span class="s1">&#39;s</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">116</span><span class="nd">@dataclass</span>
-<span class="linenos">117</span><span class="k">class</span> <span class="nc">Vertex</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Vertex</span><span class="p">:</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">174</span>    <span class="k">def</span> <span class="nf">perspective</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span>
-<span class="linenos">175</span>                    <span class="n">fov</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="linenos">176</span>                    <span class="n">aspectRatio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="linenos">177</span>                    <span class="n">nearZ</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="linenos">178</span>                    <span class="n">farZ</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
-<span class="linenos">179</span>        <span class="c1"># fov, field of view, is angle of y</span>
-<span class="linenos">180</span>        <span class="c1"># aspectRatio is xwidth / ywidth</span>
-<span class="linenos">181</span>
-<span class="linenos">182</span>        <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="n">nearZ</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">fov</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-<span class="linenos">183</span>        <span class="n">right</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">top</span> <span class="o">*</span> <span class="n">aspectRatio</span>
-<span class="linenos">184</span>
-<span class="linenos">185</span>        <span class="n">scaled_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">nearZ</span>
-<span class="linenos">186</span>        <span class="n">scaled_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">nearZ</span>
-<span class="linenos">187</span>        <span class="n">retangular_prism</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">scaled_x</span><span class="p">,</span>
-<span class="linenos">188</span>                                          <span class="n">scaled_y</span><span class="p">,</span>
-<span class="linenos">189</span>                                          <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos">190</span>
-<span class="linenos">191</span>        <span class="k">return</span> <span class="n">retangular_prism</span><span class="o">.</span><span class="n">ortho</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="n">right</span><span class="p">,</span>
-<span class="linenos">192</span>                                      <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="p">,</span>
-<span class="linenos">193</span>                                      <span class="n">bottom</span><span class="o">=-</span><span class="n">top</span><span class="p">,</span>
-<span class="linenos">194</span>                                      <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
-<span class="linenos">195</span>                                      <span class="n">near</span><span class="o">=</span><span class="n">nearZ</span><span class="p">,</span>
-<span class="linenos">196</span>                                      <span class="n">far</span><span class="o">=</span><span class="n">farZ</span><span class="p">)</span>
-<span class="linenos">197</span>
-<span class="linenos">198</span>    <span class="k">def</span> <span class="nf">camera_space_to_ndc_space_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
-<span class="linenos">199</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">(</span><span class="n">fov</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span>
-<span class="linenos">200</span>                                <span class="n">aspectRatio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-<span class="linenos">201</span>                                <span class="n">nearZ</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span>
-<span class="linenos">202</span>                                <span class="n">farZ</span><span class="o">=-</span><span class="mf">10000.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">perspective</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span>
+                    <span class="n">fov</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                    <span class="n">aspectRatio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                    <span class="n">nearZ</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                    <span class="n">farZ</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="c1"># fov, field of view, is angle of y</span>
+        <span class="c1"># aspectRatio is xwidth / ywidth</span>
+
+        <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="n">nearZ</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">fov</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="n">right</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">top</span> <span class="o">*</span> <span class="n">aspectRatio</span>
+
+        <span class="n">scaled_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">nearZ</span>
+        <span class="n">scaled_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">nearZ</span>
+        <span class="n">retangular_prism</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">scaled_x</span><span class="p">,</span>
+                                          <span class="n">scaled_y</span><span class="p">,</span>
+                                          <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">retangular_prism</span><span class="o">.</span><span class="n">ortho</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="n">right</span><span class="p">,</span>
+                                      <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="p">,</span>
+                                      <span class="n">bottom</span><span class="o">=-</span><span class="n">top</span><span class="p">,</span>
+                                      <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+                                      <span class="n">near</span><span class="o">=</span><span class="n">nearZ</span><span class="p">,</span>
+                                      <span class="n">far</span><span class="o">=</span><span class="n">farZ</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">camera_space_to_ndc_space_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">(</span><span class="n">fov</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span>
+                                <span class="n">aspectRatio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                                <span class="n">nearZ</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span>
+                                <span class="n">farZ</span><span class="o">=-</span><span class="mf">10000.0</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">336</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">377</span>    <span class="c1"># draw paddle 1</span>
-<span class="linenos">378</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">379</span>
-<span class="linenos">380</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">381</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">382</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
-<span class="linenos">383</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-<span class="linenos">384</span>                                                    <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
-<span class="linenos">385</span>                                                    <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">386</span>        <span class="c1"># world_space: Vertex = camera_space.rotate_x(camera.rot_x) \</span>
-<span class="linenos">387</span>        <span class="c1">#                                   .rotate_y(camera.rot_y) \</span>
-<span class="linenos">388</span>        <span class="c1">#                                   .translate(tx=camera.position_worldspace.x,</span>
-<span class="linenos">389</span>        <span class="c1">#                                              ty=camera.position_worldspace.y,</span>
-<span class="linenos">390</span>        <span class="c1">#                                              tz=camera.position_worldspace.z)</span>
-<span class="linenos">391</span>        <span class="n">camera_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-<span class="linenos">392</span>                                                     <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
-<span class="linenos">393</span>                                                     <span class="n">tz</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">z</span><span class="p">)</span> \
-<span class="linenos">394</span>                                          <span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span> \
-<span class="linenos">395</span>                                          <span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">)</span>
-<span class="linenos">396</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">camera_space_to_ndc_space_fn</span><span class="p">()</span>
-<span class="linenos">397</span>        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos">398</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># draw paddle 1</span>
+    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
+                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                    <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                                                    <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="c1"># world_space: Vertex = camera_space.rotate_x(camera.rot_x) \</span>
+        <span class="c1">#                                   .rotate_y(camera.rot_y) \</span>
+        <span class="c1">#                                   .translate(tx=camera.position_worldspace.x,</span>
+        <span class="c1">#                                              ty=camera.position_worldspace.y,</span>
+        <span class="c1">#                                              tz=camera.position_worldspace.z)</span>
+        <span class="n">camera_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                     <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                                                     <span class="n">tz</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">z</span><span class="p">)</span> \
+                                          <span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span> \
+                                          <span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">)</span>
+        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">camera_space_to_ndc_space_fn</span><span class="p">()</span>
+        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>

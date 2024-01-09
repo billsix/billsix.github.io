@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moving the Paddles - Keyboard Input - Demo 04 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
+
+  
   <!--[if lt IE 9]>
     <script src="static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -153,44 +155,44 @@ and for the collection of verticies that make up a Paddle.</p>
 the class a
 constructor, accessor methods, and pretty-printer.  This saves
 a lot of boiler plate code.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">104</span><span class="nd">@dataclass</span>
-<span class="linenos">105</span><span class="k">class</span> <span class="nc">Vertex</span><span class="p">:</span>
-<span class="linenos">106</span>    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">107</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">108</span>
-<span class="linenos">109</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Vertex</span><span class="p">:</span>
+    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>
+
+
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">114</span><span class="nd">@dataclass</span>
-<span class="linenos">115</span><span class="k">class</span> <span class="nc">Paddle</span><span class="p">:</span>
-<span class="linenos">116</span>    <span class="n">vertices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vertex</span><span class="p">]</span>
-<span class="linenos">117</span>    <span class="n">r</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">118</span>    <span class="n">g</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">119</span>    <span class="n">b</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">120</span>
-<span class="linenos">121</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Paddle</span><span class="p">:</span>
+    <span class="n">vertices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vertex</span><span class="p">]</span>
+    <span class="n">r</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">g</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">b</span><span class="p">:</span> <span class="nb">float</span>
+
+
 </pre></div>
 </div>
 <p>Although Python is a dynamically-typed language, we can add type information as helpful hints to the reader,
 and for use with static type-checking tools for Python, such as <a class="reference external" href="http://mypy-lang.org/">mypy</a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">125</span><span class="n">paddle1</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
-<span class="linenos">126</span>    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
-<span class="linenos">127</span>        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">128</span>        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">129</span>        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">130</span>        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">131</span>    <span class="p">],</span>
-<span class="linenos">132</span>    <span class="n">r</span><span class="o">=</span><span class="mf">0.578123</span><span class="p">,</span>
-<span class="linenos">133</span>    <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-<span class="linenos">134</span>    <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-<span class="linenos">135</span><span class="p">)</span>
-<span class="linenos">136</span>
-<span class="linenos">137</span><span class="n">paddle2</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
-<span class="linenos">138</span>    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span><span class="n">Vertex</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">Vertex</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">Vertex</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="n">Vertex</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)],</span>
-<span class="linenos">139</span>    <span class="n">r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-<span class="linenos">140</span>    <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-<span class="linenos">141</span>    <span class="n">b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-<span class="linenos">142</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">paddle1</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
+    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.3</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.3</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">r</span><span class="o">=</span><span class="mf">0.578123</span><span class="p">,</span>
+    <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">paddle2</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
+    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span><span class="n">Vertex</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">Vertex</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">Vertex</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="n">Vertex</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)],</span>
+    <span class="n">r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -226,22 +228,22 @@ reading of the code, which gets easy with practice.</p>
 </section>
 <section id="query-user-input-and-use-it-to-animate">
 <h3>Query User Input and Use It To Animate<a class="headerlink" href="#query-user-input-and-use-it-to-animate" title="Link to this heading">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">147</span><span class="k">def</span> <span class="nf">handle_movement_of_paddles</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">148</span>    <span class="k">global</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span>
-<span class="linenos">149</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_S</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">150</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">151</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
-<span class="linenos">152</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_W</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">153</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">154</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
-<span class="linenos">155</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_K</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">156</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">157</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
-<span class="linenos">158</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">159</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">160</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
-<span class="linenos">161</span>
-<span class="linenos">162</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">handle_movement_of_paddles</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">global</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span>
+    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_S</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
+    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_W</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
+    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_K</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
+    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
+
+
 </pre></div>
 </div>
 <ul class="simple">
@@ -265,31 +267,31 @@ module, but the point remains)</p></li>
 <p>Monitors can have variable framerates, and in order to ensure
 that movement is consistent across different monitors, we choose
 to only flush the screen at 60 hertz (frames per second).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">166</span><span class="n">TARGET_FRAMERATE</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span>
-<span class="linenos">167</span>
-<span class="linenos">168</span><span class="n">time_at_beginning_of_previous_frame</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TARGET_FRAMERATE</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span>
+
+<span class="n">time_at_beginning_of_previous_frame</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">172</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-<span class="linenos">173</span>    <span class="k">while</span> <span class="p">(</span>
-<span class="linenos">174</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span>
-<span class="linenos">175</span>    <span class="p">):</span>
-<span class="linenos">176</span>        <span class="k">pass</span>
-<span class="linenos">177</span>
-<span class="linenos">178</span>    <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+    <span class="k">while</span> <span class="p">(</span>
+        <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span>
+    <span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">182</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
-<span class="linenos">183</span>
-<span class="linenos">184</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-<span class="linenos">185</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-<span class="linenos">186</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
+
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">190</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">194</span>    <span class="n">handle_movement_of_paddles</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">handle_movement_of_paddles</span><span class="p">()</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -298,12 +300,12 @@ haven’t drawn the paddles yet.  So we call the function
 to query the user input, which will also modify the vertices’
 values if there was input.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">198</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">199</span>
-<span class="linenos">200</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">201</span>    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">202</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">203</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -321,12 +323,12 @@ associated vertcies.</p></li>
 <p><span class="caption-text">Adding input offset to Paddle 1</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">207</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">208</span>
-<span class="linenos">209</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">210</span>    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">211</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">212</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 <figure class="align-center" id="id3">
@@ -335,7 +337,7 @@ associated vertcies.</p></li>
 <p><span class="caption-text">Adding input offset to Paddle 2</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">216</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
