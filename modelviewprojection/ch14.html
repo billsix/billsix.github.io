@@ -80,6 +80,8 @@
 <li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
 </ul>
 
         </div>
@@ -316,6 +318,19 @@ a z-coordinate of 0 in their modelspace.  N.B that since we
 do a sequence transformations to the modelspace data to get
 to worldspace coordinates, the X, Y, and Z coordinates
 are subject to be different.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_default_camera_position</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Camera</span><span class="p">:</span>
+    <span class="n">position_worldspace</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">_default_camera_position</span><span class="p">)</span>
+
+
+<span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The camera now has a z-coordinate of 0 also.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">square</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
     <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
@@ -429,7 +444,7 @@ the 2D versions, just with the same process applied to the z axis.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, William Emerison Six.</p>
+    <p>&#169; Copyright 2020-2024, William Emerison Six.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

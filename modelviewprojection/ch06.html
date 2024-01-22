@@ -89,6 +89,8 @@
 <li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
 </ul>
 
         </div>
@@ -182,7 +184,9 @@ verticies are defined.</p>
 <h2>WorldSpace<a class="headerlink" href="#worldspace" title="Link to this heading">¶</a></h2>
 <p>WorldSpace is a toplevel space, independent of NDC, that we choose to use.  It’s arbitrary.
 If you were to model a racetrack for a racing game, the origin of WorldSpace may be the center of that racetrack.
-If you were modelling our solar system, the center of the sun could be the origin of “WorldSpace”.</p>
+If you were modelling our solar system, the center of the sun could be the origin of “WorldSpace”.
+I personally would put the center of our flat earth at the origin, but reasonable people
+can disagree.</p>
 <p>For our demo with paddles, the author arbitralily defines the WorldSpace to be 200 units wide, 200 units tall, with the origin at the center.</p>
 <figure class="align-center" id="id3">
 <img alt="Demo 06" src="images/demo061.png" />
@@ -198,7 +202,8 @@ as compared to view tranformations as changes to points.</p>
 <p>As such, for placing paddle1, we can view the translation as a change
 to the graph paper relative to world space coordinates (only incidentally
 bringing the vertices
-along with it) and then resetting the graph paper back to it’s original position and orientation.
+along with it) and then resetting the graph paper (i.e. both origin and axes)
+back to it’s original position and orientation.
 Although we will think of the paddle’s vertices as relative to its own space
 (i.e. -10 to 10 horizontally, -30 to 30 vertically),
 we will not look at the numbers of what they are in world space coordinates,
@@ -213,6 +218,11 @@ as doing so</p>
 <p><span class="caption-text">Translating Paddle 1</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
+<ul class="simple">
+<li><p>As an example, figure out the world space coordinate of the upper rights
+corner of the paddle after it’s been translated, and ask yourself what
+that means and what insight did you gain?</p></li>
+</ul>
 <p>The animation above shows multiple steps, shown now without animation.</p>
 <section id="modelspace-of-paddle-1">
 <h3>Modelspace of Paddle 1<a class="headerlink" href="#modelspace-of-paddle-1" title="Link to this heading">¶</a></h3>
@@ -228,7 +238,7 @@ as doing so</p>
 <p>Paddle 1’s graph paper gets translated -90 units in the x direction, and some
 number of units in the y direction, 0 during the first frame, based off of user input.  The origin
 is translated, and the graph paper comes with it, onto which you can
-plot the vertices.  Notice that the coordinate system below and to the left
+plot the vertices.  Notice that the coordinate system labels below the plot and to the left of the plot
 is unchanged.  That is world space, which has not changed.</p>
 <figure class="align-center" id="id6">
 <img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation-forwards-2.png" />
@@ -246,9 +256,9 @@ is unchanged.  That is world space, which has not changed.</p>
 </figcaption>
 </figure>
 <p>Now that the transformation has happened, the vertices are all in world space.
-Please don’t look at the numbers, they will give you no insight.  The only numbers
+You could calculate their values in world space, but that will not give you any insight.  The only numbers
 that matter for insight as that the entire graph paper of modelspace, which originally
-was the same as world space, has changed, brining the verticies along with it.</p>
+was the same as world space, has changed, bringing the verticies along with it.</p>
 <p>Same goes for Paddle 2’s modelspace, relative to it’s translation, which
 are different values.</p>
 <figure class="align-center" id="id8">
@@ -583,7 +593,7 @@ on the bottom and on the left.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, William Emerison Six.</p>
+    <p>&#169; Copyright 2020-2024, William Emerison Six.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

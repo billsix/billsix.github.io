@@ -85,6 +85,8 @@
 <li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
 </ul>
 
         </div>
@@ -370,21 +372,21 @@ to terminate.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>On line 69, poll the operating system for any events, such as mouse movements,
+<li><p>Poll the operating system for any events, such as mouse movements,
 keyboard input, etc.  This does not handle them, just registers
 them as having happened.</p></li>
-<li><p>On line 71, get the size of the framebuffer.  The <em>framebuffer</em>
+<li><p>Get the size of the framebuffer.  The <em>framebuffer</em>
 contains data representing all the pixels in a complete video frame.
 Python
 allows the returning of multiple values
 in the form of a tuple.  Assigning
 to the variables this way is a form of “destructuring”</p></li>
-<li><p>On line 72, tell OpenGL that we wish to draw in the entire
+<li><p>Tell OpenGL that we wish to draw in the entire
 framebuffer, from the bottom left corner to the upper
 right corner.</p></li>
-<li><p>On line 73, make the framebuffer a blank slate by setting all of the pixels
+<li><p>Make the framebuffer a blank slate by setting all of the pixels
 to have the same color.
-The color of each pixel will be the clear color, which we had set on line 60.
+The color of each pixel will be the clear color.
 If we hadn’t cleared the framebuffer, then frame number n+1 would be drawing
 on top of whatever was drawn on frame number n.
 Programming in OpenGL is a bit different than normal programming in
@@ -394,7 +396,7 @@ as subroutines typically do.
 Instead, the procedure calls to OpenGL functions only make sense based off of the context
 in which they are evaluated, and the sequence of OpenGL calls
 to complete a task.</p></li>
-<li><p>On Line 74, we have colored every pixel to be black, so flush the framebuffer to
+<li><p>We have colored every pixel to be black, so flush the framebuffer to
 the monitor, and swap the back and front buffers.</p></li>
 </ul>
 </section>
@@ -403,7 +405,7 @@ the monitor, and swap the back and front buffers.</p></li>
 <h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Run the program, close it by hitting Escape.</p></li>
-<li><p>On line 73, before the call to glClear, enter two new lines.
+<li><p>Before the call to glClear, enter two new lines.
 On the first, type “import pdb”.
 On the second type “pdb.set_trace()”.
 Now run the program again and observe what is different.
@@ -520,7 +522,7 @@ what is the color at pixel (1,1)?</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, William Emerison Six.</p>
+    <p>&#169; Copyright 2020-2024, William Emerison Six.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -77,6 +77,8 @@
 <li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
 </ul>
 
         </div>
@@ -170,6 +172,7 @@ vertices will need to be translated to its center relative to NDC.</p>
 rather than mutating the instance variables.  The author
 does this on purpose to enable method-chaining the Python
 methods, which will be useful later on.</p>
+<p>Method-chaining is the equivalent of function composition in math.</p>
 </section>
 <section id="code">
 <h2>Code<a class="headerlink" href="#code" title="Link to this heading">¶</a></h2>
@@ -197,6 +200,16 @@ import them and try the methods</p>
 <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Note the use of “keyword arguments”.  Without using keyword
+arguments, the code might look like this:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">src.demo05.demo</span> <span class="k">as</span> <span class="nn">demo</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">Vertex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword arguments allow the reader to understand the purpose of the
+parameters are, at the call-site of the function.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">Paddle</span><span class="p">:</span>
     <span class="n">vertices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vertex</span><span class="p">]</span>
@@ -344,7 +357,7 @@ of the points.  This will be explained more clearly later.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, William Emerison Six.</p>
+    <p>&#169; Copyright 2020-2024, William Emerison Six.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
