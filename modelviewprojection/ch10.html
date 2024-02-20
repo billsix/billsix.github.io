@@ -86,6 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 </ul>
 
         </div>
@@ -347,13 +348,11 @@ it should make more sense to the reader.</p>
 </section>
 <section id="code">
 <h2>Code<a class="headerlink" href="#code" title="Link to this heading">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_default_camera_position</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
-
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 
 <span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">Camera</span><span class="p">:</span>
-    <span class="n">position_worldspace</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">_default_camera_position</span><span class="p">)</span>
+    <span class="n">position_worldspace</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">handle_inputs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

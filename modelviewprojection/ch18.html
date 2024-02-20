@@ -78,6 +78,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 </ul>
 
         </div>
@@ -299,24 +300,31 @@ On Windows, in a command prompt, type “python src\demo18\demo.py”.</p>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
-<p>function stack.  The bottom of the stack has
-the low index, the top of the stack has the highest
-index</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">Vertex</span><span class="p">,</span> <span class="n">Vertex</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
-</pre></div>
-</div>
-<p>Given an input vertex, apply the function at the top
-of the stack to the vertex, capture the output vertex,
-to be used as input to the next lower function on the
-stack.  Continue doing this until we get the value
-returned from the function at the bottom of the stack.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_stack</span><span class="p">(</span><span class="n">vertex</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="n">vertex</span>
-    <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">fn_stack</span><span class="p">):</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">v</span>
+<p>Function stack.  Internally it has a list, where index 0 is
+the bottom of the stack.  In python we can store any object
+as a variable, and we will be storing functions which transform
+a vertex to another vertex, through the “modelspace_to_ndc” method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">FunctionStack</span><span class="p">:</span>
+    <span class="n">stack</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">Vertex</span><span class="p">,</span> <span class="n">Vertex</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[])</span>
+
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">:</span> <span class="nb">object</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">modelspace_to_ndc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">vertex</span>
+        <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="p">):</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span>
 
 
+<span class="n">fn_stack</span> <span class="o">=</span> <span class="n">FunctionStack</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>There is an example at the bottom of src/demo18/demo.py</p>
@@ -340,39 +348,39 @@ returned from the function at the bottom of the stack.</p>
 </div>
 <p>Define four functions, which we will compose on the stack.</p>
 <p>Push identity onto the stack, which will will never pop off of the stack.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">identity</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">identity</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">apply_stack</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># x = 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># x = 1</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">add_one</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">add_one</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">apply_stack</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># x + 1 = 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># x + 1 = 2</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">multiply_by_2</span><span class="p">)</span>  <span class="c1"># (x * 2) + 1 = 3</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">multiply_by_2</span><span class="p">)</span>  <span class="c1"># (x * 2) + 1 = 3</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">apply_stack</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">add_5</span><span class="p">)</span>  <span class="c1"># ((x + 5) * 2) + 1 = 13</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">add_5</span><span class="p">)</span>  <span class="c1"># ((x + 5) * 2) + 1 = 13</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">apply_stack</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">apply_stack</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># (x * 2) + 1 = 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">apply_stack</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># x + 1 = 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># (x * 2) + 1 = 3</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">apply_stack</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># x = 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># x + 1 = 2</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fn_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># x = 1</span>
 </pre></div>
 </div>
 </section>
@@ -386,17 +394,15 @@ returned from the function at the bottom of the stack.</p>
 </div>
 <p>In previous demos, camera_space_to_ndc_space_fn was always
 the last function called in the method chained pipeline.  Put it on the bottom of the stack,
-by appending it first,
-so that “apply_stack” calls this function last</p>
-<p>“append” adds the function to the end of a list, where
-we conisder the front of the list to be the bottom of the stack,
-and the end of the list to be the top of the stack.</p>
+by pushing it first,
+so that “modelspace_to_ndc” calls this function last.  Each subsequent push will add
+a new function to the top of the stack.</p>
 <div class="math">
 <p><img src="images/math/69feee52439138d2dbe1316a8b82b7e0462b51e6.svg" alt="\vec{f}_{c}^{ndc}"/></p>
 </div><figure class="align-center">
 <img alt="Demo 12" src="images/demo18-2.png" />
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">camera_space_to_ndc_space_fn</span><span class="p">())</span>  <span class="c1"># (1)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">camera_space_to_ndc_space_fn</span><span class="p">())</span>  <span class="c1"># (1)</span>
 </pre></div>
 </div>
 <p>Unlike in previous demos in which we read the transformations
@@ -411,13 +417,13 @@ to world space like so, read top to bottom:</p>
 </div><figure class="align-center">
 <img alt="Demo 12" src="images/demo18-7.png" />
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># fn_stack.append(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># fn_stack.push(</span>
     <span class="c1">#     lambda v: v.translate(tx=camera.position_worldspace.x,</span>
     <span class="c1">#                           ty=camera.position_worldspace.y,</span>
     <span class="c1">#                           tz=camera.position_worldspace.z)</span>
     <span class="c1"># )</span>
-    <span class="c1"># fn_stack.append(lambda v: v.rotate_y(camera.rot_y))</span>
-    <span class="c1"># fn_stack.append(lambda v: v.rotate_x(camera.rot_x))</span>
+    <span class="c1"># fn_stack.push(lambda v: v.rotate_y(camera.rot_y))</span>
+    <span class="c1"># fn_stack.push(lambda v: v.rotate_x(camera.rot_x))</span>
 </pre></div>
 </div>
 <p>But, since we need to transform world-space to camera space,
@@ -430,9 +436,9 @@ camera space are.</p>
 </div><figure class="align-center">
 <img alt="Demo 12" src="images/demo18-3.png" />
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">))</span>  <span class="c1"># (2)</span>
-    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">))</span>  <span class="c1"># (3)</span>
-    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">))</span>  <span class="c1"># (2)</span>
+    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">))</span>  <span class="c1"># (3)</span>
+    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                                           <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                                           <span class="n">tz</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>  <span class="c1"># (4)</span>
 </pre></div>
@@ -449,10 +455,10 @@ the current space</p>
 </div><figure class="align-center">
 <img alt="Demo 12" src="images/demo18-4.png" />
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                                           <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                                           <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span> <span class="c1"># (5) translate the local origin</span>
-    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">))</span> <span class="c1"># (6) (rotate around the local z axis</span>
+    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">))</span> <span class="c1"># (6) (rotate around the local z axis</span>
 </pre></div>
 </div>
 <p>for each of the modelspace coordinates, apply all
@@ -463,7 +469,7 @@ which we can pass to glVertex3f</p>
 
     <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-        <span class="n">ndc_space</span> <span class="o">=</span> <span class="n">apply_stack</span><span class="p">(</span><span class="n">model_space</span><span class="p">)</span>
+        <span class="n">ndc_space</span> <span class="o">=</span> <span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc</span><span class="p">(</span><span class="n">model_space</span><span class="p">)</span>
         <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
     <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
@@ -483,14 +489,14 @@ remove these 4 transformations from the stack (done below)</p>
 </figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 
-    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tz</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">))</span>  <span class="c1"># (7)</span>
-    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">rotation_around_paddle1</span><span class="p">))</span>  <span class="c1"># (8)</span>
-    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span>  <span class="c1"># (9)</span>
-    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">square_rotation</span><span class="p">))</span>  <span class="c1"># (10)</span>
+    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tz</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">))</span>  <span class="c1"># (7)</span>
+    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">rotation_around_paddle1</span><span class="p">))</span>  <span class="c1"># (8)</span>
+    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span>  <span class="c1"># (9)</span>
+    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">square_rotation</span><span class="p">))</span>  <span class="c1"># (10)</span>
 
     <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">square</span><span class="p">:</span>
-        <span class="n">ndc_space</span> <span class="o">=</span> <span class="n">apply_stack</span><span class="p">(</span><span class="n">model_space</span><span class="p">)</span>
+        <span class="n">ndc_space</span> <span class="o">=</span> <span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc</span><span class="p">(</span><span class="n">model_space</span><span class="p">)</span>
         <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
     <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
@@ -517,16 +523,16 @@ leave the view and projection fns (1) - (4)</p>
 </div><figure class="align-center">
 <img alt="Demo 12" src="images/demo18-6.png" />
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                                           <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                                           <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span>  <span class="c1"># (5)</span>
-    <span class="n">fn_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">))</span>  <span class="c1"># (6)</span>
+    <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">))</span>  <span class="c1"># (6)</span>
 
     <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
 
     <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">apply_stack</span><span class="p">(</span><span class="n">model_space</span><span class="p">)</span>
+        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc</span><span class="p">(</span><span class="n">model_space</span><span class="p">)</span>
         <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
     <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
@@ -541,6 +547,13 @@ the next iteration of the event loop.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Notice in the above code, adding functions to the stack is creating a shared
+context for transformations, and before we call “glVertex3f”, we always call
+“modelspace_to_ndc” on the modelspace vertex.  In Demo 19, we will be using
+OpenGL 2.1 matrix stacks.  Although we don’t have the code for the OpenGL
+driver, given that you’ll see that we pass modelspace data directly to “glVertex3f”,
+it should be clear that the OpenGL implementation must fetch the modelspace
+to NDC transformations from the ModelView and Projection matrix stacks.</p>
 </section>
 </section>
 </section>
