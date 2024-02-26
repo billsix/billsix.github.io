@@ -115,6 +115,33 @@
 <p>Replace lambda stacks with OpenGL 2.1 matrix stacks, provided
 by the driver for your graphics card.  This is how preshader
 opengl worked.</p>
+<p>The function stack allowed us to aggregate the entirety of
+the transformations from modelspace to NDC, by creating a context
+of transformations, and a function to do the conversion.  We then
+needed to push or pop functions from the stack, depending on what
+space transition we were currently dealing with.</p>
+<p>A given matrix in OpenGL2.1 is the equivalent of a function stack;
+given one matrix, it can perform a sequence of transformations
+from one space to another, with one matrix multiplication.</p>
+<p>OpenGL 2.1 deals with two different types of matricies: 1) the projection
+matrix, which effectively is the function from camera space
+to NDC (clip space) and 2) The modelview matrix, which deals
+with the transformations from model space to camera space.</p>
+<p>Given that a matrix can perform a sequence of transformations
+across multiple spaces in the Cayley graph, it may appear
+that we no longer need any notion of a stack, as we had in the function
+stacks.  But that is not true.  For the ModelView matrix, we still
+need a stack of matricies, so that we can return to a previous
+transformation sequence.  For instance, if we are at world space,
+the ModelView matrix at the top of the matrix stack will convert
+from world space to camera space.  But we need to draw two relative
+child spaces to world space, paddle 1 space and paddle 2 space.
+So before we do the transformations to paddle 1 space, we “push”
+a copy of the current modelview matrix to the top of the modelview
+matrix stack, so that after we draw paddle 1 and the square, we can
+“pop” that matrix off, leaving us the matrix at the top of the
+modelview matrix stack that represents world space, so that
+we can then begin to transform to paddle 2 space.</p>
 <p>The concepts behind the function stack, in which the first function
 added to the stack is the last function applied, hold true for
 matricies as well.  But matricies are a much more efficient
@@ -191,12 +218,12 @@ On Windows, in a command prompt, type “python src\demo19\demo.py”.</p>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>First thing to note is that we are now using OpenGL 2.1’s official transformation
-procedures, and in the perspective transformation, they flip the z axis, making
+procedures, and in the projection transformation, they flip the z axis, making
 it a left hand coordinate system.  The reason for this is long, and I
 have begun discusses in the “Standard Perspective Matrix” section, but it’s an
 incomplete section for now.
 But for now, all it means that we have to change how the depth test
-will be configured, as after the perspective transformation, the far z
+will be configured, as after the projection transformation, the far z
 value is 1.0, and the near z value is -1</p>
 <p>The clear depth that is set for each fragment each frame is now 1.0,
 and the test for a given fragment to overwrite the color in the color
@@ -221,16 +248,16 @@ In univariate terms, f(x) = x</p>
     <span class="n">glLoadIdentity</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>change the perspective matrix to convert the frustum
+<p>change the projection matrix to convert the frustum
 to clip space
 set the projection matrix to be perspective.  Since
 the viewport is always square, set the aspect ratio to be 1.0.
 We are now going to clip space instead of to NDC, which we be discussed
 in the next chapter.</p>
-<figure class="align-center" id="id1">
+<figure class="align-center" id="id3">
 <img alt="Demo 11" src="images/perspective.png" />
 <figcaption>
-<p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
@@ -242,7 +269,14 @@ in the next chapter.</p>
     <span class="p">)</span>
 </pre></div>
 </div>
-<p>The camera’s position is described as follows</p>
+<p>“glMatrixMode” tells the computer which matrix stack should be the active one,
+against which subsequent matrix operations which affect.  In this case, we set
+the current matrix stack to be the projection one.  We then call “gluPerspective”
+to set the projection transformation, which we covered in previous sections,
+and we will ignore the implementation of it; it’s now a black box.</p>
+<p>Now onto camera space!</p>
+<p>The camera’s position could be described relative to world space by
+the following sequence of transformations.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#glTranslate(camera.x, camera.y, camera.z)</span>
 <span class="c1">#glRotatef(math.degrees(camera.rot_y), 0.0, 1.0, 0.0)</span>
 <span class="c1">#glRotatef(math.degrees(camera.rot_x), 1.0, 0.0, 0.0)</span>
@@ -258,8 +292,18 @@ do the inverse operations to the view stack.</p>
     <span class="n">glTranslate</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Each call above actually modifies the matrix at the top of the modelview stack of matricies, as matricies
+<p>First thing we did was set the current matrix to be the modelview matrix, instead
+of the projection matrix.  Most of our work will be with the modelview matrix,
+as looking at the Cayley graph, there’s only one function from camera space
+to NDC.  N.B., OpenGL 2.1 transformations use degrees, not radians, so
+we need to convert to degrees.</p>
+<p>Unlike in the lambda stack demo, in which a new function was added to the
+top of the stack, without modifying any functions below it on the stack,
+with OpenGL matricies, each transformation, such as translate, rotate, and scale,
+actually destructively modifies the matrix at the top of the stack, as matricies
 can be premultiplied together for efficiency.</p>
+<p>In linear algebra terms, the matrix multiplication takes place, but then the resulting
+values of the matrix replace the values of the matrix at the top of the stack.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span><span class="n">a</span> <span class="n">b</span><span class="o">|</span>     <span class="o">|</span><span class="n">e</span> <span class="n">f</span><span class="o">|</span>         <span class="o">|</span><span class="n">ae</span><span class="o">+</span><span class="n">bg</span>  <span class="n">af</span><span class="o">+</span><span class="n">bh</span><span class="o">|</span>
 <span class="o">|</span><span class="n">c</span> <span class="n">d</span><span class="o">|</span>  <span class="o">*</span>  <span class="o">|</span><span class="n">g</span> <span class="n">h</span><span class="o">|</span>  <span class="o">=</span>      <span class="o">|</span><span class="n">ce</span><span class="o">+</span><span class="n">dg</span>  <span class="n">cf</span><span class="o">+</span><span class="n">dh</span><span class="o">|</span>
 </pre></div>
@@ -277,11 +321,10 @@ so we have a stack composed of matricies.</p>
 <p>“PushMatrix” describes what the function does, but its purpose is to
 save onto the current coordinate system for later drawing modelspace
 data.</p>
-<p>The model stack is currently the identity matrix, meaning
-it does nothing.  The view and the projection matrix
-are set to transform from world space into camera space,
-and then take the frustum and convert it to NDC.</p>
-<p>Save onto the current model stack, so that paddle 2 can be drawn relative
+<p>The modelview matrix stack is currently the transformation from world space into camera space.
+Since we now have to draw paddle 1, the square, and paddle 2,
+save onto the current modelview stack, to hold onto world space, so that after
+we draw paddle 1 and the square, we can restore the world space, so that paddle 2 can be drawn relative
 to it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glPushMatrix</span><span class="p">()</span>
 </pre></div>
@@ -289,13 +332,13 @@ to it.</p>
 </section>
 <section id="draw-paddle-1">
 <h3>draw paddle 1<a class="headerlink" href="#draw-paddle-1" title="Link to this heading">¶</a></h3>
-<p>Unlike in previous demos, because the transformations
-are on a stack, the fns on the model stack can
+<p>Unlike in previous demos before the lambda stack, because the transformations
+are now on a stack, the functions on the model stack can
 be read forwards, where each operation translates/rotates/scales
-the current space</p>
+the current space.</p>
 <p>glVertex data is specified in modelspace coordinates,
 but since we loaded the projection matrix and the modelview
-matrix into OpenGL, glVertex3f will apply those transformations for us!</p>
+matrix into OpenGL, glVertex3f will apply those transformations for us <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>!</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
 
     <span class="n">glTranslate</span><span class="p">(</span>
@@ -342,13 +385,13 @@ the square’s 3 model_space transformations</p>
     <span class="n">glPopMatrix</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>No need to push matrix here, as this is the last object that
-we are drawing, and upon the next iteration of the event loop,
-all 3 matricies will be reset to the identity</p>
 </section>
 </section>
 <section id="draw-paddle-2">
 <h3>draw paddle 2<a class="headerlink" href="#draw-paddle-2" title="Link to this heading">¶</a></h3>
+<p>No need to push matrix here, as this is the last object that
+we are drawing, and upon the next iteration of the event loop,
+all 3 matricies will be reset to the identity</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># draw paddle 2.  Nothing is defined relative to paddle to, so we don&#39;t</span>
     <span class="c1"># need to push matrix, and on the next iteration of the event loop,</span>
     <span class="c1"># all matricies will be cleared to identity, so who cares if we</span>
@@ -368,6 +411,26 @@ all 3 matricies will be reset to the identity</p>
     <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>To note.  The computer has no notion of these relative coordinate systems.
+From the computer’s point of view, there is one coordinate system, (x,y,z,w).
+So now let’s look at what the OpenGL drawing calls are in more detail, and think
+about what they must do.  “glBegin(GL_QUADS)”, 4 calls to “glVertex”, and “glEnd”.
+“glVertex”, given modelspace data, must pull 2 matricies from OpenGL’s matrix stacks,
+the modelview and the projection.  It then does two transformations to turn
+the modelspace data in NDC (clip-space, where the x y and z are each divided by the w to get
+NDC).  From this point of view, there are no relative coordinate systems, just numbers
+in and numbers out.  So then what do glBegin and glEnd do?  This will
+be a subject for after the midterm, but the 4 vertices will be converted to screen space,
+given the matricies, and when “glEnd” is called, the graphics driver will need to determine
+what pixels are within the quadriteral or not.  For the fragments within the quadralateral,
+the driver will also need to know the color of the vertex.  So glVertex is doing a lot behind
+the scenes, grabbing the modelview and the projection matricies from the top of the stack,
+grabbing the current color, set by “glColor3f”.</p>
+</aside>
+</aside>
 </section>
 </section>
 </section>
