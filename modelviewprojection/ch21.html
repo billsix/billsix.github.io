@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OpenGL3.3 Core Profile - Demo 21 &mdash; Model View Projection 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
       <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
         <script src="static/documentation_options.js?v=d45e8c67"></script>
         <script src="static/doctools.js?v=888ff710"></script>
@@ -46,7 +43,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectange - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
@@ -192,63 +189,62 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
 <span class="c1"># SOFTWARE.</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>  <span class="c1"># to appease Python 3.7-3.9</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">glClear</span><span class="p">,</span>
-    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
-    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
-    <span class="n">glViewport</span><span class="p">,</span>
-    <span class="n">glClearColor</span><span class="p">,</span>
-    <span class="n">glEnable</span><span class="p">,</span>
-    <span class="n">glDisable</span><span class="p">,</span>
-    <span class="n">glClearDepth</span><span class="p">,</span>
-    <span class="n">glDepthFunc</span><span class="p">,</span>
-    <span class="n">GL_DEPTH_TEST</span><span class="p">,</span>
-    <span class="n">GL_LEQUAL</span><span class="p">,</span>
-    <span class="n">GL_TRUE</span><span class="p">,</span>
-    <span class="n">GL_BLEND</span><span class="p">,</span>
-    <span class="n">glBlendFunc</span><span class="p">,</span>
-    <span class="n">GL_SRC_ALPHA</span><span class="p">,</span>
-    <span class="n">GL_ONE_MINUS_SRC_ALPHA</span><span class="p">,</span>
-    <span class="n">glGenVertexArrays</span><span class="p">,</span>
-    <span class="n">glBindVertexArray</span><span class="p">,</span>
-    <span class="n">GL_VERTEX_SHADER</span><span class="p">,</span>
-    <span class="n">GL_FRAGMENT_SHADER</span><span class="p">,</span>
-    <span class="n">glGenBuffers</span><span class="p">,</span>
-    <span class="n">glBindBuffer</span><span class="p">,</span>
-    <span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span>
-    <span class="n">glGetAttribLocation</span><span class="p">,</span>
-    <span class="n">glEnableVertexAttribArray</span><span class="p">,</span>
-    <span class="n">glVertexAttribPointer</span><span class="p">,</span>
-    <span class="n">GL_FLOAT</span><span class="p">,</span>
-    <span class="n">glBufferData</span><span class="p">,</span>
-    <span class="n">GL_STATIC_DRAW</span><span class="p">,</span>
-    <span class="n">glUseProgram</span><span class="p">,</span>
-    <span class="n">glGetUniformLocation</span><span class="p">,</span>
-    <span class="n">glUniformMatrix4fv</span><span class="p">,</span>
-    <span class="n">glDrawArrays</span><span class="p">,</span>
-    <span class="n">GL_LINES</span><span class="p">,</span>
-    <span class="n">GL_TRIANGLES</span><span class="p">,</span>
-    <span class="n">glDeleteVertexArrays</span><span class="p">,</span>
-    <span class="n">glDeleteBuffers</span><span class="p">,</span>
-    <span class="n">glDeleteProgram</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 
 <span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="kn">import</span> <span class="nn">glfw</span>
+<span class="kn">import</span> <span class="nn">imgui</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># new - SHADERS</span>
 <span class="kn">import</span> <span class="nn">OpenGL.GL.shaders</span> <span class="k">as</span> <span class="nn">shaders</span>
-<span class="kn">import</span> <span class="nn">glfw</span>
 <span class="kn">import</span> <span class="nn">pyMatrixStack</span> <span class="k">as</span> <span class="nn">ms</span>
-
-<span class="kn">import</span> <span class="nn">imgui</span>
-<span class="kn">from</span> <span class="nn">imgui.integrations.glfw</span> <span class="kn">import</span> <span class="n">GlfwRenderer</span>
 <span class="kn">import</span> <span class="nn">staticlocal</span>
+<span class="kn">from</span> <span class="nn">imgui.integrations.glfw</span> <span class="kn">import</span> <span class="n">GlfwRenderer</span>
+<span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span>
+    <span class="n">GL_BLEND</span><span class="p">,</span>
+    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
+    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
+    <span class="n">GL_DEPTH_TEST</span><span class="p">,</span>
+    <span class="n">GL_FLOAT</span><span class="p">,</span>
+    <span class="n">GL_FRAGMENT_SHADER</span><span class="p">,</span>
+    <span class="n">GL_LEQUAL</span><span class="p">,</span>
+    <span class="n">GL_LINES</span><span class="p">,</span>
+    <span class="n">GL_ONE_MINUS_SRC_ALPHA</span><span class="p">,</span>
+    <span class="n">GL_SRC_ALPHA</span><span class="p">,</span>
+    <span class="n">GL_STATIC_DRAW</span><span class="p">,</span>
+    <span class="n">GL_TRIANGLES</span><span class="p">,</span>
+    <span class="n">GL_TRUE</span><span class="p">,</span>
+    <span class="n">GL_VERTEX_SHADER</span><span class="p">,</span>
+    <span class="n">glBindBuffer</span><span class="p">,</span>
+    <span class="n">glBindVertexArray</span><span class="p">,</span>
+    <span class="n">glBlendFunc</span><span class="p">,</span>
+    <span class="n">glBufferData</span><span class="p">,</span>
+    <span class="n">glClear</span><span class="p">,</span>
+    <span class="n">glClearColor</span><span class="p">,</span>
+    <span class="n">glClearDepth</span><span class="p">,</span>
+    <span class="n">glDeleteBuffers</span><span class="p">,</span>
+    <span class="n">glDeleteProgram</span><span class="p">,</span>
+    <span class="n">glDeleteVertexArrays</span><span class="p">,</span>
+    <span class="n">glDepthFunc</span><span class="p">,</span>
+    <span class="n">glDisable</span><span class="p">,</span>
+    <span class="n">glDrawArrays</span><span class="p">,</span>
+    <span class="n">glEnable</span><span class="p">,</span>
+    <span class="n">glEnableVertexAttribArray</span><span class="p">,</span>
+    <span class="n">glGenBuffers</span><span class="p">,</span>
+    <span class="n">glGenVertexArrays</span><span class="p">,</span>
+    <span class="n">glGetAttribLocation</span><span class="p">,</span>
+    <span class="n">glGetUniformLocation</span><span class="p">,</span>
+    <span class="n">glUniformMatrix4fv</span><span class="p">,</span>
+    <span class="n">glUseProgram</span><span class="p">,</span>
+    <span class="n">glVertexAttribPointer</span><span class="p">,</span>
+    <span class="n">glViewport</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
@@ -318,12 +314,12 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
     <span class="n">vertices</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="p">[</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-                <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-                <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-                <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-                <span class="p">[</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-                <span class="p">[</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
             <span class="p">],</span>
             <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
         <span class="p">)</span>
@@ -341,12 +337,12 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="c1"># fmt: off</span>
         <span class="n">color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span>
             <span class="p">],</span>
             <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
         <span class="p">)</span>
@@ -425,9 +421,9 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="n">glBindVertexArray</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 
-<span class="n">paddle1</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">0.578123</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))</span>
+<span class="n">paddle1</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">0.578123</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))</span>
 <span class="n">paddle1</span><span class="o">.</span><span class="n">prepare_to_render</span><span class="p">()</span>
-<span class="n">paddle2</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))</span>
+<span class="n">paddle2</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))</span>
 <span class="n">paddle2</span><span class="o">.</span><span class="n">prepare_to_render</span><span class="p">()</span>
 
 
@@ -437,12 +433,12 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
     <span class="n">vertices</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="p">[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-                <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-                <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-                <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-                <span class="p">[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-                <span class="p">[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
             <span class="p">],</span>
             <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
         <span class="p">)</span>
@@ -465,7 +461,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
     <span class="n">rot_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
 
 
-<span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">400.0</span><span class="p">,</span> <span class="n">rot_y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">rot_x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">40.0</span><span class="p">,</span> <span class="n">rot_y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">rot_x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">Ground</span><span class="p">:</span>
@@ -473,21 +469,21 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># glColor3f(0.1,0.1,0.1)</span>
+        <span class="c1"># glColor3f(0.1,.1,.1)</span>
         <span class="n">verts</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">600</span><span class="p">,</span> <span class="mi">601</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">600</span><span class="p">,</span> <span class="mi">601</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
                 <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
-                <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mf">50.0</span><span class="p">))</span>
+                <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mf">5.0</span><span class="p">))</span>
                 <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
                 <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-                <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mf">50.0</span><span class="p">))</span>
+                <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mf">5.0</span><span class="p">))</span>
                 <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
                 <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-                <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mf">50.0</span><span class="p">))</span>
+                <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mf">5.0</span><span class="p">))</span>
                 <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
                 <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-                <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mf">50.0</span><span class="p">))</span>
+                <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mf">5.0</span><span class="p">))</span>
                 <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
@@ -572,7 +568,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
 
     <span class="k">global</span> <span class="n">camera</span>
 
-    <span class="n">move_multiple</span> <span class="o">=</span> <span class="mf">15.0</span>
+    <span class="n">move_multiple</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_RIGHT</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
         <span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span> <span class="o">-=</span> <span class="mf">0.03</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_LEFT</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
@@ -593,13 +589,13 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
     <span class="k">global</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span>
 
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_S</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">10.0</span>
+        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">1.0</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_W</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">10.0</span>
+        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.0</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_K</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">10.0</span>
+        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">1.0</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">10.0</span>
+        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.0</span>
 
     <span class="k">global</span> <span class="n">paddle_1_rotation</span><span class="p">,</span> <span class="n">paddle_2_rotation</span>
 
@@ -614,13 +610,13 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
 
 
 <span class="c1"># fmt: off</span>
-<span class="n">square_vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-    <span class="p">[[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-     <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-     <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-     <span class="p">[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]],</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="c1"># square_vertices = np.array(</span>
+<span class="c1">#     [[-5.0, -5.0, 0.0],</span>
+<span class="c1">#      [5.0, -5.0, 0.0],</span>
+<span class="c1">#      [5.0, 5.0, 0.0],</span>
+<span class="c1">#      [-5.0, 5.0, 0.0]],</span>
+<span class="c1">#     dtype=np.float32,</span>
+<span class="c1"># )</span>
 <span class="c1"># fmt: on</span>
 
 
@@ -687,7 +683,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
 
     <span class="c1"># set the projection matrix to be perspective</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">perspective</span><span class="p">(</span>
-        <span class="n">fov</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">aspectRatio</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="n">nearZ</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">farZ</span><span class="o">=</span><span class="mf">10000.0</span>
+        <span class="n">fov</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">aspectRatio</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="n">nearZ</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">farZ</span><span class="o">=</span><span class="mf">1000.0</span>
     <span class="p">)</span>
 
     <span class="c1"># render scene</span>
@@ -701,11 +697,11 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
     <span class="n">axes_list</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_joystick_axes</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">JOYSTICK_1</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">axes_list</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
         <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">:</span>
-            <span class="n">camera</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
-            <span class="n">camera</span><span class="o">.</span><span class="n">z</span> <span class="o">-=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
+            <span class="n">camera</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
+            <span class="n">camera</span><span class="o">.</span><span class="n">z</span> <span class="o">-=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">:</span>
-            <span class="n">camera</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
-            <span class="n">camera</span><span class="o">.</span><span class="n">z</span> <span class="o">+=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
+            <span class="n">camera</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
+            <span class="n">camera</span><span class="o">.</span><span class="n">z</span> <span class="o">+=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
 
         <span class="c1"># print(axes_list[0][4])</span>
         <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.10</span><span class="p">:</span>
@@ -743,10 +739,10 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
             <span class="c1"># before paddle 2 is drawn, we need to remove</span>
             <span class="c1"># the square&#39;s 3 model_space transformations</span>
 
-            <span class="n">ms</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">)</span>
+            <span class="n">ms</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
             <span class="n">ms</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">square</span><span class="o">.</span><span class="n">rotation_around_paddle1</span><span class="p">)</span>
 
-            <span class="n">ms</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+            <span class="n">ms</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
             <span class="n">ms</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">square</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
 
             <span class="n">square</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
@@ -881,7 +877,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
 <span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span>
 <span class="p">{</span>
 <span class="w">   </span><span class="nb">gl_Position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mvpMatrix</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kt">vec4</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
-<span class="w">   </span><span class="n">vs_out</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec4</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">   </span><span class="n">vs_out</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec4</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span><span class="mf">.5</span><span class="p">,</span><span class="mf">.5</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>

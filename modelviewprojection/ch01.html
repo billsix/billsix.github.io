@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Opening a Window - Demo 01 &mdash; Model View Projection 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
       <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
         <script src="static/documentation_options.js?v=d45e8c67"></script>
         <script src="static/doctools.js?v=888ff710"></script>
@@ -20,7 +17,7 @@
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Draw A Rectange - Demo 02" href="ch02.html" />
+    <link rel="next" title="Draw A Rectangle - Demo 02" href="ch02.html" />
     <link rel="prev" title="Introduction" href="intro.html" /> 
 </head>
 
@@ -67,7 +64,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#answers">Answers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectange - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
@@ -168,7 +165,7 @@ The top right is pixel coordinate (window_width,window_height).</p>
 </figcaption>
 </figure>
 <p>Frames are created within the computer and sent to the monitor
-at a rate over time, called the <em>framerate</em>,
+at a rate over time, called the <em>frame-rate</em>,
 measured in <em>Hertz</em>.  By updating frames quickly and at a constant rate, the computer
 provides the end-user with the illusion of motion.</p>
 <figure class="align-center" id="id6">
@@ -207,21 +204,24 @@ provides the end-user with the illusion of motion.</p>
 <p>Import Python modules, which are Python programmer’s main form of libraries.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
+<span class="c1"># doc-region-begin 4b5a486083da608751701fa7e42e37bbc4cfd06e</span>
+<span class="kn">import</span> <span class="nn">glfw</span>
+
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>The “sys” module is imported.  To call functions from this module, the systax is sys.function</p></li>
+<li><p>The “sys” module is imported.  To call functions from this module, the syntax is sys.function</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">glMatrixMode</span><span class="p">,</span>
-    <span class="n">glLoadIdentity</span><span class="p">,</span>
-    <span class="n">GL_PROJECTION</span><span class="p">,</span>
-    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
-    <span class="n">glClear</span><span class="p">,</span>
     <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
     <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
-    <span class="n">glViewport</span><span class="p">,</span>
+    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
+    <span class="n">GL_PROJECTION</span><span class="p">,</span>
+    <span class="n">glClear</span><span class="p">,</span>
     <span class="n">glClearColor</span><span class="p">,</span>
+    <span class="n">glLoadIdentity</span><span class="p">,</span>
+    <span class="n">glMatrixMode</span><span class="p">,</span>
+    <span class="n">glViewport</span><span class="p">,</span>
 <span class="p">)</span>
 
 </pre></div>
@@ -233,6 +233,23 @@ we don’t want to have to write “OpenGL.GL.function” every time, as we use
 these functions frequently</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glfw</span>
+
+<span class="c1"># doc-region-end 20134134fb054ac6764edfb4764935b86f20a795</span>
+<span class="c1"># doc-region-begin 6901922753dbf8df496fd46ae4a0eeb4e6243ef4</span>
+<span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
+    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
+    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
+    <span class="n">GL_PROJECTION</span><span class="p">,</span>
+    <span class="n">glClear</span><span class="p">,</span>
+    <span class="n">glClearColor</span><span class="p">,</span>
+    <span class="n">glLoadIdentity</span><span class="p">,</span>
+    <span class="n">glMatrixMode</span><span class="p">,</span>
+    <span class="n">glViewport</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># doc-region-end 6901922753dbf8df496fd46ae4a0eeb4e6243ef4</span>
+
 
 </pre></div>
 </div>
@@ -256,7 +273,7 @@ the monitor called a window.</p>
 </figcaption>
 </figure>
 <p>To create and to open a window in a cross-platform manner, this
-book will call procedures provided by the widely-ported GLFW library (supporting Windows, macOS, Linux).
+book will call procedures provided by the widely-ported GLFW library (supporting Windows, MacOS, Linux).
 GLFW also provides procedures for receiving
 input both from a keyboard input and from game controllers.</p>
 </section>
@@ -268,7 +285,7 @@ input both from a keyboard input and from game controllers.</p>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Initialize glfw.  If initialization fails, the program should terminate.
+<p>Initialize GLFW.  If initialization fails, the program should terminate.
 What does the initialization do?  Doesn’t matter.  Think of it like
 a constructor for a class; it initializes some state that it needs
 for later function calls.</p>
@@ -419,7 +436,7 @@ is sent to the monitor
 only when frame is completely drawn, and each pixel has a color.
 The act of sending the frame to the monitor is called <em>flushing</em>
 the frame.</p>
-<p>OpenGL has two <em>framebuffers</em> (regions of memory which will eventually
+<p>OpenGL has two <em>frame-buffers</em> (regions of memory which will eventually
 contain the full data for a frame),
 only one of which is “active”, or writable, at a given time.
 “glfwSwapBuffers” initiates the flushing
@@ -517,7 +534,7 @@ what is the color at pixel (1,1)?</p></li>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ch02.html" class="btn btn-neutral float-right" title="Draw A Rectange - Demo 02" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ch02.html" class="btn btn-neutral float-right" title="Draw A Rectangle - Demo 02" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

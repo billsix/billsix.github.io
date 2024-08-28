@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moving the Paddles - Keyboard Input - Demo 04 &mdash; Model View Projection 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
       <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
         <script src="static/documentation_options.js?v=d45e8c67"></script>
         <script src="static/doctools.js?v=888ff710"></script>
@@ -46,7 +43,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectange - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Moving the Paddles - Keyboard Input - Demo 04</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
@@ -147,7 +144,7 @@ On Windows, in a command prompt, type “python src\demo04\demo.py”.</p>
 <p>Paddles which don’t move are quite boring.  Let’s make them move up or down
 by getting keyboard input.</p>
 <p>And while we are at it, let’s go ahead and create data structures for a Vertex,
-and for the collection of verticies that make up a Paddle.</p>
+and for the collection of vertices that make up a Paddle.</p>
 </section>
 <section id="code">
 <h2>Code<a class="headerlink" href="#code" title="Link to this heading">¶</a></h2>
@@ -254,19 +251,19 @@ the vertices in the paddle. If the
 key continues to be held down over time, this value will continue to decrease.</p></li>
 <li><p>If the user presses  ‘w’ this frame, add 0.1 more to the y component of each of
 the vertices in the paddle</p></li>
-<li><p>If the user presses  ‘k’ this frame, subtract 0.1.</p></li>
-<li><p>If the user presses ‘i’ this frame, add 0.1 more.</p></li>
+<li><p>If the user presses  ‘k’ this frame, subtract .1.</p></li>
+<li><p>If the user presses ‘i’ this frame, add .1 more.</p></li>
 </ul>
 <ul class="simple">
 <li><p>when writing to global variables within a nested scope,
 you need to declare their scope as global at the top of the nested scope.
-(techincally it’s not a global variable, it’s local to the current python
+(technically it’s not a global variable, it’s local to the current python
 module, but the point remains)</p></li>
 </ul>
 </section>
 <section id="the-event-loop">
 <h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Link to this heading">¶</a></h3>
-<p>Monitors can have variable framerates, and in order to ensure
+<p>Monitors can have variable frame-rates, and in order to ensure
 that movement is consistent across different monitors, we choose
 to only flush the screen at 60 hertz (frames per second).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TARGET_FRAMERATE</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span>
@@ -311,13 +308,13 @@ values if there was input.</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>While rendering, we now loop over the verticies of the paddle.
-The paddles may be displaced from their original position that was hardcoded,
+<li><p>While rendering, we now loop over the vertices of the paddle.
+The paddles may be displaced from their original position that was hard-coded,
 as the callback may have updated the values based off of the user input.</p></li>
 <li><p>When glVertex is now called, we are not directly
 passing numbers into it, but instead we are getting
 the numbers from the data structures of Paddle and its
-associated verticies.</p></li>
+associated vertices.</p></li>
 </ul>
 <figure class="align-center" id="id2">
 <img alt="Adding input offset" src="images/plot3.png" />

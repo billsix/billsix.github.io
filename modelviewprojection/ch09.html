@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rotation Fixed - Sequence of Transformations - Demo 09 &mdash; Model View Projection 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
       <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
         <script src="static/documentation_options.js?v=d45e8c67"></script>
         <script src="static/doctools.js?v=888ff710"></script>
@@ -46,7 +43,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectange - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
@@ -176,7 +173,7 @@ around the paddle’s center by code that worked as follows</p>
 </div><p>where t and r are the translate and rotate functions for a paddle, and
 we read the functions from right to left.  (In code, we were reading
 the method chaining from top-down, as that is the order in which the
-function calls are evaluted.)</p>
+function calls are evaluated.)</p>
 <p>But that caused erratic behavior of the paddle over time, as it was
 not rotating around it’s own origin.  It was not working.</p>
 <p>So in Demo 08 we fixed it by writing a “rotate_around” method, in
@@ -226,7 +223,7 @@ All subsequent functions move that relative basis to a new relative basis.</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id3">
-<img alt="Rotation Bacwards" src="images/rotate1-backwards.gif" />
+<img alt="Rotation Backwards" src="images/rotate1-backwards.gif" />
 <figcaption>
 <p><span class="caption-text">Rotation Backwards</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
@@ -235,7 +232,7 @@ All subsequent functions move that relative basis to a new relative basis.</p>
 <section id="suggested-order">
 <h3>Suggested Order<a class="headerlink" href="#suggested-order" title="Link to this heading">¶</a></h3>
 <p>The author has a strong opinion on the matter for computer graphics.</p>
-<p>Start at world space node.  As a reminder, this is the toplevel coordinate
+<p>Start at world space node.  As a reminder, this is the top-level coordinate
 system that we choose to use.  It’s whatever you want it to be.</p>
 <figure class="align-center" id="id4">
 <img alt="Demo 06" src="images/demo061.png" />
@@ -244,7 +241,7 @@ system that we choose to use.  It’s whatever you want it to be.</p>
 </figcaption>
 </figure>
 <p>Think of world space’s origin, x and y axes.  On the Cayley graph, move towards each modelspace node,
-which is against the direction of the edge,  Look at that edge’s correponding
+which is against the direction of the edge,  Look at that edge’s corresponding
 sequence of function calls in the graphics code.  Read the transformations
 from the bottom up, imagining a transformed local coordinate system against which
 each function in the sequence operates.</p>
@@ -265,8 +262,8 @@ of all modelspace data as having already been “plotted”.  So now follow
 the edges to screen space,
 reading the transformations
 from top down, and resetting the coordinate system after every transformation.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span>
-                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>As a side note, the computer has no notion of coordinate systems.  It just has a sequence of procedures
@@ -291,8 +288,8 @@ and to implement it correctly, we need to be able to reason and compose our thou
                                                     <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
         <span class="c1"># doc-region-end 3b78276e1dad210e845c0455857c6ccad704f7c7</span>
         <span class="c1"># doc-region-begin bcc181dd2b611eaf23f0bffbb6dfbd5c9fc061d4</span>
-        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span>
-                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
         <span class="c1"># doc-region-end bcc181dd2b611eaf23f0bffbb6dfbd5c9fc061d4</span>
         <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
     <span class="n">glEnd</span><span class="p">()</span>
@@ -310,8 +307,8 @@ and to implement it correctly, we need to be able to reason and compose our thou
         <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
                                          <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                                                     <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span>
-                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
         <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
     <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>

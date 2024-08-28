@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Window Resizing and Proportionality - Demo 03 &mdash; Model View Projection 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
       <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
         <script src="static/documentation_options.js?v=d45e8c67"></script>
         <script src="static/doctools.js?v=888ff710"></script>
@@ -21,7 +18,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Moving the Paddles - Keyboard Input - Demo 04" href="ch04.html" />
-    <link rel="prev" title="Draw A Rectange - Demo 02" href="ch02.html" /> 
+    <link rel="prev" title="Draw A Rectangle - Demo 02" href="ch02.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,7 +43,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectange - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Window Resizing and Proportionality - Demo 03</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#problem-with-previous-demo">Problem With Previous Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
@@ -119,7 +116,7 @@
 <h2>Problem With Previous Demo<a class="headerlink" href="#problem-with-previous-demo" title="Link to this heading">¶</a></h2>
 <p>When running Demo02, if the user resizes the windows,
 then the paddles lose their proportionality, as NDC
-no longer is mapped to a square screenspace.</p>
+no longer is mapped to a square screen-space.</p>
 </section>
 <section id="how-to-execute">
 <h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Link to this heading">¶</a></h2>
@@ -154,7 +151,7 @@ Ideally, we would like to draw our paddles with
 a black background within a square region in the center of the window, regardless of the dimensions
 of the window.</p>
 <p>OpenGL has a solution for us.  The <em>viewport</em> is a rectangular region contained
-within the window into which OpenGL will render.  By specifing a viewport, OpenGL
+within the window into which OpenGL will render.  By specifying a viewport, OpenGL
 will convert the normalized-device-coordinates
 to the sub-window space of the viewport, instead of the whole
 window.</p>
@@ -197,7 +194,7 @@ Consult the python source for the full, working code.</p>
 <ul class="simple">
 <li><p>set the clear color to be gray.</p></li>
 <li><p>glClear clear the color of every pixel in the whole frame buffer, independent of viewport.
-So now the entire framebuffer is gray.</p></li>
+So now the entire frame-buffer is gray.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 
@@ -206,9 +203,9 @@ So now the entire framebuffer is gray.</p></li>
 </div>
 <ul class="simple">
 <li><p>figure out the minimum dimension of the window.  In the image above, the “square_size” is 1200,
-as the monitor’s vertical screenspace is only 1200 pixels tall.</p></li>
-<li><p>To make a square subregion, we need a number for the distance between vertices of the square.
-By using the minimium of the width and height, we can at least fill up the screen in one dimension.</p></li>
+as the monitor’s vertical screen-space is only 1200 pixels tall.</p></li>
+<li><p>To make a square sub-region, we need a number for the distance between vertices of the square.
+By using the minimum of the width and height, we can at least fill up the screen in one dimension.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glEnable</span><span class="p">(</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
     <span class="n">glScissor</span><span class="p">(</span>
@@ -227,11 +224,11 @@ texturing.  We are using the scissor test, so we must enable it.  We only enable
 the features that we need so that the OpenGL driver doesn’t waste time doing
 unnecessary computations.</p></li>
 <li><p>the scissor test allows us to specify a region
-of the framebuffer into which the opengl operations
-will apply.  In this case, the color in every pixel in the framebuffer is currently gray
-because of the exisiting class to glClearColor.
+of the frame-buffer into which the OpenGL operations
+will apply.  In this case, the color in every pixel in the frame-buffer is currently gray
+because of the existing class to glClearColor.
 By calling glScissor, we are setting a value in each fragment (i.e., pixel) on a square
-region of pixels to be true (and false everywhere else) which means “only do the opengl call on these fragments,
+region of pixels to be true (and false everywhere else) which means “only do the OpenGL call on these fragments,
 ignore the others”.
 As we will learn later, OpenGL stores much more information
 per fragment (i.e. pixel) than just it’s current color.</p></li>
@@ -254,14 +251,14 @@ the arguments sent to glScissor should be clear.</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>disable the scissor test, so now any opengl calls will
+<li><p>disable the scissor test, so now any OpenGL calls will
 happen as usual.</p></li>
 </ul>
 <p>So we’ve drawn black into a square, and disabled the scissor test,
-so any subsequent OpenGL calls will still be drawn into the full framebuffer.
+so any subsequent OpenGL calls will still be drawn into the full frame-buffer.
 But, we only want to draw within the black square, and the scissor
-test does not modify the NDC to screenspace transformations.
-To modify the NDC to screenspace transformations, we set the viewport again,
+test does not modify the NDC to screen-space transformations.
+To modify the NDC to screen-space transformations, we set the viewport again,
 so that the NDC coordinates
 will be mapped the the region of screen coordinates
 that we care about, which is the black square.</p>
@@ -324,7 +321,7 @@ that we call draw_in_square_viewport every frame at the beginning.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ch02.html" class="btn btn-neutral float-left" title="Draw A Rectange - Demo 02" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch02.html" class="btn btn-neutral float-left" title="Draw A Rectangle - Demo 02" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="ch04.html" class="btn btn-neutral float-right" title="Moving the Paddles - Keyboard Input - Demo 04" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

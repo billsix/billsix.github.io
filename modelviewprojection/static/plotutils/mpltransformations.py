@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 import math
+
 import numpy as np
 
 
@@ -38,7 +39,7 @@ def mapMatplotlibData(f, *pointsOnAxis):
     (1.0, 1.0)
     >>> # regardless of the number of arguments, mapMatplotlibData works!
     >>> xs = np.array([-5.0,5.0])
-    >>> ys = np.array([0.0,0.0])
+    >>> ys = np.array([.0,.0])
     >>> zs = np.array([2.0,3.0])
     >>> txs, tys, tzs =mapMatplotlibData(lambda point: (point[0]+1.0, point[1]+1.0, point[2]-1.0),
     ...                                  xs,

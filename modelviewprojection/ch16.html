@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moving Camera in 3D Space - Demo 16 &mdash; Model View Projection 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
       <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
         <script src="static/documentation_options.js?v=d45e8c67"></script>
         <script src="static/doctools.js?v=888ff710"></script>
@@ -46,7 +43,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectange - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
@@ -223,7 +220,7 @@ of camera position in world space coordinates.</p></li>
 <p>To visualize this, run “python mvpVisualization/modelvieworthoprojection/modelvieworthoprojection.py”</p>
 <p>The ordering of 1) before 2) and 3) should be clear, as
 we are imagining a coordinate system that moves, just
-like we do for the modelspace to world space transformations.
+like we do for the model-space to world space transformations.
 The ordering of 2) before 3) is very important, as two rotations
 around different axes are not commutative, meaning that you can’t
 change the order and still expect the same results
@@ -243,7 +240,7 @@ for the same reason.</p>
 </pre></div>
 </div>
 <p>(Remember, read bottom up, just like the previous demos
-for modelspace to worldspace data)</p>
+for model-space to world-space data)</p>
 <p>Back to the point, we are envisioning the camera relative to the world
 space by making a moving coordinate system (composed of an origin, 1 unit
 in the “x” axis, 1 unit in the “y” axis, and 1 unit in the “z” axis), where
@@ -262,10 +259,10 @@ orientation of NDC.  Looking at the following graph,</p>
 <p><span class="caption-text">Demo 10</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>We want to take the modelspace geometry from,
+<p>We want to take the model-space geometry from,
 say Paddle1 space, to world space,
 and then to camera space (which is going in the opposite direction of the arrow, therefore requires
-an inverse operation, because to plot data we go from modelspace to screen space on the graph.</p>
+an inverse operation, because to plot data we go from model-space to screen space on the graph.</p>
 <p>Given that the inverse of a sequence of transformations is the sequence backwards,
 with each transformations inverted, we must do that to get from world space
 to camera space.</p>
@@ -289,7 +286,7 @@ Added rotations around the x axis, y axis, and z axis.
 <span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">Camera</span><span class="p">:</span>
     <span class="n">position_worldspace</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">50.0</span><span class="p">)</span>
+        <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">rot_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">rot_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -375,12 +372,12 @@ of the viewable region.</p>
 <p>We will make a wrapper function camera_space_to_ndc_space_fn which
 calls ortho, setting the size of the rectangular prism.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">camera_space_to_ndc_space_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ortho</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mf">100.0</span><span class="p">,</span>
-                          <span class="n">right</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>
-                          <span class="n">bottom</span><span class="o">=-</span><span class="mf">100.0</span><span class="p">,</span>
-                          <span class="n">top</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>
-                          <span class="n">near</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span>
-                          <span class="n">far</span><span class="o">=-</span><span class="mf">100.0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ortho</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">,</span>
+                          <span class="n">right</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+                          <span class="n">bottom</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">,</span>
+                          <span class="n">top</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+                          <span class="n">near</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span>
+                          <span class="n">far</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="event-loop">
@@ -389,8 +386,8 @@ calls ortho, setting the size of the rectangular prism.</p>
 as there’s too much detail to think about and retype out for every object
 being drawn, and we’re only dealing with 3 objects.  The author
 put this repetition into the book on purpose, so that when we
-start using matricies later, the reader will fully appreciate what
-matricies solve for us.</p>
+start using matrices later, the reader will fully appreciate what
+matrices solve for us.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
@@ -431,11 +428,11 @@ as we did a translate by -10 in the z direction.</p>
     <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">square</span><span class="p">:</span>
         <span class="n">paddle_1_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">square_rotation</span><span class="p">)</span> \
-                                            <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span>
+                                            <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
                                                        <span class="n">ty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                                                        <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span> \
                                             <span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">rotation_around_paddle1</span><span class="p">)</span> \
-                                            <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tz</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">)</span>
+                                            <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tz</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">)</span>
 
         <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
                                          <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>

@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modelspace - Demo 06 &mdash; Model View Projection 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
       <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
         <script src="static/documentation_options.js?v=d45e8c67"></script>
         <script src="static/doctools.js?v=888ff710"></script>
@@ -46,7 +43,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectange - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
@@ -179,16 +176,16 @@ scaling and rotating the object are trivial, as shown in later chapters).</p>
 </figcaption>
 </figure>
 <p>Modelspace - the coordinate system (origin plus axes), in which some object’s
-verticies are defined.</p>
+vertices are defined.</p>
 </section>
 <section id="worldspace">
 <h2>WorldSpace<a class="headerlink" href="#worldspace" title="Link to this heading">¶</a></h2>
-<p>WorldSpace is a toplevel space, independent of NDC, that we choose to use.  It’s arbitrary.
+<p>WorldSpace is a top-level space, independent of NDC, that we choose to use.  It’s arbitrary.
 If you were to model a racetrack for a racing game, the origin of WorldSpace may be the center of that racetrack.
-If you were modelling our solar system, the center of the sun could be the origin of “WorldSpace”.
+If you were modeling our solar system, the center of the sun could be the origin of “WorldSpace”.
 I personally would put the center of our flat earth at the origin, but reasonable people
 can disagree.</p>
-<p>For our demo with paddles, the author arbitralily defines the WorldSpace to be 200 units wide, 200 units tall, with the origin at the center.</p>
+<p>For our demo with paddles, the author arbitrarily defines the WorldSpace to be 200 units wide, 200 units tall, with the origin at the center.</p>
 <figure class="align-center" id="id3">
 <img alt="Demo 06" src="images/demo061.png" />
 <figcaption>
@@ -199,7 +196,7 @@ can disagree.</p>
 <section id="modelspace-to-worldspace">
 <h2>Modelspace to WorldSpace<a class="headerlink" href="#modelspace-to-worldspace" title="Link to this heading">¶</a></h2>
 <p>The author prefers to view transformations as changes to the graph paper,
-as compared to view tranformations as changes to points.</p>
+as compared to view transformations as changes to points.</p>
 <p>As such, for placing paddle1, we can view the translation as a change
 to the graph paper relative to world space coordinates (only incidentally
 bringing the vertices
@@ -251,15 +248,15 @@ is unchanged.  That is world space, which has not changed.</p>
 <section id="paddle-1-s-vertices-in-worldspace-coordinates">
 <h3>Paddle 1’s vertices in WorldSpace Coordinates<a class="headerlink" href="#paddle-1-s-vertices-in-worldspace-coordinates" title="Link to this heading">¶</a></h3>
 <figure class="align-center" id="id7">
-<img alt="Paddle 1's Verticies in World Space" src="images/translation-forwards-3.png" />
+<img alt="Paddle 1's Vertices in World Space" src="images/translation-forwards-3.png" />
 <figcaption>
-<p><span class="caption-text">Paddle 1’s Verticies in World Space.   Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Paddle 1’s Vertices in World Space.   Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Now that the transformation has happened, the vertices are all in world space.
 You could calculate their values in world space, but that will not give you any insight.  The only numbers
 that matter for insight as that the entire graph paper of modelspace, which originally
-was the same as world space, has changed, bringing the verticies along with it.</p>
+was the same as world space, has changed, bringing the vertices along with it.</p>
 <p>Same goes for Paddle 2’s modelspace, relative to it’s translation, which
 are different values.</p>
 <figure class="align-center" id="id8">
@@ -291,9 +288,9 @@ are different values.</p>
 <section id="paddle-2-s-vertices-in-worldspace-coordinates">
 <h3>Paddle 2’s vertices in WorldSpace Coordinates<a class="headerlink" href="#paddle-2-s-vertices-in-worldspace-coordinates" title="Link to this heading">¶</a></h3>
 <figure class="align-center" id="id11">
-<img alt="Paddle 1's Verticies in World Space" src="images/translation2-forwards-3.png" />
+<img alt="Paddle 1's Vertices in World Space" src="images/translation2-forwards-3.png" />
 <figcaption>
-<p><span class="caption-text">Paddle 2’s Verticies in World Space.  Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Paddle 2’s Vertices in World Space.  Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -302,10 +299,10 @@ are different values.</p>
 <p>Our paddles are now well outside of NDC, and as such, they would not
 be displayed, as they would be <em>clipped</em> out.  Their values are outside
 of -1.0 to 1.0.  All we will need to do to convert them from
-world space to NDC is divide each component, x and y, by 100.</p>
+world space to NDC is divide each component, x and y, by 10.</p>
 <p>As a demonstration of how scaling works, let’s make an
 object’s width twice as large, and height three times as large. (The author
-tried doing the actual scaling of 1/100 in an animated gif, and it looked awful,
+tried doing the actual scaling of 1/10 in an animated gif, and it looked awful,
 therefore a different scaling gif is showed here, but the concept
 is the same).</p>
 <p>We can expand or shrink the size of an object
@@ -334,8 +331,8 @@ by “scale”ing each component of the vertices by some coefficient.</p>
 <p><span class="caption-text">Worldspace.  Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id15" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Our global space is -100 to 100 in both dimesnions,
-and to get it into NDC, we need to scale by dividing by 100</p>
+<p>Our global space is -10 to 10 in both dimensions,
+and to get it into NDC, we need to scale by dividing by 10</p>
 <figure class="align-center" id="id16">
 <img alt="Demo 06" src="images/demo061.png" />
 <figcaption>
@@ -385,7 +382,7 @@ y_{p2}
 space, and we need the match to take any world space coordinates
 and convert them to NDC.</p>
 <div class="math">
-<p><img src="images/math/905bc5ff9ff790c2eb19e84a28e4e401c04c6b2b.svg" alt="\begin{bmatrix}
+<p><img src="images/math/ae7d234ef7f01b1fa67869f7bec0552ae714df3e.svg" alt="\begin{bmatrix}
 x_{ndc} \\
 y_{ndc}
 \end{bmatrix} =
@@ -393,7 +390,7 @@ y_{ndc}
 \begin{bmatrix}
 x_{w} \\
 y_{w}
-\end{bmatrix})  = 1/100 *
+\end{bmatrix})  = 1/10 *
 \begin{bmatrix}
 x_{w} \\
 y_{w}
@@ -418,28 +415,28 @@ y_{w}
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">paddle1</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
     <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">30.0</span><span class="p">),</span>
-        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">30.0</span><span class="p">),</span>
-        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">30.0</span><span class="p">),</span>
-        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">30.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">),</span>
     <span class="p">],</span>
     <span class="n">r</span><span class="o">=</span><span class="mf">0.578123</span><span class="p">,</span>
     <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-    <span class="n">position</span><span class="o">=</span><span class="n">Vertex</span><span class="p">(</span><span class="o">-</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">position</span><span class="o">=</span><span class="n">Vertex</span><span class="p">(</span><span class="o">-</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
 <span class="p">)</span>
 
 <span class="n">paddle2</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
     <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">30.0</span><span class="p">),</span>
-        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">30.0</span><span class="p">),</span>
-        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">30.0</span><span class="p">),</span>
-        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">30.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">),</span>
     <span class="p">],</span>
     <span class="n">r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
     <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-    <span class="n">position</span><span class="o">=</span><span class="n">Vertex</span><span class="p">(</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">position</span><span class="o">=</span><span class="n">Vertex</span><span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -450,13 +447,13 @@ y_{w}
     <span class="k">global</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span>
 
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_S</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">10.0</span>
+        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">1.0</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_W</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">10.0</span>
+        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">1.0</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_K</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">10.0</span>
+        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">1.0</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">10.0</span>
+        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">1.0</span>
 
 
 </pre></div>
@@ -519,12 +516,12 @@ y_{w}
 </figure>
 <p>The coordinate system now resets back to the coordinate system specified
 on the left and below.
-Now, we must scale everything by 1/100.  I have
+Now, we must scale everything by 1/10.  I have
 not included a picture of that here.  Scaling happens relative to
 the origin, so the picture would be the same, just with different labels
 on the bottom and on the left.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span>
-                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
@@ -563,15 +560,15 @@ on the bottom and on the left.</p>
 <p><span class="caption-text">Reset coordinate system.</span><a class="headerlink" href="#id22" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">,</span>
-                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
     <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The coordinate system is reset.  Now scale everything by 1/100.  I have
+<p>The coordinate system is reset.  Now scale everything by 1/10.  I have
 not included a picture of that here.  Scaling happens relative to
 the origin, so the picture would be the same, just with different labels
 on the bottom and on the left.</p>

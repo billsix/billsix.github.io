@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Add Translate Method to Vertex - Demo 05 &mdash; Model View Projection 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
       <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
         <script src="static/documentation_options.js?v=d45e8c67"></script>
         <script src="static/doctools.js?v=888ff710"></script>
@@ -46,7 +43,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectange - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Add Translate Method to Vertex - Demo 05</a><ul>
@@ -169,7 +166,7 @@ vertices will need to be translated to its center relative to NDC.</p>
 <p><span class="caption-text">Paddle space</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>All methods on verticies will be returning new verticies,
+<p>All methods on vertices will be returning new vertices,
 rather than mutating the instance variables.  The author
 does this on purpose to enable method-chaining the Python
 methods, which will be useful later on.</p>
@@ -256,7 +253,7 @@ relative to the center of the paddle.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>The verticies are now defined as relative distances from the center of the paddle.  The centers
+<li><p>The vertices are now defined as relative distances from the center of the paddle.  The centers
 of each paddle are placed in positions relative to NDC that preserve the positions of the
 paddles, as they were in the previous demo.</p></li>
 </ul>

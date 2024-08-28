@@ -4,15 +4,12 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Draw A Rectange - Demo 02 &mdash; Model View Projection 0.0.1 documentation</title>
+  <title>Draw A Rectangle - Demo 02 &mdash; Model View Projection 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
       <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
         <script src="static/documentation_options.js?v=d45e8c67"></script>
         <script src="static/doctools.js?v=888ff710"></script>
@@ -46,7 +43,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Draw A Rectange - Demo 02</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Draw A Rectangle - Demo 02</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
@@ -104,7 +101,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Draw A Rectange - Demo 02</li>
+      <li class="breadcrumb-item active">Draw A Rectangle - Demo 02</li>
       <li class="wy-breadcrumbs-aside">
             <a href="sources/ch02.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -114,8 +111,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="draw-a-rectange-demo-02">
-<h1>Draw A Rectange - Demo 02<a class="headerlink" href="#draw-a-rectange-demo-02" title="Link to this heading">¶</a></h1>
+  <section id="draw-a-rectangle-demo-02">
+<h1>Draw A Rectangle - Demo 02<a class="headerlink" href="#draw-a-rectangle-demo-02" title="Link to this heading">¶</a></h1>
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">¶</a></h2>
 <p>Learn how to plot a rectangle.  Learn about OpenGL’s coordinate system, normalized-device coordinates,
@@ -235,7 +232,7 @@ which are inside of the quadrilateral.</p>
 <p>The author owns two monitors, one which has 1024x768 pixels, and one which has
 1920x1200 pixels.  When he purchases a game from Steam, he expects that his game
 will run correctly on either monitor, in full-screen mode.  If a graphics programmer
-had to explictly set the color of individual pixels using the pixel’s coordinates, the the programmer would have to
+had to explicitly set the color of individual pixels using the pixel’s coordinates, the the programmer would have to
 program using “screen-space” (Any <a class="reference external" href="https://en.wikipedia.org/wiki/Space_(mathematics)">space</a> means a system of numbers which you’re using.
 Screen-space means you’re specifically using pixel coordinates, i.e, set pixel (5,10) to be red).</p>
 <p>What looks alright in screen-space on a large monitor…</p>
@@ -263,7 +260,7 @@ and an fixed range horizontally.  OpenGL will have to convert points from some s
 and since this is done in hardware (i.e. you can’t programmatically change how the conversion
 happens), it should be a fixed size.</p>
 <p>OpenGL uses what’s called <em>normalized-device-coordinates</em>,
-which is a continous space from -1.0 to 1.0 horizontally,
+which is a continuous space from -1.0 to 1.0 horizontally,
 -1.0 to 1.0 vertically, and from -1.0 to 1.0 depthally.  (Is there an
 actual word for that???)</p>
 <p>The programmer specifies geometry using normalized-device-coordinates, and
@@ -301,7 +298,7 @@ above at the 3 pictures of the 2 quadrilaterals.  They look the same, but
 if you label each vertex on all three graphs, and look at the axes to find
 their plotted values, you will find that they differ.  Changing between
 coordinate systems means to take vertices from one coordinate system and
-changing them to another, like converting from Celcius to Farenheit,
+changing them to another, like converting from Celsius to Fahrenheit,
 meters to feet, etc.</p>
 <figure class="align-center" id="id9">
 <img alt="Demo 02" src="images/demo021.png" />
@@ -310,21 +307,21 @@ meters to feet, etc.</p>
 </figcaption>
 </figure>
 <p>The function that converts from NDC to Screen space is
-arbitrarily named f, subscripted by “NDC”, superscripted
+arbitrarily named f, sub-scripted by “NDC”, super-scripted
 by “S”.  This is a common notation when creating
 functions that change basis, i.e. coordinate conversion.
 A definition of this function is not provided right now, because we can’t change it in software.
 But we must recognize that it exists.</p>
 <section id="introduction-to-cayley-graphs">
 <h3>Introduction to Cayley Graphs<a class="headerlink" href="#introduction-to-cayley-graphs" title="Link to this heading">¶</a></h3>
-<p>The wikipedia article for Cayley graphs (<a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">https://en.wikipedia.org/wiki/Cayley_graph</a>) is intimidating,
+<p>The Wikipedia article for Cayley graphs (<a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">https://en.wikipedia.org/wiki/Cayley_graph</a>) is intimidating,
 but for our purposes, it’s use is very simple.</p>
-<p>An univariate example use of Cayley graphs is exchanging coins with
+<p>An uni-variate example use of Cayley graphs is exchanging coins with
 a bank.</p>
 <figure class="align-center" id="id10">
 <img alt="Demo 02" src="images/currency.png" />
 <figcaption>
-<p><span class="caption-text">Cayley graph of univariate coordinate conversion for money.</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Cayley graph of uni variate coordinate conversion for money.</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="math">
@@ -349,7 +346,7 @@ along the way.</p>
 penny to quarter, but since we are moving in the opposite
 direction of the edge, we must apply the multiplicative inverse
 of that function.  These functions are invertible by
-taking the reciprical of the coefficient</p>
+taking the reciprocal of the coefficient</p>
 <div class="math">
 <p><img src="images/math/2fd1c2d23f9945b6125f68e42d49dc8e49c70d77.svg" alt="f_{quarter}^{penny}(x) = 25 * x"/></p>
 </div><div class="math">
@@ -393,7 +390,7 @@ matters</p>
 <p><span class="caption-text">Generic Cayley Graph</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Well to convert data fram space D to space B,
+<p>Well to convert data frame space D to space B,
 we know that D is defined relative to C, C is defined relative to A, and B is defined
 relative to A.  Because of the arrows, we know that we are given a function from
 D to C, a function from C to A, and a function from B to A.  We are not directly
