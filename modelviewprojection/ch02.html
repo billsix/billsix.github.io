@@ -5,16 +5,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Draw A Rectangle - Demo 02 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
-      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=330c1f8c" />
+      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=77e6fb11" />
 
   
   
-        <script src="static/documentation_options.js?v=d45e8c67"></script>
-        <script src="static/doctools.js?v=888ff710"></script>
-        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="static/js/theme.js"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Window Resizing and Proportionality - Demo 03" href="ch03.html" />
@@ -103,7 +103,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Draw A Rectangle - Demo 02</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="sources/ch02.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/ch02.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -119,7 +119,7 @@
 which are from -1.0 to 1.0, in the X, Y, and Z directions.  Anything drawn entirely outside
 of this region will not be displayed on the screen.</p>
 <figure class="align-center" id="id1">
-<img alt="Demo 02" src="images/demo02.png" />
+<img alt="Demo 02" src="_images/demo02.png" />
 <figcaption>
 <p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -174,7 +174,7 @@ the begun quadrilateral.</p>
 </div>
 <p>The paddle looks like this relative to normalized device coordinates (NDC):</p>
 <figure class="align-center" id="id2">
-<img alt="Rectangle" src="images/plot1.png" />
+<img alt="Rectangle" src="_images/plot1.png" />
 <figcaption>
 <p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
@@ -193,7 +193,7 @@ the begun quadrilateral.</p>
 </div>
 <p>The 2 paddles looks like this relative to normalized device coordinates (NDC):</p>
 <figure class="align-center" id="id3">
-<img alt="Rectangle" src="images/plot2.png" />
+<img alt="Rectangle" src="_images/plot2.png" />
 <figcaption>
 <p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
@@ -237,14 +237,14 @@ program using “screen-space” (Any <a class="reference external" href="https:
 Screen-space means you’re specifically using pixel coordinates, i.e, set pixel (5,10) to be red).</p>
 <p>What looks alright in screen-space on a large monitor…</p>
 <figure class="align-center" id="id4">
-<img alt="Screenspace" src="images/screenspace2.png" />
+<img alt="Screenspace" src="_images/screenspace2.png" />
 <figcaption>
 <p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Isn’t the same picture on a smaller monitor.</p>
 <figure class="align-center" id="id5">
-<img alt="Screenspace" src="images/screenspace.png" />
+<img alt="Screenspace" src="_images/screenspace.png" />
 <figcaption>
 <p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
@@ -267,21 +267,21 @@ actual word for that???)</p>
 OpenGL will convert from a continuous, -1.0 to 1.0 space,
 to discrete pixel-space, and the programmer cannot change this.</p>
 <figure class="align-center" id="id6">
-<img alt="NDC space" src="images/ndcSpace.png" />
+<img alt="NDC space" src="_images/ndcSpace.png" />
 <figcaption>
 <p><span class="caption-text">NDC space</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Whether we own a small monitor</p>
 <figure class="align-center" id="id7">
-<img alt="NDC space" src="images/ndcSpace1.png" />
+<img alt="NDC space" src="_images/ndcSpace1.png" />
 <figcaption>
 <p><span class="caption-text">NDC space</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Or a large monitor.</p>
 <figure class="align-center" id="id8">
-<img alt="NDC space" src="images/screenspace2.png" />
+<img alt="NDC space" src="_images/screenspace2.png" />
 <figcaption>
 <p><span class="caption-text">NDC space</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
 </figcaption>
@@ -301,7 +301,7 @@ coordinate systems means to take vertices from one coordinate system and
 changing them to another, like converting from Celsius to Fahrenheit,
 meters to feet, etc.</p>
 <figure class="align-center" id="id9">
-<img alt="Demo 02" src="images/demo021.png" />
+<img alt="Demo 02" src="_images/demo021.png" />
 <figcaption>
 <p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
 </figcaption>
@@ -319,28 +319,28 @@ but for our purposes, it’s use is very simple.</p>
 <p>An uni-variate example use of Cayley graphs is exchanging coins with
 a bank.</p>
 <figure class="align-center" id="id10">
-<img alt="Demo 02" src="images/currency.png" />
+<img alt="Demo 02" src="_images/currency.png" />
 <figcaption>
 <p><span class="caption-text">Cayley graph of uni variate coordinate conversion for money.</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="math">
-<p><img src="images/math/811e731cc1ad124cc82d58981d91d683cf2b6a85.svg" alt="f_{nickel}^{penny}(x) = 5 * x"/></p>
+<p><img src="_images/math/811e731cc1ad124cc82d58981d91d683cf2b6a85.svg" alt="f_{nickel}^{penny}(x) = 5 * x"/></p>
 </div><div class="math">
-<p><img src="images/math/52326b40e759b334024309f33fc699dbb0725772.svg" alt="f_{dime}^{penny}(x) = 10 * x"/></p>
+<p><img src="_images/math/52326b40e759b334024309f33fc699dbb0725772.svg" alt="f_{dime}^{penny}(x) = 10 * x"/></p>
 </div><div class="math">
-<p><img src="images/math/2fd1c2d23f9945b6125f68e42d49dc8e49c70d77.svg" alt="f_{quarter}^{penny}(x) = 25 * x"/></p>
+<p><img src="_images/math/2fd1c2d23f9945b6125f68e42d49dc8e49c70d77.svg" alt="f_{quarter}^{penny}(x) = 25 * x"/></p>
 </div><div class="math">
-<p><img src="images/math/f154c037afb34a0fb7468dc5d971d4b9e0e79afe.svg" alt="f_{dollar}^{penny}(x) = 100 * x"/></p>
+<p><img src="_images/math/f154c037afb34a0fb7468dc5d971d4b9e0e79afe.svg" alt="f_{dollar}^{penny}(x) = 100 * x"/></p>
 </div><p>The directed edges in the Cayley graph show the direction that
 the function, i.e. transformation, applies.</p>
 <p>To convert 20 nickels into pennies, start at nickel,
 move to penny, while applying the appropriate function
 along the way.</p>
 <div class="math">
-<p><img src="images/math/811e731cc1ad124cc82d58981d91d683cf2b6a85.svg" alt="f_{nickel}^{penny}(x) = 5 * x"/></p>
+<p><img src="_images/math/811e731cc1ad124cc82d58981d91d683cf2b6a85.svg" alt="f_{nickel}^{penny}(x) = 5 * x"/></p>
 </div><div class="math">
-<p><img src="images/math/23040172d4f4e694caa165e5572f12340d54f838.svg" alt="f_{nickel}^{penny}(20)  &amp; = 5 * 20 \\
+<p><img src="_images/math/23040172d4f4e694caa165e5572f12340d54f838.svg" alt="f_{nickel}^{penny}(20)  &amp; = 5 * 20 \\
                  &amp; = 100"/></p>
 </div><p>To convert those 100 penny into quarters, move from
 penny to quarter, but since we are moving in the opposite
@@ -348,25 +348,25 @@ direction of the edge, we must apply the multiplicative inverse
 of that function.  These functions are invertible by
 taking the reciprocal of the coefficient</p>
 <div class="math">
-<p><img src="images/math/2fd1c2d23f9945b6125f68e42d49dc8e49c70d77.svg" alt="f_{quarter}^{penny}(x) = 25 * x"/></p>
+<p><img src="_images/math/2fd1c2d23f9945b6125f68e42d49dc8e49c70d77.svg" alt="f_{quarter}^{penny}(x) = 25 * x"/></p>
 </div><div class="math">
-<p><img src="images/math/d8578bc7547a415bfa1cb9efe90d2d5c6664393c.svg" alt="f_{penny}^{quarter}(x) &amp; = {f_{quarter}^{penny}}^{-1}(x) \\
+<p><img src="_images/math/d8578bc7547a415bfa1cb9efe90d2d5c6664393c.svg" alt="f_{penny}^{quarter}(x) &amp; = {f_{quarter}^{penny}}^{-1}(x) \\
 &amp; =  1/25 * x"/></p>
 </div><div class="math">
-<p><img src="images/math/e685434ea8a647eab32b1e6af852a3d362fa54e4.svg" alt="{f_{penny}^{quarter}}(100)  &amp; = 1/25 * x\\
+<p><img src="_images/math/e685434ea8a647eab32b1e6af852a3d362fa54e4.svg" alt="{f_{penny}^{quarter}}(100)  &amp; = 1/25 * x\\
                  &amp; = 4"/></p>
 </div><p>By taking the inverse of the coefficient, we satisfy a definition
 of an inverse</p>
 <div class="math">
-<p><img src="images/math/9534ecf1c84cf42b3e0f47c8c83e844c25eb9529.svg" alt="(f \circ f^{-1})(x)  = x"/></p>
+<p><img src="_images/math/9534ecf1c84cf42b3e0f47c8c83e844c25eb9529.svg" alt="(f \circ f^{-1})(x)  = x"/></p>
 </div><p>To convert between any denomination, say dimes to dollars,
 just compose the functions, remembering to take the inverse
 of any directed edge that you against.</p>
 <div class="math">
-<p><img src="images/math/03f84c22e47092e7035c0b0c759c7e5f6665d731.svg" alt="f_{dime}^{dollar}(x)  &amp; = f_{penny}^{dollar}(f_{dime}^{penny}(x)) \\
+<p><img src="_images/math/03f84c22e47092e7035c0b0c759c7e5f6665d731.svg" alt="f_{dime}^{dollar}(x)  &amp; = f_{penny}^{dollar}(f_{dime}^{penny}(x)) \\
                           &amp; = {f_{dollar}^{penny}}^{-1}(f_{dime}^{penny}(x)) \\"/></p>
 </div><div class="math">
-<p><img src="images/math/d90030aa1fe79749a2cc54b0a6dce2584684f1fe.svg" alt="f_{dime}^{dollar}   = {f_{dollar}^{penny}}^{-1} \circ f_{dime}^{penny}"/></p>
+<p><img src="_images/math/d90030aa1fe79749a2cc54b0a6dce2584684f1fe.svg" alt="f_{dime}^{dollar}   = {f_{dollar}^{penny}}^{-1} \circ f_{dime}^{penny}"/></p>
 </div><p>Notice in the last equation that we defined the function via function <a class="reference external" href="https://en.wikipedia.org/wiki/Function_composition">composition</a>,
 and didn’t specify any arguments.  We just focus on the types of units in and the units
 out, but the details of those functions are not relevant when traversing the Cayley graph.</p>
@@ -385,7 +385,7 @@ matters</p>
 <li><p>and that we can call a procedure to invert a function.</p></li>
 </ul>
 <figure class="align-center" id="id11">
-<img alt="Generic Cayley Graph" src="images/cayleygraph.png" />
+<img alt="Generic Cayley Graph" src="_images/cayleygraph.png" />
 <figcaption>
 <p><span class="caption-text">Generic Cayley Graph</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
 </figcaption>
@@ -400,14 +400,14 @@ for us.</p>
 and against the last one.  So we compose the functions and take
 the appropriate inverse(s).</p>
 <div class="math">
-<p><img src="images/math/9a7cc30ccaa409ed21582cc836cd7b4592a9b12b.svg" alt="\vec{f}_{d}^{b}(\vec{x})  &amp; = \vec{f}_{a}^{b}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x}))) \\
+<p><img src="_images/math/9a7cc30ccaa409ed21582cc836cd7b4592a9b12b.svg" alt="\vec{f}_{d}^{b}(\vec{x})  &amp; = \vec{f}_{a}^{b}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x}))) \\
                           &amp; = {\vec{{f}_{b}^{a}}}^{-1}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x})))"/></p>
 </div><p>A function from A to B is not provided to us, but we wrote it in the equation as an idea of a function
 that we wish to have, even though we don’t currently have it.
 However, we can create this function by invoking inverse on the provide function from A to B.</p>
 <p>Since we’re dealing with function composition mainly, we don’t even need to specify the argument</p>
 <div class="math">
-<p><img src="images/math/7e0cb42acf264860b1ea2facbfb32717af50cb48.svg" alt="\vec{f}_{d}^{b}  = {\vec{{f}_{b}^{a}}}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}"/></p>
+<p><img src="_images/math/7e0cb42acf264860b1ea2facbfb32717af50cb48.svg" alt="\vec{f}_{d}^{b}  = {\vec{{f}_{b}^{a}}}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}"/></p>
 </div><p>If this seems to abstract for now, don’t worry.  By the end of the course, it should be clear.
 The goal of this book is to make it clear, and then, obvious.</p>
 </section>

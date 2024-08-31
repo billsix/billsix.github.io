@@ -5,16 +5,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Standard Perspective Matrix &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
-      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=330c1f8c" />
+      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=77e6fb11" />
 
   
   
-        <script src="static/documentation_options.js?v=d45e8c67"></script>
-        <script src="static/doctools.js?v=888ff710"></script>
-        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="static/js/theme.js"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="OpenGL3.3 Core Profile - Demo 21" href="ch21.html" /> 
@@ -100,7 +100,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Standard Perspective Matrix</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="sources/perspective.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/perspective.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -117,7 +117,7 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <figure class="align-center" id="id1">
-<img alt="Demo 11" src="images/perspective.png" />
+<img alt="Demo 11" src="_images/perspective.png" />
 <figcaption>
 <p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -125,12 +125,12 @@
 <section id="matrix-form-of-perspective-projection">
 <h3>Matrix form of perspective projection<a class="headerlink" href="#matrix-form-of-perspective-projection" title="Link to this heading">¶</a></h3>
 <figure class="align-center">
-<img alt="Frustum 2" src="images/frustum2.png" />
+<img alt="Frustum 2" src="_images/frustum2.png" />
 </figure>
 <section id="scale-camera-space-x-by-camera-space-z">
 <h4>Scale Camera-space x by Camera-space z<a class="headerlink" href="#scale-camera-space-x-by-camera-space-z" title="Link to this heading">¶</a></h4>
 <div class="math">
-<p><img src="images/math/b23cfb38f6931f4cf7085148ee62a840ea50116d.svg" alt="\vec{f}_{1}(\begin{bmatrix}
+<p><img src="_images/math/b23cfb38f6931f4cf7085148ee62a840ea50116d.svg" alt="\vec{f}_{1}(\begin{bmatrix}
                           {x_c} \\
                           {y_c} \\
                           {z_c} \\
@@ -149,7 +149,7 @@
                 \end{bmatrix}"/></p>
 </div><p>resulting in</p>
 <figure class="align-center" id="id2">
-<img alt="Frustum 3" src="images/frustum3.png" />
+<img alt="Frustum 3" src="_images/frustum3.png" />
 <figcaption>
 <p><span class="caption-text">Scale the camera space x by the camera space z</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
@@ -158,7 +158,7 @@
 <section id="scale-camera-space-y-by-camera-space-z">
 <h4>Scale Camera-space y by Camera-space z<a class="headerlink" href="#scale-camera-space-y-by-camera-space-z" title="Link to this heading">¶</a></h4>
 <div class="math">
-<p><img src="images/math/94bb9d61259c65f7ead975132da5efe0331bc084.svg" alt="(\vec{f}_{2} ; nearZ_c) ( \begin{bmatrix}
+<p><img src="_images/math/94bb9d61259c65f7ead975132da5efe0331bc084.svg" alt="(\vec{f}_{2} ; nearZ_c) ( \begin{bmatrix}
                      {x_c} \\
                      {y_c} \\
                      {z_c} \\
@@ -177,7 +177,7 @@
            \end{bmatrix}"/></p>
 </div><p>resulting in</p>
 <figure class="align-center" id="id3">
-<img alt="Frustum 4" src="images/frustum4.png" />
+<img alt="Frustum 4" src="_images/frustum4.png" />
 <figcaption>
 <p><span class="caption-text">Scale the camera space y by the cameraspace z</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
@@ -185,11 +185,11 @@
 </section>
 <section id="translate-rectangular-prism-s-center-to-center">
 <h4>Translate Rectangular Prism’s Center to Center<a class="headerlink" href="#translate-rectangular-prism-s-center-to-center" title="Link to this heading">¶</a></h4>
-<p><img class="math" src="images/math/930e808b5d82af5691d2f4dd35fdd01d2ef979ee.svg" alt="x_{midpoint} = 0"/>  // centered on x</p>
-<p><img class="math" src="images/math/2b812c038c7fd10e9e9d70e00e7d0f0f9202e2a3.svg" alt="y_{midpoint} = 0"/>  // centered on y</p>
-<p><img class="math" src="images/math/aad4a980fc7164f00b1da0f17458e9d2a2e7c272.svg" alt="z_{midpoint} = {{{farZ}_c + {nearZ}_c} \over 2}"/>;</p>
+<p><img class="math" src="_images/math/930e808b5d82af5691d2f4dd35fdd01d2ef979ee.svg" alt="x_{midpoint} = 0"/>  // centered on x</p>
+<p><img class="math" src="_images/math/2b812c038c7fd10e9e9d70e00e7d0f0f9202e2a3.svg" alt="y_{midpoint} = 0"/>  // centered on y</p>
+<p><img class="math" src="_images/math/aad4a980fc7164f00b1da0f17458e9d2a2e7c272.svg" alt="z_{midpoint} = {{{farZ}_c + {nearZ}_c} \over 2}"/>;</p>
 <div class="math">
-<p><img src="images/math/c80247513d0a3db96475504b3c1e2dfe3551e96f.svg" alt="(\vec{f}_{3} ; nearZ_c) ( \begin{bmatrix}
+<p><img src="_images/math/c80247513d0a3db96475504b3c1e2dfe3551e96f.svg" alt="(\vec{f}_{3} ; nearZ_c) ( \begin{bmatrix}
                            {x_c} \\
                            {y_c} \\
                            {z_c} \\
@@ -208,16 +208,16 @@
                            {w_c=1} \\
                  \end{bmatrix}"/></p>
 </div><figure class="align-center">
-<img alt="Frustum 5" src="images/frustum5.png" />
+<img alt="Frustum 5" src="_images/frustum5.png" />
 </figure>
 </section>
 <section id="scale-by-inverse-of-the-dimensions-of-the-rectangular-prism">
 <h4>Scale by inverse of the dimensions of the Rectangular Prism<a class="headerlink" href="#scale-by-inverse-of-the-dimensions-of-the-rectangular-prism" title="Link to this heading">¶</a></h4>
-<p><img class="math" src="images/math/6c4f0433c32a9e2f1a09ddcc2853c70573b2ff43.svg" alt="x_{length} = right * 2"/>;</p>
-<p><img class="math" src="images/math/2690a3d5eca4385040efadb02d30ada4afcd707c.svg" alt="y_{length} = top * 2"/>;</p>
-<p><img class="math" src="images/math/b06e5a30f5649fcfb0342c582564bc6095eaccd8.svg" alt="z_{length} = {nearZ}_c - {farZ}_c"/>;</p>
+<p><img class="math" src="_images/math/6c4f0433c32a9e2f1a09ddcc2853c70573b2ff43.svg" alt="x_{length} = right * 2"/>;</p>
+<p><img class="math" src="_images/math/2690a3d5eca4385040efadb02d30ada4afcd707c.svg" alt="y_{length} = top * 2"/>;</p>
+<p><img class="math" src="_images/math/b06e5a30f5649fcfb0342c582564bc6095eaccd8.svg" alt="z_{length} = {nearZ}_c - {farZ}_c"/>;</p>
 <div class="math">
-<p><img src="images/math/fbad485b9b4a8031fc8eeebf877767aeb7c4e7c4.svg" alt="(\vec{f}_{4} ; nearZ_c, farZ_c) ( \begin{bmatrix}
+<p><img src="_images/math/fbad485b9b4a8031fc8eeebf877767aeb7c4e7c4.svg" alt="(\vec{f}_{4} ; nearZ_c, farZ_c) ( \begin{bmatrix}
                      {x_c} \\
                      {y_c} \\
                      {z_c} \\
@@ -235,13 +235,13 @@
                      {w_c=1} \\
            \end{bmatrix}"/></p>
 </div><figure class="align-center">
-<img alt="Frustum 6" src="images/frustum6.png" />
+<img alt="Frustum 6" src="_images/frustum6.png" />
 </figure>
 </section>
 <section id="premultiply-the-matricies">
 <h4>Premultiply the matricies<a class="headerlink" href="#premultiply-the-matricies" title="Link to this heading">¶</a></h4>
 <div class="math">
-<p><img src="images/math/19bceacdfc2f2f2259ea57aa8a75376e9f9c0fad.svg" alt="\begin{bmatrix}
+<p><img src="_images/math/19bceacdfc2f2f2259ea57aa8a75376e9f9c0fad.svg" alt="\begin{bmatrix}
   {x_{ndc}} \\
   {y_{ndc}} \\
   {z_{ndc}} \\
@@ -257,7 +257,7 @@ meaning to the author, and that’s ok.  The matricies above all of geometric me
 together for computational efficiency, as well as being able to do the next step in clip space, which
 we couldn’t do without having the premultiplied matrix.</p>
 <div class="math">
-<p><img src="images/math/c2d1f70b9335b291b69ea2f81452719268943567.svg" alt="\begin{bmatrix}
+<p><img src="_images/math/c2d1f70b9335b291b69ea2f81452719268943567.svg" alt="\begin{bmatrix}
   {x_{ndc}} \\
   {y_{ndc}} \\
   {z_{ndc}} \\
@@ -281,14 +281,14 @@ we couldn’t do without having the premultiplied matrix.</p>
                \end{bmatrix}"/></p>
 </div><p>As a quick smoke test to ensure that the aggregate matrix works correctly, let’s
 test the bounds of the frustum and make sure that they map to the NDC cube.</p>
-<p>Given that <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> is negative, assuming <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> is equal to
-<img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, <img class="math" src="images/math/0f77a21eaff96bad0e778aa583143161872b0890.svg" alt="right"/> goes to <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, <img class="math" src="images/math/6508a7b60d8b7288de7439d46fa31b466f1f8929.svg" alt="left"/> which is <img class="math" src="images/math/5e01779897f21802c4df3895a024c9fa2fbf3fad.svg" alt="-right"/>
-goes to <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/>.</p>
-<p>Given that <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> is negative, assuming <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> is equal to
-<img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, <img class="math" src="images/math/bdc70e28dd28e6a281e57c0ccc2bfb53e0e52d31.svg" alt="top"/> goes to <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, <img class="math" src="images/math/d025e192bbf1774ad781b3d9f2d66715c8272a07.svg" alt="bottom"/> which is <img class="math" src="images/math/c4f76e1ddf37aae2c292369b02611b9fd3edec8d.svg" alt="-top"/>
-goes to <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/>.</p>
-<p>Given that <img class="math" src="images/math/caa487cffda5a61e15801b78457f45bc23da79b0.svg" alt="w_c"/> is <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, if <img class="math" src="images/math/7bda46a09b6b5414a509da0461f9724e91fb5865.svg" alt="z_c = nearZ_c"/>, <img class="math" src="images/math/8e69db1a6c584f2d06a386420caf09126294c44b.svg" alt="z_{ndc} = 1"/>.
-Given that <img class="math" src="images/math/caa487cffda5a61e15801b78457f45bc23da79b0.svg" alt="w_c"/> is <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, if <img class="math" src="images/math/efead1510c43f3ea9ce04b0808cb0f2ea2d014fa.svg" alt="z_c = farZ_c"/>, <img class="math" src="images/math/fa84e2d630460f18b94dcecf0f0526f91dd87ec6.svg" alt="z_{ndc} = -1"/>.</p>
+<p>Given that <img class="math" src="_images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> is negative, assuming <img class="math" src="_images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> is equal to
+<img class="math" src="_images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, <img class="math" src="_images/math/0f77a21eaff96bad0e778aa583143161872b0890.svg" alt="right"/> goes to <img class="math" src="_images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, <img class="math" src="_images/math/6508a7b60d8b7288de7439d46fa31b466f1f8929.svg" alt="left"/> which is <img class="math" src="_images/math/5e01779897f21802c4df3895a024c9fa2fbf3fad.svg" alt="-right"/>
+goes to <img class="math" src="_images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/>.</p>
+<p>Given that <img class="math" src="_images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> is negative, assuming <img class="math" src="_images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> is equal to
+<img class="math" src="_images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, <img class="math" src="_images/math/bdc70e28dd28e6a281e57c0ccc2bfb53e0e52d31.svg" alt="top"/> goes to <img class="math" src="_images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, <img class="math" src="_images/math/d025e192bbf1774ad781b3d9f2d66715c8272a07.svg" alt="bottom"/> which is <img class="math" src="_images/math/c4f76e1ddf37aae2c292369b02611b9fd3edec8d.svg" alt="-top"/>
+goes to <img class="math" src="_images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/>.</p>
+<p>Given that <img class="math" src="_images/math/caa487cffda5a61e15801b78457f45bc23da79b0.svg" alt="w_c"/> is <img class="math" src="_images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, if <img class="math" src="_images/math/7bda46a09b6b5414a509da0461f9724e91fb5865.svg" alt="z_c = nearZ_c"/>, <img class="math" src="_images/math/8e69db1a6c584f2d06a386420caf09126294c44b.svg" alt="z_{ndc} = 1"/>.
+Given that <img class="math" src="_images/math/caa487cffda5a61e15801b78457f45bc23da79b0.svg" alt="w_c"/> is <img class="math" src="_images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, if <img class="math" src="_images/math/efead1510c43f3ea9ce04b0808cb0f2ea2d014fa.svg" alt="z_c = farZ_c"/>, <img class="math" src="_images/math/fa84e2d630460f18b94dcecf0f0526f91dd87ec6.svg" alt="z_{ndc} = -1"/>.</p>
 </section>
 </section>
 <section id="clip-space">
@@ -305,15 +305,15 @@ all vertices, independent of the z coordinate of each input vertex.</p>
 was done for efficiency reasons when using OpenGL’s fixed function pipeline.
 (Side note, the standard perspective projection matrix,
 which we will get to by demo 25, does not linearly
-position the <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> to <img class="math" src="images/math/890194c56dbc9dcb1fb78bef0ab7906e19930aac.svg" alt="farZ_c"/> data into NDC. Everything
+position the <img class="math" src="_images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> to <img class="math" src="_images/math/890194c56dbc9dcb1fb78bef0ab7906e19930aac.svg" alt="farZ_c"/> data into NDC. Everything
 we’ve done so far in the class does.  The standard
 perspective matrix ends up having less Z-fighting
-close to <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, and more problems with Z-fighting
+close to <img class="math" src="_images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, and more problems with Z-fighting
 near farZ_c)</p>
 <p>OpenGL will automatically convert from clip space to NDC
 such as follows.</p>
 <div class="math">
-<p><img src="images/math/ccdedc0ffea095b251ed43485932b24dccd4fe66.svg" alt="\vec{f}_{clip}^{ndc}(\begin{bmatrix}
+<p><img src="_images/math/ccdedc0ffea095b251ed43485932b24dccd4fe66.svg" alt="\vec{f}_{clip}^{ndc}(\begin{bmatrix}
                          {x_{ndc}} \\
                          {y_{ndc}} \\
                          {z_{ndc}} \\
@@ -331,10 +331,10 @@ such as follows.</p>
                          {w_{clip}}
                \end{bmatrix}"/></p>
 </div><p>So to put our NDC data into clip space, knowing what OpenGL is going to do in
-the equation above, we need to decide what we want our clip space value, <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/> to be,
+the equation above, we need to decide what we want our clip space value, <img class="math" src="_images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/> to be,
 and do the inverse of the equation above</p>
 <div class="math">
-<p><img src="images/math/dab49d704ab991d6ffb2932d1f6b7c89fc41eef2.svg" alt="\vec{f}_{ndc}^{clip}(\begin{bmatrix}
+<p><img src="_images/math/dab49d704ab991d6ffb2932d1f6b7c89fc41eef2.svg" alt="\vec{f}_{ndc}^{clip}(\begin{bmatrix}
                          {x_{ndc}} \\
                          {y_{ndc}} \\
                          {z_{ndc}} \\
@@ -352,7 +352,7 @@ and do the inverse of the equation above</p>
                          {w_{ndc}}
                \end{bmatrix}"/></p>
 </div><div class="math">
-<p><img src="images/math/aaf34e467e1e448622deb6fa63f5751faf6cbe75.svg" alt="\vec{f}_{clip}^{clip}(\begin{bmatrix}
+<p><img src="_images/math/aaf34e467e1e448622deb6fa63f5751faf6cbe75.svg" alt="\vec{f}_{clip}^{clip}(\begin{bmatrix}
                          {x_{clip}} \\
                          {y_{clip}} \\
                          {z_{clip}} \\
@@ -364,11 +364,11 @@ and do the inverse of the equation above</p>
                          {z_{clip}} \\
                          {w} \\
                \end{bmatrix}"/></p>
-</div><p>Since we want to get the <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> relative to camera space out of
+</div><p>Since we want to get the <img class="math" src="_images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> relative to camera space out of
 the premultiplie matrix above, we choose
 the following</p>
 <div class="math">
-<p><img src="images/math/aed1a364b9532a807a4286223adc6cad1c26e510.svg" alt="\vec{f}_{ndc}^{clip}(\begin{bmatrix}
+<p><img src="_images/math/aed1a364b9532a807a4286223adc6cad1c26e510.svg" alt="\vec{f}_{ndc}^{clip}(\begin{bmatrix}
                          {x_{ndc}} \\
                          {y_{ndc}} \\
                          {z_{ndc}} \\
@@ -385,15 +385,15 @@ the following</p>
                          {z_{ndc}} \\
                          {w_{ndc}}
                \end{bmatrix}"/></p>
-</div><p>because multiplying by this matrix will remove the <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of
+</div><p>because multiplying by this matrix will remove the <img class="math" src="_images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of
 the upper left quadrant.</p>
 <section id="remove-z-of-camera-space-from-part-of-the-matrix">
 <h4>Remove Z of Camera Space from Part of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-part-of-the-matrix" title="Link to this heading">¶</a></h4>
 <p>To get camera z out of the matrix, where it’s currently in two denominators, we
 can use knowledge of clip space, wherein we put cameraspace’s z into W.     because cameraSpace’s z coordinate is negative, we want to scale
-all dimensions without reflecting over the origin, hence the negative sign in  <img class="math" src="images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/>.</p>
+all dimensions without reflecting over the origin, hence the negative sign in  <img class="math" src="_images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/>.</p>
 <div class="math">
-<p><img src="images/math/1c2ad0f6a9fb79e14e9b2356b783d5528c18c5de.svg" alt="\begin{bmatrix}
+<p><img src="_images/math/1c2ad0f6a9fb79e14e9b2356b783d5528c18c5de.svg" alt="\begin{bmatrix}
             {x_{clip}} \\
             {y_{clip}} \\
             {z_{clip}} \\
@@ -441,10 +441,10 @@ all dimensions without reflecting over the origin, hence the negative sign in  <
             {z_c} \\
             {w_c=1} \\
   \end{bmatrix}"/></p>
-</div><p>The result of this is in clip space, where for the first time, our w component is not 1, but <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/>.</p>
+</div><p>The result of this is in clip space, where for the first time, our w component is not 1, but <img class="math" src="_images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/>.</p>
 <p>Turning clip space back into NDC</p>
 <div class="math">
-<p><img src="images/math/c505b83e56ef24d97091a8e93b3b65c3e90e86f8.svg" alt="\begin{bmatrix}
+<p><img src="_images/math/c505b83e56ef24d97091a8e93b3b65c3e90e86f8.svg" alt="\begin{bmatrix}
                           {x_{ndc}} \\
                           {y_{ndc}} \\
                           {z_{ndc}} \\
@@ -469,7 +469,7 @@ all dimensions without reflecting over the origin, hence the negative sign in  <
                 \end{bmatrix}"/></p>
 </div><p>To test a corner of the frustum as a smoke test, say</p>
 <div class="math">
-<p><img src="images/math/2eee068d6b7c2f0ecfc5c422ec0deacceb4fc5e8.svg" alt="\begin{bmatrix}
+<p><img src="_images/math/2eee068d6b7c2f0ecfc5c422ec0deacceb4fc5e8.svg" alt="\begin{bmatrix}
   {x_{ndc}} \\
   {y_{ndc}} \\
   {z_{ndc}} \\
@@ -505,18 +505,18 @@ all dimensions without reflecting over the origin, hence the negative sign in  <
                \end{bmatrix}"/></p>
 </div><p>And that’s what we’d expect and the top right corner of the near plane of the frustum
 should go to the upper right corner with a z value of 1, as -1 is where the back plane must go.</p>
-<p>If we had used <img class="math" src="images/math/89b4d39e6f5751c582a319e0b1494801aa72ed77.svg" alt="x_c = farZ_c"/>, then <img class="math" src="images/math/fa84e2d630460f18b94dcecf0f0526f91dd87ec6.svg" alt="z_{ndc} = -1"/>, which is what we want, as negative <img class="math" src="images/math/7165e3dbdd379281cd441e830934b272d34fd7eb.svg" alt="z"/> axis
+<p>If we had used <img class="math" src="_images/math/89b4d39e6f5751c582a319e0b1494801aa72ed77.svg" alt="x_c = farZ_c"/>, then <img class="math" src="_images/math/fa84e2d630460f18b94dcecf0f0526f91dd87ec6.svg" alt="z_{ndc} = -1"/>, which is what we want, as negative <img class="math" src="_images/math/7165e3dbdd379281cd441e830934b272d34fd7eb.svg" alt="z"/> axis
 goes into the monitor.</p>
 </section>
 <section id="remove-z-of-camera-space-from-the-rest-of-the-matrix">
 <h4>Remove Z of Camera Space from the Rest of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-the-rest-of-the-matrix" title="Link to this heading">¶</a></h4>
-<p>We successfully moved <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of the upper left quadrant, but in doing so, we moved it down
+<p>We successfully moved <img class="math" src="_images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of the upper left quadrant, but in doing so, we moved it down
 to the lower right. Can we get rid of it there too?  Turn out, we can.</p>
-<p>Since the vector multiplied by this matrix will provide <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> as it’s third element,
-we can put <img class="math" src="images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/> into the <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/> by taking the explicit vesion of it out of the fourth column,
-and put <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/> into the third column’s <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/>.</p>
+<p>Since the vector multiplied by this matrix will provide <img class="math" src="_images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> as it’s third element,
+we can put <img class="math" src="_images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/> into the <img class="math" src="_images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/> by taking the explicit vesion of it out of the fourth column,
+and put <img class="math" src="_images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/> into the third column’s <img class="math" src="_images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/>.</p>
 <div class="math">
-<p><img src="images/math/ca2f255e29326d389ad270323b2a50444d18a798.svg" alt="\begin{bmatrix}
+<p><img src="_images/math/ca2f255e29326d389ad270323b2a50444d18a798.svg" alt="\begin{bmatrix}
                           x_{clip} \\
                           y_{clip} \\
                           z_{clip} \\
@@ -565,22 +565,22 @@ and put <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bb
                              {\textcolor{red}{z_c}^2 * {2 \over {nearZ_c - farZ_c}} + z_c * {{-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}}\\
                              \textcolor{red}{z_c} \\
                 \end{bmatrix}"/></p>
-</div><p>To remove <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> from the matrix, all that to do is remove it from row 3, somehow.  We’re about to ride dirty.</p>
+</div><p>To remove <img class="math" src="_images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> from the matrix, all that to do is remove it from row 3, somehow.  We’re about to ride dirty.</p>
 <p>If we were to change row three, it would not be the same transformation.  But if we ensure the following two
 properties of our changes, everything will be alright</p>
 <p>We need the</p>
 <ul class="simple">
-<li><p><img class="math" src="images/math/b8af93d7a32bf91da729ef17a88813fd95d7e7f6.svg" alt="\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip} (\begin{bmatrix} {x_c} \\ {y_c} \\ \textcolor{red}{nearZ_c} \\ {w_c=1} \\ \end{bmatrix}) = \textcolor{red}{-1.0}"/></p></li>
-<li><p><img class="math" src="images/math/38dc154248c1153466386e9bfd8bc951a225ddff.svg" alt="\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip} (\begin{bmatrix} {x_c} \\ {y_c} \\ \textcolor{red}{farZ_c} \\ {w_c=1} \\ \end{bmatrix}) = \textcolor{red}{1.0}"/></p></li>
-<li><p>Ordering is preserved after the function is applied, i.e. monotonicity.  if <img class="math" src="images/math/eca9163aa2292155e01ca9c065c1b95ab86e4b55.svg" alt="z_1 &lt; z_2"/>,
-then <img class="math" src="images/math/e0c93f26330700c89ca373bac1e13978b9df17ac.svg" alt="(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip}(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{z_1} \\ 0 \\ \end{bmatrix} )) &lt; (\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot  \vec{f}_{c}^{clip}(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{z_2} \\ 0 \\ \end{bmatrix} ) )"/>.</p></li>
+<li><p><img class="math" src="_images/math/b8af93d7a32bf91da729ef17a88813fd95d7e7f6.svg" alt="\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip} (\begin{bmatrix} {x_c} \\ {y_c} \\ \textcolor{red}{nearZ_c} \\ {w_c=1} \\ \end{bmatrix}) = \textcolor{red}{-1.0}"/></p></li>
+<li><p><img class="math" src="_images/math/38dc154248c1153466386e9bfd8bc951a225ddff.svg" alt="\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip} (\begin{bmatrix} {x_c} \\ {y_c} \\ \textcolor{red}{farZ_c} \\ {w_c=1} \\ \end{bmatrix}) = \textcolor{red}{1.0}"/></p></li>
+<li><p>Ordering is preserved after the function is applied, i.e. monotonicity.  if <img class="math" src="_images/math/eca9163aa2292155e01ca9c065c1b95ab86e4b55.svg" alt="z_1 &lt; z_2"/>,
+then <img class="math" src="_images/math/e0c93f26330700c89ca373bac1e13978b9df17ac.svg" alt="(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip}(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{z_1} \\ 0 \\ \end{bmatrix} )) &lt; (\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot  \vec{f}_{c}^{clip}(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{z_2} \\ 0 \\ \end{bmatrix} ) )"/>.</p></li>
 </ul>
 <p>If we can make a function, that like the third row of the matrix, has those properties, we can replace the
-third row and remove camera space’s z, <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/>, from the matrix.  This is desirable because, if it were to exist,
+third row and remove camera space’s z, <img class="math" src="_images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/>, from the matrix.  This is desirable because, if it were to exist,
 would would not need per vertex to create a custom pespective matrix.</p>
 <p>Towards that, let’s look at these jibronies.</p>
 <div class="math">
-<p><img src="images/math/a2b118a94c3bea02ab018fecba1ed17d9e59f30f.svg" alt="\vec{f}_{c}^{clip}(\begin{bmatrix}
+<p><img src="_images/math/a2b118a94c3bea02ab018fecba1ed17d9e59f30f.svg" alt="\vec{f}_{c}^{clip}(\begin{bmatrix}
                           {x_c} \\
                           {y_c} \\
                           {z_c} \\

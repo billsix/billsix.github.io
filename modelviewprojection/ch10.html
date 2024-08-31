@@ -5,16 +5,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Camera Space - Demo 10 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
-      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=330c1f8c" />
+      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=77e6fb11" />
 
   
   
-        <script src="static/documentation_options.js?v=d45e8c67"></script>
-        <script src="static/doctools.js?v=888ff710"></script>
-        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="static/js/theme.js"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Relative Objects - Demo 11" href="ch11.html" />
@@ -102,7 +102,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Camera Space - Demo 10</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="sources/ch10.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/ch10.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -120,7 +120,7 @@ in the scene.  In this picture, notice that the purple paddle
 is no longer on the left side of the screen, but towards the right,
 horizontally.</p>
 <figure class="align-center" id="id1">
-<img alt="Demo 10" src="images/demo10.png" />
+<img alt="Demo 10" src="_images/demo10.png" />
 <figcaption>
 <p><span class="caption-text">Demo 10</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -184,7 +184,7 @@ On Windows, in a command prompt, type “python src\demo10\demo.py”.</p>
 <p>“Camera space” means the coordinates of everything relative
 to a camera, not relative to world space.</p>
 <figure class="align-center" id="id2">
-<img alt="Demo 10" src="images/2dcameraspace.png" />
+<img alt="Demo 10" src="_images/2dcameraspace.png" />
 <figcaption>
 <p><span class="caption-text">Camera space</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
@@ -203,7 +203,7 @@ space and NDC, but which way should the direction of the edge be?</p>
 <li><p>From world space to camera space.</p></li>
 </ul>
 <figure class="align-center" id="id3">
-<img alt="Demo 10" src="images/demo101.png" />
+<img alt="Demo 10" src="_images/demo101.png" />
 <figcaption>
 <p><span class="caption-text">Demo 10</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
@@ -212,7 +212,7 @@ space and NDC, but which way should the direction of the edge be?</p>
 <li><p>From camera space to world space.</p></li>
 </ul>
 <figure class="align-center" id="id4">
-<img alt="Demo 10" src="images/demo10-2.png" />
+<img alt="Demo 10" src="_images/demo10-2.png" />
 <figcaption>
 <p><span class="caption-text">Demo 10</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
@@ -278,7 +278,7 @@ be discussed here, but we will use it to help us reason about the transformation
 <p>The inverse of a sequence of functions is the inverse of each function, applied in reverse order.</p>
 <p>For the linear-algebra inclined reader,</p>
 <div class="math">
-<p><img src="images/math/f4058e28e73c42b3b14f8562e9adf8975556938c.svg" alt="{(A * B)}^{-1}     = {B}^{-1}*{A}^{-1}"/></p>
+<p><img src="_images/math/f4058e28e73c42b3b14f8562e9adf8975556938c.svg" alt="{(A * B)}^{-1}     = {B}^{-1}*{A}^{-1}"/></p>
 </div><p>The inverse of</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">tx</span><span class="p">)</span>
 </pre></div>
@@ -296,7 +296,7 @@ to the right.  Now, rotate your head to your right, keeping your eyes
 looking directly in front of your head.  Which way did the room move?
 Towards the left.</p>
 <figure class="align-center" id="id5">
-<img alt="Demo 10" src="images/2dcameraspace.png" />
+<img alt="Demo 10" src="_images/2dcameraspace.png" />
 <figcaption>
 <p><span class="caption-text">Camera is 3D space</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
@@ -324,13 +324,13 @@ inverse rotate sideways, then inverse rotate up.  What gives?”</p>
 order in which we read the sequence of transformations.</p>
 <p>Let’s say we read the following from left to right</p>
 <div class="math">
-<p><img src="images/math/cfdd1a8895661df26dc38d9d3847593132727c9f.svg" alt="\begin{split}
+<p><img src="_images/math/cfdd1a8895661df26dc38d9d3847593132727c9f.svg" alt="\begin{split}
 \vec{f}  &amp; = \vec{a} \circ \vec{b} \circ \vec{c}
 \end{split}"/></p>
 </div><p>So we imagine the a transformation, then the b transformation, then the c.</p>
 <p>To take the inverse, we reverse the order of the transformations, and invert them.</p>
 <div class="math">
-<p><img src="images/math/0d2828177b1933df43bd62058b7d9a68a4601d93.svg" alt="\begin{split}
+<p><img src="_images/math/0d2828177b1933df43bd62058b7d9a68a4601d93.svg" alt="\begin{split}
 \vec{f}^{-1}  &amp; = \vec{c}^{-1} \circ \vec{b}^{-1} \circ \vec{a}^{-1}
 \end{split}"/></p>
 </div><p>But now we read the transformations from right to left.</p>

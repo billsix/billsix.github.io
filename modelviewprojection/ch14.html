@@ -5,16 +5,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adding Depth - Z axis Demo 14 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
-      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=330c1f8c" />
+      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=77e6fb11" />
 
   
   
-        <script src="static/documentation_options.js?v=d45e8c67"></script>
-        <script src="static/doctools.js?v=888ff710"></script>
-        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="static/js/theme.js"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Adding Depth - Enable Depth Buffer - Demo 15" href="ch15.html" />
@@ -98,7 +98,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Adding Depth - Z axis Demo 14</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="sources/ch14.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/ch14.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -122,19 +122,19 @@ z-buffering <a class="reference external" href="https://en.wikipedia.org/wiki/Z-
 and it is implemented in the next demo.</p></li>
 </ul>
 <figure class="align-center" id="id1">
-<img alt="Demo 14" src="images/demo14.png" />
+<img alt="Demo 14" src="_images/demo14.png" />
 <figcaption>
 <p><span class="caption-text">Demo 14</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id2">
-<img alt="Camera Space" src="images/camera1.png" />
+<img alt="Camera Space" src="_images/camera1.png" />
 <figcaption>
 <p><span class="caption-text">Camera Space</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id3">
-<img alt="Camera Space" src="images/camera2.png" />
+<img alt="Camera Space" src="_images/camera2.png" />
 <figcaption>
 <p><span class="caption-text">Camera Space</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
@@ -207,7 +207,7 @@ On Windows, in a command prompt, type “python src\demo14\demo.py”.</p>
 in <a class="reference external" href="https://en.wikipedia.org/wiki/Rotation_matrix">matrix</a> form, which we have not yet covered.</p></li>
 </ul>
 <figure class="align-center">
-<img alt="Right hand rule" src="images/220px-Right_hand_rule_cross_product.svg.png" />
+<img alt="Right hand rule" src="_images/220px-Right_hand_rule_cross_product.svg.png" />
 </figure>
 <ul class="simple">
 <li><p>With open palm, fingers on the x axis, rotating the fingers to y axis,
@@ -232,7 +232,7 @@ moves in the direction that your fingers did.</p></li>
 <p>Rotate Z is the same rotate that we’ve used so far, but doesn’t affect
 the z component at all.</p>
 <figure class="align-center">
-<img alt="Rotate Z" src="images/Sinus_und_Kosinus_am_Einheitskreis_2.svg" /></figure>
+<img alt="Rotate Z" src="_images/Sinus_und_Kosinus_am_Einheitskreis_2.svg" /></figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">rotate_z</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span>
@@ -246,7 +246,7 @@ the z component at all.</p>
 <section id="rotate-x">
 <h3>Rotate X<a class="headerlink" href="#rotate-x" title="Link to this heading">¶</a></h3>
 <figure class="align-center">
-<img alt="Rotate X" src="images/Sinus_und_Kosinus_am_Einheitskreis_4.svg" /></figure>
+<img alt="Rotate X" src="_images/Sinus_und_Kosinus_am_Einheitskreis_4.svg" /></figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">rotate_x</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
@@ -260,7 +260,7 @@ the z component at all.</p>
 <section id="rotate-y">
 <h3>Rotate Y<a class="headerlink" href="#rotate-y" title="Link to this heading">¶</a></h3>
 <figure class="align-center">
-<img alt="Rotate Y" src="images/Sinus_und_Kosinus_am_Einheitskreis_5.svg" /></figure>
+<img alt="Rotate Y" src="_images/Sinus_und_Kosinus_am_Einheitskreis_5.svg" /></figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">rotate_y</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span>
