@@ -5,16 +5,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rotation Fixed - Sequence of Transformations - Demo 09 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=330c1f8c" />
-      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=77e6fb11" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
+      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
   
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/js/theme.js"></script>
+        <script src="static/documentation_options.js?v=d45e8c67"></script>
+        <script src="static/doctools.js?v=888ff710"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Camera Space - Demo 10" href="ch10.html" />
@@ -97,7 +97,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Rotation Fixed - Sequence of Transformations - Demo 09</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/ch09.rst.txt" rel="nofollow"> View page source</a>
+            <a href="sources/ch09.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -117,7 +117,7 @@ more clearly.</p>
 <li><p>Each subsequent transformation is relative to the current local coordinate system.</p></li>
 </ul>
 <figure class="align-center" id="id1">
-<img alt="Demo 09" src="_images/demo09.png" />
+<img alt="Demo 09" src="images/demo09.png" />
 <figcaption>
 <p><span class="caption-text">Demo 09</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -169,7 +169,7 @@ On Windows, in a command prompt, type “python src\demo09\demo.py”.</p>
 <p>In Demo 07 we tried to represent the translation and then rotation
 around the paddle’s center by code that worked as follows</p>
 <div class="math">
-<p><img src="_images/math/c8f812fc8d1b3c9528ab85425c600da5826a2586.svg" alt="\vec{f}_{p}^{w}   = \vec{r} \circ \vec{t}"/></p>
+<p><img src="images/math/c8f812fc8d1b3c9528ab85425c600da5826a2586.svg" alt="\vec{f}_{p}^{w}   = \vec{r} \circ \vec{t}"/></p>
 </div><p>where t and r are the translate and rotate functions for a paddle, and
 we read the functions from right to left.  (In code, we were reading
 the method chaining from top-down, as that is the order in which the
@@ -181,7 +181,7 @@ which we translated the paddle to its position, then in order to
 rotate around its center, we re-centered the paddle, did the rotation,
 and then re-translated to the paddle’s position.</p>
 <div class="math">
-<p><img src="_images/math/9ba1e8ce65c716ffe5a0f007c2ba92095fabe784.svg" alt="\begin{split}
+<p><img src="images/math/9ba1e8ce65c716ffe5a0f007c2ba92095fabe784.svg" alt="\begin{split}
 \vec{f}_{p}^{w}  &amp; = (\vec{t} \circ \vec{r} \circ {\vec{t}}^{-1}) \circ \vec{t} \\
                  &amp; = \vec{t} \circ \vec{r} \circ {\vec{t}}^{-1} \circ \vec{t} \\
                  &amp; = \vec{t} \circ \vec{r} \circ ({\vec{t}}^{-1} \circ \vec{t}) \\
@@ -205,7 +205,7 @@ is set back to the origin basis.</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id2">
-<img alt="Rotation Forwards" src="_images/rotate1-forwards.gif" />
+<img alt="Rotation Forwards" src="images/rotate1-forwards.gif" />
 <figcaption>
 <p><span class="caption-text">Rotation Forwards</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
@@ -223,7 +223,7 @@ All subsequent functions move that relative basis to a new relative basis.</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id3">
-<img alt="Rotation Backwards" src="_images/rotate1-backwards.gif" />
+<img alt="Rotation Backwards" src="images/rotate1-backwards.gif" />
 <figcaption>
 <p><span class="caption-text">Rotation Backwards</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
@@ -235,7 +235,7 @@ All subsequent functions move that relative basis to a new relative basis.</p>
 <p>Start at world space node.  As a reminder, this is the top-level coordinate
 system that we choose to use.  It’s whatever you want it to be.</p>
 <figure class="align-center" id="id4">
-<img alt="Demo 06" src="_images/demo061.png" />
+<img alt="Demo 06" src="images/demo061.png" />
 <figcaption>
 <p><span class="caption-text">Demo 06</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
@@ -249,7 +249,7 @@ each function in the sequence operates.</p>
 system.</p>
 <p>For the linear-algebra inclined reader, we’ve used</p>
 <div class="math">
-<p><img src="_images/math/fb9b2ac105527c4ae5eef2c99d02dfde82ec42e6.svg" alt="L * (M * \vec{x})     = (L * M) * \vec{x}"/></p>
+<p><img src="images/math/fb9b2ac105527c4ae5eef2c99d02dfde82ec42e6.svg" alt="L * (M * \vec{x})     = (L * M) * \vec{x}"/></p>
 </div><p>to understand a complicated sequence of matrix multiplications, modifying
 L by a right-multiplication of M.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \

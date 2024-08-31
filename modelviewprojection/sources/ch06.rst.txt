@@ -1,0 +1,590 @@
+..
+   Copyright (c) 2018-2024 William Emerison Six
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
+Modelspace - Demo 06
+====================
+
+
+Purpose
+^^^^^^^
+
+Learn about modelspace.
+
+.. figure:: static/screenshots/demo06.png
+    :align: center
+    :alt: Demo 06
+    :figclass: align-center
+
+    Demo 06
+
+
+How to Execute
+^^^^^^^^^^^^^^
+
+On Linux or on MacOS, in a shell, type "python src/demo06/demo.py".
+On Windows, in a command prompt, type "python src\\demo06\\demo.py".
+
+
+Move the Paddles using the Keyboard
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+==============  ======================
+Keyboard Input  Action
+==============  ======================
+*w*             Move Left Paddle Up
+*s*             Move Left Paddle Down
+*k*             Move Right Paddle Down
+*i*             Move Right Paddle Up
+==============  ======================
+
+
+Modelspace
+^^^^^^^^^^
+
+
+Normalized-device-coordinates are not a natural system of
+numbers for use by humans.  Imagine that the paddles in the previous
+chapters exist in real life, and are 20 meters wide and 60 meters tall.
+The graphics programmer should be able to use those numbers directly;
+they shouldn't have to manually transform the distances into normalized-device-coordinates.
+
+Whatever a convenient numbering system is (i.e. coordinate system) for modeling objects
+is called "model-space".  Since a paddle has four corners, which corner should be at
+the origin (0,0)?  If you don't already know what you want at the origin, then
+none of the corners should be; instead put the center of the object
+at the origin (Because by putting the center of the object at the origin,
+scaling and rotating the object are trivial, as shown in later chapters).
+
+
+.. figure:: static/modelspace.png
+    :align: center
+    :alt: Representing a Paddle using Modelspace
+    :figclass: align-center
+
+    Representing a Paddle using Modelspace
+
+
+Modelspace - the coordinate system (origin plus axes), in which some object's
+vertices are defined.
+
+
+WorldSpace
+^^^^^^^^^^
+
+WorldSpace is a top-level space, independent of NDC, that we choose to use.  It's arbitrary.
+If you were to model a racetrack for a racing game, the origin of WorldSpace may be the center of that racetrack.
+If you were modeling our solar system, the center of the sun could be the origin of "WorldSpace".
+I personally would put the center of our flat earth at the origin, but reasonable people
+can disagree.
+
+For our demo with paddles, the author arbitrarily defines the WorldSpace to be 200 units wide, 200 units tall, with the origin at the center.
+
+.. figure:: static/demo06.png
+    :align: center
+    :alt: Demo 06
+    :figclass: align-center
+
+    Demo 06
+
+
+
+Modelspace to WorldSpace
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The author prefers to view transformations as changes to the graph paper,
+as compared to view transformations as changes to points.
+
+As such, for placing paddle1, we can view the translation as a change
+to the graph paper relative to world space coordinates (only incidentally
+bringing the vertices
+along with it) and then resetting the graph paper (i.e. both origin and axes)
+back to it's original position and orientation.
+Although we will think of the paddle's vertices as relative to its own space
+(i.e. -10 to 10 horizontally, -30 to 30 vertically),
+we will not look at the numbers of what they are in world space coordinates,
+as doing so
+
+* Will not give us any insight
+
+* Will distract us from thinking clearly about what's happening
+
+
+.. figure:: static/translation-forwards.gif
+    :align: center
+    :alt: Translating Paddle 1
+    :figclass: align-center
+
+    Translating Paddle 1
+
+* As an example, figure out the world space coordinate of the upper rights
+  corner of the paddle after it's been translated, and ask yourself what
+  that means and what insight did you gain?
+
+
+
+The animation above shows multiple steps, shown now without animation.
+
+
+Modelspace of Paddle 1
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. figure:: static/translation-forwards-0.png
+    :align: center
+    :alt: Paddle 1's Modelspace
+    :figclass: align-center
+
+    Paddle 1's Modelspace
+
+Modelspace of Paddle 1 Superimposed on Worldspace after the translation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Paddle 1's graph paper gets translated -90 units in the x direction, and some
+number of units in the y direction, 0 during the first frame, based off of user input.  The origin
+is translated, and the graph paper comes with it, onto which you can
+plot the vertices.  Notice that the coordinate system labels below the plot and to the left of the plot
+is unchanged.  That is world space, which has not changed.
+
+.. figure:: static/translation-forwards-2.png
+    :align: center
+    :alt: Paddle 1's Modelspace Superimposed on World Space
+    :figclass: align-center
+
+    Paddle 1's Modelspace Superimposed on World Space
+
+Paddle 1's vertices in WorldSpace Coordinates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. figure:: static/translation-forwards-3.png
+    :align: center
+    :alt: Paddle 1's Vertices in World Space
+    :figclass: align-center
+
+    Paddle 1's Vertices in World Space.   Don't concern yourself with what the numbers are.
+
+Now that the transformation has happened, the vertices are all in world space.
+You could calculate their values in world space, but that will not give you any insight.  The only numbers
+that matter for insight as that the entire graph paper of modelspace, which originally
+was the same as world space, has changed, bringing the vertices along with it.
+
+Same goes for Paddle 2's modelspace, relative to it's translation, which
+are different values.
+
+
+
+.. figure:: static/translation2-forwards.gif
+    :align: center
+    :alt: Translating Paddle 2
+    :figclass: align-center
+
+    Translating Paddle 2
+
+The animation above shows multiple steps, shown now without animation.
+
+
+Modelspace of Paddle 2
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. figure:: static/translation2-forwards-0.png
+    :align: center
+    :alt: Paddle 1's Modelspace
+    :figclass: align-center
+
+    Paddle 2's Modelspace
+
+Modelspace of Paddle 2 Superimposed on Worldspace after the translation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. figure:: static/translation2-forwards-2.png
+    :align: center
+    :alt: Paddle 1's Modelspace Superimposed on World Space
+    :figclass: align-center
+
+    Paddle 2's Modelspace Superimposed on World Space
+
+Paddle 2's vertices in WorldSpace Coordinates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+.. figure:: static/translation2-forwards-3.png
+    :align: center
+    :alt: Paddle 1's Vertices in World Space
+    :figclass: align-center
+
+    Paddle 2's Vertices in World Space.  Don't concern yourself with what the numbers are.
+
+
+
+..
+   Instead, for model-space to world-space transformations,
+   it's easier to read the transformations backwards, where the transformations
+   aren't relative to the global origin, instead it's from the local frame of reference.
+
+   When reading the transformations backwards, I think it's best to think of it
+   as moving the axes, and the plotting the data once the axes are in
+   their final place.
+
+
+   Why do the two different views of the transformations matter?  In model-space
+   to world-space transformations, especially once rotation and scaling of model-space
+   is used, it allows the programmer to forget about most details, just specify
+   where new objects are relative to that which you are already drawing.
+
+   With that said, that doesn't mean that reading the transformations front to back
+   has no value.  Front to back can useful when dealing with camera-space transformations,
+   introduced later.
+
+   This will make more sense once rotation is involved.
+
+
+Scaling
+~~~~~~~
+
+Our paddles are now well outside of NDC, and as such, they would not
+be displayed, as they would be *clipped* out.  Their values are outside
+of -1.0 to 1.0.  All we will need to do to convert them from
+world space to NDC is divide each component, x and y, by 10.
+
+As a demonstration of how scaling works, let's make an
+object's width twice as large, and height three times as large. (The author
+tried doing the actual scaling of 1/10 in an animated gif, and it looked awful,
+therefore a different scaling gif is showed here, but the concept
+is the same).
+
+We can expand or shrink the size of an object
+by "scale"ing each component of the vertices by some coefficient.
+
+
+.. figure:: static/scale.gif
+    :align: center
+    :alt: Scaling
+    :figclass: align-center
+
+    Scaling
+
+
+
+
+
+.. figure:: static/scale-0.png
+    :align: center
+    :alt: Modelspace
+    :figclass: align-center
+
+    Modelspace
+
+.. figure:: static/scale-2.png
+    :align: center
+    :alt: Modelspace Superimposed on World Space
+    :figclass: align-center
+
+    Modelspace Superimposed on World Space
+
+.. figure:: static/scale-4.png
+    :align: center
+    :alt: Worldspace
+    :figclass: align-center
+
+    Worldspace.  Don't concern yourself with what the numbers are.
+
+
+
+Our global space is -10 to 10 in both dimensions,
+and to get it into NDC, we need to scale by dividing by 10
+
+
+.. figure:: static/demo06.png
+    :align: center
+    :alt: Demo 06
+    :figclass: align-center
+
+    Demo 06
+
+..
+   .. math::
+       \vec{f}_{p1}^{w}
+       \begin{bmatrix}
+       x_{p1} \\
+       y_{p1} \\
+       z_{p1}
+       \end{bmatrix} =
+       \begin{bmatrix}
+       1 & 2 & 3 \\
+       4 & 5 & 6 \\
+       7 & 8 & 9
+       \end{bmatrix} *
+       \begin{bmatrix}
+       x_{p1} \\
+       y_{p1} \\
+       z_{p1}
+       \end{bmatrix} =
+       \begin{bmatrix}
+       x_{w} \\
+       y_{w} \\
+       z_{w}
+       \end{bmatrix}
+
+
+.. math::
+    \begin{bmatrix}
+    x_{w} \\
+    y_{w}
+    \end{bmatrix}  =
+    \vec{f}_{p1}^{w}(
+    \begin{bmatrix}
+    x_{p1} \\
+    y_{p1}
+    \end{bmatrix})  =
+    \begin{bmatrix}
+    x_{p1} \\
+    y_{p1}
+    \end{bmatrix} +
+    \begin{bmatrix}
+    {p1}_{x} \\
+    {p1}_{y}
+    \end{bmatrix}
+
+
+where x_p1, y_p1  are the modelspace coordinates of the paddle's vertices,
+and where p1_center_x_worldspace, p1_center_y_worldspace,
+are the offset from the world space's origin to the center of the paddle, i.e. the translation.
+
+
+
+.. math::
+    \begin{bmatrix}
+    x_{w} \\
+    y_{w}
+    \end{bmatrix}  =
+    \vec{f}_{p2}^{w} (
+    \begin{bmatrix}
+    x_{p2} \\
+    y_{p2}
+    \end{bmatrix}) =
+    \begin{bmatrix}
+    x_{p2} \\
+    y_{p2}
+    \end{bmatrix} +
+    \begin{bmatrix}
+    {p2}_{x} \\
+    {p2}_{y}
+    \end{bmatrix}
+
+
+Now, the coordinates for paddle 1 and for paddle 2 are in world
+space, and we need the match to take any world space coordinates
+and convert them to NDC.
+
+
+.. math::
+    \begin{bmatrix}
+    x_{ndc} \\
+    y_{ndc}
+    \end{bmatrix} =
+    \vec{f}_{w}^{ndc} (
+    \begin{bmatrix}
+    x_{w} \\
+    y_{w}
+    \end{bmatrix})  = 1/10 *
+    \begin{bmatrix}
+    x_{w} \\
+    y_{w}
+    \end{bmatrix}
+
+
+
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin 8d06005b531874a91efb0a652db8527497f3a345
+   :end-before: doc-region-end 8d06005b531874a91efb0a652db8527497f3a345
+
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin f8b77ac4a2656475404a658f038034e9ac9efb2e
+   :end-before: doc-region-end f8b77ac4a2656475404a658f038034e9ac9efb2e
+
+
+* NEW -- Add the ability to scale a vertex, to stretch or to shrink
+
+
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin be85f68c2e4e7e58096273ff1ab6a4abc162dc32
+   :end-before: doc-region-end be85f68c2e4e7e58096273ff1ab6a4abc162dc32
+
+
+* paddles are using modelspace coordinates instead of NDC
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin 1a17a9d680387b5c37d842115b617cdeb910be61
+   :end-before: doc-region-end 1a17a9d680387b5c37d842115b617cdeb910be61
+
+
+
+* Movement code needs to happen in Modelspace's units.
+
+Code
+^^^^
+
+
+The Event Loop
+~~~~~~~~~~~~~~
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin 3863f9f78b61a7b1c0c2faa12f9ea255c663edee
+   :end-before: doc-region-end 3863f9f78b61a7b1c0c2faa12f9ea255c663edee
+
+
+
+
+
+Rendering Paddle 1
+&&&&&&&&&&&&&&&&&&
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin 57631feba3dbad52833765b9bfc51c42d90141af
+   :end-before: doc-region-end 57631feba3dbad52833765b9bfc51c42d90141af
+
+
+
+.. figure:: static/translation-forwards-0.png
+    :align: center
+    :alt: Paddle 1's Modelspace
+    :figclass: align-center
+
+    Paddle 1's Modelspace
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin 5b1156f32f2d788cec10cedf43b7847fe92f5350
+   :end-before: doc-region-end 5b1156f32f2d788cec10cedf43b7847fe92f5350
+
+
+
+
+.. figure:: static/translation-forwards-2.png
+    :align: center
+    :alt: Paddle 1's Modelspace Superimposed on World Space
+    :figclass: align-center
+
+    Paddle 1's Modelspace Superimposed on World Space
+
+.. figure:: static/translation-forwards-3.png
+    :align: center
+    :alt: Paddle 1's Modelspace Superimposed on World Space
+    :figclass: align-center
+
+    Reset coordinate system.
+
+
+The coordinate system now resets back to the coordinate system specified
+on the left and below.
+Now, we must scale everything by 1/10.  I have
+not included a picture of that here.  Scaling happens relative to
+the origin, so the picture would be the same, just with different labels
+on the bottom and on the left.
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin 2091aa68e2d6d5bccdcb968391bf5d657fe9ad1a
+   :end-before: doc-region-end 2091aa68e2d6d5bccdcb968391bf5d657fe9ad1a
+
+
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin 4788d1809c34fff4b8a6e63bd28c0ca90184457a
+   :end-before: doc-region-end 4788d1809c34fff4b8a6e63bd28c0ca90184457a
+
+
+
+
+Rendering Paddle 2
+&&&&&&&&&&&&&&&&&&
+
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin db2e4352f654c9b0309ed0470515ff61113aec8d
+   :end-before: doc-region-end db2e4352f654c9b0309ed0470515ff61113aec8d
+
+
+
+
+
+.. figure:: static/translation2-forwards-0.png
+    :align: center
+    :alt: Paddle 2's Modelspace
+    :figclass: align-center
+
+    Paddle 2's Modelspace
+
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin 8654606ea6b0f530930d8d43f6c0d110e867e0d8
+   :end-before: doc-region-end 8654606ea6b0f530930d8d43f6c0d110e867e0d8
+
+
+.. figure:: static/translation2-forwards-2.png
+    :align: center
+    :alt: Paddle 2's Modelspace Superimposed on World Space
+    :figclass: align-center
+
+    Paddle 2's Modelspace Superimposed on World Space
+
+
+
+.. figure:: static/translation2-forwards-3.png
+    :align: center
+    :alt: Paddle 2's Modelspace Superimposed on World Space
+    :figclass: align-center
+
+    Reset coordinate system.
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin a9da863c1edd7395ad98084f43056476991a5c5c
+   :end-before: doc-region-end a9da863c1edd7395ad98084f43056476991a5c5c
+
+
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin 260c1301effa6c7ec13f1b36454be3ff448ee641
+   :end-before: doc-region-end 260c1301effa6c7ec13f1b36454be3ff448ee641
+
+
+The coordinate system is reset.  Now scale everything by 1/10.  I have
+not included a picture of that here.  Scaling happens relative to
+the origin, so the picture would be the same, just with different labels
+on the bottom and on the left.
+
+.. literalinclude:: ../src/demo06/demo.py
+   :language: python
+   :start-after: doc-region-begin 6d057656d804fe007498bc5d5314cb5a68788c67
+   :end-before: doc-region-end 6d057656d804fe007498bc5d5314cb5a68788c67

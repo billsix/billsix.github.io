@@ -5,16 +5,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rotation Fix Attempt 1 - Demo 08 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=330c1f8c" />
-      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=77e6fb11" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
+      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
   
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/js/theme.js"></script>
+        <script src="static/documentation_options.js?v=d45e8c67"></script>
+        <script src="static/doctools.js?v=888ff710"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Rotation Fixed - Sequence of Transformations - Demo 09" href="ch09.html" />
@@ -89,7 +89,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Rotation Fix Attempt 1 - Demo 08</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/ch08.rst.txt" rel="nofollow"> View page source</a>
+            <a href="sources/ch08.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -104,7 +104,7 @@
 <p>Fix the rotation problem from the previous demo in a seemingly intuitive
 way, but do it inelegantly.</p>
 <figure class="align-center" id="id1">
-<img alt="Demo 08" src="_images/demo08.png" />
+<img alt="Demo 08" src="images/demo08.png" />
 <figcaption>
 <p><span class="caption-text">Demo 08</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -208,7 +208,7 @@ around a given point in world space, in this case, the paddle’s center.</p>
 <p>All we did was add a rotate around method, and call it, with the
 paddle’s center as the rotate point.</p>
 <figure class="align-center" id="id2">
-<img alt="" src="_images/rotate-sloppy-forwards.gif" />
+<img alt="" src="images/rotate-sloppy-forwards.gif" />
 <figcaption>
 <p><span class="caption-text">Works but sloppy</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
@@ -221,27 +221,27 @@ and then do the first transformation from paddle space to world space again.</p>
 and the Cayley graph is gross.</p>
 <p>But from this we will learn something important.</p>
 <figure class="align-center">
-<img alt="Demo 08" src="_images/rotate-sloppy-forwards-3.png" />
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-3.png" />
 </figure>
 <p>translating back to the origin</p>
 <figure class="align-center">
-<img alt="Demo 08" src="_images/rotate-sloppy-forwards-4.png" />
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-4.png" />
 </figure>
 <p>resetting the coordinate system</p>
 <figure class="align-center">
-<img alt="Demo 08" src="_images/rotate-sloppy-forwards-5.png" />
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-5.png" />
 </figure>
 <p>rotating</p>
 <figure class="align-center">
-<img alt="Demo 08" src="_images/rotate-sloppy-forwards-6.png" />
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-6.png" />
 </figure>
 <p>resetting the coordinate system</p>
 <figure class="align-center">
-<img alt="Demo 08" src="_images/rotate-sloppy-forwards-7.png" />
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-7.png" />
 </figure>
 <p>and them translating them back to the paddle space origin</p>
 <figure class="align-center">
-<img alt="Demo 08" src="_images/rotate-sloppy-forwards-8.png" />
+<img alt="Demo 08" src="images/rotate-sloppy-forwards-8.png" />
 </figure>
 </section>
 <section id="cayley-graph">
@@ -250,7 +250,7 @@ and the Cayley graph is gross.</p>
 make any sense, but the author did not know how else to represent
 this code.</p>
 <figure class="align-center">
-<img alt="Demo 08" src="_images/demo081.png" />
+<img alt="Demo 08" src="images/demo081.png" />
 </figure>
 </section>
 </section>

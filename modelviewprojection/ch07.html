@@ -5,16 +5,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rotations - Demo 07 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=330c1f8c" />
-      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=77e6fb11" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
+      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
   
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/js/theme.js"></script>
+        <script src="static/documentation_options.js?v=d45e8c67"></script>
+        <script src="static/doctools.js?v=888ff710"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Rotation Fix Attempt 1 - Demo 08" href="ch08.html" />
@@ -95,7 +95,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Rotations - Demo 07</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/ch07.rst.txt" rel="nofollow"> View page source</a>
+            <a href="sources/ch07.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -112,7 +112,7 @@ Learn about rotations.  This demo does not
 work correctly, because of a misunderstanding
 of how to interpret a sequence of transformations.</p>
 <figure class="align-center" id="id1">
-<img alt="Demo 07" src="_images/demo07.png" />
+<img alt="Demo 07" src="images/demo07.png" />
 <figcaption>
 <p><span class="caption-text">Demo 07</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -171,7 +171,7 @@ graphics is to rotate an object.</p>
 <p>We can rotate an object around (0,0) by rotating
 all of the object’s vertices around (0,0).</p>
 <figure class="align-center" id="id2">
-<img alt="Rotate" src="_images/rotate0.gif" />
+<img alt="Rotate" src="images/rotate0.gif" />
 <figcaption>
 <p><span class="caption-text">Rotate</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
@@ -180,7 +180,7 @@ all of the object’s vertices around (0,0).</p>
 Typically the angles are described on the unit circle, where a rotation
 starts from the positive x axis.</p>
 <figure class="align-center">
-<img alt="Demo 07" src="_images/Sinus_und_Kosinus_am_Einheitskreis_1.svg" /></figure>
+<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_1.svg" /></figure>
 <p>We can expand on this knowledge, allowing
 us to rotate a given vertex, wherever it is, around the origin (0,0).  This is done
 by separating the x and y value, rotating each component separately,
@@ -188,13 +188,13 @@ and then adding the results together.</p>
 <p>That might not have been fully clear.  Let me try again.
 The vertex (0.5,0.4) can be separated into two vertices, (0.5,0) and (0,0.4).</p>
 <figure class="align-center" id="id3">
-<img alt="Rotate" src="_images/rotate3.png" />
+<img alt="Rotate" src="images/rotate3.png" />
 <figcaption>
 <p><span class="caption-text">Rotate</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id4">
-<img alt="Rotate" src="_images/rotate4.png" />
+<img alt="Rotate" src="images/rotate4.png" />
 <figcaption>
 <p><span class="caption-text">Rotate</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
@@ -205,25 +205,25 @@ But, before we do that, let’s rotate each of the vertices.</p>
 in vertex (0.5*cos(angle), 0.5*sin(angle)).  This is high school
 geometry, and won’t be explained here in detail.</p>
 <figure class="align-center" id="id5">
-<img alt="Rotate" src="_images/rotate.png" />
+<img alt="Rotate" src="images/rotate.png" />
 <figcaption>
 <p><span class="caption-text">Rotate the x component.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center">
-<img alt="Demo 07" src="_images/Sinus_und_Kosinus_am_Einheitskreis_2.svg" /></figure>
+<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_2.svg" /></figure>
 <p>But what may not be obvious, is what happens to the y component?
 Turns out, it’s easy.  Just rotate your point of view, and it’s
 the same thing, with one minor difference, in that the x value
 is negated.</p>
 <figure class="align-center" id="id6">
-<img alt="Rotate" src="_images/rotate2.png" />
+<img alt="Rotate" src="images/rotate2.png" />
 <figcaption>
 <p><span class="caption-text">Rotate the y component</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center">
-<img alt="Demo 07" src="_images/Sinus_und_Kosinus_am_Einheitskreis_3.svg" /></figure>
+<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_3.svg" /></figure>
 <p>(0,0.4) is on the y-axis, so rotating it by “angle” degrees, results
 in vertex (0.4*-sin(angle), 0.4*cos(angle)).</p>
 <p>Wait.  Why is negative sin applied to the angle to make the x value,
@@ -298,7 +298,7 @@ cos and sin are defined in the math module.</p></li>
 <section id="cayley-graph">
 <h2>Cayley Graph<a class="headerlink" href="#cayley-graph" title="Link to this heading">¶</a></h2>
 <figure class="align-center">
-<img alt="Demo 06" src="_images/demo061.png" />
+<img alt="Demo 06" src="images/demo061.png" />
 </figure>
 </section>
 <section id="code">
@@ -318,14 +318,14 @@ around the paddle’s center.</p>
 </pre></div>
 </div>
 <div class="math">
-<p><img src="_images/math/c17986742fa5f83532d84ee00ce65ff5f573f306.svg" alt="\vec{f}_{p1}^{w}"/></p>
+<p><img src="images/math/c17986742fa5f83532d84ee00ce65ff5f573f306.svg" alt="\vec{f}_{p1}^{w}"/></p>
 </div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                                                     <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> \
                                          <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="math">
-<p><img src="_images/math/53e93eeef83758a560eb4eb7b0f95283d7e45f74.svg" alt="\vec{f}_{w}^{ndc}"/></p>
+<p><img src="images/math/53e93eeef83758a560eb4eb7b0f95283d7e45f74.svg" alt="\vec{f}_{w}^{ndc}"/></p>
 </div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
                                               <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
@@ -345,14 +345,14 @@ around the paddle’s center.</p>
 </pre></div>
 </div>
 <div class="math">
-<p><img src="_images/math/3b7c27ea5fe5ffe8beb8b1e7da5989efccb2da92.svg" alt="\vec{f}_{p2}^{w}"/></p>
+<p><img src="images/math/3b7c27ea5fe5ffe8beb8b1e7da5989efccb2da92.svg" alt="\vec{f}_{p2}^{w}"/></p>
 </div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                                                     <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> \
                                          <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="math">
-<p><img src="_images/math/53e93eeef83758a560eb4eb7b0f95283d7e45f74.svg" alt="\vec{f}_{w}^{ndc}"/></p>
+<p><img src="images/math/53e93eeef83758a560eb4eb7b0f95283d7e45f74.svg" alt="\vec{f}_{w}^{ndc}"/></p>
 </div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
                                               <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
@@ -376,7 +376,7 @@ world space transformations are doing.</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id7">
-<img alt="" src="_images/incorrectrotate-forwards.gif" />
+<img alt="" src="images/incorrectrotate-forwards.gif" />
 <figcaption>
 <p><span class="caption-text">Not what we wanted</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
 </figcaption>
@@ -385,19 +385,19 @@ world space transformations are doing.</p>
 <li><p>Modelspace vertices</p></li>
 </ul>
 <figure class="align-center">
-<img alt="" src="_images/incorrectrotate-forwards-1.png" />
+<img alt="" src="images/incorrectrotate-forwards-1.png" />
 </figure>
 <ul class="simple">
 <li><p>Translate</p></li>
 </ul>
 <figure class="align-center">
-<img alt="" src="_images/incorrectrotate-forwards-2.png" />
+<img alt="" src="images/incorrectrotate-forwards-2.png" />
 </figure>
 <ul class="simple">
 <li><p>Reset the coordinate system</p></li>
 </ul>
 <figure class="align-center" id="id8">
-<img alt="" src="_images/incorrectrotate-forwards-3.png" />
+<img alt="" src="images/incorrectrotate-forwards-3.png" />
 <figcaption>
 <p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
 </figcaption>
@@ -406,7 +406,7 @@ world space transformations are doing.</p>
 <li><p>Rotate around World Spaces’s origin</p></li>
 </ul>
 <figure class="align-center" id="id9">
-<img alt="" src="_images/incorrectrotate-forwards-4.png" />
+<img alt="" src="images/incorrectrotate-forwards-4.png" />
 <figcaption>
 <p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
 </figcaption>
@@ -415,7 +415,7 @@ world space transformations are doing.</p>
 <li><p>Reset the coordinate system</p></li>
 </ul>
 <figure class="align-center" id="id10">
-<img alt="" src="_images/incorrectrotate-forwards-5.png" />
+<img alt="" src="images/incorrectrotate-forwards-5.png" />
 <figcaption>
 <p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
 </figcaption>
@@ -424,7 +424,7 @@ world space transformations are doing.</p>
 <li><p>Final world space coordinates</p></li>
 </ul>
 <figure class="align-center" id="id11">
-<img alt="" src="_images/incorrectrotate-forwards-6.png" />
+<img alt="" src="images/incorrectrotate-forwards-6.png" />
 <figcaption>
 <p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
 </figcaption>

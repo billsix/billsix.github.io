@@ -5,16 +5,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moving Camera in 3D Space - Demo 16 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=330c1f8c" />
-      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=77e6fb11" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
+      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
   
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/js/theme.js"></script>
+        <script src="static/documentation_options.js?v=d45e8c67"></script>
+        <script src="static/doctools.js?v=888ff710"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="3D Perspective - Demo 17" href="ch17.html" />
@@ -95,7 +95,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Moving Camera in 3D Space - Demo 16</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/ch16.rst.txt" rel="nofollow"> View page source</a>
+            <a href="sources/ch16.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -110,7 +110,7 @@
 <p>Make a moving camera in 3D space.  Use Ortho to transform a rectangular prism, defined relative to camera space,
 into NDC.</p>
 <figure class="align-center" id="id1">
-<img alt="Camera" src="_images/ortho.png" />
+<img alt="Camera" src="images/ortho.png" />
 <figcaption>
 <p><span class="caption-text">Camera space with ortho volume</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -125,7 +125,7 @@ problem.</p>
 <p>This doesn’t look like a 3D application should, where objects further away
 from the viewer would appear smaller.  This will be fixed in demo17.</p>
 <figure class="align-center" id="id2">
-<img alt="Demo 16" src="_images/demo16.png" />
+<img alt="Demo 16" src="images/demo16.png" />
 <figcaption>
 <p><span class="caption-text">Demo 16, which looks like trash</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
@@ -254,7 +254,7 @@ to actually do.  We don’t need to place the camera.
 We need to move every already-plotted object in world space towards the origin and
 orientation of NDC.  Looking at the following graph,</p>
 <figure class="align-center" id="id3">
-<img alt="Demo 10" src="_images/demo10-2.png" />
+<img alt="Demo 10" src="images/demo10-2.png" />
 <figcaption>
 <p><span class="caption-text">Demo 10</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>

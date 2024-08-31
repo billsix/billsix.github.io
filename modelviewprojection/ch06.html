@@ -5,16 +5,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modelspace - Demo 06 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=330c1f8c" />
-      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=77e6fb11" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=330c1f8c" />
+      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
 
   
   
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/js/theme.js"></script>
+        <script src="static/documentation_options.js?v=d45e8c67"></script>
+        <script src="static/doctools.js?v=888ff710"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Rotations - Demo 07" href="ch07.html" />
@@ -107,7 +107,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Modelspace - Demo 06</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/ch06.rst.txt" rel="nofollow"> View page source</a>
+            <a href="sources/ch06.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -121,7 +121,7 @@
 <h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">¶</a></h2>
 <p>Learn about modelspace.</p>
 <figure class="align-center" id="id1">
-<img alt="Demo 06" src="_images/demo06.png" />
+<img alt="Demo 06" src="images/demo06.png" />
 <figcaption>
 <p><span class="caption-text">Demo 06</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -170,7 +170,7 @@ none of the corners should be; instead put the center of the object
 at the origin (Because by putting the center of the object at the origin,
 scaling and rotating the object are trivial, as shown in later chapters).</p>
 <figure class="align-center" id="id2">
-<img alt="Representing a Paddle using Modelspace" src="_images/modelspace.png" />
+<img alt="Representing a Paddle using Modelspace" src="images/modelspace.png" />
 <figcaption>
 <p><span class="caption-text">Representing a Paddle using Modelspace</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
@@ -187,7 +187,7 @@ I personally would put the center of our flat earth at the origin, but reasonabl
 can disagree.</p>
 <p>For our demo with paddles, the author arbitrarily defines the WorldSpace to be 200 units wide, 200 units tall, with the origin at the center.</p>
 <figure class="align-center" id="id3">
-<img alt="Demo 06" src="_images/demo061.png" />
+<img alt="Demo 06" src="images/demo061.png" />
 <figcaption>
 <p><span class="caption-text">Demo 06</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
@@ -211,7 +211,7 @@ as doing so</p>
 <li><p>Will distract us from thinking clearly about what’s happening</p></li>
 </ul>
 <figure class="align-center" id="id4">
-<img alt="Translating Paddle 1" src="_images/translation-forwards.gif" />
+<img alt="Translating Paddle 1" src="images/translation-forwards.gif" />
 <figcaption>
 <p><span class="caption-text">Translating Paddle 1</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
@@ -225,7 +225,7 @@ that means and what insight did you gain?</p></li>
 <section id="modelspace-of-paddle-1">
 <h3>Modelspace of Paddle 1<a class="headerlink" href="#modelspace-of-paddle-1" title="Link to this heading">¶</a></h3>
 <figure class="align-center" id="id5">
-<img alt="Paddle 1's Modelspace" src="_images/translation-forwards-0.png" />
+<img alt="Paddle 1's Modelspace" src="images/translation-forwards-0.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 1’s Modelspace</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
@@ -239,7 +239,7 @@ is translated, and the graph paper comes with it, onto which you can
 plot the vertices.  Notice that the coordinate system labels below the plot and to the left of the plot
 is unchanged.  That is world space, which has not changed.</p>
 <figure class="align-center" id="id6">
-<img alt="Paddle 1's Modelspace Superimposed on World Space" src="_images/translation-forwards-2.png" />
+<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation-forwards-2.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 1’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
 </figcaption>
@@ -248,7 +248,7 @@ is unchanged.  That is world space, which has not changed.</p>
 <section id="paddle-1-s-vertices-in-worldspace-coordinates">
 <h3>Paddle 1’s vertices in WorldSpace Coordinates<a class="headerlink" href="#paddle-1-s-vertices-in-worldspace-coordinates" title="Link to this heading">¶</a></h3>
 <figure class="align-center" id="id7">
-<img alt="Paddle 1's Vertices in World Space" src="_images/translation-forwards-3.png" />
+<img alt="Paddle 1's Vertices in World Space" src="images/translation-forwards-3.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 1’s Vertices in World Space.   Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
 </figcaption>
@@ -260,7 +260,7 @@ was the same as world space, has changed, bringing the vertices along with it.</
 <p>Same goes for Paddle 2’s modelspace, relative to it’s translation, which
 are different values.</p>
 <figure class="align-center" id="id8">
-<img alt="Translating Paddle 2" src="_images/translation2-forwards.gif" />
+<img alt="Translating Paddle 2" src="images/translation2-forwards.gif" />
 <figcaption>
 <p><span class="caption-text">Translating Paddle 2</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
 </figcaption>
@@ -270,7 +270,7 @@ are different values.</p>
 <section id="modelspace-of-paddle-2">
 <h3>Modelspace of Paddle 2<a class="headerlink" href="#modelspace-of-paddle-2" title="Link to this heading">¶</a></h3>
 <figure class="align-center" id="id9">
-<img alt="Paddle 1's Modelspace" src="_images/translation2-forwards-0.png" />
+<img alt="Paddle 1's Modelspace" src="images/translation2-forwards-0.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 2’s Modelspace</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
 </figcaption>
@@ -279,7 +279,7 @@ are different values.</p>
 <section id="modelspace-of-paddle-2-superimposed-on-worldspace-after-the-translation">
 <h3>Modelspace of Paddle 2 Superimposed on Worldspace after the translation<a class="headerlink" href="#modelspace-of-paddle-2-superimposed-on-worldspace-after-the-translation" title="Link to this heading">¶</a></h3>
 <figure class="align-center" id="id10">
-<img alt="Paddle 1's Modelspace Superimposed on World Space" src="_images/translation2-forwards-2.png" />
+<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation2-forwards-2.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 2’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
 </figcaption>
@@ -288,7 +288,7 @@ are different values.</p>
 <section id="paddle-2-s-vertices-in-worldspace-coordinates">
 <h3>Paddle 2’s vertices in WorldSpace Coordinates<a class="headerlink" href="#paddle-2-s-vertices-in-worldspace-coordinates" title="Link to this heading">¶</a></h3>
 <figure class="align-center" id="id11">
-<img alt="Paddle 1's Vertices in World Space" src="_images/translation2-forwards-3.png" />
+<img alt="Paddle 1's Vertices in World Space" src="images/translation2-forwards-3.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 2’s Vertices in World Space.  Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
 </figcaption>
@@ -308,25 +308,25 @@ is the same).</p>
 <p>We can expand or shrink the size of an object
 by “scale”ing each component of the vertices by some coefficient.</p>
 <figure class="align-center" id="id12">
-<img alt="Scaling" src="_images/scale.gif" />
+<img alt="Scaling" src="images/scale.gif" />
 <figcaption>
 <p><span class="caption-text">Scaling</span><a class="headerlink" href="#id12" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id13">
-<img alt="Modelspace" src="_images/scale-0.png" />
+<img alt="Modelspace" src="images/scale-0.png" />
 <figcaption>
 <p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id13" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id14">
-<img alt="Modelspace Superimposed on World Space" src="_images/scale-2.png" />
+<img alt="Modelspace Superimposed on World Space" src="images/scale-2.png" />
 <figcaption>
 <p><span class="caption-text">Modelspace Superimposed on World Space</span><a class="headerlink" href="#id14" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id15">
-<img alt="Worldspace" src="_images/scale-4.png" />
+<img alt="Worldspace" src="images/scale-4.png" />
 <figcaption>
 <p><span class="caption-text">Worldspace.  Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id15" title="Link to this image">¶</a></p>
 </figcaption>
@@ -334,13 +334,13 @@ by “scale”ing each component of the vertices by some coefficient.</p>
 <p>Our global space is -10 to 10 in both dimensions,
 and to get it into NDC, we need to scale by dividing by 10</p>
 <figure class="align-center" id="id16">
-<img alt="Demo 06" src="_images/demo061.png" />
+<img alt="Demo 06" src="images/demo061.png" />
 <figcaption>
 <p><span class="caption-text">Demo 06</span><a class="headerlink" href="#id16" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="math">
-<p><img src="_images/math/181ef4707ca3b38ccda0be8067129e15abb60259.svg" alt="\begin{bmatrix}
+<p><img src="images/math/181ef4707ca3b38ccda0be8067129e15abb60259.svg" alt="\begin{bmatrix}
 x_{w} \\
 y_{w}
 \end{bmatrix}  =
@@ -361,7 +361,7 @@ y_{p1}
 and where p1_center_x_worldspace, p1_center_y_worldspace,
 are the offset from the world space’s origin to the center of the paddle, i.e. the translation.</p>
 <div class="math">
-<p><img src="_images/math/d5e50fe648ba639456e43cb8d2b808c19668c348.svg" alt="\begin{bmatrix}
+<p><img src="images/math/d5e50fe648ba639456e43cb8d2b808c19668c348.svg" alt="\begin{bmatrix}
 x_{w} \\
 y_{w}
 \end{bmatrix}  =
@@ -382,7 +382,7 @@ y_{p2}
 space, and we need the match to take any world space coordinates
 and convert them to NDC.</p>
 <div class="math">
-<p><img src="_images/math/ae7d234ef7f01b1fa67869f7bec0552ae714df3e.svg" alt="\begin{bmatrix}
+<p><img src="images/math/ae7d234ef7f01b1fa67869f7bec0552ae714df3e.svg" alt="\begin{bmatrix}
 x_{ndc} \\
 y_{ndc}
 \end{bmatrix} =
@@ -493,7 +493,7 @@ y_{w}
 </pre></div>
 </div>
 <figure class="align-center" id="id17">
-<img alt="Paddle 1's Modelspace" src="_images/translation-forwards-0.png" />
+<img alt="Paddle 1's Modelspace" src="images/translation-forwards-0.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 1’s Modelspace</span><a class="headerlink" href="#id17" title="Link to this image">¶</a></p>
 </figcaption>
@@ -503,13 +503,13 @@ y_{w}
 </pre></div>
 </div>
 <figure class="align-center" id="id18">
-<img alt="Paddle 1's Modelspace Superimposed on World Space" src="_images/translation-forwards-2.png" />
+<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation-forwards-2.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 1’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id18" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id19">
-<img alt="Paddle 1's Modelspace Superimposed on World Space" src="_images/translation-forwards-3.png" />
+<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation-forwards-3.png" />
 <figcaption>
 <p><span class="caption-text">Reset coordinate system.</span><a class="headerlink" href="#id19" title="Link to this image">¶</a></p>
 </figcaption>
@@ -539,7 +539,7 @@ on the bottom and on the left.</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id20">
-<img alt="Paddle 2's Modelspace" src="_images/translation2-forwards-0.png" />
+<img alt="Paddle 2's Modelspace" src="images/translation2-forwards-0.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 2’s Modelspace</span><a class="headerlink" href="#id20" title="Link to this image">¶</a></p>
 </figcaption>
@@ -549,13 +549,13 @@ on the bottom and on the left.</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id21">
-<img alt="Paddle 2's Modelspace Superimposed on World Space" src="_images/translation2-forwards-2.png" />
+<img alt="Paddle 2's Modelspace Superimposed on World Space" src="images/translation2-forwards-2.png" />
 <figcaption>
 <p><span class="caption-text">Paddle 2’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id21" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id22">
-<img alt="Paddle 2's Modelspace Superimposed on World Space" src="_images/translation2-forwards-3.png" />
+<img alt="Paddle 2's Modelspace Superimposed on World Space" src="images/translation2-forwards-3.png" />
 <figcaption>
 <p><span class="caption-text">Reset coordinate system.</span><a class="headerlink" href="#id22" title="Link to this image">¶</a></p>
 </figcaption>
