@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rotations - Demo 07 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
-
+      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="static/documentation_options.js?v=d45e8c67"></script>
-        <script src="static/doctools.js?v=9a2dae69"></script>
-        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
+        <script src="static/jquery.js"></script>
+        <script src="static/underscore.js"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="static/doctools.js"></script>
+        <script src="static/sphinx_highlight.js"></script>
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -107,9 +105,9 @@
            <div itemprop="articleBody">
              
   <section id="rotations-demo-07">
-<h1>Rotations - Demo 07<a class="headerlink" href="#rotations-demo-07" title="Link to this heading">¶</a></h1>
+<h1>Rotations - Demo 07<a class="headerlink" href="#rotations-demo-07" title="Permalink to this heading">¶</a></h1>
 <section id="purpose">
-<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">¶</a></h2>
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
 <p>Attempt to rotate the paddles around their center.
 Learn about rotations.  This demo does not
 work correctly, because of a misunderstanding
@@ -117,17 +115,17 @@ of how to interpret a sequence of transformations.</p>
 <figure class="align-center" id="id1">
 <img alt="Demo 07" src="images/demo07.png" />
 <figcaption>
-<p><span class="caption-text">Demo 07</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Demo 07</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="how-to-execute">
-<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Link to this heading">¶</a></h2>
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this heading">¶</a></h2>
 <p>On Linux or on MacOS, in a shell, type “python src/demo07/demo.py”.
 On Windows, in a command prompt, type “python src\demo07\demo.py”.</p>
 </section>
 <section id="move-the-paddles-using-the-keyboard">
-<h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Link to this heading">¶</a></h2>
+<h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Keyboard Input</p></th>
@@ -165,26 +163,25 @@ On Windows, in a command prompt, type “python src\demo07\demo.py”.</p>
 see</p>
 </section>
 <section id="rotate-the-paddles-about-their-center">
-<h2>Rotate the Paddles About their Center<a class="headerlink" href="#rotate-the-paddles-about-their-center" title="Link to this heading">¶</a></h2>
+<h2>Rotate the Paddles About their Center<a class="headerlink" href="#rotate-the-paddles-about-their-center" title="Permalink to this heading">¶</a></h2>
 <p>Besides translate and scale, the third main operation in computer
 graphics is to rotate an object.</p>
 </section>
 <section id="rotation-around-origin-0-0">
-<h2>Rotation Around Origin (0,0)<a class="headerlink" href="#rotation-around-origin-0-0" title="Link to this heading">¶</a></h2>
+<h2>Rotation Around Origin (0,0)<a class="headerlink" href="#rotation-around-origin-0-0" title="Permalink to this heading">¶</a></h2>
 <p>We can rotate an object around (0,0) by rotating
 all of the object’s vertices around (0,0).</p>
 <figure class="align-center" id="id2">
 <img alt="Rotate" src="images/rotate0.gif" />
 <figcaption>
-<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>In high school math, you will have learned about sin, cos, and tangent.
 Typically the angles are described on the unit circle, where a rotation
 starts from the positive x axis.</p>
 <figure class="align-center">
-<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_1.svg" />
-</figure>
+<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_1.svg" /></figure>
 <p>We can expand on this knowledge, allowing
 us to rotate a given vertex, wherever it is, around the origin (0,0).  This is done
 by separating the x and y value, rotating each component separately,
@@ -194,13 +191,13 @@ The vertex (0.5,0.4) can be separated into two vertices, (0.5,0) and (0,0.4).</p
 <figure class="align-center" id="id3">
 <img alt="Rotate" src="images/rotate3.png" />
 <figcaption>
-<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id4">
 <img alt="Rotate" src="images/rotate4.png" />
 <figcaption>
-<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>These vertices can be added together to create the original vertex.
@@ -211,12 +208,11 @@ geometry, and won’t be explained here in detail.</p>
 <figure class="align-center" id="id5">
 <img alt="Rotate" src="images/rotate.png" />
 <figcaption>
-<p><span class="caption-text">Rotate the x component.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Rotate the x component.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center">
-<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_2.svg" />
-</figure>
+<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_2.svg" /></figure>
 <p>But what may not be obvious, is what happens to the y component?
 Turns out, it’s easy.  Just rotate your point of view, and it’s
 the same thing, with one minor difference, in that the x value
@@ -224,12 +220,11 @@ is negated.</p>
 <figure class="align-center" id="id6">
 <img alt="Rotate" src="images/rotate2.png" />
 <figcaption>
-<p><span class="caption-text">Rotate the y component</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Rotate the y component</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center">
-<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_3.svg" />
-</figure>
+<img alt="Demo 07" src="images/Sinus_und_Kosinus_am_Einheitskreis_3.svg" /></figure>
 <p>(0,0.4) is on the y-axis, so rotating it by “angle” degrees, results
 in vertex (0.4*-sin(angle), 0.4*cos(angle)).</p>
 <p>Wait.  Why is negative sin applied to the angle to make the x value,
@@ -302,15 +297,15 @@ cos and sin are defined in the math module.</p></li>
 </div>
 </section>
 <section id="cayley-graph">
-<h2>Cayley Graph<a class="headerlink" href="#cayley-graph" title="Link to this heading">¶</a></h2>
+<h2>Cayley Graph<a class="headerlink" href="#cayley-graph" title="Permalink to this heading">¶</a></h2>
 <figure class="align-center">
 <img alt="Demo 06" src="images/demo061.png" />
 </figure>
 </section>
 <section id="code">
-<h2>Code<a class="headerlink" href="#code" title="Link to this heading">¶</a></h2>
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
 <section id="the-event-loop">
-<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Link to this heading">¶</a></h3>
+<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
@@ -370,7 +365,7 @@ around the paddle’s center.</p>
 </section>
 </section>
 <section id="why-it-s-wrong">
-<h2>Why it’s Wrong<a class="headerlink" href="#why-it-s-wrong" title="Link to this heading">¶</a></h2>
+<h2>Why it’s Wrong<a class="headerlink" href="#why-it-s-wrong" title="Permalink to this heading">¶</a></h2>
 <p>Turns out, our program doesn’t work as predicted, even though
 translate, scale, and rotate are all defined correctly.  The paddles
 are not rotating around their center.</p>
@@ -384,7 +379,7 @@ world space transformations are doing.</p>
 <figure class="align-center" id="id7">
 <img alt="" src="images/incorrectrotate-forwards.gif" />
 <figcaption>
-<p><span class="caption-text">Not what we wanted</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Not what we wanted</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -405,7 +400,7 @@ world space transformations are doing.</p>
 <figure class="align-center" id="id8">
 <img alt="" src="images/incorrectrotate-forwards-3.png" />
 <figcaption>
-<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -414,7 +409,7 @@ world space transformations are doing.</p>
 <figure class="align-center" id="id9">
 <img alt="" src="images/incorrectrotate-forwards-4.png" />
 <figcaption>
-<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -423,7 +418,7 @@ world space transformations are doing.</p>
 <figure class="align-center" id="id10">
 <img alt="" src="images/incorrectrotate-forwards-5.png" />
 <figcaption>
-<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -432,7 +427,7 @@ world space transformations are doing.</p>
 <figure class="align-center" id="id11">
 <img alt="" src="images/incorrectrotate-forwards-6.png" />
 <figcaption>
-<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>So then what the heck are we supposed to do in order to

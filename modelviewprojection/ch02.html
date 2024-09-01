@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Draw A Rectangle - Demo 02 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
-
+      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="static/documentation_options.js?v=d45e8c67"></script>
-        <script src="static/doctools.js?v=9a2dae69"></script>
-        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
+        <script src="static/jquery.js"></script>
+        <script src="static/underscore.js"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="static/doctools.js"></script>
+        <script src="static/sphinx_highlight.js"></script>
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -115,38 +113,38 @@
            <div itemprop="articleBody">
              
   <section id="draw-a-rectangle-demo-02">
-<h1>Draw A Rectangle - Demo 02<a class="headerlink" href="#draw-a-rectangle-demo-02" title="Link to this heading">¶</a></h1>
+<h1>Draw A Rectangle - Demo 02<a class="headerlink" href="#draw-a-rectangle-demo-02" title="Permalink to this heading">¶</a></h1>
 <section id="purpose">
-<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">¶</a></h2>
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
 <p>Learn how to plot a rectangle.  Learn about OpenGL’s coordinate system, normalized-device coordinates,
 which are from -1.0 to 1.0, in the X, Y, and Z directions.  Anything drawn entirely outside
 of this region will not be displayed on the screen.</p>
 <figure class="align-center" id="id1">
 <img alt="Demo 02" src="images/demo02.png" />
 <figcaption>
-<p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="how-to-execute">
-<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Link to this heading">¶</a></h2>
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this heading">¶</a></h2>
 <p>On Linux or on MacOS, in a shell, type “python src/demo02/demo.py”.
 On Windows, in a command prompt, type “python src\demo02\demo.py”.</p>
 </section>
 <section id="code">
-<h2>Code<a class="headerlink" href="#code" title="Link to this heading">¶</a></h2>
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
 <section id="glfw-opengl-initialization">
-<h3>GLFW/OpenGL Initialization<a class="headerlink" href="#glfw-opengl-initialization" title="Link to this heading">¶</a></h3>
+<h3>GLFW/OpenGL Initialization<a class="headerlink" href="#glfw-opengl-initialization" title="Permalink to this heading">¶</a></h3>
 <p>The setup code is the same.  Initialize GLFW.  Set the OpenGL version.
 Create the window.  Set a key handler for closing.  Set the background to be black.
 Execute the event/drawing loop.</p>
 </section>
 <section id="the-event-loop">
-<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Link to this heading">¶</a></h3>
+<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
 <p>Within the event loop, demo02/demo.py draws 2 rectangles, as one might see in
 a game of Pong.</p>
 <section id="draw-paddles">
-<h4>Draw Paddles<a class="headerlink" href="#draw-paddles" title="Link to this heading">¶</a></h4>
+<h4>Draw Paddles<a class="headerlink" href="#draw-paddles" title="Permalink to this heading">¶</a></h4>
 <p>A black screen is not particularly interesting, so
 let’s draw something, say, two rectangles.</p>
 <p>We need to figure out what colors to use, and the positions of the rectangles, defined
@@ -165,7 +163,7 @@ the begun quadrilateral.</p>
 </section>
 </section>
 <section id="draw-paddle-1">
-<h2>Draw Paddle 1<a class="headerlink" href="#draw-paddle-1" title="Link to this heading">¶</a></h2>
+<h2>Draw Paddle 1<a class="headerlink" href="#draw-paddle-1" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
     <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
     <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
@@ -179,12 +177,12 @@ the begun quadrilateral.</p>
 <figure class="align-center" id="id2">
 <img alt="Rectangle" src="images/plot1.png" />
 <figcaption>
-<p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="draw-paddle-2">
-<h2>Draw Paddle 2<a class="headerlink" href="#draw-paddle-2" title="Link to this heading">¶</a></h2>
+<h2>Draw Paddle 2<a class="headerlink" href="#draw-paddle-2" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
     <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
     <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
@@ -198,7 +196,7 @@ the begun quadrilateral.</p>
 <figure class="align-center" id="id3">
 <img alt="Rectangle" src="images/plot2.png" />
 <figcaption>
-<p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
@@ -231,7 +229,7 @@ which are inside of the quadrilateral.</p>
 <p>Why do we use normalized-device coordinates instead of pixel coordinates?</p>
 </section>
 <section id="normalized-device-coordinates">
-<h2>Normalized-Device-Coordinates<a class="headerlink" href="#normalized-device-coordinates" title="Link to this heading">¶</a></h2>
+<h2>Normalized-Device-Coordinates<a class="headerlink" href="#normalized-device-coordinates" title="Permalink to this heading">¶</a></h2>
 <p>The author owns two monitors, one which has 1024x768 pixels, and one which has
 1920x1200 pixels.  When he purchases a game from Steam, he expects that his game
 will run correctly on either monitor, in full-screen mode.  If a graphics programmer
@@ -242,14 +240,14 @@ Screen-space means you’re specifically using pixel coordinates, i.e, set pixel
 <figure class="align-center" id="id4">
 <img alt="Screenspace" src="images/screenspace2.png" />
 <figcaption>
-<p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Isn’t the same picture on a smaller monitor.</p>
 <figure class="align-center" id="id5">
 <img alt="Screenspace" src="images/screenspace.png" />
 <figcaption>
-<p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Like any good program or library, OpenGL creates an abstraction.
@@ -272,26 +270,26 @@ to discrete pixel-space, and the programmer cannot change this.</p>
 <figure class="align-center" id="id6">
 <img alt="NDC space" src="images/ndcSpace.png" />
 <figcaption>
-<p><span class="caption-text">NDC space</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+<p><span class="caption-text">NDC space</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Whether we own a small monitor</p>
 <figure class="align-center" id="id7">
 <img alt="NDC space" src="images/ndcSpace1.png" />
 <figcaption>
-<p><span class="caption-text">NDC space</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+<p><span class="caption-text">NDC space</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Or a large monitor.</p>
 <figure class="align-center" id="id8">
 <img alt="NDC space" src="images/screenspace2.png" />
 <figcaption>
-<p><span class="caption-text">NDC space</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+<p><span class="caption-text">NDC space</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="graph-of-spaces">
-<h2>Graph of Spaces<a class="headerlink" href="#graph-of-spaces" title="Link to this heading">¶</a></h2>
+<h2>Graph of Spaces<a class="headerlink" href="#graph-of-spaces" title="Permalink to this heading">¶</a></h2>
 <p>The following is a <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_theory">graph</a>, specifically
 a <a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">Cayley</a> Graph, of the two spaces
 shown so far.  The nodes represent a coordinate system (i.e. origin and axes),
@@ -306,7 +304,7 @@ meters to feet, etc.</p>
 <figure class="align-center" id="id9">
 <img alt="Demo 02" src="images/demo021.png" />
 <figcaption>
-<p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The function that converts from NDC to Screen space is
@@ -316,7 +314,7 @@ functions that change basis, i.e. coordinate conversion.
 A definition of this function is not provided right now, because we can’t change it in software.
 But we must recognize that it exists.</p>
 <section id="introduction-to-cayley-graphs">
-<h3>Introduction to Cayley Graphs<a class="headerlink" href="#introduction-to-cayley-graphs" title="Link to this heading">¶</a></h3>
+<h3>Introduction to Cayley Graphs<a class="headerlink" href="#introduction-to-cayley-graphs" title="Permalink to this heading">¶</a></h3>
 <p>The Wikipedia article for Cayley graphs (<a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">https://en.wikipedia.org/wiki/Cayley_graph</a>) is intimidating,
 but for our purposes, it’s use is very simple.</p>
 <p>An uni-variate example use of Cayley graphs is exchanging coins with
@@ -324,7 +322,7 @@ a bank.</p>
 <figure class="align-center" id="id10">
 <img alt="Demo 02" src="images/currency.png" />
 <figcaption>
-<p><span class="caption-text">Cayley graph of uni variate coordinate conversion for money.</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Cayley graph of uni variate coordinate conversion for money.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="math">
@@ -375,7 +373,7 @@ and didn’t specify any arguments.  We just focus on the types of units in and 
 out, but the details of those functions are not relevant when traversing the Cayley graph.</p>
 </section>
 <section id="learning-what-to-ignore">
-<h3>Learning what to ignore<a class="headerlink" href="#learning-what-to-ignore" title="Link to this heading">¶</a></h3>
+<h3>Learning what to ignore<a class="headerlink" href="#learning-what-to-ignore" title="Permalink to this heading">¶</a></h3>
 <p>A big part of being able to understand graphics well is being able
 to figure out what to ignore.  So how would we convert coordinates from space
 D to space B (defined below)?  What do those names mean?  It doesn’t matter.
@@ -390,7 +388,7 @@ matters</p>
 <figure class="align-center" id="id11">
 <img alt="Generic Cayley Graph" src="images/cayleygraph.png" />
 <figcaption>
-<p><span class="caption-text">Generic Cayley Graph</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Generic Cayley Graph</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Well to convert data frame space D to space B,
@@ -416,7 +414,7 @@ The goal of this book is to make it clear, and then, obvious.</p>
 </section>
 </section>
 <section id="exercise">
-<h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">¶</a></h2>
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Run Demo 2.  Resize the window using the GUI controls provided
 by the Operating system. first make it skinny, and then wide.

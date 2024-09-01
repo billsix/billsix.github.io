@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Matrix Stacks - Demo 19 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="static/css/my_theme.css?v=77e6fb11" />
-
+      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
   
-  <!--[if lt IE 9]>
-    <script src="static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="static/documentation_options.js?v=d45e8c67"></script>
-        <script src="static/doctools.js?v=9a2dae69"></script>
-        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
+        <script src="static/jquery.js"></script>
+        <script src="static/underscore.js"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="static/doctools.js"></script>
+        <script src="static/sphinx_highlight.js"></script>
     <script src="static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -109,9 +107,9 @@
            <div itemprop="articleBody">
              
   <section id="matrix-stacks-demo-19">
-<h1>Matrix Stacks - Demo 19<a class="headerlink" href="#matrix-stacks-demo-19" title="Link to this heading">¶</a></h1>
+<h1>Matrix Stacks - Demo 19<a class="headerlink" href="#matrix-stacks-demo-19" title="Permalink to this heading">¶</a></h1>
 <section id="purpose">
-<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">¶</a></h2>
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
 <p>Replace lambda stacks with OpenGL 2.1 matrix stacks, provided
 by the driver for your graphics card.  This is how preshader
 opengl worked.</p>
@@ -157,12 +155,12 @@ coordinate system is one that has been pushed onto the stack,
 and it regains it’s color when it is reactivated by “glPopMatrix”</p>
 </section>
 <section id="how-to-execute">
-<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Link to this heading">¶</a></h2>
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this heading">¶</a></h2>
 <p>On Linux or on MacOS, in a shell, type “python src/demo19/demo.py”.
 On Windows, in a command prompt, type “python src\demo19\demo.py”.</p>
 </section>
 <section id="move-the-paddles-using-the-keyboard">
-<h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Link to this heading">¶</a></h2>
+<h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Keyboard Input</p></th>
@@ -216,7 +214,7 @@ On Windows, in a command prompt, type “python src\demo19\demo.py”.</p>
 </table>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p>First thing to note is that we are now using OpenGL 2.1’s official transformation
 procedures, and in the projection transformation, they flip the z axis, making
 it a left hand coordinate system.  The reason for this is long, and I
@@ -230,14 +228,14 @@ and the test for a given fragment to overwrite the color in the color
 buffer is changed to be less than or equal to.</p>
 </section>
 <section id="code">
-<h2>Code<a class="headerlink" href="#code" title="Link to this heading">¶</a></h2>
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">glEnable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">)</span>
 <span class="n">glClearDepth</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">glDepthFunc</span><span class="p">(</span><span class="n">GL_LEQUAL</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="the-event-loop">
-<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Link to this heading">¶</a></h3>
+<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
 <p>Set the model, view, and projection matrix to the identity
 matrix.  This just means that the functions (currently)
 will not transform data.
@@ -257,7 +255,7 @@ in the next chapter.</p>
 <figure class="align-center" id="id3">
 <img alt="Demo 11" src="images/perspective.png" />
 <figcaption>
-<p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
@@ -331,7 +329,7 @@ to it.</p>
 </div>
 </section>
 <section id="draw-paddle-1">
-<h3>draw paddle 1<a class="headerlink" href="#draw-paddle-1" title="Link to this heading">¶</a></h3>
+<h3>draw paddle 1<a class="headerlink" href="#draw-paddle-1" title="Permalink to this heading">¶</a></h3>
 <p>Unlike in previous demos before the lambda stack, because the transformations
 are now on a stack, the functions on the model stack can
 be read forwards, where each operation translates/rotates/scales
@@ -355,7 +353,7 @@ matrix into OpenGL, glVertex3f will apply those transformations for us <a class=
 </pre></div>
 </div>
 <section id="draw-the-square-relative-to-paddle-1">
-<h4>draw the square relative to paddle 1<a class="headerlink" href="#draw-the-square-relative-to-paddle-1" title="Link to this heading">¶</a></h4>
+<h4>draw the square relative to paddle 1<a class="headerlink" href="#draw-the-square-relative-to-paddle-1" title="Permalink to this heading">¶</a></h4>
 <p>Since the modelstack is already in paddle1’s space
 just add the transformations relative to it
 before paddle 2 is drawn, we need to remove
@@ -388,7 +386,7 @@ the square’s 3 model_space transformations</p>
 </section>
 </section>
 <section id="draw-paddle-2">
-<h3>draw paddle 2<a class="headerlink" href="#draw-paddle-2" title="Link to this heading">¶</a></h3>
+<h3>draw paddle 2<a class="headerlink" href="#draw-paddle-2" title="Permalink to this heading">¶</a></h3>
 <p>No need to push matrix here, as this is the last object that
 we are drawing, and upon the next iteration of the event loop,
 all 3 matrices will be reset to the identity</p>
@@ -412,7 +410,7 @@ all 3 matrices will be reset to the identity</p>
 </pre></div>
 </div>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id2" role="doc-footnote">
+<aside class="footnote brackets" id="id2" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>To note.  The computer has no notion of these relative coordinate systems.
 From the computer’s point of view, there is one coordinate system, (x,y,z,w).
