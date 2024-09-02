@@ -26,3 +26,5 @@ find . -iname '*.inv' | xargs sed -i -e 's@_sources/@sources/@g'
 find . -iname '*.js' | xargs sed -i -e 's@_static/@static/@g'
 find . -iname '*.js' | xargs sed -i -e 's@_images/@images/@g'
 find . -iname '*.js' | xargs sed -i -e 's@_sources/@sources/@g'
+
+rm static/formula.*
