@@ -540,7 +540,7 @@ So the rotated point can be constructed by the following
 .. math::
 
 
-    \vec{r}_{xy}(\vec{a}; theta) =  cos(\theta)*\vec{x}' + sin(\theta)*\vec{y}'
+    \vec{r}_{xy}(\vec{a}; theta) =  cos(\theta)*\vec{x'} + sin(\theta)*\vec{y'}
 
 
 .. figure:: static/cc0/williamesix/rotate7.svg
@@ -555,6 +555,10 @@ it length "r".
     :align: center
     :alt: rotate8
     :figclass: align-center
+
+Ok, we are now going to stop thinking about geometry, and we will only be thinking
+about algebra.  Please don't try to look at the formula and try to draw any diagrams.
+
 
 Ok, now it's time to remember what the values that x' and y' are defined as.
 
@@ -595,6 +599,7 @@ Therefore
 .. math::
 
       cos(\theta) = \vec{a}_{x} / r
+
       sin(\theta) = \vec{a}_{y} / r
 
 .. math::
