@@ -444,7 +444,7 @@ angle theta.</p>
 <div class="math">
 <p><img src="images/math/8ba565057858e78e13fc43db1cd65538160dbd1f.svg" alt="\vec{a}"/></p>
 </div><div class="math">
-<p><img src="images/math/9ca275034e8e1d4e70490e88629dd6d5499920bd.svg" alt="\vec{r}_{xy}(\vec{a}; theta)"/></p>
+<p><img src="images/math/6b87d28cecc7e0d9a1dd0b00c53957fbfda01248.svg" alt="\vec{r}(\vec{a}; \theta)"/></p>
 </div><figure class="align-center">
 <img alt="rotate-goal" src="images/rotate-goal.svg" /></figure>
 <p>From high school geometry, remember that we can describe a
@@ -485,7 +485,7 @@ frame of reference.</p>
 <img alt="rotate6" src="images/rotate6.svg" /></figure>
 <p>So the rotated point can be constructed by the following</p>
 <div class="math">
-<p><img src="images/math/7ca177dcdf63fb0013cbb5454fe84f56cd0db07e.svg" alt="\vec{r}_{xy}(\vec{a}; theta) =  cos(\theta)*\vec{x'} + sin(\theta)*\vec{y'}"/></p>
+<p><img src="images/math/5a5f367cbdeb91b8c0d9f05c607d3eaf4f1208bb.svg" alt="\vec{r}(\vec{a}; theta) =  cos(\theta)*\vec{x'} + sin(\theta)*\vec{y'}"/></p>
 </div><figure class="align-center">
 <img alt="rotate7" src="images/rotate7.svg" /></figure>
 <p>Now that we’ve found the direction on the unit circle, we remember to make
@@ -496,7 +496,7 @@ it length “r”.</p>
 about algebra.  Please don’t try to look at the formula and try to draw any diagrams.</p>
 <p>Ok, now it’s time to remember what the values that x’ and y’ are defined as.</p>
 <div class="math">
-<p><img src="images/math/9e055780987bfe9b01aa063a089a76112287950a.svg" alt="\vec{r}_{xy}(\vec{a}; \theta) &amp; = r*(cos(\theta)*\vec{x'} + sin(\theta)*\vec{y'}) \\
+<p><img src="images/math/5d026b9a657662ebf05765d51e7f7d2d5bbf6300.svg" alt="\vec{r}(\vec{a}; \theta) &amp; = r*(cos(\theta)*\vec{x'} + sin(\theta)*\vec{y'}) \\
                              &amp; = r*(cos(\theta)*\begin{bmatrix}
                                                    cos(\beta) \\
                                                    sin(\beta) \\
@@ -524,7 +524,7 @@ sin(\theta + \pi/2) = cos(\theta)"/></p>
 
 sin(\theta) = \vec{a}_{y} / r"/></p>
 </div><div class="math">
-<p><img src="images/math/f9544f7cbf8c8d71a35efa92601f16b9709169ef.svg" alt="\vec{r}_{xy}(\vec{a}; \theta) &amp; = r*(cos(\theta)*\vec{x'} + sin(\theta)*\vec{y'}) \\
+<p><img src="images/math/ddede181e08164e8fa3c97e7f97fa8add325e4fe.svg" alt="\vec{r}(\vec{a}; \theta) &amp; = r*(cos(\theta)*\vec{x'} + sin(\theta)*\vec{y'}) \\
                               &amp; = r*(cos(\theta)*\begin{bmatrix}
                                                     cos(\beta) \\
                                                     sin(\beta) \\
@@ -545,7 +545,21 @@ sin(\theta) = \vec{a}_{y} / r"/></p>
                                                  \end{bmatrix} + sin(\theta)*\begin{bmatrix}
                                                     -\vec{a}_{y} \\
                                                     \vec{a}_{x} \\
-                                                 \end{bmatrix})"/></p>
+                                                 \end{bmatrix}) \\
+                              &amp; =   (cos(\theta)*\vec{a}_{x} +
+                                                 sin(\theta)*\begin{bmatrix}
+                                                    -\vec{a}_{y} \\
+                                                    \vec{a}_{x} \\
+                                                 \end{bmatrix})
+
+
+
+\vec{r}(\vec{a}; \theta) &amp; = \begin{bmatrix}
+                                                    -\vec{a}_{y} \\
+                                                    \vec{a}_{x} \\
+                                                 \end{bmatrix} \text{ if } (\theta = \pi/2) \\
+                              &amp; =   (cos(\theta)*\vec{a} +
+                                                 sin(\theta)*\vec{r}(\vec{a}; \pi/2 ) \text{ if } (\theta \ne \pi/2)"/></p>
 </div></section>
 </section>
 

@@ -204,10 +204,6 @@ provides the end-user with the illusion of motion.</p>
 <h3>Importing Libraries<a class="headerlink" href="#importing-libraries" title="Permalink to this heading">¶</a></h3>
 <p>Import Python modules, which are Python programmer’s main form of libraries.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="c1"># doc-region-begin 4b5a486083da608751701fa7e42e37bbc4cfd06e</span>
-<span class="kn">import</span> <span class="nn">glfw</span>
-
 </pre></div>
 </div>
 <ul class="simple">
@@ -234,24 +230,6 @@ we don’t want to have to write “OpenGL.GL.function” every time, as we use
 these functions frequently</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glfw</span>
-
-<span class="c1"># doc-region-end 20134134fb054ac6764edfb4764935b86f20a795</span>
-<span class="c1"># doc-region-begin 6901922753dbf8df496fd46ae4a0eeb4e6243ef4</span>
-<span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
-    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
-    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
-    <span class="n">GL_PROJECTION</span><span class="p">,</span>
-    <span class="n">glClear</span><span class="p">,</span>
-    <span class="n">glClearColor</span><span class="p">,</span>
-    <span class="n">glLoadIdentity</span><span class="p">,</span>
-    <span class="n">glMatrixMode</span><span class="p">,</span>
-    <span class="n">glViewport</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># doc-region-end 6901922753dbf8df496fd46ae4a0eeb4e6243ef4</span>
-
-
 </pre></div>
 </div>
 <ul class="simple">

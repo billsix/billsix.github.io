@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adding Depth - Z axis Demo 14 &mdash; Model View Projection 0.0.1 documentation</title>
+      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
+  
+        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
+        <script src="static/jquery.js"></script>
+        <script src="static/underscore.js"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="static/doctools.js"></script>
+        <script src="static/sphinx_highlight.js"></script>
+    <script src="static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Adding Depth - Enable Depth Buffer - Demo 15" href="ch15.html" />
+    <link rel="prev" title="Rotate the Square Around Paddle 1 - Demo 13" href="ch13.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Model View Projection
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adding Depth - Z axis Demo 14</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rotate-z">Rotate Z</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rotate-x">Rotate X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rotate-y">Rotate Y</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scale">Scale</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#event-loop">Event Loop</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Model View Projection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Adding Depth - Z axis Demo 14</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ch14.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="adding-depth-z-axis-demo-14">
+<h1>Adding Depth - Z axis Demo 14<a class="headerlink" href="#adding-depth-z-axis-demo-14" title="Permalink to this heading">¶</a></h1>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
+<p>Do the same stuff as the previous demo, but use 3D coordinates,
+where the negative z axis goes into the screen (because
+of the right hand rule).  Positive z comes out of the monitor
+towards your face.</p>
+<p>Things that this demo doesn’t end up doing correctly:</p>
+<ul class="simple">
+<li><p>The blue square is always drawn, even
+when its z-coordinate in world space is less than the paddle’s.  The solution will be
+z-buffering <a class="reference external" href="https://en.wikipedia.org/wiki/Z-buffering">https://en.wikipedia.org/wiki/Z-buffering</a>,
+and it is implemented in the next demo.</p></li>
+</ul>
+<figure class="align-center" id="id1">
+<img alt="Demo 14" src="images/demo14.png" />
+<figcaption>
+<p><span class="caption-text">Demo 14</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id2">
+<img alt="Camera Space" src="images/camera1.png" />
+<figcaption>
+<p><span class="caption-text">Camera Space</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<img alt="Camera Space" src="images/camera2.png" />
+<figcaption>
+<p><span class="caption-text">Camera Space</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="how-to-execute">
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this heading">¶</a></h2>
+<p>On Linux or on MacOS, in a shell, type “python src/demo14/demo.py”.
+On Windows, in a command prompt, type “python src\demo14\demo.py”.</p>
+</section>
+<section id="move-the-paddles-using-the-keyboard">
+<h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Keyboard Input</p></th>
+<th class="head"><p>Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>w</em></p></td>
+<td><p>Move Left Paddle Up</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>s</em></p></td>
+<td><p>Move Left Paddle Down</p></td>
+</tr>
+<tr class="row-even"><td><p><em>k</em></p></td>
+<td><p>Move Right Paddle Down</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>i</em></p></td>
+<td><p>Move Right Paddle Up</p></td>
+</tr>
+<tr class="row-even"><td><p><em>d</em></p></td>
+<td><p>Increase Left Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>a</em></p></td>
+<td><p>Decrease Left Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-even"><td><p><em>l</em></p></td>
+<td><p>Increase Right Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>j</em></p></td>
+<td><p>Decrease Right Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-even"><td><p><em>UP</em></p></td>
+<td><p>Move the camera up, moving the objects down</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>DOWN</em></p></td>
+<td><p>Move the camera down, moving the objects up</p></td>
+</tr>
+<tr class="row-even"><td><p><em>LEFT</em></p></td>
+<td><p>Move the camera left, moving the objects right</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>RIGHT</em></p></td>
+<td><p>Move the camera right, moving the objects left</p></td>
+</tr>
+<tr class="row-even"><td><p><em>q</em></p></td>
+<td><p>Rotate the square around it’s center</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>e</em></p></td>
+<td><p>Rotate the square around paddle 1’s center</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Vertex data will now have an X, Y, and Z component.</p></li>
+<li><p>Rotations around an angle in 3D space follow the right hand <a class="reference external" href="https://en.wikipedia.org/wiki/Right-hand_rule">rule</a>.  Here’s a link to them
+in <a class="reference external" href="https://en.wikipedia.org/wiki/Rotation_matrix">matrix</a> form, which we have not yet covered.</p></li>
+</ul>
+<figure class="align-center">
+<img alt="Right hand rule" src="images/220px-Right_hand_rule_cross_product.svg.png" />
+</figure>
+<ul class="simple">
+<li><p>With open palm, fingers on the x axis, rotating the fingers to y axis,
+means that the positive z axis is in the direction of the thumb.  Positive Theta
+moves in the direction that your fingers did.</p></li>
+<li><p>starting on the y axis, rotating to z axis, thumb is on the positive x axis.</p></li>
+<li><p>starting on the z axis, rotating to x axis, thumb is on the positive y axis.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Vertex</span><span class="p">:</span>
+    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">z</span><span class="p">:</span> <span class="nb">float</span>
+
+    <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">tx</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ty</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tz</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">tx</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">ty</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">tz</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<section id="rotate-z">
+<h3>Rotate Z<a class="headerlink" href="#rotate-z" title="Permalink to this heading">¶</a></h3>
+<p>Rotate Z is the same rotate that we’ve used so far, but doesn’t affect
+the z component at all.</p>
+<figure class="align-center">
+<img alt="Rotate Z" src="images/Sinus_und_Kosinus_am_Einheitskreis_2.svg" /></figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">rotate_z</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span>
+            <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span>
+            <span class="n">z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
+        <span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="rotate-x">
+<h3>Rotate X<a class="headerlink" href="#rotate-x" title="Permalink to this heading">¶</a></h3>
+<figure class="align-center">
+<img alt="Rotate X" src="images/Sinus_und_Kosinus_am_Einheitskreis_4.svg" /></figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">rotate_x</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span>
+            <span class="n">z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span>
+        <span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="rotate-y">
+<h3>Rotate Y<a class="headerlink" href="#rotate-y" title="Permalink to this heading">¶</a></h3>
+<figure class="align-center">
+<img alt="Rotate Y" src="images/Sinus_und_Kosinus_am_Einheitskreis_5.svg" /></figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">rotate_y</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span>
+            <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span>
+        <span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="scale">
+<h3>Scale<a class="headerlink" href="#scale" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">scale_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">scale_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">scale_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scale_x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scale_y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">scale_z</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
+<p>The only new aspect of the code below is that the paddles have
+a z-coordinate of 0 in their modelspace.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">paddle1</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
+    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">r</span><span class="o">=</span><span class="mf">0.578123</span><span class="p">,</span>
+    <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">position</span><span class="o">=</span><span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">9.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">paddle2</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
+    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">position</span><span class="o">=</span><span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">9.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The only new aspect of the square below is that the paddles have
+a z-coordinate of 0 in their modelspace.  N.B that since we
+do a sequence transformations to the modelspace data to get
+to world-space coordinates, the X, Y, and Z coordinates
+are subject to be different.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Camera</span><span class="p">:</span>
+    <span class="n">position_worldspace</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+    <span class="p">)</span>
+
+
+<span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The camera now has a z-coordinate of 0 also.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">square</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<section id="event-loop">
+<h3>Event Loop<a class="headerlink" href="#event-loop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Draw Paddle 1</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
+                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                    <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                                                    <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">camera_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                     <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                                                     <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                               <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                               <span class="n">scale_z</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
+        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The square should not be visible when hidden behind the paddle1,
+as we do a translate by -1.  But in running the demo, you see
+that the square is always drawn over the paddle.</p>
+<ul class="simple">
+<li><p>Draw the Square</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># draw square</span>
+    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">square</span><span class="p">:</span>
+        <span class="n">paddle_1_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span>  <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">square_rotation</span><span class="p">)</span> \
+                                             <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+                                                        <span class="n">ty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                                        <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span> \
+                                             <span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">rotation_around_paddle1</span><span class="p">)</span> \
+                                             <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                                        <span class="n">ty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                                        <span class="n">tz</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle_1_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
+                                            <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                       <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                                                       <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">camera_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                     <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                                                     <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                               <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                               <span class="n">scale_z</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span>
+        <span class="p">)</span>
+        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This is because without <a class="reference external" href="https://en.wikipedia.org/wiki/Fragment_(computer_graphics)">depth</a> buffering, the object drawn last
+clobbers the color of any previously drawn object at the pixel.
+Try moving the square drawing code to the beginning, and you will
+see that the square can be hidden behind the paddle.</p>
+<ul class="simple">
+<li><p>Draw Paddle 2</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># draw paddle 2</span>
+    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
+                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                    <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                                                    <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">camera_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                     <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                                                     <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                               <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                               <span class="n">scale_z</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
+        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Added translate in 3D.  Added scale in 3D.  These are just like
+the 2D versions, just with the same process applied to the z axis.</p>
+<p>They direction of the rotation is defined by the right hand rule.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Right-hand_rule">https://en.wikipedia.org/wiki/Right-hand_rule</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ch13.html" class="btn btn-neutral float-left" title="Rotate the Square Around Paddle 1 - Demo 13" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch15.html" class="btn btn-neutral float-right" title="Adding Depth - Enable Depth Buffer - Demo 15" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2024, William Emerison Six.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

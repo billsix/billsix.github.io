@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modelspace - Demo 06 &mdash; Model View Projection 0.0.1 documentation</title>
+      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
+  
+        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
+        <script src="static/jquery.js"></script>
+        <script src="static/underscore.js"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="static/doctools.js"></script>
+        <script src="static/sphinx_highlight.js"></script>
+    <script src="static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Rotations - Demo 07" href="ch07.html" />
+    <link rel="prev" title="Add Translate Method to Vertex - Demo 05" href="ch05.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Model View Projection
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modelspace - Demo 06</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelspace">Modelspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#worldspace">WorldSpace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelspace-to-worldspace">Modelspace to WorldSpace</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modelspace-of-paddle-1">Modelspace of Paddle 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelspace-of-paddle-1-superimposed-on-worldspace-after-the-translation">Modelspace of Paddle 1 Superimposed on Worldspace after the translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#paddle-1-s-vertices-in-worldspace-coordinates">Paddle 1’s vertices in WorldSpace Coordinates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelspace-of-paddle-2">Modelspace of Paddle 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelspace-of-paddle-2-superimposed-on-worldspace-after-the-translation">Modelspace of Paddle 2 Superimposed on Worldspace after the translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#paddle-2-s-vertices-in-worldspace-coordinates">Paddle 2’s vertices in WorldSpace Coordinates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scaling">Scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-event-loop">The Event Loop</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rendering-paddle-1">Rendering Paddle 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rendering-paddle-2">Rendering Paddle 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Model View Projection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Modelspace - Demo 06</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ch06.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modelspace-demo-06">
+<h1>Modelspace - Demo 06<a class="headerlink" href="#modelspace-demo-06" title="Permalink to this heading">¶</a></h1>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
+<p>Learn about modelspace.</p>
+<figure class="align-center" id="id1">
+<img alt="Demo 06" src="images/demo06.png" />
+<figcaption>
+<p><span class="caption-text">Demo 06</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="how-to-execute">
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this heading">¶</a></h2>
+<p>On Linux or on MacOS, in a shell, type “python src/demo06/demo.py”.
+On Windows, in a command prompt, type “python src\demo06\demo.py”.</p>
+</section>
+<section id="move-the-paddles-using-the-keyboard">
+<h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Keyboard Input</p></th>
+<th class="head"><p>Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>w</em></p></td>
+<td><p>Move Left Paddle Up</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>s</em></p></td>
+<td><p>Move Left Paddle Down</p></td>
+</tr>
+<tr class="row-even"><td><p><em>k</em></p></td>
+<td><p>Move Right Paddle Down</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>i</em></p></td>
+<td><p>Move Right Paddle Up</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="modelspace">
+<h2>Modelspace<a class="headerlink" href="#modelspace" title="Permalink to this heading">¶</a></h2>
+<p>Normalized-device-coordinates are not a natural system of
+numbers for use by humans.  Imagine that the paddles in the previous
+chapters exist in real life, and are 20 meters wide and 60 meters tall.
+The graphics programmer should be able to use those numbers directly;
+they shouldn’t have to manually transform the distances into normalized-device-coordinates.</p>
+<p>Whatever a convenient numbering system is (i.e. coordinate system) for modeling objects
+is called “model-space”.  Since a paddle has four corners, which corner should be at
+the origin (0,0)?  If you don’t already know what you want at the origin, then
+none of the corners should be; instead put the center of the object
+at the origin (Because by putting the center of the object at the origin,
+scaling and rotating the object are trivial, as shown in later chapters).</p>
+<figure class="align-center" id="id2">
+<img alt="Representing a Paddle using Modelspace" src="images/modelspace.png" />
+<figcaption>
+<p><span class="caption-text">Representing a Paddle using Modelspace</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Modelspace - the coordinate system (origin plus axes), in which some object’s
+vertices are defined.</p>
+</section>
+<section id="worldspace">
+<h2>WorldSpace<a class="headerlink" href="#worldspace" title="Permalink to this heading">¶</a></h2>
+<p>WorldSpace is a top-level space, independent of NDC, that we choose to use.  It’s arbitrary.
+If you were to model a racetrack for a racing game, the origin of WorldSpace may be the center of that racetrack.
+If you were modeling our solar system, the center of the sun could be the origin of “WorldSpace”.
+I personally would put the center of our flat earth at the origin, but reasonable people
+can disagree.</p>
+<p>For our demo with paddles, the author arbitrarily defines the WorldSpace to be 200 units wide, 200 units tall, with the origin at the center.</p>
+<figure class="align-center" id="id3">
+<img alt="Demo 06" src="images/demo061.png" />
+<figcaption>
+<p><span class="caption-text">Demo 06</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="modelspace-to-worldspace">
+<h2>Modelspace to WorldSpace<a class="headerlink" href="#modelspace-to-worldspace" title="Permalink to this heading">¶</a></h2>
+<p>The author prefers to view transformations as changes to the graph paper,
+as compared to view transformations as changes to points.</p>
+<p>As such, for placing paddle1, we can view the translation as a change
+to the graph paper relative to world space coordinates (only incidentally
+bringing the vertices
+along with it) and then resetting the graph paper (i.e. both origin and axes)
+back to it’s original position and orientation.
+Although we will think of the paddle’s vertices as relative to its own space
+(i.e. -10 to 10 horizontally, -30 to 30 vertically),
+we will not look at the numbers of what they are in world space coordinates,
+as doing so</p>
+<ul class="simple">
+<li><p>Will not give us any insight</p></li>
+<li><p>Will distract us from thinking clearly about what’s happening</p></li>
+</ul>
+<figure class="align-center" id="id4">
+<img alt="Translating Paddle 1" src="images/translation-forwards.gif" />
+<figcaption>
+<p><span class="caption-text">Translating Paddle 1</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>As an example, figure out the world space coordinate of the upper rights
+corner of the paddle after it’s been translated, and ask yourself what
+that means and what insight did you gain?</p></li>
+</ul>
+<p>The animation above shows multiple steps, shown now without animation.</p>
+<section id="modelspace-of-paddle-1">
+<h3>Modelspace of Paddle 1<a class="headerlink" href="#modelspace-of-paddle-1" title="Permalink to this heading">¶</a></h3>
+<figure class="align-center" id="id5">
+<img alt="Paddle 1's Modelspace" src="images/translation-forwards-0.png" />
+<figcaption>
+<p><span class="caption-text">Paddle 1’s Modelspace</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="modelspace-of-paddle-1-superimposed-on-worldspace-after-the-translation">
+<h3>Modelspace of Paddle 1 Superimposed on Worldspace after the translation<a class="headerlink" href="#modelspace-of-paddle-1-superimposed-on-worldspace-after-the-translation" title="Permalink to this heading">¶</a></h3>
+<p>Paddle 1’s graph paper gets translated -90 units in the x direction, and some
+number of units in the y direction, 0 during the first frame, based off of user input.  The origin
+is translated, and the graph paper comes with it, onto which you can
+plot the vertices.  Notice that the coordinate system labels below the plot and to the left of the plot
+is unchanged.  That is world space, which has not changed.</p>
+<figure class="align-center" id="id6">
+<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation-forwards-2.png" />
+<figcaption>
+<p><span class="caption-text">Paddle 1’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="paddle-1-s-vertices-in-worldspace-coordinates">
+<h3>Paddle 1’s vertices in WorldSpace Coordinates<a class="headerlink" href="#paddle-1-s-vertices-in-worldspace-coordinates" title="Permalink to this heading">¶</a></h3>
+<figure class="align-center" id="id7">
+<img alt="Paddle 1's Vertices in World Space" src="images/translation-forwards-3.png" />
+<figcaption>
+<p><span class="caption-text">Paddle 1’s Vertices in World Space.   Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Now that the transformation has happened, the vertices are all in world space.
+You could calculate their values in world space, but that will not give you any insight.  The only numbers
+that matter for insight as that the entire graph paper of modelspace, which originally
+was the same as world space, has changed, bringing the vertices along with it.</p>
+<p>Same goes for Paddle 2’s modelspace, relative to it’s translation, which
+are different values.</p>
+<figure class="align-center" id="id8">
+<img alt="Translating Paddle 2" src="images/translation2-forwards.gif" />
+<figcaption>
+<p><span class="caption-text">Translating Paddle 2</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The animation above shows multiple steps, shown now without animation.</p>
+</section>
+<section id="modelspace-of-paddle-2">
+<h3>Modelspace of Paddle 2<a class="headerlink" href="#modelspace-of-paddle-2" title="Permalink to this heading">¶</a></h3>
+<figure class="align-center" id="id9">
+<img alt="Paddle 1's Modelspace" src="images/translation2-forwards-0.png" />
+<figcaption>
+<p><span class="caption-text">Paddle 2’s Modelspace</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="modelspace-of-paddle-2-superimposed-on-worldspace-after-the-translation">
+<h3>Modelspace of Paddle 2 Superimposed on Worldspace after the translation<a class="headerlink" href="#modelspace-of-paddle-2-superimposed-on-worldspace-after-the-translation" title="Permalink to this heading">¶</a></h3>
+<figure class="align-center" id="id10">
+<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation2-forwards-2.png" />
+<figcaption>
+<p><span class="caption-text">Paddle 2’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="paddle-2-s-vertices-in-worldspace-coordinates">
+<h3>Paddle 2’s vertices in WorldSpace Coordinates<a class="headerlink" href="#paddle-2-s-vertices-in-worldspace-coordinates" title="Permalink to this heading">¶</a></h3>
+<figure class="align-center" id="id11">
+<img alt="Paddle 1's Vertices in World Space" src="images/translation2-forwards-3.png" />
+<figcaption>
+<p><span class="caption-text">Paddle 2’s Vertices in World Space.  Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="scaling">
+<h3>Scaling<a class="headerlink" href="#scaling" title="Permalink to this heading">¶</a></h3>
+<p>Our paddles are now well outside of NDC, and as such, they would not
+be displayed, as they would be <em>clipped</em> out.  Their values are outside
+of -1.0 to 1.0.  All we will need to do to convert them from
+world space to NDC is divide each component, x and y, by 10.</p>
+<p>As a demonstration of how scaling works, let’s make an
+object’s width twice as large, and height three times as large. (The author
+tried doing the actual scaling of 1/10 in an animated gif, and it looked awful,
+therefore a different scaling gif is showed here, but the concept
+is the same).</p>
+<p>We can expand or shrink the size of an object
+by “scale”ing each component of the vertices by some coefficient.</p>
+<figure class="align-center" id="id12">
+<img alt="Scaling" src="images/scale.gif" />
+<figcaption>
+<p><span class="caption-text">Scaling</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id13">
+<img alt="Modelspace" src="images/scale-0.png" />
+<figcaption>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id14">
+<img alt="Modelspace Superimposed on World Space" src="images/scale-2.png" />
+<figcaption>
+<p><span class="caption-text">Modelspace Superimposed on World Space</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id15">
+<img alt="Worldspace" src="images/scale-4.png" />
+<figcaption>
+<p><span class="caption-text">Worldspace.  Don’t concern yourself with what the numbers are.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Our global space is -10 to 10 in both dimensions,
+and to get it into NDC, we need to scale by dividing by 10</p>
+<figure class="align-center" id="id16">
+<img alt="Demo 06" src="images/demo061.png" />
+<figcaption>
+<p><span class="caption-text">Demo 06</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="math">
+<p><img src="images/math/181ef4707ca3b38ccda0be8067129e15abb60259.svg" alt="\begin{bmatrix}
+x_{w} \\
+y_{w}
+\end{bmatrix}  =
+\vec{f}_{p1}^{w}(
+\begin{bmatrix}
+x_{p1} \\
+y_{p1}
+\end{bmatrix})  =
+\begin{bmatrix}
+x_{p1} \\
+y_{p1}
+\end{bmatrix} +
+\begin{bmatrix}
+{p1}_{x} \\
+{p1}_{y}
+\end{bmatrix}"/></p>
+</div><p>where x_p1, y_p1  are the modelspace coordinates of the paddle’s vertices,
+and where p1_center_x_worldspace, p1_center_y_worldspace,
+are the offset from the world space’s origin to the center of the paddle, i.e. the translation.</p>
+<div class="math">
+<p><img src="images/math/d5e50fe648ba639456e43cb8d2b808c19668c348.svg" alt="\begin{bmatrix}
+x_{w} \\
+y_{w}
+\end{bmatrix}  =
+\vec{f}_{p2}^{w} (
+\begin{bmatrix}
+x_{p2} \\
+y_{p2}
+\end{bmatrix}) =
+\begin{bmatrix}
+x_{p2} \\
+y_{p2}
+\end{bmatrix} +
+\begin{bmatrix}
+{p2}_{x} \\
+{p2}_{y}
+\end{bmatrix}"/></p>
+</div><p>Now, the coordinates for paddle 1 and for paddle 2 are in world
+space, and we need the match to take any world space coordinates
+and convert them to NDC.</p>
+<div class="math">
+<p><img src="images/math/ae7d234ef7f01b1fa67869f7bec0552ae714df3e.svg" alt="\begin{bmatrix}
+x_{ndc} \\
+y_{ndc}
+\end{bmatrix} =
+\vec{f}_{w}^{ndc} (
+\begin{bmatrix}
+x_{w} \\
+y_{w}
+\end{bmatrix})  = 1/10 *
+\begin{bmatrix}
+x_{w} \\
+y_{w}
+\end{bmatrix}"/></p>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Vertex</span><span class="p">:</span>
+    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>
+
+    <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">tx</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ty</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">tx</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">ty</span><span class="p">))</span>
+
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span> <span class="n">scale_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">scale_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scale_x</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scale_y</span><span class="p">))</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>NEW – Add the ability to scale a vertex, to stretch or to shrink</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">paddle1</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
+    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">r</span><span class="o">=</span><span class="mf">0.578123</span><span class="p">,</span>
+    <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">position</span><span class="o">=</span><span class="n">Vertex</span><span class="p">(</span><span class="o">-</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">paddle2</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
+    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">),</span>
+        <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">position</span><span class="o">=</span><span class="n">Vertex</span><span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>paddles are using modelspace coordinates instead of NDC</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">handle_movement_of_paddles</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">global</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span>
+
+    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_S</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">1.0</span>
+    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_W</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">1.0</span>
+    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_K</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">1.0</span>
+    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">1.0</span>
+
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Movement code needs to happen in Modelspace’s units.</p></li>
+</ul>
+</section>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
+<section id="the-event-loop">
+<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+    <span class="k">while</span> <span class="p">(</span>
+        <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span>
+    <span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
+
+    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
+
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
+
+    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
+    <span class="n">handle_movement_of_paddles</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="rendering-paddle-1">
+<h4>Rendering Paddle 1<a class="headerlink" href="#rendering-paddle-1" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id17">
+<img alt="Paddle 1's Modelspace" src="images/translation-forwards-0.png" />
+<figcaption>
+<p><span class="caption-text">Paddle 1’s Modelspace</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                    <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id18">
+<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation-forwards-2.png" />
+<figcaption>
+<p><span class="caption-text">Paddle 1’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id19">
+<img alt="Paddle 1's Modelspace Superimposed on World Space" src="images/translation-forwards-3.png" />
+<figcaption>
+<p><span class="caption-text">Reset coordinate system.</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The coordinate system now resets back to the coordinate system specified
+on the left and below.
+Now, we must scale everything by 1/10.  I have
+not included a picture of that here.  Scaling happens relative to
+the origin, so the picture would be the same, just with different labels
+on the bottom and on the left.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="rendering-paddle-2">
+<h4>Rendering Paddle 2<a class="headerlink" href="#rendering-paddle-2" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id20">
+<img alt="Paddle 2's Modelspace" src="images/translation2-forwards-0.png" />
+<figcaption>
+<p><span class="caption-text">Paddle 2’s Modelspace</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                    <span class="n">ty</span><span class="o">=</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id21">
+<img alt="Paddle 2's Modelspace Superimposed on World Space" src="images/translation2-forwards-2.png" />
+<figcaption>
+<p><span class="caption-text">Paddle 2’s Modelspace Superimposed on World Space</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id22">
+<img alt="Paddle 2's Modelspace Superimposed on World Space" src="images/translation2-forwards-3.png" />
+<figcaption>
+<p><span class="caption-text">Reset coordinate system.</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The coordinate system is reset.  Now scale everything by 1/10.  I have
+not included a picture of that here.  Scaling happens relative to
+the origin, so the picture would be the same, just with different labels
+on the bottom and on the left.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ch05.html" class="btn btn-neutral float-left" title="Add Translate Method to Vertex - Demo 05" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch07.html" class="btn btn-neutral float-right" title="Rotations - Demo 07" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2024, William Emerison Six.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

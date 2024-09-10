@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Perspective - Demo 17 &mdash; Model View Projection 0.0.1 documentation</title>
+      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
+  
+        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
+        <script src="static/jquery.js"></script>
+        <script src="static/underscore.js"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="static/doctools.js"></script>
+        <script src="static/sphinx_highlight.js"></script>
+    <script src="static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lambda Stack - Demo 18" href="ch18.html" />
+    <link rel="prev" title="Moving Camera in 3D Space - Demo 16" href="ch16.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Model View Projection
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3D Perspective - Demo 17</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#move-the-paddles-using-the-keyboard">Move the Paddles using the Keyboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Model View Projection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">3D Perspective - Demo 17</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ch17.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="d-perspective-demo-17">
+<h1>3D Perspective - Demo 17<a class="headerlink" href="#d-perspective-demo-17" title="Permalink to this heading">¶</a></h1>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
+<p>Implement a perspective projection so that objects
+further away are smaller than the would be
+if they were close by</p>
+<figure class="align-center" id="id1">
+<img alt="Demo 17" src="images/demo17.png" />
+<figcaption>
+<p><span class="caption-text">Demo 17</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id2">
+<img alt="Frustum 1" src="images/frustum1.png" />
+<figcaption>
+<p><span class="caption-text">Frustum 1</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<img alt="Frustum 2" src="images/frustum2.png" />
+<figcaption>
+<p><span class="caption-text">Frustum 2</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<img alt="Frustum 3" src="images/frustum3.png" />
+<figcaption>
+<p><span class="caption-text">Frustum 3</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<img alt="Frustum 4" src="images/frustum4.png" />
+<figcaption>
+<p><span class="caption-text">Frustum 4</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id6">
+<img alt="Frustum 5" src="images/frustum5.png" />
+<figcaption>
+<p><span class="caption-text">Frustum 5</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id7">
+<img alt="Frustum 6" src="images/frustum6.png" />
+<figcaption>
+<p><span class="caption-text">Frustum 6</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="how-to-execute">
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this heading">¶</a></h2>
+<p>On Linux or on MacOS, in a shell, type “python src/demo17/demo.py”.
+On Windows, in a command prompt, type “python src\demo17\demo.py”.</p>
+</section>
+<section id="move-the-paddles-using-the-keyboard">
+<h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Keyboard Input</p></th>
+<th class="head"><p>Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>w</em></p></td>
+<td><p>Move Left Paddle Up</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>s</em></p></td>
+<td><p>Move Left Paddle Down</p></td>
+</tr>
+<tr class="row-even"><td><p><em>k</em></p></td>
+<td><p>Move Right Paddle Down</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>i</em></p></td>
+<td><p>Move Right Paddle Up</p></td>
+</tr>
+<tr class="row-even"><td><p><em>d</em></p></td>
+<td><p>Increase Left Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>a</em></p></td>
+<td><p>Decrease Left Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-even"><td><p><em>l</em></p></td>
+<td><p>Increase Right Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>j</em></p></td>
+<td><p>Decrease Right Paddle’s Rotation</p></td>
+</tr>
+<tr class="row-even"><td><p><em>UP</em></p></td>
+<td><p>Move the camera up, moving the objects down</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>DOWN</em></p></td>
+<td><p>Move the camera down, moving the objects up</p></td>
+</tr>
+<tr class="row-even"><td><p><em>LEFT</em></p></td>
+<td><p>Move the camera left, moving the objects right</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>RIGHT</em></p></td>
+<td><p>Move the camera right, moving the objects left</p></td>
+</tr>
+<tr class="row-even"><td><p><em>q</em></p></td>
+<td><p>Rotate the square around it’s center</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>e</em></p></td>
+<td><p>Rotate the square around paddle 1’s center</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="o">-------------------------------</span> <span class="n">far</span> <span class="n">z</span>
+       \              <span class="o">|</span>              <span class="o">/</span>
+        \             <span class="o">|</span>             <span class="o">/</span>
+         \ <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="o">*----|</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>       <span class="o">/</span>
+          \      <span class="o">|</span>    <span class="o">|</span>           <span class="o">/</span>
+           \     <span class="o">|</span>    <span class="o">|</span>          <span class="o">/</span>
+            \    <span class="o">|</span>    <span class="o">|</span>         <span class="o">/</span>
+             \   <span class="o">|</span>    <span class="o">|</span>        <span class="o">/</span>
+              \  <span class="o">|</span>    <span class="o">|</span>       <span class="o">/</span>
+               \ <span class="o">|</span>    <span class="o">|</span>      <span class="o">/</span>
+                \<span class="o">---*--------</span> <span class="n">near</span> <span class="n">z</span>
+                 <span class="o">|</span>    <span class="o">|</span>    <span class="o">/</span>
+                 <span class="o">|</span>\   <span class="o">|</span>   <span class="o">/</span>
+                 <span class="o">|</span> \  <span class="o">|</span>  <span class="o">/</span>
+                 <span class="o">|</span>  \ <span class="o">|</span> <span class="o">/</span>
+                 <span class="o">|</span>   \<span class="o">|/</span>
+<span class="o">-----------------*----*-</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-------------------</span>
+                <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If we draw a straight line between (x,z) and (0,0), we will have a right triangle
+with vertices (0,0), (0,z), and (x,z).</p>
+<p>There also will be a similar right triangle with vertices (0,0), (0,nearZ), and
+whatever point the line above intersects the line at z=nearZ.  Let’s call that point
+(projX, nearZ)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">because</span> <span class="n">right</span> <span class="n">angle</span> <span class="ow">and</span> <span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">=</span> <span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">/</span> <span class="n">z</span> <span class="o">=</span> <span class="n">projX</span> <span class="o">/</span> <span class="n">nearZ</span>
+<span class="n">projX</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">z</span> <span class="o">*</span> <span class="n">nearZ</span>
+
+<span class="n">So</span> <span class="n">use</span> <span class="n">projX</span> <span class="k">as</span> <span class="n">the</span> <span class="n">transformed</span> <span class="n">x</span> <span class="n">value</span><span class="p">,</span> <span class="ow">and</span> <span class="n">keep</span> <span class="n">the</span> <span class="n">distance</span> <span class="n">z</span><span class="o">.</span>
+
+                       <span class="o">-----------</span> <span class="n">far</span> <span class="n">z</span>
+                       <span class="o">|</span>          <span class="o">|</span>
+                       <span class="o">|</span>          <span class="o">|</span>
+        <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">z</span> <span class="o">*</span> <span class="n">nearZ</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="o">*</span>       <span class="o">|</span>   <span class="n">non</span><span class="o">-</span><span class="n">linear</span> <span class="o">--</span> <span class="n">the</span> <span class="n">transformation</span> <span class="n">of</span> <span class="n">x</span> <span class="n">depends</span> <span class="n">on</span> <span class="n">its</span> <span class="n">z</span> <span class="n">value</span>
+                       <span class="o">|</span>          <span class="o">|</span>
+                       <span class="o">|</span>          <span class="o">|</span>
+                       <span class="o">|</span>          <span class="o">|</span>
+                       <span class="o">|</span>          <span class="o">|</span>
+                       <span class="o">|</span>          <span class="o">|</span>
+                       <span class="o">|</span>          <span class="o">|</span>
+                       <span class="o">|</span>          <span class="o">|</span>
+                       <span class="o">|</span>          <span class="o">|</span>
+                       <span class="o">------------</span> <span class="n">near</span> <span class="n">z</span>
+                       \    <span class="o">|</span>    <span class="o">/</span>
+                        \   <span class="o">|</span>   <span class="o">/</span>
+                         \  <span class="o">|</span>  <span class="o">/</span>
+                          \ <span class="o">|</span> <span class="o">/</span>
+                           \<span class="o">|/</span>
+      <span class="o">----------------------*-</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-------------------</span>
+</pre></div>
+</div>
+<p>Top calculation based off of vertical field of view</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                    <span class="o">/*</span> <span class="n">top</span>
+                   <span class="o">/</span> <span class="o">|</span>
+                  <span class="o">/</span>  <span class="o">|</span>
+                 <span class="o">/</span>   <span class="o">|</span>
+                <span class="o">/</span>    <span class="o">|</span>
+               <span class="o">/</span>     <span class="o">|</span>
+              <span class="o">/</span>      <span class="o">|</span>
+             <span class="o">/</span>       <span class="o">|</span>
+            <span class="o">/</span>        <span class="o">|</span>
+           <span class="o">/</span>         <span class="o">|</span>
+          <span class="o">/</span>          <span class="o">|</span>
+         <span class="o">/</span>           <span class="o">|</span>
+        <span class="o">/</span>            <span class="o">|</span>
+ <span class="n">origin</span><span class="o">/</span>             <span class="o">|</span>
+      <span class="o">/</span> <span class="n">fov</span><span class="o">/</span><span class="mi">2</span>        <span class="o">|</span>
+<span class="n">z</span><span class="o">----*---------------*</span>
+     <span class="o">|</span>\              <span class="o">|-</span><span class="n">nearZ</span>
+     <span class="o">|</span> \             <span class="o">|</span>
+     <span class="o">|</span>  \            <span class="o">|</span>
+     <span class="n">x</span>   \           <span class="o">|</span>
+          \          <span class="o">|</span>
+           \         <span class="o">|</span>
+            \        <span class="o">|</span>
+             \       <span class="o">|</span>
+              \      <span class="o">|</span>
+               \     <span class="o">|</span>
+                \    <span class="o">|</span>
+                 \   <span class="o">|</span>
+                  \  <span class="o">|</span>
+                   \ <span class="o">|</span>
+                    \<span class="o">|</span>
+</pre></div>
+</div>
+<p>Right calculation based off of Top and aspect ration</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                        <span class="n">top</span>
+<span class="o">-------------------------------------------------------</span>
+<span class="o">|</span>                                                     <span class="o">|</span>
+<span class="o">|</span>                         <span class="n">y</span>                           <span class="o">|</span>
+<span class="o">|</span>                         <span class="o">|</span>                           <span class="o">|</span>
+<span class="o">|</span>                         <span class="o">|</span>                           <span class="o">|</span>
+<span class="o">|</span>                         <span class="o">*----</span><span class="n">x</span>                      <span class="o">|</span> <span class="n">right</span> <span class="o">=</span>
+<span class="o">|</span>                            <span class="n">origin</span>                   <span class="o">|</span>   <span class="n">top</span> <span class="o">*</span> <span class="n">aspectRatio</span>
+<span class="o">|</span>                                                     <span class="o">|</span>
+<span class="o">|</span>                                                     <span class="o">|</span>  <span class="n">aspect</span> <span class="n">ratio</span> <span class="n">should</span> <span class="n">be</span> <span class="n">the</span> <span class="n">viewport</span><span class="s1">&#39;s</span>
+<span class="o">|</span>                                                     <span class="o">|</span>    <span class="n">width</span><span class="o">/</span><span class="n">height</span><span class="p">,</span> <span class="ow">not</span> <span class="n">necessarily</span> <span class="n">the</span>
+<span class="o">-------------------------------------------------------</span>    <span class="n">window</span><span class="s1">&#39;s</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Vertex</span><span class="p">:</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">perspective</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">,</span>
+                    <span class="n">fov</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                    <span class="n">aspectRatio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                    <span class="n">nearZ</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                    <span class="n">farZ</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="c1"># fov, field of view, is angle of y</span>
+        <span class="c1"># aspectRatio is xwidth / ywidth</span>
+
+        <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="n">nearZ</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">fov</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="n">right</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">top</span> <span class="o">*</span> <span class="n">aspectRatio</span>
+
+        <span class="n">scaled_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">nearZ</span>
+        <span class="n">scaled_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">nearZ</span>
+        <span class="n">retangular_prism</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">scaled_x</span><span class="p">,</span>
+                                          <span class="n">scaled_y</span><span class="p">,</span>
+                                          <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">retangular_prism</span><span class="o">.</span><span class="n">ortho</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="n">right</span><span class="p">,</span>
+                                      <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="p">,</span>
+                                      <span class="n">bottom</span><span class="o">=-</span><span class="n">top</span><span class="p">,</span>
+                                      <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+                                      <span class="n">near</span><span class="o">=</span><span class="n">nearZ</span><span class="p">,</span>
+                                      <span class="n">far</span><span class="o">=</span><span class="n">farZ</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">camera_space_to_ndc_space_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vertex</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">(</span><span class="n">fov</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span>
+                                <span class="n">aspectRatio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                                <span class="n">nearZ</span><span class="o">=-</span><span class="mf">.1</span><span class="p">,</span>
+                                <span class="n">farZ</span><span class="o">=-</span><span class="mf">1000.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># draw paddle 1</span>
+    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
+                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                    <span class="n">ty</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                                                    <span class="n">tz</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="c1"># world_space: Vertex = camera_space.rotate_x(camera.rot_x) \</span>
+        <span class="c1">#                                   .rotate_y(camera.rot_y) \</span>
+        <span class="c1">#                                   .translate(tx=camera.position_worldspace.x,</span>
+        <span class="c1">#                                              ty=camera.position_worldspace.y,</span>
+        <span class="c1">#                                              tz=camera.position_worldspace.z)</span>
+        <span class="n">camera_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tx</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                                                     <span class="n">ty</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                                                     <span class="n">tz</span><span class="o">=-</span><span class="n">camera</span><span class="o">.</span><span class="n">position_worldspace</span><span class="o">.</span><span class="n">z</span><span class="p">)</span> \
+                                          <span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span> \
+                                          <span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">)</span>
+        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">camera_space</span><span class="o">.</span><span class="n">camera_space_to_ndc_space_fn</span><span class="p">()</span>
+        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ch16.html" class="btn btn-neutral float-left" title="Moving Camera in 3D Space - Demo 16" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ch18.html" class="btn btn-neutral float-right" title="Lambda Stack - Demo 18" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2024, William Emerison Six.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
