@@ -229,22 +229,28 @@ buffer is changed to be less than or equal to.</p>
 </section>
 <section id="code">
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">glEnable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">)</span>
-<span class="n">glClearDepth</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">glDepthFunc</span><span class="p">(</span><span class="n">GL_LEQUAL</span><span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">84</span><span class="n">glEnable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">)</span>
+<span class="linenos">85</span><span class="n">glClearDepth</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">86</span><span class="n">glDepthFunc</span><span class="p">(</span><span class="n">GL_LEQUAL</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 <section id="the-event-loop">
 <h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
 <p>Set the model, view, and projection matrix to the identity
 matrix.  This just means that the functions (currently)
 will not transform data.
-In univariate terms, f(x) = x</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
-    <span class="n">glLoadIdentity</span><span class="p">()</span>
-    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
-    <span class="n">glLoadIdentity</span><span class="p">()</span>
+In uni-variate terms, f(x) = x</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">254</span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
+<span class="linenos">255</span>    <span class="n">glLoadIdentity</span><span class="p">()</span>
+<span class="linenos">256</span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
+<span class="linenos">257</span>    <span class="n">glLoadIdentity</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 <p>change the projection matrix to convert the frustum
 to clip space
@@ -252,20 +258,23 @@ set the projection matrix to be perspective.  Since
 the viewport is always square, set the aspect ratio to be 1.0.
 We are now going to clip space instead of to NDC, which we be discussed
 in the next chapter.</p>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id5">
 <img alt="Demo 11" src="images/perspective.png" />
 <figcaption>
-<p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
-    <span class="n">gluPerspective</span><span class="p">(</span>
-        <span class="mf">45.0</span><span class="p">,</span>  <span class="c1"># fov</span>
-        <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># aspectRation</span>
-        <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># nearZ</span>
-        <span class="mf">1000.0</span><span class="p">,</span>  <span class="c1"># farZ</span>
-    <span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">262</span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
+<span class="linenos">263</span>    <span class="n">gluPerspective</span><span class="p">(</span>
+<span class="linenos">264</span>        <span class="mf">45.0</span><span class="p">,</span>  <span class="c1"># fov</span>
+<span class="linenos">265</span>        <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># aspectRation</span>
+<span class="linenos">266</span>        <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># nearZ</span>
+<span class="linenos">267</span>        <span class="mf">1000.0</span><span class="p">,</span>  <span class="c1"># farZ</span>
+<span class="linenos">268</span>    <span class="p">)</span>
 </pre></div>
+</div>
 </div>
 <p>“glMatrixMode” tells the computer which matrix stack should be the active one,
 against which subsequent matrix operations which affect.  In this case, we set
@@ -283,12 +292,15 @@ the following sequence of transformations.</p>
 <p>Therefore, to take the object’s world space coordinates
 and transform them into camera space, we need to
 do the inverse operations to the view stack.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
-
-    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-    <span class="n">glTranslate</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">273</span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
+<span class="linenos">274</span>
+<span class="linenos">275</span>    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">276</span>    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">277</span>    <span class="n">glTranslate</span><span class="p">(</span><span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 <p>First thing we did was set the current matrix to be the model-view matrix, instead
 of the projection matrix.  Most of our work will be with the model-view matrix,
@@ -324,8 +336,11 @@ Since we now have to draw paddle 1, the square, and paddle 2,
 save onto the current model-view stack, to hold onto world space, so that after
 we draw paddle 1 and the square, we can restore the world space, so that paddle 2 can be drawn relative
 to it.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glPushMatrix</span><span class="p">()</span>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">290</span>    <span class="n">glPushMatrix</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 </section>
 <section id="draw-paddle-1">
@@ -337,20 +352,23 @@ the current space.</p>
 <p>glVertex data is specified in modelspace coordinates,
 but since we loaded the projection matrix and the modelview
 matrix into OpenGL, glVertex3f will apply those transformations for us <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>!</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-
-    <span class="n">glTranslate</span><span class="p">(</span>
-        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-        <span class="mf">0.0</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-
-    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">model_space</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">glEnd</span><span class="p">()</span>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">294</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">295</span>
+<span class="linenos">296</span>    <span class="n">glTranslate</span><span class="p">(</span>
+<span class="linenos">297</span>        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">298</span>        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">299</span>        <span class="mf">0.0</span><span class="p">,</span>
+<span class="linenos">300</span>    <span class="p">)</span>
+<span class="linenos">301</span>    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">302</span>
+<span class="linenos">303</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">304</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">305</span>        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">model_space</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="linenos">306</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 <section id="draw-the-square-relative-to-paddle-1">
 <h4>draw the square relative to paddle 1<a class="headerlink" href="#draw-the-square-relative-to-paddle-1" title="Permalink to this heading">¶</a></h4>
@@ -358,30 +376,33 @@ matrix into OpenGL, glVertex3f will apply those transformations for us <a class=
 just add the transformations relative to it
 before paddle 2 is drawn, we need to remove
 the square’s 3 model_space transformations</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># draw the square</span>
-    <span class="c1"># given that no nodes are defined relative to the square, we do not need</span>
-    <span class="c1"># to push a marix.  Here we will do so anyways, just to clarify what is</span>
-    <span class="c1"># happening</span>
-    <span class="n">glPushMatrix</span><span class="p">()</span>
-    <span class="c1"># the current model matrix will be copied and then the copy will be</span>
-    <span class="c1"># pushed onto the model stack</span>
-    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-
-    <span class="c1"># these functions change the current model matrix</span>
-    <span class="n">glTranslate</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
-    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">rotation_around_paddle1</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-    <span class="n">glTranslate</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">square_rotation</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-
-    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">square_vertices</span><span class="p">:</span>
-        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">model_space</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">glEnd</span><span class="p">()</span>
-    <span class="n">glPopMatrix</span><span class="p">()</span>
-    <span class="c1"># the mode matrix that was on the model stack before the square</span>
-    <span class="c1"># was drawn will be restored</span>
-    <span class="n">glPopMatrix</span><span class="p">()</span>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">312</span>    <span class="c1"># draw the square</span>
+<span class="linenos">313</span>    <span class="c1"># given that no nodes are defined relative to the square, we do not need</span>
+<span class="linenos">314</span>    <span class="c1"># to push a marix.  Here we will do so anyways, just to clarify what is</span>
+<span class="linenos">315</span>    <span class="c1"># happening</span>
+<span class="linenos">316</span>    <span class="n">glPushMatrix</span><span class="p">()</span>
+<span class="linenos">317</span>    <span class="c1"># the current model matrix will be copied and then the copy will be</span>
+<span class="linenos">318</span>    <span class="c1"># pushed onto the model stack</span>
+<span class="linenos">319</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">320</span>
+<span class="linenos">321</span>    <span class="c1"># these functions change the current model matrix</span>
+<span class="linenos">322</span>    <span class="n">glTranslate</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">323</span>    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">rotation_around_paddle1</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">324</span>    <span class="n">glTranslate</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">325</span>    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">square_rotation</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">326</span>
+<span class="linenos">327</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">328</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">square_vertices</span><span class="p">:</span>
+<span class="linenos">329</span>        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">model_space</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="linenos">330</span>    <span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos">331</span>    <span class="n">glPopMatrix</span><span class="p">()</span>
+<span class="linenos">332</span>    <span class="c1"># the mode matrix that was on the model stack before the square</span>
+<span class="linenos">333</span>    <span class="c1"># was drawn will be restored</span>
+<span class="linenos">334</span>    <span class="n">glPopMatrix</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 </section>
 </section>
@@ -390,24 +411,27 @@ the square’s 3 model_space transformations</p>
 <p>No need to push matrix here, as this is the last object that
 we are drawing, and upon the next iteration of the event loop,
 all 3 matrices will be reset to the identity</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># draw paddle 2.  Nothing is defined relative to paddle to, so we don&#39;t</span>
-    <span class="c1"># need to push matrix, and on the next iteration of the event loop,</span>
-    <span class="c1"># all matricies will be cleared to identity, so who cares if we</span>
-    <span class="c1"># mutate the values for now.</span>
-    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-
-    <span class="n">glTranslate</span><span class="p">(</span>
-        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-        <span class="mf">0.0</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-
-    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">model_space</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">glEnd</span><span class="p">()</span>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">338</span>    <span class="c1"># draw paddle 2.  Nothing is defined relative to paddle to, so we don&#39;t</span>
+<span class="linenos">339</span>    <span class="c1"># need to push matrix, and on the next iteration of the event loop,</span>
+<span class="linenos">340</span>    <span class="c1"># all matricies will be cleared to identity, so who cares if we</span>
+<span class="linenos">341</span>    <span class="c1"># mutate the values for now.</span>
+<span class="linenos">342</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">343</span>
+<span class="linenos">344</span>    <span class="n">glTranslate</span><span class="p">(</span>
+<span class="linenos">345</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">346</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">347</span>        <span class="mf">0.0</span><span class="p">,</span>
+<span class="linenos">348</span>    <span class="p">)</span>
+<span class="linenos">349</span>    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">350</span>
+<span class="linenos">351</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">352</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">353</span>        <span class="n">glVertex3f</span><span class="p">(</span><span class="n">model_space</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">model_space</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="linenos">354</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id2" role="note">
@@ -423,7 +447,7 @@ NDC).  From this point of view, there are no relative coordinate systems, just n
 in and numbers out.  So then what do glBegin and glEnd do?  This will
 be a subject for after the midterm, but the 4 vertices will be converted to screen space,
 given the matrices, and when “glEnd” is called, the graphics driver will need to determine
-what pixels are within the quadriteral or not.  For the fragments within the quadrilateral,
+what pixels are within the quadrilateral or not.  For the fragments within the quadrilateral,
 the driver will also need to know the color of the vertex.  So glVertex is doing a lot behind
 the scenes, grabbing the modelview and the projection matrices from the top of the stack,
 grabbing the current color, set by “glColor3f”.</p>

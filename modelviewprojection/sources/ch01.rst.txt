@@ -161,7 +161,9 @@ Import Python modules, which are Python programmer's main form of libraries.
    :language: python
    :start-after: doc-region-begin 20134134fb054ac6764edfb4764935b86f20a795
    :end-before: doc-region-end 20134134fb054ac6764edfb4764935b86f20a795
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 *  The "sys" module is imported.  To call functions from this module, the syntax is sys.function
 
@@ -170,7 +172,9 @@ Import Python modules, which are Python programmer's main form of libraries.
    :language: python
    :start-after: doc-region-begin 6901922753dbf8df496fd46ae4a0eeb4e6243ef4
    :end-before: doc-region-end 6901922753dbf8df496fd46ae4a0eeb4e6243ef4
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 
 * GL is a submodule of the OpenGL module, and we are directly importing a
@@ -183,7 +187,9 @@ Import Python modules, which are Python programmer's main form of libraries.
    :language: python
    :start-after: doc-region-begin 4b5a486083da608751701fa7e42e37bbc4cfd06e
    :end-before: doc-region-end 4b5a486083da608751701fa7e42e37bbc4cfd06e
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 
 * GLFW is a library which allows us to create windows, get input both from a
@@ -230,7 +236,9 @@ Initialize GLFW.
    :language: python
    :start-after: doc-region-begin 0c30d0c1c7c793e097bcfb46208f14998d77dd0a
    :end-before: doc-region-end 0c30d0c1c7c793e097bcfb46208f14998d77dd0a
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 
 Initialize GLFW.  If initialization fails, the program should terminate.
@@ -249,7 +257,9 @@ For this demo, we use OpenGL 1.4.  By the end of this book, we will be using Ope
    :language: python
    :start-after: doc-region-begin cbb5da55f24c88b41c195f36bbbf99969e95765c
    :end-before: doc-region-end cbb5da55f24c88b41c195f36bbbf99969e95765c
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 Create a Window
 &&&&&&&&&&&&&&&
@@ -259,14 +269,18 @@ Create a Window
    :language: python
    :start-after: doc-region-begin d1e099847a03149e01d2ec4dc42bb261524b2a95
    :end-before: doc-region-end d1e099847a03149e01d2ec4dc42bb261524b2a95
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 
 .. literalinclude:: ../../src/demo01/demo.py
    :language: python
    :start-after: doc-region-begin a9948cba6a31fd1774c1a0e1ae634bbad8c6c7f3
    :end-before: doc-region-end a9948cba6a31fd1774c1a0e1ae634bbad8c6c7f3
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 
 *  If GLFW cannot open the window, quit.  Unlike MC Hammer, we are quite legit, yet still
@@ -277,7 +291,9 @@ Create a Window
    :language: python
    :start-after: doc-region-begin 7ddbe862d3ff7b6ee489ac7ac565b8a5e72f7f9f
    :end-before: doc-region-end 7ddbe862d3ff7b6ee489ac7ac565b8a5e72f7f9f
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 
 
@@ -290,7 +306,9 @@ Create a Window
    :language: python
    :start-after: doc-region-begin 63277c9f3b6e8071722b93baf8e77bb8ee6c677d
    :end-before: doc-region-end 63277c9f3b6e8071722b93baf8e77bb8ee6c677d
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 * Define an register a key handler.
 
@@ -320,11 +338,13 @@ and applied later zero, 1, or more times.
    :language: python
    :start-after: doc-region-begin 788fae9aeb2ebe9e911e2c3f6399f1b51a0bd956
    :end-before: doc-region-end 788fae9aeb2ebe9e911e2c3f6399f1b51a0bd956
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 * Before a frame is drawn, it is first turned into a blank slate,
   where the color of each pixel is set to some value representing a
-  color.  We are not clearing the framebuffer right now, but setting what
+  color.  We are not clearing the frame-buffer right now, but setting what
   color will be used for a later clear.  Calling "glClearColor" "0,0,0,1", means black "0,0,0", without
   transparency (the "1").
 
@@ -333,7 +353,9 @@ and applied later zero, 1, or more times.
    :language: python
    :start-after: doc-region-begin a3fdb44a76cc8a6b843c780a68e00366176eadab
    :end-before: doc-region-end a3fdb44a76cc8a6b843c780a68e00366176eadab
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 * Don't worry about the 4 lines here.  Although they are necessary,
   we will cover them in depth later.  After all, this
@@ -349,7 +371,7 @@ rendered in quick succession, provide the illusion of motion.
 Interactive computer graphics are rendered the same way,
 one "frame" at a time.
 
-Render a frame, flush the complete framebuffer to the monitor.
+Render a frame, flush the complete frame-buffer to the monitor.
 Repeat indefinitely
 until the user closes the window, or the program needs
 to terminate.
@@ -359,13 +381,15 @@ to terminate.
    :language: python
    :start-after: doc-region-begin b203706b4d71815e8490a9a65ff9fe1fe1db38cd
    :end-before: doc-region-end b203706b4d71815e8490a9a65ff9fe1fe1db38cd
-
+   :linenos:
+   :lineno-match:
+   :caption: src/demo01/demo.py
 
 * Poll the operating system for any events, such as mouse movements,
   keyboard input, etc.  This does not handle them, just registers
   them as having happened.
 
-* Get the size of the framebuffer.  The *framebuffer*
+* Get the size of the frame-buffer.  The *frame-buffer*
   contains data representing all the pixels in a complete video frame.
   Python
   allows the returning of multiple values
@@ -373,13 +397,13 @@ to terminate.
   to the variables this way is a form of "destructuring"
 
 * Tell OpenGL that we wish to draw in the entire
-  framebuffer, from the bottom left corner to the upper
+  frame-buffer, from the bottom left corner to the upper
   right corner.
 
-* Make the framebuffer a blank slate by setting all of the pixels
+* Make the frame-buffer a blank slate by setting all of the pixels
   to have the same color.
   The color of each pixel will be the clear color.
-  If we hadn't cleared the framebuffer, then frame number n+1 would be drawing
+  If we hadn't cleared the frame-buffer, then frame number n+1 would be drawing
   on top of whatever was drawn on frame number n.
   Programming in OpenGL is a bit different than normal programming in
   a normal language,
@@ -389,7 +413,7 @@ to terminate.
   in which they are evaluated, and the sequence of OpenGL calls
   to complete a task.
 
-* We have colored every pixel to be black, so flush the framebuffer to
+* We have colored every pixel to be black, so flush the frame-buffer to
   the monitor, and swap the back and front buffers.
 
 Exercise
@@ -417,7 +441,7 @@ OpenGL has two *frame-buffers* (regions of memory which will eventually
 contain the full data for a frame),
 only one of which is "active", or writable, at a given time.
 "glfwSwapBuffers" initiates the flushing
-the current buffer, and which switches the current writable framebuffer to the
+the current buffer, and which switches the current writable frame-buffer to the
 other one.
 
 
@@ -464,9 +488,9 @@ closes the window, and says to himself, "why did I buy Doom 3"?
 Questions
 ^^^^^^^^^
 
-* In the following ASCII-art diagram of the framebuffer,
+* In the following ASCII-art diagram of the frame-buffer,
   where 'b' represents black, 'R' represents red, and "G"
-  represents green, what is width and height of the framebuffer?
+  represents green, what is width and height of the frame-buffer?
 
 ::
 
@@ -484,10 +508,10 @@ Questions
     bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 
 
-* In the above ASCII-art diagram of the framebuffer, where 'b' represents black, 'R' represents red, and "G" represents green,
+* In the above ASCII-art diagram of the frame-buffer, where 'b' represents black, 'R' represents red, and "G" represents green,
   what is the color at pixel (1,1)?
 
-* In the below ASCII-art diagram of the framebuffer, where 'b' represents black, 'R' represents red, and "G" represents green, what is the color at pixel (2,3)? At (36,2)?
+* In the below ASCII-art diagram of the frame-buffer, where 'b' represents black, 'R' represents red, and "G" represents green, what is the color at pixel (2,3)? At (36,2)?
 
 ::
 

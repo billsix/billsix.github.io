@@ -71,7 +71,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#scale-camera-space-y-by-camera-space-z">Scale Camera-space y by Camera-space z</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#translate-rectangular-prism-s-center-to-center">Translate Rectangular Prism’s Center to Center</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#scale-by-inverse-of-the-dimensions-of-the-rectangular-prism">Scale by inverse of the dimensions of the Rectangular Prism</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#premultiply-the-matricies">Premultiply the matricies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pre-multiply-the-matricies">Pre-multiply the matricies</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#clip-space">Clip Space</a><ul>
@@ -239,8 +239,8 @@
 <img alt="Frustum 6" src="images/frustum6.png" />
 </figure>
 </section>
-<section id="premultiply-the-matricies">
-<h4>Premultiply the matricies<a class="headerlink" href="#premultiply-the-matricies" title="Permalink to this heading">¶</a></h4>
+<section id="pre-multiply-the-matricies">
+<h4>Pre-multiply the matricies<a class="headerlink" href="#pre-multiply-the-matricies" title="Permalink to this heading">¶</a></h4>
 <div class="math">
 <p><img src="images/math/19bceacdfc2f2f2259ea57aa8a75376e9f9c0fad.svg" alt="\begin{bmatrix}
   {x_{ndc}} \\
@@ -366,7 +366,7 @@ and do the inverse of the equation above</p>
                          {w} \\
                \end{bmatrix}"/></p>
 </div><p>Since we want to get the <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> relative to camera space out of
-the premultiplie matrix above, we choose
+the premultiplied matrix above, we choose
 the following</p>
 <div class="math">
 <p><img src="images/math/aed1a364b9532a807a4286223adc6cad1c26e510.svg" alt="\vec{f}_{ndc}^{clip}(\begin{bmatrix}
@@ -514,7 +514,7 @@ goes into the monitor.</p>
 <p>We successfully moved <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of the upper left quadrant, but in doing so, we moved it down
 to the lower right. Can we get rid of it there too?  Turn out, we can.</p>
 <p>Since the vector multiplied by this matrix will provide <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> as it’s third element,
-we can put <img class="math" src="images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/> into the <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/> by taking the explicit vesion of it out of the fourth column,
+we can put <img class="math" src="images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/> into the <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/> by taking the explicit version of it out of the fourth column,
 and put <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/> into the third column’s <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/>.</p>
 <div class="math">
 <p><img src="images/math/ca2f255e29326d389ad270323b2a50444d18a798.svg" alt="\begin{bmatrix}
@@ -578,7 +578,7 @@ then <img class="math" src="images/math/e0c93f26330700c89ca373bac1e13978b9df17ac
 </ul>
 <p>If we can make a function, that like the third row of the matrix, has those properties, we can replace the
 third row and remove camera space’s z, <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/>, from the matrix.  This is desirable because, if it were to exist,
-would would not need per vertex to create a custom pespective matrix.</p>
+would would not need per vertex to create a custom perspective matrix.</p>
 <p>Towards that, let’s look at these jibronies.</p>
 <div class="math">
 <p><img src="images/math/a2b118a94c3bea02ab018fecba1ed17d9e59f30f.svg" alt="\vec{f}_{c}^{clip}(\begin{bmatrix}
