@@ -152,7 +152,7 @@ below.</p>
 <p>To set the color, we will use “glColor3f”.
 “glColor3f” sets a global variable, which makes it the color to be used
 for the subsequently-drawn graphical shape(s).  Given that the background will be black,
-lets make the first paddle purple, and a second paddle red.</p>
+lets make the first paddle purple, and a second paddle yellow.</p>
 <p>To specify the corners of the rectangle,
 “glBegin(GL_QUADS)” tells OpenGL that we will soon specify 4 <em>vertices</em>,
 (i.e. points) which define the
@@ -188,7 +188,7 @@ the begun quadrilateral.</p>
 <h2>Draw Paddle 2<a class="headerlink" href="#draw-paddle-2" title="Permalink to this heading">¶</a></h2>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">src/demo02/demo.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">87</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">87</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 <span class="linenos">88</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
 <span class="linenos">89</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
 <span class="linenos">90</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
@@ -244,7 +244,7 @@ which are inside of the quadrilateral.</p>
 will run correctly on either monitor, in full-screen mode.  If a graphics programmer
 had to explicitly set the color of individual pixels using the pixel’s coordinates, the the programmer would have to
 program using “screen-space” (Any <a class="reference external" href="https://en.wikipedia.org/wiki/Space_(mathematics)">space</a> means a system of numbers which you’re using.
-Screen-space means you’re specifically using pixel coordinates, i.e, set pixel (5,10) to be red).</p>
+Screen-space means you’re specifically using pixel coordinates, i.e, set pixel (5,10) to be yellow).</p>
 <p>What looks alright in screen-space on a large monitor…</p>
 <figure class="align-center" id="id7">
 <img alt="Screenspace" src="images/screenspace2.png" />

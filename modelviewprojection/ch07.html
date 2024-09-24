@@ -364,15 +364,14 @@ around the paddle’s center.</p>
 <p><img src="images/math/53e93eeef83758a560eb4eb7b0f95283d7e45f74.svg" alt="\vec{f}_{w}^{ndc}"/></p>
 </div><div class="literal-block-wrapper docutils container" id="id13">
 <div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">245</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
-<span class="linenos">246</span>                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">245</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id14">
 <div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">250</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">251</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">249</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">250</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -384,8 +383,8 @@ we should translate to its position, and then rotate
 around the paddle’s center.</p>
 <div class="literal-block-wrapper docutils container" id="id15">
 <div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">257</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">258</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">256</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">257</span>    <span class="k">for</span> <span class="n">model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 </pre></div>
 </div>
 </div>
@@ -393,8 +392,8 @@ around the paddle’s center.</p>
 <p><img src="images/math/3b7c27ea5fe5ffe8beb8b1e7da5989efccb2da92.svg" alt="\vec{f}_{p2}^{w}"/></p>
 </div><div class="literal-block-wrapper docutils container" id="id16">
 <div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">262</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">)</span> \
-<span class="linenos">263</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">261</span>        <span class="n">world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">)</span> \
+<span class="linenos">262</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -402,15 +401,14 @@ around the paddle’s center.</p>
 <p><img src="images/math/53e93eeef83758a560eb4eb7b0f95283d7e45f74.svg" alt="\vec{f}_{w}^{ndc}"/></p>
 </div><div class="literal-block-wrapper docutils container" id="id17">
 <div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">268</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
-<span class="linenos">269</span>                                              <span class="n">scale_y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">267</span>        <span class="n">ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id18">
 <div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">273</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">274</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">271</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">272</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
