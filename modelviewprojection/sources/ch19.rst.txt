@@ -74,7 +74,7 @@ destroying the relative coordinate system of the parent node.
 
 In mvpVisualization/pushmatrix/pushmatrix.py, the grayed out
 coordinate system is one that has been pushed onto the stack,
-and it regains it's color when it is reactivated by "glPopMatrix"
+and it regains its color when it is reactivated by "glPopMatrix"
 
 
 
@@ -107,7 +107,7 @@ Keyboard Input  Action
 *LEFT*          Move the camera left, moving the objects right
 *RIGHT*         Move the camera right, moving the objects left
 
-*q*             Rotate the square around it's center
+*q*             Rotate the square around its center
 *e*             Rotate the square around paddle 1's center
 ==============  ==============================================
 
@@ -119,7 +119,7 @@ Description
 First thing to note is that we are now using OpenGL 2.1's official transformation
 procedures, and in the projection transformation, they flip the z axis, making
 it a left hand coordinate system.  The reason for this is long, and I
-have begun discusses in the "Standard Perspective Matrix" section, but it's an
+have begun discusses in the "Standard Perspective Matrix" section, but it is an
 incomplete section for now.
 But for now, all it means that we have to change how the depth test
 will be configured, as after the projection transformation, the far z
@@ -135,8 +135,8 @@ Code
 
 .. literalinclude:: ../../src/demo19/demo.py
    :language: python
-   :start-after: doc-region-begin d901e3a3a161af321d120efcf3945187580c48c9
-   :end-before: doc-region-end d901e3a3a161af321d120efcf3945187580c48c9
+   :start-after: doc-region-begin enable depth test for left hand system
+   :end-before: doc-region-end enable depth test for left hand system
    :linenos:
    :lineno-match:
    :caption: src/demo19/demo.py
@@ -155,8 +155,8 @@ In uni-variate terms, f(x) = x
 
 .. literalinclude:: ../../src/demo19/demo.py
    :language: python
-   :start-after: doc-region-begin c0820e6fdb329fb2e98863f0866b23d4e8329dde
-   :end-before: doc-region-end c0820e6fdb329fb2e98863f0866b23d4e8329dde
+   :start-after: doc-region-begin load identity
+   :end-before: doc-region-end load identity
    :linenos:
    :lineno-match:
    :caption: src/demo19/demo.py
@@ -179,8 +179,8 @@ in the next chapter.
 
 .. literalinclude:: ../../src/demo19/demo.py
    :language: python
-   :start-after: doc-region-begin 9ea567ab2aefadcd20e817f9bff4d13cb9dd56dc
-   :end-before: doc-region-end 9ea567ab2aefadcd20e817f9bff4d13cb9dd56dc
+   :start-after: doc-region-begin perspective projection
+   :end-before: doc-region-end perspective projection
    :linenos:
    :lineno-match:
    :caption: src/demo19/demo.py
@@ -189,7 +189,7 @@ in the next chapter.
 against which subsequent matrix operations which affect.  In this case, we set
 the current matrix stack to be the projection one.  We then call "gluPerspective"
 to set the projection transformation, which we covered in previous sections,
-and we will ignore the implementation of it; it's now a black box.
+and we will ignore the implementation of it; it is now a black box.
 
 Now onto camera space!
 
@@ -211,8 +211,8 @@ do the inverse operations to the view stack.
 
 .. literalinclude:: ../../src/demo19/demo.py
    :language: python
-   :start-after: doc-region-begin bfe75259546e2177c77becae6c668c2dfc785410
-   :end-before: doc-region-end bfe75259546e2177c77becae6c668c2dfc785410
+   :start-after: doc-region-begin begin modelview transformations
+   :end-before: doc-region-end begin modelview transformations
    :linenos:
    :lineno-match:
    :caption: src/demo19/demo.py
@@ -265,8 +265,8 @@ to it.
 
 .. literalinclude:: ../../src/demo19/demo.py
    :language: python
-   :start-after: doc-region-begin 1342d0be4337963db469658a7d434fc94965c32a
-   :end-before: doc-region-end 1342d0be4337963db469658a7d434fc94965c32a
+   :start-after: doc-region-begin first push matrix
+   :end-before: doc-region-end first push matrix
    :linenos:
    :lineno-match:
    :caption: src/demo19/demo.py
@@ -287,8 +287,8 @@ matrix into OpenGL, glVertex3f will apply those transformations for us [1]_!
 
 .. literalinclude:: ../../src/demo19/demo.py
    :language: python
-   :start-after: doc-region-begin 62fb018739e5043758a40caf704d4c79cd39f17d
-   :end-before: doc-region-end 62fb018739e5043758a40caf704d4c79cd39f17d
+   :start-after: doc-region-begin draw paddle 1
+   :end-before: doc-region-end draw paddle 1
    :linenos:
    :lineno-match:
    :caption: src/demo19/demo.py
@@ -307,8 +307,8 @@ the square's 3 model_space transformations
 
 .. literalinclude:: ../../src/demo19/demo.py
    :language: python
-   :start-after: doc-region-begin c2745ed5d713d331622335395a5c08d6d15f7de9
-   :end-before: doc-region-end c2745ed5d713d331622335395a5c08d6d15f7de9
+   :start-after: doc-region-begin draw the square
+   :end-before: doc-region-end draw the square
    :linenos:
    :lineno-match:
    :caption: src/demo19/demo.py
@@ -325,8 +325,8 @@ all 3 matrices will be reset to the identity
 
 .. literalinclude:: ../../src/demo19/demo.py
    :language: python
-   :start-after: doc-region-begin 1390df52e4311c23a50fc61a3e197f7c6e8ed593
-   :end-before: doc-region-end 1390df52e4311c23a50fc61a3e197f7c6e8ed593
+   :start-after: doc-region-begin draw paddle 2
+   :end-before: doc-region-end draw paddle 2
    :linenos:
    :lineno-match:
    :caption: src/demo19/demo.py

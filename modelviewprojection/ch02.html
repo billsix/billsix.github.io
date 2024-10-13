@@ -47,22 +47,16 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Draw A Rectangle - Demo 02</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#glfw-opengl-initialization">GLFW/OpenGL Initialization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-event-loop">The Event Loop</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#draw-paddles">Draw Paddles</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#code">Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#glfw-opengl-initialization">GLFW/OpenGL Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-event-loop">The Event Loop</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#draw-paddles">Draw Paddles</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#draw-paddle-1">Draw Paddle 1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#draw-paddle-2">Draw Paddle 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#normalized-device-coordinates">Normalized-Device-Coordinates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#graph-of-spaces">Graph of Spaces</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#introduction-to-cayley-graphs">Introduction to Cayley Graphs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#learning-what-to-ignore">Learning what to ignore</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#graph-of-spaces">Graph of Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exercise">Exercise</a></li>
 </ul>
 </li>
@@ -133,18 +127,28 @@ On Windows, in a command prompt, type “python src\demo02\demo.py”.</p>
 </section>
 <section id="code">
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
+</section>
 <section id="glfw-opengl-initialization">
-<h3>GLFW/OpenGL Initialization<a class="headerlink" href="#glfw-opengl-initialization" title="Permalink to this heading">¶</a></h3>
+<h2>GLFW/OpenGL Initialization<a class="headerlink" href="#glfw-opengl-initialization" title="Permalink to this heading">¶</a></h2>
 <p>The setup code is the same.  Initialize GLFW.  Set the OpenGL version.
 Create the window.  Set a key handler for closing.  Set the background to be black.
 Execute the event/drawing loop.</p>
 </section>
 <section id="the-event-loop">
-<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
+<h2>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h2>
 <p>Within the event loop, demo02/demo.py draws 2 rectangles, as one might see in
 a game of Pong.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">src/demo02/demo.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">70</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
 <section id="draw-paddles">
-<h4>Draw Paddles<a class="headerlink" href="#draw-paddles" title="Permalink to this heading">¶</a></h4>
+<h3>Draw Paddles<a class="headerlink" href="#draw-paddles" title="Permalink to this heading">¶</a></h3>
 <p>A black screen is not particularly interesting, so
 let’s draw something, say, two rectangles.</p>
 <p>We need to figure out what colors to use, and the positions of the rectangles, defined
@@ -161,53 +165,52 @@ quadrilateral.  The vertices will be specified by calling “glVertex2f” 4 tim
 the begun quadrilateral.</p>
 </section>
 </section>
-</section>
 <section id="draw-paddle-1">
 <h2>Draw Paddle 1<a class="headerlink" href="#draw-paddle-1" title="Permalink to this heading">¶</a></h2>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">src/demo02/demo.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">77</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">78</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">79</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">80</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">81</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">82</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">83</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">src/demo02/demo.py</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">79</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">80</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">81</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">82</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">83</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">84</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">85</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <p>The paddle looks like this relative to normalized device coordinates (NDC):</p>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id4">
 <img alt="Rectangle" src="images/plot1.png" />
 <figcaption>
-<p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="draw-paddle-2">
 <h2>Draw Paddle 2<a class="headerlink" href="#draw-paddle-2" title="Permalink to this heading">¶</a></h2>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">src/demo02/demo.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">87</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">88</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">89</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">90</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">91</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">92</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">93</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">src/demo02/demo.py</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">89</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">90</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">91</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">92</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">93</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">94</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">95</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <p>The 2 paddles looks like this relative to normalized device coordinates (NDC):</p>
-<figure class="align-center" id="id5">
+<figure class="align-center" id="id6">
 <img alt="Rectangle" src="images/plot2.png" />
 <figcaption>
-<p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Rectangle</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">src/demo02/demo.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">97</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">src/demo02/demo.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">99</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -246,17 +249,17 @@ had to explicitly set the color of individual pixels using the pixel’s coordin
 program using “screen-space” (Any <a class="reference external" href="https://en.wikipedia.org/wiki/Space_(mathematics)">space</a> means a system of numbers which you’re using.
 Screen-space means you’re specifically using pixel coordinates, i.e, set pixel (5,10) to be yellow).</p>
 <p>What looks alright in screen-space on a large monitor…</p>
-<figure class="align-center" id="id7">
+<figure class="align-center" id="id8">
 <img alt="Screenspace" src="images/screenspace2.png" />
 <figcaption>
-<p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Isn’t the same picture on a smaller monitor.</p>
-<figure class="align-center" id="id8">
+<figure class="align-center" id="id9">
 <img alt="Screenspace" src="images/screenspace.png" />
 <figcaption>
-<p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Screenspace</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Like any good program or library, OpenGL creates an abstraction.
@@ -276,24 +279,24 @@ actual word for that???)</p>
 <p>The programmer specifies geometry using normalized-device-coordinates, and
 OpenGL will convert from a continuous, -1.0 to 1.0 space,
 to discrete pixel-space, and the programmer cannot change this.</p>
-<figure class="align-center" id="id9">
-<img alt="NDC space" src="images/ndcSpace.png" />
-<figcaption>
-<p><span class="caption-text">NDC space</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>Whether we own a small monitor</p>
 <figure class="align-center" id="id10">
-<img alt="NDC space" src="images/ndcSpace1.png" />
+<img alt="NDC space" src="images/ndcSpace.png" />
 <figcaption>
 <p><span class="caption-text">NDC space</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Or a large monitor.</p>
+<p>Whether we own a small monitor</p>
 <figure class="align-center" id="id11">
-<img alt="NDC space" src="images/screenspace2.png" />
+<img alt="NDC space" src="images/ndcSpace1.png" />
 <figcaption>
 <p><span class="caption-text">NDC space</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Or a large monitor.</p>
+<figure class="align-center" id="id12">
+<img alt="NDC space" src="images/screenspace2.png" />
+<figcaption>
+<p><span class="caption-text">NDC space</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -310,10 +313,10 @@ their plotted values, you will find that they differ.  Changing between
 coordinate systems means to take vertices from one coordinate system and
 changing them to another, like converting from Celsius to Fahrenheit,
 meters to feet, etc.</p>
-<figure class="align-center" id="id12">
+<figure class="align-center" id="id13">
 <img alt="Demo 02" src="images/demo021.png" />
 <figcaption>
-<p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Demo 02</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The function that converts from NDC to Screen space is
@@ -322,16 +325,14 @@ by “S”.  This is a common notation when creating
 functions that change basis, i.e. coordinate conversion.
 A definition of this function is not provided right now, because we can’t change it in software.
 But we must recognize that it exists.</p>
-<section id="introduction-to-cayley-graphs">
-<h3>Introduction to Cayley Graphs<a class="headerlink" href="#introduction-to-cayley-graphs" title="Permalink to this heading">¶</a></h3>
 <p>The Wikipedia article for Cayley graphs (<a class="reference external" href="https://en.wikipedia.org/wiki/Cayley_graph">https://en.wikipedia.org/wiki/Cayley_graph</a>) is intimidating,
-but for our purposes, it’s use is very simple.</p>
+but for our purposes, its use is very simple.</p>
 <p>An uni-variate example use of Cayley graphs is exchanging coins with
 a bank.</p>
-<figure class="align-center" id="id13">
+<figure class="align-center" id="id14">
 <img alt="Demo 02" src="images/currency.png" />
 <figcaption>
-<p><span class="caption-text">Cayley graph of uni variate coordinate conversion for money.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Cayley graph of uni variate coordinate conversion for money.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="math">
@@ -380,9 +381,6 @@ of any directed edge that you against.</p>
 </div><p>Notice in the last equation that we defined the function via function <a class="reference external" href="https://en.wikipedia.org/wiki/Function_composition">composition</a>,
 and didn’t specify any arguments.  We just focus on the types of units in and the units
 out, but the details of those functions are not relevant when traversing the Cayley graph.</p>
-</section>
-<section id="learning-what-to-ignore">
-<h3>Learning what to ignore<a class="headerlink" href="#learning-what-to-ignore" title="Permalink to this heading">¶</a></h3>
 <p>A big part of being able to understand graphics well is being able
 to figure out what to ignore.  So how would we convert coordinates from space
 D to space B (defined below)?  What do those names mean?  It doesn’t matter.
@@ -394,10 +392,10 @@ matters</p>
 <li><p>the function is invertible</p></li>
 <li><p>and that we can call a procedure to invert a function.</p></li>
 </ul>
-<figure class="align-center" id="id14">
+<figure class="align-center" id="id15">
 <img alt="Generic Cayley Graph" src="images/cayleygraph.png" />
 <figcaption>
-<p><span class="caption-text">Generic Cayley Graph</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Generic Cayley Graph</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Well to convert data frame space D to space B,
@@ -420,7 +418,6 @@ However, we can create this function by invoking inverse on the provide function
 <p><img src="images/math/7e0cb42acf264860b1ea2facbfb32717af50cb48.svg" alt="\vec{f}_{d}^{b}  = {\vec{{f}_{b}^{a}}}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}"/></p>
 </div><p>If this seems to abstract for now, don’t worry.  By the end of the course, it should be clear.
 The goal of this book is to make it clear, and then, obvious.</p>
-</section>
 </section>
 <section id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">¶</a></h2>

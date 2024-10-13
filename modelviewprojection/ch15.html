@@ -162,7 +162,7 @@ On Windows, in a command prompt, type “python src\demo15\demo.py”.</p>
 <td><p>Move the camera right, moving the objects left</p></td>
 </tr>
 <tr class="row-even"><td><p><em>q</em></p></td>
-<td><p>Rotate the square around it’s center</p></td>
+<td><p>Rotate the square around its center</p></td>
 </tr>
 <tr class="row-odd"><td><p><em>e</em></p></td>
 <td><p>Rotate the square around paddle 1’s center</p></td>
@@ -199,15 +199,15 @@ the <a class="reference external" href="http://shmuplations.com/mario64/">Ninten
 <p>Use the depth buffer to make further objects hidden
 if nearer objects are drawn in front</p>
 <ol class="arabic simple">
-<li><p>Set the clear depth to -1 (just like clearcolor, it’s the default depth on a given fragment (pixel).</p></li>
+<li><p>Set the clear depth to -1 (just like clearcolor, it is the default depth on a given fragment (pixel).</p></li>
 <li><p>Set the depth func, i.e. the test to see if the newly drawn object should overwrite the color in the current fragment or not.</p></li>
 <li><p>Enable the depth test.</p></li>
 </ol>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">src/demo15/demo.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">80</span><span class="n">glClearDepth</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">81</span><span class="n">glDepthFunc</span><span class="p">(</span><span class="n">GL_GREATER</span><span class="p">)</span>
-<span class="linenos">82</span><span class="n">glEnable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">79</span><span class="n">glClearDepth</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">80</span><span class="n">glDepthFunc</span><span class="p">(</span><span class="n">GL_GREATER</span><span class="p">)</span>
+<span class="linenos">81</span><span class="n">glEnable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

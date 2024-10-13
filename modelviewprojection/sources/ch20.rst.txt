@@ -59,7 +59,7 @@ Keyboard Input  Action
 *LEFT*          Move the camera left, moving the objects right
 *RIGHT*         Move the camera right, moving the objects left
 
-*q*             Rotate the square around it's center
+*q*             Rotate the square around its center
 *e*             Rotate the square around paddle 1's center
 ==============  ==============================================
 
@@ -73,7 +73,7 @@ this book, like texturing and lighting).
 
 What did the graphics driver do with the data?  This older style of graphics
 programming is called "fixed-function" graphics programming, in that we can
-tweak some values, but the graphics card and it's driver are going to do
+tweak some values, but the graphics card and its driver are going to do
 whatever they were programmed to, and we can't control it.  Kind of like having
 a graphing calculator, but not having the ability to program it - OpenGL is
 in control at this point, and we can just parameterize it.
@@ -96,8 +96,8 @@ We have some new imports, "glUseProgram", "GL_VERTEX_SHADER", "GL_FRAGMENT_SHADE
 
 .. literalinclude:: ../../src/demo20/demo.py
    :language: python
-   :start-after: doc-region-begin c731ca97ef15896c876effbafec9d52a1354375f
-   :end-before: doc-region-end c731ca97ef15896c876effbafec9d52a1354375f
+   :start-after: doc-region-begin new imports
+   :end-before: doc-region-end new imports
    :linenos:
    :lineno-match:
    :caption: src/demo20/demo.py
@@ -106,8 +106,8 @@ We now ask the OpenGL driver to accept OpenGL 2.1 function calls.
 
 .. literalinclude:: ../../src/demo20/demo.py
    :language: python
-   :start-after: doc-region-begin b05eee9a50507de99ecad16ffa3af2da709b361a
-   :end-before: doc-region-end b05eee9a50507de99ecad16ffa3af2da709b361a
+   :start-after: doc-region-begin open gl version 2.1
+   :end-before: doc-region-end open gl version 2.1
    :linenos:
    :lineno-match:
    :caption: src/demo20/demo.py
@@ -122,8 +122,8 @@ in the same way we did in the lambda stack.
 
 .. literalinclude:: ../../src/demo20/demo.py
    :language: python
-   :start-after: doc-region-begin e6ff3c0ccea639bd5fb57a55ec548170b34c4bdf
-   :end-before: doc-region-end e6ff3c0ccea639bd5fb57a55ec548170b34c4bdf
+   :start-after: doc-region-begin compile shaders
+   :end-before: doc-region-end compile shaders
    :linenos:
    :lineno-match:
    :caption: src/demo20/demo.py
@@ -147,7 +147,7 @@ This is the fragment shader.  Unlike the vertex shader, which took an vertex in 
 and outputted clip-space (NDC), the fragment shader for a given pixel is determining
 the color [2]_.  Is "glColor" in the fragment shader the same "glColor" from the vertex
 shader, or is it the value of the vertex shader's output "glFrontColor"?  Honestly,
-the author doesn't know, but it's set to the output of the fragment shader,
+the author doesn't know, but it is set to the output of the fragment shader,
 and such questions are a moot point once we get to OpenGL 3.3 Core profile
 in the next section.
 
