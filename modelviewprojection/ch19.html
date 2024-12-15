@@ -268,10 +268,10 @@ in the next chapter.</p>
 <div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">260</span>    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
 <span class="linenos">261</span>    <span class="n">gluPerspective</span><span class="p">(</span>
-<span class="linenos">262</span>        <span class="mf">45.0</span><span class="p">,</span>  <span class="c1"># fov</span>
-<span class="linenos">263</span>        <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># aspectRation</span>
-<span class="linenos">264</span>        <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># nearZ</span>
-<span class="linenos">265</span>        <span class="mf">1000.0</span><span class="p">,</span>  <span class="c1"># farZ</span>
+<span class="linenos">262</span>        <span class="mf">45.0</span><span class="p">,</span>  <span class="c1"># field_of_view</span>
+<span class="linenos">263</span>        <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># aspect_ration</span>
+<span class="linenos">264</span>        <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># near_z</span>
+<span class="linenos">265</span>        <span class="mf">1000.0</span><span class="p">,</span>  <span class="c1"># far_z</span>
 <span class="linenos">266</span>    <span class="p">)</span>
 </pre></div>
 </div>
@@ -384,7 +384,7 @@ the square’s 3 model_space transformations</p>
 <div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">314</span>    <span class="c1"># draw the square</span>
 <span class="linenos">315</span>    <span class="c1"># given that no nodes are defined relative to the square, we do not need</span>
-<span class="linenos">316</span>    <span class="c1"># to push a marix.  Here we will do so anyways, just to clarify what is</span>
+<span class="linenos">316</span>    <span class="c1"># to push a matrix.  Here we will do so anyway, just to clarify what is</span>
 <span class="linenos">317</span>    <span class="c1"># happening</span>
 <span class="linenos">318</span>    <span class="n">glPushMatrix</span><span class="p">()</span>
 <span class="linenos">319</span>    <span class="c1"># the current model matrix will be copied and then the copy will be</span>
@@ -419,7 +419,7 @@ all 3 matrices will be reset to the identity</p>
 <div class="code-block-caption"><span class="caption-text">src/demo19/demo.py</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">340</span>    <span class="c1"># draw paddle 2.  Nothing is defined relative to paddle to, so we don&#39;t</span>
 <span class="linenos">341</span>    <span class="c1"># need to push matrix, and on the next iteration of the event loop,</span>
-<span class="linenos">342</span>    <span class="c1"># all matricies will be cleared to identity, so who cares if we</span>
+<span class="linenos">342</span>    <span class="c1"># all matrices will be cleared to identity, so who cares if we</span>
 <span class="linenos">343</span>    <span class="c1"># mutate the values for now.</span>
 <span class="linenos">344</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
 <span class="linenos">345</span>

@@ -135,14 +135,12 @@ of the OpenGL program, that the picture does not become distorted.</p>
 <p>In the previous demo, if the user resized the window, the paddles appear distorted,
 as they were shrunk in one direction if the window became too thin or too fat.</p>
 <figure class="align-center" id="id2">
-<img alt="Yuck" src="images/disproportionate1.png" />
-<figcaption>
+<img alt="Yuck" src="images/disproportionate1.svg" /><figcaption>
 <p><span class="caption-text">Yuck</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id3">
-<img alt="Yuck" src="images/disproportionate2.png" />
-<figcaption>
+<img alt="Yuck" src="images/disproportionate2.svg" /><figcaption>
 <p><span class="caption-text">Yuck</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -157,8 +155,7 @@ will convert the normalized-device-coordinates
 to the sub-window space of the viewport, instead of the whole
 window.</p>
 <figure class="align-center" id="id4">
-<img alt="Nice" src="images/viewport.png" />
-<figcaption>
+<img alt="Nice" src="images/viewport.svg" /><figcaption>
 <p><span class="caption-text">Nice</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -205,9 +202,9 @@ So now the entire frame-buffer is gray.</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text">src/demo03/demo.py</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">84</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">84</span>    <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 <span class="linenos">85</span>
-<span class="linenos">86</span>    <span class="n">square_size</span> <span class="o">=</span> <span class="n">width</span> <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="n">height</span> <span class="k">else</span> <span class="n">height</span>
+<span class="linenos">86</span>    <span class="n">square_size</span> <span class="o">=</span> <span class="n">w</span> <span class="k">if</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="n">h</span> <span class="k">else</span> <span class="n">h</span>
 </pre></div>
 </div>
 </div>
@@ -221,8 +218,8 @@ By using the minimum of the width and height, we can at least fill up the screen
 <div class="code-block-caption"><span class="caption-text">src/demo03/demo.py</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">90</span>    <span class="n">glEnable</span><span class="p">(</span><span class="n">GL_SCISSOR_TEST</span><span class="p">)</span>
 <span class="linenos">91</span>    <span class="n">glScissor</span><span class="p">(</span>
-<span class="linenos">92</span>        <span class="nb">int</span><span class="p">((</span><span class="n">width</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># bottom left x_screenspace</span>
-<span class="linenos">93</span>        <span class="nb">int</span><span class="p">((</span><span class="n">height</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># bottom left y_screenspace</span>
+<span class="linenos">92</span>        <span class="nb">int</span><span class="p">((</span><span class="n">w</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># bottom left x_screenspace</span>
+<span class="linenos">93</span>        <span class="nb">int</span><span class="p">((</span><span class="n">h</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># bottom left y_screenspace</span>
 <span class="linenos">94</span>        <span class="n">square_size</span><span class="p">,</span>  <span class="c1"># x width, screenspace</span>
 <span class="linenos">95</span>        <span class="n">square_size</span><span class="p">,</span>  <span class="c1"># y height, screenspace</span>
 <span class="linenos">96</span>    <span class="p">)</span>
@@ -284,8 +281,8 @@ that we care about, which is the black square.</p>
 <div class="literal-block-wrapper docutils container" id="id12">
 <div class="code-block-caption"><span class="caption-text">src/demo03/demo.py</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">107</span>    <span class="n">glViewport</span><span class="p">(</span>
-<span class="linenos">108</span>        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
-<span class="linenos">109</span>        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
+<span class="linenos">108</span>        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
+<span class="linenos">109</span>        <span class="nb">int</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">square_size</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span>
 <span class="linenos">110</span>        <span class="n">square_size</span><span class="p">,</span>
 <span class="linenos">111</span>        <span class="n">square_size</span><span class="p">,</span>
 <span class="linenos">112</span>    <span class="p">)</span>

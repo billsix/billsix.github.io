@@ -242,19 +242,19 @@ by the w; i.e. (x/w,y/w,z/w,1)</p>
 in the same way we did in the lambda stack.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">src/demo20/demo.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span><span class="c1"># compile shaders</span>
-<span class="linenos">234</span>
-<span class="linenos">235</span><span class="c1"># initialize shaders</span>
-<span class="linenos">236</span><span class="n">pwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-<span class="linenos">237</span>
-<span class="linenos">238</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span> <span class="s2">&quot;triangle.vert&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="linenos">239</span>    <span class="n">vs</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileShader</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">GL_VERTEX_SHADER</span><span class="p">)</span>
-<span class="linenos">240</span>
-<span class="linenos">241</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span> <span class="s2">&quot;triangle.frag&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="linenos">242</span>    <span class="n">fs</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileShader</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">GL_FRAGMENT_SHADER</span><span class="p">)</span>
-<span class="linenos">243</span>
-<span class="linenos">244</span><span class="n">shader</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileProgram</span><span class="p">(</span><span class="n">vs</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
-<span class="linenos">245</span><span class="n">glUseProgram</span><span class="p">(</span><span class="n">shader</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">231</span><span class="c1"># compile shaders</span>
+<span class="linenos">232</span>
+<span class="linenos">233</span><span class="c1"># initialize shaders</span>
+<span class="linenos">234</span><span class="n">pwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="linenos">235</span>
+<span class="linenos">236</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span> <span class="s2">&quot;triangle.vert&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">237</span>    <span class="n">vs</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileShader</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">GL_VERTEX_SHADER</span><span class="p">)</span>
+<span class="linenos">238</span>
+<span class="linenos">239</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span> <span class="s2">&quot;triangle.frag&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">240</span>    <span class="n">fs</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileShader</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">GL_FRAGMENT_SHADER</span><span class="p">)</span>
+<span class="linenos">241</span>
+<span class="linenos">242</span><span class="n">shader</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileProgram</span><span class="p">(</span><span class="n">vs</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+<span class="linenos">243</span><span class="n">glUseProgram</span><span class="p">(</span><span class="n">shader</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

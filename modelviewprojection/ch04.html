@@ -290,32 +290,34 @@ to only flush the screen at 60 hertz (frames per second).</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">172</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-<span class="linenos">173</span>    <span class="k">while</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span><span class="p">:</span>
-<span class="linenos">174</span>        <span class="k">pass</span>
-<span class="linenos">175</span>
-<span class="linenos">176</span>    <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
+<span class="linenos">173</span>    <span class="k">while</span> <span class="p">(</span>
+<span class="linenos">174</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span>
+<span class="linenos">175</span>    <span class="p">):</span>
+<span class="linenos">176</span>        <span class="k">pass</span>
+<span class="linenos">177</span>
+<span class="linenos">178</span>    <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">180</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
-<span class="linenos">181</span>
-<span class="linenos">182</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-<span class="linenos">183</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-<span class="linenos">184</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">182</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
+<span class="linenos">183</span>
+<span class="linenos">184</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<span class="linenos">185</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="linenos">186</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">188</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">190</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">192</span>    <span class="n">handle_movement_of_paddles</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">194</span>    <span class="n">handle_movement_of_paddles</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -327,12 +329,12 @@ values if there was input.</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id11">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">196</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">197</span>
-<span class="linenos">198</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">199</span>    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">200</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">201</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">198</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">199</span>
+<span class="linenos">200</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">201</span>    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">202</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">203</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -346,31 +348,29 @@ the numbers from the data structures of Paddle and its
 associated vertices.</p></li>
 </ul>
 <figure class="align-center" id="id12">
-<img alt="Adding input offset" src="images/plot3.png" />
-<figcaption>
+<img alt="Adding input offset" src="images/plot3.svg" /><figcaption>
 <p><span class="caption-text">Adding input offset to Paddle 1</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="literal-block-wrapper docutils container" id="id13">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">205</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">206</span>
-<span class="linenos">207</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">208</span>    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">209</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">210</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">207</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">208</span>
+<span class="linenos">209</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">210</span>    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">211</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">212</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <figure class="align-center" id="id14">
-<img alt="Adding input offset to Paddle 1" src="images/plot4.png" />
-<figcaption>
+<img alt="Adding input offset to Paddle 1" src="images/plot4.svg" /><figcaption>
 <p><span class="caption-text">Adding input offset to Paddle 2</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="literal-block-wrapper docutils container" id="id15">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">214</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">216</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

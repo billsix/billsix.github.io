@@ -154,14 +154,12 @@ provides a picture that has some meaning to the human user.
 In OpenGL, the bottom left pixel of a window is pixel coordinate (0,0).
 The top right is pixel coordinate (window_width,window_height).</p>
 <figure class="align-center" id="id4">
-<img alt="1024x768 monitor" src="images/monitor.png" />
-<figcaption>
+<img alt="1024x768 monitor" src="images/monitor.svg" /><figcaption>
 <p><span class="caption-text">1024x768 monitor</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id5">
-<img alt="1920x1200 monitor" src="images/monitor2.png" />
-<figcaption>
+<img alt="1920x1200 monitor" src="images/monitor2.svg" /><figcaption>
 <p><span class="caption-text">1920x1200 monitor</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -337,9 +335,9 @@ for this book.</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id16">
 <div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">66</span><span class="k">def</span> <span class="nf">on_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">scancode</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">mods</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">66</span><span class="k">def</span> <span class="nf">on_key</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">scancode</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">mods</span><span class="p">):</span>
 <span class="linenos">67</span>    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_ESCAPE</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">68</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">set_window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">68</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">set_window_should_close</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="linenos">69</span>
 <span class="linenos">70</span>
 </pre></div>

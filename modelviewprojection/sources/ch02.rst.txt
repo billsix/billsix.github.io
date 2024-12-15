@@ -114,7 +114,7 @@ Draw Paddle 1
 
 The paddle looks like this relative to normalized device coordinates (NDC):
 
-.. figure:: static/plot1.png
+.. figure:: static/plot1.svg
     :align: center
     :alt: Rectangle
     :figclass: align-center
@@ -137,7 +137,7 @@ Draw Paddle 2
 
 The 2 paddles looks like this relative to normalized device coordinates (NDC):
 
-.. figure:: static/plot2.png
+.. figure:: static/plot2.svg
     :align: center
     :alt: Rectangle
     :figclass: align-center
@@ -203,7 +203,7 @@ Screen-space means you're specifically using pixel coordinates, i.e, set pixel (
 
 What looks alright in screen-space on a large monitor...
 
-.. figure:: static/screenspace2.png
+.. figure:: static/screenspace2.svg
     :align: center
     :alt: Screenspace
     :figclass: align-center
@@ -213,7 +213,7 @@ What looks alright in screen-space on a large monitor...
 
 Isn't the same picture on a smaller monitor.
 
-.. figure:: static/screenspace.png
+.. figure:: static/screenspace.svg
     :align: center
     :alt: Screenspace
     :figclass: align-center
@@ -243,7 +243,7 @@ The programmer specifies geometry using normalized-device-coordinates, and
 OpenGL will convert from a continuous, -1.0 to 1.0 space,
 to discrete pixel-space, and the programmer cannot change this.
 
-.. figure:: static/ndcSpace.png
+.. figure:: static/ndcSpace.svg
     :align: center
     :alt: NDC space
     :figclass: align-center
@@ -253,7 +253,7 @@ to discrete pixel-space, and the programmer cannot change this.
 
 Whether we own a small monitor
 
-.. figure:: static/ndcSpace1.png
+.. figure:: static/ndcSpace1.svg
     :align: center
     :alt: NDC space
     :figclass: align-center
@@ -262,7 +262,7 @@ Whether we own a small monitor
 
 Or a large monitor.
 
-.. figure:: static/screenspace2.png
+.. figure:: static/screenspace2.svg
     :align: center
     :alt: NDC space
     :figclass: align-center

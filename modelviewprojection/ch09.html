@@ -202,13 +202,13 @@ origin and axes, i.e. the natural <em>basis</em>.  After each function call, the
 is set back to the origin basis.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">230</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
-<span class="linenos">231</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
+<span class="linenos">234</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <figure class="align-center" id="id3">
-<img alt="Rotation Forwards" src="images/rotate1-forwards.gif" />
+<img alt="Rotation Forwards" src="static/rotate1-forwards.gif" />
 <figcaption>
 <p><span class="caption-text">Rotation Forwards</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -222,13 +222,13 @@ all cumulatively modify the current axes and origin, i.e. basis, to a new basis.
 All subsequent functions move that relative basis to a new relative basis.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">230</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
-<span class="linenos">231</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
+<span class="linenos">234</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <figure class="align-center" id="id5">
-<img alt="Rotation Backwards" src="images/rotate1-backwards.gif" />
+<img alt="Rotation Backwards" src="static/rotate1-backwards.gif" />
 <figcaption>
 <p><span class="caption-text">Rotation Backwards</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -259,8 +259,8 @@ system.</p>
 L by a right-multiplication of M.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">230</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
-<span class="linenos">231</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
+<span class="linenos">234</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -271,7 +271,7 @@ reading the transformations
 from top down, and resetting the coordinate system after every transformation.</p>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">234</span>        <span class="n">paddle1_vertex_in_ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">scalar</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">237</span>        <span class="n">paddle1_vertex_in_ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">scalar</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -286,25 +286,25 @@ and to implement it correctly, we need to be able to reason and compose our thou
 <h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">206</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">207</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">225</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">226</span>
-<span class="linenos">227</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">228</span>    <span class="k">for</span> <span class="n">paddle1_vertex_in_model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">229</span>        <span class="c1"># doc-region-begin paddle 1 transformations</span>
-<span class="linenos">230</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
-<span class="linenos">231</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
-<span class="linenos">232</span>        <span class="c1"># doc-region-end paddle 1 transformations</span>
-<span class="linenos">233</span>        <span class="c1"># doc-region-begin paddle 1 scale</span>
-<span class="linenos">234</span>        <span class="n">paddle1_vertex_in_ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">scalar</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
-<span class="linenos">235</span>        <span class="c1"># doc-region-end paddle 1 scale</span>
-<span class="linenos">236</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle1_vertex_in_ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle1_vertex_in_ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">237</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">228</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">229</span>
+<span class="linenos">230</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">231</span>    <span class="k">for</span> <span class="n">paddle1_vertex_in_model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">232</span>        <span class="c1"># doc-region-begin paddle 1 transformations</span>
+<span class="linenos">233</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
+<span class="linenos">234</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="linenos">235</span>        <span class="c1"># doc-region-end paddle 1 transformations</span>
+<span class="linenos">236</span>        <span class="c1"># doc-region-begin paddle 1 scale</span>
+<span class="linenos">237</span>        <span class="n">paddle1_vertex_in_ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">scalar</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="linenos">238</span>        <span class="c1"># doc-region-end paddle 1 scale</span>
+<span class="linenos">239</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle1_vertex_in_ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle1_vertex_in_ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">240</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -315,15 +315,15 @@ and to implement it correctly, we need to be able to reason and compose our thou
 </ul>
 <div class="literal-block-wrapper docutils container" id="id11">
 <div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">244</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">245</span>
-<span class="linenos">246</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">247</span>    <span class="k">for</span> <span class="n">paddle2_vertex_model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">248</span>        <span class="n">paddle2_vertex_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle2_vertex_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
-<span class="linenos">249</span>                                                                       <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
-<span class="linenos">250</span>        <span class="n">paddle2_vertex_ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle2_vertex_world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">scalar</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
-<span class="linenos">251</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle2_vertex_ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle2_vertex_ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">252</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">247</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">248</span>
+<span class="linenos">249</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">250</span>    <span class="k">for</span> <span class="n">paddle2_vertex_model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">251</span>        <span class="n">paddle2_vertex_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle2_vertex_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
+<span class="linenos">252</span>                                                                       <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="linenos">253</span>        <span class="n">paddle2_vertex_ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle2_vertex_world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">scalar</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="linenos">254</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle2_vertex_ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle2_vertex_ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">255</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

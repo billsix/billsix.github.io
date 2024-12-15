@@ -173,7 +173,7 @@ graphics is to rotate an object.</p>
 <p>We can rotate an object around (0,0) by rotating
 all of the object’s vertices around (0,0).</p>
 <figure class="align-center" id="id2">
-<img alt="Rotate" src="images/rotate0.gif" />
+<img alt="Rotate" src="static/rotate0.gif" />
 <figcaption>
 <p><span class="caption-text">Rotate</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -190,14 +190,12 @@ and then adding the results together.</p>
 <p>That might not have been fully clear.  Let me try again.
 The vertex (0.5,0.4) can be separated into two vertices, (0.5,0) and (0,0.4).</p>
 <figure class="align-center" id="id3">
-<img alt="Rotate" src="images/rotate3.png" />
-<figcaption>
+<img alt="Rotate" src="images/rotate3.svg" /><figcaption>
 <p><span class="caption-text">Rotate</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id4">
-<img alt="Rotate" src="images/rotate4.png" />
-<figcaption>
+<img alt="Rotate" src="images/rotate4.svg" /><figcaption>
 <p><span class="caption-text">Rotate</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -207,8 +205,7 @@ But, before we do that, let’s rotate each of the vertices.</p>
 in vertex (0.5*cos(angle), 0.5*sin(angle)).  This is high school
 geometry, and won’t be explained here in detail.</p>
 <figure class="align-center" id="id5">
-<img alt="Rotate" src="images/rotate.png" />
-<figcaption>
+<img alt="Rotate" src="images/rotate.svg" /><figcaption>
 <p><span class="caption-text">Rotate the x component.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -219,8 +216,7 @@ Turns out, it is easy.  Just rotate your point of view, and it is
 the same thing, with one minor difference, in that the x value
 is negated.</p>
 <figure class="align-center" id="id6">
-<img alt="Rotate" src="images/rotate2.png" />
-<figcaption>
+<img alt="Rotate" src="images/rotate2.svg" /><figcaption>
 <p><span class="caption-text">Rotate the y component</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -309,16 +305,14 @@ cos and sin are defined in the math module.</p></li>
 <span class="linenos">193</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
 <span class="linenos">194</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">1.0</span>
 <span class="linenos">195</span>
-<span class="linenos">196</span>    <span class="k">global</span> <span class="n">paddle_1_rotation</span><span class="p">,</span> <span class="n">paddle_2_rotation</span>
-<span class="linenos">197</span>
-<span class="linenos">198</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_A</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">199</span>        <span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+=</span> <span class="mf">0.1</span>
-<span class="linenos">200</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_D</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">201</span>        <span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span> <span class="o">-=</span> <span class="mf">0.1</span>
-<span class="linenos">202</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_J</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">203</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+=</span> <span class="mf">0.1</span>
-<span class="linenos">204</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_L</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">205</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span> <span class="o">-=</span> <span class="mf">0.1</span>
+<span class="linenos">196</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_A</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">197</span>        <span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+=</span> <span class="mf">0.1</span>
+<span class="linenos">198</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_D</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">199</span>        <span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span> <span class="o">-=</span> <span class="mf">0.1</span>
+<span class="linenos">200</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_J</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">201</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+=</span> <span class="mf">0.1</span>
+<span class="linenos">202</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_L</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">203</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span> <span class="o">-=</span> <span class="mf">0.1</span>
 </pre></div>
 </div>
 </div>
@@ -335,7 +329,7 @@ cos and sin are defined in the math module.</p></li>
 <h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">214</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">212</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
 </div>
@@ -429,7 +423,7 @@ world space transformations are doing.</p>
 </div>
 </div>
 <figure class="align-center" id="id20">
-<img alt="" src="images/incorrectrotate-forwards.gif" />
+<img alt="" src="static/incorrectrotate-forwards.gif" />
 <figcaption>
 <p><span class="caption-text">Not what we wanted</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -438,20 +432,17 @@ world space transformations are doing.</p>
 <li><p>Modelspace vertices</p></li>
 </ul>
 <figure class="align-center">
-<img alt="" src="images/incorrectrotate-forwards-1.png" />
-</figure>
+<img alt="" src="images/incorrectrotate-forwards-1.svg" /></figure>
 <ul class="simple">
 <li><p>Translate</p></li>
 </ul>
 <figure class="align-center">
-<img alt="" src="images/incorrectrotate-forwards-2.png" />
-</figure>
+<img alt="" src="images/incorrectrotate-forwards-2.svg" /></figure>
 <ul class="simple">
 <li><p>Reset the coordinate system</p></li>
 </ul>
 <figure class="align-center" id="id21">
-<img alt="" src="images/incorrectrotate-forwards-3.png" />
-<figcaption>
+<img alt="" src="images/incorrectrotate-forwards-3.svg" /><figcaption>
 <p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -459,8 +450,7 @@ world space transformations are doing.</p>
 <li><p>Rotate around World Spaces’s origin</p></li>
 </ul>
 <figure class="align-center" id="id22">
-<img alt="" src="images/incorrectrotate-forwards-4.png" />
-<figcaption>
+<img alt="" src="images/incorrectrotate-forwards-4.svg" /><figcaption>
 <p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -468,8 +458,7 @@ world space transformations are doing.</p>
 <li><p>Reset the coordinate system</p></li>
 </ul>
 <figure class="align-center" id="id23">
-<img alt="" src="images/incorrectrotate-forwards-5.png" />
-<figcaption>
+<img alt="" src="images/incorrectrotate-forwards-5.svg" /><figcaption>
 <p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -477,8 +466,7 @@ world space transformations are doing.</p>
 <li><p>Final world space coordinates</p></li>
 </ul>
 <figure class="align-center" id="id24">
-<img alt="" src="images/incorrectrotate-forwards-6.png" />
-<figcaption>
+<img alt="" src="images/incorrectrotate-forwards-6.svg" /><figcaption>
 <p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -511,17 +499,17 @@ the length of (x,y), which we’ll call “r”, and we’ll call the angle
 of (x,y) to be “beta”.  As a reminder, we want to rotate by a different
 angle, called “theta”.</p>
 <figure class="align-center">
-<img alt="rotate2" src="images/rotate2.svg" /></figure>
+<img alt="rotate2" src="images/rotate21.svg" /></figure>
 <p>Before we can rotate by “theta”, first we need to be able to rotate by
 90 degrees, or pi/2.  So to rotate (cos(beta), sin(beta)) by pi/2,
 we get (cos(beta+pi/2), sin(beta+pi/2)).</p>
 <figure class="align-center">
-<img alt="rotate3" src="images/rotate3.svg" /></figure>
+<img alt="rotate3" src="images/rotate31.svg" /></figure>
 <p>Now let’s give each of those vertices new names, x’ and y’, for the
 purpose of ignoring details for now that we’ll return to later,
 just let we did for length “r” above.</p>
 <figure class="align-center">
-<img alt="rotate4" src="images/rotate4.svg" /></figure>
+<img alt="rotate4" src="images/rotate41.svg" /></figure>
 <p>Now forget about “beta”, and remember that our goal is to rotate by angle
 “theta”.  Look at the picture below, while turning your head slightly to the
 left.  x’ and y’ look just like our normal Cartesian plane and unit circle,

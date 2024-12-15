@@ -271,7 +271,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
 <span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">OPENGL_FORWARD_COMPAT</span><span class="p">,</span> <span class="n">GL_TRUE</span><span class="p">)</span>
 
 <span class="n">imgui</span><span class="o">.</span><span class="n">create_context</span><span class="p">()</span>
-<span class="n">window</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">create_window</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;ModelViewProjection Demo 26 &quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">create_window</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;ModelViewProjection Demo 21 &quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">window</span><span class="p">:</span>
     <span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
@@ -285,9 +285,9 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
 <span class="c1"># Install a key handler</span>
 
 
-<span class="k">def</span> <span class="nf">on_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">scancode</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">mods</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">on_key</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">scancode</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">mods</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_ESCAPE</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-        <span class="n">glfw</span><span class="o">.</span><span class="n">set_window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">glfw</span><span class="o">.</span><span class="n">set_window_should_close</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 
 <span class="n">glfw</span><span class="o">.</span><span class="n">set_key_callback</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">on_key</span><span class="p">)</span>
@@ -334,7 +334,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="c1"># GL_QUADS aren&#39;t available anymore, only triangles</span>
         <span class="c1"># need 6 vertices instead of 4</span>
         <span class="n">vertices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">numberOfVertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="o">//</span> <span class="n">floatsPerVertex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="o">//</span> <span class="n">floatsPerVertex</span>
         <span class="c1"># fmt: off</span>
         <span class="n">color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span>
@@ -349,7 +349,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="p">)</span>
         <span class="c1"># fmt: on</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">numberOfColors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="o">//</span> <span class="n">floatsPerColor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="o">//</span> <span class="n">floatsPerColor</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">vao</span> <span class="o">=</span> <span class="n">glGenVertexArrays</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">glBindVertexArray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vao</span><span class="p">)</span>
@@ -371,19 +371,27 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="n">position</span> <span class="o">=</span> <span class="n">glGetAttribLocation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shader</span><span class="p">,</span> <span class="s2">&quot;position&quot;</span><span class="p">)</span>
         <span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
 
-        <span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">floatsPerVertex</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">glVertexAttribPointer</span><span class="p">(</span>
+            <span class="n">position</span><span class="p">,</span> <span class="n">floatsPerVertex</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
 
-        <span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">glfloat_size</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">vertices</span><span class="p">),</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">)</span>
+        <span class="n">glBufferData</span><span class="p">(</span>
+            <span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">glfloat_size</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">vertices</span><span class="p">),</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span>
+        <span class="p">)</span>
 
         <span class="c1"># send the modelspace data to the GPU</span>
-        <span class="n">vboColor</span> <span class="o">=</span> <span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">vboColor</span><span class="p">)</span>
+        <span class="n">vbo_color</span> <span class="o">=</span> <span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">vbo_color</span><span class="p">)</span>
 
-        <span class="n">colorAttribLoc</span> <span class="o">=</span> <span class="n">glGetAttribLocation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shader</span><span class="p">,</span> <span class="s2">&quot;color_in&quot;</span><span class="p">)</span>
-        <span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="n">colorAttribLoc</span><span class="p">)</span>
-        <span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="n">colorAttribLoc</span><span class="p">,</span> <span class="n">floatsPerColor</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">color_attrib_loc</span> <span class="o">=</span> <span class="n">glGetAttribLocation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shader</span><span class="p">,</span> <span class="s2">&quot;color_in&quot;</span><span class="p">)</span>
+        <span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="n">color_attrib_loc</span><span class="p">)</span>
+        <span class="n">glVertexAttribPointer</span><span class="p">(</span>
+            <span class="n">color_attrib_loc</span><span class="p">,</span> <span class="n">floatsPerColor</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
 
-        <span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">glfloat_size</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">color</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">)</span>
+        <span class="n">glBufferData</span><span class="p">(</span>
+            <span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">glfloat_size</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">color</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span>
+        <span class="p">)</span>
 
         <span class="c1"># reset VAO/VBO to default</span>
         <span class="n">glBindVertexArray</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -399,10 +407,10 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="n">glUseProgram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shader</span><span class="p">)</span>
         <span class="n">glBindVertexArray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vao</span><span class="p">)</span>
 
-        <span class="n">mvpMatrixLoc</span> <span class="o">=</span> <span class="n">glGetUniformLocation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shader</span><span class="p">,</span> <span class="s2">&quot;mvpMatrix&quot;</span><span class="p">)</span>
+        <span class="n">mvp_matrix_loc</span> <span class="o">=</span> <span class="n">glGetUniformLocation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shader</span><span class="p">,</span> <span class="s2">&quot;mvpMatrix&quot;</span><span class="p">)</span>
         <span class="c1"># ascontiguousarray puts the array in column major order</span>
         <span class="n">glUniformMatrix4fv</span><span class="p">(</span>
-            <span class="n">mvpMatrixLoc</span><span class="p">,</span>
+            <span class="n">mvp_matrix_loc</span><span class="p">,</span>
             <span class="mi">1</span><span class="p">,</span>
             <span class="n">GL_TRUE</span><span class="p">,</span>
             <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span>
@@ -410,7 +418,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
                 <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
             <span class="p">),</span>
         <span class="p">)</span>
-        <span class="n">glDrawArrays</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberOfVertices</span><span class="p">)</span>
+        <span class="n">glDrawArrays</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_of_vertices</span><span class="p">)</span>
         <span class="n">glBindVertexArray</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 
@@ -443,6 +451,10 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
 <span class="n">square</span><span class="o">.</span><span class="n">prepare_to_render</span><span class="p">()</span>
 
 <span class="n">number_of_controllers</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">joystick_present</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">JOYSTICK_1</span><span class="p">)</span>
+
+
+<span class="n">test_bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">test_float</span> <span class="o">=</span> <span class="mf">0.0</span>
 
 
 <span class="nd">@dataclass</span>
@@ -485,7 +497,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="c1"># GL_QUADS aren&#39;t available anymore, only triangles</span>
         <span class="c1"># need 6 vertices instead of 4</span>
         <span class="n">vertices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">numberOfVertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="o">//</span> <span class="n">floatsPerVertex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="o">//</span> <span class="n">floatsPerVertex</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">vao</span> <span class="o">=</span> <span class="n">glGenVertexArrays</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">glBindVertexArray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vao</span><span class="p">)</span>
@@ -507,9 +519,13 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="n">position</span> <span class="o">=</span> <span class="n">glGetAttribLocation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shader</span><span class="p">,</span> <span class="s2">&quot;position&quot;</span><span class="p">)</span>
         <span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
 
-        <span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">floatsPerVertex</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">glVertexAttribPointer</span><span class="p">(</span>
+            <span class="n">position</span><span class="p">,</span> <span class="n">floatsPerVertex</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
 
-        <span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">glfloat_size</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">vertices</span><span class="p">),</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">)</span>
+        <span class="n">glBufferData</span><span class="p">(</span>
+            <span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">glfloat_size</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">vertices</span><span class="p">),</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span>
+        <span class="p">)</span>
 
         <span class="c1"># send the modelspace data to the GPU</span>
         <span class="c1"># TODO, send color to the shader</span>
@@ -529,10 +545,10 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="n">glBindVertexArray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vao</span><span class="p">)</span>
 
         <span class="c1"># pass projection parameters to the shader</span>
-        <span class="n">mvpMatrixLoc</span> <span class="o">=</span> <span class="n">glGetUniformLocation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shader</span><span class="p">,</span> <span class="s2">&quot;mvpMatrix&quot;</span><span class="p">)</span>
+        <span class="n">mvp_matrix_loc</span> <span class="o">=</span> <span class="n">glGetUniformLocation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shader</span><span class="p">,</span> <span class="s2">&quot;mvpMatrix&quot;</span><span class="p">)</span>
         <span class="c1"># ascontiguousarray puts the array in column major order</span>
         <span class="n">glUniformMatrix4fv</span><span class="p">(</span>
-            <span class="n">mvpMatrixLoc</span><span class="p">,</span>
+            <span class="n">mvp_matrix_loc</span><span class="p">,</span>
             <span class="mi">1</span><span class="p">,</span>
             <span class="n">GL_TRUE</span><span class="p">,</span>
             <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span>
@@ -540,7 +556,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
                 <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
             <span class="p">),</span>
         <span class="p">)</span>
-        <span class="n">glDrawArrays</span><span class="p">(</span><span class="n">GL_LINES</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberOfVertices</span><span class="p">)</span>
+        <span class="n">glDrawArrays</span><span class="p">(</span><span class="n">GL_LINES</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_of_vertices</span><span class="p">)</span>
         <span class="n">glBindVertexArray</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 
@@ -566,7 +582,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span> <span class="o">+=</span> <span class="mf">0.03</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_PAGE_DOWN</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
         <span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span> <span class="o">-=</span> <span class="mf">0.03</span>
-    <span class="c1"># //TODO -  explaing movement on XZ-plane</span>
+    <span class="c1"># //TODO -  explain movement on XZ-plane</span>
     <span class="c1"># //TODO -  show camera movement in graphviz</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_UP</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
         <span class="n">camera</span><span class="o">.</span><span class="n">x</span> <span class="o">-=</span> <span class="n">move_multiple</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
@@ -585,8 +601,6 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">1.0</span>
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
         <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.0</span>
-
-    <span class="k">global</span> <span class="n">paddle_1_rotation</span><span class="p">,</span> <span class="n">paddle_2_rotation</span>
 
     <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_A</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
         <span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+=</span> <span class="mf">0.1</span>
@@ -617,7 +631,9 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
 <span class="c1"># Loop until the user closes the window</span>
 <span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
     <span class="c1"># poll the time to try to get a constant framerate</span>
-    <span class="k">while</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span><span class="p">:</span>
+    <span class="k">while</span> <span class="p">(</span>
+        <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span>
+    <span class="p">):</span>
         <span class="k">pass</span>
     <span class="c1"># set for comparison on the next frame</span>
     <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
@@ -651,7 +667,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
     <span class="n">imgui</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Bar&quot;</span><span class="p">)</span>
     <span class="n">imgui</span><span class="o">.</span><span class="n">text_colored</span><span class="p">(</span><span class="s2">&quot;Eggs&quot;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
-    <span class="c1"># use static local istead of try: except</span>
+    <span class="c1"># use static local instead of try: except</span>
     <span class="c1"># normally you would pass the present function name to staticlocal.var</span>
     <span class="c1"># , but since we are not in a function, pass the current module</span>
     <span class="n">staticlocal</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">],</span> <span class="n">test_bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">test_float</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
@@ -669,7 +685,12 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
     <span class="n">ms</span><span class="o">.</span><span class="n">set_to_identity_matrix</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">projection</span><span class="p">)</span>
 
     <span class="c1"># set the projection matrix to be perspective</span>
-    <span class="n">ms</span><span class="o">.</span><span class="n">perspective</span><span class="p">(</span><span class="n">fov</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">aspectRatio</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="n">nearZ</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">farZ</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">)</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">perspective</span><span class="p">(</span>
+        <span class="n">field_of_view</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span>
+        <span class="n">aspect_ratio</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">height</span><span class="p">),</span>
+        <span class="n">near_z</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">far_z</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span>
+    <span class="p">)</span>
 
     <span class="c1"># render scene</span>
     <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
@@ -694,7 +715,7 @@ On Windows, in a command prompt, type “python src\demo21\demo.py”.</p>
         <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.10</span><span class="p">:</span>
             <span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span> <span class="o">-=</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">axes_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.01</span>
 
-    <span class="c1"># note - opengl matricies use degrees</span>
+    <span class="c1"># note - opengl matrices use degrees</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">)</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">rotate_y</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">)</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">MatrixStack</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">camera</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
