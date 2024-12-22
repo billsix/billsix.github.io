@@ -217,12 +217,6 @@ around a given point in world space, in this case, the paddle’s center.</p>
 </div>
 <p>All we did was add a rotate around method, and call it, with the
 paddle’s center as the rotate point.</p>
-<figure class="align-center" id="id7">
-<img alt="" src="static/rotate-sloppy-forwards.gif" />
-<figcaption>
-<p><span class="caption-text">Works but sloppy</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
 <p>Although this works for now and looks like decent code, this is extremely sloppy, and
 not thought out well at all.  We apply a transformation
 from paddle space to world space, then do the inverse, then rotate,

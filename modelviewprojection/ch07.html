@@ -172,12 +172,6 @@ graphics is to rotate an object.</p>
 <h2>Rotation Around Origin (0,0)<a class="headerlink" href="#rotation-around-origin-0-0" title="Permalink to this heading">¶</a></h2>
 <p>We can rotate an object around (0,0) by rotating
 all of the object’s vertices around (0,0).</p>
-<figure class="align-center" id="id2">
-<img alt="Rotate" src="static/rotate0.gif" />
-<figcaption>
-<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
 <p>In high school math, you will have learned about sin, cos, and tangent.
 Typically the angles are described on the unit circle, where a rotation
 starts from the positive x axis.</p>
@@ -189,14 +183,14 @@ by separating the x and y value, rotating each component separately,
 and then adding the results together.</p>
 <p>That might not have been fully clear.  Let me try again.
 The vertex (0.5,0.4) can be separated into two vertices, (0.5,0) and (0,0.4).</p>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id2">
 <img alt="Rotate" src="images/rotate3.svg" /><figcaption>
-<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id4">
+<figure class="align-center" id="id3">
 <img alt="Rotate" src="images/rotate4.svg" /><figcaption>
-<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Rotate</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>These vertices can be added together to create the original vertex.
@@ -204,9 +198,9 @@ But, before we do that, let’s rotate each of the vertices.</p>
 <p>(0.5,0) is on the x-axis, so rotating it by “angle” degrees, results
 in vertex (0.5*cos(angle), 0.5*sin(angle)).  This is high school
 geometry, and won’t be explained here in detail.</p>
-<figure class="align-center" id="id5">
+<figure class="align-center" id="id4">
 <img alt="Rotate" src="images/rotate.svg" /><figcaption>
-<p><span class="caption-text">Rotate the x component.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Rotate the x component.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center">
@@ -215,9 +209,9 @@ geometry, and won’t be explained here in detail.</p>
 Turns out, it is easy.  Just rotate your point of view, and it is
 the same thing, with one minor difference, in that the x value
 is negated.</p>
-<figure class="align-center" id="id6">
+<figure class="align-center" id="id5">
 <img alt="Rotate" src="images/rotate2.svg" /><figcaption>
-<p><span class="caption-text">Rotate the y component</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Rotate the y component</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center">
@@ -232,8 +226,8 @@ units of -1.</p>
 get your vertex rotated around the origin!</p>
 <p>(0.5*cos(angle), 0.5*sin(angle)) + (0.4*-sin(angle), 0.4*cos(angle)) =
 (0.5*cos(angle) + 0.4*-sin(angle), 0.5*sin(angle) + 0.4*cos(angle))</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">107</span><span class="nd">@dataclass</span>
 <span class="linenos">108</span><span class="k">class</span> <span class="nc">Vertex</span><span class="p">:</span>
 <span class="linenos">109</span>    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
@@ -275,8 +269,8 @@ get your vertex rotated around the origin!</p>
 <li><p>Note the definition of rotate, from the description above.
 cos and sin are defined in the math module.</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">145</span><span class="nd">@dataclass</span>
 <span class="linenos">146</span><span class="k">class</span> <span class="nc">Paddle</span><span class="p">:</span>
 <span class="linenos">147</span>    <span class="n">vertices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vertex</span><span class="p">]</span>
@@ -291,8 +285,8 @@ cos and sin are defined in the math module.</p></li>
 <ul class="simple">
 <li><p>a rotation instance variable is defined, with a default value of 0</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">184</span><span class="k">def</span> <span class="nf">handle_movement_of_paddles</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="linenos">185</span>    <span class="k">global</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span>
 <span class="linenos">186</span>
@@ -327,8 +321,8 @@ cos and sin are defined in the math module.</p></li>
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
 <section id="the-event-loop">
 <h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
-<div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">212</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
@@ -336,8 +330,8 @@ cos and sin are defined in the math module.</p></li>
 <p>So to rotate paddle 1 about its center,
 we should translate to its position, and then rotate
 around the paddle’s center.</p>
-<div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">230</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
 <span class="linenos">231</span>
 <span class="linenos">232</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
@@ -347,8 +341,8 @@ around the paddle’s center.</p>
 </div>
 <div class="math">
 <p><img src="images/math/c17986742fa5f83532d84ee00ce65ff5f573f306.svg" alt="\vec{f}_{p1}^{w}"/></p>
-</div><div class="literal-block-wrapper docutils container" id="id12">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
+</div><div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">237</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translate_amount</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span> \
 <span class="linenos">238</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
 </pre></div>
@@ -356,14 +350,14 @@ around the paddle’s center.</p>
 </div>
 <div class="math">
 <p><img src="images/math/53e93eeef83758a560eb4eb7b0f95283d7e45f74.svg" alt="\vec{f}_{w}^{ndc}"/></p>
-</div><div class="literal-block-wrapper docutils container" id="id13">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
+</div><div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">243</span>        <span class="n">paddle1_vertex_in_ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id14">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">247</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle1_vertex_in_ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle1_vertex_in_ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 <span class="linenos">248</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
@@ -375,8 +369,8 @@ around the paddle’s center.</p>
 <p>Likewise, to rotate paddle 2 about its center,
 we should translate to its position, and then rotate
 around the paddle’s center.</p>
-<div class="literal-block-wrapper docutils container" id="id15">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">254</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
 <span class="linenos">255</span>    <span class="k">for</span> <span class="n">paddle2_vertex_model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 </pre></div>
@@ -384,8 +378,8 @@ around the paddle’s center.</p>
 </div>
 <div class="math">
 <p><img src="images/math/3b7c27ea5fe5ffe8beb8b1e7da5989efccb2da92.svg" alt="\vec{f}_{p2}^{w}"/></p>
-</div><div class="literal-block-wrapper docutils container" id="id16">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
+</div><div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">259</span>        <span class="n">paddle2_vertex_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle2_vertex_model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">)</span> \
 <span class="linenos">260</span>                                                                       <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
 </pre></div>
@@ -393,14 +387,14 @@ around the paddle’s center.</p>
 </div>
 <div class="math">
 <p><img src="images/math/53e93eeef83758a560eb4eb7b0f95283d7e45f74.svg" alt="\vec{f}_{w}^{ndc}"/></p>
-</div><div class="literal-block-wrapper docutils container" id="id17">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
+</div><div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">265</span>        <span class="n">paddle2_vertex_ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle2_vertex_world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id18">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">269</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle2_vertex_ndc_space</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle2_vertex_ndc_space</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 <span class="linenos">270</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
@@ -415,19 +409,13 @@ translate, scale, and rotate are all defined correctly.  The paddles
 are not rotating around their center.</p>
 <p>Let’s take a look in detail about what our paddle-space to
 world space transformations are doing.</p>
-<div class="literal-block-wrapper docutils container" id="id19">
-<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">src/demo07/demo.py</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">237</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translate_amount</span><span class="o">=</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span> \
 <span class="linenos">238</span>                                         <span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<figure class="align-center" id="id20">
-<img alt="" src="static/incorrectrotate-forwards.gif" />
-<figcaption>
-<p><span class="caption-text">Not what we wanted</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
 <ul class="simple">
 <li><p>Modelspace vertices</p></li>
 </ul>
@@ -441,33 +429,33 @@ world space transformations are doing.</p>
 <ul class="simple">
 <li><p>Reset the coordinate system</p></li>
 </ul>
-<figure class="align-center" id="id21">
+<figure class="align-center" id="id19">
 <img alt="" src="images/incorrectrotate-forwards-3.svg" /><figcaption>
-<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
 <li><p>Rotate around World Spaces’s origin</p></li>
 </ul>
-<figure class="align-center" id="id22">
+<figure class="align-center" id="id20">
 <img alt="" src="images/incorrectrotate-forwards-4.svg" /><figcaption>
-<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
 <li><p>Reset the coordinate system</p></li>
 </ul>
-<figure class="align-center" id="id23">
+<figure class="align-center" id="id21">
 <img alt="" src="images/incorrectrotate-forwards-5.svg" /><figcaption>
-<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
 <li><p>Final world space coordinates</p></li>
 </ul>
-<figure class="align-center" id="id24">
+<figure class="align-center" id="id22">
 <img alt="" src="images/incorrectrotate-forwards-6.svg" /><figcaption>
-<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Modelspace</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>So then what the heck are we supposed to do in order to

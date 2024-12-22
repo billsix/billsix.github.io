@@ -207,12 +207,6 @@ is set back to the origin basis.</p>
 </pre></div>
 </div>
 </div>
-<figure class="align-center" id="id3">
-<img alt="Rotation Forwards" src="static/rotate1-forwards.gif" />
-<figcaption>
-<p><span class="caption-text">Rotation Forwards</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
 </section>
 <section id="reading-transformations-bottom-up">
 <h3>Reading transformations bottom-up<a class="headerlink" href="#reading-transformations-bottom-up" title="Permalink to this heading">¶</a></h3>
@@ -220,29 +214,23 @@ is set back to the origin basis.</p>
 where the operations
 all cumulatively modify the current axes and origin, i.e. basis, to a new basis.
 All subsequent functions move that relative basis to a new relative basis.</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
 <span class="linenos">234</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<figure class="align-center" id="id5">
-<img alt="Rotation Backwards" src="static/rotate1-backwards.gif" />
-<figcaption>
-<p><span class="caption-text">Rotation Backwards</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
 </section>
 <section id="suggested-order">
 <h3>Suggested Order<a class="headerlink" href="#suggested-order" title="Permalink to this heading">¶</a></h3>
 <p>The author has a strong opinion on the matter for computer graphics.</p>
 <p>Start at world space node.  As a reminder, this is the top-level coordinate
 system that we choose to use.  It is whatever you want it to be.</p>
-<figure class="align-center" id="id6">
+<figure class="align-center" id="id4">
 <img alt="Demo 06" src="images/demo061.png" />
 <figcaption>
-<p><span class="caption-text">Demo 06</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Demo 06</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Think of world space’s origin, x and y axes.  On the Cayley graph, move towards each modelspace node,
@@ -257,8 +245,8 @@ system.</p>
 <p><img src="images/math/fb9b2ac105527c4ae5eef2c99d02dfde82ec42e6.svg" alt="L * (M * \vec{x})     = (L * M) * \vec{x}"/></p>
 </div><p>to understand a complicated sequence of matrix multiplications, modifying
 L by a right-multiplication of M.</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
 <span class="linenos">234</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 </pre></div>
@@ -269,8 +257,8 @@ of all modelspace data as having already been “plotted”.  So now follow
 the edges to screen space,
 reading the transformations
 from top down, and resetting the coordinate system after every transformation.</p>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">237</span>        <span class="n">paddle1_vertex_in_ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">scalar</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -284,14 +272,14 @@ and to implement it correctly, we need to be able to reason and compose our thou
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
 <section id="the-event-loop">
 <h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
-<div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">207</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">228</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
 <span class="linenos">229</span>
 <span class="linenos">230</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
@@ -313,8 +301,8 @@ and to implement it correctly, we need to be able to reason and compose our thou
 <li><p>Reset the coordinate system</p></li>
 <li><p>Read the worldspace to NDC</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">247</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
 <span class="linenos">248</span>
 <span class="linenos">249</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
