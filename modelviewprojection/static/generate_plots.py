@@ -137,7 +137,7 @@ def accumulate_transformation(procedures, backwards=False):
 
 ### Step 1
 
-Geometry = namedtuple("Geometry", "points color")
+Geometry = namedtuple("Geometry", "points color names")
 
 paddle1 = Geometry(
     points=list(
@@ -154,6 +154,7 @@ paddle1 = Geometry(
         )
     ),
     color=(0.578123, 0.0, 1.0),
+    names=["c", "d", "a", "b"],
 )
 
 paddle2 = Geometry(
@@ -171,6 +172,7 @@ paddle2 = Geometry(
         )
     ),
     color=(1.0, 0.0, 0.0),
+    names=["c", "d", "a", "b"],
 )
 
 
@@ -263,6 +265,15 @@ def create_graphs(
                 color=geometry.color,
             )
 
+            for x, y, label in zip(transformed_xs, transformed_ys, geometry.names):
+                plt.annotate(
+                    f"{label}",
+                    (x, y),
+                    textcoords="offset points",
+                    xytext=(0, 10),
+                    ha="center",
+                )
+
             # make sure the x and y axis are equally proportional in screen space
             plt.gca().set_aspect("equal", adjustable="box")
             axes.xaxis.set_major_locator(matplotlib.ticker.MultipleLocator(1))
@@ -327,6 +338,7 @@ create_graphs(
     procedures=[
         mplt.rotate(math.radians(45.0)),
     ],
+    graph_bounds=(12, 12),
 )
 
 
@@ -348,6 +360,7 @@ create_graphs(
         mplt.rotate(math.radians(45.0)),
         mplt.translate(-9.0, 2.0),
     ],
+    graph_bounds=(12, 12),
 )
 
 create_graphs(
@@ -358,6 +371,7 @@ create_graphs(
         mplt.translate(-9.0, 2.0),
         mplt.rotate(math.radians(65.0)),
     ],
+    graph_bounds=(12, 12),
 )
 
 create_graphs(
@@ -369,6 +383,7 @@ create_graphs(
         mplt.rotate(math.radians(65.0)),
     ],
     backwards=True,
+    graph_bounds=(12, 12),
 )
 
 
@@ -383,6 +398,7 @@ create_graphs(
         mplt.translate(-9.0, 2.0),
     ],
     backwards=True,
+    graph_bounds=(12, 12),
 )
 
 create_graphs(
@@ -395,6 +411,7 @@ create_graphs(
         mplt.rotate(math.radians(45.0)),
         mplt.translate(-9.0, 2.0),
     ],
+    graph_bounds=(12, 12),
 )
 
 
@@ -407,6 +424,7 @@ create_graphs(
         mplt.translate(-9.0, 2.0),
     ],
     backwards=True,
+    graph_bounds=(12, 12),
 )
 
 
@@ -415,6 +433,7 @@ create_graphs(
     filename="rotate2-forwards",
     geometry=paddle2,
     procedures=[mplt.rotate(math.radians(-1.0)), mplt.translate(9.0, -4.0)],
+    graph_bounds=(12, 12),
 )
 
 create_graphs(
@@ -426,6 +445,7 @@ create_graphs(
         mplt.translate(9.0, -4.0),
     ],
     backwards=True,
+    graph_bounds=(12, 12),
 )
 
 square = Geometry(
@@ -443,6 +463,7 @@ square = Geometry(
         )
     ),
     color=(1.0, 0.0, 0.0),
+    names=["c", "d", "a", "b"],
 )
 
 
@@ -473,7 +494,7 @@ create_graphs(
 
 t = np.linspace(0, np.pi * 2, 100)
 circ = [list(np.cos(t) * 10), list(np.sin(t) * 10)]
-circle = Geometry(points=circ, color=(0.0, 1.0, 0.0))
+circle = Geometry(points=circ, color=(0.0, 1.0, 0.0), names=[])
 
 create_graphs(
     title="Circle, Relative to Local Space",
@@ -515,6 +536,7 @@ square_ndc = Geometry(
         )
     ),
     color=(1.0, 0.0, 0.0),
+    names=[],
 )
 
 
@@ -564,6 +586,7 @@ square_ndc = Geometry(
         )
     ),
     color=(1.0, 0.0, 0.0),
+    names=[],
 )
 
 

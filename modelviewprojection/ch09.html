@@ -203,7 +203,7 @@ is set back to the origin basis.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
-<span class="linenos">234</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="linenos">234</span>                                                                             <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -217,7 +217,7 @@ All subsequent functions move that relative basis to a new relative basis.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
-<span class="linenos">234</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="linenos">234</span>                                                                             <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -248,7 +248,7 @@ L by a right-multiplication of M.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">src/demo09/demo.py</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
-<span class="linenos">234</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="linenos">234</span>                                                                             <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -286,7 +286,7 @@ and to implement it correctly, we need to be able to reason and compose our thou
 <span class="linenos">231</span>    <span class="k">for</span> <span class="n">paddle1_vertex_in_model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 <span class="linenos">232</span>        <span class="c1"># doc-region-begin paddle 1 transformations</span>
 <span class="linenos">233</span>        <span class="n">paddle1_vertex_in_world_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_model_space</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> \
-<span class="linenos">234</span>                                         <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="linenos">234</span>                                                                             <span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 <span class="linenos">235</span>        <span class="c1"># doc-region-end paddle 1 transformations</span>
 <span class="linenos">236</span>        <span class="c1"># doc-region-begin paddle 1 scale</span>
 <span class="linenos">237</span>        <span class="n">paddle1_vertex_in_ndc_space</span><span class="p">:</span> <span class="n">Vertex</span> <span class="o">=</span> <span class="n">paddle1_vertex_in_world_space</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">scalar</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
