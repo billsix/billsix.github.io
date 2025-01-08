@@ -210,19 +210,19 @@ and for use with static type-checking tools for Python, such as <a class="refere
 <p>I make heavy use of <a class="reference external" href="https://www.pythontutorial.net/python-basics/python-keyword-arguments/">keyword arguments</a> in Python.</p>
 <p>Notice that I am nesting the constructors.  I could have instead have written the
 construction of paddle1 like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
-<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.3</span>
-<span class="n">vertex_one</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.8</span>
-<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.3</span>
-<span class="n">vertex_two</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.8</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.8</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mf">0.3</span>
-<span class="n">vertex_three</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">vertex_a</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mf">0.3</span>
-<span class="n">vertex_four</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">vertex_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">vertex_one</span><span class="p">,</span> <span class="n">vertex_two</span><span class="p">,</span> <span class="n">vertex_three</span><span class="p">,</span> <span class="n">vertex_four</span><span class="p">)</span>
+<span class="n">vertex_b</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.3</span>
+<span class="n">vertex_c</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.8</span>
+<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.3</span>
+<span class="n">vertex_d</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">vertex_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">vertex_a</span><span class="p">,</span> <span class="n">vertex_b</span><span class="p">,</span> <span class="n">vertex_c</span><span class="p">,</span> <span class="n">vertex_d</span><span class="p">)</span>
 <span class="n">r</span> <span class="o">=</span> <span class="mf">0.57</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mf">1.0</span>
@@ -237,24 +237,51 @@ reading of the code, which gets easy with practice.</p>
 </section>
 <section id="query-user-input-and-use-it-to-animate">
 <h3>Query User Input and Use It To Animate<a class="headerlink" href="#query-user-input-and-use-it-to-animate" title="Permalink to this heading">¶</a></h3>
-<div class="literal-block-wrapper docutils container" id="id5">
+<div class="math">
+<p><img src="images/math/045e33b6e79771aad8f1b3d42e2492c22ad74948.svg" alt="\vec{x'} = \vec{t}(\vec{x}; \vec{c}) = \vec{x} + \vec{c}"/></p>
+</div><div class="math">
+<p><img src="images/math/98ab3f536a4a8f9316b359c91ae2cb50f7eaf468.svg" alt="\begin{bmatrix}
+x_{1} \\
+x_{2}
+\end{bmatrix}  =
+\vec{t}(
+\begin{bmatrix}
+x_{1} \\
+x_{2}
+\end{bmatrix}; \begin{bmatrix}
+c_{1} \\
+c_{2}
+\end{bmatrix} )  =
+\begin{bmatrix}
+x_{1} \\
+x_{2}
+\end{bmatrix} +
+\begin{bmatrix}
+{c}_{1} \\
+{c}_{2}
+\end{bmatrix}"/></p>
+</div><div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">147</span><span class="k">def</span> <span class="nf">handle_movement_of_paddles</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="linenos">148</span>    <span class="k">global</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span>
 <span class="linenos">149</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_S</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
 <span class="linenos">150</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">151</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
-<span class="linenos">152</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_W</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">153</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">154</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
-<span class="linenos">155</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_K</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">156</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">157</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
-<span class="linenos">158</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">159</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">160</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
-<span class="linenos">161</span>
-<span class="linenos">162</span>
+<span class="linenos">151</span>            <span class="n">v</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mf">0.0</span>
+<span class="linenos">152</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
+<span class="linenos">153</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_W</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">154</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">155</span>            <span class="n">v</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mf">0.0</span>
+<span class="linenos">156</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
+<span class="linenos">157</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_K</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">158</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">159</span>            <span class="n">v</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mf">0.0</span>
+<span class="linenos">160</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
+<span class="linenos">161</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">162</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">163</span>            <span class="n">v</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mf">0.0</span>
+<span class="linenos">164</span>            <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
+<span class="linenos">165</span>
+<span class="linenos">166</span>
 </pre></div>
 </div>
 </div>
@@ -281,43 +308,43 @@ that movement is consistent across different monitors, we choose
 to only flush the screen at 60 hertz (frames per second).</p>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">166</span><span class="n">TARGET_FRAMERATE</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span>
-<span class="linenos">167</span>
-<span class="linenos">168</span><span class="n">time_at_beginning_of_previous_frame</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">170</span><span class="n">TARGET_FRAMERATE</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="linenos">171</span>
+<span class="linenos">172</span><span class="n">time_at_beginning_of_previous_frame</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">172</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-<span class="linenos">173</span>    <span class="k">while</span> <span class="p">(</span>
-<span class="linenos">174</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span>
-<span class="linenos">175</span>    <span class="p">):</span>
-<span class="linenos">176</span>        <span class="k">pass</span>
-<span class="linenos">177</span>
-<span class="linenos">178</span>    <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">176</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<span class="linenos">177</span>    <span class="k">while</span> <span class="p">(</span>
+<span class="linenos">178</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span>
+<span class="linenos">179</span>    <span class="p">):</span>
+<span class="linenos">180</span>        <span class="k">pass</span>
+<span class="linenos">181</span>
+<span class="linenos">182</span>    <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">182</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
-<span class="linenos">183</span>
-<span class="linenos">184</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-<span class="linenos">185</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-<span class="linenos">186</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">186</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
+<span class="linenos">187</span>
+<span class="linenos">188</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<span class="linenos">189</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="linenos">190</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">190</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">194</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">194</span>    <span class="n">handle_movement_of_paddles</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">198</span>    <span class="n">handle_movement_of_paddles</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -329,12 +356,12 @@ values if there was input.</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id11">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">198</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">199</span>
-<span class="linenos">200</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">201</span>    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">202</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">203</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">202</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">203</span>
+<span class="linenos">204</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">205</span>    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">206</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">207</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -354,12 +381,12 @@ associated vertices.</p></li>
 </figure>
 <div class="literal-block-wrapper docutils container" id="id13">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">207</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
-<span class="linenos">208</span>
-<span class="linenos">209</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">210</span>    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">211</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">212</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">211</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="linenos">212</span>
+<span class="linenos">213</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">214</span>    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">215</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">216</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -370,7 +397,7 @@ associated vertices.</p></li>
 </figure>
 <div class="literal-block-wrapper docutils container" id="id15">
 <div class="code-block-caption"><span class="caption-text">src/demo04/demo.py</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">216</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">220</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
