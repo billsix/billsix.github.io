@@ -156,8 +156,7 @@ and it regains its color when it is reactivated by “glPopMatrix”</p>
 </section>
 <section id="how-to-execute">
 <h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this heading">¶</a></h2>
-<p>On Linux or on MacOS, in a shell, type “python src/demo19/demo.py”.
-On Windows, in a command prompt, type “python src\demo19\demo.py”.</p>
+<p>Load src/demo19/demo.py in Spyder and hit the play button</p>
 </section>
 <section id="move-the-paddles-using-the-keyboard">
 <h2>Move the Paddles using the Keyboard<a class="headerlink" href="#move-the-paddles-using-the-keyboard" title="Permalink to this heading">¶</a></h2>
@@ -364,11 +363,11 @@ matrix into OpenGL, glVertex3f will apply those transformations for us <a class=
 <span class="linenos">299</span>    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="linenos">300</span>
 <span class="linenos">301</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">302</span>    <span class="k">for</span> <span class="n">paddle1_vertex_in_model_space</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">302</span>    <span class="k">for</span> <span class="n">paddle1_vertex_ms</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 <span class="linenos">303</span>        <span class="n">glVertex3f</span><span class="p">(</span>
-<span class="linenos">304</span>            <span class="n">paddle1_vertex_in_model_space</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-<span class="linenos">305</span>            <span class="n">paddle1_vertex_in_model_space</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-<span class="linenos">306</span>            <span class="n">paddle1_vertex_in_model_space</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="linenos">304</span>            <span class="n">paddle1_vertex_ms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">305</span>            <span class="n">paddle1_vertex_ms</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">306</span>            <span class="n">paddle1_vertex_ms</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
 <span class="linenos">307</span>        <span class="p">)</span>
 <span class="linenos">308</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
@@ -431,11 +430,11 @@ all 3 matrices will be reset to the identity</p>
 <span class="linenos">351</span>    <span class="n">glRotatef</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="linenos">352</span>
 <span class="linenos">353</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">354</span>    <span class="k">for</span> <span class="n">paddle2_vertex_model_space</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">354</span>    <span class="k">for</span> <span class="n">paddle2_vertex_ms</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
 <span class="linenos">355</span>        <span class="n">glVertex3f</span><span class="p">(</span>
-<span class="linenos">356</span>            <span class="n">paddle2_vertex_model_space</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-<span class="linenos">357</span>            <span class="n">paddle2_vertex_model_space</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-<span class="linenos">358</span>            <span class="n">paddle2_vertex_model_space</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="linenos">356</span>            <span class="n">paddle2_vertex_ms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">357</span>            <span class="n">paddle2_vertex_ms</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">358</span>            <span class="n">paddle2_vertex_ms</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
 <span class="linenos">359</span>        <span class="p">)</span>
 <span class="linenos">360</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>

@@ -48,6 +48,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#pre-requisities">Pre-requisities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#required-software">Required Software</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macos-or-linux">MacOS or Linux</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#linux">Linux</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mac">Mac</a></li>
 </ul>
@@ -171,7 +172,9 @@ advanced topics.</p>
 <p>You will need to install Python. <a class="reference external" href="https://realpython.com/installing-python/">https://realpython.com/installing-python/</a></p>
 <p>Before running this code, you need a virtual environment,
 with dependencies installed. <a class="reference external" href="https://docs.python.org/3/tutorial/venv.html">https://docs.python.org/3/tutorial/venv.html</a></p>
-<p>On Windows, if you use the Developer command prompt, run</p>
+<section id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h3>
+<p>On Windows, if you use the Developer command prompt, to set up the environment run</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
 <span class="n">cd</span> <span class="n">venv</span>\<span class="n">Scripts</span>
 <span class="n">activate</span><span class="o">.</span><span class="n">bat</span>
@@ -180,17 +183,30 @@ with dependencies installed. <a class="reference external" href="https://docs.py
 <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>If you use Visual Studio on Windows, it takes care of this for you.</p>
-<p>On a Mac or on Linux, run</p>
+<p>To run the Spyder IDE to execute the code in the book, open Spyder on the developer command
+prompt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">venv</span>\<span class="n">Scripts</span>
+<span class="n">activate</span><span class="o">.</span><span class="n">bat</span>
+<span class="n">cd</span> <span class="o">..</span>\<span class="o">..</span>\
+<span class="n">spyder</span>
+</pre></div>
+</div>
+</section>
+<section id="macos-or-linux">
+<h3>MacOS or Linux<a class="headerlink" href="#macos-or-linux" title="Permalink to this heading">¶</a></h3>
+<p>On MacOS or Linux, on a terminal, to set up the environment, run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
 <span class="nb">source</span><span class="w"> </span>venv/bin/activate
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span>setuptools
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
-<section id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h3>
-<p>Use Visual Studio 2019 (Tested on community, but I’m sure it will work on others).</p>
+<p>To run the Spyder IDE to execute the code in the book, open Spyder on the developer command
+prompt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<span class="n">spyder</span>
+</pre></div>
+</div>
 </section>
 <section id="linux">
 <h3>Linux<a class="headerlink" href="#linux" title="Permalink to this heading">¶</a></h3>

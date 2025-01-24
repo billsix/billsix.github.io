@@ -38,8 +38,7 @@ the window.
 How to Execute
 ^^^^^^^^^^^^^^
 
-On Linux or on MacOS, in a shell, type "python src/demo01/demo.py".
-On Windows, in a command prompt, type "python src\\demo01\\demo.py".
+Load src/demo01/demo.py in Spyder and hit the play button
 
 
 Terminology
@@ -294,8 +293,11 @@ Create a Window
    :caption: src/demo01/demo.py
 
 
-*  If GLFW cannot open the window, quit.  Unlike MC Hammer, we are quite legit, yet still
+*  If GLFW cannot open the window, quit.  Unlike `MC Hammer <https://youtu.be/HFCv86Olk8E?si=eE25mzpsrrw6aoyR&t=503>`_ , we are quite legit, yet still
    able to quit.
+
+
+
 
 
 .. literalinclude:: ../../src/demo01/demo.py
