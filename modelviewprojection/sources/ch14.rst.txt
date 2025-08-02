@@ -1,29 +1,21 @@
 ..
-   Copyright (c) 2018-2024 William Emerison Six
+   Copyright (c) 2018-2025 William Emerison Six
 
-   Permission is hereby granted, free of charge, to any person obtaining a copy
-   of this software and associated documentation files (the "Software"), to deal
-   in the Software without restriction, including without limitation the rights
-   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   copies of the Software, and to permit persons to whom the Software is
-   furnished to do so, subject to the following conditions:
+   Permission is granted to copy, distribute and/or modify this document
+   under the terms of the GNU Free Documentation License, Version 1.3
+   or any later version published by the Free Software Foundation;
+   with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+   A copy of the license is available at
+   https://www.gnu.org/licenses/fdl-1.3.html.
 
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
-
+*****************************
 Adding Depth - Z axis Demo 14
-=============================
+*****************************
 
-Purpose
-^^^^^^^
+
+Objective
+^^^^^^^^^
 Do the same stuff as the previous demo, but use 3D coordinates,
 where the negative z axis goes into the screen (because
 of the right hand rule).  Positive z comes out of the monitor
@@ -39,6 +31,7 @@ Things that this demo doesn't end up doing correctly:
 
 
 .. figure:: static/screenshots/demo14.png
+    :class: no-scale
     :align: center
     :alt: Demo 14
     :figclass: align-center
@@ -47,6 +40,7 @@ Things that this demo doesn't end up doing correctly:
 
 
 .. figure:: static/screenshots/camera1.png
+    :class: no-scale
     :align: center
     :alt: Camera Space
     :figclass: align-center
@@ -54,6 +48,7 @@ Things that this demo doesn't end up doing correctly:
     Camera Space
 
 .. figure:: static/screenshots/camera2.png
+    :class: no-scale
     :align: center
     :alt: Camera Space
     :figclass: align-center
@@ -63,7 +58,7 @@ Things that this demo doesn't end up doing correctly:
 How to Execute
 ^^^^^^^^^^^^^^
 
-Load src/demo14/demo.py in Spyder and hit the play button
+Load src/modelviewprojection/demo14.py in Spyder and hit the play button.
 
 
 Move the Paddles using the Keyboard
@@ -108,7 +103,7 @@ Description
 
 
 
-* Vertex data will now have an X, Y, and Z component.
+* Vector data will now have an X, Y, and Z component.
 * Rotations around an angle in 3D space follow the right hand rule_.  Here's a link to them
   in matrix_ form, which we have not yet covered.
 
@@ -116,6 +111,7 @@ Description
 .. _matrix: https://en.wikipedia.org/wiki/Rotation_matrix
 
 .. figure:: static/ccbysa3.0/wikipedia-Acdx/220px-Right_hand_rule_cross_product.svg.png
+    :class: no-scale
     :align: center
     :alt: Right hand rule
     :figclass: align-center
@@ -128,13 +124,13 @@ Description
 * starting on the z axis, rotating to x axis, thumb is on the positive y axis.
 
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/mathutils3d.py
    :language: python
-   :start-after: doc-region-begin define vertex2d
-   :end-before: doc-region-end define vertex2d
+   :start-after: doc-region-begin define vector class
+   :end-before: doc-region-end define vector class
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/mathutils3d
 
 
 Rotate Z
@@ -145,18 +141,19 @@ Rotate Z is the same rotate that we've used so far, but doesn't affect
 the z component at all.
 
 .. figure:: static/cc0/Stephan_Kulla/Sinus_und_Kosinus_am_Einheitskreis_2.svg
+    :class: no-scale
     :align: center
     :alt: Rotate Z
     :figclass: align-center
 
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/mathutils3d.py
    :language: python
    :start-after: doc-region-begin define rotate z
    :end-before: doc-region-end define rotate z
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/mathutils3d.py
 
 
 Rotate X
@@ -165,18 +162,19 @@ Rotate X
 
 
 .. figure:: static/cc0/Stephan_Kulla/Sinus_und_Kosinus_am_Einheitskreis_4.svg
+    :class: no-scale
     :align: center
     :alt: Rotate X
     :figclass: align-center
 
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/mathutils3d.py
    :language: python
    :start-after: doc-region-begin define rotate x
    :end-before: doc-region-end define rotate x
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/mathutils3d.py
 
 
 
@@ -184,85 +182,86 @@ Rotate Y
 ~~~~~~~~
 
 .. figure:: static/cc0/Stephan_Kulla/Sinus_und_Kosinus_am_Einheitskreis_5.svg
+    :class: no-scale
     :align: center
     :alt: Rotate Y
     :figclass: align-center
 
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/mathutils3d.py
    :language: python
    :start-after: doc-region-begin define rotate y
    :end-before: doc-region-end define rotate y
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/mathutils3d.py
 
 
 Scale
 ~~~~~
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/mathutils3d.py
    :language: python
    :start-after: doc-region-begin define uniform scale
    :end-before: doc-region-end define uniform scale
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/mathutils3d.py
 
 
 Code
 ^^^^
 
 The only new aspect of the code below is that the paddles have
-a z-coordinate of 0 in their modelspace.
+a z-coordinate of 0 in their :term:`modelspace<Modelspace>`.
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo14.py
    :language: python
    :start-after: doc-region-begin instantiate paddle 1
    :end-before: doc-region-end instantiate paddle 1
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/demo14.py
 
 
 The only new aspect of the square below is that the paddles have
-a z-coordinate of 0 in their modelspace.  N.B that since we
-do a sequence transformations to the modelspace data to get
+a z-coordinate of 0 in their :term:`modelspace<Modelspace>`.  N.B that since we
+do a sequence transformations to the :term:`modelspace<Modelspace>` data to get
 to world-space coordinates, the X, Y, and Z coordinates
 are subject to be different.
 
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo14.py
    :language: python
    :start-after: doc-region-begin define camera class
    :end-before: doc-region-end define camera class
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/demo14.py
 
 The camera now has a z-coordinate of 0 also.
 
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo14.py
    :language: python
    :start-after: doc-region-begin instantiate square
    :end-before: doc-region-end instantiate square
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/demo14.py
 
 
 
 Event Loop
 ~~~~~~~~~~
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo14.py
    :language: python
    :start-after: doc-region-begin begin event loop
    :end-before: doc-region-end begin event loop
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/demo14.py
 
 
 ::
@@ -271,13 +270,13 @@ Event Loop
 
 * Draw Paddle 1
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo14.py
    :language: python
    :start-after: doc-region-begin draw paddle 1
    :end-before: doc-region-end draw paddle 1
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/demo14.py
 
 
 The square should not be visible when hidden behind the paddle1,
@@ -287,13 +286,13 @@ that the square is always drawn over the paddle.
 
 * Draw the Square
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo14.py
    :language: python
    :start-after: doc-region-begin draw square
    :end-before: doc-region-end draw square
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/demo14.py
 
 
 
@@ -307,13 +306,13 @@ see that the square can be hidden behind the paddle.
 
 * Draw Paddle 2
 
-.. literalinclude:: ../../src/demo14/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo14.py
    :language: python
    :start-after: doc-region-begin draw paddle 2
    :end-before: doc-region-end draw paddle 2
    :linenos:
    :lineno-match:
-   :caption: src/demo14/demo.py
+   :caption: src/modelviewprojection/demo14.py
 
 
 

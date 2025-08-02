@@ -1,52 +1,212 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Glossary" href="glossary.html" /><link rel="prev" title="OpenGL3.3 Core Profile - Demo 21" href="ch21.html" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Standard Perspective Matrix &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>Standard Perspective Matrix - Model View Projection 0.0.02 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
   
-        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
-        <script src="static/jquery.js"></script>
-        <script src="static/underscore.js"></script>
-        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="static/doctools.js"></script>
-        <script src="static/sphinx_highlight.js"></script>
-    <script src="static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="OpenGL3.3 Core Profile - Demo 21" href="ch21.html" /> 
-</head>
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
 
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Model View Projection
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Model View Projection 0.0.02 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Model View Projection 0.0.02 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vector - Demo 05</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
@@ -57,81 +217,79 @@
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch16.html">Lambda Stack - Demo 16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">Moving Camera in 3D Space - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Standard Perspective Matrix</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#description">Description</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#matrix-form-of-perspective-projection">Matrix form of perspective projection</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#scale-camera-space-x-by-camera-space-z">Scale Camera-space x by Camera-space z</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#scale-camera-space-y-by-camera-space-z">Scale Camera-space y by Camera-space z</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#translate-rectangular-prism-s-center-to-center">Translate Rectangular Prism’s Center to Center</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#scale-by-inverse-of-the-dimensions-of-the-rectangular-prism">Scale by inverse of the dimensions of the Rectangular Prism</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pre-multiply-the-matricies">Pre-multiply the matricies</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#clip-space">Clip Space</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#remove-z-of-camera-space-from-part-of-the-matrix">Remove Z of Camera Space from Part of the Matrix</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#remove-z-of-camera-space-from-the-rest-of-the-matrix">Remove Z of Camera Space from the Rest of the Matrix</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Standard Perspective Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
 
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Model View Projection</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Standard Perspective Matrix</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="sources/perspective.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="standard-perspective-matrix">
-<h1>Standard Perspective Matrix<a class="headerlink" href="#standard-perspective-matrix" title="Permalink to this heading">¶</a></h1>
-<section id="purpose">
-<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/perspective.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="standard-perspective-matrix">
+<h1>Standard Perspective Matrix<a class="headerlink" href="#standard-perspective-matrix" title="Link to this heading">¶</a></h1>
+<section id="objective">
+<h2>Objective<a class="headerlink" href="#objective" title="Link to this heading">¶</a></h2>
 <p>Derive the standard perspective matrix that OpenGL expects.</p>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <figure class="align-center" id="id1">
-<img alt="Demo 11" src="images/perspective.png" />
+<img alt="Demo 11" class="no-scale" src="images/perspective.png" />
 <figcaption>
-<p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Turn our NDC into Clip Space</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <section id="matrix-form-of-perspective-projection">
-<h3>Matrix form of perspective projection<a class="headerlink" href="#matrix-form-of-perspective-projection" title="Permalink to this heading">¶</a></h3>
+<h3>Matrix form of perspective projection<a class="headerlink" href="#matrix-form-of-perspective-projection" title="Link to this heading">¶</a></h3>
 <figure class="align-center">
-<img alt="Frustum 2" src="images/frustum2.png" />
+<img alt="Frustum 2" class="no-scale" src="images/frustum2.png" />
 </figure>
 <section id="scale-camera-space-x-by-camera-space-z">
-<h4>Scale Camera-space x by Camera-space z<a class="headerlink" href="#scale-camera-space-x-by-camera-space-z" title="Permalink to this heading">¶</a></h4>
-<div class="math">
-<p><img src="images/math/b23cfb38f6931f4cf7085148ee62a840ea50116d.svg" alt="\vec{f}_{1}(\begin{bmatrix}
+<h4>Scale Camera-space x by Camera-space z<a class="headerlink" href="#scale-camera-space-x-by-camera-space-z" title="Link to this heading">¶</a></h4>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{f}_{1}(\begin{bmatrix}
                           {x_c} \\
                           {y_c} \\
                           {z_c} \\
@@ -147,19 +305,21 @@
                           {y_c} \\
                           {z_c} \\
                           {w_c=1} \\
-                \end{bmatrix}"/></p>
-</div><p>resulting in</p>
+                \end{bmatrix}\end{split}\]</div>
+</div>
+<p>resulting in</p>
 <figure class="align-center" id="id2">
-<img alt="Frustum 3" src="images/frustum3.png" />
+<img alt="Frustum 3" class="no-scale" src="images/frustum3.png" />
 <figcaption>
-<p><span class="caption-text">Scale the camera space x by the camera space z</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Scale the camera space x by the camera space z</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="scale-camera-space-y-by-camera-space-z">
-<h4>Scale Camera-space y by Camera-space z<a class="headerlink" href="#scale-camera-space-y-by-camera-space-z" title="Permalink to this heading">¶</a></h4>
-<div class="math">
-<p><img src="images/math/94bb9d61259c65f7ead975132da5efe0331bc084.svg" alt="(\vec{f}_{2} ; nearZ_c) ( \begin{bmatrix}
+<h4>Scale Camera-space y by Camera-space z<a class="headerlink" href="#scale-camera-space-y-by-camera-space-z" title="Link to this heading">¶</a></h4>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}(\vec{f}_{2} ; nearZ_c) ( \begin{bmatrix}
                      {x_c} \\
                      {y_c} \\
                      {z_c} \\
@@ -175,22 +335,24 @@
                      {y_c} \\
                      {z_c} \\
                      {w_c=1} \\
-           \end{bmatrix}"/></p>
-</div><p>resulting in</p>
+           \end{bmatrix}\end{split}\]</div>
+</div>
+<p>resulting in</p>
 <figure class="align-center" id="id3">
-<img alt="Frustum 4" src="images/frustum4.png" />
+<img alt="Frustum 4" class="no-scale" src="images/frustum4.png" />
 <figcaption>
-<p><span class="caption-text">Scale the camera space y by the cameraspace z</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Scale the camera space y by the cameraspace z</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="translate-rectangular-prism-s-center-to-center">
-<h4>Translate Rectangular Prism’s Center to Center<a class="headerlink" href="#translate-rectangular-prism-s-center-to-center" title="Permalink to this heading">¶</a></h4>
-<p><img class="math" src="images/math/930e808b5d82af5691d2f4dd35fdd01d2ef979ee.svg" alt="x_{midpoint} = 0"/>  // centered on x</p>
-<p><img class="math" src="images/math/2b812c038c7fd10e9e9d70e00e7d0f0f9202e2a3.svg" alt="y_{midpoint} = 0"/>  // centered on y</p>
-<p><img class="math" src="images/math/aad4a980fc7164f00b1da0f17458e9d2a2e7c272.svg" alt="z_{midpoint} = {{{farZ}_c + {nearZ}_c} \over 2}"/>;</p>
-<div class="math">
-<p><img src="images/math/c80247513d0a3db96475504b3c1e2dfe3551e96f.svg" alt="(\vec{f}_{3} ; nearZ_c) ( \begin{bmatrix}
+<h4>Translate Rectangular Prism’s Center to Center<a class="headerlink" href="#translate-rectangular-prism-s-center-to-center" title="Link to this heading">¶</a></h4>
+<p><span class="math notranslate nohighlight">\(x_{midpoint} = 0\)</span>  // centered on x</p>
+<p><span class="math notranslate nohighlight">\(y_{midpoint} = 0\)</span>  // centered on y</p>
+<p><span class="math notranslate nohighlight">\(z_{midpoint} = {{{farZ}_c + {nearZ}_c} \over 2}\)</span>;</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}(\vec{f}_{3} ; nearZ_c) ( \begin{bmatrix}
                            {x_c} \\
                            {y_c} \\
                            {z_c} \\
@@ -207,18 +369,20 @@
                            {y_c} \\
                            {z_c} \\
                            {w_c=1} \\
-                 \end{bmatrix}"/></p>
-</div><figure class="align-center">
-<img alt="Frustum 5" src="images/frustum5.png" />
+                 \end{bmatrix}\end{split}\]</div>
+</div>
+<figure class="align-center">
+<img alt="Frustum 5" class="no-scale" src="images/frustum5.png" />
 </figure>
 </section>
 <section id="scale-by-inverse-of-the-dimensions-of-the-rectangular-prism">
-<h4>Scale by inverse of the dimensions of the Rectangular Prism<a class="headerlink" href="#scale-by-inverse-of-the-dimensions-of-the-rectangular-prism" title="Permalink to this heading">¶</a></h4>
-<p><img class="math" src="images/math/6c4f0433c32a9e2f1a09ddcc2853c70573b2ff43.svg" alt="x_{length} = right * 2"/>;</p>
-<p><img class="math" src="images/math/2690a3d5eca4385040efadb02d30ada4afcd707c.svg" alt="y_{length} = top * 2"/>;</p>
-<p><img class="math" src="images/math/b06e5a30f5649fcfb0342c582564bc6095eaccd8.svg" alt="z_{length} = {nearZ}_c - {farZ}_c"/>;</p>
-<div class="math">
-<p><img src="images/math/fbad485b9b4a8031fc8eeebf877767aeb7c4e7c4.svg" alt="(\vec{f}_{4} ; nearZ_c, farZ_c) ( \begin{bmatrix}
+<h4>Scale by inverse of the dimensions of the Rectangular Prism<a class="headerlink" href="#scale-by-inverse-of-the-dimensions-of-the-rectangular-prism" title="Link to this heading">¶</a></h4>
+<p><span class="math notranslate nohighlight">\(x_{length} = right * 2\)</span>;</p>
+<p><span class="math notranslate nohighlight">\(y_{length} = top * 2\)</span>;</p>
+<p><span class="math notranslate nohighlight">\(z_{length} = {nearZ}_c - {farZ}_c\)</span>;</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}(\vec{f}_{4} ; nearZ_c, farZ_c) ( \begin{bmatrix}
                      {x_c} \\
                      {y_c} \\
                      {z_c} \\
@@ -234,15 +398,17 @@
                      {y_c} \\
                      {z_c} \\
                      {w_c=1} \\
-           \end{bmatrix}"/></p>
-</div><figure class="align-center">
-<img alt="Frustum 6" src="images/frustum6.png" />
+           \end{bmatrix}\end{split}\]</div>
+</div>
+<figure class="align-center">
+<img alt="Frustum 6" class="no-scale" src="images/frustum6.png" />
 </figure>
 </section>
 <section id="pre-multiply-the-matricies">
-<h4>Pre-multiply the matricies<a class="headerlink" href="#pre-multiply-the-matricies" title="Permalink to this heading">¶</a></h4>
-<div class="math">
-<p><img src="images/math/19bceacdfc2f2f2259ea57aa8a75376e9f9c0fad.svg" alt="\begin{bmatrix}
+<h4>Pre-multiply the matricies<a class="headerlink" href="#pre-multiply-the-matricies" title="Link to this heading">¶</a></h4>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
   {x_{ndc}} \\
   {y_{ndc}} \\
   {z_{ndc}} \\
@@ -252,13 +418,15 @@
                          {y_c} \\
                          {z_c} \\
                          {w_c=1} \\
-               \end{bmatrix}"/></p>
-</div><p>Multiply them all together to get the following.  The elements of this premultiplied matrix have no geometric
+               \end{bmatrix}\end{split}\]</div>
+</div>
+<p>Multiply them all together to get the following.  The elements of this premultiplied matrix have no geometric
 meaning to the author, and that’s ok.  The matricies above all of geometric meaning, and we premultiply them
 together for computational efficiency, as well as being able to do the next step in clip space, which
 we couldn’t do without having the premultiplied matrix.</p>
-<div class="math">
-<p><img src="images/math/c2d1f70b9335b291b69ea2f81452719268943567.svg" alt="\begin{bmatrix}
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
   {x_{ndc}} \\
   {y_{ndc}} \\
   {z_{ndc}} \\
@@ -279,21 +447,12 @@ we couldn’t do without having the premultiplied matrix.</p>
                          {y_{c}} \\
                          {z_{c}} \\
                          {w_{c}=1} \\
-               \end{bmatrix}"/></p>
-</div><p>As a quick smoke test to ensure that the aggregate matrix works correctly, let’s
-test the bounds of the frustum and make sure that they map to the NDC cube.</p>
-<p>Given that <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> is negative, assuming <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> is equal to
-<img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, <img class="math" src="images/math/0f77a21eaff96bad0e778aa583143161872b0890.svg" alt="right"/> goes to <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, <img class="math" src="images/math/6508a7b60d8b7288de7439d46fa31b466f1f8929.svg" alt="left"/> which is <img class="math" src="images/math/5e01779897f21802c4df3895a024c9fa2fbf3fad.svg" alt="-right"/>
-goes to <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/>.</p>
-<p>Given that <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> is negative, assuming <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> is equal to
-<img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, <img class="math" src="images/math/bdc70e28dd28e6a281e57c0ccc2bfb53e0e52d31.svg" alt="top"/> goes to <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, <img class="math" src="images/math/d025e192bbf1774ad781b3d9f2d66715c8272a07.svg" alt="bottom"/> which is <img class="math" src="images/math/c4f76e1ddf37aae2c292369b02611b9fd3edec8d.svg" alt="-top"/>
-goes to <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/>.</p>
-<p>Given that <img class="math" src="images/math/caa487cffda5a61e15801b78457f45bc23da79b0.svg" alt="w_c"/> is <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, if <img class="math" src="images/math/7bda46a09b6b5414a509da0461f9724e91fb5865.svg" alt="z_c = nearZ_c"/>, <img class="math" src="images/math/8e69db1a6c584f2d06a386420caf09126294c44b.svg" alt="z_{ndc} = 1"/>.
-Given that <img class="math" src="images/math/caa487cffda5a61e15801b78457f45bc23da79b0.svg" alt="w_c"/> is <img class="math" src="images/math/a889c8ffadb613dd6792b56d197e4856a6f3fba9.svg" alt="1"/>, if <img class="math" src="images/math/efead1510c43f3ea9ce04b0808cb0f2ea2d014fa.svg" alt="z_c = farZ_c"/>, <img class="math" src="images/math/fa84e2d630460f18b94dcecf0f0526f91dd87ec6.svg" alt="z_{ndc} = -1"/>.</p>
+               \end{bmatrix}\end{split}\]</div>
+</div>
 </section>
 </section>
 <section id="clip-space">
-<h3>Clip Space<a class="headerlink" href="#clip-space" title="Permalink to this heading">¶</a></h3>
+<h3>Clip Space<a class="headerlink" href="#clip-space" title="Link to this heading">¶</a></h3>
 <p>convert the data from NDC to clip-space.</p>
 <p>We have never used clip-space in the class, only NDC,
 because 4D space is confusing geometrically, nevermind
@@ -301,20 +460,21 @@ the fact that (NDCx NDCy NDCz) = (Clipx/Clipw, Clipy/Clipy, Clipz/Clipz)</p>
 <p>The purpose of going to clip space is that eventually we will be
 able to remove the camera space’s z coordinate from the matrix.
 This will allow us to use one perspective projection matrix for
-all vertices, independent of the z coordinate of each input vertex.</p>
+all vertices, independent of the z coordinate of each input vector.</p>
 <p>I assume, without any evidence to support me, that this
 was done for efficiency reasons when using OpenGL’s fixed function pipeline.
 (Side note, the standard perspective projection matrix,
 which we will get to by demo 25, does not linearly
-position the <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/> to <img class="math" src="images/math/890194c56dbc9dcb1fb78bef0ab7906e19930aac.svg" alt="farZ_c"/> data into NDC. Everything
+position the <span class="math notranslate nohighlight">\(nearZ_c\)</span> to <span class="math notranslate nohighlight">\(farZ_c\)</span> data into NDC. Everything
 we’ve done so far in the class does.  The standard
 perspective matrix ends up having less Z-fighting
-close to <img class="math" src="images/math/0b69e5f1055ac2f39fa744ac4c8afde4ac150613.svg" alt="nearZ_c"/>, and more problems with Z-fighting
+close to <span class="math notranslate nohighlight">\(nearZ_c\)</span>, and more problems with Z-fighting
 near farZ_c)</p>
 <p>OpenGL will automatically convert from clip space to NDC
 such as follows.</p>
-<div class="math">
-<p><img src="images/math/ccdedc0ffea095b251ed43485932b24dccd4fe66.svg" alt="\vec{f}_{clip}^{ndc}(\begin{bmatrix}
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{f}_{clip}^{ndc}(\begin{bmatrix}
                          {x_{ndc}} \\
                          {y_{ndc}} \\
                          {z_{ndc}} \\
@@ -330,12 +490,14 @@ such as follows.</p>
                          {y_{clip}} \\
                          {z_{clip}} \\
                          {w_{clip}}
-               \end{bmatrix}"/></p>
-</div><p>So to put our NDC data into clip space, knowing what OpenGL is going to do in
-the equation above, we need to decide what we want our clip space value, <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/> to be,
+               \end{bmatrix}\end{split}\]</div>
+</div>
+<p>So to put our NDC data into clip space, knowing what OpenGL is going to do in
+the equation above, we need to decide what we want our clip space value, <span class="math notranslate nohighlight">\(w\)</span> to be,
 and do the inverse of the equation above</p>
-<div class="math">
-<p><img src="images/math/dab49d704ab991d6ffb2932d1f6b7c89fc41eef2.svg" alt="\vec{f}_{ndc}^{clip}(\begin{bmatrix}
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{f}_{ndc}^{clip}(\begin{bmatrix}
                          {x_{ndc}} \\
                          {y_{ndc}} \\
                          {z_{ndc}} \\
@@ -351,9 +513,11 @@ and do the inverse of the equation above</p>
                          {y_{ndc}} \\
                          {z_{ndc}} \\
                          {w_{ndc}}
-               \end{bmatrix}"/></p>
-</div><div class="math">
-<p><img src="images/math/aaf34e467e1e448622deb6fa63f5751faf6cbe75.svg" alt="\vec{f}_{clip}^{clip}(\begin{bmatrix}
+               \end{bmatrix}\end{split}\]</div>
+</div>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{f}_{clip}^{clip}(\begin{bmatrix}
                          {x_{clip}} \\
                          {y_{clip}} \\
                          {z_{clip}} \\
@@ -364,12 +528,14 @@ and do the inverse of the equation above</p>
                          {y_{clip}} \\
                          {z_{clip}} \\
                          {w} \\
-               \end{bmatrix}"/></p>
-</div><p>Since we want to get the <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> relative to camera space out of
+               \end{bmatrix}\end{split}\]</div>
+</div>
+<p>Since we want to get the <span class="math notranslate nohighlight">\(z_c\)</span> relative to camera space out of
 the premultiplied matrix above, we choose
 the following</p>
-<div class="math">
-<p><img src="images/math/aed1a364b9532a807a4286223adc6cad1c26e510.svg" alt="\vec{f}_{ndc}^{clip}(\begin{bmatrix}
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{f}_{ndc}^{clip}(\begin{bmatrix}
                          {x_{ndc}} \\
                          {y_{ndc}} \\
                          {z_{ndc}} \\
@@ -385,16 +551,20 @@ the following</p>
                          {y_{ndc}} \\
                          {z_{ndc}} \\
                          {w_{ndc}}
-               \end{bmatrix}"/></p>
-</div><p>because multiplying by this matrix will remove the <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of
+               \end{bmatrix}\end{split}\]</div>
+</div>
+<p>because multiplying by this matrix will remove the <span class="math notranslate nohighlight">\(z_c\)</span> out of
 the upper left quadrant.</p>
+<p>But wait.  In camera space, the viewing frustum is defined
+to be in negative <span class="math notranslate nohighlight">\(z\)</span>.  So that will</p>
 <section id="remove-z-of-camera-space-from-part-of-the-matrix">
-<h4>Remove Z of Camera Space from Part of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-part-of-the-matrix" title="Permalink to this heading">¶</a></h4>
+<h4>Remove Z of Camera Space from Part of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-part-of-the-matrix" title="Link to this heading">¶</a></h4>
 <p>To get camera z out of the matrix, where it’s currently in two denominators, we
 can use knowledge of clip space, wherein we put cameraspace’s z into W.     because cameraSpace’s z coordinate is negative, we want to scale
-all dimensions without reflecting over the origin, hence the negative sign in  <img class="math" src="images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/>.</p>
-<div class="math">
-<p><img src="images/math/1c2ad0f6a9fb79e14e9b2356b783d5528c18c5de.svg" alt="\begin{bmatrix}
+all dimensions without reflecting over the origin, hence the negative sign in  <span class="math notranslate nohighlight">\(-z_c\)</span>.</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
             {x_{clip}} \\
             {y_{clip}} \\
             {z_{clip}} \\
@@ -441,11 +611,13 @@ all dimensions without reflecting over the origin, hence the negative sign in  <
             {y_c} \\
             {z_c} \\
             {w_c=1} \\
-  \end{bmatrix}"/></p>
-</div><p>The result of this is in clip space, where for the first time, our w component is not 1, but <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/>.</p>
+  \end{bmatrix}\end{split}\]</div>
+</div>
+<p>The result of this is in clip space, where for the first time, our w component is not 1, but <span class="math notranslate nohighlight">\(z_c\)</span>.</p>
 <p>Turning clip space back into NDC</p>
-<div class="math">
-<p><img src="images/math/c505b83e56ef24d97091a8e93b3b65c3e90e86f8.svg" alt="\begin{bmatrix}
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
                           {x_{ndc}} \\
                           {y_{ndc}} \\
                           {z_{ndc}} \\
@@ -467,57 +639,19 @@ all dimensions without reflecting over the origin, hence the negative sign in  <
                              {{nearZ_c \over top} * y_{c}}    \\
                              {\textcolor{red}{z_c}^2 * {2 \over {nearZ_c - farZ_c}} + {\textcolor{red}{z_c}*{-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}}\\
                              {\textcolor{red}{z_c}} \\
-                \end{bmatrix}"/></p>
-</div><p>To test a corner of the frustum as a smoke test, say</p>
-<div class="math">
-<p><img src="images/math/2eee068d6b7c2f0ecfc5c422ec0deacceb4fc5e8.svg" alt="\begin{bmatrix}
-  {x_{ndc}} \\
-  {y_{ndc}} \\
-  {z_{ndc}} \\
-  {w_{ndc}=1} \\
-\end{bmatrix} &amp; =               \vec{f}_{c}^{ndc}(\begin{bmatrix}
-                         {x_{c} = right} \\
-                         {y_{c} = top} \\
-                         {z_{c} = nearZ_c} \\
-                         {w_{c}=1} \\
-               \end{bmatrix}; farZ_c, nearZ_c, top, right) \\
-               &amp; = \begin{bmatrix}
-                  \textcolor{red}{{1 \over {z_c}}} &amp;  0 &amp; 0 &amp; 0 \\
-                  0 &amp;  \textcolor{red}{{1 \over {z_c}}} &amp; 0 &amp; 0 \\
-                  0 &amp;  0 &amp; \textcolor{red}{{1 \over {z_c}}} &amp; 0 \\
-                  0 &amp;  0 &amp; 0 &amp; \textcolor{red}{{1 \over {z_c}}}
-               \end{bmatrix} * \begin{bmatrix}
-                            {{nearZ_c \over right} * x_{c}}   \\
-                            {{nearZ_c \over top} * y_{c}}    \\
-                            {\textcolor{red}{z_c}^2 * {2 \over {nearZ_c - farZ_c}} + {\textcolor{red}{z_c}*{-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}}\\
-                            {\textcolor{red}{z_c}} \\
-               \end{bmatrix} \\
-               &amp; = \begin{bmatrix}
-                            {{nearZ_c \over right} * x_{c}}   \\
-                            {{nearZ_c \over top} * y_{c}}    \\
-                            {\textcolor{red}{z_c} * {2 \over {nearZ_c - farZ_c}} + {-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}\\
-                            {1} \\
-               \end{bmatrix} \\
-               &amp; = \begin{bmatrix}
-                            {1}  \\
-                            {1}  \\
-                            {1} \\
-                            {1} \\
-               \end{bmatrix}"/></p>
-</div><p>And that’s what we’d expect and the top right corner of the near plane of the frustum
-should go to the upper right corner with a z value of 1, as -1 is where the back plane must go.</p>
-<p>If we had used <img class="math" src="images/math/89b4d39e6f5751c582a319e0b1494801aa72ed77.svg" alt="x_c = farZ_c"/>, then <img class="math" src="images/math/fa84e2d630460f18b94dcecf0f0526f91dd87ec6.svg" alt="z_{ndc} = -1"/>, which is what we want, as negative <img class="math" src="images/math/7165e3dbdd379281cd441e830934b272d34fd7eb.svg" alt="z"/> axis
-goes into the monitor.</p>
+                \end{bmatrix}\end{split}\]</div>
+</div>
 </section>
 <section id="remove-z-of-camera-space-from-the-rest-of-the-matrix">
-<h4>Remove Z of Camera Space from the Rest of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-the-rest-of-the-matrix" title="Permalink to this heading">¶</a></h4>
-<p>We successfully moved <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> out of the upper left quadrant, but in doing so, we moved it down
+<h4>Remove Z of Camera Space from the Rest of the Matrix<a class="headerlink" href="#remove-z-of-camera-space-from-the-rest-of-the-matrix" title="Link to this heading">¶</a></h4>
+<p>We successfully moved <span class="math notranslate nohighlight">\(z_c\)</span> out of the upper left quadrant, but in doing so, we moved it down
 to the lower right. Can we get rid of it there too?  Turn out, we can.</p>
-<p>Since the vector multiplied by this matrix will provide <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> as it’s third element,
-we can put <img class="math" src="images/math/b11afc1c8312b204217fce9912fd9a96924c3a9b.svg" alt="-z_c"/> into the <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/> by taking the explicit version of it out of the fourth column,
-and put <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bbe44.svg" alt="-1"/> into the third column’s <img class="math" src="images/math/90fe2c64c92292e1ec2c013aa7a9d25bdc5939d7.svg" alt="w"/>.</p>
-<div class="math">
-<p><img src="images/math/ca2f255e29326d389ad270323b2a50444d18a798.svg" alt="\begin{bmatrix}
+<p>Since the vector multiplied by this matrix will provide <span class="math notranslate nohighlight">\(z_c\)</span> as it’s third element,
+we can put <span class="math notranslate nohighlight">\(-z_c\)</span> into the <span class="math notranslate nohighlight">\(w\)</span> by taking the explicit version of it out of the fourth column,
+and put <span class="math notranslate nohighlight">\(-1\)</span> into the third column’s <span class="math notranslate nohighlight">\(w\)</span>.</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
                           x_{clip} \\
                           y_{clip} \\
                           z_{clip} \\
@@ -565,23 +699,25 @@ and put <img class="math" src="images/math/790d6d407a5e517a5b305283231d0c29476bb
                              {{nearZ_c \over top} * y_{c}}    \\
                              {\textcolor{red}{z_c}^2 * {2 \over {nearZ_c - farZ_c}} + z_c * {{-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}}\\
                              \textcolor{red}{z_c} \\
-                \end{bmatrix}"/></p>
-</div><p>To remove <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/> from the matrix, all that to do is remove it from row 3, somehow.  We’re about to ride dirty.</p>
+                \end{bmatrix}\end{split}\]</div>
+</div>
+<p>To remove <span class="math notranslate nohighlight">\(z_c\)</span> from the matrix, all that to do is remove it from row 3, somehow.  We’re about to ride dirty.</p>
 <p>If we were to change row three, it would not be the same transformation.  But if we ensure the following two
 properties of our changes, everything will be alright</p>
 <p>We need the</p>
 <ul class="simple">
-<li><p><img class="math" src="images/math/b8af93d7a32bf91da729ef17a88813fd95d7e7f6.svg" alt="\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip} (\begin{bmatrix} {x_c} \\ {y_c} \\ \textcolor{red}{nearZ_c} \\ {w_c=1} \\ \end{bmatrix}) = \textcolor{red}{-1.0}"/></p></li>
-<li><p><img class="math" src="images/math/38dc154248c1153466386e9bfd8bc951a225ddff.svg" alt="\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip} (\begin{bmatrix} {x_c} \\ {y_c} \\ \textcolor{red}{farZ_c} \\ {w_c=1} \\ \end{bmatrix}) = \textcolor{red}{1.0}"/></p></li>
-<li><p>Ordering is preserved after the function is applied, i.e. monotonicity.  if <img class="math" src="images/math/eca9163aa2292155e01ca9c065c1b95ab86e4b55.svg" alt="z_1 &lt; z_2"/>,
-then <img class="math" src="images/math/e0c93f26330700c89ca373bac1e13978b9df17ac.svg" alt="(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip}(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{z_1} \\ 0 \\ \end{bmatrix} )) &lt; (\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot  \vec{f}_{c}^{clip}(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{z_2} \\ 0 \\ \end{bmatrix} ) )"/>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip} (\begin{bmatrix} {x_c} \\ {y_c} \\ \textcolor{red}{nearZ_c} \\ {w_c=1} \\ \end{bmatrix}) = \textcolor{red}{-1.0}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip} (\begin{bmatrix} {x_c} \\ {y_c} \\ \textcolor{red}{farZ_c} \\ {w_c=1} \\ \end{bmatrix}) = \textcolor{red}{1.0}\)</span></p></li>
+<li><p>Ordering is preserved after the function is applied, i.e. monotonicity.  if <span class="math notranslate nohighlight">\(z_1 &lt; z_2\)</span>,
+then <span class="math notranslate nohighlight">\((\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot \vec{f}_{c}^{clip}(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{z_1} \\ 0 \\ \end{bmatrix} )) &lt; (\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{1} \\ 0 \\ \end{bmatrix} \cdot  \vec{f}_{c}^{clip}(\begin{bmatrix} 0 \\ 0 \\ \textcolor{red}{z_2} \\ 0 \\ \end{bmatrix} ) )\)</span>.</p></li>
 </ul>
 <p>If we can make a function, that like the third row of the matrix, has those properties, we can replace the
-third row and remove camera space’s z, <img class="math" src="images/math/405a90b2f4adf3fc7ab7ea8068286eb0f410ba10.svg" alt="z_c"/>, from the matrix.  This is desirable because, if it were to exist,
-would would not need per vertex to create a custom perspective matrix.</p>
+third row and remove camera space’s z, <span class="math notranslate nohighlight">\(z_c\)</span>, from the matrix.  This is desirable because, if it were to exist,
+would would not need per vector to create a custom perspective matrix.</p>
 <p>Towards that, let’s look at these jibronies.</p>
-<div class="math">
-<p><img src="images/math/a2b118a94c3bea02ab018fecba1ed17d9e59f30f.svg" alt="\vec{f}_{c}^{clip}(\begin{bmatrix}
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}\vec{f}_{c}^{clip}(\begin{bmatrix}
                           {x_c} \\
                           {y_c} \\
                           {z_c} \\
@@ -616,9 +752,7 @@ would would not need per vertex to create a custom perspective matrix.</p>
                           {y_c} \\
                           {z_c} \\
                           {w_c=1} \\
-                \end{bmatrix}
-
-  ..
+                \end{bmatrix}\end{split}\\  ..
      //  clipSpace.z = A* c.z + B * 1.0  (the first column and the second column are zero because z is independent of x and y)
      //  for nearZ, which must map to -1.0,
      //    ndc.z = clipSpace.z / clipSpace.w =   (A * nearZ + B) / nearZ = -1.0
@@ -644,28 +778,14 @@ would would not need per vertex to create a custom perspective matrix.</p>
      //  B = (-2*farZ*nearZ)/(farZ-nearZ)
      //
      // now that we have A and B, write down the function, and ensure that it is
-     // monotonic from (nearZ, farZ), inclusive
-
-     // z_ndc = ((farZ + nearZ)/(farZ-nearZ) * cameraSpace.z +  (-2*farZ*nearZ)/(farZ-nearZ)) / cameraSpace.z
-     // TODO -- proof of monotonicity
-
-     // NOW OUR PERSPECTIVE MATRIX IS INDEPENDENT OF cameraSpace.z!!!
+     // monotonic from (nearZ, farZ), inclusive\\     // z_ndc = ((farZ + nearZ)/(farZ-nearZ) * cameraSpace.z +  (-2*farZ*nearZ)/(farZ-nearZ)) / cameraSpace.z
+     // TODO -- proof of monotonicity\\     // NOW OUR PERSPECTIVE MATRIX IS INDEPENDENT OF cameraSpace.z!!!
      mat4 camera_space_to_clip_space = transpose(mat4(
           -nearZ/right,         0.0,        0.0,                           0.0,
           0.0,                  -nearZ/top, 0.0,                           0.0,
           0.0,                  0.0,        (farZ + nearZ)/(farZ-nearZ),  (-2*farZ*nearZ)/(farZ-nearZ),
-          0.0,                  0.0,        -1.0,                          0.0));
-
-     return camera_space_to_clip_space * cameraSpace;
-
-
-
-
-24
-
-
-
-    // mat4 camera_space_to_clip_space = transpose(mat4(
+          0.0,                  0.0,        -1.0,                          0.0));\\     return camera_space_to_clip_space * cameraSpace;\\
+24\\    // mat4 camera_space_to_clip_space = transpose(mat4(
     //      --nearZ/right,         0.0,        0.0,                           0.0,
     //      0.0,                  --nearZ/top, 0.0,                           0.0,
     //      0.0,                  0.0,        (-farZ + -nearZ)/(-farZ--nearZ),  (-2*-farZ*-nearZ)/(-farZ--nearZ),
@@ -674,58 +794,114 @@ would would not need per vertex to create a custom perspective matrix.</p>
           nearZ/right,         0.0,       0.0,                           0.0,
           0.0,                 nearZ/top, 0.0,                           0.0,
           0.0,                 0.0,       -(farZ + nearZ)/(-farZ+nearZ), (-2*farZ*nearZ)/(-farZ+nearZ),
-          0.0,                 0.0,       -1.0,                          0.0));
-
-    // End (1)
+          0.0,                 0.0,       -1.0,                          0.0));\\    // End (1)
     // For (2)
      mat4 reflect_z = transpose(mat4(
           1.0,  0.0, 0.0,  0.0,
           0.0,  1.0, 0.0,  0.0,
           0.0,  0.0, -1.0, 0.0,
-          0.0,  0.0, 0.0,  1.0));
-
-     // camera_space_to_clip_space2 = reflect_z * camera_space_to_clip_space1
+          0.0,  0.0, 0.0,  1.0));\\     // camera_space_to_clip_space2 = reflect_z * camera_space_to_clip_space1
      mat4 camera_space_to_clip_space2 = transpose(mat4(
           nearZ/right,         0.0,       0.0,                           0.0,
           0.0,                 nearZ/top, 0.0,                           0.0,
           0.0,                 0.0,       -(farZ + nearZ)/(farZ-nearZ), (-2*farZ*nearZ)/(farZ-nearZ),
           0.0,                 0.0,       -1.0,                          0.0));
-    // End (2)
-
-     return camera_space_to_clip_space2 * cameraSpace;"/></p>
-</div></section>
+    // End (2)\\     return camera_space_to_clip_space2 * cameraSpace;\end{aligned}\end{align} \]</div>
+</div>
 </section>
 </section>
 </section>
+</section>
 
-
-           </div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="glossary.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Glossary</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="ch21.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">OpenGL3.3 Core Profile - Demo 21</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020-2025, William Emerison Six
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ch21.html" class="btn btn-neutral float-left" title="OpenGL3.3 Core Profile - Demo 21" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
     </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Standard Perspective Matrix</a><ul>
+<li><a class="reference internal" href="#objective">Objective</a></li>
+<li><a class="reference internal" href="#description">Description</a><ul>
+<li><a class="reference internal" href="#matrix-form-of-perspective-projection">Matrix form of perspective projection</a><ul>
+<li><a class="reference internal" href="#scale-camera-space-x-by-camera-space-z">Scale Camera-space x by Camera-space z</a></li>
+<li><a class="reference internal" href="#scale-camera-space-y-by-camera-space-z">Scale Camera-space y by Camera-space z</a></li>
+<li><a class="reference internal" href="#translate-rectangular-prism-s-center-to-center">Translate Rectangular Prism’s Center to Center</a></li>
+<li><a class="reference internal" href="#scale-by-inverse-of-the-dimensions-of-the-rectangular-prism">Scale by inverse of the dimensions of the Rectangular Prism</a></li>
+<li><a class="reference internal" href="#pre-multiply-the-matricies">Pre-multiply the matricies</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#clip-space">Clip Space</a><ul>
+<li><a class="reference internal" href="#remove-z-of-camera-space-from-part-of-the-matrix">Remove Z of Camera Space from Part of the Matrix</a></li>
+<li><a class="reference internal" href="#remove-z-of-camera-space-from-the-rest-of-the-matrix">Remove Z of Camera Space from the Rest of the Matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2020-2024, William Emerison Six.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
+          </div>
         </div>
       </div>
-    </section>
+      
+      
+    </aside>
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+</div><script src="static/documentation_options.js?v=5f733c1d"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=5fa4622c"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
 </html>

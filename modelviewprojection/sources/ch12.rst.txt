@@ -1,33 +1,25 @@
 ..
-   Copyright (c) 2018-2024 William Emerison Six
+   Copyright (c) 2018-2025 William Emerison Six
 
-   Permission is hereby granted, free of charge, to any person obtaining a copy
-   of this software and associated documentation files (the "Software"), to deal
-   in the Software without restriction, including without limitation the rights
-   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   copies of the Software, and to permit persons to whom the Software is
-   furnished to do so, subject to the following conditions:
+   Permission is granted to copy, distribute and/or modify this document
+   under the terms of the GNU Free Documentation License, Version 1.3
+   or any later version published by the Free Software Foundation;
+   with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+   A copy of the license is available at
+   https://www.gnu.org/licenses/fdl-1.3.html.
 
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
-
+***************************
 Rotate the Square - Demo 12
-===========================
+***************************
 
-Purpose
-^^^^^^^
+Objective
+^^^^^^^^^
 Rotate the square around its origin.
 
 
 .. figure:: static/screenshots/demo12.png
+    :class: no-scale
     :align: center
     :alt: Demo 12
     :figclass: align-center
@@ -37,7 +29,7 @@ Rotate the square around its origin.
 How to Execute
 ^^^^^^^^^^^^^^
 
-Load src/demo12/demo.py in Spyder and hit the play button
+Load src/modelviewprojection/demo12.py in Spyder and hit the play button.
 
 
 Move the Paddles using the Keyboard
@@ -72,6 +64,7 @@ Cayley Graph
 
 
 .. figure:: static/demo11.png
+    :class: no-scale
     :align: center
     :alt: Demo 12
     :figclass: align-center
@@ -85,24 +78,24 @@ Code
 
 Make a variable to determine the angle that the square will be rotated.
 
-.. literalinclude:: ../../src/demo12/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo12.py
    :language: python
    :start-after: doc-region-begin define square rotation
    :end-before: doc-region-end define square rotation
    :linenos:
    :lineno-match:
-   :caption: src/demo12/demo.py
+   :caption: src/modelviewprojection/demo12.py
 
 
 When 'q' is pressed, increase the angle.
 
-.. literalinclude:: ../../src/demo12/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo12.py
    :language: python
    :start-after: doc-region-begin define handle input
    :end-before: doc-region-end define handle input
    :linenos:
    :lineno-match:
-   :caption: src/demo12/demo.py
+   :caption: src/modelviewprojection/demo12.py
 
 
 ::
@@ -116,13 +109,13 @@ Event Loop
 In the previous chapter, this was the rendering code for
 the square.
 
-.. literalinclude:: ../../src/demo11/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo11.py
    :language: python
    :start-after: doc-region-begin draw square
    :end-before: doc-region-end draw square
    :linenos:
    :lineno-match:
-   :caption: src/demo11/demo.py
+   :caption: src/modelviewprojection/demo11.py
 
 
 
@@ -132,13 +125,13 @@ a rotate call at the top.
 
 
 
-.. literalinclude:: ../../src/demo12/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo12.py
    :language: python
    :start-after: doc-region-begin draw square
    :end-before: doc-region-end draw square
    :linenos:
    :lineno-match:
-   :caption: src/demo12/demo.py
+   :caption: src/modelviewprojection/demo12.py
 
 
 The author is getting really tired of having to look at all the different

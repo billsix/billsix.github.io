@@ -1,74 +1,212 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Draw A Rectangle - Demo 02" href="ch02.html" /><link rel="prev" title="Introduction" href="intro.html" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Opening a Window - Demo 01 &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>Opening a Window - Demo 01 - Model View Projection 0.0.02 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
   
-        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
-        <script src="static/jquery.js"></script>
-        <script src="static/underscore.js"></script>
-        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="static/doctools.js"></script>
-        <script src="static/sphinx_highlight.js"></script>
-    <script src="static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Draw A Rectangle - Demo 02" href="ch02.html" />
-    <link rel="prev" title="Introduction" href="intro.html" /> 
-</head>
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
 
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Model View Projection
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Model View Projection 0.0.02 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Model View Projection 0.0.02 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Opening a Window - Demo 01</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#terminology">Terminology</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#importing-libraries">Importing Libraries</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#opening-a-window">Opening A Window</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#glfw-opengl-initialization">GLFW/OpenGL Initialization</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#initialize-glfw">Initialize GLFW.</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#set-the-version-of-opengl">Set the version of OpenGL</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#create-a-window">Create a Window</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#the-event-loop">The Event Loop</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#exercise">Exercise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#black-screen">Black Screen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#questions">Questions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#answers">Answers</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Opening a Window - Demo 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vector - Demo 05</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
@@ -79,173 +217,170 @@
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch16.html">Lambda Stack - Demo 16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">Moving Camera in 3D Space - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
 <li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
 
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Model View Projection</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Opening a Window - Demo 01</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="sources/ch01.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="opening-a-window-demo-01">
-<h1>Opening a Window - Demo 01<a class="headerlink" href="#opening-a-window-demo-01" title="Permalink to this heading">¶</a></h1>
-<section id="purpose">
-<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
-<p>Learn how to open a window, make a black screen, and close
-the window.</p>
-<figure class="align-center" id="id3">
-<img alt="Demo 01" src="images/demo01.png" />
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/ch01.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="opening-a-window-demo-01">
+<h1>Opening a Window - Demo 01<a class="headerlink" href="#opening-a-window-demo-01" title="Link to this heading">¶</a></h1>
+<section id="objective">
+<h2>Objective<a class="headerlink" href="#objective" title="Link to this heading">¶</a></h2>
+<p>Learn how to :</p>
+<ul class="simple">
+<li><p>open a window</p></li>
+<li><p>make a black screen</p></li>
+<li><p>close the window</p></li>
+</ul>
+<figure class="align-center" id="id1">
+<img alt="Demo 01" class="no-scale" src="images/demo01.png" />
 <figcaption>
-<p><span class="caption-text">Demo 01</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Demo 01</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="how-to-execute">
-<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Permalink to this heading">¶</a></h2>
-<p>Load src/demo01/demo.py in Spyder and hit the play button</p>
+<h2>How to Execute<a class="headerlink" href="#how-to-execute" title="Link to this heading">¶</a></h2>
+<p>Load src/modelviewprojection/demo01.py in Spyder and hit the play button.</p>
 </section>
 <section id="terminology">
-<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading">¶</a></h2>
+<h2>Terminology<a class="headerlink" href="#terminology" title="Link to this heading">¶</a></h2>
 <p>The device connected to a computer that displays information to the
-user is called a <em>monitor</em>.</p>
+user is called a <em>monitor</em>.  A monitor consists of a two-dimensional grid of tiny light-emitting
+elements, called pixels. Each pixel typically has three components: red, green, and blue.
+At any given moment in time, the computer instructs
+each pixel to display a specific color, which is represented by 3 numbers.
+The two dimensional array of all these pixel colors at a single point in time
+is called a frame, which forms a picture that conveys meaning
+to the user. Within the frame, a pixel is referenced using an x and y index on the frame.
+(0,0) on the frame is the lower left pixel, and and upper right pixel is at index (width, height)</p>
+<figure class="align-center" id="id2">
+<img alt="Picture of Monitor" class="no-scale" src="images/1280px-20020811203148_-_NOI_2002.jpg" />
+<figcaption>
+<p><span class="caption-text">Computer Monitor</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<img alt="Picture of Pixel" class="no-scale" src="images/Closeup_of_pixels.JPG" />
+<figcaption>
+<p><span class="caption-text">Pixels, each with a Red, Green, and Blue component.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 <figure class="align-center" id="id4">
-<img alt="Picture of Monitor" src="images/1280px-20020811203148_-_NOI_2002.jpg" />
+<img alt="1024x768 monitor" class="no-scale" src="images/monitor.svg" />
 <figcaption>
-<p><span class="caption-text">Computer Monitor</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">1024x768 monitor</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>A monitor consists of a two-dimensional grid of tiny light-emitting
-elements, called <a href="#id1"><span class="problematic" id="id2">*</span></a>pixel*s. Each pixel typically has three components: red, green, and blue.</p>
 <figure class="align-center" id="id5">
-<img alt="Picture of Pixel" src="images/Closeup_of_pixels.JPG" />
+<img alt="1920x1200 monitor" class="no-scale" src="images/monitor2.svg" />
 <figcaption>
-<p><span class="caption-text">Pixels</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">1920x1200 monitor</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>At any given moment, the computer instructs
-each pixel to display a specific color, which is represented as a number.</p>
-<p>The combination of all these pixel colors at a single point in time
-is called a frame, and this frame forms a picture that conveys meaning
-to the user. In OpenGL, pixel coordinates start at (0, 0) in the bottom
--left corner of the window. The top-right corner is at
-(window_width, window_height).</p>
-<figure class="align-center" id="id6">
-<img alt="1024x768 monitor" src="images/monitor.svg" /><figcaption>
-<p><span class="caption-text">1024x768 monitor</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<figure class="align-center" id="id7">
-<img alt="1920x1200 monitor" src="images/monitor2.svg" /><figcaption>
-<p><span class="caption-text">1920x1200 monitor</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>Frames are generated by the computer and sent to the monitor at a
+<p>Frames are generated by the computer and sent to the monitor ideally at a
 constant rate, called the <em>frame rate</em>, measured in <em>Hertz</em> (Hz). By updating
 these frames rapidly and consistently, the computer creates the illusion
 of motion for the user.</p>
-<figure class="align-center" id="id8">
-<img alt="Motion" src="images/Animhorse.gif" />
+<figure class="align-center" id="id6">
+<img alt="Motion" class="no-scale" src="images/Animhorse.gif" />
 <figcaption>
-<p><span class="caption-text">14 Hertz Motion</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">14 Hertz Motion</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center">
-<img alt="Motion" src="images/GIF_Frame-0.png" />
+<img alt="Motion" class="no-scale" src="images/GIF_Frame-0.png" />
 </figure>
 <figure class="align-center">
-<img alt="Motion" src="images/GIF_Frame-1.png" />
+<img alt="Motion" class="no-scale" src="images/GIF_Frame-1.png" />
 </figure>
 <figure class="align-center">
-<img alt="Motion" src="images/GIF_Frame-2.png" />
+<img alt="Motion" class="no-scale" src="images/GIF_Frame-2.png" />
 </figure>
 <figure class="align-center">
-<img alt="Motion" src="images/GIF_Frame-3.png" />
+<img alt="Motion" class="no-scale" src="images/GIF_Frame-3.png" />
 </figure>
 <figure class="align-center">
-<img alt="Motion" src="images/GIF_Frame-4.png" />
+<img alt="Motion" class="no-scale" src="images/GIF_Frame-4.png" />
 </figure>
 <figure class="align-center">
-<img alt="Motion" src="images/GIF_Frame-5.png" />
+<img alt="Motion" class="no-scale" src="images/GIF_Frame-5.png" />
 </figure>
 <figure class="align-center">
-<img alt="Motion" src="images/GIF_Frame-6.png" />
+<img alt="Motion" class="no-scale" src="images/GIF_Frame-6.png" />
 </figure>
-</section>
 <section id="code">
-<h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">¶</a></h2>
+<h3>Code<a class="headerlink" href="#code" title="Link to this heading">¶</a></h3>
 <p>That’s enough terms for now, let’s get on to a working program!</p>
 <section id="importing-libraries">
-<h3>Importing Libraries<a class="headerlink" href="#importing-libraries" title="Permalink to this heading">¶</a></h3>
+<h4>Importing Libraries<a class="headerlink" href="#importing-libraries" title="Link to this heading">¶</a></h4>
 <p>Import Python modules, which are Python programmer’s main form of libraries.</p>
-<div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">22</span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="linenos">23</span>
-<span class="linenos">24</span><span class="c1"># doc-region-begin import glfw</span>
-<span class="linenos">25</span><span class="kn">import</span> <span class="nn">glfw</span>
-<span class="linenos">26</span>
-<span class="linenos">27</span><span class="c1"># doc-region-begin import individual functions without needing module name</span>
-<span class="linenos">28</span><span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="linenos">29</span>    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
-<span class="linenos">30</span>    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
-<span class="linenos">31</span>    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
-<span class="linenos">32</span>    <span class="n">GL_PROJECTION</span><span class="p">,</span>
-<span class="linenos">33</span>    <span class="n">glClear</span><span class="p">,</span>
-<span class="linenos">34</span>    <span class="n">glClearColor</span><span class="p">,</span>
-<span class="linenos">35</span>    <span class="n">glLoadIdentity</span><span class="p">,</span>
-<span class="linenos">36</span>    <span class="n">glMatrixMode</span><span class="p">,</span>
-<span class="linenos">37</span>    <span class="n">glViewport</span><span class="p">,</span>
-<span class="linenos">38</span><span class="p">)</span>
-<span class="linenos">39</span>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id7" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">19</span><span class="kn">import</span> <span class="nn">sys</span>
 </pre></div>
 </div>
 </div>
 <ul class="simple">
-<li><p>The “sys” module is imported.  To call functions from this module, the syntax is sys.function</p></li>
+<li><p>The “sys” module is imported.  To call functions from this module, the syntax is “sys.function”.</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">28</span><span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="linenos">29</span>    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
-<span class="linenos">30</span>    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
-<span class="linenos">31</span>    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
-<span class="linenos">32</span>    <span class="n">GL_PROJECTION</span><span class="p">,</span>
-<span class="linenos">33</span>    <span class="n">glClear</span><span class="p">,</span>
-<span class="linenos">34</span>    <span class="n">glClearColor</span><span class="p">,</span>
-<span class="linenos">35</span>    <span class="n">glLoadIdentity</span><span class="p">,</span>
-<span class="linenos">36</span>    <span class="n">glMatrixMode</span><span class="p">,</span>
-<span class="linenos">37</span>    <span class="n">glViewport</span><span class="p">,</span>
-<span class="linenos">38</span><span class="p">)</span>
-<span class="linenos">39</span>
-<span class="linenos">40</span><span class="c1"># doc-region-end import first module</span>
-<span class="linenos">41</span>
-<span class="linenos">42</span><span class="c1"># doc-region-end import glfw</span>
-<span class="linenos">43</span>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">27</span><span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="linenos">28</span>    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
+<span class="linenos">29</span>    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
+<span class="linenos">30</span>    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
+<span class="linenos">31</span>    <span class="n">GL_PROJECTION</span><span class="p">,</span>
+<span class="linenos">32</span>    <span class="n">glClear</span><span class="p">,</span>
+<span class="linenos">33</span>    <span class="n">glClearColor</span><span class="p">,</span>
+<span class="linenos">34</span>    <span class="n">glLoadIdentity</span><span class="p">,</span>
+<span class="linenos">35</span>    <span class="n">glMatrixMode</span><span class="p">,</span>
+<span class="linenos">36</span>    <span class="n">glViewport</span><span class="p">,</span>
+<span class="linenos">37</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -255,48 +390,22 @@ functions from GL into our current module, we avoid having to write
 OpenGL.GL.function every time. This keeps our code cleaner and easier
 to read, especially since we’ll be using these functions frequently.</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">25</span><span class="kn">import</span> <span class="nn">glfw</span>
-<span class="linenos">26</span>
-<span class="linenos">27</span><span class="c1"># doc-region-begin import individual functions without needing module name</span>
-<span class="linenos">28</span><span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="linenos">29</span>    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
-<span class="linenos">30</span>    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
-<span class="linenos">31</span>    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
-<span class="linenos">32</span>    <span class="n">GL_PROJECTION</span><span class="p">,</span>
-<span class="linenos">33</span>    <span class="n">glClear</span><span class="p">,</span>
-<span class="linenos">34</span>    <span class="n">glClearColor</span><span class="p">,</span>
-<span class="linenos">35</span>    <span class="n">glLoadIdentity</span><span class="p">,</span>
-<span class="linenos">36</span>    <span class="n">glMatrixMode</span><span class="p">,</span>
-<span class="linenos">37</span>    <span class="n">glViewport</span><span class="p">,</span>
-<span class="linenos">38</span><span class="p">)</span>
-<span class="linenos">39</span>
-<span class="linenos">40</span><span class="c1"># doc-region-end import first module</span>
-<span class="linenos">41</span>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">23</span><span class="kn">import</span> <span class="nn">glfw</span>
 </pre></div>
 </div>
 </div>
-<ul class="simple">
-<li><p>GLFW is a library that lets us create windows and handle input from
-both the keyboard and mouse. It works seamlessly across Linux, Windows,
-and macOS, making it a versatile tool for cross-platform development.</p></li>
-</ul>
-<p>In a Python prompt, you can use tab completion to see which functions
-are available in a module. You can also type help(modulename) to get
-detailed information about the module (press q to exit the help pager).
-The help() function works on any object in Python, including modules,
-classes, and functions, making it a handy tool for exploring and learning.</p>
 </section>
 <section id="opening-a-window">
-<h3>Opening A Window<a class="headerlink" href="#opening-a-window" title="Permalink to this heading">¶</a></h3>
+<h4>Opening A Window<a class="headerlink" href="#opening-a-window" title="Link to this heading">¶</a></h4>
 <p>Desktop operating systems allow users to run multiple programs simultaneously.
 Each program displays its output within a dedicated area of the
 monitor, called a window.</p>
-<figure class="align-center" id="id12">
-<img alt="Window" src="images/1920px-Window_%28windowing_system%29.svg.png" />
+<figure class="align-center" id="id10">
+<img alt="Window" class="no-scale" src="images/1920px-Window_%28windowing_system%29.svg.png" />
 <figcaption>
-<p><span class="caption-text">Window</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Window</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>To create and open a window in a cross-platform way, this book uses
@@ -305,56 +414,63 @@ on Windows, macOS, and Linux. In addition to window management, GLFW
 also provides functions for handling input from keyboards and game controllers.</p>
 </section>
 <section id="glfw-opengl-initialization">
-<h3>GLFW/OpenGL Initialization<a class="headerlink" href="#glfw-opengl-initialization" title="Permalink to this heading">¶</a></h3>
+<h4>GLFW/OpenGL Initialization<a class="headerlink" href="#glfw-opengl-initialization" title="Link to this heading">¶</a></h4>
 <section id="initialize-glfw">
-<h4>Initialize GLFW.<a class="headerlink" href="#initialize-glfw" title="Permalink to this heading">¶</a></h4>
-<div class="literal-block-wrapper docutils container" id="id13">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">48</span><span class="k">if</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
-<span class="linenos">49</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<h5>Initialize GLFW.<a class="headerlink" href="#initialize-glfw" title="Link to this heading">¶</a></h5>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id11" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">42</span><span class="k">if</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+<span class="linenos">43</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <p>Initialize GLFW.  If initialization fails, the program should terminate.
-What does the initialization do?  Doesn’t matter.  Think of it like
+What does the initialization do?  I don’t know.  Think of it like
 a constructor for a class; it initializes some state that it needs
 for later function calls.</p>
 </section>
 <section id="set-the-version-of-opengl">
-<h4>Set the version of OpenGL<a class="headerlink" href="#set-the-version-of-opengl" title="Permalink to this heading">¶</a></h4>
+<h5>Set the version of OpenGL<a class="headerlink" href="#set-the-version-of-opengl" title="Link to this heading">¶</a></h5>
 <p>OpenGL has been around a long time, and has multiple, possibly incompatible versions.
 For this demo, we use OpenGL 1.4.  By the end of this book, we will be using OpenGL 3.3.</p>
-<div class="literal-block-wrapper docutils container" id="id14">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">53</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="linenos">54</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id12" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">47</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">48</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="create-a-window">
-<h4>Create a Window<a class="headerlink" href="#create-a-window" title="Permalink to this heading">¶</a></h4>
-<div class="literal-block-wrapper docutils container" id="id15">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">58</span><span class="n">window</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">create_window</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;ModelViewProjection Demo 1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<h5>Create a Window<a class="headerlink" href="#create-a-window" title="Link to this heading">¶</a></h5>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id13" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">52</span><span class="n">window</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">create_window</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;ModelViewProjection Demo 1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id16">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">62</span><span class="k">if</span> <span class="ow">not</span> <span class="n">window</span><span class="p">:</span>
-<span class="linenos">63</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
-<span class="linenos">64</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<p>By calling glfw.create_window, we are creating a window.  What
+are the arguments passed?  It’s likely that the first two arguments
+are the width and height of the window, and the third likely
+the title of the window.  What do the fourth and fifth arguments,
+both of which are “None”, mean?  The author does not know.  We could
+look it up the APIs online.  But, Python has something called keyword
+arguments, which we will talk about later, where the intent of each parameter
+is clear at the site of calling the function.</p>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id14" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">56</span><span class="k">if</span> <span class="ow">not</span> <span class="n">window</span><span class="p">:</span>
+<span class="linenos">57</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+<span class="linenos">58</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <ul class="simple">
-<li><p>If GLFW cannot open the window, quit.  Unlike <a class="reference external" href="https://youtu.be/HFCv86Olk8E?si=eE25mzpsrrw6aoyR&amp;t=503">MC Hammer</a> , we are quite legit, yet still
-able to quit.</p></li>
+<li><p>If GLFW cannot open the window, quit.</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id17">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">68</span><span class="n">glfw</span><span class="o">.</span><span class="n">make_context_current</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id15" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">62</span><span class="n">glfw</span><span class="o">.</span><span class="n">make_context_current</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -362,38 +478,44 @@ able to quit.</p></li>
 <li><p>Make the window’s context current.  The details of this do not matter
 for this book.</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id18">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">73</span><span class="k">def</span> <span class="nf">on_key</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">scancode</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">mods</span><span class="p">):</span>
-<span class="linenos">74</span>    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_ESCAPE</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">75</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">set_window_should_close</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="linenos">76</span>
-<span class="linenos">77</span>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id16" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">67</span><span class="k">def</span> <span class="nf">on_key</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">scancode</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">mods</span><span class="p">):</span>
+<span class="linenos">68</span>    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_ESCAPE</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">69</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">set_window_should_close</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">70</span>
+<span class="linenos">71</span>
 </pre></div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Define an register a key handler.</p></li>
-</ul>
-<p>If the user presses the escape key while the program is running, inform
-GLFW that the user wants to quit.  We will handle this later in the event
+<p>If the user presses the “Escape” key while the program is running, inform
+GLFW that the user wants to quit, which we will handle this later in the event
 loop.</p>
+</section>
+</section>
+</section>
+<section id="to-note">
+<h3>To Note<a class="headerlink" href="#to-note" title="Link to this heading">¶</a></h3>
 <p>Functions are first class values in Python, and are objects just
 like anything else.  The can be passed as arguments, stored in variables,
 and applied later zero, 1, or more times.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">doubler</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
 <span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">doubler</span>
+<span class="o">&lt;</span><span class="n">function</span> <span class="n">doubler</span> <span class="n">at</span> <span class="mh">0x10165c0e0</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">add_five_to_result_of</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add_five_to_result_of</span>
+<span class="o">&lt;</span><span class="n">function</span> <span class="n">add_five_to_result_of</span> <span class="n">at</span> <span class="mh">0x10165c040</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">add_five_to_result_of</span><span class="p">(</span><span class="n">doubler</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="mi">11</span>
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id19">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">83</span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0289</span><span class="p">,</span> <span class="mf">0.071875</span><span class="p">,</span> <span class="mf">0.0972</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id17" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">77</span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0289</span><span class="p">,</span> <span class="mf">0.071875</span><span class="p">,</span> <span class="mf">0.0972</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -404,55 +526,56 @@ color.  We are not clearing the frame-buffer right now, but setting what
 color will be used for a later clear.  Calling “glClearColor” “0,0,0,1”, means black “0,0,0”, without
 transparency (the “1”).</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id20">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">87</span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
-<span class="linenos">88</span><span class="n">glLoadIdentity</span><span class="p">()</span>
-<span class="linenos">89</span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
-<span class="linenos">90</span><span class="n">glLoadIdentity</span><span class="p">()</span>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id18" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">81</span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
+<span class="linenos">82</span><span class="n">glLoadIdentity</span><span class="p">()</span>
+<span class="linenos">83</span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
+<span class="linenos">84</span><span class="n">glLoadIdentity</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <ul class="simple">
 <li><p>Don’t worry about the 4 lines here.  Although they are necessary,
-we will cover them in depth later.  After all, this
+we will cover them in depth later in this book.  After all, this
 book is called ModelViewProjection. :-)</p></li>
 </ul>
-</section>
-</section>
 <section id="the-event-loop">
-<h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Permalink to this heading">¶</a></h3>
+<h4>The Event Loop<a class="headerlink" href="#the-event-loop" title="Link to this heading">¶</a></h4>
 <p>When you pause a movie, motion stops and you see one picture.
 Movies are composed of sequence of pictures, when
 rendered in quick succession, provide the illusion of motion.
 Interactive computer graphics are rendered the same way,
 one “frame” at a time.</p>
-<p>Render a frame, flush the complete frame-buffer to the monitor.
+<p>For our program, we need to render a frame, flush the complete frame-buffer to the monitor.
 Repeat indefinitely
 until the user closes the window, or the program needs
 to terminate.</p>
-<div class="literal-block-wrapper docutils container" id="id21">
-<div class="code-block-caption"><span class="caption-text">src/demo01/demo.py</span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 95</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-<span class="linenos"> 96</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
-<span class="linenos"> 97</span>
-<span class="linenos"> 98</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-<span class="linenos"> 99</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-<span class="linenos">100</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
-<span class="linenos">101</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<ul class="simple">
+<li><p>Define the event loop</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id19" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">89</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<span class="linenos">90</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
+<span class="linenos">91</span>
+<span class="linenos">92</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<span class="linenos">93</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="linenos">94</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
+<span class="linenos">95</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <ul class="simple">
 <li><p>Poll the operating system for any events, such as mouse movements,
-keyboard input, etc.  This does not handle them, just registers
-them as having happened.</p></li>
+keyboard input, etc.  This call does not handle them, just registers
+them as having happened for handling later.</p></li>
 <li><p>Get the size of the frame-buffer.  The <em>frame-buffer</em>
-contains data representing all the pixels in a complete video frame.
+contains 2D data representing all the pixels in a complete video frame.
 Python
 allows the returning of multiple values
 in the form of a tuple.  Assigning
-to the variables this way is a form of “destructuring”</p></li>
+to the variables width and height this way is a form of “destructuring”</p></li>
 <li><p>Tell OpenGL that we wish to draw in the entire
 frame-buffer, from the bottom left corner to the upper
 right corner.</p></li>
@@ -474,7 +597,7 @@ the monitor, and swap the back and front buffers.</p></li>
 </section>
 </section>
 <section id="exercise">
-<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">¶</a></h2>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Run the program, close it by hitting Escape.</p></li>
 <li><p>Before the call to glClear, enter two new lines.
@@ -485,7 +608,7 @@ Now run the program again and observe what is different.
 pauses execution, although the GLFW window is still on screen
 over time)</p></li>
 </ul>
-<p>One frame is created incrementally at a time on the CPU, but the frame
+<p>One frame is created incrementally at a time, but the frame
 is sent to the monitor
 only when frame is completely drawn, and each pixel has a color.
 The act of sending the frame to the monitor is called <em>flushing</em>
@@ -498,15 +621,15 @@ the current buffer, and which switches the current writable frame-buffer to the
 other one.</p>
 </section>
 <section id="black-screen">
-<h2>Black Screen<a class="headerlink" href="#black-screen" title="Permalink to this heading">¶</a></h2>
-<p>Type “python src/demo01/demo.py”, or “python3 src/demo01/demo.py” to run.</p>
+<h3>Black Screen<a class="headerlink" href="#black-screen" title="Link to this heading">¶</a></h3>
+<p>Load src/modelviewprojection/demo01.py in Spyder and hit the play button.</p>
 <p>The first demo is the least interesting graphical program possible.</p>
 <ol class="arabic simple">
 <li><p>Sets the color at every pixel black.  (A constant color is better than whatever
 color happened to be the previous time it was drawn.)</p></li>
 <li><p>If the user resized the window, reset OpenGL’s mappings from <em>normalized-device-coordinates</em>
 to <em>screen-coordinates</em>.</p></li>
-<li><p>Cleared the color buffer and the depth buffer (don’t worry about this for now).</p></li>
+<li><p>Cleared the color buffer and the depth buffer (don’t worry about the latter for now).</p></li>
 </ol>
 <p>When this code returns, the event loop flushes (i.e) sends the frame to the monitor.  Since
 no geometry was drawn, the color value for each pixel is still black.</p>
@@ -529,89 +652,101 @@ no geometry was drawn, the color value for each pixel is still black.</p>
 we draw nothing, a black screen will be displayed every frame until the user
 closes the window, and says to himself, “why did I buy Doom 3”?</p>
 </section>
-<section id="questions">
-<h2>Questions<a class="headerlink" href="#questions" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>In the following ASCII-art diagram of the frame-buffer,
-where ‘b’ represents black, ‘Y’ represents yellow, and “G”
-represents green, what is width and height of the frame-buffer?</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>In the above ASCII-art diagram of the frame-buffer, where ‘b’ represents black, ‘Y’ represents yellow, and “G” represents green,
-what is the color at pixel (1,1)?</p></li>
-<li><p>In the below ASCII-art diagram of the frame-buffer, where ‘b’ represents black, ‘Y’ represents yellow, and “G” represents green, what is the color at pixel (2,3)? At (36,2)?</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbYYYYYYY</span>
-<span class="n">GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbYYYYYYY</span>
-<span class="n">GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbYYYYYYY</span>
-<span class="n">GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbYYYYYYY</span>
-<span class="n">GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbYYYYYYY</span>
-<span class="n">GGGGGbbbbbbbbbbbbbbbbbbbbbbbbbYYYYYYY</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbYYYYYYY</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-<span class="n">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li></li>
-</ul>
-</section>
-<section id="answers">
-<h2>Answers<a class="headerlink" href="#answers" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>width - 37, column 0-36.  Height - 12, rows 0 - 11</p></li>
-<li><p>‘b’, for the color black</p></li>
-<li><p>‘G’ for Green, ‘Y’ for Yellow</p></li>
-</ul>
 </section>
 </section>
 
-
-           </div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="ch02.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Draw A Rectangle - Demo 02</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="intro.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Introduction</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020-2025, William Emerison Six
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ch02.html" class="btn btn-neutral float-right" title="Draw A Rectangle - Demo 02" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
     </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Opening a Window - Demo 01</a><ul>
+<li><a class="reference internal" href="#objective">Objective</a></li>
+<li><a class="reference internal" href="#how-to-execute">How to Execute</a></li>
+<li><a class="reference internal" href="#terminology">Terminology</a><ul>
+<li><a class="reference internal" href="#code">Code</a><ul>
+<li><a class="reference internal" href="#importing-libraries">Importing Libraries</a></li>
+<li><a class="reference internal" href="#opening-a-window">Opening A Window</a></li>
+<li><a class="reference internal" href="#glfw-opengl-initialization">GLFW/OpenGL Initialization</a><ul>
+<li><a class="reference internal" href="#initialize-glfw">Initialize GLFW.</a></li>
+<li><a class="reference internal" href="#set-the-version-of-opengl">Set the version of OpenGL</a></li>
+<li><a class="reference internal" href="#create-a-window">Create a Window</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#to-note">To Note</a><ul>
+<li><a class="reference internal" href="#the-event-loop">The Event Loop</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exercise">Exercise</a></li>
+<li><a class="reference internal" href="#black-screen">Black Screen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2020-2024, William Emerison Six.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
+          </div>
         </div>
       </div>
-    </section>
+      
+      
+    </aside>
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+</div><script src="static/documentation_options.js?v=5f733c1d"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=5fa4622c"></script>
+    </body>
 </html>

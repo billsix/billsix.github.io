@@ -1,30 +1,22 @@
 ..
-   Copyright (c) 2018-2024 William Emerison Six
+   Copyright (c) 2018-2025 William Emerison Six
 
-   Permission is hereby granted, free of charge, to any person obtaining a copy
-   of this software and associated documentation files (the "Software"), to deal
-   in the Software without restriction, including without limitation the rights
-   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   copies of the Software, and to permit persons to whom the Software is
-   furnished to do so, subject to the following conditions:
+   Permission is granted to copy, distribute and/or modify this document
+   under the terms of the GNU Free Documentation License, Version 1.3
+   or any later version published by the Free Software Foundation;
+   with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+   A copy of the license is available at
+   https://www.gnu.org/licenses/fdl-1.3.html.
 
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
-
-Add Translate Method to Vertex - Demo 05
-========================================
+****************************************
+Add Translate Method to Vector - Demo 05
+****************************************
 
 
-Purpose
-^^^^^^^
+
+Objective
+^^^^^^^^^
 Restructure the code towards the model view projection
 pipeline.
 
@@ -33,6 +25,7 @@ of computer graphics.
 
 
 .. figure:: static/screenshots/demo05.png
+    :class: no-scale
     :align: center
     :alt: Demo 05
     :figclass: align-center
@@ -42,7 +35,7 @@ of computer graphics.
 How to Execute
 ^^^^^^^^^^^^^^
 
-Load src/demo05/demo.py in Spyder and hit the play button
+Load src/modelviewprojection/demo05.py in Spyder and hit the play button.
 
 
 Move the Paddles using the Keyboard
@@ -68,13 +61,14 @@ a set of vertices for the Paddle, relative to the paddle's center,
 that is independent of its
 placement in NDC.
 
-Rather than using values for each vertex relative to NDC, in the
-Paddle data structure, each vertex will be an offset from
+Rather than using values for each vector relative to NDC, in the
+Paddle data structure, each vector will be an offset from
 the center of the Paddle.  The center of the paddle will be considered x=0, y=0.
 Before rendering, each Paddle's
 vertices will need to be translated to its center relative to NDC.
 
 .. figure:: static/demo05.png
+    :class: no-scale
     :align: center
     :alt:
     :figclass: align-center
@@ -97,16 +91,16 @@ Code
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. literalinclude:: ../../src/demo05/demo.py
+.. literalinclude:: ../../src/modelviewprojection/mathutils2d.py
    :language: python
-   :start-after: doc-region-begin define vertex class
-   :end-before: doc-region-end define vertex class
+   :start-after: doc-region-begin define vector class
+   :end-before: doc-region-end define vector class
    :linenos:
    :lineno-match:
-   :caption: src/demo05/demo.py
+   :caption: src/modelviewprojection/demo05.py
 
 
-We added a translate method to the Vertex class.  Given a translation amount, the vertex
+We added a translate method to the Vector class.  Given a translation amount, the vector
 will be shifted by that amount.  This is a primitive that we will be using to transform
 from one space to another.
 
@@ -117,9 +111,9 @@ import them and try the methods
 .. code:: Python
 
        >>> import src.demo05.demo as demo
-       >>> a = demo.Vertex(x=1,y=2)
-       >>> a.translate(demo.Vertex(x=3,y=4))
-       Vertex(x=4, y=6)
+       >>> a = demo.Vector(x=1,y=2)
+       >>> a.translate(demo.Vector(x=3,y=4))
+       Vector(x=4, y=6)
 
 Note the use of "keyword arguments".  Without using keyword
 arguments, the code might look like this:
@@ -127,21 +121,21 @@ arguments, the code might look like this:
 .. code:: Python
 
        >>> import src.demo05.demo as demo
-       >>> a = demo.Vertex(1,2)
-       >>> a.translate(demo.Vertex(x=3,y=4))
-       Vertex(x=4, y=6)
+       >>> a = demo.Vector(1,2)
+       >>> a.translate(demo.Vector(x=3,y=4))
+       Vector(x=4, y=6)
 
 Keyword arguments allow the reader to understand the purpose of the
 parameters are, at the call-site of the function.
 
 
-.. literalinclude:: ../../src/demo05/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo05.py
    :language: python
    :start-after: doc-region-begin define paddle class
    :end-before: doc-region-end define paddle class
    :linenos:
    :lineno-match:
-   :caption: src/demo05/demo.py
+   :caption: src/modelviewprojection/demo05.py
 
 
 Add a position instance variable to the Paddle class.  This position is the center of
@@ -152,13 +146,13 @@ Instantiation of the Paddles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-.. literalinclude:: ../../src/demo05/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo05.py
    :language: python
    :start-after: doc-region-begin instantiate paddles
    :end-before: doc-region-end instantiate paddles
    :linenos:
    :lineno-match:
-   :caption: src/demo05/demo.py
+   :caption: src/modelviewprojection/demo05.py
 
 
 * The vertices are now defined as relative distances from the center of the paddle.  The centers
@@ -168,58 +162,59 @@ Instantiation of the Paddles
 Handling User Input
 ~~~~~~~~~~~~~~~~~~~
 
-.. literalinclude:: ../../src/demo05/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo05.py
    :language: python
    :start-after: doc-region-begin define handle movement of paddles
    :end-before: doc-region-end define handle movement of paddles
    :linenos:
    :lineno-match:
-   :caption: src/demo05/demo.py
+   :caption: src/modelviewprojection/demo05.py
 
 
 * We put the transformation on the center of the paddle, instead
-  of directly on each vertex.  This is because the vertices are
+  of directly on each vector.  This is because the vertices are
   defined relative to the center of the paddle.
 
 The Event Loop
 ~~~~~~~~~~~~~~
 
-.. literalinclude:: ../../src/demo05/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo05.py
    :language: python
    :start-after: doc-region-begin begin event loop
    :end-before: doc-region-end begin event loop
    :linenos:
    :lineno-match:
-   :caption: src/demo05/demo.py
+   :caption: src/modelviewprojection/demo05.py
 
 
-.. literalinclude:: ../../src/demo05/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo05.py
    :language: python
    :start-after: doc-region-begin draw paddle 1
    :end-before: doc-region-end draw paddle 1
    :linenos:
    :lineno-match:
-   :caption: src/demo05/demo.py
+   :caption: src/modelviewprojection/demo05.py
 
 
 
-Here each of paddle 1's vertices, which are in their "model-space",
-are converted to NDC by calling the translate method on the vertex.
+Here each of paddle 1's vertices, which are in their :term:`Modelspace`,
+are converted to NDC by calling the translate method on the vector.
 This function corresponds to the Cayley graph below, the function
 from Paddle 1 space to NDC.
 
-.. literalinclude:: ../../src/demo05/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo05.py
    :language: python
    :start-after: doc-region-begin draw paddle 2
    :end-before: doc-region-end draw paddle 2
    :linenos:
    :lineno-match:
-   :caption: src/demo05/demo.py
+   :caption: src/modelviewprojection/demo05.py
 
 
 
 
 .. figure:: static/demo05.png
+    :class: no-scale
     :align: center
     :alt:
     :figclass: align-center
@@ -230,8 +225,8 @@ The only part of the diagram that we need to think about right now is the functi
 that converts from paddle1's space to NDC, and from paddle2's space to NDC.
 
 These functions in the Python code are the translation of the paddle's center (i.e. paddle1.position)
-by the vertex's offset from the center.
+by the vector's offset from the center.
 
-N.B.  In the code, I name the vertices by their space.  I.e. "modelSpace" instead of "vertex_relative_to_modelspace".
+N.B.  In the code, I name the vertices by their space.  I.e. "modelSpace" instead of "vector_relative_to_modelspace".
 I do this to emphasize that you should view the transformation as happening to the "graph paper", instead of to each
 of the points.  This will be explained more clearly later.

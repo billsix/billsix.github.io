@@ -1,32 +1,24 @@
 ..
-   Copyright (c) 2018-2024 William Emerison Six
+   Copyright (c) 2018-2025 William Emerison Six
 
-   Permission is hereby granted, free of charge, to any person obtaining a copy
-   of this software and associated documentation files (the "Software"), to deal
-   in the Software without restriction, including without limitation the rights
-   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   copies of the Software, and to permit persons to whom the Software is
-   furnished to do so, subject to the following conditions:
+   Permission is granted to copy, distribute and/or modify this document
+   under the terms of the GNU Free Documentation License, Version 1.3
+   or any later version published by the Free Software Foundation;
+   with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+   A copy of the license is available at
+   https://www.gnu.org/licenses/fdl-1.3.html.
 
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
-
+*******************************************
 Rotate the Square Around Paddle 1 - Demo 13
-===========================================
+*******************************************
 
-Purpose
-^^^^^^^
+Objective
+^^^^^^^^^
 Rotate the square around paddle1's center.
 
 .. figure:: static/screenshots/demo13.png
+    :class: no-scale
     :align: center
     :alt: Demo 13
     :figclass: align-center
@@ -69,42 +61,43 @@ Cayley Graph
 
 
 .. figure:: static/demo11.png
+    :class: no-scale
     :align: center
     :alt: Demo 13
     :figclass: align-center
 
     Demo 13
 
-.. literalinclude:: ../../src/demo13/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo13.py
    :language: python
    :start-after: doc-region-begin define variable for square rotation around paddle's center
    :end-before: doc-region-end define variable for square rotation around paddle's center
    :linenos:
    :lineno-match:
-   :caption: src/demo13/demo.py
+   :caption: src/modelviewprojection/demo13.py
 
 
 
 Event Loop
 ^^^^^^^^^^
 
-.. literalinclude:: ../../src/demo13/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo13.py
    :language: python
    :start-after: doc-region-begin begin event loop
    :end-before: doc-region-end begin event loop
    :linenos:
    :lineno-match:
-   :caption: src/demo13/demo.py
+   :caption: src/modelviewprojection/demo13.py
 
 
 ::
 
     ...
 
-.. literalinclude:: ../../src/demo13/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo13.py
    :language: python
    :start-after: doc-region-begin draw square
    :end-before: doc-region-end draw square
    :linenos:
    :lineno-match:
-   :caption: src/demo13/demo.py
+   :caption: src/modelviewprojection/demo13.py

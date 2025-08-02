@@ -1,65 +1,212 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Opening a Window - Demo 01" href="ch01.html" /><link rel="prev" title="Model View Projection" href="index.html" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Introduction &mdash; Model View Projection 0.0.1 documentation</title>
-      <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="static/css/my_theme.css" type="text/css" />
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>Introduction - Model View Projection 0.0.02 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
   
-        <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
-        <script src="static/jquery.js"></script>
-        <script src="static/underscore.js"></script>
-        <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="static/doctools.js"></script>
-        <script src="static/sphinx_highlight.js"></script>
-    <script src="static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Opening a Window - Demo 01" href="ch01.html" />
-    <link rel="prev" title="Model View Projection" href="index.html" /> 
-</head>
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
 
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Model View Projection
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#source-code">Source code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#approach">Approach</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pre-requisities">Pre-requisities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#required-software">Required Software</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#macos-or-linux">MacOS or Linux</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linux">Linux</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mac">Mac</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Model View Projection 0.0.02 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Model View Projection 0.0.02 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vertex - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vector - Demo 05</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
@@ -70,77 +217,82 @@
 <li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch16.html">Moving Camera in 3D Space - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">3D Perspective - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">Lambda Stack - Demo 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch16.html">Lambda Stack - Demo 16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch17.html">Moving Camera in 3D Space - Demo 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
 <li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
 
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Model View Projection</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Introduction</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="sources/intro.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
-<p>Learn how to program in 3D computer graphics in Python!</p>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/intro.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
+<p>Learn how to program in 3D computer graphics in the Python programming language!</p>
 <figure class="align-center">
-<img alt="frustum1" src="images/frustum1.png" />
+<img alt="frustum1" class="no-scale" src="images/frustum1.png" />
 </figure>
-<section id="source-code">
-<h2>Source code<a class="headerlink" href="#source-code" title="Permalink to this heading">¶</a></h2>
-<p>This book references source code, which is at <a class="reference external" href="https://github.com/billsix/modelviewprojection">https://github.com/billsix/modelviewprojection</a></p>
-</section>
 <section id="approach">
-<h2>Approach<a class="headerlink" href="#approach" title="Permalink to this heading">¶</a></h2>
-<p>This book takes a “mistake-driven development” approach: instead of
-handing you polished math formulae, it walks you through building
-complex graphics applications step by step. Along the way, we’ll make
-mistakes—and then fix them—so you can see how solutions emerge in
-real-world programming.</p>
-<p>You’ll learn how to place objects in space, draw them relative to
+<h2>Approach<a class="headerlink" href="#approach" title="Link to this heading">¶</a></h2>
+<p>You’ll learn how to place geometric objects in space, draw them relative to
 others, add a camera that moves over time based on user input, and
 transform all those objects into the 2D pixel coordinates of your
 screen. By the end, you’ll understand the foundations of creating
 first-person and third-person applications or games. The goal? To
 empower you to build the graphics programs you want, using math you
 mostly already know.</p>
-<p>This book keeps things intentionally simple. The applications we create
-won’t be particularly pretty or realistic-looking. For more advanced
-topics, you’ll want to dive into references like the OpenGL “Red Book
-” and “Blue Book,” or explore some of the tutorials listed at the end.</p>
+<p>This book intentionally keeps things simple intended for beginners.
+In this book, the applications created
+won’t be particularly pretty or realistic-looking. After reading this
+book, for more advanced
+topics, you’ll want to dive into references LearnOpenGL or the OpenGLTutorial.</p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://learnopengl.com/">LearnOpenGL</a></p></li>
 <li><p><a class="reference external" href="http://www.opengl-tutorial.org/">OpenGLTutorial</a></p></li>
 </ol>
-<p>While this book fills a huge gap by focusing on the basics in a hands
--on way, those other books are fantastic references for diving into
-advanced topics.</p>
 </section>
-<section id="pre-requisities">
-<h2>Pre-requisities<a class="headerlink" href="#pre-requisities" title="Permalink to this heading">¶</a></h2>
+<section id="things-you-should-know">
+<h2>Things You Should Know<a class="headerlink" href="#things-you-should-know" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Basic programming concepts in Python.</p>
 <ol class="arabic simple">
@@ -152,102 +304,155 @@ advanced topics.</p>
 </li>
 <li><p>Books</p>
 <ol class="arabic simple">
-<li><p><a class="reference external" href="https://learnbyexample.github.io/100_page_python_intro/preface.html">https://learnbyexample.github.io/100_page_python_intro/preface.html</a></p></li>
 <li><p><a class="reference external" href="https://diveintopython3.problemsolving.io/">https://diveintopython3.problemsolving.io/</a></p></li>
 </ol>
 </li>
 </ol>
 </li>
-<li><p>High school trigonometry</p></li>
-<li><p>Linear Algebra (optional)</p>
-<ol class="arabic simple">
-<li><p>3Blue1Brown - Linear <a class="reference external" href="https://www.youtube.com/watch?v=kYB8IZa5AuE">Transformations</a></p></li>
-<li><p>3Blue1Brown - Matrix Multiplication as <a class="reference external" href="https://www.youtube.com/watch?v=XkY2DOUCWMU">Composition</a></p></li>
-</ol>
-</li>
+<li><p>High school Geometry</p></li>
 </ol>
 </section>
 <section id="required-software">
-<h2>Required Software<a class="headerlink" href="#required-software" title="Permalink to this heading">¶</a></h2>
-<p>You will need to install Python. <a class="reference external" href="https://realpython.com/installing-python/">https://realpython.com/installing-python/</a></p>
-<p>Before running this code, you need a virtual environment,
-with dependencies installed. <a class="reference external" href="https://docs.python.org/3/tutorial/venv.html">https://docs.python.org/3/tutorial/venv.html</a></p>
+<h2>Required Software<a class="headerlink" href="#required-software" title="Link to this heading">¶</a></h2>
+<p>You will need to install Python, and make a virtual environment.  You can
+search how to do this using a search engine, or AI Chatbot, or follow
+the instructions below.</p>
 <section id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h3>
-<p>On Windows, if you use the Developer command prompt, to set up the environment run</p>
+<h3>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h3>
+<p>On Windows, install Visual Studio and the Python extension.  Afterwards, to set up
+the virtual environment, open the Developer Command Prompt,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
 <span class="n">cd</span> <span class="n">venv</span>\<span class="n">Scripts</span>
 <span class="n">activate</span><span class="o">.</span><span class="n">bat</span>
 <span class="n">cd</span> <span class="o">..</span>\<span class="o">..</span>\
 <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span> <span class="n">setuptools</span>
 <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span><span class="p">[</span><span class="n">dev</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>To run the Spyder IDE to execute the code in the book, open Spyder on the developer command
-prompt</p>
+<p>To run the Spyder Integrated Development Environment (IDE) to execute
+the code in the book, open Spyder on the Developer Command
+Prompt</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">venv</span>\<span class="n">Scripts</span>
 <span class="n">activate</span><span class="o">.</span><span class="n">bat</span>
 <span class="n">cd</span> <span class="o">..</span>\<span class="o">..</span>\
-<span class="n">spyder</span>
+<span class="n">spyder</span> <span class="o">-</span><span class="n">p</span> <span class="o">.</span>
 </pre></div>
 </div>
 </section>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Link to this heading">¶</a></h3>
+<p>Install Python3, glfw via a package manager.  Use pip and virtualenv to install dependencies</p>
+</section>
+<section id="mac">
+<h3>Mac<a class="headerlink" href="#mac" title="Link to this heading">¶</a></h3>
+<p>Install Python3 (via anaconda, homebrew, macports, whatever), and use pip and virtualenv to install dependencies.</p>
+</section>
 <section id="macos-or-linux">
-<h3>MacOS or Linux<a class="headerlink" href="#macos-or-linux" title="Permalink to this heading">¶</a></h3>
-<p>On MacOS or Linux, on a terminal, to set up the environment, run</p>
+<h3>MacOS or Linux<a class="headerlink" href="#macos-or-linux" title="Link to this heading">¶</a></h3>
+<p>On MacOS or Linux, to set up the environment in a terminal, execute</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
 <span class="nb">source</span><span class="w"> </span>venv/bin/activate
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span>setuptools
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
 </pre></div>
 </div>
 <p>To run the Spyder IDE to execute the code in the book, open Spyder on the developer command
 prompt</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
-<span class="n">spyder</span>
+<span class="n">spyder</span> <span class="o">-</span><span class="n">p</span> <span class="o">.</span>
 </pre></div>
 </div>
 </section>
-<section id="linux">
-<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this heading">¶</a></h3>
-<p>Install Python3, glfw via a package manager.  Use pip and virtualenv to install dependencies</p>
 </section>
-<section id="mac">
-<h3>Mac<a class="headerlink" href="#mac" title="Permalink to this heading">¶</a></h3>
-<p>Python Python3 (via anaconda, homebrew, macports, whatever), and use pip and virtualenv to install dependencies.</p>
-</section>
+<section id="source-code">
+<h2>Source code<a class="headerlink" href="#source-code" title="Link to this heading">¶</a></h2>
+<p>This book references source code, which is at <a class="reference external" href="https://github.com/billsix/modelviewprojection">https://github.com/billsix/modelviewprojection</a></p>
+<p>This documentation was generated from from commit 849fcdff914480dec0992042c8de6fded179a82e</p>
 </section>
 </section>
 
-
-           </div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="ch01.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Opening a Window - Demo 01</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020-2025, William Emerison Six
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Model View Projection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ch01.html" class="btn btn-neutral float-right" title="Opening a Window - Demo 01" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
     </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#approach">Approach</a></li>
+<li><a class="reference internal" href="#things-you-should-know">Things You Should Know</a></li>
+<li><a class="reference internal" href="#required-software">Required Software</a><ul>
+<li><a class="reference internal" href="#windows">Windows</a></li>
+<li><a class="reference internal" href="#linux">Linux</a></li>
+<li><a class="reference internal" href="#mac">Mac</a></li>
+<li><a class="reference internal" href="#macos-or-linux">MacOS or Linux</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#source-code">Source code</a></li>
+</ul>
+</li>
+</ul>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2020-2024, William Emerison Six.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
+          </div>
         </div>
       </div>
-    </section>
+      
+      
+    </aside>
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+</div><script src="static/documentation_options.js?v=5f733c1d"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=5fa4622c"></script>
+    </body>
 </html>

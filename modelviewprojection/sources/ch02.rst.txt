@@ -1,36 +1,28 @@
 ..
-   Copyright (c) 2018-2024 William Emerison Six
+   Copyright (c) 2018-2025 William Emerison Six
 
-   Permission is hereby granted, free of charge, to any person obtaining a copy
-   of this software and associated documentation files (the "Software"), to deal
-   in the Software without restriction, including without limitation the rights
-   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   copies of the Software, and to permit persons to whom the Software is
-   furnished to do so, subject to the following conditions:
+   Permission is granted to copy, distribute and/or modify this document
+   under the terms of the GNU Free Documentation License, Version 1.3
+   or any later version published by the Free Software Foundation;
+   with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+   A copy of the license is available at
+   https://www.gnu.org/licenses/fdl-1.3.html.
 
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
-
+**************************
 Draw A Rectangle - Demo 02
-==========================
+**************************
 
 
-Purpose
-^^^^^^^
+Objective
+=========
 
-Learn how to plot a rectangle.  Learn about OpenGL's coordinate system, normalized-device coordinates,
-which are from -1.0 to 1.0, in the X, Y, and Z directions.  Anything drawn entirely outside
-of this region will not be displayed on the screen.
+Learn how to draw rectangles in an OpenGL window.  Learn about OpenGL's coordinate system, :term:`Normalized Device Coordinates` (NDC),
+which are from -1.0 to 1.0, in the X, Y, and Z directions.  Geometry drawn outside
+of this region will not be displayed in the window.
 
 .. figure:: static/screenshots/demo02.png
+    :class: no-scale
     :align: center
     :alt: Demo 02
     :figclass: align-center
@@ -38,16 +30,16 @@ of this region will not be displayed on the screen.
     Demo 02
 
 How to Execute
-^^^^^^^^^^^^^^
+==============
 
-Load src/demo02/demo.py in Spyder and hit the play button
+Load src/modelviewprojection/demo02.py in Spyder and hit the play button.
 
 
 Code
-^^^^
+====
 
 GLFW/OpenGL Initialization
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 The setup code is the same.  Initialize GLFW.  Set the OpenGL version.
 Create the window.  Set a key handler for closing.  Set the background to be black.
@@ -56,18 +48,18 @@ Execute the event/drawing loop.
 
 
 The Event Loop
-^^^^^^^^^^^^^^
+--------------
 
-Within the event loop, demo02/demo.py draws 2 rectangles, as one might see in
+Within the event loop, demo02.py draws 2 rectangles, as one might see in
 a game of Pong.
 
-.. literalinclude:: ../../src/demo02/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo02.py
    :language: python
    :start-after: doc-region-begin event loop
    :end-before: doc-region-end event loop
    :linenos:
    :lineno-match:
-   :caption: src/demo02/demo.py
+   :caption: src/modelviewprojection/demo02.py
 
 ::
 
@@ -75,7 +67,8 @@ a game of Pong.
 
 
 Draw Paddles
-&&&&&&&&&&&&
+------------
+
 
 A black screen is not particularly interesting, so
 let's draw something, say, two rectangles.
@@ -101,19 +94,20 @@ Draw Paddle 1
 ^^^^^^^^^^^^^
 
 
-.. literalinclude:: ../../src/demo02/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo02.py
    :language: python
    :start-after: doc-region-begin draw paddle 1
    :end-before: doc-region-end draw paddle 1
    :linenos:
    :lineno-match:
-   :caption: src/demo02/demo.py
+   :caption: src/modelviewprojection/demo02.py
 
 
 
-The paddle looks like this relative to normalized device coordinates (NDC):
+The paddle looks like this relative to :term:`NDC<Normalized Device Coordinates>`:
 
 .. figure:: static/plot1.svg
+    :class: no-scale
     :align: center
     :alt: Rectangle
     :figclass: align-center
@@ -124,32 +118,33 @@ The paddle looks like this relative to normalized device coordinates (NDC):
 Draw Paddle 2
 ^^^^^^^^^^^^^
 
-.. literalinclude:: ../../src/demo02/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo02.py
    :language: python
    :start-after: doc-region-begin draw paddle 2
    :end-before: doc-region-end draw paddle 2
    :linenos:
    :lineno-match:
-   :caption: src/demo02/demo.py
+   :caption: src/modelviewprojection/demo02.py
 
 
 
-The 2 paddles looks like this relative to normalized device coordinates (NDC):
+The 2 paddles looks like this relative to :term:`NDC<Normalized Device Coordinates>`:
 
 .. figure:: static/plot2.svg
+    :class: no-scale
     :align: center
     :alt: Rectangle
     :figclass: align-center
 
     Rectangle
 
-.. literalinclude:: ../../src/demo02/demo.py
+.. literalinclude:: ../../src/modelviewprojection/demo02.py
    :language: python
    :start-after: doc-region-begin flush framebuffer to monitor
    :end-before: doc-region-end flush framebuffer to monitor
    :linenos:
    :lineno-match:
-   :caption: src/demo02/demo.py
+   :caption: src/modelviewprojection/demo02.py
 
 
 
@@ -176,18 +171,18 @@ The frame sent to the monitor is a set of values like this ::
 
 
 
-What do we have to do to convert from normalized-device-coordinates (i.e. (1.0, 0.8))
+What do we have to do to convert from :term:`NDC<Normalized Device Coordinates>` (i.e. (1.0, 0.8))
 into pixel coordinates (i.e. pixel (10,15))?  Nothing, OpenGL does that for us automatically; therefore
 we never have to think in terms of pixels coordinates, only in terms of vertices of shapes,
-specified by normalized-device-coordinates. OpenGL also automatically colors all of the pixels
+specified by :term:`NDC<Normalized Device Coordinates>`. OpenGL also automatically colors all of the pixels
 which are inside of the quadrilateral.
 
 
 
-Why do we use normalized-device coordinates instead of pixel coordinates?
+Why do we use :term:`NDC<Normalized Device Coordinates>` instead of pixel coordinates?
 
 Normalized-Device-Coordinates
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=============================
 
 The author owns two monitors, one which has 1024x768 pixels, and one which has
 1920x1200 pixels.  When he purchases a game from Steam, he expects that his game
@@ -203,6 +198,7 @@ Screen-space means you're specifically using pixel coordinates, i.e, set pixel (
 What looks alright in screen-space on a large monitor...
 
 .. figure:: static/screenspace2.svg
+    :class: no-scale
     :align: center
     :alt: Screenspace
     :figclass: align-center
@@ -213,6 +209,7 @@ What looks alright in screen-space on a large monitor...
 Isn't the same picture on a smaller monitor.
 
 .. figure:: static/screenspace.svg
+    :class: no-scale
     :align: center
     :alt: Screenspace
     :figclass: align-center
@@ -232,17 +229,18 @@ and an fixed range horizontally.  OpenGL will have to convert points from some s
 and since this is done in hardware (i.e. you can't pragmatically change how the conversion
 happens), it should be a fixed size.
 
-OpenGL uses what's called *normalized-device-coordinates*,
+OpenGL uses what's called *:term:`NDC<Normalized Device Coordinates>`*,
 which is a continuous space from -1.0 to 1.0 horizontally,
 -1.0 to 1.0 vertically, and from -1.0 to 1.0 depth-ally.  (Is there an
 actual word for that???)
 
 
-The programmer specifies geometry using normalized-device-coordinates, and
+The programmer specifies geometry using :term:`NDC<Normalized Device Coordinates>`, and
 OpenGL will convert from a continuous, -1.0 to 1.0 space,
 to discrete pixel-space, and the programmer cannot change this.
 
 .. figure:: static/ndcSpace.svg
+    :class: no-scale
     :align: center
     :alt: NDC space
     :figclass: align-center
@@ -253,6 +251,7 @@ to discrete pixel-space, and the programmer cannot change this.
 Whether we own a small monitor
 
 .. figure:: static/ndcSpace1.svg
+    :class: no-scale
     :align: center
     :alt: NDC space
     :figclass: align-center
@@ -262,6 +261,7 @@ Whether we own a small monitor
 Or a large monitor.
 
 .. figure:: static/screenspace2.svg
+    :class: no-scale
     :align: center
     :alt: NDC space
     :figclass: align-center
@@ -269,8 +269,8 @@ Or a large monitor.
     NDC space
 
 
-Graph of Spaces
-^^^^^^^^^^^^^^^
+Introduction to Cayley Graphs
+=============================
 
 The following is a graph_, specifically
 a Cayley_ Graph, of the two spaces
@@ -278,18 +278,21 @@ shown so far.  The nodes represent a coordinate system (i.e. origin and axes),
 and the directed edge represents a function that converts coordinates from one
 coordinate system to another.  If this isn't clear to the reader, look
 above at the 3 pictures of the 2 quadrilaterals.  They look the same, but
-if you label each vertex on all three graphs, and look at the axes to find
+if you label each vector on all three graphs, and look at the axes to find
 their plotted values, you will find that they differ.  Changing between
 coordinate systems means to take vertices from one coordinate system and
 changing them to another, like converting from Celsius to Fahrenheit,
 meters to feet, etc.
 
+NDC/Screenspace Conversion
+--------------------------
 
 .. _graph: https://en.wikipedia.org/wiki/Graph_theory
 .. _Cayley:  https://en.wikipedia.org/wiki/Cayley_graph
 
 
 .. figure:: static/demo02.png
+    :class: no-scale
     :align: center
     :alt: Demo 02
     :figclass: align-center
@@ -304,18 +307,21 @@ A definition of this function is not provided right now, because we can't change
 But we must recognize that it exists.
 
 
-Introduction to Cayley Graphs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 
 The Wikipedia article for Cayley graphs (https://en.wikipedia.org/wiki/Cayley_graph) is intimidating,
 but for our purposes, its use is very simple.
 
 
+Currency Conversion
+-------------------
 
 An uni-variate example use of Cayley graphs is exchanging coins with
 a bank.
 
 .. figure:: static/currency.png
+    :class: no-scale
     :align: center
     :alt: Demo 02
     :figclass: align-center
@@ -369,7 +375,7 @@ taking the reciprocal of the coefficient
     f_{quarter}^{penny}(x) = 25 * x
 
 .. math::
-    f_{penny}^{quarter}(x) & = {f_{quarter}^{penny}}^{-1}(x) \\
+    f_{penny}^{quarter}(x) & = {(f_{quarter}^{penny})}^{-1}(x) \\
     & =  1/25 * x
 
 
@@ -393,11 +399,11 @@ of any directed edge that you against.
 
 .. math::
     f_{dime}^{dollar}(x)  & = f_{penny}^{dollar}(f_{dime}^{penny}(x)) \\
-                              & = {f_{dollar}^{penny}}^{-1}(f_{dime}^{penny}(x)) \\
+                              & = {(f_{dollar}^{penny})}^{-1}(f_{dime}^{penny}(x)) \\
 
 
 .. math::
-    f_{dime}^{dollar}   = {f_{dollar}^{penny}}^{-1} \circ f_{dime}^{penny}
+    f_{dime}^{dollar}   = {(f_{dollar}^{penny})}^{-1} \circ f_{dime}^{penny}
 
 
 
@@ -409,11 +415,55 @@ out, but the details of those functions are not relevant when traversing the Cay
 .. _composition: https://en.wikipedia.org/wiki/Function_composition
 
 
+Temperature Conversion
+----------------------
+
+.. figure:: static/temp.png
+    :class: no-scale
+    :align: center
+    :alt: Demo 02
+    :figclass: align-center
+
+    Cayley graph of uni variate coordinate conversion for temperature.
+
+.. math::
+    f_{c}^{k}(x) = x * 273.15
+
+.. math::
+    f_{f}^{c}(x) = (x-32) * \frac{5}{9}
+
+Given that those functions are invertible, we have completed the information needed
+take a temperature in kelvin, celsius, or fahrenheit, and convert it to
+any other unit of temperature, and for graphics, this is the extent of our thought
+processes.  When creating the graph, we don't think about how to do every pair of
+conversions, because they can be created later by using function composition,
+and/or taking the inverse of given functions.
+
+
+To convert from fahrenheit to kelvin, we would think
+
+.. math::
+    f_{f}^{k} = f_{celsius}^{kelvin} \circ f_{fahrenheit}^{celsius}
+
+To convert from kelvin to celsius, we would think
+
+.. math::
+    f_{kelvin}^{celsius} = {(f_{celsius}^{kelvin})}^{-1}
+
+To convert from celsius to fahrenheit, we would think
+
+.. math::
+    f_{celsius}^{fahrenheit} = {(f_{fahrenheit}^{celsius})}^{-1}
+
+To convert from kelvin to fahrenheit, we would think
+
+.. math::
+    f_{kelvin}^{fahrenheit} = {(f_{fahrenheit}^{celsius})^{-1}} \circ {(f_{celsius}^{kelvin})^{-1}}
 
 
 
 Learning what to ignore
-~~~~~~~~~~~~~~~~~~~~~~~
+=======================
 
 A big part of being able to understand graphics well is being able
 to figure out what to ignore.  So how would we convert coordinates from space
@@ -431,6 +481,7 @@ matters
 
 
 .. figure:: static/cayleygraph.png
+    :class: no-scale
     :align: center
     :alt: Generic Cayley Graph
     :figclass: align-center
@@ -452,7 +503,7 @@ the appropriate inverse(s).
 
 .. math::
     \vec{f}_{d}^{b}(\vec{x})  & = \vec{f}_{a}^{b}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x}))) \\
-                              & = {\vec{{f}_{b}^{a}}}^{-1}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x})))
+                              & = {(\vec{{f}_{b}^{a}})}^{-1}(\vec{f}_{c}^{a}(\vec{f}_{d}^{c}(\vec{x})))
 
 A function from A to B is not provided to us, but we wrote it in the equation as an idea of a function
 that we wish to have, even though we don't currently have it.
@@ -462,14 +513,14 @@ However, we can create this function by invoking inverse on the provide function
 Since we're dealing with function composition mainly, we don't even need to specify the argument
 
 .. math::
-    \vec{f}_{d}^{b}  = {\vec{{f}_{b}^{a}}}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}
+    \vec{f}_{d}^{b}  = {(\vec{{f}_{b}^{a}})}^{-1} \circ {\vec{f}_{c}^{a}} \circ \vec{f}_{d}^{c}
 
 If this seems to abstract for now, don't worry.  By the end of the course, it should be clear.
 The goal of this book is to make it clear, and then, obvious.
 
 
 Exercise
-^^^^^^^^
+========
 
 * Run Demo 2.  Resize the window using the GUI controls provided
   by the Operating system. first make it skinny, and then wide.

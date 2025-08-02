@@ -1,30 +1,21 @@
 ..
-   Copyright (c) 2018-2024 William Emerison Six
+   Copyright (c) 2018-2025 William Emerison Six
 
-   Permission is hereby granted, free of charge, to any person obtaining a copy
-   of this software and associated documentation files (the "Software"), to deal
-   in the Software without restriction, including without limitation the rights
-   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   copies of the Software, and to permit persons to whom the Software is
-   furnished to do so, subject to the following conditions:
+   Permission is granted to copy, distribute and/or modify this document
+   under the terms of the GNU Free Documentation License, Version 1.3
+   or any later version published by the Free Software Foundation;
+   with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+   A copy of the license is available at
+   https://www.gnu.org/licenses/fdl-1.3.html.
 
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
-
+*******************
 Rotations - Demo 07
-===================
+*******************
 
 
-Purpose
-^^^^^^^
+Objective
+^^^^^^^^^
 
 Attempt to rotate the paddles around their center.
 Learn about rotations.  This demo does not
@@ -32,6 +23,7 @@ work correctly, because of a misunderstanding
 of how to interpret a sequence of transformations.
 
 .. figure:: static/screenshots/demo07.png
+    :class: no-scale
     :align: center
     :alt: Demo 07
     :figclass: align-center
@@ -42,7 +34,7 @@ of how to interpret a sequence of transformations.
 How to Execute
 ^^^^^^^^^^^^^^
 
-Load src/demo07/demo.py in Spyder and hit the play button
+Load src/modelviewprojection/demo07.py in Spyder and hit the play button.
 
 Move the Paddles using the Keyboard
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -92,378 +84,15 @@ Typically the angles are described on the unit circle, where a rotation
 starts from the positive x axis.
 
 .. figure:: static/cc0/Stephan_Kulla/Sinus_und_Kosinus_am_Einheitskreis_1.svg
+    :class: no-scale
     :align: center
     :alt: Demo 07
     :figclass: align-center
 
-
-We can expand on this knowledge, allowing
-us to rotate a given vertex, wherever it is, around the origin (0,0).  This is done
-by separating the x and y value, rotating each component separately,
-and then adding the results together.
-
-That might not have been fully clear.  Let me try again.
-The vertex (0.5,0.4) can be separated into two vertices, (0.5,0) and (0,0.4).
-
-.. figure:: static/rotate3.svg
-    :align: center
-    :alt: Rotate
-    :figclass: align-center
-
-    Rotate
-
-.. figure:: static/rotate4.svg
-    :align: center
-    :alt: Rotate
-    :figclass: align-center
-
-    Rotate
-
-
-These vertices can be added together to create the original vertex.
-But, before we do that, let's rotate each of the vertices.
-
-(0.5,0) is on the x-axis, so rotating it by "angle" degrees, results
-in vertex (0.5*cos(angle), 0.5*sin(angle)).  This is high school
-geometry, and won't be explained here in detail.
-
-.. figure:: static/rotate.svg
-    :align: center
-    :alt: Rotate
-    :figclass: align-center
-
-    Rotate the x component.
-
-.. figure:: static/cc0/Stephan_Kulla/Sinus_und_Kosinus_am_Einheitskreis_2.svg
-    :align: center
-    :alt: Demo 07
-    :figclass: align-center
-
-
-
-
-But what may not be obvious, is what happens to the y component?
-Turns out, it is easy.  Just rotate your point of view, and it is
-the same thing, with one minor difference, in that the x value
-is negated.
-
-
-
-
-
-.. figure:: static/rotate2.svg
-    :align: center
-    :alt: Rotate
-    :figclass: align-center
-
-    Rotate the y component
-
-.. figure:: static/cc0/Stephan_Kulla/Sinus_und_Kosinus_am_Einheitskreis_3.svg
-    :align: center
-    :alt: Demo 07
-    :figclass: align-center
-
-
-(0,0.4) is on the y-axis, so rotating it by "angle" degrees, results
-in vertex (0.4*-sin(angle), 0.4*cos(angle)).
-
-
-Wait.  Why is negative sin applied to the angle to make the x value,
-and cos applied to angle to make the y value?  It is because positive
-1 unit on the x axis goes downwards.  The top of the plot is in
-units of -1.
-
-
-After the rotations have been applied, sum the results to
-get your vertex rotated around the origin!
-
-(0.5*cos(angle), 0.5*sin(angle)) + (0.4*-sin(angle), 0.4*cos(angle)) =
-(0.5*cos(angle) + 0.4*-sin(angle), 0.5*sin(angle) + 0.4*cos(angle))
-
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin define vertex class
-   :end-before: doc-region-end define vertex class
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-
-* Note the definition of rotate, from the description above.
-  cos and sin are defined in the math module.
-
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin define paddle class
-   :end-before: doc-region-end define paddle class
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-* a rotation instance variable is defined, with a default value of 0
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin define handle movement of paddles
-   :end-before: doc-region-end define handle movement of paddles
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-
-
-Cayley Graph
-^^^^^^^^^^^^
-
-.. figure:: static/demo06.png
-    :align: center
-    :alt: Demo 06
-    :figclass: align-center
-
-
-
-
-
-
-Code
-^^^^
-
-
-The Event Loop
-~~~~~~~~~~~~~~
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin begin  event loop
-   :end-before: doc-region-end begin  event loop
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-
-So to rotate paddle 1 about its center,
-we should translate to its position, and then rotate
-around the paddle's center.
-
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin draw paddle 1
-   :end-before: doc-region-end draw paddle 1
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-
-.. math::
-
-
-    \vec{f}_{p1}^{w}
-
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin compose transformations on paddle 12
-   :end-before: doc-region-end compose transformations on paddle 12
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-
-.. math::
-
-
-    \vec{f}_{w}^{ndc}
-
-
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin scale paddle 1
-   :end-before: doc-region-end scale paddle 1
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin glvertex on paddle 1
-   :end-before: doc-region-end glvertex on paddle 1
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-
-
-::
-
-    ...
-
-
-Likewise, to rotate paddle 2 about its center,
-we should translate to its position, and then rotate
-around the paddle's center.
-
-
-
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin draw paddle 2
-   :end-before: doc-region-end draw paddle 2
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-.. math::
-
-
-    \vec{f}_{p2}^{w}
-
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin compose transformations on paddle 2
-   :end-before: doc-region-end compose transformations on paddle 2
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-
-.. math::
-
-
-    \vec{f}_{w}^{ndc}
-
-
-
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin scale paddle 2
-   :end-before: doc-region-end scale paddle 2
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin glvertex on paddle 2
-   :end-before: doc-region-end glvertex on paddle 2
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-
-
-
-Why it is Wrong
-^^^^^^^^^^^^^^^
-
-Turns out, our program doesn't work as predicted, even though
-translate, scale, and rotate are all defined correctly.  The paddles
-are not rotating around their center.
-
-Let's take a look in detail about what our paddle-space to
-world space transformations are doing.
-
-.. literalinclude:: ../../src/demo07/demo.py
-   :language: python
-   :start-after: doc-region-begin compose transformations on paddle 12
-   :end-before: doc-region-end compose transformations on paddle 12
-   :linenos:
-   :lineno-match:
-   :caption: src/demo07/demo.py
-
-
-
-
-
-* Modelspace vertices
-
-
-.. figure:: static/incorrectrotate-forwards-1.svg
-    :align: center
-    :alt:
-    :figclass: align-center
-
-
-* Translate
-
-
-.. figure:: static/incorrectrotate-forwards-2.svg
-    :align: center
-    :alt:
-    :figclass: align-center
-
-
-* Reset the coordinate system
-
-.. figure:: static/incorrectrotate-forwards-3.svg
-    :align: center
-    :alt:
-    :figclass: align-center
-
-    Modelspace
-
-* Rotate around World Spaces's origin
-
-.. figure:: static/incorrectrotate-forwards-4.svg
-    :align: center
-    :alt:
-    :figclass: align-center
-
-    Modelspace
-
-* Reset the coordinate system
-
-
-.. figure:: static/incorrectrotate-forwards-5.svg
-    :align: center
-    :alt:
-    :figclass: align-center
-
-    Modelspace
-
-* Final world space coordinates
-
-
-.. figure:: static/incorrectrotate-forwards-6.svg
-    :align: center
-    :alt:
-    :figclass: align-center
-
-    Modelspace
-
-
-
-
-So then what the heck are we supposed to do in order to
-rotate around an object's center?  The next section
-provides a solution.
-
-
-
-Updated explanation
-^^^^^^^^^^^^^^^^^^^
 
 We can expand on this knowledge, allowing
 us to rotate all vertices, wherever they are, around the origin (0,0), by some
-angle theta.
+angle :math:`\theta`.
 
 Let's take any arbitrary point
 
@@ -479,15 +108,17 @@ Let's take any arbitrary point
 
 
 .. figure:: static/cc0/williamesix/rotate-goal.svg
+    :class: no-scale
     :align: center
     :alt: rotate-goal
     :figclass: align-center
 
 From high school geometry, remember that we can describe a
 Cartesian (x,y) point by its length r, and its cosine and sine
-of its angle theta.
+of its angle :math:`\theta`.
 
 .. figure:: static/cc0/williamesix/rotate1.svg
+    :class: no-scale
     :align: center
     :alt: rotate1
     :figclass: align-center
@@ -501,23 +132,25 @@ for a right triangle, even if the length sides are scaled up or down.
 
 So we'll make a right triangle on the unit circle, but we will remember
 the length of (x,y), which we'll call "r", and we'll call the angle
-of (x,y) to be "beta".  As a reminder, we want to rotate by a different
-angle, called "theta".
+of (x,y) to be ":math:`\beta`".  As a reminder, we want to rotate by a different
+angle, called ":math:`\theta`".
 
 
 .. figure:: static/cc0/williamesix/rotate2.svg
+    :class: no-scale
     :align: center
     :alt: rotate2
     :figclass: align-center
 
 
-Before we can rotate by "theta", first we need to be able to rotate by
-90 degrees, or pi/2.  So to rotate (cos(beta), sin(beta)) by pi/2,
-we get (cos(beta+pi/2), sin(beta+pi/2)).
+Before we can rotate by ":math:`\theta`", first we need to be able to rotate by
+90 degrees, or :math:`\pi`/2.  So to rotate (cos(:math:`\beta`), sin(:math:`\beta`)) by :math:`\pi`/2,
+we get (cos(:math:`\beta` + :math:`\pi`/2), sin(:math:`\beta` + :math:`\pi`/2)).
 
 
 
 .. figure:: static/cc0/williamesix/rotate3.svg
+    :class: no-scale
     :align: center
     :alt: rotate3
     :figclass: align-center
@@ -527,29 +160,32 @@ purpose of ignoring details for now that we'll return to later,
 just let we did for length "r" above.
 
 .. figure:: static/cc0/williamesix/rotate4.svg
+    :class: no-scale
     :align: center
     :alt: rotate4
     :figclass: align-center
 
 
 
-Now forget about "beta", and remember that our goal is to rotate by angle
-"theta".  Look at the picture below, while turning your head slightly to the
+Now forget about ":math:`\beta`", and remember that our goal is to rotate by angle
+":math:`\theta`".  Look at the picture below, while turning your head slightly to the
 left.  x' and y' look just like our normal Cartesian plane and unit circle,
-combined with the "theta"; it looks like what we already know from high
+combined with the ":math:`\theta`"; it looks like what we already know from high
 school geometry.
 
 .. figure:: static/cc0/williamesix/rotate5.svg
+    :class: no-scale
     :align: center
     :alt: rotate5
     :figclass: align-center
 
-So with this new frame of reference, we can rotate x' by "theta",
+So with this new frame of reference, we can rotate x' by ":math:`\theta`",
 and draw a right triangle on the unit circle using this new
 frame of reference.
 
 
 .. figure:: static/cc0/williamesix/rotate6.svg
+    :class: no-scale
     :align: center
     :alt: rotate6
     :figclass: align-center
@@ -563,6 +199,7 @@ So the rotated point can be constructed by the following
 
 
 .. figure:: static/cc0/williamesix/rotate7.svg
+    :class: no-scale
     :align: center
     :alt: rotate7
     :figclass: align-center
@@ -571,6 +208,7 @@ Now that we've found the direction on the unit circle, we remember to make
 it length "r".
 
 .. figure:: static/cc0/williamesix/rotate8.svg
+    :class: no-scale
     :align: center
     :alt: rotate8
     :figclass: align-center
@@ -593,9 +231,9 @@ Ok, now it is time to remember what the values that x' and y' are defined as.
                                                        sin(\beta + \pi/2) \\
                                                     \end{bmatrix})
 
-A problem we have now is how to calculate cosine and sine of beta + pi/2,
-because we haven't actually calculated beta; we've calculated sine
-and cosine of beta by dividing the x value by the magnitude of the a, and the sine of beta
+A problem we have now is how to calculate cosine and sine of :math:`\beta` + :math:`\pi`/2,
+because we haven't actually calculated :math:`\beta`; we've calculated sine
+and cosine of :math:`\beta` by dividing the x value by the magnitude of the a, and the sine of :math:`\beta`
 by dividing the y value by the magnitude of a.
 
 .. math::
@@ -645,7 +283,7 @@ Therefore
                                                        -\vec{a}_{y} \\
                                                        \vec{a}_{x} \\
                                                     \end{bmatrix}) \\
-                                 & =   (cos(\theta)*\vec{a}_{x} +
+                                 & =   (cos(\theta)*\vec{a} +
                                                     sin(\theta)*\begin{bmatrix}
                                                        -\vec{a}_{y} \\
                                                        \vec{a}_{x} \\
@@ -659,3 +297,238 @@ Therefore
                                                     \end{bmatrix} \text{ if } (\theta = \pi/2) \\
                                  & =   (cos(\theta)*\vec{a} +
                                                     sin(\theta)*\vec{r}(\vec{a}; \pi/2 ) \text{ if } (\theta \ne \pi/2)
+
+
+
+.. literalinclude:: ../../src/modelviewprojection/mathutils2d.py
+   :language: python
+   :start-after: doc-region-begin define vector class
+   :end-before: doc-region-end define vector class
+   :linenos:
+   :lineno-match:
+   :caption: src/modelviewprojection/mathutils2d.py
+
+.. literalinclude:: ../../src/modelviewprojection/mathutils2d.py
+   :language: python
+   :start-after: doc-region-begin define rotate
+   :end-before: doc-region-end define rotate
+   :linenos:
+   :lineno-match:
+   :caption: src/modelviewprojection/mathutils2d.py
+
+
+
+* Note the definition of rotate, from the description above.
+  cos and sin are defined in the math module.
+
+
+.. literalinclude:: ../../src/modelviewprojection/demo07.py
+   :language: python
+   :start-after: doc-region-begin define paddle class
+   :end-before: doc-region-end define paddle class
+   :linenos:
+   :lineno-match:
+   :caption: src/modelviewprojection/demo07.py
+
+
+* a rotation instance variable is defined, with a default value of 0
+
+.. literalinclude:: ../../src/modelviewprojection/demo07.py
+   :language: python
+   :start-after: doc-region-begin define handle movement of paddles
+   :end-before: doc-region-end define handle movement of paddles
+   :linenos:
+   :lineno-match:
+   :caption: src/modelviewprojection/demo07.py
+
+
+
+
+Cayley Graph
+^^^^^^^^^^^^
+
+.. figure:: static/demo06.png
+    :class: no-scale
+    :align: center
+    :alt: Demo 06
+    :figclass: align-center
+
+
+
+
+
+
+Code
+^^^^
+
+
+The Event Loop
+~~~~~~~~~~~~~~
+
+.. literalinclude:: ../../src/modelviewprojection/demo07.py
+   :language: python
+   :start-after: doc-region-begin begin  event loop
+   :end-before: doc-region-end begin  event loop
+   :linenos:
+   :lineno-match:
+   :caption: src/modelviewprojection/demo07.py
+
+
+
+So to rotate paddle 1 about its center,
+we should translate to its position, and then rotate
+around the paddle's center.
+
+
+.. literalinclude:: ../../src/modelviewprojection/demo07.py
+   :language: python
+   :start-after: doc-region-begin draw paddle 1
+   :end-before: doc-region-end draw paddle 1
+   :linenos:
+   :lineno-match:
+   :caption: src/modelviewprojection/demo07.py
+
+
+
+.. math::
+
+
+    \vec{f}_{p1}^{w}
+
+
+
+.. math::
+
+
+    \vec{f}_{w}^{ndc}
+
+
+
+
+::
+
+    ...
+
+
+Likewise, to rotate paddle 2 about its center,
+we should translate to its position, and then rotate
+around the paddle's center.
+
+
+
+
+.. literalinclude:: ../../src/modelviewprojection/demo07.py
+   :language: python
+   :start-after: doc-region-begin draw paddle 2
+   :end-before: doc-region-end draw paddle 2
+   :linenos:
+   :lineno-match:
+   :caption: src/modelviewprojection/demo07.py
+
+
+.. math::
+
+
+    \vec{f}_{p2}^{w}
+
+
+.. math::
+
+
+    \vec{f}_{w}^{ndc}
+
+
+
+
+
+
+Why it is Wrong
+^^^^^^^^^^^^^^^
+
+Turns out, our program doesn't work as predicted, even though
+translate, scale, and rotate are all defined correctly.  The paddles
+are not rotating around their center.
+
+Let's take a look in detail about what our paddle-space to
+world space transformations are doing.
+
+.. literalinclude:: ../../src/modelviewprojection/demo07.py
+   :language: python
+   :start-after: doc-region-begin compose transformations on paddle 1
+   :end-before: doc-region-end compose transformations on paddle 1
+   :linenos:
+   :lineno-match:
+   :caption: src/modelviewprojection/demo07.py
+
+See :mod:`modelviewprojection.mathutils.compose`
+
+
+
+* :term:`modelspace<Modelspace>` vertices
+
+
+.. figure:: static/incorrectrotate-forwards-1.svg
+    :class: no-scale
+    :align: center
+    :alt:
+    :figclass: align-center
+
+
+* Translate
+
+
+.. figure:: static/incorrectrotate-forwards-2.svg
+    :class: no-scale
+    :align: center
+    :alt:
+    :figclass: align-center
+
+
+* Reset the coordinate system
+
+.. figure:: static/incorrectrotate-forwards-3.svg
+    :class: no-scale
+    :align: center
+    :alt:
+    :figclass: align-center
+
+    Modelspace
+
+* Rotate around World Spaces's origin
+
+.. figure:: static/incorrectrotate-forwards-4.svg
+    :class: no-scale
+    :align: center
+    :alt:
+    :figclass: align-center
+
+    Modelspace
+
+* Reset the coordinate system
+
+
+.. figure:: static/incorrectrotate-forwards-5.svg
+    :class: no-scale
+    :align: center
+    :alt:
+    :figclass: align-center
+
+    Modelspace
+
+* Final world space coordinates
+
+
+.. figure:: static/incorrectrotate-forwards-6.svg
+    :class: no-scale
+    :align: center
+    :alt:
+    :figclass: align-center
+
+    Modelspace
+
+
+
+
+So then what the heck are we supposed to do in order to
+rotate around an object's center?  The next section
+provides a solution.

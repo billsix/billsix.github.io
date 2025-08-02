@@ -1,29 +1,20 @@
 ..
-   Copyright (c) 2018-2024 William Emerison Six
+   Copyright (c) 2018-2025 William Emerison Six
 
-   Permission is hereby granted, free of charge, to any person obtaining a copy
-   of this software and associated documentation files (the "Software"), to deal
-   in the Software without restriction, including without limitation the rights
-   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   copies of the Software, and to permit persons to whom the Software is
-   furnished to do so, subject to the following conditions:
+   Permission is granted to copy, distribute and/or modify this document
+   under the terms of the GNU Free Documentation License, Version 1.3
+   or any later version published by the Free Software Foundation;
+   with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+   A copy of the license is available at
+   https://www.gnu.org/licenses/fdl-1.3.html.
 
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
-
+***************************
 Standard Perspective Matrix
-===========================
+***************************
 
-Purpose
-^^^^^^^
+Objective
+^^^^^^^^^
 
 Derive the standard perspective matrix that OpenGL expects.
 
@@ -34,6 +25,7 @@ Description
 
 
 .. figure:: static/perspective.png
+    :class: no-scale
     :align: center
     :alt: Demo 11
     :figclass: align-center
@@ -46,6 +38,7 @@ Matrix form of perspective projection
 
 
 .. figure:: static/screenshots/frustum2.png
+    :class: no-scale
     :align: center
     :alt: Frustum 2
     :figclass: align-center
@@ -79,6 +72,7 @@ Scale Camera-space x by Camera-space z
 resulting in
 
 .. figure:: static/screenshots/frustum3.png
+    :class: no-scale
     :align: center
     :alt: Frustum 3
     :figclass: align-center
@@ -114,6 +108,7 @@ resulting in
 
 
 .. figure:: static/screenshots/frustum4.png
+    :class: no-scale
     :align: center
     :alt: Frustum 4
     :figclass: align-center
@@ -155,6 +150,7 @@ Translate Rectangular Prism's Center to Center
 
 
 .. figure:: static/screenshots/frustum5.png
+    :class: no-scale
     :align: center
     :alt: Frustum 5
     :figclass: align-center
@@ -192,6 +188,7 @@ Scale by inverse of the dimensions of the Rectangular Prism
                    \end{bmatrix}
 
 .. figure:: static/screenshots/frustum6.png
+    :class: no-scale
     :align: center
     :alt: Frustum 6
     :figclass: align-center
@@ -247,21 +244,6 @@ we couldn't do without having the premultiplied matrix.
                    \end{bmatrix}
 
 
-As a quick smoke test to ensure that the aggregate matrix works correctly, let's
-test the bounds of the frustum and make sure that they map to the NDC cube.
-
-Given that :math:`nearZ_c` is negative, assuming :math:`z_c` is equal to
-:math:`nearZ_c`, :math:`right` goes to :math:`1`, :math:`left` which is :math:`-right`
-goes to :math:`-1`.
-
-Given that :math:`nearZ_c` is negative, assuming :math:`z_c` is equal to
-:math:`nearZ_c`, :math:`top` goes to :math:`1`, :math:`bottom` which is :math:`-top`
-goes to :math:`-1`.
-
-Given that :math:`w_c` is :math:`1`, if :math:`z_c = nearZ_c`, :math:`z_{ndc} = 1`.
-Given that :math:`w_c` is :math:`1`, if :math:`z_c = farZ_c`, :math:`z_{ndc} = -1`.
-
-
 
 
 Clip Space
@@ -276,7 +258,7 @@ the fact that (NDCx NDCy NDCz) = (Clipx/Clipw, Clipy/Clipy, Clipz/Clipz)
 The purpose of going to clip space is that eventually we will be
 able to remove the camera space's z coordinate from the matrix.
 This will allow us to use one perspective projection matrix for
-all vertices, independent of the z coordinate of each input vertex.
+all vertices, independent of the z coordinate of each input vector.
 
 I assume, without any evidence to support me, that this
 was done for efficiency reasons when using OpenGL's fixed function pipeline.
@@ -377,6 +359,9 @@ the following
 because multiplying by this matrix will remove the :math:`z_c` out of
 the upper left quadrant.
 
+But wait.  In camera space, the viewing frustum is defined
+to be in negative :math:`z`.  So that will
+
 Remove Z of Camera Space from Part of the Matrix
 ################################################
 
@@ -469,56 +454,6 @@ Turning clip space back into NDC
                    \end{bmatrix}
 
 
-To test a corner of the frustum as a smoke test, say
-
-.. math::
-
-    \begin{bmatrix}
-      {x_{ndc}} \\
-      {y_{ndc}} \\
-      {z_{ndc}} \\
-      {w_{ndc}=1} \\
-    \end{bmatrix} & =               \vec{f}_{c}^{ndc}(\begin{bmatrix}
-                             {x_{c} = right} \\
-                             {y_{c} = top} \\
-                             {z_{c} = nearZ_c} \\
-                             {w_{c}=1} \\
-                   \end{bmatrix}; farZ_c, nearZ_c, top, right) \\
-                   & = \begin{bmatrix}
-                      \textcolor{red}{{1 \over {z_c}}} &  0 & 0 & 0 \\
-                      0 &  \textcolor{red}{{1 \over {z_c}}} & 0 & 0 \\
-                      0 &  0 & \textcolor{red}{{1 \over {z_c}}} & 0 \\
-                      0 &  0 & 0 & \textcolor{red}{{1 \over {z_c}}}
-                   \end{bmatrix} * \begin{bmatrix}
-                                {{nearZ_c \over right} * x_{c}}   \\
-                                {{nearZ_c \over top} * y_{c}}    \\
-                                {\textcolor{red}{z_c}^2 * {2 \over {nearZ_c - farZ_c}} + {\textcolor{red}{z_c}*{-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}}\\
-                                {\textcolor{red}{z_c}} \\
-                   \end{bmatrix} \\
-                   & = \begin{bmatrix}
-                                {{nearZ_c \over right} * x_{c}}   \\
-                                {{nearZ_c \over top} * y_{c}}    \\
-                                {\textcolor{red}{z_c} * {2 \over {nearZ_c - farZ_c}} + {-({farZ_c + nearZ_c}) \over {nearZ_c - farZ_c}}}\\
-                                {1} \\
-                   \end{bmatrix} \\
-                   & = \begin{bmatrix}
-                                {1}  \\
-                                {1}  \\
-                                {1} \\
-                                {1} \\
-                   \end{bmatrix}
-
-
-And that's what we'd expect and the top right corner of the near plane of the frustum
-should go to the upper right corner with a z value of 1, as -1 is where the back plane must go.
-
-If we had used :math:`x_c = farZ_c`, then :math:`z_{ndc} = -1`, which is what we want, as negative :math:`z` axis
-goes into the monitor.
-
-..
-   TODO PICK UP FROM HERE
-
-
 
 
 
@@ -599,7 +534,7 @@ We need the
 
 If we can make a function, that like the third row of the matrix, has those properties, we can replace the
 third row and remove camera space's z, :math:`z_c`, from the matrix.  This is desirable because, if it were to exist,
-would would not need per vertex to create a custom perspective matrix.
+would would not need per vector to create a custom perspective matrix.
 
 Towards that, let's look at these jibronies.
 
