@@ -205,8 +205,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programmingproj1.html">Programming Project #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
 </div>
@@ -358,8 +360,6 @@ parameters are, at the call-site of the function.</p>
 <span class="linenos">108</span>    <span class="n">vertices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]</span>
 <span class="linenos">109</span>    <span class="n">color</span><span class="p">:</span> <span class="n">Color3</span>
 <span class="linenos">110</span>    <span class="n">position</span><span class="p">:</span> <span class="n">Vector2D</span>
-<span class="linenos">111</span>
-<span class="linenos">112</span>
 </pre></div>
 </div>
 </div>
@@ -371,27 +371,27 @@ relative to the center of the paddle.</p>
 <h3>Instantiation of the Paddles<a class="headerlink" href="#instantiation-of-the-paddles" title="Link to this heading">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo05.py</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">116</span><span class="n">paddle1</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
-<span class="linenos">117</span>    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
-<span class="linenos">118</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">119</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">120</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">121</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">122</span>    <span class="p">],</span>
-<span class="linenos">123</span>    <span class="n">color</span><span class="o">=</span><span class="n">Color3</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">0.578123</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
-<span class="linenos">124</span>    <span class="n">position</span><span class="o">=</span><span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-<span class="linenos">125</span><span class="p">)</span>
-<span class="linenos">126</span>
-<span class="linenos">127</span><span class="n">paddle2</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
-<span class="linenos">128</span>    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
-<span class="linenos">129</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">130</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">131</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">132</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span>
-<span class="linenos">133</span>    <span class="p">],</span>
-<span class="linenos">134</span>    <span class="n">color</span><span class="o">=</span><span class="n">Color3</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
-<span class="linenos">135</span>    <span class="n">position</span><span class="o">=</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-<span class="linenos">136</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">115</span><span class="n">paddle1</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
+<span class="linenos">116</span>    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">117</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.3</span><span class="p">),</span>
+<span class="linenos">118</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.3</span><span class="p">),</span>
+<span class="linenos">119</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span>
+<span class="linenos">120</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span>
+<span class="linenos">121</span>    <span class="p">],</span>
+<span class="linenos">122</span>    <span class="n">color</span><span class="o">=</span><span class="n">Color3</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">0.578123</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
+<span class="linenos">123</span>    <span class="n">position</span><span class="o">=</span><span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+<span class="linenos">124</span><span class="p">)</span>
+<span class="linenos">125</span>
+<span class="linenos">126</span><span class="n">paddle2</span><span class="p">:</span> <span class="n">Paddle</span> <span class="o">=</span> <span class="n">Paddle</span><span class="p">(</span>
+<span class="linenos">127</span>    <span class="n">vertices</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">128</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">),</span>
+<span class="linenos">129</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">),</span>
+<span class="linenos">130</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span>
+<span class="linenos">131</span>        <span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span>
+<span class="linenos">132</span>    <span class="p">],</span>
+<span class="linenos">133</span>    <span class="n">color</span><span class="o">=</span><span class="n">Color3</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+<span class="linenos">134</span>    <span class="n">position</span><span class="o">=</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+<span class="linenos">135</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -405,19 +405,17 @@ paddles, as they were in the previous demo.</p></li>
 <h3>Handling User Input<a class="headerlink" href="#handling-user-input" title="Link to this heading">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo05.py</span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">141</span><span class="k">def</span> <span class="nf">handle_movement_of_paddles</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">142</span>    <span class="k">global</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span>
-<span class="linenos">143</span>
-<span class="linenos">144</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_S</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">145</span>        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
-<span class="linenos">146</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_W</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">147</span>        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
-<span class="linenos">148</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_K</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">149</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
-<span class="linenos">150</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">151</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
-<span class="linenos">152</span>
-<span class="linenos">153</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">140</span><span class="k">def</span> <span class="nf">handle_movement_of_paddles</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">141</span>    <span class="k">global</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span>
+<span class="linenos">142</span>
+<span class="linenos">143</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_S</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">144</span>        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
+<span class="linenos">145</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_W</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">146</span>        <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
+<span class="linenos">147</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_K</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">148</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mf">0.1</span>
+<span class="linenos">149</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_I</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">150</span>        <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
 </pre></div>
 </div>
 </div>
@@ -431,35 +429,35 @@ defined relative to the center of the paddle.</p></li>
 <h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Link to this heading">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo05.py</span><a class="headerlink" href="#id7" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">161</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-<span class="linenos">162</span>    <span class="k">while</span> <span class="p">(</span>
-<span class="linenos">163</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
-<span class="linenos">164</span>        <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span>
-<span class="linenos">165</span>    <span class="p">):</span>
-<span class="linenos">166</span>        <span class="k">pass</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">159</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<span class="linenos">160</span>    <span class="k">while</span> <span class="p">(</span>
+<span class="linenos">161</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
+<span class="linenos">162</span>        <span class="o">&lt;</span> <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">TARGET_FRAMERATE</span>
+<span class="linenos">163</span>    <span class="p">):</span>
+<span class="linenos">164</span>        <span class="k">pass</span>
+<span class="linenos">165</span>
+<span class="linenos">166</span>    <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
 <span class="linenos">167</span>
-<span class="linenos">168</span>    <span class="n">time_at_beginning_of_previous_frame</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
+<span class="linenos">168</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
 <span class="linenos">169</span>
-<span class="linenos">170</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
-<span class="linenos">171</span>
-<span class="linenos">172</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-<span class="linenos">173</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-<span class="linenos">174</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
-<span class="linenos">175</span>
-<span class="linenos">176</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
-<span class="linenos">177</span>    <span class="n">handle_movement_of_paddles</span><span class="p">()</span>
+<span class="linenos">170</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<span class="linenos">171</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="linenos">172</span>    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
+<span class="linenos">173</span>
+<span class="linenos">174</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
+<span class="linenos">175</span>    <span class="n">handle_movement_of_paddles</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo05.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">181</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="n">astuple</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
-<span class="linenos">182</span>
-<span class="linenos">183</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">184</span>    <span class="k">for</span> <span class="n">p1_v_ms</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">185</span>        <span class="n">paddle1_vector_ndc</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)(</span><span class="n">p1_v_ms</span><span class="p">)</span>
-<span class="linenos">186</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">187</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">179</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="n">astuple</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
+<span class="linenos">180</span>
+<span class="linenos">181</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">182</span>    <span class="k">for</span> <span class="n">p1_v_ms</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">183</span>        <span class="n">paddle1_vector_ndc</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)(</span><span class="n">p1_v_ms</span><span class="p">)</span>
+<span class="linenos">184</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">185</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -469,13 +467,13 @@ This function corresponds to the Cayley graph below, the function
 from Paddle 1 space to NDC.</p>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo05.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">191</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="n">astuple</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
-<span class="linenos">192</span>
-<span class="linenos">193</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">194</span>    <span class="k">for</span> <span class="n">p2_v_ms</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">195</span>        <span class="n">paddle2_vector_ndc</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">)(</span><span class="n">p2_v_ms</span><span class="p">)</span>
-<span class="linenos">196</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">197</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">189</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="n">astuple</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
+<span class="linenos">190</span>
+<span class="linenos">191</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">192</span>    <span class="k">for</span> <span class="n">p2_v_ms</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">193</span>        <span class="n">paddle2_vector_ndc</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">)(</span><span class="n">p2_v_ms</span><span class="p">)</span>
+<span class="linenos">194</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">195</span>    <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

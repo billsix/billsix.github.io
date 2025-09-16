@@ -205,8 +205,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programmingproj1.html">Programming Project #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
 </div>
@@ -347,7 +349,6 @@ they are mandatory.</p>
 
 <span class="c1"># new - SHADERS</span>
 <span class="kn">import</span> <span class="nn">OpenGL.GL.shaders</span> <span class="k">as</span> <span class="nn">shaders</span>
-<span class="kn">import</span> <span class="nn">pyMatrixStack</span> <span class="k">as</span> <span class="nn">ms</span>
 <span class="kn">from</span> <span class="nn">colorutils</span> <span class="kn">import</span> <span class="n">Color4</span>
 <span class="kn">from</span> <span class="nn">imgui.integrations.glfw</span> <span class="kn">import</span> <span class="n">GlfwRenderer</span>
 <span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
@@ -390,6 +391,8 @@ they are mandatory.</p>
     <span class="n">glVertexAttribPointer</span><span class="p">,</span>
     <span class="n">glViewport</span><span class="p">,</span>
 <span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">modelviewprojection.pyMatrixStack</span> <span class="k">as</span> <span class="nn">ms</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>

@@ -205,8 +205,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programmingproj1.html">Programming Project #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
 </div>
@@ -256,7 +258,8 @@
 <section id="approach">
 <h2>Approach<a class="headerlink" href="#approach" title="Link to this heading">¶</a></h2>
 <p>You’ll learn how to place geometric objects in space, draw them relative to
-others, add a camera that moves over time based on user input, and
+other geometric objects, position a camera in space which moves over time
+based on user input, and
 transform all those objects into the 2D pixel coordinates of your
 screen. By the end, you’ll understand the foundations of creating
 first-person and third-person applications or games. The goal? To
@@ -266,12 +269,15 @@ mostly already know.</p>
 In this book, the applications created
 won’t be particularly pretty or realistic-looking. After reading this
 book, for more advanced
-topics, you’ll want to dive into references LearnOpenGL,the OpenGLTutorial,
-or Computer Graphics From Scratch.</p>
+topics, you’ll want to dive into othere references, such as</p>
 <ol class="arabic simple">
+<li><p>Fundamentals of Computer Graphics, by Shirley and Marschner <span id="id1">[<a class="reference internal" href="bibliography.html#id3" title="Peter Shirley and Steve Marschner. Fundamentals of Computer Graphics. A K Peters, Ltd, third edition, 2009.">SM09a</a>]</span></p></li>
+<li><p>Computer Graphics With OpenGL, by Hearn Baker and Carithers <span id="id2">[<a class="reference internal" href="bibliography.html#id4" title="Donald Hearn, M. Pauline Baker, and Warren R. Carithers. Computer Graphics with OpenGL. Prentice Hall, fourth edition, 2011.">HBC11a</a>]</span></p></li>
 <li><p><a class="reference external" href="https://learnopengl.com/">LearnOpenGL</a></p></li>
 <li><p><a class="reference external" href="http://www.opengl-tutorial.org/">OpenGLTutorial</a></p></li>
-<li><p><a class="reference external" href="https://gabrielgambetta.com/computer-graphics-from-scratch/">CGFS</a></p></li>
+<li><p><a class="reference external" href="https://gabrielgambetta.com/computer-graphics-from-scratch/">Computer Graphics From Scratch</a></p></li>
+<li><p><a class="reference external" href="https://nicolbolas.github.io/oldtut/index.html">Learning Modern 3D Graphics Programming (2012)</a></p></li>
+<li><p><a class="reference external" href="https://ogldev.org/">OGLdev</a></p></li>
 </ol>
 </section>
 <section id="things-you-should-know">
@@ -325,13 +331,6 @@ Prompt</p>
 <section id="linux">
 <h3>Linux<a class="headerlink" href="#linux" title="Link to this heading">¶</a></h3>
 <p>Install Python3, glfw via a package manager.  Use pip and virtualenv to install dependencies</p>
-</section>
-<section id="mac">
-<h3>Mac<a class="headerlink" href="#mac" title="Link to this heading">¶</a></h3>
-<p>Install Python3 (via anaconda, homebrew, macports, whatever), and use pip and virtualenv to install dependencies.</p>
-</section>
-<section id="macos-or-linux">
-<h3>MacOS or Linux<a class="headerlink" href="#macos-or-linux" title="Link to this heading">¶</a></h3>
 <p>On MacOS or Linux, to set up the environment in a terminal, execute</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
 <span class="nb">source</span><span class="w"> </span>venv/bin/activate
@@ -346,11 +345,39 @@ prompt</p>
 </pre></div>
 </div>
 </section>
+<section id="mac">
+<h3>Mac<a class="headerlink" href="#mac" title="Link to this heading">¶</a></h3>
+<p>Install Python3 (via anaconda, homebrew, macports, whatever), and use pip and virtualenv to install dependencies.</p>
+<p>On MacOS or Linux, to set up the environment in a terminal, execute</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span>setuptools
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+<p>To run the Spyder IDE to execute the code in the book, open Spyder on the developer command
+prompt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<span class="n">spyder</span> <span class="o">-</span><span class="n">p</span> <span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="podman-container">
+<h3>Podman Container<a class="headerlink" href="#podman-container" title="Link to this heading">¶</a></h3>
+<p>The code is mainly tested against a container in Podman, specified in the Dockerfile.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">image</span> <span class="c1"># make the base OCI image</span>
+<span class="n">make</span> <span class="n">shell</span> <span class="c1"># get a shell into the environment</span>
+<span class="n">make</span> <span class="n">spyderimage</span> <span class="c1"># make the OCI image that has the base image and Spyder IDE preinstalled</span>
+<span class="n">make</span> <span class="n">spyder</span> <span class="c1"># run spyder in the OCI container</span>
+<span class="n">make</span> <span class="n">jupyter</span> <span class="c1"># run jupyter notebook in a container</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="source-code">
 <h2>Source code<a class="headerlink" href="#source-code" title="Link to this heading">¶</a></h2>
 <p>This book references source code, which is at <a class="reference external" href="https://github.com/billsix/modelviewprojection">https://github.com/billsix/modelviewprojection</a></p>
-<p>This documentation was generated from from commit 898a7b8da5bab06282b47989308d8610f886db52</p>
+<p>This documentation was generated from from commit 998bcaea96eec37c2705d583de525fe141c9dd1b</p>
 </section>
 </section>
 
@@ -416,7 +443,7 @@ prompt</p>
 <li><a class="reference internal" href="#windows">Windows</a></li>
 <li><a class="reference internal" href="#linux">Linux</a></li>
 <li><a class="reference internal" href="#mac">Mac</a></li>
-<li><a class="reference internal" href="#macos-or-linux">MacOS or Linux</a></li>
+<li><a class="reference internal" href="#podman-container">Podman Container</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#source-code">Source code</a></li>

@@ -205,8 +205,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programmingproj1.html">Programming Project #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
 </div>
@@ -468,159 +470,11 @@ whatever point the line above intersects the line at z=nearZ.  Let’s call that
 </div>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo18.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 34</span><span class="nd">@dataclass</span>
-<span class="linenos"> 35</span><span class="k">class</span> <span class="nc">Vector3D</span><span class="p">:</span>
-<span class="linenos"> 36</span>    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The x-component of the 3D Vector</span>
-<span class="linenos"> 37</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 3D Vector</span>
-<span class="linenos"> 38</span>    <span class="n">z</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The z-component of the 3D Vector</span>
-<span class="linenos"> 39</span>
-<span class="linenos"> 40</span>    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="linenos"> 41</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos"> 42</span><span class="sd">        Add together two Vector3Ds.</span>
-<span class="linenos"> 43</span>
-<span class="linenos"> 44</span><span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\\\ a_z \\end{pmatrix}`</span>
-<span class="linenos"> 45</span><span class="sd">        and :math:`\\vec{b} = \\begin{pmatrix} b_x \\\\ b_y \\\\ b_z \\end{pmatrix}`:</span>
-<span class="linenos"> 46</span>
-<span class="linenos"> 47</span><span class="sd">        .. math::</span>
-<span class="linenos"> 48</span>
-<span class="linenos"> 49</span><span class="sd">             \\vec{a} + \\vec{b} = \\begin{pmatrix} a_x + b_x \\\\ a_y + b_y \\\\ a_z + b_z \\end{pmatrix}</span>
-<span class="linenos"> 50</span>
-<span class="linenos"> 51</span><span class="sd">        Args:</span>
-<span class="linenos"> 52</span><span class="sd">            rhs (Vector3D): The vector on the right hand side of the addition</span>
-<span class="linenos"> 53</span><span class="sd">                            symbol</span>
-<span class="linenos"> 54</span><span class="sd">        Returns:</span>
-<span class="linenos"> 55</span><span class="sd">            Vector3D: The Vector3D that represents the additon of the two</span>
-<span class="linenos"> 56</span><span class="sd">                      input Vector3Ds</span>
-<span class="linenos"> 57</span><span class="sd">        Raises:</span>
-<span class="linenos"> 58</span><span class="sd">            Nothing</span>
-<span class="linenos"> 59</span><span class="sd">        Example:</span>
-<span class="linenos"> 60</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
-<span class="linenos"> 61</span><span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2.0, y=3.0, z=1.0)</span>
-<span class="linenos"> 62</span><span class="sd">            &gt;&gt;&gt; b = Vector3D(x=5.0, y=6.0, z=9.0)</span>
-<span class="linenos"> 63</span><span class="sd">            &gt;&gt;&gt; a + b</span>
-<span class="linenos"> 64</span><span class="sd">            Vector3D(x=7.0, y=9.0, z=10.0)</span>
-<span class="linenos"> 65</span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos"> 66</span>        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
-<span class="linenos"> 67</span>            <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos"> 68</span>        <span class="p">)</span>
-<span class="linenos"> 69</span>
-<span class="linenos"> 70</span>    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="linenos"> 71</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos"> 72</span><span class="sd">        Subtract the right hand side Vector3D from the left hand side Vector3D.</span>
-<span class="linenos"> 73</span>
-<span class="linenos"> 74</span><span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\\\ a_z \\end{pmatrix}`</span>
-<span class="linenos"> 75</span><span class="sd">        and :math:`\\vec{b} = \\begin{pmatrix} b_x \\\\ b_y \\\\ b_z \\end{pmatrix}`:</span>
-<span class="linenos"> 76</span>
-<span class="linenos"> 77</span><span class="sd">        .. math::</span>
-<span class="linenos"> 78</span>
-<span class="linenos"> 79</span><span class="sd">             \\vec{a} - \\vec{b} = \\vec{a} + \\vec{b} = \\begin{pmatrix} a_x - b_x  \\\\ a_y - b_y \\\\ a_z - b_z \\end{pmatrix}</span>
-<span class="linenos"> 80</span>
-<span class="linenos"> 81</span><span class="sd">        Args:</span>
-<span class="linenos"> 82</span><span class="sd">            rhs (Vector3D): The vector on the right hand side of the</span>
-<span class="linenos"> 83</span><span class="sd">                            subtraction symbol</span>
-<span class="linenos"> 84</span><span class="sd">        Returns:</span>
-<span class="linenos"> 85</span><span class="sd">            Vector3D: The Vector3D that represents the subtraction of the</span>
-<span class="linenos"> 86</span><span class="sd">                      right hand side Vector3D from the left hand side</span>
-<span class="linenos"> 87</span><span class="sd">                      Vector3D</span>
-<span class="linenos"> 88</span><span class="sd">        Raises:</span>
-<span class="linenos"> 89</span><span class="sd">            Nothing</span>
-<span class="linenos"> 90</span><span class="sd">        Example:</span>
-<span class="linenos"> 91</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
-<span class="linenos"> 92</span><span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2.0, y=3.0, z=10.0)</span>
-<span class="linenos"> 93</span><span class="sd">            &gt;&gt;&gt; b = Vector3D(x=5.0, y=2.0, z=1.0)</span>
-<span class="linenos"> 94</span><span class="sd">            &gt;&gt;&gt; a - b</span>
-<span class="linenos"> 95</span><span class="sd">            Vector3D(x=-3.0, y=1.0, z=9.0)</span>
-<span class="linenos"> 96</span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos"> 97</span>        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
-<span class="linenos"> 98</span>            <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos"> 99</span>        <span class="p">)</span>
-<span class="linenos">100</span>
-<span class="linenos">101</span>    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="linenos">102</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos">103</span><span class="sd">        Multiply the Vector3D by a scalar number</span>
-<span class="linenos">104</span>
-<span class="linenos">105</span><span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\\\ a_z \\end{pmatrix}` and constant scalar :math:`s`:</span>
-<span class="linenos">106</span>
-<span class="linenos">107</span><span class="sd">        .. math::</span>
-<span class="linenos">108</span>
-<span class="linenos">109</span><span class="sd">             s*\\vec{a} = \\begin{pmatrix} s*a_x \\\\ s*a_y \\\\ s*a_z \\end{pmatrix}</span>
-<span class="linenos">110</span>
-<span class="linenos">111</span><span class="sd">        Args:</span>
-<span class="linenos">112</span><span class="sd">            rhs (Vector3D): The scalar to be multiplied to the Vector&#39;s component</span>
-<span class="linenos">113</span><span class="sd">                            subtraction symbol</span>
-<span class="linenos">114</span><span class="sd">        Returns:</span>
-<span class="linenos">115</span><span class="sd">            Vector3D: The Vector3D that represents scalar times the amount of the input Vector3D</span>
-<span class="linenos">116</span>
-<span class="linenos">117</span><span class="sd">        Raises:</span>
-<span class="linenos">118</span><span class="sd">            Nothing</span>
-<span class="linenos">119</span><span class="sd">        Example:</span>
-<span class="linenos">120</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
-<span class="linenos">121</span><span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2.0, y=3.0, z=4.0)</span>
-<span class="linenos">122</span><span class="sd">            &gt;&gt;&gt; a * 4</span>
-<span class="linenos">123</span><span class="sd">            Vector3D(x=8.0, y=12.0, z=16.0)</span>
-<span class="linenos">124</span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos">125</span>        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
-<span class="linenos">126</span>            <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">),</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">)</span>
-<span class="linenos">127</span>        <span class="p">)</span>
-<span class="linenos">128</span>
-<span class="linenos">129</span>    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="linenos">130</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">scalar</span>
-<span class="linenos">131</span>
-<span class="linenos">132</span>    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="linenos">133</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos">134</span><span class="sd">        Multiply the Vector3D by -1</span>
-<span class="linenos">135</span>
-<span class="linenos">136</span><span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\\\ a_z  \\end{pmatrix}` and constant :math:`-1`:</span>
-<span class="linenos">137</span>
-<span class="linenos">138</span><span class="sd">        .. math::</span>
-<span class="linenos">139</span>
-<span class="linenos">140</span><span class="sd">             -1 * \\vec{a}</span>
-<span class="linenos">141</span>
-<span class="linenos">142</span><span class="sd">        Returns:</span>
-<span class="linenos">143</span><span class="sd">            Vector3D: The Vector3D with the opposite orientation</span>
-<span class="linenos">144</span>
-<span class="linenos">145</span><span class="sd">        Raises:</span>
-<span class="linenos">146</span><span class="sd">            Nothing</span>
-<span class="linenos">147</span><span class="sd">        Example:</span>
-<span class="linenos">148</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
-<span class="linenos">149</span><span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2.0, y=3.0, z=4.0)</span>
-<span class="linenos">150</span><span class="sd">            &gt;&gt;&gt; -a</span>
-<span class="linenos">151</span><span class="sd">            Vector3D(x=-2.0, y=-3.0, z=-4.0)</span>
-<span class="linenos">152</span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos">153</span>        <span class="k">return</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">vector</span>
-<span class="linenos">154</span>
-<span class="linenos">155</span>    <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="linenos">156</span>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-<span class="linenos">157</span>
-<span class="linenos">158</span>    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="linenos">159</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span>
-<span class="linenos">160</span>
-<span class="linenos">161</span>    <span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="linenos">162</span>        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
-<span class="linenos">163</span>            <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
-<span class="linenos">164</span>            <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
-<span class="linenos">165</span>            <span class="n">z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-<span class="linenos">166</span>        <span class="p">)</span>
-<span class="linenos">167</span>
-<span class="linenos">168</span>
-<span class="linenos">169</span><span class="k">def</span> <span class="nf">cos</span><span class="p">(</span><span class="n">v1</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="linenos">170</span>    <span class="k">return</span> <span class="n">v1</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span>
-<span class="linenos">171</span>
-<span class="linenos">172</span>
-<span class="linenos">173</span><span class="k">def</span> <span class="nf">abs_sin</span><span class="p">(</span><span class="n">v1</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="linenos">174</span>    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v1</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span>
-<span class="linenos">175</span>
-<span class="linenos">176</span>
-<span class="linenos">177</span><span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">translate_amount</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
-<span class="linenos">178</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="linenos">179</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">translate_amount</span>
-<span class="linenos">180</span>
-<span class="linenos">181</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="linenos">182</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">translate_amount</span>
-<span class="linenos">183</span>
-<span class="linenos">184</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
-<span class="linenos">185</span>
-<span class="linenos">186</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">34</span><span class="nd">@dataclass</span>
+<span class="linenos">35</span><span class="k">class</span> <span class="nc">Vector3D</span><span class="p">:</span>
+<span class="linenos">36</span>    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The x-component of the 3D Vector</span>
+<span class="linenos">37</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 3D Vector</span>
+<span class="linenos">38</span>    <span class="n">z</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The z-component of the 3D Vector</span>
 </pre></div>
 </div>
 </div>
@@ -629,52 +483,50 @@ whatever point the line above intersects the line at z=nearZ.  Let’s call that
 </div>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo18.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">327</span><span class="k">def</span> <span class="nf">perspective</span><span class="p">(</span>
-<span class="linenos">328</span>    <span class="n">field_of_view</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">near_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">far_z</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">329</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
-<span class="linenos">330</span>    <span class="c1"># field_of_view, field of view, is angle of y</span>
-<span class="linenos">331</span>    <span class="c1"># aspect_ratio is x_width / y_width</span>
-<span class="linenos">332</span>
-<span class="linenos">333</span>    <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="n">near_z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">field_of_view</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-<span class="linenos">334</span>    <span class="n">right</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">top</span> <span class="o">*</span> <span class="n">aspect_ratio</span>
-<span class="linenos">335</span>
-<span class="linenos">336</span>    <span class="n">fn</span> <span class="o">=</span> <span class="n">ortho</span><span class="p">(</span>
-<span class="linenos">337</span>        <span class="n">left</span><span class="o">=-</span><span class="n">right</span><span class="p">,</span>
-<span class="linenos">338</span>        <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="p">,</span>
-<span class="linenos">339</span>        <span class="n">bottom</span><span class="o">=-</span><span class="n">top</span><span class="p">,</span>
-<span class="linenos">340</span>        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
-<span class="linenos">341</span>        <span class="n">near</span><span class="o">=</span><span class="n">near_z</span><span class="p">,</span>
-<span class="linenos">342</span>        <span class="n">far</span><span class="o">=</span><span class="n">far_z</span><span class="p">,</span>
-<span class="linenos">343</span>    <span class="p">)</span>
-<span class="linenos">344</span>
-<span class="linenos">345</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="linenos">346</span>        <span class="n">s1d</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale1d</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos">347</span>        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span>
-<span class="linenos">348</span>            <span class="n">s1d</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">s1d</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span>
-<span class="linenos">349</span>        <span class="p">)</span>
-<span class="linenos">350</span>        <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="p">)</span>
-<span class="linenos">351</span>
-<span class="linenos">352</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="linenos">353</span>        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
-<span class="linenos">354</span>
-<span class="linenos">355</span>        <span class="n">inverse_s1d</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span>
-<span class="linenos">356</span>            <span class="n">scale1d</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos">357</span>        <span class="p">)</span>
-<span class="linenos">358</span>        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
-<span class="linenos">359</span>            <span class="n">inverse_s1d</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">x</span><span class="p">),</span>
-<span class="linenos">360</span>            <span class="n">inverse_s1d</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">y</span><span class="p">),</span>
-<span class="linenos">361</span>            <span class="n">rectangular_prism</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
-<span class="linenos">362</span>        <span class="p">)</span>
-<span class="linenos">363</span>
-<span class="linenos">364</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
-<span class="linenos">365</span>
-<span class="linenos">366</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">313</span><span class="k">def</span> <span class="nf">perspective</span><span class="p">(</span>
+<span class="linenos">314</span>    <span class="n">field_of_view</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">near_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">far_z</span><span class="p">:</span> <span class="nb">float</span>
+<span class="linenos">315</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
+<span class="linenos">316</span>    <span class="c1"># field_of_view, field of view, is angle of y</span>
+<span class="linenos">317</span>    <span class="c1"># aspect_ratio is x_width / y_width</span>
+<span class="linenos">318</span>
+<span class="linenos">319</span>    <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="n">near_z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">field_of_view</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="linenos">320</span>    <span class="n">right</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">top</span> <span class="o">*</span> <span class="n">aspect_ratio</span>
+<span class="linenos">321</span>
+<span class="linenos">322</span>    <span class="n">fn</span> <span class="o">=</span> <span class="n">ortho</span><span class="p">(</span>
+<span class="linenos">323</span>        <span class="n">left</span><span class="o">=-</span><span class="n">right</span><span class="p">,</span>
+<span class="linenos">324</span>        <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="p">,</span>
+<span class="linenos">325</span>        <span class="n">bottom</span><span class="o">=-</span><span class="n">top</span><span class="p">,</span>
+<span class="linenos">326</span>        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+<span class="linenos">327</span>        <span class="n">near</span><span class="o">=</span><span class="n">near_z</span><span class="p">,</span>
+<span class="linenos">328</span>        <span class="n">far</span><span class="o">=</span><span class="n">far_z</span><span class="p">,</span>
+<span class="linenos">329</span>    <span class="p">)</span>
+<span class="linenos">330</span>
+<span class="linenos">331</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="linenos">332</span>        <span class="n">s1d</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale1d</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<span class="linenos">333</span>        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span>
+<span class="linenos">334</span>            <span class="n">s1d</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">s1d</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span>
+<span class="linenos">335</span>        <span class="p">)</span>
+<span class="linenos">336</span>        <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="p">)</span>
+<span class="linenos">337</span>
+<span class="linenos">338</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="linenos">339</span>        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
+<span class="linenos">340</span>
+<span class="linenos">341</span>        <span class="n">inverse_s1d</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span>
+<span class="linenos">342</span>            <span class="n">scale1d</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<span class="linenos">343</span>        <span class="p">)</span>
+<span class="linenos">344</span>        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
+<span class="linenos">345</span>            <span class="n">inverse_s1d</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">x</span><span class="p">),</span>
+<span class="linenos">346</span>            <span class="n">inverse_s1d</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">y</span><span class="p">),</span>
+<span class="linenos">347</span>            <span class="n">rectangular_prism</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
+<span class="linenos">348</span>        <span class="p">)</span>
+<span class="linenos">349</span>
+<span class="linenos">350</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo18.py</span><a class="headerlink" href="#id10" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">236</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">238</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
 </div>
@@ -683,39 +535,39 @@ whatever point the line above intersects the line at z=nearZ.  Let’s call that
 </div>
 <div class="literal-block-wrapper docutils container" id="id11">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo18.py</span><a class="headerlink" href="#id11" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">278</span>    <span class="c1"># cameraspace to NDC</span>
-<span class="linenos">279</span>    <span class="k">with</span> <span class="n">push_transformation</span><span class="p">(</span>
-<span class="linenos">280</span>        <span class="n">perspective</span><span class="p">(</span>
-<span class="linenos">281</span>            <span class="n">field_of_view</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">near_z</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">far_z</span><span class="o">=-</span><span class="mf">1000.0</span>
-<span class="linenos">282</span>        <span class="p">)</span>
-<span class="linenos">283</span>    <span class="p">):</span>
-<span class="linenos">284</span>        <span class="c1"># world space to camera space, which is inverse of camera space to</span>
-<span class="linenos">285</span>        <span class="c1"># world space</span>
-<span class="linenos">286</span>        <span class="k">with</span> <span class="n">push_transformation</span><span class="p">(</span>
-<span class="linenos">287</span>            <span class="n">inverse</span><span class="p">(</span>
-<span class="linenos">288</span>                <span class="n">compose</span><span class="p">(</span>
-<span class="linenos">289</span>                    <span class="n">translate</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">position_ws</span><span class="p">),</span>
-<span class="linenos">290</span>                    <span class="n">rotate_y</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">),</span>
-<span class="linenos">291</span>                    <span class="n">rotate_x</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">),</span>
-<span class="linenos">292</span>                <span class="p">)</span>
-<span class="linenos">293</span>            <span class="p">)</span>
-<span class="linenos">294</span>        <span class="p">):</span>
-<span class="linenos">295</span>            <span class="c1"># paddle 1 space to world space</span>
-<span class="linenos">296</span>            <span class="k">with</span> <span class="n">push_transformation</span><span class="p">(</span>
-<span class="linenos">297</span>                <span class="n">compose</span><span class="p">(</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span> <span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">))</span>
-<span class="linenos">298</span>            <span class="p">):</span>
-<span class="linenos">299</span>                <span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="n">astuple</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
-<span class="linenos">300</span>                <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">301</span>                <span class="k">for</span> <span class="n">p1_v_ms</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">302</span>                    <span class="n">paddle1_vector_ndc</span> <span class="o">=</span> <span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span>
-<span class="linenos">303</span>                        <span class="n">p1_v_ms</span>
-<span class="linenos">304</span>                    <span class="p">)</span>
-<span class="linenos">305</span>                    <span class="n">glVertex3f</span><span class="p">(</span>
-<span class="linenos">306</span>                        <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-<span class="linenos">307</span>                        <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
-<span class="linenos">308</span>                        <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
-<span class="linenos">309</span>                    <span class="p">)</span>
-<span class="linenos">310</span>                <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">280</span>    <span class="c1"># cameraspace to NDC</span>
+<span class="linenos">281</span>    <span class="k">with</span> <span class="n">push_transformation</span><span class="p">(</span>
+<span class="linenos">282</span>        <span class="n">perspective</span><span class="p">(</span>
+<span class="linenos">283</span>            <span class="n">field_of_view</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">near_z</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">far_z</span><span class="o">=-</span><span class="mf">1000.0</span>
+<span class="linenos">284</span>        <span class="p">)</span>
+<span class="linenos">285</span>    <span class="p">):</span>
+<span class="linenos">286</span>        <span class="c1"># world space to camera space, which is inverse of camera space to</span>
+<span class="linenos">287</span>        <span class="c1"># world space</span>
+<span class="linenos">288</span>        <span class="k">with</span> <span class="n">push_transformation</span><span class="p">(</span>
+<span class="linenos">289</span>            <span class="n">inverse</span><span class="p">(</span>
+<span class="linenos">290</span>                <span class="n">compose</span><span class="p">(</span>
+<span class="linenos">291</span>                    <span class="n">translate</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">position_ws</span><span class="p">),</span>
+<span class="linenos">292</span>                    <span class="n">rotate_y</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_y</span><span class="p">),</span>
+<span class="linenos">293</span>                    <span class="n">rotate_x</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">rot_x</span><span class="p">),</span>
+<span class="linenos">294</span>                <span class="p">)</span>
+<span class="linenos">295</span>            <span class="p">)</span>
+<span class="linenos">296</span>        <span class="p">):</span>
+<span class="linenos">297</span>            <span class="c1"># paddle 1 space to world space</span>
+<span class="linenos">298</span>            <span class="k">with</span> <span class="n">push_transformation</span><span class="p">(</span>
+<span class="linenos">299</span>                <span class="n">compose</span><span class="p">(</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span> <span class="n">rotate_z</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">))</span>
+<span class="linenos">300</span>            <span class="p">):</span>
+<span class="linenos">301</span>                <span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="n">astuple</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
+<span class="linenos">302</span>                <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">303</span>                <span class="k">for</span> <span class="n">p1_v_ms</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">304</span>                    <span class="n">paddle1_vector_ndc</span> <span class="o">=</span> <span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span>
+<span class="linenos">305</span>                        <span class="n">p1_v_ms</span>
+<span class="linenos">306</span>                    <span class="p">)</span>
+<span class="linenos">307</span>                    <span class="n">glVertex3f</span><span class="p">(</span>
+<span class="linenos">308</span>                        <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+<span class="linenos">309</span>                        <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+<span class="linenos">310</span>                        <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
+<span class="linenos">311</span>                    <span class="p">)</span>
+<span class="linenos">312</span>                <span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
