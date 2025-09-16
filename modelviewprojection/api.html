@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Glossary" href="glossary.html" />
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.07.19 -->
         <title>API Reference - Model View Projection 0.0.02 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=302659d7" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
     
     
@@ -17,20 +17,20 @@
 
 <style>
   body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
   
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+      --color-code-background: #2b2b2b;
+  --color-code-foreground: #f8f8f2;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+        --color-code-background: #2b2b2b;
+  --color-code-foreground: #f8f8f2;
   
       }
     }
@@ -190,7 +190,6 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
-  
   <span class="sidebar-brand-text">Model View Projection 0.0.02 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
@@ -204,26 +203,8 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vector - Demo 05</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch16.html">Lambda Stack - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">Moving Camera in 3D Space - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
-<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programmingproj1.html">Programming Project #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">API Reference</a></li>
 </ul>
@@ -289,59 +270,6 @@ results in a value of type T.</p>
 <span class="sig-name descname"><span class="pre">inverse</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#modelviewprojection.mathutils.InvertibleFunction.inverse" title="Link to this definition">¶</a></dt>
 <dd><p>The inverse of the wrapped function</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="modelviewprojection.mathutils.InvertibleFunction.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">T</span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils.html#InvertibleFunction.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils.InvertibleFunction.__call__" title="Link to this definition">¶</a></dt>
-<dd><p>Execute a function with the given value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>func</strong> (<em>Callable</em><em>[</em><em>[</em><em>T</em><em>]</em><em>, </em><em>T</em><em>]</em>) – A function that takes a value of type T
-and returns a value of the same type T.</p></li>
-<li><p><strong>value</strong> (<em>T</em>) – The input value to pass to the function</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>The result of calling func(value). Will be the same type as the</dt><dd><p>input value.</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>T</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Nothing</strong> – </p>
-</dd>
-</dl>
-<p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils</span> <span class="kn">import</span> <span class="n">InvertibleFunction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils</span> <span class="kn">import</span> <span class="n">inverse</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">return</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span> <span class="o">=</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="n">f_inv</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span> 
-<span class="go">InvertibleFunction(func=&lt;function f at 0x...&gt;, inverse=&lt;function f_inv at 0x...&gt;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">7</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">inverse</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span> 
-<span class="go">InvertibleFunction(func=&lt;function f_inv at 0x...&gt;, inverse=&lt;function f at 0x...&gt;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">inverse</span><span class="p">(</span><span class="n">foo</span><span class="p">)(</span><span class="n">foo</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="go">5</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="modelviewprojection.mathutils.InvertibleFunction.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#modelviewprojection.mathutils.InvertibleFunction.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -437,6 +365,196 @@ At least on value must be provided.</p>
 </dd></dl>
 
 </section>
+<section id="module-modelviewprojection.mathutils1d">
+<span id="math-utils-1d"></span><h2>Math Utils 1D<a class="headerlink" href="#module-modelviewprojection.mathutils1d" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils1d.Vector1D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils1d.</span></span><span class="sig-name descname"><span class="pre">Vector1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelviewprojection/mathutils1d.html#Vector1D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils1d.Vector1D" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils1d.Vector1D.x">
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#modelviewprojection.mathutils1d.Vector1D.x" title="Link to this definition">¶</a></dt>
+<dd><p>The value of the 1D Vector</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils1d.Vector1D.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><span class="pre">Vector1D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><span class="pre">Vector1D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils1d.html#Vector1D.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils1d.Vector1D.__add__" title="Link to this definition">¶</a></dt>
+<dd><p>Add together two Vector1Ds.</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \end{pmatrix}\)</span>
+and <span class="math notranslate nohighlight">\(\vec{b} = \begin{pmatrix} b_x \end{pmatrix}\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\vec{a} + \vec{b} = \begin{pmatrix} a_x + b_x \end{pmatrix}\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rhs</strong> (<a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><em>Vector1D</em></a>) – The vector on the right hand side of the addition
+symbol</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The Vector1D that represents the additon of the two</dt><dd><p>input Vector1Ds</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D">Vector1D</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="kn">import</span> <span class="n">Vector1D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="go">Vector1D(x=7.0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils1d.Vector1D.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><span class="pre">Vector1D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><span class="pre">Vector1D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils1d.html#Vector1D.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils1d.Vector1D.__sub__" title="Link to this definition">¶</a></dt>
+<dd><p>Subtract the right hand side Vector1D from the left hand side Vector1D.</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \end{pmatrix}\)</span>
+and <span class="math notranslate nohighlight">\(\vec{b} = \begin{pmatrix} b_x \end{pmatrix}\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\vec{a} - \vec{b} = \begin{pmatrix} a_x - b_x \end{pmatrix}\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rhs</strong> (<a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><em>Vector1D</em></a>) – The vector on the right hand side of the
+subtraction symbol</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The Vector1D that represents the subtraction of the</dt><dd><p>right hand side Vector1D from the left hand side
+Vector1D</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D">Vector1D</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="kn">import</span> <span class="n">Vector1D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<span class="go">Vector1D(x=-3.0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils1d.Vector1D.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scalar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><span class="pre">Vector1D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils1d.html#Vector1D.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils1d.Vector1D.__mul__" title="Link to this definition">¶</a></dt>
+<dd><p>Multiply the Vector1D by a scalar number</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \end{pmatrix}\)</span> and constant scalar <span class="math notranslate nohighlight">\(s\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[s*\vec{a} = \begin{pmatrix} s*a_x \end{pmatrix}\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rhs</strong> (<a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><em>Vector1D</em></a>) – The scalar to be multiplied to the Vector’s component
+subtraction symbol</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Vector1D that represents scalar times the amount of the input Vector1d</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D">Vector1D</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="kn">import</span> <span class="n">Vector1D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="go">Vector1D(x=8.0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils1d.Vector1D.__rmul__">
+<span class="sig-name descname"><span class="pre">__rmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scalar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><span class="pre">Vector1D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils1d.html#Vector1D.__rmul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils1d.Vector1D.__rmul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils1d.Vector1D.__neg__">
+<span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><span class="pre">Vector1D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils1d.html#Vector1D.__neg__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils1d.Vector1D.__neg__" title="Link to this definition">¶</a></dt>
+<dd><p>Multiply the Vector1D by -1</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = (a_x)\)</span> and constant <span class="math notranslate nohighlight">\(-1\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[-1 * \vec{a}\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Vector1D with the opposite orientation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D">Vector1D</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="kn">import</span> <span class="n">Vector1D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">-</span><span class="n">a</span>
+<span class="go">Vector1D(x=-2.0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils1d.translate">
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils1d.</span></span><span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">translate_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><span class="pre">Vector1D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><span class="pre">Vector1D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils1d.html#translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils1d.translate" title="Link to this definition">¶</a></dt>
+<dd><p>TODO</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>translate_amount</strong> (<em>float</em>) – The amount to translate a not-yet-bound vector</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The Vector1D that represents the additon of the two</dt><dd><p>input Vector1Ds</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D">Vector1D</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils1d.uniform_scale">
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils1d.</span></span><span class="sig-name descname"><span class="pre">uniform_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scalar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><span class="pre">Vector1D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils1d.html#uniform_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils1d.uniform_scale" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
 <section id="module-modelviewprojection.mathutils2d">
 <span id="math-utils-2d"></span><h2>Math Utils 2D<a class="headerlink" href="#module-modelviewprojection.mathutils2d" title="Link to this heading">¶</a></h2>
 <dl class="py class">
@@ -459,10 +577,11 @@ At least on value must be provided.</p>
 <dt class="sig sig-object py" id="modelviewprojection.mathutils2d.Vector2D.__add__">
 <span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#Vector2D.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.Vector2D.__add__" title="Link to this definition">¶</a></dt>
 <dd><p>Add together two Vector2Ds.</p>
-<p>Let <span class="math notranslate nohighlight">\(\vec{a} = (a_x, a_y)\)</span> and <span class="math notranslate nohighlight">\(\vec{b} = (b_x, b_y)\)</span>:</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \\ a_y \end{pmatrix}\)</span>
+and <span class="math notranslate nohighlight">\(\vec{b} = \begin{pmatrix} b_x \\ b_y \end{pmatrix}\)</span>:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[\vec{a} + \vec{b} = (a_x + b_x, a_y + b_y)\]</div>
+\[\begin{split}\vec{a} + \vec{b} = \begin{pmatrix} a_x + b_x \\ a_y + b_y \end{pmatrix}\end{split}\]</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -497,10 +616,11 @@ symbol</p>
 <dt class="sig sig-object py" id="modelviewprojection.mathutils2d.Vector2D.__sub__">
 <span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#Vector2D.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.Vector2D.__sub__" title="Link to this definition">¶</a></dt>
 <dd><p>Subtract the right hand side Vector2D from the left hand side Vector2D.</p>
-<p>Let <span class="math notranslate nohighlight">\(\vec{a} = (a_x, a_y)\)</span> and <span class="math notranslate nohighlight">\(\vec{b} = (b_x, b_y)\)</span>:</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \\ a_y \end{pmatrix}\)</span>
+and <span class="math notranslate nohighlight">\(\vec{b} = \begin{pmatrix} b_x \\ b_y \end{pmatrix}\)</span>:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[\vec{a} - \vec{b} = (a_x - b_x, a_y - b_y)\]</div>
+\[\begin{split}\vec{a} - \vec{b} = \vec{a} + \vec{b} = \begin{pmatrix} a_x - b_x \\ a_y - b_y \end{pmatrix}\end{split}\]</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -535,7 +655,35 @@ Vector2D</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils2d.Vector2D.__mul__">
 <span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scalar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#Vector2D.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.Vector2D.__mul__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Multiply the Vector2D by a scalar number</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \\ a_y \end{pmatrix}\)</span> and constant scalar <span class="math notranslate nohighlight">\(s\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}s*\vec{a} = \begin{pmatrix} s*a_x \\ s*a_y \end{pmatrix}\end{split}\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rhs</strong> (<a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><em>Vector2D</em></a>) – The scalar to be multiplied to the Vector’s component
+subtraction symbol</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Vector2D that represents scalar times the amount of the input Vector2D</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D">Vector2D</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils2d</span> <span class="kn">import</span> <span class="n">Vector2D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="go">Vector2D(x=8.0, y=12.0)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils2d.Vector2D.__rmul__">
@@ -543,25 +691,54 @@ Vector2D</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="modelviewprojection.mathutils2d.Vector2D.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#modelviewprojection.mathutils2d.Vector2D.__init__" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="modelviewprojection.mathutils2d.Vector2D.__neg__">
+<span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#Vector2D.__neg__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.Vector2D.__neg__" title="Link to this definition">¶</a></dt>
+<dd><p>Multiply the Vector2D by -1</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \\ a_y \end{pmatrix}\)</span> and constant <span class="math notranslate nohighlight">\(-1\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[-1 * \vec{a}\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Vector2D with the opposite orientation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D">Vector2D</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils2d</span> <span class="kn">import</span> <span class="n">Vector2D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">-</span><span class="n">a</span>
+<span class="go">Vector2D(x=-2.0, y=-3.0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils2d.Vector2D.dot">
+<span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#Vector2D.dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.Vector2D.dot" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils2d.translate">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">translate_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.translate" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">translate_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.translate" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils2d.uniform_scale">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">uniform_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scalar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#uniform_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.uniform_scale" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">uniform_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scalar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#uniform_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.uniform_scale" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils2d.scale">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.scale" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.scale" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -571,12 +748,22 @@ Vector2D</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils2d.rotate">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_in_radians</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.rotate" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_in_radians</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.rotate" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils2d.rotate_around">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">rotate_around</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_in_radians</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#rotate_around"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.rotate_around" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">rotate_around</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_in_radians</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#rotate_around"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.rotate_around" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils2d.is_clockwise">
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">is_clockwise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#is_clockwise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.is_clockwise" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils2d.is_parallel">
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils2d.</span></span><span class="sig-name descname"><span class="pre">is_parallel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D" title="modelviewprojection.mathutils2d.Vector2D"><span class="pre">Vector2D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils2d.html#is_parallel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils2d.is_parallel" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -607,17 +794,114 @@ Vector2D</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.Vector3D.__add__">
 <span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#Vector3D.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.Vector3D.__add__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Add together two Vector3Ds.</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \\ a_y \\ a_z \end{pmatrix}\)</span>
+and <span class="math notranslate nohighlight">\(\vec{b} = \begin{pmatrix} b_x \\ b_y \\ b_z \end{pmatrix}\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{a} + \vec{b} = \begin{pmatrix} a_x + b_x \\ a_y + b_y \\ a_z + b_z \end{pmatrix}\end{split}\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rhs</strong> (<a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><em>Vector3D</em></a>) – The vector on the right hand side of the addition
+symbol</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The Vector3D that represents the additon of the two</dt><dd><p>input Vector3Ds</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D">Vector3D</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils3d</span> <span class="kn">import</span> <span class="n">Vector3D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">9.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="go">Vector3D(x=7.0, y=9.0, z=10.0)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.Vector3D.__sub__">
 <span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#Vector3D.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.Vector3D.__sub__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Subtract the right hand side Vector3D from the left hand side Vector3D.</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \\ a_y \\ a_z \end{pmatrix}\)</span>
+and <span class="math notranslate nohighlight">\(\vec{b} = \begin{pmatrix} b_x \\ b_y \\ b_z \end{pmatrix}\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{a} - \vec{b} = \vec{a} + \vec{b} = \begin{pmatrix} a_x - b_x  \\ a_y - b_y \\ a_z - b_z \end{pmatrix}\end{split}\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rhs</strong> (<a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><em>Vector3D</em></a>) – The vector on the right hand side of the
+subtraction symbol</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The Vector3D that represents the subtraction of the</dt><dd><p>right hand side Vector3D from the left hand side
+Vector3D</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D">Vector3D</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils3d</span> <span class="kn">import</span> <span class="n">Vector3D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<span class="go">Vector3D(x=-3.0, y=1.0, z=9.0)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.Vector3D.__mul__">
 <span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scalar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#Vector3D.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.Vector3D.__mul__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Multiply the Vector3D by a scalar number</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \\ a_y \\ a_z \end{pmatrix}\)</span> and constant scalar <span class="math notranslate nohighlight">\(s\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}s*\vec{a} = \begin{pmatrix} s*a_x \\ s*a_y \\ s*a_z \end{pmatrix}\end{split}\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rhs</strong> (<a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><em>Vector3D</em></a>) – The scalar to be multiplied to the Vector’s component
+subtraction symbol</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Vector3D that represents scalar times the amount of the input Vector3D</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D">Vector3D</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils3d</span> <span class="kn">import</span> <span class="n">Vector3D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="go">Vector3D(x=8.0, y=12.0, z=16.0)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.Vector3D.__rmul__">
@@ -625,55 +909,99 @@ Vector2D</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="modelviewprojection.mathutils3d.Vector3D.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#modelviewprojection.mathutils3d.Vector3D.__init__" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="modelviewprojection.mathutils3d.Vector3D.__neg__">
+<span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#Vector3D.__neg__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.Vector3D.__neg__" title="Link to this definition">¶</a></dt>
+<dd><p>Multiply the Vector3D by -1</p>
+<p>Let <span class="math notranslate nohighlight">\(\vec{a} = \begin{pmatrix} a_x \\ a_y \\ a_z  \end{pmatrix}\)</span> and constant <span class="math notranslate nohighlight">\(-1\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[-1 * \vec{a}\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Vector3D with the opposite orientation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D">Vector3D</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modelviewprojection.mathutils3d</span> <span class="kn">import</span> <span class="n">Vector3D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">-</span><span class="n">a</span>
+<span class="go">Vector3D(x=-2.0, y=-3.0, z=-4.0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils3d.Vector3D.dot">
+<span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#Vector3D.dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.Vector3D.dot" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils3d.Vector3D.cross">
+<span class="sig-name descname"><span class="pre">cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#Vector3D.cross"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.Vector3D.cross" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils3d.cos">
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#cos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.cos" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils3d.abs_sin">
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">abs_sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#abs_sin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.abs_sin" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.translate">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">translate_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.translate" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">translate_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.translate" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.rotate_x">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">rotate_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_in_radians</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#rotate_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.rotate_x" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">rotate_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_in_radians</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#rotate_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.rotate_x" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.rotate_y">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">rotate_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_in_radians</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#rotate_y"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.rotate_y" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">rotate_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_in_radians</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#rotate_y"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.rotate_y" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.rotate_z">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">rotate_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_in_radians</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#rotate_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.rotate_z" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">rotate_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle_in_radians</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#rotate_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.rotate_z" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.uniform_scale">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">uniform_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scalar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#uniform_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.uniform_scale" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">uniform_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scalar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#uniform_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.uniform_scale" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.scale">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.scale" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.scale" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.ortho">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">ortho</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">near</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">far</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#ortho"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.ortho" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">ortho</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">near</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">far</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#ortho"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.ortho" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.perspective">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">perspective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_of_view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aspect_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">near_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">far_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#perspective"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.perspective" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">perspective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_of_view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aspect_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">near_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">far_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#perspective"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.perspective" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.cs_to_ndc_space_fn">
-<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">cs_to_ndc_space_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#cs_to_ndc_space_fn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.cs_to_ndc_space_fn" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modelviewprojection.mathutils3d.</span></span><span class="sig-name descname"><span class="pre">cs_to_ndc_space_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#cs_to_ndc_space_fn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.cs_to_ndc_space_fn" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
@@ -703,11 +1031,6 @@ Vector2D</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="modelviewprojection.mathutils3d.FunctionStack.modelspace_to_ndc_fn">
 <span class="sig-name descname"><span class="pre">modelspace_to_ndc_fn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D" title="modelviewprojection.mathutils3d.Vector3D"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils3d.html#FunctionStack.modelspace_to_ndc_fn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils3d.FunctionStack.modelspace_to_ndc_fn" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="modelviewprojection.mathutils3d.FunctionStack.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stack:</span> <span class="pre">~typing.List[~modelviewprojection.mathutils.InvertibleFunction[~modelviewprojection.mathutils3d.Vector3D]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#modelviewprojection.mathutils3d.FunctionStack.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -772,12 +1095,24 @@ Vector2D</p>
 <li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction</span></code></a><ul>
 <li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction.func"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction.func</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction.inverse"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction.inverse</span></code></a></li>
-<li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction.__call__"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction.__call__()</span></code></a></li>
-<li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction.__init__"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction.__init__()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils.inverse"><code class="docutils literal notranslate"><span class="pre">inverse()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils.compose"><code class="docutils literal notranslate"><span class="pre">compose()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-modelviewprojection.mathutils1d">Math Utils 1D</a><ul>
+<li><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D"><code class="docutils literal notranslate"><span class="pre">Vector1D</span></code></a><ul>
+<li><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D.x"><code class="docutils literal notranslate"><span class="pre">Vector1D.x</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D.__add__"><code class="docutils literal notranslate"><span class="pre">Vector1D.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D.__sub__"><code class="docutils literal notranslate"><span class="pre">Vector1D.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D.__mul__"><code class="docutils literal notranslate"><span class="pre">Vector1D.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D.__rmul__"><code class="docutils literal notranslate"><span class="pre">Vector1D.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils1d.Vector1D.__neg__"><code class="docutils literal notranslate"><span class="pre">Vector1D.__neg__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils1d.translate"><code class="docutils literal notranslate"><span class="pre">translate()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils1d.uniform_scale"><code class="docutils literal notranslate"><span class="pre">uniform_scale()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-modelviewprojection.mathutils2d">Math Utils 2D</a><ul>
@@ -788,7 +1123,8 @@ Vector2D</p>
 <li><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D.__sub__"><code class="docutils literal notranslate"><span class="pre">Vector2D.__sub__()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D.__mul__"><code class="docutils literal notranslate"><span class="pre">Vector2D.__mul__()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D.__rmul__"><code class="docutils literal notranslate"><span class="pre">Vector2D.__rmul__()</span></code></a></li>
-<li><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D.__init__"><code class="docutils literal notranslate"><span class="pre">Vector2D.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D.__neg__"><code class="docutils literal notranslate"><span class="pre">Vector2D.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils2d.Vector2D.dot"><code class="docutils literal notranslate"><span class="pre">Vector2D.dot()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils2d.translate"><code class="docutils literal notranslate"><span class="pre">translate()</span></code></a></li>
@@ -797,6 +1133,8 @@ Vector2D</p>
 <li><a class="reference internal" href="#modelviewprojection.mathutils2d.rotate_90_degrees"><code class="docutils literal notranslate"><span class="pre">rotate_90_degrees()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils2d.rotate"><code class="docutils literal notranslate"><span class="pre">rotate()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils2d.rotate_around"><code class="docutils literal notranslate"><span class="pre">rotate_around()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils2d.is_clockwise"><code class="docutils literal notranslate"><span class="pre">is_clockwise()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils2d.is_parallel"><code class="docutils literal notranslate"><span class="pre">is_parallel()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-modelviewprojection.mathutils3d">Math Utils 3D</a><ul>
@@ -808,9 +1146,13 @@ Vector2D</p>
 <li><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D.__sub__"><code class="docutils literal notranslate"><span class="pre">Vector3D.__sub__()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D.__mul__"><code class="docutils literal notranslate"><span class="pre">Vector3D.__mul__()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D.__rmul__"><code class="docutils literal notranslate"><span class="pre">Vector3D.__rmul__()</span></code></a></li>
-<li><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D.__init__"><code class="docutils literal notranslate"><span class="pre">Vector3D.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D.__neg__"><code class="docutils literal notranslate"><span class="pre">Vector3D.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D.dot"><code class="docutils literal notranslate"><span class="pre">Vector3D.dot()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils3d.Vector3D.cross"><code class="docutils literal notranslate"><span class="pre">Vector3D.cross()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils3d.cos"><code class="docutils literal notranslate"><span class="pre">cos()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils3d.abs_sin"><code class="docutils literal notranslate"><span class="pre">abs_sin()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils3d.translate"><code class="docutils literal notranslate"><span class="pre">translate()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils3d.rotate_x"><code class="docutils literal notranslate"><span class="pre">rotate_x()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils3d.rotate_y"><code class="docutils literal notranslate"><span class="pre">rotate_y()</span></code></a></li>
@@ -826,7 +1168,6 @@ Vector2D</p>
 <li><a class="reference internal" href="#modelviewprojection.mathutils3d.FunctionStack.pop"><code class="docutils literal notranslate"><span class="pre">FunctionStack.pop()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils3d.FunctionStack.clear"><code class="docutils literal notranslate"><span class="pre">FunctionStack.clear()</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils3d.FunctionStack.modelspace_to_ndc_fn"><code class="docutils literal notranslate"><span class="pre">FunctionStack.modelspace_to_ndc_fn()</span></code></a></li>
-<li><a class="reference internal" href="#modelviewprojection.mathutils3d.FunctionStack.__init__"><code class="docutils literal notranslate"><span class="pre">FunctionStack.__init__()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils3d.push_transformation"><code class="docutils literal notranslate"><span class="pre">push_transformation()</span></code></a></li>
@@ -846,7 +1187,7 @@ Vector2D</p>
 </div><script src="static/documentation_options.js?v=5f733c1d"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>

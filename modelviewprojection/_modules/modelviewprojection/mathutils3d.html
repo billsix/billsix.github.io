@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.07.19 -->
         <title>modelviewprojection.mathutils3d - Model View Projection 0.0.02 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../static/styles/furo-extensions.css?v=302659d7" />
+      <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="../../static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="../../static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../../static/custom.css?v=b6a38b70" />
     
     
@@ -16,20 +16,20 @@
 
 <style>
   body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
   
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+      --color-code-background: #2b2b2b;
+  --color-code-foreground: #f8f8f2;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+        --color-code-background: #2b2b2b;
+  --color-code-foreground: #f8f8f2;
   
       }
     }
@@ -189,7 +189,6 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  
   <span class="sidebar-brand-text">Model View Projection 0.0.02 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
@@ -203,26 +202,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ch01.html">Opening a Window - Demo 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ch02.html">Draw A Rectangle - Demo 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch05.html">Add Translate Method to Vector - Demo 05</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch06.html">Modelspace - Demo 06</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch07.html">Rotations - Demo 07</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch10.html">Camera Space - Demo 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch11.html">Relative Objects - Demo 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch12.html">Rotate the Square - Demo 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch14.html">Adding Depth - Z axis Demo 14</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch16.html">Lambda Stack - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch17.html">Moving Camera in 3D Space - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch18.html">3D Perspective - Demo 18</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch19.html">Matrix Stacks - Demo 19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch20.html">Shaders - Demo 20</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../perspective.html">Standard Perspective Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mathhomework1.html">Math Homework #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../programmingproj1.html">Programming Project #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 </ul>
@@ -286,6 +267,8 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 
 <span class="kn">from</span> <span class="nn">modelviewprojection.mathutils</span> <span class="kn">import</span> <span class="n">InvertibleFunction</span><span class="p">,</span> <span class="n">compose</span><span class="p">,</span> <span class="n">inverse</span>
+<span class="kn">from</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="kn">import</span> <span class="n">Vector1D</span>
+<span class="kn">from</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="kn">import</span> <span class="n">uniform_scale</span> <span class="k">as</span> <span class="n">scale1d</span>
 <span class="kn">from</span> <span class="nn">modelviewprojection.mathutils2d</span> <span class="kn">import</span> <span class="n">Vector2D</span>
 <span class="kn">from</span> <span class="nn">modelviewprojection.mathutils2d</span> <span class="kn">import</span> <span class="n">rotate</span> <span class="k">as</span> <span class="n">rotate2D</span>
 
@@ -302,6 +285,31 @@
 <div class="viewcode-block" id="Vector3D.__add__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.__add__">[docs]</a>
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add together two Vector3Ds.</span>
+
+<span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\\\ a_z \\end{pmatrix}`</span>
+<span class="sd">        and :math:`\\vec{b} = \\begin{pmatrix} b_x \\\\ b_y \\\\ b_z \\end{pmatrix}`:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">             \\vec{a} + \\vec{b} = \\begin{pmatrix} a_x + b_x \\\\ a_y + b_y \\\\ a_z + b_z \\end{pmatrix}</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            rhs (Vector3D): The vector on the right hand side of the addition</span>
+<span class="sd">                            symbol</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Vector3D: The Vector3D that represents the additon of the two</span>
+<span class="sd">                      input Vector3Ds</span>
+<span class="sd">        Raises:</span>
+<span class="sd">            Nothing</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
+<span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2.0, y=3.0, z=1.0)</span>
+<span class="sd">            &gt;&gt;&gt; b = Vector3D(x=5.0, y=6.0, z=9.0)</span>
+<span class="sd">            &gt;&gt;&gt; a + b</span>
+<span class="sd">            Vector3D(x=7.0, y=9.0, z=10.0)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
         <span class="p">)</span></div>
@@ -310,6 +318,32 @@
 <div class="viewcode-block" id="Vector3D.__sub__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.__sub__">[docs]</a>
     <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Subtract the right hand side Vector3D from the left hand side Vector3D.</span>
+
+<span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\\\ a_z \\end{pmatrix}`</span>
+<span class="sd">        and :math:`\\vec{b} = \\begin{pmatrix} b_x \\\\ b_y \\\\ b_z \\end{pmatrix}`:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">             \\vec{a} - \\vec{b} = \\vec{a} + \\vec{b} = \\begin{pmatrix} a_x - b_x  \\\\ a_y - b_y \\\\ a_z - b_z \\end{pmatrix}</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            rhs (Vector3D): The vector on the right hand side of the</span>
+<span class="sd">                            subtraction symbol</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Vector3D: The Vector3D that represents the subtraction of the</span>
+<span class="sd">                      right hand side Vector3D from the left hand side</span>
+<span class="sd">                      Vector3D</span>
+<span class="sd">        Raises:</span>
+<span class="sd">            Nothing</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
+<span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2.0, y=3.0, z=10.0)</span>
+<span class="sd">            &gt;&gt;&gt; b = Vector3D(x=5.0, y=2.0, z=1.0)</span>
+<span class="sd">            &gt;&gt;&gt; a - b</span>
+<span class="sd">            Vector3D(x=-3.0, y=1.0, z=9.0)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
         <span class="p">)</span></div>
@@ -318,6 +352,29 @@
 <div class="viewcode-block" id="Vector3D.__mul__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.__mul__">[docs]</a>
     <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Multiply the Vector3D by a scalar number</span>
+
+<span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\\\ a_z \\end{pmatrix}` and constant scalar :math:`s`:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">             s*\\vec{a} = \\begin{pmatrix} s*a_x \\\\ s*a_y \\\\ s*a_z \\end{pmatrix}</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            rhs (Vector3D): The scalar to be multiplied to the Vector&#39;s component</span>
+<span class="sd">                            subtraction symbol</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Vector3D: The Vector3D that represents scalar times the amount of the input Vector3D</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Nothing</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
+<span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2.0, y=3.0, z=4.0)</span>
+<span class="sd">            &gt;&gt;&gt; a * 4</span>
+<span class="sd">            Vector3D(x=8.0, y=12.0, z=16.0)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">),</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">)</span>
         <span class="p">)</span></div>
@@ -329,21 +386,77 @@
         <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">scalar</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
+<div class="viewcode-block" id="Vector3D.__neg__">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.__neg__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Multiply the Vector3D by -1</span>
+
+<span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\\\ a_z  \\end{pmatrix}` and constant :math:`-1`:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">             -1 * \\vec{a}</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Vector3D: The Vector3D with the opposite orientation</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Nothing</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
+<span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2.0, y=3.0, z=4.0)</span>
+<span class="sd">            &gt;&gt;&gt; -a</span>
+<span class="sd">            Vector3D(x=-2.0, y=-3.0, z=-4.0)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">vector</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+<div class="viewcode-block" id="Vector3D.dot">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.dot">[docs]</a>
+    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span></div>
+
+
+<div class="viewcode-block" id="Vector3D.cross">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.cross">[docs]</a>
+    <span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
+            <span class="n">z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="cos">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.cos">[docs]</a>
+<span class="k">def</span> <span class="nf">cos</span><span class="p">(</span><span class="n">v1</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">v1</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="abs_sin">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.abs_sin">[docs]</a>
+<span class="k">def</span> <span class="nf">abs_sin</span><span class="p">(</span><span class="n">v1</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v1</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v2</span><span class="p">))</span></div>
 
 
 
 <div class="viewcode-block" id="translate">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.translate">[docs]</a>
-<span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">translate_amount</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">translate_amount</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">translate_amount</span>
 
     <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">translate_amount</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
@@ -353,7 +466,7 @@
 <span class="c1"># doc-region-begin define rotate x</span>
 <div class="viewcode-block" id="rotate_x">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.rotate_x">[docs]</a>
-<span class="k">def</span> <span class="nf">rotate_x</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">rotate_x</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="n">fn</span> <span class="o">=</span> <span class="n">rotate2D</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
@@ -364,7 +477,7 @@
         <span class="n">yz_on_xy</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yz_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">yz_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
@@ -374,7 +487,7 @@
 <span class="c1"># doc-region-begin define rotate y</span>
 <div class="viewcode-block" id="rotate_y">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.rotate_y">[docs]</a>
-<span class="k">def</span> <span class="nf">rotate_y</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">rotate_y</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="n">fn</span> <span class="o">=</span> <span class="n">rotate2D</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
@@ -385,7 +498,7 @@
         <span class="n">zx_on_xy</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zx_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">zx_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
@@ -395,7 +508,7 @@
 <span class="c1"># doc-region-begin define rotate z</span>
 <div class="viewcode-block" id="rotate_z">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.rotate_z">[docs]</a>
-<span class="k">def</span> <span class="nf">rotate_z</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">rotate_z</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="n">fn</span> <span class="o">=</span> <span class="n">rotate2D</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
@@ -406,7 +519,7 @@
         <span class="n">xy_on_xy</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xy_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">xy_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
@@ -416,17 +529,17 @@
 <span class="c1"># doc-region-begin define uniform scale</span>
 <div class="viewcode-block" id="uniform_scale">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.uniform_scale">[docs]</a>
-<span class="k">def</span> <span class="nf">uniform_scale</span><span class="p">(</span><span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">uniform_scale</span><span class="p">(</span><span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">scalar</span>
 
     <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">scalar</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">scalar</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not invertible.  Scaling factor cannot be zero.&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">/</span> <span class="n">scalar</span>
+        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">scalar</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
@@ -435,7 +548,9 @@
 
 <div class="viewcode-block" id="scale">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.scale">[docs]</a>
-<span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">scale_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">scale_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">scale_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">scale</span><span class="p">(</span>
+    <span class="n">scale_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">scale_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">scale_z</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scale_x</span><span class="p">),</span>
@@ -457,7 +572,7 @@
             <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span> <span class="o">/</span> <span class="n">scale_z</span><span class="p">),</span>
         <span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
@@ -471,7 +586,7 @@
     <span class="n">top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">near</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">far</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="n">midpoint</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span>
         <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">bottom</span> <span class="o">+</span> <span class="n">top</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="n">near</span> <span class="o">+</span> <span class="n">far</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
     <span class="p">)</span>
@@ -495,7 +610,7 @@
     <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f_inv</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
@@ -507,32 +622,42 @@
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.perspective">[docs]</a>
 <span class="k">def</span> <span class="nf">perspective</span><span class="p">(</span>
     <span class="n">field_of_view</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">near_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">far_z</span><span class="p">:</span> <span class="nb">float</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="c1"># field_of_view, field of view, is angle of y</span>
     <span class="c1"># aspect_ratio is x_width / y_width</span>
 
     <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="n">near_z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">field_of_view</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
     <span class="n">right</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">top</span> <span class="o">*</span> <span class="n">aspect_ratio</span>
 
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="n">scaled_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">vector</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">near_z</span>
-        <span class="n">scaled_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">vector</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">near_z</span>
-        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">scaled_x</span><span class="p">,</span> <span class="n">scaled_y</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="n">ortho</span><span class="p">(</span>
+        <span class="n">left</span><span class="o">=-</span><span class="n">right</span><span class="p">,</span>
+        <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="p">,</span>
+        <span class="n">bottom</span><span class="o">=-</span><span class="n">top</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+        <span class="n">near</span><span class="o">=</span><span class="n">near_z</span><span class="p">,</span>
+        <span class="n">far</span><span class="o">=</span><span class="n">far_z</span><span class="p">,</span>
+    <span class="p">)</span>
 
-        <span class="n">fn</span> <span class="o">=</span> <span class="n">ortho</span><span class="p">(</span>
-            <span class="n">left</span><span class="o">=-</span><span class="n">right</span><span class="p">,</span>
-            <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="p">,</span>
-            <span class="n">bottom</span><span class="o">=-</span><span class="n">top</span><span class="p">,</span>
-            <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
-            <span class="n">near</span><span class="o">=</span><span class="n">near_z</span><span class="p">,</span>
-            <span class="n">far</span><span class="o">=</span><span class="n">far_z</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+        <span class="n">s1d</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale1d</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span>
+            <span class="n">s1d</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">s1d</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Inverse_Inner Perspective not yet implement&quot;</span><span class="p">)</span>
+        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+        <span class="n">inverse_s1d</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span>
+            <span class="n">scale1d</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
+            <span class="n">inverse_s1d</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">x</span><span class="p">),</span>
+            <span class="n">inverse_s1d</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">y</span><span class="p">),</span>
+            <span class="n">rectangular_prism</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
@@ -541,7 +666,7 @@
 
 <div class="viewcode-block" id="cs_to_ndc_space_fn">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.cs_to_ndc_space_fn">[docs]</a>
-<span class="k">def</span> <span class="nf">cs_to_ndc_space_fn</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">cs_to_ndc_space_fn</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
         <span class="n">fn</span> <span class="o">=</span> <span class="n">perspective</span><span class="p">(</span>
             <span class="n">field_of_view</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">near_z</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">far_z</span><span class="o">=-</span><span class="mf">1000.0</span>
@@ -551,7 +676,7 @@
     <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Inverse_Inner cs_to_ndc_spcae_fn not yet implement&quot;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
@@ -639,6 +764,6 @@
 </div><script src="../../static/documentation_options.js?v=5f733c1d"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../static/scripts/furo.js?v=46bd48cc"></script>
     </body>
 </html>
