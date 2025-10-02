@@ -227,6 +227,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../miscellany.html">Miscellany</a></li>
 </ul>
 
 </div>
@@ -280,31 +281,26 @@
 <span class="c1"># Boston, MA 02111-1307, USA.</span>
 
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>  <span class="c1"># to appease Python 3.7-3.9</span>
-
 <span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
-
-<span class="kn">from</span> <span class="nn">modelviewprojection.mathutils</span> <span class="kn">import</span> <span class="n">InvertibleFunction</span><span class="p">,</span> <span class="n">compose</span><span class="p">,</span> <span class="n">inverse</span>
+<span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">modelviewprojection.mathutils</span> <span class="k">as</span> <span class="nn">mu</span>
+<span class="kn">import</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="k">as</span> <span class="nn">mu1d</span>
+<span class="kn">import</span> <span class="nn">typing</span>
 
 
 <span class="c1"># doc-region-begin define vector class</span>
 <div class="viewcode-block" id="Vector2D">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.Vector2D">[docs]</a>
-<span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">Vector2D</span><span class="p">:</span>
-    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The x-component of the 2D Vector</span>
+<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">Vector2D</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">):</span>
     <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 2D Vector</span>
     <span class="c1"># doc-region-end define vector class</span>
 
     <span class="c1"># doc-region-begin define add</span>
 <div class="viewcode-block" id="Vector2D.__add__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.Vector2D.__add__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add together two Vector2Ds.</span>
 
@@ -336,45 +332,10 @@
 
     <span class="c1"># doc-region-end define add</span>
 
-    <span class="c1"># doc-region-begin define subtract</span>
-<div class="viewcode-block" id="Vector2D.__sub__">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.Vector2D.__sub__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Subtract the right hand side Vector2D from the left hand side Vector2D.</span>
-
-<span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\end{pmatrix}`</span>
-<span class="sd">        and :math:`\\vec{b} = \\begin{pmatrix} b_x \\\\ b_y \\end{pmatrix}`:</span>
-
-<span class="sd">        .. math::</span>
-
-<span class="sd">             \\vec{a} - \\vec{b} = \\vec{a} + \\vec{b} = \\begin{pmatrix} a_x - b_x \\\\ a_y - b_y \\end{pmatrix}</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            rhs (Vector2D): The vector on the right hand side of the</span>
-<span class="sd">                            subtraction symbol</span>
-<span class="sd">        Returns:</span>
-<span class="sd">            Vector2D: The Vector2D that represents the subtraction of the</span>
-<span class="sd">                      right hand side Vector2D from the left hand side</span>
-<span class="sd">                      Vector2D</span>
-<span class="sd">        Raises:</span>
-<span class="sd">            Nothing</span>
-<span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils2d import Vector2D</span>
-<span class="sd">            &gt;&gt;&gt; a = Vector2D(x=2.0, y=3.0)</span>
-<span class="sd">            &gt;&gt;&gt; b = Vector2D(x=5.0, y=2.0)</span>
-<span class="sd">            &gt;&gt;&gt; a - b</span>
-<span class="sd">            Vector2D(x=-3.0, y=1.0)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">))</span></div>
-
-
-    <span class="c1"># doc-region-end define subtract</span>
-
     <span class="c1"># doc-region-begin define mul</span>
 <div class="viewcode-block" id="Vector2D.__mul__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.Vector2D.__mul__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Multiply the Vector2D by a scalar number</span>
 
@@ -399,89 +360,15 @@
 <span class="sd">            Vector2D(x=8.0, y=12.0)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="Vector2D.__rmul__">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.Vector2D.__rmul__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">scalar</span></div>
+</div>
 
 
     <span class="c1"># doc-region-end define mul</span>
 
-<div class="viewcode-block" id="Vector2D.__neg__">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.Vector2D.__neg__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Multiply the Vector2D by -1</span>
-
-<span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\end{pmatrix}` and constant :math:`-1`:</span>
-
-<span class="sd">        .. math::</span>
-
-<span class="sd">             -1 * \\vec{a}</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Vector2D: The Vector2D with the opposite orientation</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            Nothing</span>
-<span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils2d import Vector2D</span>
-<span class="sd">            &gt;&gt;&gt; a = Vector2D(x=2.0, y=3.0)</span>
-<span class="sd">            &gt;&gt;&gt; -a</span>
-<span class="sd">            Vector2D(x=-2.0, y=-3.0)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="bp">self</span></div>
-
-
-    <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-
-<div class="viewcode-block" id="Vector2D.dot">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.Vector2D.dot">[docs]</a>
-    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span></div>
-</div>
-
-
-
-<span class="c1"># doc-region-begin define translate</span>
-<div class="viewcode-block" id="translate">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.translate">[docs]</a>
-<span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]:</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">b</span>
-
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">b</span>
-
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
-
-    <span class="c1"># doc-region-end define translate</span>
-
-
-<span class="c1"># doc-region-begin define uniform scale</span>
-<div class="viewcode-block" id="uniform_scale">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.uniform_scale">[docs]</a>
-<span class="k">def</span> <span class="nf">uniform_scale</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]:</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">m</span>
-
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Note invertible.  Scaling factor cannot be zero.&quot;</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
-
-    <span class="c1"># doc-region-end define uniform scale</span>
-
 
 <div class="viewcode-block" id="scale">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.scale">[docs]</a>
-<span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">m_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">m_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">m_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">m_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]:</span>
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Vector2D</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">m_x</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">m_y</span><span class="p">)</span>
 
@@ -493,32 +380,32 @@
 
         <span class="k">return</span> <span class="n">Vector2D</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">m_x</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="n">m_y</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
 <span class="c1"># doc-region-begin define rotate</span>
 <div class="viewcode-block" id="rotate_90_degrees">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.rotate_90_degrees">[docs]</a>
-<span class="k">def</span> <span class="nf">rotate_90_degrees</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">rotate_90_degrees</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]:</span>
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="rotate">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.rotate">[docs]</a>
-<span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Vector2D</span><span class="p">],</span> <span class="n">Vector2D</span><span class="p">]:</span>
-    <span class="n">r90</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">rotate_90_degrees</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Vector2D</span><span class="p">],</span> <span class="n">Vector2D</span><span class="p">]:</span>
+    <span class="n">r90</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">rotate_90_degrees</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">create_rotate_function</span><span class="p">(</span>
-        <span class="n">perp</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">],</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Vector2D</span><span class="p">],</span> <span class="n">Vector2D</span><span class="p">]:</span>
+        <span class="n">perp</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Vector2D</span><span class="p">],</span> <span class="n">Vector2D</span><span class="p">]:</span>
         <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector2D</span><span class="p">:</span>
             <span class="n">parallel</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">*</span> <span class="n">vector</span>
             <span class="n">perpendicular</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">*</span> <span class="n">perp</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
@@ -526,8 +413,9 @@
 
         <span class="k">return</span> <span class="n">f</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">](</span>
-        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">r90</span><span class="p">),</span> <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">inverse</span><span class="p">(</span><span class="n">r90</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">](</span>
+        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">r90</span><span class="p">),</span>
+        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">r90</span><span class="p">)),</span>
     <span class="p">)</span></div>
 
     <span class="c1"># doc-region-end define rotate</span>
@@ -538,9 +426,9 @@
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.rotate_around">[docs]</a>
 <span class="k">def</span> <span class="nf">rotate_around</span><span class="p">(</span>
     <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Vector2D</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]:</span>
-    <span class="k">return</span> <span class="n">compose</span><span class="p">(</span>
-        <span class="n">translate</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">center</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">center</span><span class="p">)]</span>
     <span class="p">)</span></div>
 
     <span class="c1"># doc-region-end define rotate around</span>
@@ -560,11 +448,20 @@
 
 
 
+<span class="c1"># doc-region-begin counter clockwise</span>
+<div class="viewcode-block" id="is_counter_clockwise">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.is_counter_clockwise">[docs]</a>
+<span class="k">def</span> <span class="nf">is_counter_clockwise</span><span class="p">(</span><span class="n">v1</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">sine</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.000000</span></div>
+
+    <span class="c1"># doc-region-end counter clockwise</span>
+
+
 <span class="c1"># doc-region-begin clockwise</span>
 <div class="viewcode-block" id="is_clockwise">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.is_clockwise">[docs]</a>
 <span class="k">def</span> <span class="nf">is_clockwise</span><span class="p">(</span><span class="n">v1</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">sine</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.0</span></div>
+    <span class="k">return</span> <span class="ow">not</span> <span class="n">is_clockwise</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span></div>
 
     <span class="c1"># doc-region-end clockwise</span>
 
@@ -573,7 +470,7 @@
 <div class="viewcode-block" id="is_parallel">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils2d.is_parallel">[docs]</a>
 <span class="k">def</span> <span class="nf">is_parallel</span><span class="p">(</span><span class="n">v1</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">cosine</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">abs</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">cosine</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">abs</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span></div>
 
     <span class="c1"># doc-region-end parallel</span>
 </pre></div>

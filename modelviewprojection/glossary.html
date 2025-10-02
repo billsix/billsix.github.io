@@ -228,6 +228,7 @@
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
 </ul>
 
 </div>
@@ -270,12 +271,36 @@
         <article role="main" id="furo-main-content">
           <section id="glossary">
 <h1>Glossary<a class="headerlink" href="#glossary" title="Link to this heading">¶</a></h1>
-<dl class="simple glossary">
-<dt id="term-Normalized-Device-Coordinates">Normalized Device Coordinates<a class="headerlink" href="#term-Normalized-Device-Coordinates" title="Link to this term">¶</a></dt><dd><p>Normalized device coordinates</p>
+<dl class="glossary">
+<dt id="term-Frame-Buffer">Frame Buffer<a class="headerlink" href="#term-Frame-Buffer" title="Link to this term">¶</a></dt><dd><p>An array of pixel values, where each pixel holds information such as
+color (red, green, blue, alpha), depth (how far a fragment is from
+the camera), and sometimes stencil values (for masking
+operations).</p>
+</dd>
+<dt id="term-Normalized-Device-Coordinates">Normalized Device Coordinates<a class="headerlink" href="#term-Normalized-Device-Coordinates" title="Link to this term">¶</a></dt><dd><p>Normalized Device Coordinates are the range of values from -1.0 to 1.0
+in the X, Y, and Z directions, the last space before drawing geometry
+in screen space.  Anything vertex outside of the NDC range will not
+be mapped to a pixel.</p>
 </dd>
 <dt id="term-World-Space">World Space<a class="headerlink" href="#term-World-Space" title="Link to this term">¶</a></dt><dd><p>World space</p>
 </dd>
 <dt id="term-Modelspace">Modelspace<a class="headerlink" href="#term-Modelspace" title="Link to this term">¶</a></dt><dd><p>Modelspace</p>
+</dd>
+<dt id="term-Screen-Space">Screen Space<a class="headerlink" href="#term-Screen-Space" title="Link to this term">¶</a></dt><dd><p>Screen space is an index (x,y) that is mapped to a pixel on a monitor.</p>
+</dd>
+<dt id="term-Event-Loop">Event Loop<a class="headerlink" href="#term-Event-Loop" title="Link to this term">¶</a></dt><dd><p>An event loop is a programming construct that continuously waits for and dispatches
+events or messages in a program. At its core, it works like this:</p>
+<ol class="arabic simple">
+<li><p>The program has a queue of tasks, events, or messages that need to
+be processed (like user input, network responses, timers, etc.).</p></li>
+<li><p>The event loop repeatedly checks this queue.  If there’s an event
+waiting, it pulls it from the queue and runs the associated
+code (often a callback or handler).</p></li>
+<li><p>If the queue is empty, it waits until something new arrives.</p></li>
+</ol>
+<p>This pattern is common in systems where tasks happen asynchronously—such
+as GUIs or command lines because it lets programs handle many things
+(like clicks, network requests, or timers) without blocking on just one operation.</p>
 </dd>
 </dl>
 </section>

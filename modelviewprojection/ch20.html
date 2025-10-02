@@ -228,6 +228,7 @@
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
 </ul>
 
 </div>
@@ -362,47 +363,17 @@ which a driver could implement in parallel.</p>
 <p>We have some new imports, “glUseProgram”, “GL_VERTEX_SHADER”, “GL_FRAGMENT_SHADER”</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo20/demo.py</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">32</span><span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="linenos">33</span>    <span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span>
-<span class="linenos">34</span>    <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">,</span>
-<span class="linenos">35</span>    <span class="n">GL_DEPTH_TEST</span><span class="p">,</span>
-<span class="linenos">36</span>    <span class="n">GL_FRAGMENT_SHADER</span><span class="p">,</span>
-<span class="linenos">37</span>    <span class="n">GL_LEQUAL</span><span class="p">,</span>
-<span class="linenos">38</span>    <span class="n">GL_MODELVIEW</span><span class="p">,</span>
-<span class="linenos">39</span>    <span class="n">GL_PROJECTION</span><span class="p">,</span>
-<span class="linenos">40</span>    <span class="n">GL_QUADS</span><span class="p">,</span>
-<span class="linenos">41</span>    <span class="n">GL_SCISSOR_TEST</span><span class="p">,</span>
-<span class="linenos">42</span>    <span class="n">GL_VERTEX_SHADER</span><span class="p">,</span>
-<span class="linenos">43</span>    <span class="n">glBegin</span><span class="p">,</span>
-<span class="linenos">44</span>    <span class="n">glClear</span><span class="p">,</span>
-<span class="linenos">45</span>    <span class="n">glClearColor</span><span class="p">,</span>
-<span class="linenos">46</span>    <span class="n">glClearDepth</span><span class="p">,</span>
-<span class="linenos">47</span>    <span class="n">glColor3f</span><span class="p">,</span>
-<span class="linenos">48</span>    <span class="n">glDepthFunc</span><span class="p">,</span>
-<span class="linenos">49</span>    <span class="n">glDisable</span><span class="p">,</span>
-<span class="linenos">50</span>    <span class="n">glEnable</span><span class="p">,</span>
-<span class="linenos">51</span>    <span class="n">glEnd</span><span class="p">,</span>
-<span class="linenos">52</span>    <span class="n">glLoadIdentity</span><span class="p">,</span>
-<span class="linenos">53</span>    <span class="n">glMatrixMode</span><span class="p">,</span>
-<span class="linenos">54</span>    <span class="n">glPopMatrix</span><span class="p">,</span>
-<span class="linenos">55</span>    <span class="n">glPushMatrix</span><span class="p">,</span>
-<span class="linenos">56</span>    <span class="n">glRotatef</span><span class="p">,</span>
-<span class="linenos">57</span>    <span class="n">glScissor</span><span class="p">,</span>
-<span class="linenos">58</span>    <span class="n">glTranslate</span><span class="p">,</span>
-<span class="linenos">59</span>    <span class="n">glUseProgram</span><span class="p">,</span>
-<span class="linenos">60</span>    <span class="n">glVertex3f</span><span class="p">,</span>
-<span class="linenos">61</span>    <span class="n">glViewport</span><span class="p">,</span>
-<span class="linenos">62</span><span class="p">)</span>
-<span class="linenos">63</span><span class="kn">from</span> <span class="nn">OpenGL.GLU</span> <span class="kn">import</span> <span class="n">gluPerspective</span>
-<span class="linenos">64</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">29</span><span class="kn">import</span> <span class="nn">OpenGL.GL</span> <span class="k">as</span> <span class="nn">GL</span>
+<span class="linenos">30</span><span class="kn">import</span> <span class="nn">OpenGL.GLU</span> <span class="k">as</span> <span class="nn">GLU</span>
+<span class="linenos">31</span>
 </pre></div>
 </div>
 </div>
 <p>We now ask the OpenGL driver to accept OpenGL 2.1 function calls.</p>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo20/demo.py</span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">72</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="linenos">73</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">39</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">40</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -414,19 +385,19 @@ by the w; i.e. (x/w,y/w,z/w,1)</p>
 in the same way we did in the lambda stack.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo20/demo.py</span><a class="headerlink" href="#id7" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">231</span><span class="c1"># compile shaders</span>
-<span class="linenos">232</span>
-<span class="linenos">233</span><span class="c1"># initialize shaders</span>
-<span class="linenos">234</span><span class="n">pwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-<span class="linenos">235</span>
-<span class="linenos">236</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span> <span class="s2">&quot;triangle.vert&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="linenos">237</span>    <span class="n">vs</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileShader</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">GL_VERTEX_SHADER</span><span class="p">)</span>
-<span class="linenos">238</span>
-<span class="linenos">239</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span> <span class="s2">&quot;triangle.frag&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="linenos">240</span>    <span class="n">fs</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileShader</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">GL_FRAGMENT_SHADER</span><span class="p">)</span>
-<span class="linenos">241</span>
-<span class="linenos">242</span><span class="n">shader</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileProgram</span><span class="p">(</span><span class="n">vs</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
-<span class="linenos">243</span><span class="n">glUseProgram</span><span class="p">(</span><span class="n">shader</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">200</span><span class="c1"># compile shaders</span>
+<span class="linenos">201</span>
+<span class="linenos">202</span><span class="c1"># initialize shaders</span>
+<span class="linenos">203</span><span class="n">pwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="linenos">204</span>
+<span class="linenos">205</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span> <span class="s2">&quot;triangle.vert&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">206</span>    <span class="n">vs</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileShader</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">GL</span><span class="o">.</span><span class="n">GL_VERTEX_SHADER</span><span class="p">)</span>
+<span class="linenos">207</span>
+<span class="linenos">208</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span> <span class="s2">&quot;triangle.frag&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">209</span>    <span class="n">fs</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileShader</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">GL</span><span class="o">.</span><span class="n">GL_FRAGMENT_SHADER</span><span class="p">)</span>
+<span class="linenos">210</span>
+<span class="linenos">211</span><span class="n">shader</span> <span class="o">=</span> <span class="n">shaders</span><span class="o">.</span><span class="n">compileProgram</span><span class="p">(</span><span class="n">vs</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+<span class="linenos">212</span><span class="n">GL</span><span class="o">.</span><span class="n">glUseProgram</span><span class="p">(</span><span class="n">shader</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

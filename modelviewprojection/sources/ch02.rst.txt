@@ -218,7 +218,7 @@ Isn't the same picture on a smaller monitor.
 
 
 Like any good program or library, OpenGL creates an abstraction.
-In this case, it abstracts over screen-space, thus freeing the
+In this case, it abstracts over :term:`Screen Space`, thus freeing the
 programmer from caring about screen size.  Since a programmer does not want to program
 in discrete (discrete means integer values, not continuous) screen-space,
 what type of numbers should he use?  Firstly, it should be a continuous space, because if a real-world object is 10.3 meters long, a programmer
@@ -268,8 +268,8 @@ Or a large monitor.
 Introduction to Cayley Graphs
 =============================
 
-The following is a graph_, specifically
-a Cayley_ Graph, of the two spaces
+The following is a graph :cite:`IGT`, specifically
+a Cayley Graph [1]_ :cite:`AbstractAlegbra`, of the two spaces
 shown so far.  The nodes represent a coordinate system (i.e. origin and axes),
 and the directed edge represents an invertible function that converts coordinates from one
 coordinate system to another.  If this isn't clear to the reader, look
@@ -281,15 +281,19 @@ changing them to another, like converting from Celsius to Fahrenheit,
 meters to feet, etc.
 
 
-.. _inverse: https://en.wikipedia.org/wiki/Inverse_function
-.. _invertible: https://en.wikipedia.org/wiki/Inverse_function
-
+.. [1] I rediscovered Cayley Graphs when looking at Figure 1.3 of
+       :cite:`MathematicsFor3DGame` and I realized that placement of
+       the camera in world space is the
+       same process of placing any object in world space, so the arrow in
+       :cite:`MathematicsFor3DGame` from World Space to Camera space could be
+       reversed, to represent the placement of the camera in World Space.
+       It was two years
+       later that I was reading :cite:`AbstractAlegbra` and I realized
+       what I rediscovered was actual math, instead of an ad-hoc notation
+       just for use in computer graphics
 
 NDC/Screenspace Conversion
 --------------------------
-
-.. _graph: https://en.wikipedia.org/wiki/Graph_theory
-.. _Cayley:  https://en.wikipedia.org/wiki/Cayley_graph
 
 
 .. figure:: static/demo02.png
@@ -300,7 +304,7 @@ NDC/Screenspace Conversion
 
     Demo 02
 
-The function that converts from NDC to Screen space is
+The function that converts from :term:`Normalized Device Coordinates` to :term:`Screen Space` is
 arbitrarily named "f", sub-scripted by "ndc", super-scripted
 by "ss".  This is a notation for naming
 functions that change basis, i.e. coordinate conversion.
@@ -368,6 +372,8 @@ direction of the edge, we must apply the multiplicative inverse_
 of that function.  These functions are invertible_ by
 taking the reciprocal of the coefficient
 
+.. _inverse: https://en.wikipedia.org/wiki/Inverse_function
+.. _invertible: https://en.wikipedia.org/wiki/Inverse_function
 
 
 
@@ -436,7 +442,7 @@ omits the argument :math:`x`
 Temperature Conversion
 ----------------------
 
-Another univariate example use of Cayley graphs is converting a temperture
+Another univariate example use of Cayley graphs is converting a temperature
 between different units of measure.
 
 
@@ -452,7 +458,7 @@ between different units of measure.
     f_{celsius}^{kelvin}(x) = x + 273.15
 
 .. math::
-    f_{fahrenheit}^{celcius}(x) = (x-32) * \frac{5}{9}
+    f_{fahrenheit}^{celsius}(x) = (x-32) * \frac{5}{9}
 
 Given that those functions are invertible_, with the Cayley graph
 and the function definitions, we have the information needed
@@ -466,7 +472,7 @@ and/or taking the inverse_ of given functions.
 To convert from fahrenheit to kelvin
 
 .. math::
-    f_{fahrenheit}^{kelvin} = f_{celcius}^{kelvin} \circ f_{fahrenheit}^{celcius}
+    f_{fahrenheit}^{kelvin} = f_{Celsius}^{kelvin} \circ f_{fahrenheit}^{Celsius}
 
 To convert from kelvin to celsius
 

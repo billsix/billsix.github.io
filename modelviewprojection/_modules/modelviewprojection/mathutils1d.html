@@ -227,6 +227,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../miscellany.html">Miscellany</a></li>
 </ul>
 
 </div>
@@ -280,25 +281,25 @@
 <span class="c1"># Boston, MA 02111-1307, USA.</span>
 
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>  <span class="c1"># to appease Python 3.7-3.9</span>
-
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-
-<span class="kn">from</span> <span class="nn">modelviewprojection.mathutils</span> <span class="kn">import</span> <span class="n">InvertibleFunction</span>
+<span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">import</span> <span class="nn">modelviewprojection.mathutils</span> <span class="k">as</span> <span class="nn">mu</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">typing</span>
 
 
 <span class="c1"># doc-region-begin define vector class</span>
 <div class="viewcode-block" id="Vector1D">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils1d.Vector1D">[docs]</a>
-<span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">Vector1D</span><span class="p">:</span>
-    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The value of the 1D Vector</span>
+<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">Vector1D</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The value of the 1D mu.Vector</span>
     <span class="c1"># doc-region-end define vector class</span>
 
-    <span class="c1"># doc-region-begin define add</span>
+    <span class="c1"># doc-region-begin begin define add</span>
 <div class="viewcode-block" id="Vector1D.__add__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils1d.Vector1D.__add__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector1D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector1D</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+        <span class="c1"># doc-region-end begin define add</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add together two Vector1Ds.</span>
 
@@ -325,50 +326,15 @@
 <span class="sd">            Vector1D(x=7.0)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="c1"># doc-region-begin define add</span>
         <span class="k">return</span> <span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">))</span></div>
 
-
-    <span class="c1"># doc-region-end define add</span>
-
-    <span class="c1"># doc-region-begin define subtract</span>
-<div class="viewcode-block" id="Vector1D.__sub__">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils1d.Vector1D.__sub__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector1D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector1D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Subtract the right hand side Vector1D from the left hand side Vector1D.</span>
-
-<span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\end{pmatrix}`</span>
-<span class="sd">        and :math:`\\vec{b} = \\begin{pmatrix} b_x \\end{pmatrix}`:</span>
-
-<span class="sd">        .. math::</span>
-
-<span class="sd">             \\vec{a} - \\vec{b} = \\begin{pmatrix} a_x - b_x \\end{pmatrix}</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            rhs (Vector1D): The vector on the right hand side of the</span>
-<span class="sd">                            subtraction symbol</span>
-<span class="sd">        Returns:</span>
-<span class="sd">            Vector1D: The Vector1D that represents the subtraction of the</span>
-<span class="sd">                      right hand side Vector1D from the left hand side</span>
-<span class="sd">                      Vector1D</span>
-<span class="sd">        Raises:</span>
-<span class="sd">            Nothing</span>
-<span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils1d import Vector1D</span>
-<span class="sd">            &gt;&gt;&gt; a = Vector1D(x=2.0)</span>
-<span class="sd">            &gt;&gt;&gt; b = Vector1D(x=5.0)</span>
-<span class="sd">            &gt;&gt;&gt; a - b</span>
-<span class="sd">            Vector1D(x=-3.0)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">))</span></div>
-
-
-    <span class="c1"># doc-region-end define subtract</span>
+        <span class="c1"># doc-region-end define add</span>
 
     <span class="c1"># doc-region-begin define mul</span>
 <div class="viewcode-block" id="Vector1D.__mul__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils1d.Vector1D.__mul__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector1D</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Multiply the Vector1D by a scalar number</span>
 
@@ -379,10 +345,10 @@
 <span class="sd">             s*\\vec{a} = \\begin{pmatrix} s*a_x \\end{pmatrix}</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            rhs (Vector1D): The scalar to be multiplied to the Vector&#39;s component</span>
+<span class="sd">            rhs (Vector1D): The scalar to be multiplied to the mu.Vector&#39;s component</span>
 <span class="sd">                            subtraction symbol</span>
 <span class="sd">        Returns:</span>
-<span class="sd">            Vector1D: The Vector1D that represents scalar times the amount of the input Vector1d</span>
+<span class="sd">            Vector1D: The Vector1D that represents scalar times the amount of the input mu.Vector1d</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            Nothing</span>
@@ -394,87 +360,18 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">))</span></div>
 
+        <span class="c1"># doc-region-end define mul</span>
 
-<div class="viewcode-block" id="Vector1D.__rmul__">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils1d.Vector1D.__rmul__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector1D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">scalar</span></div>
-
-
-    <span class="c1"># doc-region-end define mul</span>
-
-<div class="viewcode-block" id="Vector1D.__neg__">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils1d.Vector1D.__neg__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector1D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Multiply the Vector1D by -1</span>
-
-<span class="sd">        Let :math:`\\vec{a} = (a_x)` and constant :math:`-1`:</span>
-
-<span class="sd">        .. math::</span>
-
-<span class="sd">             -1 * \\vec{a}</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Vector1D: The Vector1D with the opposite orientation</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            Nothing</span>
-<span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils1d import Vector1D</span>
-<span class="sd">            &gt;&gt;&gt; a = Vector1D(x=2.0)</span>
-<span class="sd">            &gt;&gt;&gt; -a</span>
-<span class="sd">            Vector1D(x=-2.0)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="bp">self</span></div>
-</div>
+    <span class="c1"># The dot method uses the generic iterators provided by self and other</span>
+<div class="viewcode-block" id="Vector1D.dot">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils1d.Vector1D.dot">[docs]</a>
+    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v1</span> <span class="o">*</span> <span class="n">v2</span> <span class="k">for</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span></div>
 
 
+    <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
 
-<span class="c1"># doc-region-begin define translate</span>
-<div class="viewcode-block" id="translate">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils1d.translate">[docs]</a>
-<span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Vector1D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">]:</span>
-    <span class="c1"># doc-region-end define translate</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    TODO</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        b (float): The amount to translate a not-yet-bound vector</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        Vector1D: The Vector1D that represents the additon of the two</span>
-<span class="sd">                  input Vector1Ds</span>
-<span class="sd">    Raises:</span>
-<span class="sd">        Nothing</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># doc-region-begin define translatebody</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector1D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector1D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">b</span>
-
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector1D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector1D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">b</span>
-
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
-
-    <span class="c1"># doc-region-end define translatebody</span>
-
-
-<span class="c1"># doc-region-begin define uniform scale</span>
-<div class="viewcode-block" id="uniform_scale">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils1d.uniform_scale">[docs]</a>
-<span class="k">def</span> <span class="nf">uniform_scale</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">]:</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector1D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector1D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">m</span>
-
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector1D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector1D</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Scaling factor cannot be zero.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
-
-    <span class="c1"># doc-region-end define uniform scale</span>
 </pre></div>
         </article>
       </div>

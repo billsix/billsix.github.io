@@ -228,6 +228,7 @@
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
 </ul>
 
 </div>
@@ -345,7 +346,7 @@ is further away from the camera.</p>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>Early in this book we used the stencil buffer, but didn’t go into
-much detail about it.  Each pixel in the frame-buffer is a fragment,
+much detail about it.  Each pixel in the framebuffer is a fragment,
 which is more information than just the color to be drawn.</p>
 <figure class="align-center">
 <img alt="Fragment" class="no-scale" src="images/fragment.png" />
@@ -377,9 +378,9 @@ if nearer objects are drawn in front</p>
 </ol>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo15.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">84</span><span class="n">glClearDepth</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">85</span><span class="n">glDepthFunc</span><span class="p">(</span><span class="n">GL_GREATER</span><span class="p">)</span>
-<span class="linenos">86</span><span class="n">glEnable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">53</span><span class="n">GL</span><span class="o">.</span><span class="n">glClearDepth</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">54</span><span class="n">GL</span><span class="o">.</span><span class="n">glDepthFunc</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_GREATER</span><span class="p">)</span>
+<span class="linenos">55</span><span class="n">GL</span><span class="o">.</span><span class="n">glEnable</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_DEPTH_TEST</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

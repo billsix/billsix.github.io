@@ -227,6 +227,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../miscellany.html">Miscellany</a></li>
 </ul>
 
 </div>
@@ -280,33 +281,26 @@
 <span class="c1"># Boston, MA 02111-1307, USA.</span>
 
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>  <span class="c1"># to appease Python 3.7-3.9</span>
-
 <span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
-
-<span class="kn">from</span> <span class="nn">modelviewprojection.mathutils</span> <span class="kn">import</span> <span class="n">InvertibleFunction</span><span class="p">,</span> <span class="n">compose</span><span class="p">,</span> <span class="n">inverse</span>
-<span class="kn">from</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="kn">import</span> <span class="n">Vector1D</span>
-<span class="kn">from</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="kn">import</span> <span class="n">uniform_scale</span> <span class="k">as</span> <span class="n">scale1d</span>
-<span class="kn">from</span> <span class="nn">modelviewprojection.mathutils2d</span> <span class="kn">import</span> <span class="n">Vector2D</span>
-<span class="kn">from</span> <span class="nn">modelviewprojection.mathutils2d</span> <span class="kn">import</span> <span class="n">rotate</span> <span class="k">as</span> <span class="n">rotate2D</span>
+<span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">import</span> <span class="nn">modelviewprojection.mathutils</span> <span class="k">as</span> <span class="nn">mathutils</span>
+<span class="kn">import</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="k">as</span> <span class="nn">mu1d</span>
+<span class="kn">import</span> <span class="nn">modelviewprojection.mathutils2d</span> <span class="k">as</span> <span class="nn">mu2d</span>
+<span class="kn">import</span> <span class="nn">typing</span>
 
 
 <span class="c1"># doc-region-begin define vector class</span>
 <div class="viewcode-block" id="Vector3D">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D">[docs]</a>
-<span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">Vector3D</span><span class="p">:</span>
-    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The x-component of the 3D Vector</span>
-    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 3D Vector</span>
+<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">Vector3D</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">):</span>
     <span class="n">z</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The z-component of the 3D Vector</span>
     <span class="c1"># doc-region-end define vector class</span>
 
 <div class="viewcode-block" id="Vector3D.__add__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.__add__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add together two Vector3Ds.</span>
 
@@ -337,43 +331,9 @@
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Vector3D.__sub__">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.__sub__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Subtract the right hand side Vector3D from the left hand side Vector3D.</span>
-
-<span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\\\ a_z \\end{pmatrix}`</span>
-<span class="sd">        and :math:`\\vec{b} = \\begin{pmatrix} b_x \\\\ b_y \\\\ b_z \\end{pmatrix}`:</span>
-
-<span class="sd">        .. math::</span>
-
-<span class="sd">             \\vec{a} - \\vec{b} = \\vec{a} + \\vec{b} = \\begin{pmatrix} a_x - b_x  \\\\ a_y - b_y \\\\ a_z - b_z \\end{pmatrix}</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            rhs (Vector3D): The vector on the right hand side of the</span>
-<span class="sd">                            subtraction symbol</span>
-<span class="sd">        Returns:</span>
-<span class="sd">            Vector3D: The Vector3D that represents the subtraction of the</span>
-<span class="sd">                      right hand side Vector3D from the left hand side</span>
-<span class="sd">                      Vector3D</span>
-<span class="sd">        Raises:</span>
-<span class="sd">            Nothing</span>
-<span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
-<span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2.0, y=3.0, z=10.0)</span>
-<span class="sd">            &gt;&gt;&gt; b = Vector3D(x=5.0, y=2.0, z=1.0)</span>
-<span class="sd">            &gt;&gt;&gt; a - b</span>
-<span class="sd">            Vector3D(x=-3.0, y=1.0, z=9.0)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
-            <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-        <span class="p">)</span></div>
-
-
 <div class="viewcode-block" id="Vector3D.__mul__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.__mul__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Multiply the Vector3D by a scalar number</span>
 
@@ -402,50 +362,9 @@
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Vector3D.__rmul__">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.__rmul__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">scalar</span></div>
-
-
-<div class="viewcode-block" id="Vector3D.__neg__">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.__neg__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Multiply the Vector3D by -1</span>
-
-<span class="sd">        Let :math:`\\vec{a} = \\begin{pmatrix} a_x \\\\ a_y \\\\ a_z  \\end{pmatrix}` and constant :math:`-1`:</span>
-
-<span class="sd">        .. math::</span>
-
-<span class="sd">             -1 * \\vec{a}</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Vector3D: The Vector3D with the opposite orientation</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            Nothing</span>
-<span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
-<span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2.0, y=3.0, z=4.0)</span>
-<span class="sd">            &gt;&gt;&gt; -a</span>
-<span class="sd">            Vector3D(x=-2.0, y=-3.0, z=-4.0)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">vector</span></div>
-
-
-    <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-
-<div class="viewcode-block" id="Vector3D.dot">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.dot">[docs]</a>
-    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span></div>
-
-
 <div class="viewcode-block" id="Vector3D.cross">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.Vector3D.cross">[docs]</a>
-    <span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
             <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">rhs</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
@@ -469,34 +388,44 @@
 
 
 
-<div class="viewcode-block" id="translate">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.translate">[docs]</a>
-<span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
+<div class="viewcode-block" id="scale">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.scale">[docs]</a>
+<span class="k">def</span> <span class="nf">scale</span><span class="p">(</span>
+    <span class="n">m_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">m_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">m_z</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">b</span>
+        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">m_x</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">m_y</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">m_z</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">b</span>
+        <span class="k">if</span> <span class="n">m_x</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">m_y</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">m_z</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Note invertible.  Scaling factors cannot be zero.&quot;</span>
+            <span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">m_x</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="n">m_y</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span> <span class="o">/</span> <span class="n">m_z</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
 
 
 <span class="c1"># doc-region-begin define rotate x</span>
 <div class="viewcode-block" id="rotate_x">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.rotate_x">[docs]</a>
-<span class="k">def</span> <span class="nf">rotate_x</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
-    <span class="n">fn</span> <span class="o">=</span> <span class="n">rotate2D</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">rotate_x</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">create_rotate_function</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Vector3D</span><span class="p">],</span> <span class="n">Vector3D</span><span class="p">]:</span>
+        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">:</span>
+            <span class="n">yz_on_xy</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">rotated_yz_on_xy</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">r</span><span class="p">(</span><span class="n">yz_on_xy</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">rotated_yz_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">rotated_yz_on_xy</span><span class="o">.</span><span class="n">y</span>
+            <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="n">yz_on_xy</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yz_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">yz_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">f</span>
 
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="n">yz_on_xy</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yz_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">yz_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span>
+        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">mathutils</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+    <span class="p">)</span></div>
 
     <span class="c1"># doc-region-end define rotate x</span>
 
@@ -504,18 +433,21 @@
 <span class="c1"># doc-region-begin define rotate y</span>
 <div class="viewcode-block" id="rotate_y">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.rotate_y">[docs]</a>
-<span class="k">def</span> <span class="nf">rotate_y</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
-    <span class="n">fn</span> <span class="o">=</span> <span class="n">rotate2D</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">rotate_y</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">create_rotate_function</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Vector3D</span><span class="p">],</span> <span class="n">Vector3D</span><span class="p">]:</span>
+        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">:</span>
+            <span class="n">zx_on_xy</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">rotated_zx_on_xy</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">r</span><span class="p">(</span><span class="n">zx_on_xy</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">rotated_zx_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">rotated_zx_on_xy</span><span class="o">.</span><span class="n">x</span>
+            <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="n">zx_on_xy</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zx_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">zx_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">f</span>
 
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="n">zx_on_xy</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">zx_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">zx_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span>
+        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">mathutils</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+    <span class="p">)</span></div>
 
     <span class="c1"># doc-region-end define rotate y</span>
 
@@ -523,66 +455,23 @@
 <span class="c1"># doc-region-begin define rotate z</span>
 <div class="viewcode-block" id="rotate_z">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.rotate_z">[docs]</a>
-<span class="k">def</span> <span class="nf">rotate_z</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
-    <span class="n">fn</span> <span class="o">=</span> <span class="n">rotate2D</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">rotate_z</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">create_rotate_function</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Vector3D</span><span class="p">],</span> <span class="n">Vector3D</span><span class="p">]:</span>
+        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">:</span>
+            <span class="n">xy_on_xy</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">rotated_xy_on_xy</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">r</span><span class="p">(</span><span class="n">xy_on_xy</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">rotated_xy_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">rotated_xy_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span>
+            <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="n">xy_on_xy</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xy_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">xy_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">f</span>
 
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="n">xy_on_xy</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xy_on_xy</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">xy_on_xy</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span>
+        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">mathutils</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+    <span class="p">)</span></div>
 
     <span class="c1"># doc-region-end define rotate z</span>
-
-
-<span class="c1"># doc-region-begin define uniform scale</span>
-<div class="viewcode-block" id="uniform_scale">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.uniform_scale">[docs]</a>
-<span class="k">def</span> <span class="nf">uniform_scale</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">m</span>
-
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not invertible.  Scaling factor cannot be zero.&quot;</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
-
-    <span class="c1"># doc-region-end define uniform scale</span>
-
-
-<div class="viewcode-block" id="scale">
-<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.scale">[docs]</a>
-<span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">m_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">m_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">m_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
-            <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">m_x</span><span class="p">),</span>
-            <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">m_y</span><span class="p">),</span>
-            <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">m_z</span><span class="p">),</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">m_x</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Note invertible.  Scale_x cannot be zero.&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">m_y</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Note invertible.  Scale_y cannot be zero.&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">m_z</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Note invertible.  Scale_z cannot be zero.&quot;</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
-            <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">m_x</span><span class="p">),</span>
-            <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="n">m_y</span><span class="p">),</span>
-            <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span> <span class="o">/</span> <span class="n">m_z</span><span class="p">),</span>
-        <span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
-
 
 
 <span class="c1"># doc-region-begin define ortho</span>
@@ -595,7 +484,7 @@
     <span class="n">top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">near</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">far</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
     <span class="n">midpoint</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span>
         <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">bottom</span> <span class="o">+</span> <span class="n">top</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="n">near</span> <span class="o">+</span> <span class="n">far</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
     <span class="p">)</span>
@@ -604,13 +493,15 @@
     <span class="n">length_z</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">length_x</span><span class="p">,</span> <span class="n">length_y</span><span class="p">,</span> <span class="n">length_z</span> <span class="o">=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">,</span> <span class="n">top</span> <span class="o">-</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">far</span> <span class="o">-</span> <span class="n">near</span>
 
-    <span class="n">fn</span> <span class="o">=</span> <span class="n">compose</span><span class="p">(</span>
-        <span class="n">scale</span><span class="p">(</span>
-            <span class="n">m_x</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">length_x</span><span class="p">),</span>
-            <span class="n">m_y</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">length_y</span><span class="p">),</span>
-            <span class="n">m_z</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">length_z</span><span class="p">)),</span>
-        <span class="p">),</span>
-        <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">midpoint</span><span class="p">),</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">scale</span><span class="p">(</span>
+                <span class="n">m_x</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">length_x</span><span class="p">),</span>
+                <span class="n">m_y</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">length_y</span><span class="p">),</span>
+                <span class="n">m_z</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">length_z</span><span class="p">)),</span>
+            <span class="p">),</span>
+            <span class="n">mathutils</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">midpoint</span><span class="p">),</span>
+        <span class="p">]</span>
     <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
@@ -619,7 +510,7 @@
     <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f_inv</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
     <span class="c1"># doc-region-end define ortho</span>
 
@@ -629,8 +520,8 @@
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.perspective">[docs]</a>
 <span class="k">def</span> <span class="nf">perspective</span><span class="p">(</span>
     <span class="n">field_of_view</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">near_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">far_z</span><span class="p">:</span> <span class="nb">float</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
-    <span class="c1"># field_of_view, field of view, is angle of y</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
+    <span class="c1"># field_of_view, dataclasses.field of view, is angle of y</span>
     <span class="c1"># aspect_ratio is x_width / y_width</span>
 
     <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="n">near_z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">field_of_view</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
@@ -646,52 +537,53 @@
     <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="n">s1d</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale1d</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+        <span class="n">s1d</span><span class="p">:</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">mathutils</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span>
             <span class="n">s1d</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">s1d</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
+        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
 
-        <span class="n">inverse_s1d</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span>
-            <span class="n">scale1d</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+        <span class="n">mathutils</span><span class="o">.</span><span class="n">inverse_s1d</span><span class="p">:</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">mathutils</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">mathutils</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
-            <span class="n">inverse_s1d</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">x</span><span class="p">),</span>
-            <span class="n">inverse_s1d</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">y</span><span class="p">),</span>
+            <span class="n">mathutils</span><span class="o">.</span><span class="n">inverse_s1d</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">x</span><span class="p">),</span>
+            <span class="n">mathutils</span><span class="o">.</span><span class="n">inverse_s1d</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">y</span><span class="p">),</span>
             <span class="n">rectangular_prism</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
     <span class="c1"># doc-region-end define perspective</span>
 
 
+<span class="c1"># doc-region-begin define camera space to ndc</span>
 <div class="viewcode-block" id="cs_to_ndc_space_fn">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.cs_to_ndc_space_fn">[docs]</a>
-<span class="k">def</span> <span class="nf">cs_to_ndc_space_fn</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="n">fn</span> <span class="o">=</span> <span class="n">perspective</span><span class="p">(</span>
-            <span class="n">field_of_view</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">near_z</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">far_z</span><span class="o">=-</span><span class="mf">1000.0</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cs_to_ndc_space_fn</span><span class="p">(</span>
+    <span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">perspective</span><span class="p">(</span>
+        <span class="n">field_of_view</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">near_z</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">far_z</span><span class="o">=-</span><span class="mf">1000.0</span>
+    <span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Inverse_Inner cs_to_ndc_spcae_fn not yet implement&quot;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
 
+<span class="c1"># doc-region-end define camera space to ndc</span>
 
 
 <span class="c1"># doc-region-begin define function stack class</span>
 <div class="viewcode-block" id="FunctionStack">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.FunctionStack">[docs]</a>
-<span class="nd">@dataclass</span>
+<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
 <span class="k">class</span> <span class="nc">FunctionStack</span><span class="p">:</span>
-    <span class="n">stack</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="n">stack</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[])</span>
     <span class="p">)</span>
 
 <div class="viewcode-block" id="FunctionStack.push">
@@ -714,8 +606,8 @@
 
 <div class="viewcode-block" id="FunctionStack.modelspace_to_ndc_fn">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.FunctionStack.modelspace_to_ndc_fn">[docs]</a>
-    <span class="k">def</span> <span class="nf">modelspace_to_ndc_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="n">compose</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">modelspace_to_ndc_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="p">)</span></div>
 </div>
 
 
@@ -726,7 +618,7 @@
 
 <div class="viewcode-block" id="push_transformation">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils3d.push_transformation">[docs]</a>
-<span class="nd">@contextmanager</span>
+<span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
 <span class="k">def</span> <span class="nf">push_transformation</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>

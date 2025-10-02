@@ -228,6 +228,7 @@
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
 </ul>
 
 </div>
@@ -288,9 +289,9 @@ mostly already know.</p>
 In this book, the applications created
 won’t be particularly pretty or realistic-looking. After reading this
 book, for more advanced
-topics, you’ll want to dive into othere references, such as</p>
+topics, you’ll want to dive into other references, such as</p>
 <ol class="arabic simple">
-<li><p>Fundamentals of Computer Graphics, by Shirley and Marschner <span id="id1">[<a class="reference internal" href="bibliography.html#id3" title="Peter Shirley and Steve Marschner. Fundamentals of Computer Graphics. A K Peters, Ltd, third edition, 2009.">SM09a</a>]</span></p></li>
+<li><p>Fundamentals of Computer Graphics, Third Edition by Shirley and Marschner <span id="id1">[<a class="reference internal" href="bibliography.html#id3" title="Peter Shirley and Steve Marschner. Fundamentals of Computer Graphics. A K Peters, Ltd, third edition, 2009.">SM09a</a>]</span></p></li>
 <li><p>Computer Graphics With OpenGL, by Hearn Baker and Carithers <span id="id2">[<a class="reference internal" href="bibliography.html#id4" title="Donald Hearn, M. Pauline Baker, and Warren R. Carithers. Computer Graphics with OpenGL. Prentice Hall, fourth edition, 2011.">HBC11a</a>]</span></p></li>
 <li><p><a class="reference external" href="https://learnopengl.com/">LearnOpenGL</a></p></li>
 <li><p><a class="reference external" href="http://www.opengl-tutorial.org/">OpenGLTutorial</a></p></li>
@@ -317,7 +318,11 @@ topics, you’ll want to dive into othere references, such as</p>
 </li>
 </ol>
 </li>
-<li><p>High school Geometry</p></li>
+<li><p>High school Geometry</p>
+<ol class="arabic simple">
+<li><p><span id="id3">[<a class="reference internal" href="bibliography.html#id6" title="Randall I. Charles, Basia Hall, Dan Kennedy, Laurie E. Bass, Art Johnson, Stuart J Murphy, and Grant. Wiggins. Geometry, Common Core. Pearson, 2012.">CHK+12</a>]</span></p></li>
+</ol>
+</li>
 </ol>
 </section>
 <section id="required-software">
@@ -337,6 +342,11 @@ the virtual environment, open the Developer Command Prompt,</p>
 <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
 </div>
+<p>The book assumes that you’ll use the Spyder Integrated Development Environment (IDE),
+to install Spyder</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">spyder</span>
+</pre></div>
+</div>
 <p>To run the Spyder Integrated Development Environment (IDE) to execute
 the code in the book, open Spyder on the Developer Command
 Prompt</p>
@@ -350,11 +360,16 @@ Prompt</p>
 <section id="linux">
 <h3>Linux<a class="headerlink" href="#linux" title="Link to this heading">¶</a></h3>
 <p>Install Python3, glfw via a package manager.  Use pip and virtualenv to install dependencies</p>
-<p>On MacOS or Linux, to set up the environment in a terminal, execute</p>
+<p>To set up the environment in a terminal, execute</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
 <span class="nb">source</span><span class="w"> </span>venv/bin/activate
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span>setuptools
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+<p>The book assumes that you’ll use the Spyder Integrated Development Environment (IDE),
+to install Spyder</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">spyder</span>
 </pre></div>
 </div>
 <p>To run the Spyder IDE to execute the code in the book, open Spyder on the developer command
@@ -367,11 +382,16 @@ prompt</p>
 <section id="mac">
 <h3>Mac<a class="headerlink" href="#mac" title="Link to this heading">¶</a></h3>
 <p>Install Python3 (via anaconda, homebrew, macports, whatever), and use pip and virtualenv to install dependencies.</p>
-<p>On MacOS or Linux, to set up the environment in a terminal, execute</p>
+<p>On MacOS, to set up the environment in a terminal, execute</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
 <span class="nb">source</span><span class="w"> </span>venv/bin/activate
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span>setuptools
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+<p>The book assumes that you’ll use the Spyder Integrated Development Environment (IDE),
+to install Spyder</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">spyder</span>
 </pre></div>
 </div>
 <p>To run the Spyder IDE to execute the code in the book, open Spyder on the developer command
@@ -384,19 +404,47 @@ prompt</p>
 <section id="podman-container">
 <h3>Podman Container<a class="headerlink" href="#podman-container" title="Link to this heading">¶</a></h3>
 <p>The code is mainly tested against a container in Podman, specified in the Dockerfile.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">image</span> <span class="c1"># make the base OCI image</span>
-<span class="n">make</span> <span class="n">shell</span> <span class="c1"># get a shell into the environment</span>
-<span class="n">make</span> <span class="n">spyderimage</span> <span class="c1"># make the OCI image that has the base image and Spyder IDE preinstalled</span>
-<span class="n">make</span> <span class="n">spyder</span> <span class="c1"># run spyder in the OCI container</span>
-<span class="n">make</span> <span class="n">jupyter</span> <span class="c1"># run jupyter notebook in a container</span>
+<section id="command-line">
+<h4>Command Line<a class="headerlink" href="#command-line" title="Link to this heading">¶</a></h4>
+<p>To run the code from the command line, run the following to create the podman image</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">image</span>
+</pre></div>
+</div>
+<p>Once that is made, you can run the image in a container by running</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">shell</span> <span class="c1"># get a shell into the environment</span>
+</pre></div>
+</div>
+</section>
+<section id="spyder">
+<h4>Spyder<a class="headerlink" href="#spyder" title="Link to this heading">¶</a></h4>
+<p>To create the podman image for running the code in Spyder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">spyderimage</span> <span class="c1"># make the OCI image that has the base image and Spyder IDE preinstalled</span>
+</pre></div>
+</div>
+<p>To run Spyder within the container</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">spyder</span> <span class="c1"># run spyder in the OCI container</span>
+</pre></div>
+</div>
+</section>
+<section id="jupyter-notebook">
+<h4>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">¶</a></h4>
+<p>To run Python code as jupyter notebooks, the following command will launch
+jupyter and a firefox web browser from within the container.</p>
+<p>Make the image</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">image</span>
+</pre></div>
+</div>
+<p>Run Jupyter notebook</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">jupyter</span> <span class="c1"># run jupyter notebook in a container</span>
 </pre></div>
 </div>
 </section>
 </section>
-<section id="source-code">
-<h2>Source code<a class="headerlink" href="#source-code" title="Link to this heading">¶</a></h2>
+</section>
+<section id="getting-the-source-code">
+<h2>Getting the Source code<a class="headerlink" href="#getting-the-source-code" title="Link to this heading">¶</a></h2>
 <p>This book references source code, which is at <a class="reference external" href="https://github.com/billsix/modelviewprojection">https://github.com/billsix/modelviewprojection</a></p>
-<p>This documentation was generated from from commit 64062e19f6e675b145ca86241c3b6657a7e3772a</p>
+<p>This documentation was generated from from commit e4deead2580dc35650a150c40895798d7973094e</p>
 </section>
 </section>
 
@@ -462,10 +510,15 @@ prompt</p>
 <li><a class="reference internal" href="#windows">Windows</a></li>
 <li><a class="reference internal" href="#linux">Linux</a></li>
 <li><a class="reference internal" href="#mac">Mac</a></li>
-<li><a class="reference internal" href="#podman-container">Podman Container</a></li>
+<li><a class="reference internal" href="#podman-container">Podman Container</a><ul>
+<li><a class="reference internal" href="#command-line">Command Line</a></li>
+<li><a class="reference internal" href="#spyder">Spyder</a></li>
+<li><a class="reference internal" href="#jupyter-notebook">Jupyter Notebook</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#source-code">Source code</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#getting-the-source-code">Getting the Source code</a></li>
 </ul>
 </li>
 </ul>

@@ -228,6 +228,7 @@
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
 </ul>
 
 </div>
@@ -333,64 +334,67 @@ of being rotated around their <a class="reference internal" href="glossary.html#
 around a given point in world space, in this case, the paddle’s center.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">32</span><span class="nd">@dataclass</span>
-<span class="linenos">33</span><span class="k">class</span> <span class="nc">Vector2D</span><span class="p">:</span>
-<span class="linenos">34</span>    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The x-component of the 2D Vector</span>
-<span class="linenos">35</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 2D Vector</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">28</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="linenos">29</span><span class="k">class</span> <span class="nc">Vector2D</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">):</span>
+<span class="linenos">30</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 2D Vector</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">237</span><span class="k">def</span> <span class="nf">rotate_around</span><span class="p">(</span>
-<span class="linenos">238</span>    <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Vector2D</span>
-<span class="linenos">239</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]:</span>
-<span class="linenos">240</span>    <span class="k">return</span> <span class="n">compose</span><span class="p">(</span>
-<span class="linenos">241</span>        <span class="n">translate</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">center</span><span class="p">)</span>
-<span class="linenos">242</span>    <span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">142</span><span class="k">def</span> <span class="nf">rotate_around</span><span class="p">(</span>
+<span class="linenos">143</span>    <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Vector2D</span>
+<span class="linenos">144</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]:</span>
+<span class="linenos">145</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">146</span>        <span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">center</span><span class="p">)]</span>
+<span class="linenos">147</span>    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Within the event loop, this seems quite reasonable</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo08.py</span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">171</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">145</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo08.py</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">192</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="n">astuple</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
-<span class="linenos">193</span>
-<span class="linenos">194</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">195</span>    <span class="n">rotatePoint</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span>
-<span class="linenos">196</span>    <span class="k">for</span> <span class="n">p1_v_ms</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">197</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">compose</span><span class="p">(</span>
-<span class="linenos">198</span>            <span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
-<span class="linenos">199</span>            <span class="n">rotate_around</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">rotatePoint</span><span class="p">),</span>
-<span class="linenos">200</span>            <span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
-<span class="linenos">201</span>        <span class="p">)</span>
-<span class="linenos">202</span>        <span class="n">paddle1_vector_ndc</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">p1_v_ms</span><span class="p">)</span>
-<span class="linenos">203</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">166</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="nb">iter</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
+<span class="linenos">167</span>
+<span class="linenos">168</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">169</span>    <span class="n">rotatePoint</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">position</span>
+<span class="linenos">170</span>    <span class="k">for</span> <span class="n">p1_v_ms</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">171</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">172</span>            <span class="p">[</span>
+<span class="linenos">173</span>                <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
+<span class="linenos">174</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate_around</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">rotatePoint</span><span class="p">),</span>
+<span class="linenos">175</span>                <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
+<span class="linenos">176</span>            <span class="p">]</span>
+<span class="linenos">177</span>        <span class="p">)</span>
+<span class="linenos">178</span>        <span class="n">paddle1_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">p1_v_ms</span><span class="p">)</span>
+<span class="linenos">179</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo08.py</span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">208</span>    <span class="c1"># draw paddle 2</span>
-<span class="linenos">209</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="n">astuple</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
-<span class="linenos">210</span>
-<span class="linenos">211</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">212</span>    <span class="n">rotatePoint</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span>
-<span class="linenos">213</span>    <span class="k">for</span> <span class="n">p2_v_ms</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">214</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">compose</span><span class="p">(</span>
-<span class="linenos">215</span>            <span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
-<span class="linenos">216</span>            <span class="n">rotate_around</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">rotatePoint</span><span class="p">),</span>
-<span class="linenos">217</span>            <span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
-<span class="linenos">218</span>        <span class="p">)</span>
-<span class="linenos">219</span>        <span class="n">paddle2_vector_ndc</span><span class="p">:</span> <span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">p2_v_ms</span><span class="p">)</span>
-<span class="linenos">220</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">221</span>    <span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">184</span>    <span class="c1"># draw paddle 2</span>
+<span class="linenos">185</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="nb">iter</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
+<span class="linenos">186</span>
+<span class="linenos">187</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">188</span>    <span class="n">rotatePoint</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">position</span>
+<span class="linenos">189</span>    <span class="k">for</span> <span class="n">p2_v_ms</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">190</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">191</span>            <span class="p">[</span>
+<span class="linenos">192</span>                <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
+<span class="linenos">193</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate_around</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">rotatePoint</span><span class="p">),</span>
+<span class="linenos">194</span>                <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
+<span class="linenos">195</span>            <span class="p">]</span>
+<span class="linenos">196</span>        <span class="p">)</span>
+<span class="linenos">197</span>        <span class="n">paddle2_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">p2_v_ms</span><span class="p">)</span>
+<span class="linenos">198</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">199</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

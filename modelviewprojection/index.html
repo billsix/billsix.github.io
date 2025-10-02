@@ -228,6 +228,7 @@
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
 </ul>
 
 </div>
@@ -280,10 +281,15 @@
 <li class="toctree-l3"><a class="reference internal" href="intro.html#windows">Windows</a></li>
 <li class="toctree-l3"><a class="reference internal" href="intro.html#linux">Linux</a></li>
 <li class="toctree-l3"><a class="reference internal" href="intro.html#mac">Mac</a></li>
-<li class="toctree-l3"><a class="reference internal" href="intro.html#podman-container">Podman Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro.html#podman-container">Podman Container</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="intro.html#command-line">Command Line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intro.html#spyder">Spyder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intro.html#jupyter-notebook">Jupyter Notebook</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#source-code">Source code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#getting-the-source-code">Getting the Source code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a><ul>
@@ -300,15 +306,11 @@
 <li class="toctree-l4"><a class="reference internal" href="ch01.html#initialize-glfw">Initialize GLFW.</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ch01.html#set-the-version-of-opengl">Set the version of OpenGL</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ch01.html#create-a-window">Create a Window</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="ch01.html#to-note">To Note</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="ch01.html#the-event-loop">The Event Loop</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="ch01.html#exercise">Exercise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch01.html#black-screen">Black Screen</a></li>
 </ul>
 </li>
@@ -357,7 +359,7 @@
 <li class="toctree-l2"><a class="reference internal" href="programmingproj1.html#objective">Objective</a></li>
 <li class="toctree-l2"><a class="reference internal" href="programmingproj1.html#examples">Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="programmingproj1.html#draw-a-triangle">Draw a triangle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="programmingproj1.html#draw-an-oscillating-triagle">Draw an Oscillating Triagle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programmingproj1.html#draw-an-oscillating-triangle">Draw an Oscillating Triangle</a></li>
 <li class="toctree-l3"><a class="reference internal" href="programmingproj1.html#draw-x-2-precomputed">Draw X^2 (Precomputed)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="programmingproj1.html#draw-x-1-2-2-dynamically">Draw (X-1/2)^2 (Dynamically)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="programmingproj1.html#black-box">Black Box</a></li>
@@ -650,68 +652,62 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils.inverse"><code class="docutils literal notranslate"><span class="pre">inverse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils.compose"><code class="docutils literal notranslate"><span class="pre">compose()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils.compose_intermediate_fns"><code class="docutils literal notranslate"><span class="pre">compose_intermediate_fns()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils.compose_intermediate_fns_and_fn"><code class="docutils literal notranslate"><span class="pre">compose_intermediate_fns_and_fn()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils.translate"><code class="docutils literal notranslate"><span class="pre">translate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils.uniform_scale"><code class="docutils literal notranslate"><span class="pre">uniform_scale()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils.Vector"><code class="docutils literal notranslate"><span class="pre">Vector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils.Vector.__add__"><code class="docutils literal notranslate"><span class="pre">Vector.__add__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils.Vector.__sub__"><code class="docutils literal notranslate"><span class="pre">Vector.__sub__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils.Vector.__mul__"><code class="docutils literal notranslate"><span class="pre">Vector.__mul__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils.Vector.__rmul__"><code class="docutils literal notranslate"><span class="pre">Vector.__rmul__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils.Vector.__neg__"><code class="docutils literal notranslate"><span class="pre">Vector.__neg__()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-modelviewprojection.mathutils1d">Math Utils 1D</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D"><code class="docutils literal notranslate"><span class="pre">Vector1D</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D.x"><code class="docutils literal notranslate"><span class="pre">Vector1D.x</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D.__add__"><code class="docutils literal notranslate"><span class="pre">Vector1D.__add__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D.__sub__"><code class="docutils literal notranslate"><span class="pre">Vector1D.__sub__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D.__mul__"><code class="docutils literal notranslate"><span class="pre">Vector1D.__mul__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D.__rmul__"><code class="docutils literal notranslate"><span class="pre">Vector1D.__rmul__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D.__neg__"><code class="docutils literal notranslate"><span class="pre">Vector1D.__neg__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D.dot"><code class="docutils literal notranslate"><span class="pre">Vector1D.dot()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils1d.translate"><code class="docutils literal notranslate"><span class="pre">translate()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils1d.uniform_scale"><code class="docutils literal notranslate"><span class="pre">uniform_scale()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-modelviewprojection.mathutils2d">Math Utils 2D</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.Vector2D"><code class="docutils literal notranslate"><span class="pre">Vector2D</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.Vector2D.x"><code class="docutils literal notranslate"><span class="pre">Vector2D.x</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.Vector2D.y"><code class="docutils literal notranslate"><span class="pre">Vector2D.y</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.Vector2D.__add__"><code class="docutils literal notranslate"><span class="pre">Vector2D.__add__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.Vector2D.__sub__"><code class="docutils literal notranslate"><span class="pre">Vector2D.__sub__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.Vector2D.__mul__"><code class="docutils literal notranslate"><span class="pre">Vector2D.__mul__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.Vector2D.__rmul__"><code class="docutils literal notranslate"><span class="pre">Vector2D.__rmul__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.Vector2D.__neg__"><code class="docutils literal notranslate"><span class="pre">Vector2D.__neg__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.Vector2D.dot"><code class="docutils literal notranslate"><span class="pre">Vector2D.dot()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.translate"><code class="docutils literal notranslate"><span class="pre">translate()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.uniform_scale"><code class="docutils literal notranslate"><span class="pre">uniform_scale()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.scale"><code class="docutils literal notranslate"><span class="pre">scale()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.rotate_90_degrees"><code class="docutils literal notranslate"><span class="pre">rotate_90_degrees()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.rotate"><code class="docutils literal notranslate"><span class="pre">rotate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.rotate_around"><code class="docutils literal notranslate"><span class="pre">rotate_around()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.cosine"><code class="docutils literal notranslate"><span class="pre">cosine()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.sine"><code class="docutils literal notranslate"><span class="pre">sine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.is_counter_clockwise"><code class="docutils literal notranslate"><span class="pre">is_counter_clockwise()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.is_clockwise"><code class="docutils literal notranslate"><span class="pre">is_clockwise()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils2d.is_parallel"><code class="docutils literal notranslate"><span class="pre">is_parallel()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-modelviewprojection.mathutils3d">Math Utils 3D</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D"><code class="docutils literal notranslate"><span class="pre">Vector3D</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D.x"><code class="docutils literal notranslate"><span class="pre">Vector3D.x</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D.y"><code class="docutils literal notranslate"><span class="pre">Vector3D.y</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D.z"><code class="docutils literal notranslate"><span class="pre">Vector3D.z</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D.__add__"><code class="docutils literal notranslate"><span class="pre">Vector3D.__add__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D.__sub__"><code class="docutils literal notranslate"><span class="pre">Vector3D.__sub__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D.__mul__"><code class="docutils literal notranslate"><span class="pre">Vector3D.__mul__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D.__rmul__"><code class="docutils literal notranslate"><span class="pre">Vector3D.__rmul__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D.__neg__"><code class="docutils literal notranslate"><span class="pre">Vector3D.__neg__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D.dot"><code class="docutils literal notranslate"><span class="pre">Vector3D.dot()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.Vector3D.cross"><code class="docutils literal notranslate"><span class="pre">Vector3D.cross()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.cos"><code class="docutils literal notranslate"><span class="pre">cos()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.abs_sin"><code class="docutils literal notranslate"><span class="pre">abs_sin()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.translate"><code class="docutils literal notranslate"><span class="pre">translate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.scale"><code class="docutils literal notranslate"><span class="pre">scale()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.rotate_x"><code class="docutils literal notranslate"><span class="pre">rotate_x()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.rotate_y"><code class="docutils literal notranslate"><span class="pre">rotate_y()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.rotate_z"><code class="docutils literal notranslate"><span class="pre">rotate_z()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.uniform_scale"><code class="docutils literal notranslate"><span class="pre">uniform_scale()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.scale"><code class="docutils literal notranslate"><span class="pre">scale()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.ortho"><code class="docutils literal notranslate"><span class="pre">ortho()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.perspective"><code class="docutils literal notranslate"><span class="pre">perspective()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#modelviewprojection.mathutils3d.cs_to_ndc_space_fn"><code class="docutils literal notranslate"><span class="pre">cs_to_ndc_space_fn()</span></code></a></li>
@@ -729,6 +725,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="miscellany.html#first-class-functions">First Class Functions</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <section id="indices-and-tables">
