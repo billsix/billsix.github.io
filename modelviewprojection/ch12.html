@@ -355,17 +355,17 @@
 <p>Make a variable to determine the angle that the square will be rotated.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo12.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">135</span><span class="n">square_rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">134</span><span class="n">square_rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
 </pre></div>
 </div>
 </div>
 <p>When ‘q’ is pressed, increase the angle.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo12.py</span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">140</span><span class="k">def</span> <span class="nf">handle_inputs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">141</span>    <span class="k">global</span> <span class="n">square_rotation</span>
-<span class="linenos">142</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_Q</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">143</span>        <span class="n">square_rotation</span> <span class="o">+=</span> <span class="mf">0.1</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">139</span><span class="k">def</span> <span class="nf">handle_inputs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">140</span>    <span class="k">global</span> <span class="n">square_rotation</span>
+<span class="linenos">141</span>    <span class="k">if</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_Q</span><span class="p">)</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">142</span>        <span class="n">square_rotation</span> <span class="o">+=</span> <span class="mf">0.1</span>
 </pre></div>
 </div>
 </div>
@@ -378,29 +378,29 @@
 the square.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo11.py</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">224</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">225</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">226</span>    <span class="k">for</span> <span class="n">ms</span> <span class="ow">in</span> <span class="n">square</span><span class="p">:</span>
-<span class="linenos">227</span>        <span class="n">ms_to_ndc</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">228</span>            <span class="p">[</span>
-<span class="linenos">229</span>                <span class="c1"># camera space to NDC</span>
-<span class="linenos">230</span>                <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
-<span class="linenos">231</span>                <span class="c1"># world space to camera space</span>
-<span class="linenos">232</span>                <span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">position_ws</span><span class="p">)),</span>
-<span class="linenos">233</span>                <span class="c1"># model space to world space</span>
-<span class="linenos">234</span>                <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">235</span>                    <span class="p">[</span>
-<span class="linenos">236</span>                        <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
-<span class="linenos">237</span>                        <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
-<span class="linenos">238</span>                    <span class="p">]</span>
-<span class="linenos">239</span>                <span class="p">),</span>
-<span class="linenos">240</span>                <span class="c1"># square space to paddle 1 space</span>
-<span class="linenos">241</span>                <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)),</span>
-<span class="linenos">242</span>            <span class="p">]</span>
-<span class="linenos">243</span>        <span class="p">)</span>
-<span class="linenos">244</span>        <span class="n">square_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">ms_to_ndc</span><span class="p">(</span><span class="n">ms</span><span class="p">)</span>
-<span class="linenos">245</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">square_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">square_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">246</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">222</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">223</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">224</span>    <span class="k">for</span> <span class="n">ms</span> <span class="ow">in</span> <span class="n">square</span><span class="p">:</span>
+<span class="linenos">225</span>        <span class="n">ms_to_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">226</span>            <span class="p">[</span>
+<span class="linenos">227</span>                <span class="c1"># camera space to NDC</span>
+<span class="linenos">228</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
+<span class="linenos">229</span>                <span class="c1"># world space to camera space</span>
+<span class="linenos">230</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">position_ws</span><span class="p">)),</span>
+<span class="linenos">231</span>                <span class="c1"># model space to world space</span>
+<span class="linenos">232</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">233</span>                    <span class="p">[</span>
+<span class="linenos">234</span>                        <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
+<span class="linenos">235</span>                        <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
+<span class="linenos">236</span>                    <span class="p">]</span>
+<span class="linenos">237</span>                <span class="p">),</span>
+<span class="linenos">238</span>                <span class="c1"># square space to paddle 1 space</span>
+<span class="linenos">239</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)),</span>
+<span class="linenos">240</span>            <span class="p">]</span>
+<span class="linenos">241</span>        <span class="p">)</span>
+<span class="linenos">242</span>        <span class="n">square_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">ms_to_ndc</span><span class="p">(</span><span class="n">ms</span><span class="p">)</span>
+<span class="linenos">243</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">square_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">square_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">244</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -409,34 +409,34 @@ of transformations from paddle 1 space to square space, just add
 a rotate call at the top.</p>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo12.py</span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">225</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">226</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">227</span>    <span class="k">for</span> <span class="n">ms</span> <span class="ow">in</span> <span class="n">square</span><span class="p">:</span>
-<span class="linenos">228</span>        <span class="n">ms_to_ndc</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">229</span>            <span class="p">[</span>
-<span class="linenos">230</span>                <span class="c1"># camera space to NDC</span>
-<span class="linenos">231</span>                <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
-<span class="linenos">232</span>                <span class="c1"># world space to camera space</span>
-<span class="linenos">233</span>                <span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">position_ws</span><span class="p">)),</span>
-<span class="linenos">234</span>                <span class="c1"># model space to world space</span>
-<span class="linenos">235</span>                <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">236</span>                    <span class="p">[</span>
-<span class="linenos">237</span>                        <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
-<span class="linenos">238</span>                        <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
-<span class="linenos">239</span>                    <span class="p">]</span>
-<span class="linenos">240</span>                <span class="p">),</span>
-<span class="linenos">241</span>                <span class="c1"># square space to paddle 1 space</span>
-<span class="linenos">242</span>                <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">243</span>                    <span class="p">[</span>
-<span class="linenos">244</span>                        <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)),</span>
-<span class="linenos">245</span>                        <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">square_rotation</span><span class="p">),</span>
-<span class="linenos">246</span>                    <span class="p">]</span>
-<span class="linenos">247</span>                <span class="p">),</span>
-<span class="linenos">248</span>            <span class="p">]</span>
-<span class="linenos">249</span>        <span class="p">)</span>
-<span class="linenos">250</span>        <span class="n">square_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">ms_to_ndc</span><span class="p">(</span><span class="n">ms</span><span class="p">)</span>
-<span class="linenos">251</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">square_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">square_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">252</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">224</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">225</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">226</span>    <span class="k">for</span> <span class="n">ms</span> <span class="ow">in</span> <span class="n">square</span><span class="p">:</span>
+<span class="linenos">227</span>        <span class="n">ms_to_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">228</span>            <span class="p">[</span>
+<span class="linenos">229</span>                <span class="c1"># camera space to NDC</span>
+<span class="linenos">230</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
+<span class="linenos">231</span>                <span class="c1"># world space to camera space</span>
+<span class="linenos">232</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">position_ws</span><span class="p">)),</span>
+<span class="linenos">233</span>                <span class="c1"># model space to world space</span>
+<span class="linenos">234</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">235</span>                    <span class="p">[</span>
+<span class="linenos">236</span>                        <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
+<span class="linenos">237</span>                        <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
+<span class="linenos">238</span>                    <span class="p">]</span>
+<span class="linenos">239</span>                <span class="p">),</span>
+<span class="linenos">240</span>                <span class="c1"># square space to paddle 1 space</span>
+<span class="linenos">241</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">242</span>                    <span class="p">[</span>
+<span class="linenos">243</span>                        <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)),</span>
+<span class="linenos">244</span>                        <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">square_rotation</span><span class="p">),</span>
+<span class="linenos">245</span>                    <span class="p">]</span>
+<span class="linenos">246</span>                <span class="p">),</span>
+<span class="linenos">247</span>            <span class="p">]</span>
+<span class="linenos">248</span>        <span class="p">)</span>
+<span class="linenos">249</span>        <span class="n">square_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">ms_to_ndc</span><span class="p">(</span><span class="n">ms</span><span class="p">)</span>
+<span class="linenos">250</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">square_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">square_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">251</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

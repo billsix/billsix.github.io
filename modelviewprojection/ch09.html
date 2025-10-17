@@ -370,13 +370,13 @@ origin and axes, i.e. the natural <em>basis</em>.  After each function call, the
 is set back to the origin basis.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo09.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">171</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">172</span>            <span class="p">[</span>
-<span class="linenos">173</span>                <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
-<span class="linenos">174</span>                <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
-<span class="linenos">175</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
-<span class="linenos">176</span>            <span class="p">]</span>
-<span class="linenos">177</span>        <span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">170</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">171</span>            <span class="p">[</span>
+<span class="linenos">172</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
+<span class="linenos">173</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
+<span class="linenos">174</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
+<span class="linenos">175</span>            <span class="p">]</span>
+<span class="linenos">176</span>        <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -389,13 +389,13 @@ all cumulatively modify the current axes and origin, i.e. basis, to a new basis.
 All subsequent functions move that relative basis to a new relative basis.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo09.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">171</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">172</span>            <span class="p">[</span>
-<span class="linenos">173</span>                <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
-<span class="linenos">174</span>                <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
-<span class="linenos">175</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
-<span class="linenos">176</span>            <span class="p">]</span>
-<span class="linenos">177</span>        <span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">170</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">171</span>            <span class="p">[</span>
+<span class="linenos">172</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
+<span class="linenos">173</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
+<span class="linenos">174</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
+<span class="linenos">175</span>            <span class="p">]</span>
+<span class="linenos">176</span>        <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -427,13 +427,13 @@ system.</p>
 L by a right-multiplication of M.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo09.py</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">171</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">172</span>            <span class="p">[</span>
-<span class="linenos">173</span>                <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
-<span class="linenos">174</span>                <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
-<span class="linenos">175</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
-<span class="linenos">176</span>            <span class="p">]</span>
-<span class="linenos">177</span>        <span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">170</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">171</span>            <span class="p">[</span>
+<span class="linenos">172</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
+<span class="linenos">173</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
+<span class="linenos">174</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
+<span class="linenos">175</span>            <span class="p">]</span>
+<span class="linenos">176</span>        <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -453,29 +453,29 @@ and to implement it correctly, we need to be able to reason and compose our thou
 <h3>The Event Loop<a class="headerlink" href="#the-event-loop" title="Link to this heading">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo09.py</span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">144</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">143</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo09.py</span><a class="headerlink" href="#id7" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">165</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="nb">iter</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
-<span class="linenos">166</span>
-<span class="linenos">167</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">168</span>
-<span class="linenos">169</span>    <span class="k">for</span> <span class="n">p1_v_ms</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">170</span>        <span class="c1"># doc-region-begin paddle 1 transformations</span>
-<span class="linenos">171</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">172</span>            <span class="p">[</span>
-<span class="linenos">173</span>                <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
-<span class="linenos">174</span>                <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
-<span class="linenos">175</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
-<span class="linenos">176</span>            <span class="p">]</span>
-<span class="linenos">177</span>        <span class="p">)</span>
-<span class="linenos">178</span>        <span class="c1"># doc-region-end paddle 1 transformations</span>
-<span class="linenos">179</span>        <span class="n">paddle1_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">p1_v_ms</span><span class="p">)</span>
-<span class="linenos">180</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">181</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">164</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="nb">iter</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
+<span class="linenos">165</span>
+<span class="linenos">166</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">167</span>
+<span class="linenos">168</span>    <span class="k">for</span> <span class="n">p1_v_ms</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">169</span>        <span class="c1"># doc-region-begin paddle 1 transformations</span>
+<span class="linenos">170</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">171</span>            <span class="p">[</span>
+<span class="linenos">172</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
+<span class="linenos">173</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
+<span class="linenos">174</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
+<span class="linenos">175</span>            <span class="p">]</span>
+<span class="linenos">176</span>        <span class="p">)</span>
+<span class="linenos">177</span>        <span class="c1"># doc-region-end paddle 1 transformations</span>
+<span class="linenos">178</span>        <span class="n">paddle1_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">p1_v_ms</span><span class="p">)</span>
+<span class="linenos">179</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">180</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -486,20 +486,20 @@ and to implement it correctly, we need to be able to reason and compose our thou
 </ul>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo09.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">186</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="nb">iter</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
-<span class="linenos">187</span>
-<span class="linenos">188</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">189</span>    <span class="k">for</span> <span class="n">p2_v_ms</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">190</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">191</span>            <span class="p">[</span>
-<span class="linenos">192</span>                <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
-<span class="linenos">193</span>                <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
-<span class="linenos">194</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
-<span class="linenos">195</span>            <span class="p">]</span>
-<span class="linenos">196</span>        <span class="p">)</span>
-<span class="linenos">197</span>        <span class="n">paddle2_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">p2_v_ms</span><span class="p">)</span>
-<span class="linenos">198</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">199</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">185</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="o">*</span><span class="nb">iter</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
+<span class="linenos">186</span>
+<span class="linenos">187</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos">188</span>    <span class="k">for</span> <span class="n">p2_v_ms</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+<span class="linenos">189</span>        <span class="n">fn</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">190</span>            <span class="p">[</span>
+<span class="linenos">191</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">),</span>
+<span class="linenos">192</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">),</span>
+<span class="linenos">193</span>                <span class="n">mu2d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">rotation</span><span class="p">),</span>
+<span class="linenos">194</span>            <span class="p">]</span>
+<span class="linenos">195</span>        <span class="p">)</span>
+<span class="linenos">196</span>        <span class="n">paddle2_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">p2_v_ms</span><span class="p">)</span>
+<span class="linenos">197</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">198</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

@@ -371,8 +371,10 @@ see <span id="id1">[<a class="reference internal" href="bibliography.html#id7" t
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">19</span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="linenos">20</span><span class="kn">import</span> <span class="nn">glfw</span>
-<span class="linenos">21</span><span class="kn">import</span> <span class="nn">OpenGL.GL</span> <span class="k">as</span> <span class="nn">GL</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="kn">import</span> <span class="nn">glfw</span>
+<span class="linenos">22</span><span class="kn">import</span> <span class="nn">OpenGL.GL</span> <span class="k">as</span> <span class="nn">GL</span>
+<span class="linenos">23</span>
 </pre></div>
 </div>
 </div>
@@ -392,9 +394,9 @@ are prefaced by their module names.</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id10" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">39</span><span class="k">if</span> <span class="ow">not</span> <span class="n">window</span><span class="p">:</span>
-<span class="linenos">40</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
-<span class="linenos">41</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">41</span><span class="k">if</span> <span class="ow">not</span> <span class="n">window</span><span class="p">:</span>
+<span class="linenos">42</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+<span class="linenos">43</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -428,8 +430,8 @@ also provides functions for handling input from keyboards and game controllers.<
 <h4>Initialize GLFW.<a class="headerlink" href="#initialize-glfw" title="Link to this heading">¶</a></h4>
 <div class="literal-block-wrapper docutils container" id="id12">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id12" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">25</span><span class="k">if</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
-<span class="linenos">26</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">27</span><span class="k">if</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+<span class="linenos">28</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -445,8 +447,8 @@ For this demo, we use <a class="reference external" href="https://khronos.org/re
 <p>Inform GLFW that we wish to used OpenGL 1.4:</p>
 <div class="literal-block-wrapper docutils container" id="id13">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id13" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">30</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="linenos">31</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">32</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">33</span><span class="n">glfw</span><span class="o">.</span><span class="n">window_hint</span><span class="p">(</span><span class="n">glfw</span><span class="o">.</span><span class="n">CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -455,7 +457,7 @@ For this demo, we use <a class="reference external" href="https://khronos.org/re
 <h4>Create a Window<a class="headerlink" href="#create-a-window" title="Link to this heading">¶</a></h4>
 <div class="literal-block-wrapper docutils container" id="id14">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id14" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">35</span><span class="n">window</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">create_window</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;ModelViewProjection Demo 1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">37</span><span class="n">window</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">create_window</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;ModelViewProjection Demo 1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -470,9 +472,9 @@ where the intent of each parameter
 is clear at the site of calling the function.</p>
 <div class="literal-block-wrapper docutils container" id="id15">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id15" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">39</span><span class="k">if</span> <span class="ow">not</span> <span class="n">window</span><span class="p">:</span>
-<span class="linenos">40</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
-<span class="linenos">41</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">41</span><span class="k">if</span> <span class="ow">not</span> <span class="n">window</span><span class="p">:</span>
+<span class="linenos">42</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+<span class="linenos">43</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -481,7 +483,7 @@ is clear at the site of calling the function.</p>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id16">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id16" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">45</span><span class="n">glfw</span><span class="o">.</span><span class="n">make_context_current</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">47</span><span class="n">glfw</span><span class="o">.</span><span class="n">make_context_current</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -491,12 +493,12 @@ for this book, but we need to call it anyways.</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id17">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id17" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">50</span><span class="k">def</span> <span class="nf">on_key</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">scancode</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">mods</span><span class="p">):</span>
-<span class="linenos">51</span>    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_ESCAPE</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
-<span class="linenos">52</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">set_window_should_close</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="linenos">53</span>
-<span class="linenos">54</span>
-<span class="linenos">55</span><span class="n">glfw</span><span class="o">.</span><span class="n">set_key_callback</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">on_key</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">52</span><span class="k">def</span> <span class="nf">on_key</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">scancode</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">mods</span><span class="p">):</span>
+<span class="linenos">53</span>    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">KEY_ESCAPE</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="n">glfw</span><span class="o">.</span><span class="n">PRESS</span><span class="p">:</span>
+<span class="linenos">54</span>        <span class="n">glfw</span><span class="o">.</span><span class="n">set_window_should_close</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span>
+<span class="linenos">57</span><span class="n">glfw</span><span class="o">.</span><span class="n">set_key_callback</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">on_key</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -507,7 +509,7 @@ GLFW that the user wants to quit, which we will handle this later in the
 to other functions.</p>
 <div class="literal-block-wrapper docutils container" id="id18">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id18" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">59</span><span class="n">GL</span><span class="o">.</span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0289</span><span class="p">,</span> <span class="mf">0.071875</span><span class="p">,</span> <span class="mf">0.0972</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">61</span><span class="n">GL</span><span class="o">.</span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.0289</span><span class="p">,</span> <span class="mf">0.071875</span><span class="p">,</span> <span class="mf">0.0972</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -521,10 +523,10 @@ color will be used for a later clear.  Calling “glClearColor”
 </ul>
 <div class="literal-block-wrapper docutils container" id="id19">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id19" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">63</span><span class="n">GL</span><span class="o">.</span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
-<span class="linenos">64</span><span class="n">GL</span><span class="o">.</span><span class="n">glLoadIdentity</span><span class="p">()</span>
-<span class="linenos">65</span><span class="n">GL</span><span class="o">.</span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">65</span><span class="n">GL</span><span class="o">.</span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_PROJECTION</span><span class="p">)</span>
 <span class="linenos">66</span><span class="n">GL</span><span class="o">.</span><span class="n">glLoadIdentity</span><span class="p">()</span>
+<span class="linenos">67</span><span class="n">GL</span><span class="o">.</span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_MODELVIEW</span><span class="p">)</span>
+<span class="linenos">68</span><span class="n">GL</span><span class="o">.</span><span class="n">glLoadIdentity</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -550,13 +552,13 @@ to terminate.</p>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id20">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo01.py</span><a class="headerlink" href="#id20" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">71</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-<span class="linenos">72</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
-<span class="linenos">73</span>
-<span class="linenos">74</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-<span class="linenos">75</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-<span class="linenos">76</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glClear</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL</span><span class="o">.</span><span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
-<span class="linenos">77</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">73</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<span class="linenos">74</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
+<span class="linenos">75</span>
+<span class="linenos">76</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<span class="linenos">77</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="linenos">78</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glClear</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span> <span class="n">GL</span><span class="o">.</span><span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">]))</span>
+<span class="linenos">79</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

@@ -345,9 +345,9 @@ methods, which will be useful later on.</p>
 <h3>Data Structures<a class="headerlink" href="#data-structures" title="Link to this heading">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo05.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">28</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="linenos">29</span><span class="k">class</span> <span class="nc">Vector2D</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">):</span>
-<span class="linenos">30</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 2D Vector</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">58</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="linenos">59</span><span class="k">class</span> <span class="nc">Vector2D</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">):</span>
+<span class="linenos">60</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 2D Vector</span>
 </pre></div>
 </div>
 </div>
@@ -461,7 +461,7 @@ defined relative to the center of the paddle.</p></li>
 <span class="linenos">149</span>
 <span class="linenos">150</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 <span class="linenos">151</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-<span class="linenos">152</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glClear</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL</span><span class="o">.</span><span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">)</span>
+<span class="linenos">152</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glClear</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span> <span class="n">GL</span><span class="o">.</span><span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">]))</span>
 <span class="linenos">153</span>
 <span class="linenos">154</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
 <span class="linenos">155</span>    <span class="n">handle_movement_of_paddles</span><span class="p">()</span>
@@ -474,7 +474,7 @@ defined relative to the center of the paddle.</p></li>
 <span class="linenos">160</span>
 <span class="linenos">161</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
 <span class="linenos">162</span>    <span class="k">for</span> <span class="n">p1_v_ms</span> <span class="ow">in</span> <span class="n">paddle1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">163</span>        <span class="n">paddle1_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)(</span>
+<span class="linenos">163</span>        <span class="n">paddle1_vector_ndc</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle1</span><span class="o">.</span><span class="n">position</span><span class="p">)(</span>
 <span class="linenos">164</span>            <span class="n">p1_v_ms</span>
 <span class="linenos">165</span>        <span class="p">)</span>
 <span class="linenos">166</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle1_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
@@ -492,7 +492,7 @@ from Paddle 1 space to NDC.</p>
 <span class="linenos">172</span>
 <span class="linenos">173</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
 <span class="linenos">174</span>    <span class="k">for</span> <span class="n">p2_v_ms</span> <span class="ow">in</span> <span class="n">paddle2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-<span class="linenos">175</span>        <span class="n">paddle2_vector_ndc</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">)(</span>
+<span class="linenos">175</span>        <span class="n">paddle2_vector_ndc</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">paddle2</span><span class="o">.</span><span class="n">position</span><span class="p">)(</span>
 <span class="linenos">176</span>            <span class="n">p2_v_ms</span>
 <span class="linenos">177</span>        <span class="p">)</span>
 <span class="linenos">178</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">paddle2_vector_ndc</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>

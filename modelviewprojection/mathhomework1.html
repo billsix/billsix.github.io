@@ -295,49 +295,47 @@ your future work), clicking on the API docs will save you time, help you avoid m
 and show you features that you might not realize exists.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">45</span><span class="kn">import</span> <span class="nn">pytest</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">45</span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="linenos">46</span>
-<span class="linenos">47</span><span class="kn">import</span> <span class="nn">modelviewprojection.mathutils</span> <span class="k">as</span> <span class="nn">mu</span>
-<span class="linenos">48</span><span class="kn">import</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="k">as</span> <span class="nn">mu1d</span>
-<span class="linenos">49</span><span class="kn">import</span> <span class="nn">warnings</span>
-<span class="linenos">50</span>
-<span class="linenos">51</span><span class="c1"># turn warnings into exceptions</span>
-<span class="linenos">52</span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>
-<span class="linenos">53</span>
+<span class="linenos">47</span><span class="kn">import</span> <span class="nn">modelviewprojection.mathutils1d</span> <span class="k">as</span> <span class="nn">mu1d</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span><span class="c1"># turn warnings into exceptions</span>
+<span class="linenos">50</span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>
+<span class="linenos">51</span>
 </pre></div>
 </div>
 </div>
 <p>We can do addition on <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D</span></code></a> using “+”, <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D.__add__" title="modelviewprojection.mathutils1d.Vector1D.__add__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D.__add__()</span></code></a></p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">60</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">58</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>We can do subtraction on <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D</span></code></a> using “-”, <code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D.__sub__()</span></code></p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">65</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">63</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>We can do multiply a scalar by  <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D</span></code></a> using “*”, <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D.__mul__" title="modelviewprojection.mathutils1d.Vector1D.__mul__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D.__mul__()</span></code></a></p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">70</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">68</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>We can do negate a  <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D</span></code></a> using “-”, <code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D.__neg__()</span></code></p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">75</span><span class="o">-</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">73</span><span class="o">-</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <section id="translate-implementation">
 <h3>Translate Implementation<a class="headerlink" href="#translate-implementation" title="Link to this heading">¶</a></h3>
-<p>Next we have a very import function, <code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.translate()</span></code>.  Read
+<p>Next we have a very import function, <a class="reference internal" href="api.html#modelviewprojection.mathutils.translate" title="modelviewprojection.mathutils.translate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.translate()</span></code></a>.  Read
 the API documentation in the link, it’s a very important function.</p>
 <p>Translate is a function which partially binds a constant <code class="xref py py-class docutils literal notranslate"><span class="pre">Vector1D</span></code> to
 one of the arguments of <code class="xref py py-meth docutils literal notranslate"><span class="pre">Vector1D.__add__()</span></code>, thus creating
@@ -366,7 +364,7 @@ notated <span class="math notranslate nohighlight">\(T_{b=2}\)</span>, which is 
 <h4>Usage (Black Box)<a class="headerlink" href="#usage-black-box" title="Link to this heading">¶</a></h4>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">87</span><span class="n">fn</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">85</span><span class="n">fn</span><span class="p">:</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -374,31 +372,39 @@ notated <span class="math notranslate nohighlight">\(T_{b=2}\)</span>, which is 
 or many times.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id7" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">96</span><span class="k">assert</span> <span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
-<span class="linenos">97</span><span class="k">assert</span> <span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
-<span class="linenos">98</span><span class="k">assert</span> <span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">7.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">94</span><span class="k">assert</span> <span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="linenos">95</span><span class="k">assert</span> <span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="linenos">96</span><span class="k">assert</span> <span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">7.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Inverting such a function is done by negating <span class="math notranslate nohighlight">\(b\)</span>, so (<span class="math notranslate nohighlight">\({T_{b=2}}^{-1} \circ {T_{b=2}}) (x) = ({T_{b=-2}} \circ {T_{b=2}}) (x) = x\)</span></p>
 <p>To get the inverse in Python, we can call the <a class="reference internal" href="api.html#modelviewprojection.mathutils.inverse" title="modelviewprojection.mathutils.inverse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.inverse()</span></code></a> function
 on our function, without having to worry about how it’s implemented.</p>
-<p>What’s nice about that is we can look at the implementation of <code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.translate()</span></code>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">102</span><span class="k">assert</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">103</span><span class="k">assert</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">104</span><span class="k">assert</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>What’s nice about that is we can look at the implementation of <a class="reference internal" href="api.html#modelviewprojection.mathutils.translate" title="modelviewprojection.mathutils.translate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.translate()</span></code></a>
 once, understand how it works internally, and then forget those details and treat
 it as an invertible <a class="reference external" href="https://en.wikipedia.org/wiki/Black_box">BlackBox</a>.</p>
 </section>
 <section id="definition-white-box">
 <h4>Definition (White Box)<a class="headerlink" href="#definition-white-box" title="Link to this heading">¶</a></h4>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">246</span><span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
-<span class="linenos">247</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<span class="linenos">248</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">b</span>
-<span class="linenos">249</span>
-<span class="linenos">250</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<span class="linenos">251</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">b</span>
-<span class="linenos">252</span>
-<span class="linenos">253</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">T</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">326</span><span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">327</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">328</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">b</span>
+<span class="linenos">329</span>
+<span class="linenos">330</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">331</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">b</span>
+<span class="linenos">332</span>
+<span class="linenos">333</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -411,18 +417,18 @@ it as an invertible <a class="reference external" href="https://en.wikipedia.org
 function composition of a partially bound <span class="math notranslate nohighlight">\(S\)</span> and partially bound <span class="math notranslate nohighlight">\(T\)</span>
 to generate new instances of <span class="math notranslate nohighlight">\(f(x) = m \times x + b\)</span></p>
 <p><span class="math notranslate nohighlight">\(f(x) = {m}{x} + b = T_{b=2} \circ S_{m=5}\)</span></p>
-<div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">111</span><span class="n">m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span>
-<span class="linenos">112</span><span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>
-<span class="linenos">113</span><span class="n">fn</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">114</span>    <span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">b</span><span class="p">)),</span> <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span>
-<span class="linenos">115</span><span class="p">)</span>
-<span class="linenos">116</span><span class="nb">print</span><span class="p">(</span><span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)))</span>
-<span class="linenos">117</span><span class="nb">print</span><span class="p">(</span><span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)))</span>
-<span class="linenos">118</span>
-<span class="linenos">119</span><span class="k">assert</span> <span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
-<span class="linenos">120</span><span class="k">assert</span> <span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">7.0</span><span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id10" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">109</span><span class="n">m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span>
+<span class="linenos">110</span><span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="linenos">111</span><span class="n">fn</span><span class="p">:</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">112</span>    <span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">b</span><span class="p">)),</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span>
+<span class="linenos">113</span><span class="p">)</span>
+<span class="linenos">114</span><span class="nb">print</span><span class="p">(</span><span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)))</span>
+<span class="linenos">115</span><span class="nb">print</span><span class="p">(</span><span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)))</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span><span class="k">assert</span> <span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="linenos">118</span><span class="k">assert</span> <span class="n">fn</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">7.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -436,39 +442,27 @@ to generate new instances of <span class="math notranslate nohighlight">\(f(x) =
 of functions to convert between fahrenheit, celsius, and kelvin.
 Provided to you are Python implementations of three of those
 functions</p>
-<div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id10" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">135</span><span class="n">celsius_to_kelvin</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
-<span class="linenos">136</span>    <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">273.15</span><span class="p">)</span>
-<span class="linenos">137</span><span class="p">)</span>
-<span class="linenos">138</span><span class="k">assert</span> <span class="n">celsius_to_kelvin</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">139</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">273.15</span><span class="p">)</span>
-<span class="linenos">140</span><span class="p">)</span>
-<span class="linenos">141</span><span class="k">assert</span> <span class="n">celsius_to_kelvin</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">100.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">142</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">373.15</span><span class="p">)</span>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id11" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">133</span><span class="n">celsius_to_kelvin</span><span class="p">:</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
+<span class="linenos">134</span>    <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">273.15</span><span class="p">)</span>
+<span class="linenos">135</span><span class="p">)</span>
+<span class="linenos">136</span><span class="k">assert</span> <span class="n">celsius_to_kelvin</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">273.15</span><span class="p">))</span>
+<span class="linenos">137</span>
+<span class="linenos">138</span><span class="k">assert</span> <span class="n">celsius_to_kelvin</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">100.0</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">373.15</span><span class="p">))</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span><span class="n">fahrenheit_to_celsius</span><span class="p">:</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">142</span>    <span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">5.0</span> <span class="o">/</span> <span class="mf">9.0</span><span class="p">),</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="o">-</span><span class="mf">32.0</span><span class="p">))]</span>
 <span class="linenos">143</span><span class="p">)</span>
-<span class="linenos">144</span>
+<span class="linenos">144</span><span class="k">assert</span> <span class="n">fahrenheit_to_celsius</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">32.0</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
 <span class="linenos">145</span>
-<span class="linenos">146</span><span class="n">fahrenheit_to_celsius</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">147</span>    <span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mf">5.0</span> <span class="o">/</span> <span class="mf">9.0</span><span class="p">),</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="o">-</span><span class="mf">32.0</span><span class="p">))]</span>
-<span class="linenos">148</span><span class="p">)</span>
-<span class="linenos">149</span><span class="k">assert</span> <span class="n">fahrenheit_to_celsius</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">32.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">150</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">151</span><span class="p">)</span>
-<span class="linenos">152</span><span class="k">assert</span> <span class="n">fahrenheit_to_celsius</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">212.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">153</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
-<span class="linenos">154</span><span class="p">)</span>
-<span class="linenos">155</span>
-<span class="linenos">156</span>
-<span class="linenos">157</span><span class="n">kelvin_to_celsius</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span>
-<span class="linenos">158</span>    <span class="n">celsius_to_kelvin</span>
-<span class="linenos">159</span><span class="p">)</span>
-<span class="linenos">160</span><span class="k">assert</span> <span class="n">kelvin_to_celsius</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">273.15</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">161</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">162</span><span class="p">)</span>
-<span class="linenos">163</span><span class="k">assert</span> <span class="n">kelvin_to_celsius</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">373.15</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">164</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">100.0</span><span class="p">)</span>
-<span class="linenos">165</span><span class="p">)</span>
+<span class="linenos">146</span><span class="k">assert</span> <span class="n">fahrenheit_to_celsius</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">212.0</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">100.0</span><span class="p">))</span>
+<span class="linenos">147</span>
+<span class="linenos">148</span>
+<span class="linenos">149</span><span class="n">kelvin_to_celsius</span><span class="p">:</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">celsius_to_kelvin</span><span class="p">)</span>
+<span class="linenos">150</span><span class="k">assert</span> <span class="n">kelvin_to_celsius</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">273.15</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
+<span class="linenos">151</span><span class="k">assert</span> <span class="n">kelvin_to_celsius</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">373.15</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">100.0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -477,38 +471,27 @@ functions</p>
 <h3>Functions to implement<a class="headerlink" href="#functions-to-implement" title="Link to this heading">¶</a></h3>
 <p>Your task is to modify the three functions below so that
 the asserts all pass</p>
-<div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id11" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">178</span><span class="n">fahrenheit_to_kelvin</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id12" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">164</span><span class="n">fahrenheit_to_kelvin</span><span class="p">:</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
+<span class="linenos">165</span>    <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">166</span><span class="p">)</span>
+<span class="linenos">167</span><span class="k">assert</span> <span class="n">fahrenheit_to_kelvin</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">32.0</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">273.15</span><span class="p">))</span>
+<span class="linenos">168</span><span class="k">assert</span> <span class="n">fahrenheit_to_kelvin</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">212.0</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">373.15</span><span class="p">))</span>
+<span class="linenos">169</span>
+<span class="linenos">170</span><span class="n">celsius_to_fahrenheit</span><span class="p">:</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
+<span class="linenos">171</span>    <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">172</span><span class="p">)</span>
+<span class="linenos">173</span><span class="k">assert</span> <span class="n">celsius_to_fahrenheit</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">32.0</span><span class="p">))</span>
+<span class="linenos">174</span>
+<span class="linenos">175</span><span class="k">assert</span> <span class="n">celsius_to_fahrenheit</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">100.0</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">212.0</span><span class="p">))</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span>
+<span class="linenos">178</span><span class="n">kelvin_to_fahrenheit</span><span class="p">:</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
 <span class="linenos">179</span>    <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
 <span class="linenos">180</span><span class="p">)</span>
-<span class="linenos">181</span><span class="k">assert</span> <span class="n">fahrenheit_to_kelvin</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">32.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">182</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">273.15</span><span class="p">)</span>
-<span class="linenos">183</span><span class="p">)</span>
-<span class="linenos">184</span><span class="k">assert</span> <span class="n">fahrenheit_to_kelvin</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">212.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">185</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">373.15</span><span class="p">)</span>
-<span class="linenos">186</span><span class="p">)</span>
-<span class="linenos">187</span>
-<span class="linenos">188</span><span class="n">celsius_to_fahrenheit</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
-<span class="linenos">189</span>    <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">190</span><span class="p">)</span>
-<span class="linenos">191</span><span class="k">assert</span> <span class="n">celsius_to_fahrenheit</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">192</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">32.0</span><span class="p">)</span>
-<span class="linenos">193</span><span class="p">)</span>
-<span class="linenos">194</span><span class="k">assert</span> <span class="n">celsius_to_fahrenheit</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">100.0</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">195</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">212.0</span><span class="p">)</span>
-<span class="linenos">196</span><span class="p">)</span>
-<span class="linenos">197</span>
-<span class="linenos">198</span>
-<span class="linenos">199</span><span class="n">kelvin_to_fahrenheit</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">[</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
-<span class="linenos">200</span>    <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">201</span><span class="p">)</span>
-<span class="linenos">202</span><span class="k">assert</span> <span class="n">kelvin_to_fahrenheit</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">273.15</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">203</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">32.0</span><span class="p">)</span>
-<span class="linenos">204</span><span class="p">)</span>
-<span class="linenos">205</span><span class="k">assert</span> <span class="n">kelvin_to_fahrenheit</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">373.15</span><span class="p">))</span> <span class="o">==</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span>
-<span class="linenos">206</span>    <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">212.0</span><span class="p">)</span>
-<span class="linenos">207</span><span class="p">)</span>
+<span class="linenos">181</span><span class="k">assert</span> <span class="n">kelvin_to_fahrenheit</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">273.15</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">32.0</span><span class="p">))</span>
+<span class="linenos">182</span><span class="k">assert</span> <span class="n">kelvin_to_fahrenheit</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">373.15</span><span class="p">))</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="mf">212.0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
