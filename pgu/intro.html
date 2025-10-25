@@ -1,0 +1,527 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Computer Architecture" href="memory.html"><link rel="prev" title="Programming From The Ground Up" href="index.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Introduction - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/intro.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
+<section id="welcome-to-programming">
+<h2>Welcome to Programming<a class="headerlink" href="#welcome-to-programming" title="Link to this heading">¶</a></h2>
+<p>I love programming. I enjoy the challenge to not only make a working
+program, but to do so with style. Programming is like poetry. It conveys
+a message, not only to the computer, but to those who modify and use
+your program. With a program, you build your own world with your own
+rules. You create your world according to your conception of both the
+problem and the solution. Masterful programmers create worlds with
+programs that are clear and succinct, much like a poem or essay.</p>
+<p>One of the greatest programmers, Donald Knuth, describes programming not
+as telling a computer how to do something, but telling a person how they
+would instruct a computer to do something. The point is that programs
+are meant to be read by people, not just computers. Your programs will
+be modified and updated by others long after you move on to other
+projects. Thus, programming is not as much about communicating to a
+computer as it is communicating to those who come after you. A
+programmer is a problem-solver, a poet, and an instructor all at once.
+Your goal is to solve the problem at hand, doing so with balance and
+taste, and teach your solution to future programmers. I hope that this
+book can teach at least some of the poetry and magic that makes
+computing exciting.</p>
+<p>Most introductory books on programming frustrate me to no end. At the
+end of them you can still ask “how does the computer really work?” and
+not have a good answer. They tend to pass over topics that are difficult
+even though they are important. I will take you through the difficult
+issues because that is the only way to move on to masterful programming.
+My goal is to take you from knowing nothing about programming to
+understanding how to think, write, and learn like a programmer. You
+won’t know everything, but you will have a background for how everything
+fits together. At the end of this book, you should be able to do the
+following:</p>
+<ul class="simple">
+<li><p>Understand how a program works and interacts with other programs</p></li>
+<li><p>Read other people’s programs and learn how they work</p></li>
+<li><p>Learn new programming languages quickly</p></li>
+<li><p>Learn advanced concepts in computer science quickly</p></li>
+</ul>
+<p>I will not teach you everything. Computer science is a massive field,
+especially when you combine the theory with the practice of computer
+programming. However, I will attempt to get you started on the
+foundations so you can easily go wherever you want afterwards.</p>
+<p>There is somewhat of a chicken and egg problem in teaching programming,
+especially assembly language. There is a lot to learn - it is almost too
+much to learn almost at all at once. However, each piece depends on all
+the others, which makes learning it a piece at a time difficult.
+Therefore, you must be patient with yourself and the computer while
+learning to program. If you don’t understand something the first time,
+reread it. If you still don’t understand it, it is sometimes best to
+take it by faith and come back to it later. Often after more exposure to
+programming the ideas will make more sense. Don’t get discouraged. It’s
+a long climb, but very worthwhile.</p>
+<p>At the end of each chapter are three sets of review exercises. The first
+set is more or less regurgitation - they check to see if can you give
+back what you learned in the chapter. The second set contains
+application questions - they check to see if you can apply what you
+learned to solve problems. The final set is to see if you are capable of
+broadening your horizons. Some of these questions may not be answerable
+until later in the book, but they give you some things to think about.
+Other questions require some research into outside sources to discover
+the answer. Still others require you to simply analyze your options and
+explain a best solution. Many of the questions don’t have right or wrong
+answers, but that doesn’t mean they are unimportant. Learning the issues
+involved in programming, learning how to research answers, and learning
+how to look ahead are all a major part of a programmer’s work.</p>
+<p>If you have problems that you just can’t get past, there is a mailing
+list for this book where readers can discuss and get help with what they
+are reading. The address is <code class="docutils literal notranslate"><span class="pre">pgubook-readers&#64;nongnu.org</span></code>. This mailing
+list is open for any type of question or discussion along the lines of
+this book. You can subscribe to this list by going to
+<a class="reference external" href="http://mail.nongnu.org/mailman/listinfo/pgubook-readers">http://mail.nongnu.org/mailman/listinfo/pgubook-readers</a>.</p>
+<p>If you are thinking of using this book for a class on computer
+programming but do not have access to Linux computers for your students,
+I highly suggest you try to find help from the K-12 Linux Project. Their
+website is at <a class="reference external" href="http://www.k12linux.org/">http://www.k12linux.org/</a> and they have a helpful and
+responsive mailing list available.</p>
+</section>
+<section id="your-tools">
+<h2>Your Tools<a class="headerlink" href="#your-tools" title="Link to this heading">¶</a></h2>
+<p>This book teaches assembly language for x86 processors and the GNU/Linux
+operating system. Therefore we will be giving all of the examples using
+the GNU/Linux standard GCC tool set. If you are not familiar with
+GNU/Linux and the GCC tool set, they will be described shortly. If you
+are new to Linux, you should check out the guide available at
+<a class="reference external" href="http://rute.sourceforge.net/">http://rute.sourceforge.net/</a> <a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> What I intend to show you is more
+about programming in general than using a specific tool set on a
+specific platform, but standardizing on one makes the task much easier.</p>
+<p>Those new to Linux should also try to get involved in their local
+GNU/Linux User’s Group. User’s Group members are usually very helpful
+for new people, and will help you from everything from installing Linux
+to learning to use it most efficiently. A listing of GNU/Linux User’s
+Groups is available at <a class="reference external" href="http://www.linux.org/groups/">http://www.linux.org/groups/</a></p>
+<p>All of these programs have been tested using Red Hat Linux 8.0, and
+should work with any other GNU/Linux distribution, too. <a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> They will
+not work with non-Linux operating systems such as BSD or other systems.
+However, all of the <em>skills</em> learned in this book should be easily
+transferable to any other system.</p>
+<p>If you do not have access to a GNU/Linux machine, you can look for a
+hosting provider who offers a Linux <em>shell account</em>, which is a
+command-line only interface to a Linux machine. There are many low-cost
+shell account providers, but you have to make sure that they match the
+requirements above (i.e. - Linux on x86). Someone at your local
+GNU/Linux User’s Group may be able to give you one as well. Shell
+accounts only require that you already have an Internet connection and a
+telnet program. If you use Windows, you already have a telnet client -
+just click on <code class="docutils literal notranslate"><span class="pre">start</span></code>, then <code class="docutils literal notranslate"><span class="pre">run</span></code>, then type in <code class="docutils literal notranslate"><span class="pre">telnet</span></code>. However,
+it is usually better to download PuTTY from
+<a class="reference external" href="http://www.chiart.greenend.co.uk/~sgtatham/putty/">http://www.chiart.greenend.co.uk/~sgtatham/putty/</a> because Windows’
+telnet has some weird problems. There are a lot of options for the
+Macintosh, too. NiftyTelnet is my favorite.</p>
+<p>If you don’t have GNU/Linux and can’t find a shell account service, then
+you can download Knoppix from <a class="reference external" href="http://www.knoppix.org/">http://www.knoppix.org/</a> Knoppix is a
+GNU/Linux distribution that boots from CD so that you don’t have to
+actually install it. Once you are done using it, you just reboot and
+remove the CD and you are back to your regular operating system.</p>
+<p>So what is GNU/Linux? GNU/Linux is an operating system modeled after
+UNIX. The GNU part comes from the <a class="reference external" href="http://www.gnu.org/">GNU
+Project</a> <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>, which includes most of the
+programs you will run, including the GCC tool set that we will use to
+program with. The GCC tool set contains all of the programs necessary to
+create programs in various computer languages.</p>
+<p>Linux is the name of the <em>kernel</em>. The kernel is the core part of an
+operating system that keeps track of everything. The kernel is both a
+fence and a gate. As a gate, it allows programs to access hardware in a
+uniform way. Without the kernel, you would have to write programs to
+deal with every device model ever made. The kernel handles all
+device-specific interactions so you don’t have to. It also handles file
+access and interaction between processes. For example, when you type,
+your typing goes through several programs before it hits your editor.
+First, the kernel is what handles your hardware, so it is the first to
+receive notice about the keypress. The keyboard sends in <em>scancodes</em> to
+the kernel, which then converts them to the actual letters, numbers, and
+symbols they represent. If you are using a windowing system (like
+Microsoft Windows or the X Window System), then the windowing system
+reads the keypress from the kernel, and delivers it to whatever program
+is currently in focus on the user’s display.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Keyboard</span> <span class="o">-&gt;</span> <span class="n">Kernel</span> <span class="o">-&gt;</span> <span class="n">Windowing</span> <span class="n">system</span> <span class="o">-&gt;</span> <span class="n">Application</span> <span class="n">program</span>
+</pre></div>
+</div>
+<p>The kernel also controls the flow of information between programs. The
+kernel is a program’s gate to the world around it. Every time that data
+moves between processes, the kernel controls the messaging. In our
+keyboard example above, the kernel would have to be involved for the
+windowing system to communicate the keypress to the application program.</p>
+<p>As a fence, the kernel prevents programs from accidentally overwriting
+each other’s data and from accessing files and devices that they don’t
+have permission to. It limits the amount of damage a poorly-written
+program can do to other running programs.</p>
+<p>In our case, the kernel is Linux. Now, the kernel all by itself won’t do
+anything. You can’t even boot up a computer with just a kernel. Think of
+the kernel as the water pipes for a house. Without the pipes, the
+faucets won’t work, but the pipes are pretty useless if there are no
+faucets. Together, the user applications (from the GNU project and other
+places) and the kernel (Linux) make up the entire operating system,
+GNU/Linux.</p>
+<p>For the most part, this book will be using the computer’s low-level
+assembly language. There are essentially three kinds of languages:</p>
+<dl class="simple">
+<dt>Machine Language</dt><dd><p>This is what the computer actually sees and deals with. Every command
+the computer sees is given as a number or sequence of numbers.</p>
+</dd>
+<dt>Assembly Language</dt><dd><p>This is the same as machine language, except the command numbers have
+been replaced by letter sequences which are easier to memorize. Other
+small things are done to make it easier as well.</p>
+</dd>
+<dt>High-Level Language</dt><dd><p>High-level languages are there to make programming easier. Assembly
+language requires you to work with the machine itself. High-level
+languages allow you to describe the program in a more natural
+language. A single command in a high-level language usually is
+equivalent to several commands in an assembly language.</p>
+</dd>
+</dl>
+<p>In this book we will learn assembly language, although we will cover a
+bit of high-level languages. Hopefully by learning assembly language,
+your understanding of how programming and computers work will put you a
+step ahead.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>This is quite a large document. You certainly don’t need to know
+everything to get started with this book. You simply need to know how
+to navigate from the command line and how to use an editor like
+<code class="docutils literal notranslate"><span class="pre">pico</span></code>, <code class="docutils literal notranslate"><span class="pre">emacs</span></code>, or <code class="docutils literal notranslate"><span class="pre">vi</span></code> (or others).</p>
+</aside>
+<aside class="footnote brackets" id="id5" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>By “GNU/Linux distribution”, I mean an x86 GNU/Linux distribution.
+GNU/Linux distributions for the Power Macintosh, the Alpha processor,
+or other processors will not work with this book.</p>
+</aside>
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>The GNU Project is a project by the Free Software Foundation to
+produce a complete, free operating system.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="memory.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Computer Architecture</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#welcome-to-programming">Welcome to Programming</a></li>
+<li><a class="reference internal" href="#your-tools">Your Tools</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

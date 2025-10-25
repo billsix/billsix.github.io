@@ -1,0 +1,942 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Counting Like a Computer" href="counting.html"><link rel="prev" title="Intermediate Memory Topics" href="memoryint.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Sharing Functions with Code Libraries - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/linking.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="sharing-functions-with-code-libraries">
+<span id="linking"></span><h1>Sharing Functions with Code Libraries<a class="headerlink" href="#sharing-functions-with-code-libraries" title="Link to this heading">¶</a></h1>
+<p>By now you should realize that the computer has to do a lot of work even
+for simple tasks. Because of that, you have to do a lot of work to write
+the code for a computer to even do simple tasks. In addition,
+programming tasks are usually not very simple. Therefore, we neeed a way
+to make this process easier on ourselves. There are several ways to do
+this, including:</p>
+<ul class="simple">
+<li><p>Write code in a high-level language instead of assembly language</p></li>
+<li><p>Have lots of pre-written code that you can cut and paste into your
+own programs</p></li>
+<li><p>Have a set of functions on the system that are shared among any
+program that wishes to use it</p></li>
+</ul>
+<p>All three of these are usually used to some degree in any given project.
+The first option will be explored further in
+<a class="reference internal" href="otherlang.html#highlevellanguages"><span class="std std-ref">High-Level Languages</span></a>. The second option is useful but it
+suffers from some drawbacks, including:</p>
+<ul class="simple">
+<li><p>Code that is copied often has to be majorly modified to fit the
+surrounding code.</p></li>
+<li><p>Every program containing the copied code has the same code in it,
+thus wasting a lot of space.</p></li>
+<li><p>If a bug is found in any of the copied code it has to be fixed in
+every application program.</p></li>
+</ul>
+<p>Therefore, the second option is usually used sparingly. It is usually
+only used in cases where you copy and paste skeleton code for a specific
+type of task, and add in your program-specific details. The third option
+is the one that is used the most often. The third option includes having
+a central repository of shared code. Then, instead of each program
+wasting space storing the same copies of functions, they can simply
+point to the <em>dynamic libraries</em> which contain the functions they need.
+If a bug is found in one of these functions, it only has to be fixed
+within the single function library file, and all applications which use
+it are automatically updated. The main drawback with this approach is
+that it creates some dependency problems, including:</p>
+<ul class="simple">
+<li><p>If multiple applications are all using the same file, how do we know
+when it is safe to delete the file? For example, if three
+applications are sharing a file of functions and 2 of the programs
+are deleted, how does the system know that there still exists an
+application that uses that code, and therefore it shouldn’t be
+deleted?</p></li>
+<li><p>Some programs inadvertantly rely on bugs within shared functions.
+Therefore, if upgrading the shared functions fixes a bug that a
+program depended on, it could cause that application to cease
+functioning.</p></li>
+</ul>
+<p>These problems are what lead to what is known as “DLL hell”. However, it
+is generally assumed that the advantages outweigh the disadvantages.</p>
+<p>In programming, these shared code files are referred to as <em>shared
+libraries</em> , <em>dynamic libraries</em> , <em>shared objects</em>, <em>dynamic-link
+libraries</em>, <em>DLLs</em>, or <em>.so files</em>. <a class="footnote-reference brackets" href="#id5" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> We will refer to all of these
+as <em>dynamic libraries</em>.</p>
+<section id="using-a-dynamic-library">
+<h2>Using a Dynamic Library<a class="headerlink" href="#using-a-dynamic-library" title="Link to this heading">¶</a></h2>
+<p>The program we will examine here is simple - it writes the characters
+<code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code> to the screen and exits. The regular program,
+<code class="docutils literal notranslate"><span class="pre">helloworld-nolib.s</span></code>, looks like this:</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">src/hellowworld-nolib.s</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">#PURPOSE:  This program writes the message &quot;hello world&quot; and</span>
+<span class="linenos"> 2</span><span class="c1">#          exits</span>
+<span class="linenos"> 3</span><span class="c1">#</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;linux.s&quot;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="nl">helloworld:</span>
+<span class="linenos">11</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;hello world\n&quot;</span>
+<span class="linenos">12</span><span class="nl">helloworld_end:</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">helloworld_len</span><span class="p">,</span><span class="w"> </span><span class="no">helloworld_end</span><span class="w"> </span><span class="p">-</span><span class="w"> </span><span class="no">helloworld</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span>
+<span class="linenos">17</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+<span class="linenos">18</span><span class="nl">_start:</span>
+<span class="linenos">19</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$STDOUT</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">20</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$helloworld</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">21</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$helloworld_len</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">22</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_WRITE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">23</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">26</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_EXIT</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">27</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+</pre></div>
+</div>
+</div>
+<p>That’s not too long. However, take a look at how short
+<code class="docutils literal notranslate"><span class="pre">helloworld-lib</span></code> is which uses a library:</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">src/helloworld-lib.s</span><a class="headerlink" href="#id10" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">#PURPOSE:  This program writes the message &quot;hello world&quot; and</span>
+<span class="linenos"> 2</span><span class="c1">#          exits</span>
+<span class="linenos"> 3</span><span class="c1">#</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="nl">helloworld:</span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;hello world\n\0&quot;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span>
+<span class="linenos">11</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+<span class="linenos">12</span><span class="nl">_start:</span>
+<span class="linenos">13</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$helloworld</span>
+<span class="linenos">14</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">printf</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$0</span>
+<span class="linenos">17</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">exit</span>
+</pre></div>
+</div>
+</div>
+<p>It’s even shorter!</p>
+<p>Now, building programs which use dynamic libraries is a little different
+than normal. You can build the first program normally by doing this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">helloworld</span><span class="o">-</span><span class="n">nolib</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">helloworld</span><span class="o">-</span><span class="n">nolib</span><span class="o">.</span><span class="n">o</span>
+<span class="n">ld</span> <span class="n">helloworld</span><span class="o">-</span><span class="n">nolib</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">helloworld</span><span class="o">-</span><span class="n">nolib</span>
+</pre></div>
+</div>
+<p>However, in order to build the second program, you have to do this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">helloworld</span><span class="o">-</span><span class="n">lib</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">helloworld</span><span class="o">-</span><span class="n">lib</span><span class="o">.</span><span class="n">o</span>
+<span class="n">ld</span> <span class="o">-</span><span class="n">dynamic</span><span class="o">-</span><span class="n">linker</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">so</span><span class="mf">.2</span> \
+   <span class="o">-</span><span class="n">o</span> <span class="n">helloworld</span><span class="o">-</span><span class="n">lib</span> <span class="n">helloworld</span><span class="o">-</span><span class="n">lib</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">lc</span>
+</pre></div>
+</div>
+<p>Remember, the backslash in the first line simply means that the command
+continues on the next line. The option
+<code class="docutils literal notranslate"><span class="pre">-dynamic-linker-dynamic-linker</span> <span class="pre">/lib/ld-linux.so.2</span></code> allows our program
+to be linked to libraries. This builds the executable so that before
+executing, the operating system will load the program
+<code class="docutils literal notranslate"><span class="pre">/lib/ld-linux.so.2</span></code> to load in external libraries and link them with
+the program. This program is known as a <em>dynamic linker</em>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-lc</span></code> option says to link to the <code class="docutils literal notranslate"><span class="pre">c</span></code> library, named <code class="docutils literal notranslate"><span class="pre">libc.so</span></code>
+on GNU/Linux systems. Given a library name, <code class="docutils literal notranslate"><span class="pre">c</span></code> in this case (usually
+library names are longer than a single letter), the GNU/Linux linker
+prepends the string <code class="docutils literal notranslate"><span class="pre">lib</span></code> to the beginning of the library name and
+appends <code class="docutils literal notranslate"><span class="pre">.so</span></code> to the end of it to form the library’s filename. This
+library contains many functions to automate all types of tasks. The two
+we are using are <code class="docutils literal notranslate"><span class="pre">printf</span></code>, which prints strings, and
+<code class="docutils literal notranslate"><span class="pre">exit</span></code>, which exits the program.</p>
+<p>Notice that the symbols <code class="docutils literal notranslate"><span class="pre">printf</span></code> and <code class="docutils literal notranslate"><span class="pre">exit</span></code> are simply referred to
+by name within the program. In previous chapters, the linker would
+resolve all of the names to physical memory addresses, and the names
+would be thrown away. When using dynamic linking, the name itself
+resides within the executable, and is resolved by the dynamic linker
+when it is run. When the program is run by the user, the dynamic linker
+loads the dynamic libraries listed in our link statement, and then finds
+all of the function and variable names that were named by our program
+but not found at link time, and matches them up with corresponding
+entries in the shared libraries it loads. It then replaces all of the
+names with the addresses which they are loaded at. This sounds
+time-consuming. It is to a small degree, but it only happens once - at
+program startup time.</p>
+</section>
+<section id="how-dynamic-libraries-work">
+<h2>How Dynamic Libraries Work<a class="headerlink" href="#how-dynamic-libraries-work" title="Link to this heading">¶</a></h2>
+<p>In our first programs, all of the code was contained within the source
+file. Such programs are called <em>statically-linked executables</em>, because
+they contained all of the necessary functionality for the program that
+wasn’t handled by the kernel. In the programs we wrote in
+<a class="reference internal" href="records.html#records"><span class="std std-ref">Reading and Writing Simple Records</span></a>, we used both our main program file and files
+containing routines used by multiple programs. In these cases, we
+combined all of the code together using the linker at link-time, so it
+was still statically-linked. However, in the <code class="docutils literal notranslate"><span class="pre">helloworld-lib</span></code> program,
+we started using dynamic libraries. When you use dynamic libraries, your
+program is then <em>dynamically-linked</em>, which means that not all of the
+code needed to run the program is actually contained within the program
+file itself, but in external libraries.</p>
+<p>When we put the <code class="docutils literal notranslate"><span class="pre">-lc</span></code> on the command to link the <code class="docutils literal notranslate"><span class="pre">helloworld</span></code>
+program, it told the linker to use the <code class="docutils literal notranslate"><span class="pre">c</span></code> library (<code class="docutils literal notranslate"><span class="pre">libc.so</span></code>) to
+look up any symbols that weren’t already defined in <code class="docutils literal notranslate"><span class="pre">helloworld.o</span></code>.
+However, it doesn’t actually add any code to our program, it just notes
+in the program where to look. When the <code class="docutils literal notranslate"><span class="pre">helloworld</span></code> program begins,
+the file <code class="docutils literal notranslate"><span class="pre">/lib/ld-linux.so.2</span></code> is loaded first. This
+is the dynamic linker. This looks at our <code class="docutils literal notranslate"><span class="pre">helloworld</span></code> program and sees
+that it needs the <code class="docutils literal notranslate"><span class="pre">c</span></code> library to run. So, it searches for a file
+called <code class="docutils literal notranslate"><span class="pre">libc.so</span></code> in the standard places (listed in
+<code class="docutils literal notranslate"><span class="pre">/etc/ld.so.conf</span></code> and in the contents of the
+<code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> environment variable), then looks in
+it for all the needed symbols (<code class="docutils literal notranslate"><span class="pre">printf</span></code> and <code class="docutils literal notranslate"><span class="pre">exit</span></code> in this case),
+and then loads the library into the program’s virtual memory. Finally,
+it replaces all instances of <code class="docutils literal notranslate"><span class="pre">printf</span></code> in the program with the actual
+location of <code class="docutils literal notranslate"><span class="pre">printf</span></code> in the library.</p>
+<p>Run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lddldd</span> <span class="o">./</span><span class="n">helloworld</span><span class="o">-</span><span class="n">nolib</span>
+</pre></div>
+</div>
+<p>It should report back <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">a</span> <span class="pre">dynamic</span> <span class="pre">executable</span></code>. This is just like we
+said - <code class="docutils literal notranslate"><span class="pre">helloworld-nolib</span></code> is a statically-linked executable. However,
+try this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ldd</span> <span class="o">./</span><span class="n">helloworld</span><span class="o">-</span><span class="n">lib</span>
+</pre></div>
+</div>
+<p>It will report back something like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span> <span class="p">(</span><span class="mh">0x4001d000</span><span class="p">)</span>
+<span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">so</span><span class="mf">.2</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">so</span><span class="mf">.2</span> <span class="p">(</span><span class="mh">0x400000000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The numbers in parenthesis may be different on your system. This means
+that the program <code class="docutils literal notranslate"><span class="pre">helloworld</span></code> is linked to <code class="docutils literal notranslate"><span class="pre">libc.so.6</span></code> (the <code class="docutils literal notranslate"><span class="pre">.6</span></code>
+is the version number), which is found at <code class="docutils literal notranslate"><span class="pre">/libc.so.6</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">/lib/ld-linux.so.2</span></code> is found at <code class="docutils literal notranslate"><span class="pre">/lib/ld-linux.so.2</span></code>. These
+libraries have to be loaded before the program can be run. If you are
+interested, run the <code class="docutils literal notranslate"><span class="pre">ldd</span></code> program on various programs that are on your
+Linux distribution, and see what libraries they rely on.</p>
+</section>
+<section id="finding-information-about-libraries">
+<h2>Finding Information about Libraries<a class="headerlink" href="#finding-information-about-libraries" title="Link to this heading">¶</a></h2>
+<p>Okay, so now that you know about libraries, the question is, how do you
+find out what libraries you have on your system and what they do? Well,
+let’s skip that question for a minute and ask another question: How do
+programmers describe functions to each other in their documentation?
+Let’s take a look at the function <code class="docutils literal notranslate"><span class="pre">printf</span></code>. Its calling interface
+(usually referred to as a <em>prototype</em>) looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">printf</span><span class="p">(</span><span class="n">char</span> <span class="o">*</span><span class="n">string</span><span class="p">,</span> <span class="o">...</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In Linux, functions are described in the C programming language. In
+fact, most Linux programs are written in C. That is why most
+documentation and binary compatibility is defined using the C language.
+The interface to the <code class="docutils literal notranslate"><span class="pre">printf</span></code> function above is described using the C
+programming language.</p>
+<p>This definition means that there is a function <code class="docutils literal notranslate"><span class="pre">printf</span></code>. The things
+inside the parenthesis are the function’s parameters or arguments. The
+first parameter here is <code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">*string</span></code>. This means there is a
+parameter named <code class="docutils literal notranslate"><span class="pre">string</span></code> (the name isn’t important, except to use for
+talking about it), which has a type <code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">*</span></code>. <code class="docutils literal notranslate"><span class="pre">char</span></code> means that
+it wants a single-byte character. The <code class="docutils literal notranslate"><span class="pre">**</span></code> after it means that it
+doesn’t actually want a character as an argument, but instead it wants
+the address of a character or sequence of characters. If you look back
+at our <code class="docutils literal notranslate"><span class="pre">helloworld</span> <span class="pre">program</span></code>, you will notice that the function call
+looked like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pushl $hello
+call  printf
+</pre></div>
+</div>
+<p>So, we pushed the address of the <code class="docutils literal notranslate"><span class="pre">hello</span></code> string, rather than the
+actual characters. You might notice that we didn’t push the length of
+the string. The way that <code class="docutils literal notranslate"><span class="pre">printf</span></code> found the end of the string
+was because we ended it with a null character (<code class="docutils literal notranslate"><span class="pre">\0</span></code>). Many functions
+work that way, especially C language functions. The <code class="docutils literal notranslate"><span class="pre">int</span></code> before
+the function definition tell what type of value the function will return
+in %eax; when it returns. <code class="docutils literal notranslate"><span class="pre">printf</span></code> will return an
+<code class="docutils literal notranslate"><span class="pre">int</span></code> when it’s through. Now, after the <code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">*string</span></code>, we have a
+series of periods, <code class="docutils literal notranslate"><span class="pre">......</span></code>. This means that it can take an indefinite
+number of additional arguments after the string. Most functions can only
+take a specified number of arguments. <code class="docutils literal notranslate"><span class="pre">printf</span></code>, however, can take
+many. It will look into the <code class="docutils literal notranslate"><span class="pre">string</span></code> parameter, and everywhere it sees
+the characters <code class="docutils literal notranslate"><span class="pre">%s</span></code>, it will look for another string from the stack to
+insert, and everywhere it sees <code class="docutils literal notranslate"><span class="pre">%d</span></code> it will look for a number from the
+stack to insert. This is best described using an example:</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">src/printf-example.s</span><a class="headerlink" href="#id11" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">#PURPOSE:  This program is to demonstrate how to call printf</span>
+<span class="linenos"> 2</span><span class="c1">#</span>
+<span class="linenos"> 3</span><span class="w">	</span>
+<span class="linenos"> 4</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="c1">#This string is called the format string.  It&#39;s the first </span>
+<span class="linenos"> 7</span><span class="c1">#parameter, and printf uses it to find out how many parameters</span>
+<span class="linenos"> 8</span><span class="c1">#it was given, and what kind they are.</span>
+<span class="linenos"> 9</span><span class="nl">firststring:</span>
+<span class="linenos">10</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;Hello! %s is a %s who loves the number %d\n\0&quot;</span>
+<span class="linenos">11</span><span class="nl">name:</span>
+<span class="linenos">12</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;Jonathan\0&quot;</span>
+<span class="linenos">13</span><span class="nl">personstring:</span>
+<span class="linenos">14</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;person\0&quot;</span>
+<span class="linenos">15</span><span class="c1">#This could also have been an .equ, but we decided to give it</span>
+<span class="linenos">16</span><span class="c1">#a real memory location just for kicks</span>
+<span class="linenos">17</span><span class="nl">numberloved:</span>
+<span class="linenos">18</span><span class="w">	</span><span class="na">.long</span><span class="w"> </span><span class="mi">3</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span>
+<span class="linenos">21</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+<span class="linenos">22</span><span class="nl">_start:</span>
+<span class="linenos">23</span><span class="w">	</span><span class="c1">#note that the parameters are passed in the</span>
+<span class="linenos">24</span><span class="w">	</span><span class="c1">#reverse order that they are listed in the</span>
+<span class="linenos">25</span><span class="w">	</span><span class="c1">#function&#39;s prototype.</span>
+<span class="linenos">26</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">numberloved</span><span class="w">    </span><span class="c1">#This is the %d</span>
+<span class="linenos">27</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$personstring</span><span class="w">  </span><span class="c1">#This is the second %s</span>
+<span class="linenos">28</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$name</span><span class="w">          </span><span class="c1">#This is the first %s</span>
+<span class="linenos">29</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$firststring</span><span class="w">   </span><span class="c1">#This is the format string </span>
+<span class="linenos">30</span><span class="w">	                     </span><span class="c1">#in the prototype</span>
+<span class="linenos">31</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">printf</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$0</span>
+<span class="linenos">34</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">exit</span>
+</pre></div>
+</div>
+</div>
+<p>Type it in with the filename <code class="docutils literal notranslate"><span class="pre">printf-example.s</span></code>, and then do the
+following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">printf</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">printf</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">o</span>
+<span class="n">ld</span> <span class="n">printf</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">printf</span><span class="o">-</span><span class="n">example</span> <span class="o">-</span><span class="n">lc</span> \
+   <span class="o">-</span><span class="n">dynamic</span><span class="o">-</span><span class="n">linker</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">so</span><span class="mf">.2</span>
+</pre></div>
+</div>
+<p>Then run the program with <code class="docutils literal notranslate"><span class="pre">./printf-example</span></code>, and it should say this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Hello! Jonathan is a person who loves the number 3
+</pre></div>
+</div>
+<p>Now, if you look at the code, you’ll see that we actually push the
+format string last, even though it’s the first parameter listed. You
+always push a functions parameters in reverse order. <a class="footnote-reference brackets" href="#id6" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> You may be
+wondering how the <code class="docutils literal notranslate"><span class="pre">printf</span></code> function knows how many parameters
+there are. Well, it searches through your string, and counts how many
+<code class="docutils literal notranslate"><span class="pre">%d</span></code>s and <code class="docutils literal notranslate"><span class="pre">%s</span></code>s it finds, and then grabs that number of
+parameters from the stack. If the parameter matches a <code class="docutils literal notranslate"><span class="pre">%d</span></code>, it treats
+it as a number, and if it matches a <code class="docutils literal notranslate"><span class="pre">%s</span></code>, it treats it as a pointer to
+a null-terminated string. <code class="docutils literal notranslate"><span class="pre">printf</span></code> has many more features than this,
+but these are the most-used ones. So, as you can see, <code class="docutils literal notranslate"><span class="pre">printf</span></code> can
+make output a lot easier, but it also has a lot of overhead, because it
+has to count the number of characters in the string, look through it for
+all of the control characters it needs to replace, pull them off the
+stack, convert them to a suitable representation (numbers have to be
+converted to strings, etc), and stick them all together appropriately.</p>
+<p>We’ve seen how to use the C programming language prototypes to call
+library functions. To use them effectively, however, you need to know
+several more of the possible data types for reading functions. Here are
+the main ones:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">int</span></code></dt><dd><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code> is an integer number (4 bytes on x86 processor).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">long</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">long</span></code> is also an integer number (4 bytes on an x86 processor).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">long</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">long</span></code> is an integer number that’s larger than a <code class="docutils literal notranslate"><span class="pre">long</span></code> (8
+bytes on an x86 processor).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">short</span></code></dt><dd><p>A short is an integer number that’s shorter than an <code class="docutils literal notranslate"><span class="pre">int</span></code> (2 bytes
+on an x86 processor).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">char</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">char</span></code> is a single-byte integer number. This is mostly used for
+storing character data, since ASCII strings usually are represented
+with one byte per character.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">float</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">float</span></code> is a floating-point number (4 bytes on an x86 processor).
+Floating-point numbers will be explained in more depth in
+<a class="reference internal" href="counting.html#floatingpoint"><span class="std std-ref">Floating-point Numbers</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">double</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">double</span></code> is a floating-point number that is larger than a float
+(8 bytes on an x86 processor).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">unsigned</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">unsigned</span></code> is a modifier used for any of the above types which
+keeps them from being used as signed quantities. The difference
+between signed and unsigned numbers will be discussed in
+<a class="reference internal" href="counting.html#countingchapter"><span class="std std-ref">Counting Like a Computer</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">**</span></code></dt><dd><p>An asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) is used to denote that the data isn’t an actual
+value, but instead is a pointer to a location holding the given value
+(4 bytes on an x86 processor). So, let’s say in memory location
+<code class="docutils literal notranslate"><span class="pre">my_location</span></code> you have the number 20 stored. If the prototype said
+to pass an <code class="docutils literal notranslate"><span class="pre">int</span></code>, you would use direct addressing mode and do
+<code class="docutils literal notranslate"><span class="pre">pushl</span> <span class="pre">my_location</span></code>. However, if the prototype said to pass an
+<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*</span></code>, you would do <code class="docutils literal notranslate"><span class="pre">pushl</span> <span class="pre">$my_location</span></code> - an immediate mode
+push of the address that the value resides in. In addition to
+indicating the address of a single value, pointers can also be used
+to pass a sequence of consecutive locations, starting with the one
+pointed to by the given value. This is called an array.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">struct</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">struct</span></code> is a set of data items that have been put together under
+a name. For example you could declare:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">struct</span> <span class="n">teststruct</span> <span class="p">{</span>
+    <span class="nb">int</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">char</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>and any time you ran into <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">teststruct</span></code> you would know that
+it is actually two words right next to each other, the first being an
+integer, and the second a pointer to a character or group of
+characters. You never see structs passed as arguments to functions.
+Instead, you usually see pointers to structs passed as arguments.
+This is because passing structs to functions is fairly complicated,
+since they can take up so many storage locations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">typedef</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">typedef</span></code> basically allows you to rename a type. For example, I
+can do <code class="docutils literal notranslate"><span class="pre">typedef</span> <span class="pre">int</span> <span class="pre">myowntype;</span></code> in a C program, and any time I
+typed <code class="docutils literal notranslate"><span class="pre">myowntype</span></code>, it would be just as if I typed <code class="docutils literal notranslate"><span class="pre">int</span></code>. This can
+get kind of annoying, because you have to look up what all of the
+typedefs and structs in a function prototype really mean. However,
+<code class="docutils literal notranslate"><span class="pre">typedef</span></code>s are useful for giving types more meaningful and
+descriptive names.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The listed sizes are for intel-compatible (x86) machines. Other
+machines will have different sizes. Also, even when parameters
+shorter than a word are passed to functions, they are passed as longs
+on the stack.</p>
+</div>
+<p>That’s how to read function documentation. Now, let’s get back to the
+question of how to find out about libraries. Most of your system
+libraries are in <code class="docutils literal notranslate"><span class="pre">/usr/lib</span></code> or <code class="docutils literal notranslate"><span class="pre">/lib</span></code>. If you want to
+just see what symbols they define, just run
+<code class="docutils literal notranslate"><span class="pre">objdump</span> <span class="pre">-R</span> <span class="pre">FILENAME</span></code> where <code class="docutils literal notranslate"><span class="pre">FILENAME</span></code> is the full path to
+the library. The output of that isn’t too helpful, though, for finding
+an interface that you might need. Usually, you have to know what library
+you want at the beginning, and then just read the documentation. Most
+libraries have manuals or man pages for their functions. The web is the
+best source of documentation for libraries. Most libraries from the GNU
+project also have info pages on them, which are a little more thorough
+than man pages.</p>
+</section>
+<section id="useful-functions">
+<h2>Useful Functions<a class="headerlink" href="#useful-functions" title="Link to this heading">¶</a></h2>
+<p>Several useful functions you will want to be aware of from the <code class="docutils literal notranslate"><span class="pre">c</span></code>
+library include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">size_t</span> <span class="pre">strlen</span> <span class="pre">(const</span> <span class="pre">char</span> <span class="pre">*s)</span></code> calculates the size of
+null-terminated strings.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">strcmp</span> <span class="pre">(const</span> <span class="pre">char</span> <span class="pre">*s1,</span> <span class="pre">const</span> <span class="pre">char</span> <span class="pre">*s2)</span></code> compares two
+strings alphabetically.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">*</span> <span class="pre">strdup</span> <span class="pre">(const</span> <span class="pre">char</span> <span class="pre">*s)</span></code> takes the pointer to a
+string, and creates a new copy in a new location, and returns the new
+location.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE</span> <span class="pre">*</span> <span class="pre">fopen</span> <span class="pre">(const</span> <span class="pre">char</span> <span class="pre">*filename,</span> <span class="pre">const</span> <span class="pre">char</span> <span class="pre">*opentype)</span></code>
+opens a managed, buffered file (allows easier reading and writing
+than using file descriptors directly). <a class="footnote-reference brackets" href="#id7" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id8" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">fclose</span> <span class="pre">(FILE</span> <span class="pre">*stream)</span></code> closes a file opened with
+<code class="docutils literal notranslate"><span class="pre">fopen</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">*</span> <span class="pre">fgets</span> <span class="pre">(char</span> <span class="pre">*s,</span> <span class="pre">int</span> <span class="pre">count,</span> <span class="pre">FILE</span> <span class="pre">*stream)</span></code> fetches a
+line of characters into string <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">fputs</span> <span class="pre">(const</span> <span class="pre">char</span> <span class="pre">*s,</span> <span class="pre">FILE</span> <span class="pre">*stream)</span></code> writes a string to
+the given open file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">fprintf</span> <span class="pre">(FILE</span> <span class="pre">*stream,</span> <span class="pre">const</span> <span class="pre">char</span> <span class="pre">*template,</span> <span class="pre">...)</span></code> is
+just like <code class="docutils literal notranslate"><span class="pre">printf</span></code>, but it uses an open file rather than defaulting
+to using standard output.</p></li>
+</ul>
+<p>You can find the complete manual on this library by going to
+<a class="reference external" href="http://www.gnu.org/software/libc/manual/">http://www.gnu.org/software/libc/manual/</a></p>
+</section>
+<section id="building-a-dynamic-library">
+<h2>Building a Dynamic Library<a class="headerlink" href="#building-a-dynamic-library" title="Link to this heading">¶</a></h2>
+<p>Let’s say that we wanted to take all of our shared code from
+<a class="reference internal" href="records.html#records"><span class="std std-ref">Reading and Writing Simple Records</span></a> and build it into a dynamic library to use in our
+programs. The first thing we would do is assemble them like normal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">write</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span>
+<span class="k">as</span> <span class="n">read</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span>
+</pre></div>
+</div>
+<p>Now, instead of linking them into a program, we want to link them into a
+dynamic library. This changes our linker command to this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ld</span> <span class="o">-</span><span class="n">shared</span> <span class="n">write</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">librecord</span><span class="o">.</span><span class="n">so</span>
+</pre></div>
+</div>
+<p>This links both of these files together into a dynamic library called
+<code class="docutils literal notranslate"><span class="pre">librecord.so</span></code>. This file can now be used for multiple programs. If we
+need to update the functions contained within it, we can just update
+this one file and not have to worry about which programs use it.</p>
+<p>Let’s look at how we would link against this library. To link the
+<code class="docutils literal notranslate"><span class="pre">write-records</span></code> program, we would do the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">write</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">records</span>
+<span class="n">ld</span> <span class="o">-</span><span class="n">L</span> <span class="o">.</span> <span class="o">-</span><span class="n">dynamic</span><span class="o">-</span><span class="n">linker</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">so</span><span class="mf">.2</span> \
+   <span class="o">-</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">records</span> <span class="o">-</span><span class="n">lrecord</span> <span class="n">write</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">o</span>
+</pre></div>
+</div>
+<p>In this command, <code class="docutils literal notranslate"><span class="pre">-L</span> <span class="pre">.</span></code> told the linker to look for libraries in the
+current directory (it usually only searches <code class="docutils literal notranslate"><span class="pre">/lib</span></code> directory,
+<code class="docutils literal notranslate"><span class="pre">/usr/lib</span></code> directory, and a few others). As we’ve seen, the
+option <code class="docutils literal notranslate"><span class="pre">-dynamic-linker</span> <span class="pre">/lib/ld-linux.so.2</span></code> specified the dynamic
+linker. The option <code class="docutils literal notranslate"><span class="pre">-lrecord</span></code> tells the linker to search for functions
+in the file named <code class="docutils literal notranslate"><span class="pre">librecord.so</span></code>.</p>
+<p>Now the <code class="docutils literal notranslate"><span class="pre">write-records</span></code> program is built, but it will not run. If we
+try it, we will get an error like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">write</span><span class="o">-</span><span class="n">records</span><span class="p">:</span> <span class="n">error</span> <span class="k">while</span> <span class="n">loading</span> <span class="n">shared</span> <span class="n">libraries</span><span class="p">:</span>
+<span class="n">librecord</span><span class="o">.</span><span class="n">so</span><span class="p">:</span> <span class="n">cannot</span> <span class="nb">open</span> <span class="n">shared</span> <span class="nb">object</span> <span class="n">file</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span>
+<span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
+</pre></div>
+</div>
+<p>This is because, by default, the dynamic linker only searches <code class="docutils literal notranslate"><span class="pre">/lib</span></code>,
+<code class="docutils literal notranslate"><span class="pre">/usr/lib</span></code>, and whatever directories are listed in
+<code class="docutils literal notranslate"><span class="pre">/etc/ld.so.conf</span></code> for libraries. In order to run the
+program, you either need to move the library to one of these
+directories, or execute the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LD_LIBRARY_PATH</span><span class="o">=.</span>
+<span class="n">export</span> <span class="n">LD_LIBRARY_PATH</span>
+</pre></div>
+</div>
+<p>LD_LIBRARY_PATH
+Alternatively, if that gives you an error, do this instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setenv</span> <span class="n">LD_LIBRARY_PATH</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Now, you can run <code class="docutils literal notranslate"><span class="pre">write-records</span></code> normally by typing
+<code class="docutils literal notranslate"><span class="pre">./write-records</span></code>. Setting <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> tells the linker to add
+whatever paths you give it to the library search path for dynamic
+libraries.</p>
+<p>For further information about dynamic linking, see the following sources
+on the Internet:</p>
+<ul class="simple">
+<li><p>The man page for <code class="docutils literal notranslate"><span class="pre">ld.so</span></code> contains a lot of information about how
+the Linux dynamic linker works.</p></li>
+<li><p><a class="reference external" href="http://www.benyossef.com/presentations/dlink/">http://www.benyossef.com/presentations/dlink/</a> is a great presentation
+on dynamic linking in Linux.</p></li>
+<li><p><a class="reference external" href="http://www.linuxjournal.com/article.php?sid=1059">http://www.linuxjournal.com/article.php?sid=1059</a> and
+<a class="reference external" href="http://www.linuxjournal.com/article.php?sid=1060">http://www.linuxjournal.com/article.php?sid=1060</a> provide a good
+introduction to the ELF file format, with more detail available at
+<a class="reference external" href="http://www.cs.ucdavis.edu/~haungs/paper/node10.html">http://www.cs.ucdavis.edu/~haungs/paper/node10.html</a></p></li>
+<li><p><a class="reference external" href="http://www.iecc.com/linker/linker10.html">http://www.iecc.com/linker/linker10.html</a> contains a great description
+of how dynamic linking works with ELF files.</p></li>
+<li><p><a class="reference external" href="http://linux4u.jinr.ru/usoft/WWW/www_debian.org/Documentation/elf/node21.html">http://linux4u.jinr.ru/usoft/WWW/www_debian.org/Documentation/elf/node21.html</a>
+contains a good introduction to programming position-independent code
+for shared libraries under Linux.</p></li>
+</ul>
+</section>
+<section id="review">
+<h2>Review<a class="headerlink" href="#review" title="Link to this heading">¶</a></h2>
+<section id="know-the-concepts">
+<h3>Know the Concepts<a class="headerlink" href="#know-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>What are the advantages and disadvantages of shared libraries?</p></li>
+<li><p>Given a library named ‘foo’, what would the library’s filename be?</p></li>
+<li><p>What does the <code class="docutils literal notranslate"><span class="pre">ldd</span></code> command do?</p></li>
+<li><p>Let’s say we had the files <code class="docutils literal notranslate"><span class="pre">foo.o</span></code> and <code class="docutils literal notranslate"><span class="pre">bar.o</span></code>, and you wanted to
+link them together, and dynamically link them to the library
+‘kramer’. What would the linking command be to generate the final
+executable?</p></li>
+<li><p>What is <em>typedef</em> for?</p></li>
+<li><p>What are <em>struct</em>s for?</p></li>
+<li><p>What is the difference between a data element of type <em>int</em> and <em>int
+*</em>? How would you access them differently in your program?</p></li>
+<li><p>If you had a object file called <code class="docutils literal notranslate"><span class="pre">foo.o</span></code>, what would be the command
+to create a shared library called ‘bar’?</p></li>
+<li><p>What is the purpose of LD_LIBRARY_PATH?</p></li>
+</ul>
+</section>
+<section id="use-the-concepts">
+<h3>Use the Concepts<a class="headerlink" href="#use-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Rewrite one or more of the programs from the previous chapters to
+print their results to the screen using <code class="docutils literal notranslate"><span class="pre">printf</span></code> rather than
+returning the result as the exit status code. Also, make the exit
+status code be 0.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">factorial</span></code> function you developed in
+<a class="reference internal" href="functions.html#recursivefunctions"><span class="std std-ref">Recursive Functions</span></a> to make a shared library. Then re-write
+the main program so that it links with the library dynamically.</p></li>
+<li><p>Rewrite the program above so that it also links with the ‘c’ library.
+Use the ‘c’ library’s <code class="docutils literal notranslate"><span class="pre">printf</span></code> function to display the result of
+the <code class="docutils literal notranslate"><span class="pre">factorial</span></code> call.</p></li>
+<li><p>Rewrite the <code class="docutils literal notranslate"><span class="pre">toupper</span></code> program so that it uses the <code class="docutils literal notranslate"><span class="pre">c</span></code> library
+functions for files rather than system calls.</p></li>
+</ul>
+</section>
+<section id="going-further">
+<h3>Going Further<a class="headerlink" href="#going-further" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Make a list of all the environment variables used by the GNU/Linux
+dynamic linker.</p></li>
+<li><p>Research the different types of executable file formats in use today
+and in the history of computing. Tell the strengths and weaknesses of
+each.</p></li>
+<li><p>What kinds of programming are you interested in (graphics,
+databbases, science, etc.)? Find a library for working in that area,
+and write a program that makes some basic use of that library.</p></li>
+<li><p>Research the use of <code class="docutils literal notranslate"><span class="pre">LD_PRELOAD</span></code>. What is it used for? Try building
+a shared library that contained the <code class="docutils literal notranslate"><span class="pre">exit</span></code> function, and have it
+write a message to STDERR before exitting. Use <code class="docutils literal notranslate"><span class="pre">LD_PRELOAD</span></code> and run
+various programs with it. What are the results?</p></li>
+</ul>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id5" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Each of these terms have slightly different meanings, but most people
+use them interchangeably anyway. Specifically, this chapter will
+cover dynamic libraries, but not shared libraries. Shared libraries
+are dynamic libraries which are built using <em>position-independent
+code</em> (often abbreviated PIC) which is outside the scope of this
+book. However, shared libraries and dynamic libraries are used in the
+same way by users and programs; the linker just links them
+differently.</p>
+</aside>
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>The reason that parameters are pushed in the reverse order is because
+of functions which take a variable number of parameters like
+<code class="docutils literal notranslate"><span class="pre">printf</span></code>. The parameters pushed in last will be in a known position
+relative to the top of the stack. The program can then use these
+parameters to determine where on the stack the additional arguments
+are, and what type they are. For example, <code class="docutils literal notranslate"><span class="pre">printf</span></code> uses the format
+string to determine how many other parameters are being sent. If we
+pushed the known arguments first, you wouldn’t be able to tell where
+they were on the stack.</p>
+</aside>
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p><code class="docutils literal notranslate"><span class="pre">stdin</span></code>, <code class="docutils literal notranslate"><span class="pre">stdout</span></code>, and <code class="docutils literal notranslate"><span class="pre">stderr</span></code> (all lower case) can be used in
+these programs to refer to the files of their corresponding file
+descriptors.</p>
+</aside>
+<aside class="footnote brackets" id="id8" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p><code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a struct. You don’t need to know its contents to use it.
+You only have to store the pointer and pass it to the relevant other
+functions.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="counting.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Counting Like a Computer</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="memoryint.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Intermediate Memory Topics</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Sharing Functions with Code Libraries</a><ul>
+<li><a class="reference internal" href="#using-a-dynamic-library">Using a Dynamic Library</a></li>
+<li><a class="reference internal" href="#how-dynamic-libraries-work">How Dynamic Libraries Work</a></li>
+<li><a class="reference internal" href="#finding-information-about-libraries">Finding Information about Libraries</a></li>
+<li><a class="reference internal" href="#useful-functions">Useful Functions</a></li>
+<li><a class="reference internal" href="#building-a-dynamic-library">Building a Dynamic Library</a></li>
+<li><a class="reference internal" href="#review">Review</a><ul>
+<li><a class="reference internal" href="#know-the-concepts">Know the Concepts</a></li>
+<li><a class="reference internal" href="#use-the-concepts">Use the Concepts</a></li>
+<li><a class="reference internal" href="#going-further">Going Further</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

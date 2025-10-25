@@ -1,0 +1,625 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Optimization" href="optimization.html"><link rel="prev" title="Counting Like a Computer" href="counting.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>High-Level Languages - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/otherlang.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="high-level-languages">
+<span id="highlevellanguages"></span><h1>High-Level Languages<a class="headerlink" href="#high-level-languages" title="Link to this heading">¶</a></h1>
+<p>In this chapter we will begin to look at our first “real-world”
+programming language. Assembly language is the language used at the
+machine’s level, but most people find coding in assembly language too
+cumbersome for everyday use. Many computer languages have been invented
+to make the programming task easier. Knowing a wide variety of languages
+is useful for many reasons, including</p>
+<ul class="simple">
+<li><p>Different languages are based on different concepts, which will help
+you to learn different and better programming methods and ideas.</p></li>
+<li><p>Different languages are good for different types of projects.</p></li>
+<li><p>Different companies have different standard languages, so knowing
+more languages makes your skills more marketable.</p></li>
+<li><p>The more languages you know, the easier it is to pick up new ones.</p></li>
+</ul>
+<p>As a programmer, you will often have to pick up new languages.
+Professional programmers can usually pick up a new language with about a
+weeks worth of study and practice. Languages are simply tools, and
+learning to use a new tool should not be something a programmer flinches
+at. In fact, if you do computer consulting you will often have to learn
+new languages on the spot in order to keep yourself employed. It will
+often be your customer, not you, who decides what language is used. This
+chapter will introduce you to a few of the languages available to you. I
+encourage you to explore as many languages as you are interested in. I
+personally try to learn a new language every few months.</p>
+<section id="compiled-and-interpreted-languages">
+<h2>Compiled and Interpreted Languages<a class="headerlink" href="#compiled-and-interpreted-languages" title="Link to this heading">¶</a></h2>
+<p>Many languages are <em>compiled</em> languages. When you write assembly
+language, each instruction you write is translated into exactly one
+machine instruction for processing. With compilers, a statement can
+translate into one or hundreds of machine instructions. In fact,
+depending on how advanced your compiler is, it might even restructure
+parts of your code to make it faster. In assembly language what you
+write is what you get.</p>
+<p>There are also languages that are <em>interpreted</em> languages. These
+languages require that the user run a program called an <em>interpreter</em>
+that in turn runs the given program. These are usually slower than
+compiled programs, since the interpreter has to read and interpret the
+code as it goes along. However, in well-made interpreters, this time can
+be fairly negligible. There is also a class of hybrid languages which
+partially compile a program before execution into byte-codes. This is
+done because the interpreter can read the byte-codes much faster than it
+can read the regular language.</p>
+<p>There are many reasons to choose one or the other. Compiled programs are
+nice, because you don’t have to already have an interpreter installed in
+the user’s machine. You have to have a compiler for the language, but
+the users of your program don’t. In an interpreted language, you have to
+be sure that the user has an interpreter installed for your program, and
+that the computer knows which interpreter to run your program with.
+However, interpeted languages tend to be more flexible, while compiled
+languages are more rigid.</p>
+<p>Language choice is usually driven by available tools and support for
+programming methods rather than by whether a language is compiled or
+interpretted. In fact many languages have options for either one.</p>
+<p>High-level languages, whether compiled or interpreted, are oriented
+around you, the programmer, instead of around the machine. This opens
+them up to a wide variety of features, which can include the following:</p>
+<ul class="simple">
+<li><p>Being able to group multiple operations into a single expression</p></li>
+<li><p>Being able to use “big values” - values that are much more conceptual
+than the 4-byte words that computers normally deal with (for example,
+being able to view text strings as a single value rather than as a
+string of bytes).</p></li>
+<li><p>Having access to better flow control constructs than just jumps.</p></li>
+<li><p>Having a compiler to check types of value assignments and other
+assertions.</p></li>
+<li><p>Having memory handled automatically.</p></li>
+<li><p>Being able to work in a language that resembles the problem domain
+rather than the computer hardware.</p></li>
+</ul>
+<p>So why does one choose one language over another? For example, many
+choose Perl because it has a vast library of functions for handling just
+about every protocol or type of data on the planet. Python, however, has
+a cleaner syntax and often lends itself to more straightforward
+solutions. Its cross-platform GUI tools are also excellent. PHP makes
+writing web applications simple. Common LISP has more power and features
+than any other environment for those willing to learn it. Scheme is the
+model of simplicity and power combined together. C is easy to interface
+with other languages.</p>
+<p>Each language is different, and the more languages you know the better
+programmer you will be. Knowing the concepts of different languages will
+help you in all programming, because you can match the programming
+language to the problem better, and you have a larger set of tools to
+work with. Even if certain features aren’t directly supported in the
+language you are using, often they can be simulated. However, if you
+don’t have a broad experience with languages, you won’t know of all the
+possibilities you have to choose from.</p>
+</section>
+<section id="your-first-c-program">
+<h2>Your First C Program<a class="headerlink" href="#your-first-c-program" title="Link to this heading">¶</a></h2>
+<p>Here is your first C program, which prints “Hello world” to the screen
+and exits. Type it in, and give it the name Hello-World.c</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">src/Hello-World.c</span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="cm">/* PURPOSE:  This program is mean to show a basic */</span>
+<span class="linenos"> 4</span><span class="cm">/*           C program.  All it does is print     */</span>
+<span class="linenos"> 5</span><span class="cm">/*           &quot;Hello World!&quot; to the screen and     */</span>
+<span class="linenos"> 6</span><span class="cm">/*           exit.                                */</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cm">/* Main Program */</span>
+<span class="linenos"> 9</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">  </span><span class="cm">/* Print our string to standard output */</span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">  </span><span class="cm">/* Exit with status 0 */</span>
+<span class="linenos">14</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">15</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>As you can see, it’s a pretty simple program. To compile it, run the
+command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="o">-</span><span class="n">o</span> <span class="n">HelloWorld</span> <span class="n">Hello</span><span class="o">-</span><span class="n">World</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+<p>To run the program, do</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">HelloWorld</span>
+</pre></div>
+</div>
+<p>Let’s look at how this program was put together.</p>
+<p>Comments in C are started with <code class="docutils literal notranslate"><span class="pre">/*</span></code> and ended with <code class="docutils literal notranslate"><span class="pre">*/</span></code>. Comments
+can span multiple lines, but many people prefer to start and end
+comments on the same line so they don’t get confused.</p>
+<p><code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;stdio.h&gt;</span></code> is the first part of the
+program. This is a <em>preprocessor directive</em>. C compiling is split into
+two stages - the preprocessor and the main compiler. This directive
+tells the preprocessor to look for the file <code class="docutils literal notranslate"><span class="pre">stdio.h</span></code> and paste it
+into your program. The preprocessor is responsible for putting together
+the text of the program. This includes sticking different files
+together, running macros on your program text, etc. After the text is
+put together, the preprocessor is done and the main compiler goes to
+work.</p>
+<p>Now, everything in <code class="docutils literal notranslate"><span class="pre">stdio.h</span></code> is now in your program just as if you
+typed it there yourself. The angle brackets around the filename tell the
+compiler to look in its standard paths for the file
+(<code class="docutils literal notranslate"><span class="pre">/usr/include</span></code> and
+<code class="docutils literal notranslate"><span class="pre">/usr/local/include</span></code>, usually). If it was in quotes,
+like <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;stdio.h&quot;</span></code> it would look in the current directory for
+the file. Anyway, <code class="docutils literal notranslate"><span class="pre">stdio.h</span></code> contains the declarations for the standard
+input and output functions and variables. These declarations tell the
+compiler what functions are available for input and output. The next few
+lines are simply comments about the program.</p>
+<p>Then there is the line <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">main(int</span> <span class="pre">argc,</span> <span class="pre">char</span> <span class="pre">**argv)</span></code>. This is the
+start of a function. C Functions are declared with their name, arguments
+and return type. This declaration says that the function’s name is
+<code class="docutils literal notranslate"><span class="pre">main</span></code>, it returns an <code class="docutils literal notranslate"><span class="pre">int</span></code> (integer - 4 bytes long on the x86
+platform), and has two arguments - an <code class="docutils literal notranslate"><span class="pre">int</span></code> called <code class="docutils literal notranslate"><span class="pre">argc</span></code> and a
+<code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">**</span></code> called <code class="docutils literal notranslate"><span class="pre">argv</span></code>. You don’t have to worry about where the
+arguments are positioned on the stack - the C compiler takes care of
+that for you. You also don’t have to worry about loading values into and
+out of registers because the compiler takes care of that, too.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">main</span></code> function is a special function in the C language - it is
+the start of all C programs (much like <code class="docutils literal notranslate"><span class="pre">_start</span></code> in our
+assembly-language programs). It always takes two parameters. The first
+parameter is the number of arguments given to this command, and the
+second parameter is a list of the arguments that were given.</p>
+<p>The next line is a function call. In assembly language, you had to push
+the arguments of a function onto the stack, and then call the function.
+C takes care of this complexity for you. You simply have to call the
+function with the parameters in parenthesis. In this case, we call the
+function <code class="docutils literal notranslate"><span class="pre">puts</span></code>, with a single parameter. This parameter is the
+character string we want to print. We just have to type in the string in
+quotations, and the compiler takes care of defining storage and moving
+the pointers to that storage onto the stack before calling the function.
+As you can see, it’s a lot less work.</p>
+<p>Finally our function returns the number <code class="docutils literal notranslate"><span class="pre">0</span></code>. In assembly language, we
+stored our return value in %eax;, but in C we just use the
+<code class="docutils literal notranslate"><span class="pre">return</span></code> command and it takes care of that for us. The return value of
+the <code class="docutils literal notranslate"><span class="pre">main</span></code> function is what is used as the exit code for the program.</p>
+<p>As you can see, using high-level languages makes life much easier. It
+also allows our programs to run on multiple platforms more easily. In
+assembly language, your program is tied to both the operating system and
+the hardware platform, while in compiled and interpreted languages the
+same code can usually run on multiple operating systems and hardware
+platforms. For example, this program can be built and executed on x86
+hardware running Linux, Windows, UNIX, or most other operating systems.
+In addition, it can also run on Macintosh hardware running a number of
+operating systems.</p>
+<p>Additional information on the C programming language can be found in
+<a class="reference internal" href="ctranslationap.html#ctranslationap"><span class="std std-ref">C Idioms in Assembly Language</span></a>.</p>
+</section>
+<section id="perl">
+<h2>Perl<a class="headerlink" href="#perl" title="Link to this heading">¶</a></h2>
+<p>Perl is an interpreted language, existing mostly on Linux and UNIX-based
+platforms. It actually runs on almost all platforms, but you find it
+most often on Linux and UNIX-based ones. Anyway, here is the Perl
+version of the program, which should be typed into a file named
+<code class="docutils literal notranslate"><span class="pre">Hello-World.pl</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">src/Hello-World.pl</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="highlight-perl notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="ch">#!/usr/bin/perl</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="k">print</span><span class="p">(</span><span class="s">&quot;Hello world!\n&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>Since Perl is interpreted, you don’t need to compile or link it. Just
+run in with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">perl</span> <span class="n">Hello</span><span class="o">-</span><span class="n">World</span><span class="o">.</span><span class="n">pl</span>
+</pre></div>
+</div>
+<p>As you can see, the Perl version is even shorter than the C version.
+With Perl you don’t have to declare any functions or program entry
+points. You can just start typing commands and the interpreter will run
+them as it comes to them. In fact this program only has two lines of
+code, one of which is optional.</p>
+<p>The first, optional line is used for UNIX machines to tell which
+interpreter to use to run the program. The <code class="docutils literal notranslate"><span class="pre">#!</span></code> tells the computer
+that this is an interpreted program, and the <code class="docutils literal notranslate"><span class="pre">/usr/bin/perl</span></code> tells the
+computer to use the program <code class="docutils literal notranslate"><span class="pre">/usr/bin/perl</span></code> to interpret the program.
+However, since we ran the program by typing in <code class="docutils literal notranslate"><span class="pre">perl</span> <span class="pre">Hello-World.pl</span></code>,
+we had already specified that we were using the perl interpreter.</p>
+<p>The next line calls a Perl builtin function, print. This has one
+parameter, the string to print. The program doesn’t have an explicit
+return statement - it knows to return simply because it runs off the end
+of the file. It also knows to return 0 because there were no errors
+while it ran. You can see that interpreted languages are often focused
+on letting you get working code as quickly as possible, without having
+to do a lot of extra legwork.</p>
+<p>One thing about Perl that isn’t so evident from this example is that
+Perl treats strings as a single value. In assembly language, we had to
+program according to the computer’s memory architecture, which meant
+that strings had to be treated as a sequence of multiple values, with a
+pointer to the first letter. Perl pretends that strings can be stored
+directly as values, and thus hides the complication of manipulating them
+for you. In fact, one of Perl’s main strengths is its ability and speed
+at manipulating text.</p>
+</section>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Link to this heading">¶</a></h2>
+<p>The Python version of the program looks almost exactly like the Perl
+one. However, Python is really a very different language than Perl, even
+if it doesn’t seem so from this trivial example. Type the program into a
+file named <code class="docutils literal notranslate"><span class="pre">Hello-World.py</span></code>. The program follows:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">src/Hello-World.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="ch">#!/usr/bin/python</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="nb">print</span> <span class="s2">&quot;Hello World&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>You should be able to tell what the different lines of the program do.</p>
+</section>
+<section id="review">
+<h2>Review<a class="headerlink" href="#review" title="Link to this heading">¶</a></h2>
+<section id="know-the-concepts">
+<h3>Know the Concepts<a class="headerlink" href="#know-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>What is the difference between an intepretted language and a compiled
+language?</p></li>
+<li><p>What reasons might cause you to need to learn a new programming
+language?</p></li>
+</ul>
+</section>
+<section id="use-the-concepts">
+<h3>Use the Concepts<a class="headerlink" href="#use-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Learn the basic syntax of a new programming language. Re-code one of
+the programs in this book in that language.</p></li>
+<li><p>In the program you wrote in the question above, what specific things
+were automated in the programming language you chose?</p></li>
+<li><p>Modify your program so that it runs 10,000 times in a row, both in
+assembly language and in your new language. Then run the <code class="docutils literal notranslate"><span class="pre">time</span></code>
+command to see which is faster. Which does come out ahead? Why do you
+think that is?</p></li>
+<li><p>How does the programming language’s input/output methods differ from
+that of the Linux system calls?</p></li>
+</ul>
+</section>
+<section id="going-further">
+<h3>Going Further<a class="headerlink" href="#going-further" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Having seen languages which have such brevity as Perl, why do you
+think this book started you with a language as verbose as assembly
+language?</p></li>
+<li><p>How do you think high level languages have affected the process of
+programming?</p></li>
+<li><p>Why do you think so many languages exist?</p></li>
+<li><p>Learn two new high level languages. How do they differ from each
+other? How are they similar? What approach to problem-solving does
+each take?</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="optimization.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Optimization</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="counting.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Counting Like a Computer</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">High-Level Languages</a><ul>
+<li><a class="reference internal" href="#compiled-and-interpreted-languages">Compiled and Interpreted Languages</a></li>
+<li><a class="reference internal" href="#your-first-c-program">Your First C Program</a></li>
+<li><a class="reference internal" href="#perl">Perl</a></li>
+<li><a class="reference internal" href="#python">Python</a></li>
+<li><a class="reference internal" href="#review">Review</a><ul>
+<li><a class="reference internal" href="#know-the-concepts">Know the Concepts</a></li>
+<li><a class="reference internal" href="#use-the-concepts">Use the Concepts</a></li>
+<li><a class="reference internal" href="#going-further">Going Further</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

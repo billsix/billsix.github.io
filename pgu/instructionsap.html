@@ -1,0 +1,1170 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="GNU Free Documentation License" href="fdlap.html"><link rel="prev" title="GUI Programming" href="guiap.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Common x86 Instructions - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/instructionsap.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="common-x86-instructions">
+<span id="instructionsappendix"></span><h1>Common x86 Instructions<a class="headerlink" href="#common-x86-instructions" title="Link to this heading">¶</a></h1>
+<section id="reading-the-tables">
+<h2>Reading the Tables<a class="headerlink" href="#reading-the-tables" title="Link to this heading">¶</a></h2>
+<p>The tables of instructions presented in this appendix include:</p>
+<ul class="simple">
+<li><p>The instruction code</p></li>
+<li><p>The operands used</p></li>
+<li><p>The flags used</p></li>
+<li><p>A brief description of what the instruction does</p></li>
+</ul>
+<p>In the operands section, it will list the type of operands it takes. If
+it takes more than one operand, each operand will be separated by a
+comma. Each operand will have a list of codes which tell whether the
+operand can be an immediate-mode value (I), a register (R), or a memory
+address (M). For example, the <code class="docutils literal notranslate"><span class="pre">movl</span></code> instruction is listed as
+<code class="docutils literal notranslate"><span class="pre">I/R/M,</span> <span class="pre">R/M</span></code>. This means that the first operand can be any kind of
+value, while the second operand must be a register or memory location.
+Note, however, that in x86 assembly language you cannot have more than
+one operand be a memory location.</p>
+<p>In the flags section, it lists the flags in the %eflags;
+register affected by the instruction. The following flags are mentioned:</p>
+<dl class="simple">
+<dt>O</dt><dd><p>Overflow flag. This is set to true if the destination operand was not
+large enough to hold the result of the instruction.</p>
+</dd>
+<dt>S</dt><dd><p>Sign flag. This is set to the sign of the last result.</p>
+</dd>
+<dt>Z</dt><dd><p>Zero flag. This flag is set to true if the result of the instruction
+is zero.</p>
+</dd>
+<dt>A</dt><dd><p>Auxiliary carry flag. This flag is set for carries and borrows
+between the third and fourth bit. It is not often used.</p>
+</dd>
+<dt>P</dt><dd><p>Parity flag. This flag is set to true if the low byte of the last
+result had an even number of 1 bits.</p>
+</dd>
+<dt>C</dt><dd><p>Carry flag. Used in arithmetic to say whether or not the result
+should be carried over to an additional byte. If the carry flag is
+set, that usually means that the destination register could not hold
+the full result. It is up to the programmer to decide on what action
+to take (i.e. - propogate the result to another byte, signal an
+error, or ignore it entirely).</p>
+</dd>
+</dl>
+<p>Other flags exist, but they are much less important.</p>
+</section>
+<section id="data-transfer-instructions">
+<span id="dtins"></span><h2>Data Transfer Instructions<a class="headerlink" href="#data-transfer-instructions" title="Link to this heading">¶</a></h2>
+<p>These instructions perform little, if any computation. Instead they are
+mostly used for moving data from one place to another.</p>
+<div class="table-wrapper docutils container" id="id1">
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Data Transfer Instructions</span><a class="headerlink" href="#id1" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Instruction</p></th>
+<th class="head"><p>Operands</p></th>
+<th class="head"><p>Affected Flags</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>movl</p></td>
+<td><p>I/R/M, I/R/M</p></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>This copies a word of data from
+one location to another.
+<code class="docutils literal notranslate"><span class="pre">movl</span> <span class="pre">%eax,</span> <span class="pre">%ebx</span></code> copies the
+contents of %eax; to
+%ebx;</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>movb</p></td>
+<td><p>I/R/M, I/R/M</p></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Same as <code class="docutils literal notranslate"><span class="pre">movl</span></code>, but operates on
+individual bytes.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>leal</p></td>
+<td><p>M, I/R/M</p></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>This takes a memory location given
+in the standard format, and,
+instead of loading the contents of
+the memory location, loads the
+computed address. For example,
+<code class="docutils literal notranslate"><span class="pre">leal</span> <span class="pre">5(%ebp,%ecx,1),</span> <span class="pre">%eax</span></code>
+loads the address computed by
+<code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">+</span> <span class="pre">%ebp</span> <span class="pre">+</span> <span class="pre">1*%ecx</span></code> and stores
+that in %eax;</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>popl</p></td>
+<td><p>R/M</p></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pops the top of the stack into the
+given location. This is equivalent
+to performing <code class="docutils literal notranslate"><span class="pre">movl</span> <span class="pre">(%esp),</span> <span class="pre">R/M</span></code>
+followed by <code class="docutils literal notranslate"><span class="pre">addl</span> <span class="pre">$4,</span> <span class="pre">%esp</span></code>.
+<code class="docutils literal notranslate"><span class="pre">popfl</span></code> is a variant which pops
+the top of the stack into the
+%eflags; register.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>pushl</p></td>
+<td><p>I/R/M</p></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pushes the given value onto the
+stack. This is the equivalent to
+performing <code class="docutils literal notranslate"><span class="pre">subl</span> <span class="pre">$4,</span> <span class="pre">%esp</span></code>
+followed by
+<code class="docutils literal notranslate"><span class="pre">movl</span> <span class="pre">I/R/M,</span> <span class="pre">(%esp)</span></code>. <code class="docutils literal notranslate"><span class="pre">pushfl</span></code>
+is a variant which pushes the
+current contents of the
+%eflags; register onto the
+top of the stack.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>xchgl</p></td>
+<td><p>R/M, R/M</p></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exchange the values of the given
+operands.</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="integer-instructions">
+<span id="intins"></span><h2>Integer Instructions<a class="headerlink" href="#integer-instructions" title="Link to this heading">¶</a></h2>
+<p>These are basic calculating instructions that operate on signed or
+unsigned integers.</p>
+<div class="table-wrapper docutils container" id="id2">
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Integer Instructions</span><a class="headerlink" href="#id2" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Instruction</p></th>
+<th class="head"><p>Operands</p></th>
+<th class="head"><p>Affected Flags</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>adcl</p></td>
+<td><p>I/R/M, R/M</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Add with carry. Adds the carry bit
+and the first operand to the second,
+and, if there is an overflow, sets
+overflow and carry to true. This is
+usually used for operations larger
+than a machine word. The addition on
+the least-significant word would
+take place using <code class="docutils literal notranslate"><span class="pre">addl</span></code>, while
+additions to the other words would
+used the <code class="docutils literal notranslate"><span class="pre">adcl</span></code> instruction to
+take the carry from the previous add
+into account. For the usual case,
+this is not used, and <code class="docutils literal notranslate"><span class="pre">addl</span></code> is
+used instead.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>addl</p></td>
+<td><p>I/R/M, R/M</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Addition. Adds the first operand to
+the second, storing the result in
+the second. If the result is larger
+than the destination register, the
+overflow and carry bits are set to
+true. This instruction operates on
+both signed and unsigned integers.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>cdq</p></td>
+<td></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Converts the %eax; word into
+the double-word consisting of
+%edx;:%eax; with sign
+extension. The <code class="docutils literal notranslate"><span class="pre">q</span></code> signifies that
+it is a <em>quad-word</em>. It’s actually a
+double-word, but it’s called a
+quad-word because of the terminology
+used in the 16-bit days. This is
+usually used before issuing an
+<code class="docutils literal notranslate"><span class="pre">idivl</span></code> instruction.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>cmpl</p></td>
+<td><p>I/R/M, R/M</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Compares two integers. It does this
+by subtracting the first operand
+from the second. It discards the
+results, but sets the flags
+accordingly. Usually used before a
+conditional jump.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>decl</p></td>
+<td><p>R/M</p></td>
+<td><p>O/S/Z/A/P</p></td>
+</tr>
+<tr class="row-odd"><td><p>Decrements the register or memory
+location. Use <code class="docutils literal notranslate"><span class="pre">decb</span></code> to decrement
+a byte instead of a word.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>divl</p></td>
+<td><p>R/M</p></td>
+<td><p>O/S/Z/A/P</p></td>
+</tr>
+<tr class="row-odd"><td><p>Performs unsigned division. Divides
+the contents of the double-word
+contained in the combined
+%edx;:%eax;
+registers by the value in the
+register or memory location
+specified. The %eax; register
+contains the resulting quotient, and
+the %edx; register contains
+the resulting remainder. If the
+quotient is too large to fit in
+%eax;, it triggers a type 0
+interrupt.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>idivl</p></td>
+<td><p>R/M</p></td>
+<td><p>O/S/Z/A/P</p></td>
+</tr>
+<tr class="row-odd"><td><p>Performs signed division. Operates
+just like <code class="docutils literal notranslate"><span class="pre">divl</span></code> above.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>imull</p></td>
+<td><p>R/M/I, R</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Performs signed multiplication and
+stores the result in the second
+operand. If the second operand is
+left out, it is assumed to be
+%eax;, and the full result is
+stored in the double-word
+FIXMEA
+MPedx-indexed;:%eax;.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>incl</p></td>
+<td><p>R/M</p></td>
+<td><p>O/S/Z/A/P</p></td>
+</tr>
+<tr class="row-odd"><td><p>Increments the given register or
+memory location. Use <code class="docutils literal notranslate"><span class="pre">incb</span></code> to
+increment a byte instead of a word.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mull</p></td>
+<td><p>R/M/I, R</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Perform unsigned multiplication.
+Same rules as apply to <code class="docutils literal notranslate"><span class="pre">imull</span></code>.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>negl</p></td>
+<td><p>R/M</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Negates (gives the two’s complement
+inversion of) the given register or
+memory location.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>sbbl</p></td>
+<td><p>I/R/M, R/M</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subtract with borrowing. This is
+used in the same way that <code class="docutils literal notranslate"><span class="pre">adc</span></code>
+is, except for subtraction. Normally
+only <code class="docutils literal notranslate"><span class="pre">subl</span></code> is used.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>subl</p></td>
+<td><p>I/R/M, R/M</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subtract the two operands. This
+subtracts the first operand from the
+second, and stores the result in the
+second operand. This instruction can
+be used on both signed and unsigned
+numbers.</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="logic-instructions">
+<span id="logicins"></span><h2>Logic Instructions<a class="headerlink" href="#logic-instructions" title="Link to this heading">¶</a></h2>
+<p>These instructions operate on memory as bits instead of words.</p>
+<div class="table-wrapper docutils container" id="id3">
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Logic Instructions</span><a class="headerlink" href="#id3" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Instruction</p></th>
+<th class="head"><p>Operands</p></th>
+<th class="head"><p>Affected Flags</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>andl</p></td>
+<td><p>I/R/M, R/M</p></td>
+<td><p>O/S/Z/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Performs a logical and of
+the contents of the two
+operands, and stores the
+result in the second
+operand. Sets the overflow
+and carry flags to false.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>notl</p></td>
+<td><p>R/M</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Performs a logical not on
+each bit in the operand.
+Also known as a one’s
+complement.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>orl</p></td>
+<td><p>I/R/M, R/M</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Performs a logical or
+between the two operands,
+and stores the result in the
+second operand. Sets the
+overflow and carry flags to
+false.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>rcll</p></td>
+<td><p>I/%cl;, R/M</p></td>
+<td><p>O/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rotates the given location’s
+bits to the left the number
+of times in the first
+operand, which is either an
+immediate-mode value or the
+register %cl;. The
+carry flag is included in
+the rotation, making it use
+33 bits instead of 32. Also
+sets the overflow flag.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>rcrl</p></td>
+<td><p>I/%cl;, R/M</p></td>
+<td><p>O/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Same as above, but rotates
+right.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>roll</p></td>
+<td><p>I/%cl;, R/M</p></td>
+<td><p>O/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rotate bits to the left. It
+sets the overflow and carry
+flags, but does not count
+the carry flag as part of
+the rotation. The number of
+bits to roll is either
+specified in immediate mode
+or is contained in the
+%cl; register.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>rorl</p></td>
+<td><p>I/%cl;, R/M</p></td>
+<td><p>O/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Same as above, but rotates
+right.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>sall</p></td>
+<td><p>I/%cl;, R/M</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Arithmetic shift left. The
+sign bit is shifted out to
+the carry flag, and a zero
+bit is placed in the least
+significant bit. Other bits
+are simply shifted to the
+left. This is the same as
+the regular shift left. The
+number of bits to shift is
+either specified in
+immediate mode or is
+contained in the %cl;
+register.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>sarl</p></td>
+<td><p>I/%cl;, R/M</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Arithmetic shift right. The
+least significant bit is
+shifted out to the carry
+flag. The sign bit is
+shifted in, and kept as the
+sign bit. Other bits are
+simply shifted to the right.
+The number of bits to shift
+is either specified in
+immediate mode or is
+contained in the %cl;
+register.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>shll</p></td>
+<td><p>I/%cl;, R/M</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Logical shift left. This
+shifts all bits to the left
+(sign bit is not treated
+specially). The leftmost bit
+is pushed to the carry flag.
+The number of bits to shift
+is either specified in
+immediate mode or is
+contained in the %cl;
+register.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>shrl</p></td>
+<td><p>I/%cl;, R/M</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Logical shift right. This
+shifts all bits in the
+register to the right (sign
+bit is not treated
+specially). The rightmost
+bit is pushed to the carry
+flag. The number of bits to
+shift is either specified in
+immediate mode or is
+contained in the %cl;
+register.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>testl</p></td>
+<td><p>I/R/M, R/M</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Does a logical and of both
+operands and discards the
+results, but sets the flags
+accordingly.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>xorl</p></td>
+<td><p>I/R/M, R/M</p></td>
+<td><p>O/S/Z/A/P/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Does an exclusive or on the
+two operands, and stores the
+result in the second
+operand. Sets the overflow
+and carry flags to false.</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="flow-control-instructions">
+<span id="flowins"></span><h2>Flow Control Instructions<a class="headerlink" href="#flow-control-instructions" title="Link to this heading">¶</a></h2>
+<p>These instructions may alter the flow of the program.</p>
+<div class="table-wrapper docutils container" id="id4">
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Flow Control Instructions</span><a class="headerlink" href="#id4" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Instruction</p></th>
+<th class="head"><p>Operands</p></th>
+<th class="head"><p>Affected Flags</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>call</p></td>
+<td><p>destination address</p></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>This pushes what would be
+the next value for
+%eip; onto the
+stack, and jumps to the
+destination address. Used
+for function calls.
+Alternatively, the
+destination address can be
+an asterisk followed by a
+register for an indirect
+function call. For example,
+<code class="docutils literal notranslate"><span class="pre">call</span> <span class="pre">*%eax</span></code> will call
+the function at the address
+in %eax;.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>int</p></td>
+<td><p>I</p></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Causes an interrupt of the
+given number. This is
+usually used for system
+calls and other kernel
+interfaces.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Jcc</p></td>
+<td><p>destination address</p></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Conditional branch. <code class="docutils literal notranslate"><span class="pre">cc</span></code>
+is the <em>condition code</em>.
+Jumps to the given address
+if the condition code is
+true (set from the previous
+instruction, probably a
+comparison). Otherwise,
+goes to the next
+instruction. The condition
+codes are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[n]a[e]</span></code> - above
+(unsigned greater than).
+An <code class="docutils literal notranslate"><span class="pre">n</span></code> can be added
+for “not” and an <code class="docutils literal notranslate"><span class="pre">e</span></code>
+can be added for “or
+equal to”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[n]b[e]</span></code> - below
+(unsigned less than)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[n]e</span></code> - equal to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[n]z</span></code> - zero</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[n]g[e]</span></code> - greater
+than (signed comparison)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[n]l[e]</span></code> - less than
+(signed comparison)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[n]c</span></code> - carry flag
+set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[n]o</span></code> - overflow flag
+set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[p]p</span></code> - parity flag
+set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[n]s</span></code> - sign flag set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ecxz</span></code> - %ecx;
+is zero</p></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>jmp</p></td>
+<td><p>destination address</p></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>An unconditional jump. This
+simply sets %eip; to
+the destination address.
+Alternatively, the
+destination address can be
+an asterisk followed by a
+register for an indirect
+jump. For example,
+<code class="docutils literal notranslate"><span class="pre">jmp</span> <span class="pre">*%eax</span></code> will jump to
+the address in
+%eax;.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ret</p></td>
+<td></td>
+<td><p>O/S/Z/A/C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pops a value off of the
+stack and then sets
+%eip; to that value.
+Used to return from
+function calls.</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="assembler-directives">
+<span id="dirins"></span><h2>Assembler Directives<a class="headerlink" href="#assembler-directives" title="Link to this heading">¶</a></h2>
+<p>These are instructions to the assembler and linker, instead of
+instructions to the processor. These are used to help the assembler put
+your code together properly, and make it easier to use.</p>
+<div class="table-wrapper docutils container" id="id5">
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Assembler Directives</span><a class="headerlink" href="#id5" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Directive</p></th>
+<th class="head"><p>Operands</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>.ascii</p></td>
+<td><p>QUOTED STRING</p></td>
+</tr>
+<tr class="row-odd"><td><p>Takes the given quoted string and converts it
+into byte data.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.byte</p></td>
+<td><p>VALUES</p></td>
+</tr>
+<tr class="row-odd"><td><p>Takes a comma-separated list of values and
+inserts them right there in the program as
+data.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.endr</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Ends a repeating section defined with
+<code class="docutils literal notranslate"><span class="pre">.rept</span></code>.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.equ</p></td>
+<td><p>LABEL, VALUE</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sets the given label equivalent to the given
+value. The value can be a number, a character,
+or an constant expression that evaluates to a a
+number or character. From that point on, use of
+the label will be substituted for the given
+value.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.globl</p></td>
+<td><p>LABEL</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sets the given label as global, meaning that it
+can be used from separately-compiled object
+files.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.include</p></td>
+<td><p>FILE</p></td>
+</tr>
+<tr class="row-odd"><td><p>Includes the given file just as if it were
+typed in right there.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.lcomm</p></td>
+<td><p>SYMBOL, SIZE</p></td>
+</tr>
+<tr class="row-odd"><td><p>This is used in the <code class="docutils literal notranslate"><span class="pre">.bss</span></code> section to specify
+storage that should be allocated when the
+program is executed. Defines the symbol with
+the address where the storage will be located,
+and makes sure that it is the given number of
+bytes long.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.long</p></td>
+<td><p>VALUES</p></td>
+</tr>
+<tr class="row-odd"><td><p>Takes a sequence of numbers separated by
+commas, and inserts those numbers as 4-byte
+words right where they are in the program.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.rept</p></td>
+<td><p>COUNT</p></td>
+</tr>
+<tr class="row-odd"><td><p>Repeats everything between this directive and
+the <code class="docutils literal notranslate"><span class="pre">.endr</span></code> directives the number of times
+specified.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.section</p></td>
+<td><p>SECTION NAME</p></td>
+</tr>
+<tr class="row-odd"><td><p>Switches the section that is being worked on.
+Common sections include <code class="docutils literal notranslate"><span class="pre">.text</span></code> (for code),
+<code class="docutils literal notranslate"><span class="pre">.data</span></code> (for data embedded in the program
+itself), and <code class="docutils literal notranslate"><span class="pre">.bss</span></code> (for uninitialized global
+data).</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.type</p></td>
+<td><p>SYMBOL, &#64;function</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tells the linker that the given symbol is a
+function.</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="differences-in-other-syntaxes-and-terminology">
+<h2>Differences in Other Syntaxes and Terminology<a class="headerlink" href="#differences-in-other-syntaxes-and-terminology" title="Link to this heading">¶</a></h2>
+<p>The syntax for assembly language used in this book is known at the
+<em>ATFIXMEAMPamp;T</em> syntax. It is the one supported by the GNU tool chain
+that comes standard with every Linux distribution. However, the official
+syntax for x86 assembly language (known as the Intel syntax) is
+different. It is the same assembly language for the same platform, but
+it looks different. Some of the differences include:</p>
+<ul class="simple">
+<li><p>In Intel syntax, the operands of instructions are often reversed. The
+destination operand is listed before the source operand.</p></li>
+<li><p>In Intel syntax, registers are not prefixed with the percent sign
+(<code class="docutils literal notranslate"><span class="pre">%</span></code>).</p></li>
+<li><p>In Intel syntax, a dollar-sign (<code class="docutils literal notranslate"><span class="pre">$</span></code>) is not required to do
+immediate-mode addressing. Instead, non-immediate addressing is
+accomplished by surrounding the address with brackets (<code class="docutils literal notranslate"><span class="pre">[]</span></code>).</p></li>
+<li><p>In Intel syntax, the instruction name does not include the size of
+data being moved. If that is ambiguous, it is explicitly stated as
+<code class="docutils literal notranslate"><span class="pre">BYTE</span></code>, <code class="docutils literal notranslate"><span class="pre">WORD</span></code>, or <code class="docutils literal notranslate"><span class="pre">DWORD</span></code> immediately after the instruction
+name.</p></li>
+<li><p>The way that memory addresses are represented in Intel assembly
+language is much different (shown below).</p></li>
+<li><p>Because the x86 processor line originally started out as a 16-bit
+processor, most literature about x86 processors refer to words as
+16-bit values, and call 32-bit values double words. However, we use
+the term “word” to refer to the standard register size on a
+processor, which is 32 bits on an x86 processor. The syntax also
+keeps this naming convention - <code class="docutils literal notranslate"><span class="pre">DWORD</span></code> stands for “double word” in
+Intel syntax and is used for standard-sized registers, which we would
+call simply a “word”.</p></li>
+<li><p>Intel assembly language has the ability to address memory as a
+segment/offset pair. We do not mention this because Linux does not
+support segmented memory, and is therefore irrelevant to normal Linux
+programming.</p></li>
+</ul>
+<p>Other differences exist, but they are small in comparison. To show some
+of the differences, consider the following instruction:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="mi">8</span><span class="p">(</span><span class="o">%</span><span class="n">ebx</span><span class="p">,</span><span class="o">%</span><span class="n">edi</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In Intel syntax, this would be written as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mov</span>  <span class="p">[</span><span class="mi">8</span> <span class="o">+</span> <span class="o">%</span><span class="n">ebx</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">edi</span><span class="p">],</span> <span class="n">eax</span>
+</pre></div>
+</div>
+<p>The memory reference is a bit easier to read than its ATFIXMEAMPamp;T
+counterpart because it spells out exactly how the address will be
+computed. However, but the order of operands in Intel syntax can be
+confusing.</p>
+</section>
+<section id="where-to-go-for-more-information">
+<h2>Where to Go for More Information<a class="headerlink" href="#where-to-go-for-more-information" title="Link to this heading">¶</a></h2>
+<p>Intel has a set of comprehensive guides to their processors. These are
+available at <a class="reference external" href="http://www.intel.com/design/pentium/manuals/">http://www.intel.com/design/pentium/manuals/</a> Note that all
+of these use the Intel syntax, not the ATFIXMEAMPamp;T syntax. The most
+important ones are their IA-32 Intel Architecture Software Developer’s
+Manual in its three volumes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span>  <span class="n">Volume</span> <span class="mi">1</span><span class="p">:</span> <span class="n">System</span> <span class="n">Programming</span> <span class="n">Guide</span> <span class="p">(</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">developer</span><span class="o">.</span><span class="n">intel</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">design</span><span class="o">/</span><span class="n">pentium4</span><span class="o">/</span><span class="n">manuals</span><span class="o">/</span><span class="mf">245470.</span><span class="n">htm</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Volume 2: Instruction Set Reference (<a class="reference external" href="http://developer.intel.com/design/pentium4/manuals/245471.htm">http://developer.intel.com/design/pentium4/manuals/245471.htm</a>)</p></li>
+<li><p>Volume 3: System Programming Guide (<a class="reference external" href="http://developer.intel.com/design/pentium4/manuals/245472.htm">http://developer.intel.com/design/pentium4/manuals/245472.htm</a>)</p></li>
+</ul>
+<p>In addition, you can find a lot of information in the manual for the GNU
+assembler, available online at
+<a class="reference external" href="http://www.gnu.org/software/binutils/manual/gas-2.9.1/as.html">http://www.gnu.org/software/binutils/manual/gas-2.9.1/as.html</a>.
+Similarly, the manual for the GNU linker is available online at
+<a class="reference external" href="http://www.gnu.org/software/binutils/manual/ld-2.9.1/ld.html">http://www.gnu.org/software/binutils/manual/ld-2.9.1/ld.html</a>.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="fdlap.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">GNU Free Documentation License</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="guiap.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">GUI Programming</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Common x86 Instructions</a><ul>
+<li><a class="reference internal" href="#reading-the-tables">Reading the Tables</a></li>
+<li><a class="reference internal" href="#data-transfer-instructions">Data Transfer Instructions</a></li>
+<li><a class="reference internal" href="#integer-instructions">Integer Instructions</a></li>
+<li><a class="reference internal" href="#logic-instructions">Logic Instructions</a></li>
+<li><a class="reference internal" href="#flow-control-instructions">Flow Control Instructions</a></li>
+<li><a class="reference internal" href="#assembler-directives">Assembler Directives</a></li>
+<li><a class="reference internal" href="#differences-in-other-syntaxes-and-terminology">Differences in Other Syntaxes and Terminology</a></li>
+<li><a class="reference internal" href="#where-to-go-for-more-information">Where to Go for More Information</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

@@ -1,0 +1,729 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="GUI Programming" href="guiap.html"><link rel="prev" title="The C Language" href="cch.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>C Idioms in Assembly Language - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/ctranslationap.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="c-idioms-in-assembly-language">
+<span id="ctranslationap"></span><h1>C Idioms in Assembly Language<a class="headerlink" href="#c-idioms-in-assembly-language" title="Link to this heading">¶</a></h1>
+<p>This appendix is for C programmers learning assembly language. It is
+meant to give a general idea about how C constructs can be implemented
+in assembly language.</p>
+<section id="if-statement">
+<h2>If Statement<a class="headerlink" href="#if-statement" title="Link to this heading">¶</a></h2>
+<p>In C, an if statement consists of three parts - the condition, the true
+branch, and the false branch. However, since assembly language is not a
+block structured language, you have to work a little to implement the
+block-like nature of C. For example, look at the following C code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">/*</span> <span class="kc">True</span> <span class="n">Branch</span> <span class="n">Code</span> <span class="n">Here</span> <span class="o">*/</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="o">/*</span> <span class="kc">False</span> <span class="n">Branch</span> <span class="n">Code</span> <span class="n">Here</span> <span class="o">*/</span>
+<span class="p">}</span>
+
+<span class="o">/*</span> <span class="n">At</span> <span class="n">This</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Reconverge</span> <span class="o">*/</span>
+</pre></div>
+</div>
+<p>In assembly language, this can be rendered as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1">#Move a and b into registers for comparison</span>
+    <span class="n">movl</span> <span class="n">a</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+    <span class="n">movl</span> <span class="n">b</span><span class="p">,</span> <span class="o">%</span><span class="n">ebx</span>
+
+    <span class="c1">#Compare</span>
+    <span class="n">cmpl</span> <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="o">%</span><span class="n">ebx</span>
+
+    <span class="c1">#If True, go to true branch</span>
+    <span class="n">je</span> <span class="n">true_branch</span>
+
+<span class="n">false_branch</span><span class="p">:</span>  <span class="c1">#This label is unnecessary,</span>
+               <span class="c1">#only here for documentation</span>
+    <span class="c1">#False Branch Code Here</span>
+
+    <span class="c1">#Jump to recovergence point</span>
+    <span class="n">jmp</span> <span class="n">reconverge</span>
+
+
+<span class="n">true_branch</span><span class="p">:</span>
+    <span class="c1">#True Branch Code Here</span>
+
+
+<span class="n">reconverge</span><span class="p">:</span>
+    <span class="c1">#Both branches recoverge to this point</span>
+</pre></div>
+</div>
+<p>As you can see, since assembly language is linear, the blocks have to
+jump around each other. Recovergence is handled by the programmer, not
+the system.</p>
+<p>A case statement is written just like a sequence of if statements.</p>
+</section>
+<section id="function-call">
+<h2>Function Call<a class="headerlink" href="#function-call" title="Link to this heading">¶</a></h2>
+<p>A function call in assembly language simply requires pushing the
+arguments to the function onto the stack in <em>reverse</em> order, and issuing
+a <code class="docutils literal notranslate"><span class="pre">call</span></code> instruction. After calling, the arguments are then popped
+back off of the stack. For example, consider the C code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s2">&quot;The number is </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">88</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In assembly language, this would be rendered as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.section .data
+text_string:
+.ascii &quot;The number is %d\0&quot;
+
+.section .text
+pushl $88
+pushl $text_string
+call  printf
+popl  %eax
+popl  %eax      #%eax is just a dummy variable,
+                #nothing is actually being done
+                #with the value.  You can also
+                #directly re-adjust %esp to the
+                #proper location.
+</pre></div>
+</div>
+</section>
+<section id="variables-and-assignment">
+<h2>Variables and Assignment<a class="headerlink" href="#variables-and-assignment" title="Link to this heading">¶</a></h2>
+<p>Global and static variables are declared using <code class="docutils literal notranslate"><span class="pre">.data</span></code> or <code class="docutils literal notranslate"><span class="pre">.bss</span></code>
+entries. Local variables are declared by reserving space on the stack at
+the beginning of the function. This space is given back at the end of
+the function.</p>
+<p>Interestingly, global variables are accessed differently than local
+variables in assembly language. Global variables are accessed using
+direct addressing, while local variables are accessed using base pointer
+addressing. For example, consider the following C code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">my_global_var</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nb">int</span> <span class="n">my_local_var</span><span class="p">;</span>
+
+    <span class="n">my_local_var</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">my_global_var</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This would be rendered in assembly language as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    .section .data
+    .lcomm my_global_var, 4
+
+    .type foo, @function
+foo:
+    pushl %ebp            #Save old base pointer
+    movl  %esp, $ebp      #make stack pointer base pointer
+    subl  $4, %esp        #Make room for my_local_var
+    .equ my_local_var, -4 #Can now use my_local_var to
+                          #find the local variable
+
+
+    movl  $1, my_local_var(%ebp)
+    movl  $2, my_global_var
+
+    movl  %ebp, %esp      #Clean up function and return
+    popl  %ebp
+    ret
+</pre></div>
+</div>
+<p>What may not be obvious is that accessing the global variable takes
+fewer machine cycles than accessing the local variable. However, that
+may not matter because the stack is more likely to be in physical memory
+(instead of swap) than the global variable is.</p>
+<p>Also note that in the C programming language, after the compiler loads a
+value into a register, that value will likely stay in that register
+until that register is needed for something else. It may also move
+registers. For example, if you have a variable <code class="docutils literal notranslate"><span class="pre">foo</span></code>, it may start on
+the stack, but the compiler will eventually move it into registers for
+processing. If there aren’t many variables in use, the value may simply
+stay in the register until it is needed again. Otherwise, when that
+register is needed for something else, the value, if it’s changed, is
+copied back to its corresponding memory location. In C, you can use the
+keyword <code class="docutils literal notranslate"><span class="pre">volatile</span></code> to make sure all modifications and
+references to the variable are done to the memory location itself,
+rather than a register copy of it, in case other processes, threads, or
+hardware may be modifying the value while your function is running.</p>
+</section>
+<section id="loops">
+<h2>Loops<a class="headerlink" href="#loops" title="Link to this heading">¶</a></h2>
+<p>Loops work a lot like if statements in assembly language - the blocks
+are formed by jumping around. In C, a while loop consists of a loop
+body, and a test to determine whether or not it is time to exit the
+loop. A for loop is exactly the same, with optional initialization and
+counter-increment sections. These can simply be moved around to make a
+while loop.</p>
+<p>In C, a while loop looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">/*</span> <span class="n">Do</span> <span class="n">stuff</span> <span class="n">here</span> <span class="o">*/</span>
+<span class="p">}</span>
+
+<span class="o">/*</span> <span class="n">Finished</span> <span class="n">Looping</span> <span class="o">*/</span>
+</pre></div>
+</div>
+<p>This can be rendered in assembly language like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">loop_begin</span><span class="p">:</span>
+    <span class="n">movl</span>  <span class="n">a</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+    <span class="n">movl</span>  <span class="n">b</span><span class="p">,</span> <span class="o">%</span><span class="n">ebx</span>
+    <span class="n">cmpl</span>  <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="o">%</span><span class="n">ebx</span>
+    <span class="n">jge</span>   <span class="n">loop_end</span>
+
+<span class="n">loop_body</span><span class="p">:</span>
+    <span class="c1">#Do stuff here</span>
+
+    <span class="n">jmp</span> <span class="n">loop_begin</span>
+
+<span class="n">loop_end</span><span class="p">:</span>
+    <span class="c1">#Finished looping</span>
+</pre></div>
+</div>
+<p>The x86 assembly language has some direct support for looping as well.
+The ecx-indexed; register can be used as a counter that <em>ends</em>
+with zero. The <code class="docutils literal notranslate"><span class="pre">loop</span></code> instruction will decrement &amp;ecx; and
+jump to a specified address unless &amp;ecx; is zero. For example, if
+you wanted to execute a statement 100 times, you would do this in C:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">/*</span> <span class="n">Do</span> <span class="n">process</span> <span class="n">here</span> <span class="o">*/</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In assembly language it would be written like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>loop_initialize:
+    movl $100, %ecx
+loop_begin:
+    #
+    #Do Process Here
+    #
+
+    #Decrement %ecx and loops if not zero
+    loop loop_begin
+
+rest_of_program:
+    #Continues on to here
+</pre></div>
+</div>
+<p>One thing to notice is that the <code class="docutils literal notranslate"><span class="pre">loop</span></code> instruction <em>requires you to be
+counting backwards to zero</em>. If you need to count forwards or use
+another ending number, you should use the loop form which does not
+include the <code class="docutils literal notranslate"><span class="pre">loop</span></code> instruction.</p>
+<p>For really tight loops of character string operations, there is also the
+<code class="docutils literal notranslate"><span class="pre">rep</span></code> instruction, but we will leave learning about that as an
+exercise to the reader.</p>
+</section>
+<section id="structs">
+<h2>Structs<a class="headerlink" href="#structs" title="Link to this heading">¶</a></h2>
+<p>Structs are simply descriptions of memory blocks. For example, in C you
+can say:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">struct</span> <span class="n">person</span> <span class="p">{</span>
+    <span class="n">char</span> <span class="n">firstname</span><span class="p">[</span><span class="mi">40</span><span class="p">];</span>
+    <span class="n">char</span> <span class="n">lastname</span><span class="p">[</span><span class="mi">40</span><span class="p">];</span>
+    <span class="nb">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This doesn’t do anything by itself, except give you ways of
+intelligently using 84 bytes of data. You can do basically the same
+thing using <code class="docutils literal notranslate"><span class="pre">.equ</span></code> directives in assembly language. Like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">equ</span> <span class="n">PERSON_SIZE</span><span class="p">,</span> <span class="mi">84</span>
+<span class="o">.</span><span class="n">equ</span> <span class="n">PERSON_FIRSTNAME_OFFSET</span><span class="p">,</span> <span class="mi">0</span>
+<span class="o">.</span><span class="n">equ</span> <span class="n">PERSON_LASTNAME_OFFSET</span><span class="p">,</span> <span class="mi">40</span>
+<span class="o">.</span><span class="n">equ</span> <span class="n">PERSON_AGE_OFFSET</span><span class="p">,</span> <span class="mi">80</span>
+</pre></div>
+</div>
+<p>When you declare a variable of this type, all you are doing is reserving
+84 bytes of space. So, if you have this in C:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">struct</span> <span class="n">person</span> <span class="n">p</span><span class="p">;</span>
+
+    <span class="o">/*</span> <span class="n">Do</span> <span class="n">stuff</span> <span class="n">here</span> <span class="o">*/</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In assembly language you would have:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>foo:
+    #Standard header beginning
+    pushl %ebp
+    movl %esp, %ebp
+
+    #Reserve our local variable
+    subl $PERSON_SIZE, %esp
+    #This is the variable&#39;s offset from %ebp
+    .equ P_VAR, 0 - PERSON_SIZE
+
+    #Do Stuff Here
+
+    #Standard function ending
+    movl %ebp, %esp
+    popl %ebp
+    ret
+</pre></div>
+</div>
+<p>To access structure members, you just have to use base pointer
+addressing with the offsets defined above. For example, in C you could
+set the person’s age like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In assembly language it would look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl $30, P_VAR + PERSON_AGE_OFFSET(%ebp)
+</pre></div>
+</div>
+</section>
+<section id="pointers">
+<h2>Pointers<a class="headerlink" href="#pointers" title="Link to this heading">¶</a></h2>
+<p>Pointers are very easy. Remember, pointers are simply the address that a
+value resides at. Let’s start by taking a look at global variables. For
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">global_data</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In assembly language, this would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">.</span><span class="n">section</span> <span class="o">.</span><span class="n">data</span>
+<span class="n">global_data</span><span class="p">:</span>
+    <span class="o">.</span><span class="n">long</span> <span class="mi">30</span>
+</pre></div>
+</div>
+<p>Taking the address of this data in C:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">global_data</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Taking the address of this data in assembly language:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl $global_data, %eax
+</pre></div>
+</div>
+<p>You see, with assembly language, you are almost always accessing memory
+through pointers. That’s what direct addressing is. To get the pointer
+itself, you just have to go with immediate mode addressing.</p>
+<p>Local variables are a little more difficult, but not much. Here is how
+you take the address of a local variable in C:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nb">int</span> <span class="n">a</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+
+    <span class="n">b</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+
+    <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="mi">44</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The same code in assembly language:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>foo:
+    #Standard opening
+    pushl %ebp
+    movl  %esp, %ebp
+
+    #Reserve two words of memory
+    subl  $8, $esp
+    .equ A_VAR, -4
+    .equ B_VAR, -8
+
+    #a = 30
+    movl $30, A_VAR(%ebp)
+
+    #b = &amp;a
+    movl $A_VAR, B_VAR(%ebp)
+    addl %ebp, B_VAR(%ebp)
+
+    #*b = 30
+    movl B_VAR(%ebp), %eax
+    movl $30, (%eax)
+
+    #Standard closing
+    movl %ebp, %esp
+    popl %ebp
+    ret
+</pre></div>
+</div>
+<p>As you can see, to take the address of a local variable, the address has
+to be computed the same way the computer computes the addresses in base
+pointer addressing. There is an easier way - the processor provides the
+instruction <code class="docutils literal notranslate"><span class="pre">leal</span></code>, which stands for “load effective address”.
+This lets the computer compute the address, and then load it wherever
+you want. So, we could just say:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#b = &amp;a</span>
+<span class="n">leal</span> <span class="n">A_VAR</span><span class="p">(</span><span class="o">%</span><span class="n">ebp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+<span class="n">movl</span> <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="n">B_VAR</span><span class="p">(</span><span class="o">%</span><span class="n">ebp</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It’s the same number of lines, but a little cleaner. Then, to use this
+value, you simply have to move it to a general-purpose register and use
+indirect addressing, as shown in the example above.</p>
+</section>
+<section id="getting-gcc-to-help">
+<h2>Getting GCC to Help<a class="headerlink" href="#getting-gcc-to-help" title="Link to this heading">¶</a></h2>
+<p>One of the nice things about GCC is its ability to spit out assembly
+language code. To convert a C language file to assembly, you can simply
+do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="o">-</span><span class="n">S</span> <span class="n">file</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+<p>The output will be in <code class="docutils literal notranslate"><span class="pre">file.s</span></code>. It’s not the most readable output -
+most of the variable names have been removed and replaced either with
+numeric stack locations or references to automatically-generated labels.
+To start with, you probably want to turn off optimizations with <code class="docutils literal notranslate"><span class="pre">-O0</span></code>
+so that the assembly language output will follow your source code
+better.</p>
+<p>Something else you might notice is that GCC reserves more stack space
+for local variables than we do, and then AND’s &amp;esp-indexed; <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
+This is to increase memory and cache efficiency by double-word
+aligning variables.</p>
+<p>Finally, at the end of functions, we usually do the following
+instructions to clean up the stack before issuing a <code class="docutils literal notranslate"><span class="pre">ret</span></code>
+instruction:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="o">%</span><span class="n">ebp</span><span class="p">,</span> <span class="o">%</span><span class="n">esp</span>
+<span class="n">popl</span> <span class="o">%</span><span class="n">ebp</span>
+</pre></div>
+</div>
+<p>However, GCC output will usually just include the instruction
+<code class="docutils literal notranslate"><span class="pre">leave</span></code>. This instruction is simply the combination of the above
+two instructions. We do not use <code class="docutils literal notranslate"><span class="pre">leave</span></code> in this text because we want
+to be clear about exactly what is happening at the processor level.</p>
+<p>I encourage you to take a C program you have written and compile it to
+assembly language and trace the logic. Then, add in optimizations and
+try again. See how the compiler chose to rearrange your program to be
+more optimized, and try to figure out why it chose the arrangement and
+instructions it did.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Note that different versions of GCC do this differently.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="guiap.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">GUI Programming</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="cch.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">The C Language</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">C Idioms in Assembly Language</a><ul>
+<li><a class="reference internal" href="#if-statement">If Statement</a></li>
+<li><a class="reference internal" href="#function-call">Function Call</a></li>
+<li><a class="reference internal" href="#variables-and-assignment">Variables and Assignment</a></li>
+<li><a class="reference internal" href="#loops">Loops</a></li>
+<li><a class="reference internal" href="#structs">Structs</a></li>
+<li><a class="reference internal" href="#pointers">Pointers</a></li>
+<li><a class="reference internal" href="#getting-gcc-to-help">Getting GCC to Help</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

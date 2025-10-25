@@ -1,0 +1,458 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Introduction" href="intro.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="#"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/index.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="programming-from-the-ground-up">
+<h1>Programming From The Ground Up<a class="headerlink" href="#programming-from-the-ground-up" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#welcome-to-programming">Welcome to Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#your-tools">Your Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#structure-of-computer-memory">Structure of Computer Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#the-cpu">The CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#some-terms">Some Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#interpreting-memory">Interpreting Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#data-accessing-methods">Data Accessing Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="firstprog.html#entering-in-the-program">Entering in the Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstprog.html#outline-of-an-assembly-language-program">Outline of an Assembly Language Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstprog.html#planning-the-program">Planning the Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstprog.html#finding-a-maximum-value">Finding a Maximum Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstprog.html#addressing-modes">Addressing Modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstprog.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#dealing-with-complexity">Dealing with Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#how-functions-work">How Functions Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#assembly-language-functions-using-the-c-calling-convention">Assembly-Language Functions using the C Calling Convention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#a-function-example">A Function Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#recursive-functions">Recursive Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="files.html#the-unix-file-concept">The UNIX File Concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html#buffers-and-bss">Buffers and <code class="docutils literal notranslate"><span class="pre">.bss</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html#standard-and-special-files">Standard and Special Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html#using-files-in-a-program">Using Files in a Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="robust.html#where-does-the-time-go">Where Does the Time Go?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robust.html#some-tips-for-developing-robust-programs">Some Tips for Developing Robust Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robust.html#handling-errors-effectively">Handling Errors Effectively</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robust.html#making-our-program-more-robust">Making Our Program More Robust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robust.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="memoryint.html#how-a-computer-views-memory">How a Computer Views Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memoryint.html#the-memory-layout-of-a-linux-program">The Memory Layout of a Linux Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memoryint.html#every-memory-address-is-a-lie">Every Memory Address is a Lie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memoryint.html#getting-more-memory">Getting More Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memoryint.html#a-simple-memory-manager">A Simple Memory Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memoryint.html#using-our-allocator">Using our Allocator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memoryint.html#more-information">More Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memoryint.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linking.html#using-a-dynamic-library">Using a Dynamic Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linking.html#how-dynamic-libraries-work">How Dynamic Libraries Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linking.html#finding-information-about-libraries">Finding Information about Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linking.html#useful-functions">Useful Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linking.html#building-a-dynamic-library">Building a Dynamic Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linking.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="counting.html#counting">Counting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counting.html#truth-falsehood-and-binary-numbers">Truth, Falsehood, and Binary Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counting.html#the-program-status-register">The Program Status Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counting.html#other-numbering-systems">Other Numbering Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counting.html#octal-and-hexadecimal-numbers">Octal and Hexadecimal Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counting.html#order-of-bytes-in-a-word">Order of Bytes in a Word</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counting.html#converting-numbers-for-display">Converting Numbers for Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counting.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="otherlang.html#compiled-and-interpreted-languages">Compiled and Interpreted Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="otherlang.html#your-first-c-program">Your First C Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="otherlang.html#perl">Perl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="otherlang.html#python">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="otherlang.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#when-to-optimize">When to Optimize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#where-to-optimize">Where to Optimize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#local-optimizations">Local Optimizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#global-optimization">Global Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wherenext.html#from-the-bottom-up">From the Bottom Up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wherenext.html#from-the-top-down">From the Top Down</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wherenext.html#from-the-middle-out">From the Middle Out</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wherenext.html#specialized-topics">Specialized Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wherenext.html#further-resources-on-assembly-language">Further Resources on Assembly Language</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="records.html#writing-records">Writing Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="records.html#reading-records">Reading Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="records.html#modifying-the-records">Modifying the Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="records.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gdpapp.html#an-example-debugging-session">An Example Debugging Session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdpapp.html#breakpoints-and-other-gdb-features">Breakpoints and Other GDB Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdpapp.html#gdb-quick-reference">GDB Quick-Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cch.html#compiled-and-interpretted-languages">Compiled and Interpretted Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cch.html#your-first-c-program">Your First C Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cch.html#review">Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ctranslationap.html#if-statement">If Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctranslationap.html#function-call">Function Call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctranslationap.html#variables-and-assignment">Variables and Assignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctranslationap.html#loops">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctranslationap.html#structs">Structs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctranslationap.html#pointers">Pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctranslationap.html#getting-gcc-to-help">Getting GCC to Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guiap.html#introduction-to-gui-programming">Introduction to GUI Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guiap.html#the-gnome-libraries">The GNOME Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guiap.html#a-simple-gnome-program-in-several-languages">A Simple GNOME Program in Several Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guiap.html#gui-builders">GUI Builders</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="instructionsap.html#reading-the-tables">Reading the Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructionsap.html#data-transfer-instructions">Data Transfer Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructionsap.html#integer-instructions">Integer Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructionsap.html#logic-instructions">Logic Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructionsap.html#flow-control-instructions">Flow Control Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructionsap.html#assembler-directives">Assembler Directives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructionsap.html#differences-in-other-syntaxes-and-terminology">Differences in Other Syntaxes and Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructionsap.html#where-to-go-for-more-information">Where to Go for More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+</div>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="intro.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Introduction</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

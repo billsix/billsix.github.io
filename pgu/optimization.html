@@ -1,0 +1,643 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Moving On from Here" href="wherenext.html"><link rel="prev" title="High-Level Languages" href="otherlang.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Optimization - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/optimization.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="optimization">
+<span id="optimizationch"></span><h1>Optimization<a class="headerlink" href="#optimization" title="Link to this heading">¶</a></h1>
+<p>Optimization is the process of making your application run more
+effectively. You can optimize for many things - speed, memory space
+usage, disk space usage, etc. This chapter, however, focuses on speed
+optimization.</p>
+<section id="when-to-optimize">
+<h2>When to Optimize<a class="headerlink" href="#when-to-optimize" title="Link to this heading">¶</a></h2>
+<p>It is better to not optimize at all than to optimize too soon. When you
+optimize, your code generally becomes less clear, because it becomes
+more complex. Readers of your code will have more trouble discovering
+why you did what you did which will increase the cost of maintenance of
+your project. Even when you know how and why your program runs the way
+it does, optimized code is harder to debug and extend. It slows the
+development process down considerably, both because of the time it takes
+to optimize the code, and the time it takes to modify your optimized
+code.</p>
+<p>Compounding this problem is that you don’t even know beforehand where
+the speed issues in your program will be. Even experienced programmers
+have trouble predicting which parts of the program will be the
+bottlenecks which need optimization, so you will probably end up wasting
+your time optimizing the wrong parts. <a class="reference internal" href="#wheretooptimize"><span class="std std-ref">Where to Optimize</span></a> will discuss how to find the parts of
+your program that need optimization.</p>
+<p>While you develop your program, you need to have the following
+priorities:</p>
+<ul class="simple">
+<li><p>Everything is documented</p></li>
+<li><p>Everything works as documented</p></li>
+<li><p>The code is written in an modular, easily modifiable form</p></li>
+</ul>
+<p>Documentation is essential, especially when working in groups. The
+proper functioning of the program is essential. You’ll notice
+application speed was not anywhere on that list. Optimization is not
+necessary during early development for the following reasons:</p>
+<ul class="simple">
+<li><p>Minor speed problems can be usually solved through hardware, which is
+often much cheaper than a programmer’s time.</p></li>
+<li><p>Your application will change dramatically as you revise it, therefore
+wasting most of your efforts to optimize it. <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
+<li><p>Speed problems are usually localized in a few places in your code -
+finding these is difficult before you have most of the program
+finished.</p></li>
+</ul>
+<p>Therefore, the time to optimize is toward the end of development, when
+you have determined that your correct code actually has performance
+problems.</p>
+<p>In a web-based e-commerce project I was involved in, I focused entirely
+on correctness. This was much to the dismay of my colleagues, who were
+worried about the fact that each page took twelve seconds to process
+before it ever started loading (most web pages process in under a
+second). However, I was determined to make it the right way first, and
+put optimization as a last priority. When the code was finally correct
+after 3 months of work, it took only three days to find and eliminate
+the bottlenecks, bringing the average processing time under a quarter of
+a second. By focusing on the correct order, I was able to finish a
+project that was both correct and efficient.</p>
+</section>
+<section id="where-to-optimize">
+<span id="wheretooptimize"></span><h2>Where to Optimize<a class="headerlink" href="#where-to-optimize" title="Link to this heading">¶</a></h2>
+<p>Once you have determined that you have a performance issue you need to
+determine where in the code the problems occur. You can do this by
+running a <em>profiler</em>. A profiler is a program that will let you run your
+program, and it will tell you how much time is spent in each function,
+and how many times they are run. <code class="docutils literal notranslate"><span class="pre">gprof</span></code> is the standard
+GNU/Linux profiling tool, but a discussion of using profilers is outside
+the scope of this text. After running a profiler, you can determine
+which functions are called the most or have the most time spent in them.
+These are the ones you should focus your optimization efforts on.</p>
+<p>If a program only spends 1% of its time in a given function, then no
+matter how much you speed it up you will only achieve a <em>maximum</em> of a
+1% overall speed improvement. However, if a program spends 20% of its
+time in a given function, then even minor improvements to that functions
+speed will be noticeable. Therefore, profiling gives you the information
+you need to make good choices about where to spend your programming
+time.</p>
+<p>In order to optimize functions, you need to understand in what ways they
+are being called and used. The more you know about how and when a
+function is called, the better position you will be in to optimize it
+appropriately.</p>
+<p>There are two main categories of optimization - local optimizations and
+global optimizations. Local optimizations consist of optimizations that
+are either hardware specific - such as the fastest way to perform a
+given computation - or program-specific - such as making a specific
+piece of code perform the best for the most often-occuring case. Global
+optimization consist of optimizations which are structural. For example,
+if you were trying to find the best way for three people in different
+cities to meet in St. Louis, a local optimization would be finding a
+better road to get there, while a global optimization would be to decide
+to teleconference instead of meeting in person. Global optimization
+often involves restructuring code to avoid performance problems, rather
+than trying to find the best way through them.</p>
+</section>
+<section id="local-optimizations">
+<h2>Local Optimizations<a class="headerlink" href="#local-optimizations" title="Link to this heading">¶</a></h2>
+<p>The following are some well-known methods of optimizing pieces of code.
+When using high level languages, some of these may be done automatically
+by your compiler’s optimizer.</p>
+<dl class="simple">
+<dt>Precomputing Calculations</dt><dd><p>Sometimes a function has a limitted number of possible inputs and
+outputs. In fact, it may be so few that you can actually precompute
+all of the possible answers beforehand, and simply look up the answer
+when the function is called. This takes up some space since you have
+to store all of the answers, but for small sets of data this works
+out really well, especially if the computation normally takes a long
+time.</p>
+</dd>
+<dt>Remembering Calculation Results</dt><dd><p>This is similar to the previous method, but instead of computing
+results beforehand, the result of each calculation requested is
+stored. This way when the function starts, if the result has been
+computed before it will simply return the previous answer, otherwise
+it will do the full computation and store the result for later
+lookup. This has the advantage of requiring less storage space
+because you aren’t precomputing all results. This is sometimes termed
+<em>caching</em> or <em>memoizing</em>.</p>
+</dd>
+<dt>Locality of Reference</dt><dd><p><em>Locality of reference</em> is a term for where in memory the data items
+you are accessing are. With virtual memory, you may access pages of
+memory which are stored on disk. In such a case, the operating system
+has to load that memory page from disk, and unload others to disk.
+Let’s say, for instance, that the operating system will allow you to
+have 20k of memory in physical memory and forces the rest of it to be
+on disk, and your application uses 60k of memory. Let’s say your
+program has to do 5 operations on each piece of data. If it does one
+operation on every piece of data, and then goes through and does the
+next operation on each piece of data, eventually every page of data
+will be loaded and unloaded from the disk 5 times. Instead, if you
+did all 5 operations on a given data item, you only have to load each
+page from disk once. When you bundle as many operations on data that
+is physically close to each other in memory, then you are taking
+advantage of locality of reference. In addition, processors usually
+store some data on-chip in a cache. If you keep all of your
+operations within a small area of physical memory, your program may
+bypass even main memory and only use the chip’s ultra-fast cache
+memory. This is all done for you - all you have to do is to try to
+operate on small sections of memory at a time, rather than bouncing
+all over the place.</p>
+</dd>
+<dt>Register Usage</dt><dd><p>Registers are the fastest memory locations on the computer. When you
+access memory, the processor has to wait while it is loaded from the
+memory bus. However, registers are located on the processor itself,
+so access is extremely fast. Therefore making wise usage of registers
+is extremely important. If you have few enough data items you are
+working with, try to store them all in registers. In high level
+languages, you do not always have this option - the compiler decides
+what goes in registers and what doesn’t.</p>
+</dd>
+<dt>Inline Functions</dt><dd><p>Functions are great from the point of view of program management -
+they make it easy to break up your program into independent,
+understandable, and reuseable parts. However, function calls do
+involve the overhead of pushing arguments onto the stack and doing
+the jumps (remember locality of reference - your code may be swapped
+out on disk instead of in memory). For high level languages, it’s
+often impossible for compilers to do optimizations across
+function-call boundaries. However, some languages support inline
+functions or function macros. These functions look, smell, taste, and
+act like real functions, except the compiler has the option to simply
+plug the code in exactly where it was called. This makes the program
+faster, but it also increases the size of the code. There are also
+many functions, like recursive functions, which cannot be inlined
+because they call themselves either directly or indirectly.</p>
+</dd>
+<dt>Optimized Instructions</dt><dd><p>Often times there are multiple assembly language instructions which
+accomplish the same purpose. A skilled assembly language programmer
+knows which instructions are the fastest. However, this can change
+from processor to processor. For more information on this topic, you
+need to see the user’s manual that is provided for the specific chip
+you are using. As an example, let’s look at the process of loading
+the number 0 into a register. On most processors, doing a
+<code class="docutils literal notranslate"><span class="pre">movl</span> <span class="pre">$0,</span> <span class="pre">%eax</span></code> is not the quickest way. The quickest way is to
+exclusive-or the register with itself, <code class="docutils literal notranslate"><span class="pre">xorl</span> <span class="pre">%eax,</span> <span class="pre">%eax</span></code>. This is
+because it only has to access the register, and doesn’t have to
+transfer any data. For users of high-level languages, the compiler
+handles this kind of optimizations for you. For assembly-language
+programmers, you need to know your processor well.</p>
+</dd>
+<dt>Addressing Modes</dt><dd><p>Different addressing modes work at different speeds. The fastest are
+the immediate and register addressing modes. Direct is the next
+fastest, indirect is next, and base pointer and indexed indirect are
+the slowest. Try to use the faster addressing modes, when possible.
+One interesting consequence of this is that when you have a
+structured piece of memory that you are accessing using base pointer
+addressing, the first element can be accessed the quickest. Since its
+offset is 0, you can access it using indirect addressing instead of
+base pointer addressing, which makes it faster.</p>
+</dd>
+<dt>Data Alignment</dt><dd><p>Some processors can access data on word-aligned memory boundaries
+(i.e. - addresses divisible by the word size) faster than non-aligned
+data. So, when setting up structures in memory, it is best to keep it
+word-aligned. Some non-x86 processors, in fact, cannot access
+non-aligned data in some modes.</p>
+</dd>
+</dl>
+<p>These are just a smattering of examples of the kinds of local
+optimizations possible. However, remember that the maintainability and
+readability of code is much more important except under extreme
+circumstances.</p>
+</section>
+<section id="global-optimization">
+<h2>Global Optimization<a class="headerlink" href="#global-optimization" title="Link to this heading">¶</a></h2>
+<p>Global optimization has two goals. The first one is to put your code in
+a form where it is easy to do local optimiztions. For example, if you
+have a large procedure that performs several slow, complex calculations,
+you might see if you can break parts of that procedure into their own
+functions where the values can be precomputed or memoized.</p>
+<p>Stateless functions (functions that only operate on the parameters that
+were passed to them - i.e. no globals or system calls) are the easiest
+type of functions to optimize in a computer. The more stateless parts of
+your program you have, the more opportunities you have to optimize. In
+the e-commerce situation I wrote about above, the computer had to find
+all of the associated parts for specific inventory items. This required
+about 12 database calls, and in the worst case took about 20 seconds.
+However, the goal of this program was to be interactive, and a long wait
+would destroy that goal. However, I knew that these inventory
+configurations do not change. Therefore, I converted the database calls
+into their own functions, which were stateless. I was then able to
+memoize the functions. At the beginning of each day, the function
+results were cleared in case anyone had changed them, and several
+inventory items were automatically preloaded. From then on during the
+day, the first time someone accessed an inventory item, it would take
+the 20 seconds it did beforehand, but afterwards it would take less than
+a second, because the database results had been memoized.</p>
+<p>Global optimization usually often involves achieving the following
+properties in your functions:</p>
+<dl class="simple">
+<dt>Parallelization</dt><dd><p>Parallelization means that your algorithm can effectively be split
+among multiple processes. For example, pregnancy is not very
+parallelizable because no matter how many women you have, it still
+takes nine months. However, building a car is parallelizable because
+you can have one worker working on the engine while another one is
+working on the interior. Usually, applications have a limit to how
+parallelizable they are. The more parallelizable your application is,
+the better it can take advantage of multiprocessor and clustered
+computer configurations.</p>
+</dd>
+<dt>Statelessness</dt><dd><p>As we’ve discussed, stateless functions and programs are those that
+rely entirely on the data explicitly passed to them for functioning.
+Most processes are not entirely stateless, but they can be within
+limits. In my e-commerce example, the function wasn’t entirely
+stateless, but it was within the confines of a single day. Therefore,
+I optimized it as if it were a stateless function, but made
+allowances for changes at night. Two great benefits resulting from
+statelessness is that most stateless functions are parallelizable and
+often benefit from memoization.</p>
+</dd>
+</dl>
+<p>Global optimization takes quite a bit of practice to know what works and
+what doesn’t. Deciding how to tackle optimization problems in code
+involves looking at all the issues, and knowing that fixing some issues
+may cause others.</p>
+</section>
+<section id="review">
+<h2>Review<a class="headerlink" href="#review" title="Link to this heading">¶</a></h2>
+<section id="know-the-concepts">
+<h3>Know the Concepts<a class="headerlink" href="#know-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>At what level of importance is optimization compared to the other
+priorities in programming?</p></li>
+<li><p>What is the difference between local and global optimizations?</p></li>
+<li><p>Name some types of local optimizations.</p></li>
+<li><p>How do you determine what parts of your program need optimization?</p></li>
+<li><p>At what level of importance is optimization compared to the other
+priorities in programming? Why do you think I repeated that question?</p></li>
+</ul>
+</section>
+<section id="use-the-concepts">
+<h3>Use the Concepts<a class="headerlink" href="#use-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Go back through each program in this book and try to make
+optimizations according to the procedures outlined in this chapter</p></li>
+<li><p>Pick a program from the previous exercise and try to calculate the
+performance impact on your code under specific inputs. <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></li>
+</ul>
+</section>
+<section id="going-further">
+<h3>Going Further<a class="headerlink" href="#going-further" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Find an open-source program that you find particularly fast. Contact
+one of the developers and ask about what kinds of optimizations they
+performed to improve the speed.</p></li>
+<li><p>Find an open-source program that you find particularly slow, and try
+to imagine the reasons for the slowness. Then, download the code and
+try to profile it using <code class="docutils literal notranslate"><span class="pre">gprof</span></code> or similar tool. Find where the
+code is spending the majority of the time and try to optimize it. Was
+the reason for the slowness different than you imagined?</p></li>
+<li><p>Has the compiler eliminated the need for local optimizations? Why or
+why not?</p></li>
+<li><p>What kind of problems might a compiler run in to if it tried to
+optimize code across function call boundaries?</p></li>
+</ul>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Many new projects often have a first code base which is completely
+rewritten as developers learn more about the problem they are trying
+to solve. Any optimization done on the first codebase is completely
+wasted.</p>
+</aside>
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Since these programs are usually short enough not to have noticeable
+performance problems, looping through the program thousands of times
+will exaggerate the time it takes to run enough to make calculations.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="wherenext.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Moving On from Here</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="otherlang.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">High-Level Languages</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Optimization</a><ul>
+<li><a class="reference internal" href="#when-to-optimize">When to Optimize</a></li>
+<li><a class="reference internal" href="#where-to-optimize">Where to Optimize</a></li>
+<li><a class="reference internal" href="#local-optimizations">Local Optimizations</a></li>
+<li><a class="reference internal" href="#global-optimization">Global Optimization</a></li>
+<li><a class="reference internal" href="#review">Review</a><ul>
+<li><a class="reference internal" href="#know-the-concepts">Know the Concepts</a></li>
+<li><a class="reference internal" href="#use-the-concepts">Use the Concepts</a></li>
+<li><a class="reference internal" href="#going-further">Going Further</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

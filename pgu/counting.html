@@ -1,0 +1,1382 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="High-Level Languages" href="otherlang.html"><link rel="prev" title="Sharing Functions with Code Libraries" href="linking.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Counting Like a Computer - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/counting.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="counting-like-a-computer">
+<span id="countingchapter"></span><h1>Counting Like a Computer<a class="headerlink" href="#counting-like-a-computer" title="Link to this heading">¶</a></h1>
+<section id="counting">
+<h2>Counting<a class="headerlink" href="#counting" title="Link to this heading">¶</a></h2>
+<section id="counting-like-a-human">
+<h3>Counting Like a Human<a class="headerlink" href="#counting-like-a-human" title="Link to this heading">¶</a></h3>
+<p>In many ways, computers count just like humans. So, before we start
+learning how computers count, let’s take a deeper look at how we count.</p>
+<p>How many fingers do you have? No, it’s not a trick question. Humans
+(normally) have ten fingers. Why is that significant? Look at our
+numbering system. At what point does a one-digit number become a
+two-digit number? That’s right, at ten. Humans count and do math using a
+base ten numbering system. Base ten means that we group everything in
+tens. Let’s say we’re counting sheep. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. Why
+did we all of a sudden now have two digits, and re-use the 1? That’s
+because we’re grouping our numbers by ten, and we have 1 group of ten
+sheep. Okay, let’s go to the next number 11. That means we have 1 group
+of ten sheep, and 1 sheep left ungrouped. So we continue - 12, 13, 14,
+15, 16, 17, 18, 19, 20. Now we have 2 groups of ten. 21 - 2 groups of
+ten, and 1 sheep ungrouped. 22 - 2 groups of ten, and 2 sheep ungrouped.
+So, let’s say we keep counting, and get to 97, 98, 99, and 100. Look, it
+happened again! What happens at 100? We now have ten groups of ten. At
+101 we have ten groups of ten, and 1 ungrouped sheep. So we can look at
+any number like this. If we counted 60879 sheep, that would mean that we
+had 6 groups of ten groups of ten groups of ten groups of ten, 0 groups
+of ten groups of ten groups of ten, 8 groups of ten groups of ten, 7
+groups of ten, and 9 sheep left ungrouped.</p>
+<p>So, is there anything significant about grouping things by ten? No! It’s
+just that grouping by ten is how we’ve always done it, because we have
+ten fingers. We could have grouped at nine or at eleven (in which case
+we would have had to make up a new symbol). The only difference between
+the different groupings of numbers is that we have to re-learn our
+multiplication, addition, subtraction, and division tables for each
+grouping. The rules haven’t changed, just the way we represent them.
+Also, some of our tricks that we learned don’t always apply, either. For
+example, let’s say we grouped by nine instead of ten. Moving the decimal
+point one digit to the right no longer multiplies by ten, it now
+multiplies by nine. In base nine, 500 is only nine times as large as 50.</p>
+</section>
+<section id="id1">
+<h3>Counting Like a Computer<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>The question is, how many fingers does the computer have to count with?
+The computer only has two fingers. So that means all of the groups are
+groups of two. So, let’s count in binary - 0 (zero), 1 (one), 10 (two -
+one group of two), 11 (three - one group of two and one left over), 100
+(four - two groups of two), 101 (five - two groups of two and one left
+over), 110 (six - two groups of two and one group of two), and so on. In
+base two, moving the decimal one digit to the right multiplies by two,
+and moving it to the left divides by two. Base two is also referred to
+as binary.</p>
+<p>The nice thing about base two is that the basic math tables are very
+short. In base ten, the multiplication tables are ten columns wide, and
+ten columns tall. In base two, it is very simple:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Table</span> <span class="n">of</span> <span class="n">binary</span> <span class="n">addition</span>
+
+<span class="o">+</span> <span class="o">|</span>  <span class="mi">0</span>  <span class="o">|</span>  <span class="mi">1</span>
+<span class="o">--+-----+-----</span>
+<span class="mi">0</span> <span class="o">|</span>  <span class="mi">0</span>  <span class="o">|</span>  <span class="mi">0</span>
+<span class="o">--+-----+-----</span>
+<span class="mi">1</span> <span class="o">|</span>  <span class="mi">1</span>  <span class="o">|</span> <span class="mi">10</span>
+
+<span class="n">Table</span> <span class="n">of</span> <span class="n">binary</span> <span class="n">multiplication</span>
+
+<span class="o">*</span> <span class="o">|</span>  <span class="mi">0</span>  <span class="o">|</span>  <span class="mi">1</span>
+<span class="o">--+-----+-----</span>
+<span class="mi">0</span> <span class="o">|</span>  <span class="mi">0</span>  <span class="o">|</span>  <span class="mi">0</span>
+<span class="o">--+-----+-----</span>
+<span class="mi">1</span> <span class="o">|</span>  <span class="mi">0</span>  <span class="o">|</span>  <span class="mi">1</span>
+</pre></div>
+</div>
+<p>So, let’s add the numbers 10010101 with 1100101:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="mi">10010101</span>
+<span class="o">+</span>   <span class="mi">1100101</span>
+<span class="o">-----------</span>
+   <span class="mi">11111010</span>
+</pre></div>
+</div>
+<p>Now, let’s multiply them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="mi">10010101</span>
+    <span class="o">*</span>   <span class="mi">1100101</span>
+    <span class="o">-----------</span>
+       <span class="mi">10010101</span>
+      <span class="mi">00000000</span>
+     <span class="mi">10010101</span>
+    <span class="mi">00000000</span>
+   <span class="mi">00000000</span>
+  <span class="mi">10010101</span>
+ <span class="mi">10010101</span>
+<span class="o">---------------</span>
+ <span class="mi">11101011001001</span>
+</pre></div>
+</div>
+</section>
+<section id="conversions-between-binary-and-decimal">
+<h3>Conversions Between Binary and Decimal<a class="headerlink" href="#conversions-between-binary-and-decimal" title="Link to this heading">¶</a></h3>
+<p>Let’s learn how to convert numbers from binary (base two) to decimal
+(base ten). This is actually a rather simple process. If you remember,
+each digit stands for some grouping of two. So, we just need to add up
+what each digit represents, and we will have a decimal number. Take the
+binary number 10010101. To find out what it is in decimal, we take it
+apart like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">1</span>    <span class="mi">0</span>    <span class="mi">1</span>    <span class="mi">0</span>    <span class="mi">1</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="n">Individual</span> <span class="n">units</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">0</span><span class="p">)</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="mi">0</span> <span class="n">groups</span> <span class="n">of</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="mi">1</span> <span class="n">group</span> <span class="n">of</span> <span class="mi">4</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="mi">0</span> <span class="n">groups</span> <span class="n">of</span> <span class="mi">8</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="mi">1</span> <span class="n">group</span> <span class="n">of</span> <span class="mi">16</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="mi">0</span> <span class="n">groups</span> <span class="n">of</span> <span class="mi">32</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">|</span>    <span class="mi">0</span> <span class="n">groups</span> <span class="n">of</span> <span class="mi">64</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">6</span><span class="p">)</span>
+<span class="mi">1</span> <span class="n">group</span> <span class="n">of</span> <span class="mi">128</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and then we add all of the pieces together, like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">*</span><span class="mi">128</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">64</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">32</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">16</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">8</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1</span> <span class="o">=</span>
+<span class="mi">128</span> <span class="o">+</span> <span class="mi">16</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=</span>
+<span class="mi">149</span>
+</pre></div>
+</div>
+<p>So 10010101 in binary is 149 in decimal. Let’s look at 1100101. It can
+be written as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">*</span><span class="mi">64</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">32</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">*</span> <span class="mi">16</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">8</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1</span> <span class="o">=</span>
+<span class="mi">64</span> <span class="o">+</span> <span class="mi">32</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=</span>
+<span class="mi">101</span>
+</pre></div>
+</div>
+<p>So we see that 1100101 in binary is 101 in decimal. Let’s look at one
+more number, 11101011001001. You can convert it to decimal by doing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">*</span><span class="mi">8192</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">4096</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">2048</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">1024</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">512</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">256</span>
+       <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">128</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">64</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">32</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">16</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">8</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">4</span>
+       <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1</span> <span class="o">=</span>
+
+<span class="mi">8192</span> <span class="o">+</span> <span class="mi">4096</span> <span class="o">+</span> <span class="mi">2048</span> <span class="o">+</span> <span class="mi">512</span> <span class="o">+</span> <span class="mi">128</span> <span class="o">+</span> <span class="mi">64</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=</span>
+
+<span class="mi">15049</span>
+</pre></div>
+</div>
+<p>Now, if you’ve been paying attention, you have noticed that the numbers
+we just converted are the same ones we used to multiply with earlier.
+So, let’s check our results: 101 * 149 = 15049. It worked!</p>
+<p>Now let’s look at going from decimal back to binary. In order to do the
+conversion, you have to <em>divide</em> the number into groups of two. So,
+let’s say you had the number 17. If you divide it by two, you get 8 with
+1 left over. So that means there are 8 groups of two, and 1 ungrouped.
+That means that the rightmost digit will be 1. Now, we have the rigtmost
+digit figured out, and 8 groups of 2 left over. Now, let’s see how many
+groups of two groups of two we have, by dividing 8 by 2. We get 4, with
+nothing left over. That means that all groups two can be further divided
+into more groups of two. So, we have 0 groups of only two. So the next
+digit to the left is 0. So, we divide 4 by 2 and get two, with 0 left
+over, so the next digit is 0. Then, we divide 2 by 2 and get 1, with 0
+left over. So the next digit is 0. Finally, we divide 1 by 2 and get 0
+with 1 left over, so the next digit to the left is 1. Now, there’s
+nothing left, so we’re done. So, the number we wound up with is 10001.</p>
+<p>Previously, we converted to binary 11101011001001 to decimal 15049.
+Let’s do the reverse to make sure that we did it right:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">15049</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">7524</span>    <span class="n">Remaining</span> <span class="mi">1</span>
+<span class="mi">7524</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">3762</span>     <span class="n">Remaining</span> <span class="mi">0</span>
+<span class="mi">3762</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">1881</span>     <span class="n">Remaining</span> <span class="mi">0</span>
+<span class="mi">1881</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">940</span>      <span class="n">Remaining</span> <span class="mi">1</span>
+<span class="mi">940</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">470</span>       <span class="n">Remaining</span> <span class="mi">0</span>
+<span class="mi">470</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">235</span>       <span class="n">Remaining</span> <span class="mi">0</span>
+<span class="mi">235</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">117</span>       <span class="n">Remaining</span> <span class="mi">1</span>
+<span class="mi">117</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">58</span>        <span class="n">Remaining</span> <span class="mi">1</span>
+<span class="mi">58</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">29</span>         <span class="n">Remaining</span> <span class="mi">0</span>
+<span class="mi">29</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">14</span>         <span class="n">Remaining</span> <span class="mi">1</span>
+<span class="mi">14</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">7</span>          <span class="n">Remaining</span> <span class="mi">0</span>
+<span class="mi">7</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">3</span>           <span class="n">Remaining</span> <span class="mi">1</span>
+<span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">1</span>           <span class="n">Remaining</span> <span class="mi">1</span>
+<span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">0</span>           <span class="n">Remaining</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Then, we put the remaining numbers back together, and we have the
+original number! Remember the first division remainder goes to the far
+right, so from the bottom up you have 11101011001001.</p>
+<p>Each digit in a binary number is called a <em>bit</em>, which stands for
+<em>binary digit</em>. Remember, computers divide up their memory into storage
+locations called bytes. Each storage location on an x86 processor (and
+most others) is 8 bits long. Earlier we said that a byte can hold any
+number between 0 and 255. The reason for this is that the largest number
+you can fit into 8 bits is 255. You can see this for yourself if you
+convert binary 11111111 into decimal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">11111111</span> <span class="o">=</span>
+
+<span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="mi">7</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+          <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="mi">0</span><span class="p">)</span> <span class="o">=</span>
+
+<span class="mi">128</span> <span class="o">+</span> <span class="mi">64</span> <span class="o">+</span> <span class="mi">32</span> <span class="o">+</span> <span class="mi">16</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=</span>
+
+<span class="mi">255</span>
+</pre></div>
+</div>
+<p>The largest number that you can hold in 16 bits is 65535. The largest
+number you can hold in 32 bits is 4294967295 (4 billion). The largest
+number you can hold in 64 bits is 18,446,744,073,709,551,615. The
+largest number you can hold in 128 bits is
+340,282,366,920,938,463,463,374,607,431,768,211,456. Anyway, you see the
+picture. For x86 processors, most of the time you will deal with 4-byte
+numbers (32 bits), because that’s the size of the registers.</p>
+</section>
+</section>
+<section id="truth-falsehood-and-binary-numbers">
+<span id="truthbinarynumbers"></span><h2>Truth, Falsehood, and Binary Numbers<a class="headerlink" href="#truth-falsehood-and-binary-numbers" title="Link to this heading">¶</a></h2>
+<p>Now we’ve seen that the computer stores everything as sequences of 1’s
+and 0’s. Let’s look at some other uses of this. What if, instead of
+looking at a sequence of bits as a number, we instead looked at it as a
+set of switches. For example, let’s say there are four switches that
+control lighting in the house. We have a switch for outside lights, a
+switch for the hallway lights, a switch for the living room lights, and
+a switch for the bedroom lights. We could make a little table showing
+which of these were on and off, like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Outside</span>  <span class="n">Hallway</span>  <span class="n">Living</span> <span class="n">Room</span>  <span class="n">Bedroom</span>
+  <span class="n">On</span>       <span class="n">Off</span>        <span class="n">On</span>         <span class="n">On</span>
+</pre></div>
+</div>
+<p>It’s obvious from looking at this that all of the lights are on except
+the hallway ones. Now, instead of using the words “On” and “Off”, let’s
+use the numbers 1 and 0. 1 will represent on, and 0 will represent off.
+So, we could represent the same information as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Outside</span>  <span class="n">Hallway</span>  <span class="n">Living</span> <span class="n">Room</span>  <span class="n">Bedroom</span>
+   <span class="mi">1</span>        <span class="mi">0</span>           <span class="mi">1</span>         <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Now, instead of having labels on the light switches, let’s say we just
+memorized which position went with which switch. Then, the same
+information could be represented as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>           <span class="mi">0</span>           <span class="mi">1</span>         <span class="mi">1</span>
+</pre></div>
+</div>
+<p>or as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1011</span>
+</pre></div>
+</div>
+<p>This is just one of many ways you can use the computers storage
+locations to represent more than just numbers. The computers memory just
+sees numbers, but programmers can use these numbers to represent
+anything their imaginations can come up with. They just sometimes have
+to be creative when figuring out the best representation.</p>
+<p>Not only can you do regular arithmetic with binary numbers, they also
+have a few operations of their own, called binary or logical operations
+. The standard binary operations are</p>
+<ul class="simple">
+<li><p>AND</p></li>
+<li><p>OR</p></li>
+<li><p>NOT</p></li>
+<li><p>XOR</p></li>
+</ul>
+<p>Before we look at examples, I’ll describe them for you. AND takes two
+bits and returns one bit. AND will return a 1 only if both bits are 1,
+and a 0 otherwise. For example, 1 AND 1 is 1, but 1 AND 0 is 0, 0 AND 1
+is 0, and 0 AND 0 is 0.</p>
+<p>OR takes two bits and returns one bit. It will return 1 if either of the
+original bits is 1. For example, 1 OR 1 is 1, 1 OR 0 is one, 0 OR 1 is
+1, but 0 OR 0 is 0.</p>
+<p>NOT only takes one bit and returns its opposite. NOT 1 is 0 and NOT 0 is
+1.</p>
+<p>Finally, XOR is like OR, except it returns 0 if both bits are 1.</p>
+<p>Computers can do these operations on whole registers at a time. For
+example, if a register has 10100010101010010101101100101010 and another
+one has 10001000010101010101010101111010, you can run any of these
+operations on the whole registers. For example, if we were to AND them,
+the computer will run from the first bit to the 32nd and run the AND
+operation on that bit in both registers. In this case:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10100010101010010101101100101010</span> <span class="n">AND</span>
+<span class="mi">10001000010101010101010101111010</span>
+<span class="o">--------------------------------</span>
+<span class="mi">10000000000000010101000100101010</span>
+</pre></div>
+</div>
+<p>You’ll see that the resulting set of bits only has a one where <em>both</em>
+numbers had a one, and in every other position it has a zero. Let’s look
+at what an OR looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10100010101010010101101100101010</span> <span class="n">OR</span>
+<span class="mi">10001000010101010101010101111010</span>
+<span class="o">--------------------------------</span>
+<span class="mi">10101010111111010101111101111010</span>
+</pre></div>
+</div>
+<p>In this case, the resulting number has a 1 where either number has a 1
+in the given position. Let’s look at the NOT operation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NOT</span> <span class="mi">10100010101010010101101100101010</span>
+<span class="o">------------------------------------</span>
+    <span class="mi">01011101010101101010010011010101</span>
+</pre></div>
+</div>
+<p>This just reverses each digit. Finally, we have XOR, which is like an
+OR, except if <em>both</em> digits are 1, it returns 0.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10100010101010010101101100101010</span> <span class="n">XOR</span>
+<span class="mi">10001000010101010101010101111010</span>
+<span class="o">--------------------------------</span>
+<span class="mi">00101010111111000000111001010000</span>
+</pre></div>
+</div>
+<p>This is the same two numbers used in the OR operation, so you can
+compare how they work. Also, if you XOR a number with itself, you will
+always get 0, like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10100010101010010101101100101010</span> <span class="n">XOR</span>
+<span class="mi">10100010101010010101101100101010</span>
+<span class="o">--------------------------------</span>
+<span class="mi">00000000000000000000000000000000</span>
+</pre></div>
+</div>
+<p>These operations are useful for two reasons:</p>
+<ul class="simple">
+<li><p>The computer can do them extremely fast</p></li>
+<li><p>You can use them to compare many truth values at the same time</p></li>
+</ul>
+<p>You may not have known that different instructions execute at different
+speeds. It’s true, they do. And these operations are the fastest on most
+processors. For example, you saw that XORing a number with itself
+produces 0. Well, the XOR operation is faster than the loading
+operation, so many programmers use it to load a register with zero. For
+example, the code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl  $0, %eax
+</pre></div>
+</div>
+<p>is often replaced by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xorl</span>  <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+</pre></div>
+</div>
+<p>We’ll discuss speed more in <a class="reference internal" href="optimization.html#optimizationch"><span class="std std-ref">Optimization</span></a>, but I want you to
+see how programmers often do tricky things, especially with these binary
+operators, to make things fast. Now let’s look at how we can use these
+operators to manipulate true/false values. Earlier we discussed how
+binary numbers can be used to represent any number of things. Let’s use
+binary numbers to represent what things my Dad and I like. First, let’s
+look at the things I like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Food</span><span class="p">:</span> <span class="n">yes</span>
+<span class="n">Heavy</span> <span class="n">Metal</span> <span class="n">Music</span><span class="p">:</span> <span class="n">yes</span>
+<span class="n">Wearing</span> <span class="n">Dressy</span> <span class="n">Clothes</span><span class="p">:</span> <span class="n">no</span>
+<span class="n">Football</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>Now, let’s look at what my Dad likes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Food</span><span class="p">:</span> <span class="n">yes</span>
+<span class="n">Heavy</span> <span class="n">Metal</span> <span class="n">Music</span><span class="p">:</span> <span class="n">no</span>
+<span class="n">Wearing</span> <span class="n">Dressy</span> <span class="n">Clothes</span><span class="p">:</span> <span class="n">yes</span>
+<span class="n">Football</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>Now, let’s use a 1 to say yes we like something, and a 0 to say no we
+don’t. Now we have:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Me</span>
+<span class="n">Food</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Heavy</span> <span class="n">Metal</span> <span class="n">Music</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Wearing</span> <span class="n">Dressy</span> <span class="n">Clothes</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Football</span><span class="p">:</span> <span class="mi">1</span>
+
+<span class="n">Dad</span>
+<span class="n">Food</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Heavy</span> <span class="n">Metal</span> <span class="n">Music</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Wearing</span> <span class="n">Dressy</span> <span class="n">Clothes</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Football</span><span class="p">:</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Now, if we just memorize which position each of these are in, we have</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Me</span>
+<span class="mi">1101</span>
+
+<span class="n">Dad</span>
+<span class="mi">1011</span>
+</pre></div>
+</div>
+<p>Now, let’s see we want to get a list of things both my Dad and I like.
+You would use the AND operation. So</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1101</span> <span class="n">AND</span>
+<span class="mi">1011</span>
+<span class="o">--------</span>
+<span class="mi">1001</span>
+</pre></div>
+</div>
+<p>Which translates to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Things</span> <span class="n">we</span> <span class="n">both</span> <span class="n">like</span>
+<span class="n">Food</span><span class="p">:</span> <span class="n">yes</span>
+<span class="n">Heavy</span> <span class="n">Metal</span> <span class="n">Music</span><span class="p">:</span> <span class="n">no</span>
+<span class="n">Wearing</span> <span class="n">Dressy</span> <span class="n">Clothes</span><span class="p">:</span> <span class="n">no</span>
+<span class="n">Football</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>Remember, the computer has no idea what the ones and zeroes represent.
+That’s your job and your program’s job. If you wrote a program around
+this representation your program would at some point examine each bit
+and have code to tell the user what it’s for (if you asked a computer
+what two people agreed on and it answered 1001, it wouldn’t be very
+useful). Anyway, let’s say we want to know the things that we disagree
+on. For that we would use XOR, because it will return 1 only if one or
+the other is 1, but not both. So</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1101</span> <span class="n">XOR</span>
+<span class="mi">1011</span>
+<span class="o">--------</span>
+<span class="mi">0110</span>
+</pre></div>
+</div>
+<p>And I’ll let you translate that back out.</p>
+<p>The previous operations: AND, OR, NOT, and XOR are called <em>boolean
+operators</em> because they were first studied by George Boole. So, if
+someone mentiones boolean operators or boolean algebra, you now know
+what they are talking about.</p>
+<p>In addition to the boolean operations, there are also two binary
+operators that aren’t boolean, shift and rotate. Shifts and rotates each
+do what their name implies, and can do so to the right or the left. A
+left shift moves each digit of a binary number one space to the left,
+puts a zero in the ones spot, and chops off the furthest digit to the
+left. A left rotate does the same thing, but takes the furthest digit to
+the left and puts it in the ones spot. For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Shift</span> <span class="n">left</span>  <span class="mi">10010111</span> <span class="o">=</span> <span class="mi">00101110</span>
+<span class="n">Rotate</span> <span class="n">left</span> <span class="mi">10010111</span> <span class="o">=</span> <span class="mi">00101111</span>
+</pre></div>
+</div>
+<p>Notice that if you rotate a number for every digit it has (i.e. -
+rotating a 32-bit number 32 times), you wind up with the same number you
+started with. However, if you <em>shift</em> a number for every digit you have,
+you wind up with 0. So, what are these shifts useful for? Well, if you
+have binary numbers representing things, you use shifts to peek at each
+individual value. Let’s say, for instance, that we had my Dad’s likes
+stored in a register (32 bits). It would look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">00000000000000000000000000001011</span>
+</pre></div>
+</div>
+<p>Now, as we said previously, this doesn’t work as program output. So, in
+order to do output, we would need to do shifting and <em>masking</em>. Masking
+is the process of eliminating everything you don’t want. In this case,
+for every value we are looking for, we will shift the number so that
+value is in the ones place, and then mask that digit so that it is all
+we see. Masking is accomplished by doing an AND with a number that has
+the bits we are interested in set to 1. For example, let’s say we wanted
+to print out whether my Dad likes dressy clothes or not. That data is
+the second value from the right. So, we have to shift the number right 1
+digit so it looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">00000000000000000000000000000101</span>
+</pre></div>
+</div>
+<p>and then, we just want to look at that digit, so we mask it by ANDing it
+with 00000000000000000000000000000001.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">00000000000000000000000000000101</span> <span class="n">AND</span>
+<span class="mi">00000000000000000000000000000001</span>
+<span class="o">-----------------------------------</span>
+<span class="mi">00000000000000000000000000000001</span>
+</pre></div>
+</div>
+<p>This will make the value of the register 1 if my Dad likes dressy
+clothes, and 0 if he doesn’t. Then we can do a comparison to 1 and print
+the results. The code would look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#NOTE - assume that the register %ebx holds
+#       my Dad&#39;s preferences
+
+movl  %ebx, %eax #This copies the information into %eax so
+                 #we don&#39;t lose the original data
+
+shrl  $1, %eax   #This is the shift operator.  It stands
+                 #for Shift Right Long.  This first number
+                 #is the number of positions to shift,
+                 #and the second is the register to shift
+
+#This does the masking
+andl  $0b00000000000000000000000000000001, %eax
+
+#Check to see if the result is 1 or 0
+cmpl  $0b00000000000000000000000000000001, %eax
+
+je    yes_he_likes_dressy_clothes
+
+jmp   no_he_doesnt_like_dressy_clothes
+</pre></div>
+</div>
+<p>And then we would have two labels which printed something about whether
+or not he likes dressy clothes and then exits. The <code class="docutils literal notranslate"><span class="pre">0b</span></code> notation means
+that what follows is a binary number. In this case it wasn’t needed,
+because 1 is the same in any numbering system, but I put it there for
+clarity. We also didn’t need the 31 zeroes, but I put them in to make a
+point that the number you are using is 32 bits.</p>
+<p>When a number represents a set of options for a function or system call,
+the individual true/false elements are called <em>flags</em>. Many system calls
+have numerous options that are all set in the same register using a
+mechanism like we’ve described. The <code class="docutils literal notranslate"><span class="pre">open</span></code> system call, for
+example, has as its second parameter a list of flags to tell the
+operating system how to open the file. Some of the flags include:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">O_WRONLY</span></code></dt><dd><p>This flag is <code class="docutils literal notranslate"><span class="pre">0b00000000000000000000000000000001</span></code> in binary, or
+<code class="docutils literal notranslate"><span class="pre">01</span></code> in octal (or any number system for that matter). This says to
+open the file in write-only mode.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">O_RDWR</span></code></dt><dd><p>This flag is <code class="docutils literal notranslate"><span class="pre">0b00000000000000000000000000000010</span></code> in binary, or
+<code class="docutils literal notranslate"><span class="pre">02</span></code> in octal. This says to open the file for both reading and
+writing.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">O_CREAT</span></code></dt><dd><p>This flag is <code class="docutils literal notranslate"><span class="pre">0b00000000000000000000000001000000</span></code> in binary, or
+<code class="docutils literal notranslate"><span class="pre">0100</span></code> in octal. It means to create the file if it doesn’t already
+exist.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">O_TRUNC</span></code></dt><dd><p>This flag is <code class="docutils literal notranslate"><span class="pre">0b00000000000000000000001000000000</span></code> in binary, or
+<code class="docutils literal notranslate"><span class="pre">01000</span></code> in octal. It means to erase the contents of the file if the
+file already exists.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">O_APPEND</span></code></dt><dd><p>This flag is <code class="docutils literal notranslate"><span class="pre">0b00000000000000000000010000000000</span></code> in binary, or
+<code class="docutils literal notranslate"><span class="pre">02000</span></code> in octal. It means to start writing at the end of the file
+rather than at the beginning.</p>
+</dd>
+</dl>
+<p>To use these flags, you simply OR them together in the combination that
+you want. For example, to open a file in write-only mode, and have it
+create the file if it doesn’t exist, I would use <code class="docutils literal notranslate"><span class="pre">O_WRONLY</span></code> (01) and
+<code class="docutils literal notranslate"><span class="pre">O_CREAT</span></code> (0100). OR’d together, I would have 0101.</p>
+<p>Note that if you don’t set either <code class="docutils literal notranslate"><span class="pre">O_WRONLY</span></code> or <code class="docutils literal notranslate"><span class="pre">O_RDWR</span></code>, then the
+file is automatically opened in read-only mode (<code class="docutils literal notranslate"><span class="pre">O_RDONLY</span></code>, except
+that it isn’t really a flag since it’s zero).</p>
+<p>Many functions and system calls use flags for options, as it allows a
+single word to hold up to 32 possible options if each option is
+represented by a single bit.</p>
+</section>
+<section id="the-program-status-register">
+<h2>The Program Status Register<a class="headerlink" href="#the-program-status-register" title="Link to this heading">¶</a></h2>
+<p>We’ve seen how bits on a register can be used to give the answers of
+yes/no and true/false statements. On your computer, there is a register
+called the <em>program status register</em>. This register holds a lot of
+information about what happens in a computation. For example, have you
+ever wondered what would happen if you added two numbers and the result
+was larger than would fit in a register? The program status register has
+a flag called the carry flag. You can test it to see if the last
+computation overflowed the register. There are flags for a number of
+different statuses. In fact, when you do a compare (<code class="docutils literal notranslate"><span class="pre">cmpl</span></code>)
+instruction, the result is stored in this register. The conditional jump
+instructions (<code class="docutils literal notranslate"><span class="pre">jge</span></code>, <code class="docutils literal notranslate"><span class="pre">jne</span></code>, etc) use these results to tell whether
+or not they should jump. <code class="docutils literal notranslate"><span class="pre">jmp</span></code>, the unconditional jump, doesn’t
+care what is in the status register, since it is unconditional.</p>
+<p>Let’s say you needed to store a number larger than 32 bits. So, let’s
+say the number is 2 registers wide, or 64 bits. How could you handle
+this? If you wanted to add two 64 bit numbers, you would add the least
+significant registers first. Then, if you detected an carry, you could
+add 1 to the most significant register. In fact, this is probably the
+way you learned to do decimal addition. If the result in one column is
+more than 9, you simply carried the number to the next most significant
+column. If you added 65 and 37, first you add 7 and 4 to get 12. You
+keep the 2 in the right column, and carry the one to the next column.
+There you add 6, 3, and the 1 you carried. This results in 10. So, you
+keep the zero in that column and carry the one to the next most
+significant column, which is empty, so you just put the one there.
+Luckily, 32 bits is usually big enough to hold the numbers we use
+regularly.</p>
+<p>Additional program status register flags are examined in
+<a class="reference internal" href="instructionsap.html#instructionsappendix"><span class="std std-ref">Common x86 Instructions</span></a>.</p>
+</section>
+<section id="other-numbering-systems">
+<h2>Other Numbering Systems<a class="headerlink" href="#other-numbering-systems" title="Link to this heading">¶</a></h2>
+<p>What we have studied so far only applies to positive integers. However,
+real-world numbers are not always positive integers. Negative numbers
+and numbers with decimals are also used.</p>
+<section id="floating-point-numbers">
+<span id="floatingpoint"></span><h3>Floating-point Numbers<a class="headerlink" href="#floating-point-numbers" title="Link to this heading">¶</a></h3>
+<p>So far, the only numbers we’ve dealt with are integers - numbers with no
+decimal point. Computers have a general problem with numbers with
+decimal points, because computers can only store fixed-size, finite
+values. Decimal numbers can be any length, including infinite length
+(think of a repeating decimal, like the result of 1 / 3).</p>
+<p>The way a computer handles decimals is by storing them at a fixed
+precision (number of significant bits). A computer stores decimal
+numbers in two parts - the <em>exponent</em> and the <em>mantissa</em>. The mantissa
+contains the actual digits that will be used, and the exponent is what
+magnitude the number is. For example, 12345.2 can be represented as
+1.23452 * 10^4. The mantissa is 1.23452 and the exponent is 4 with a
+base of 10. Computers, however, use a base of 2. All numbers are stored
+as X.XXXXX * 2^XXXX. The number 1, for example, is stored as 1.00000 *
+2^0. Separating the mantissa and the exponent into two different values
+is called a <em>floating point</em> representation, because the position of the
+significant digits with respect to the decimal point can vary based on
+the exponent.</p>
+<p>Now, the mantissa and the exponent are only so long, which leads to some
+interesting problems. For example, when a computer stores an integer, if
+you add 1 to it, the resulting number is one larger. This does not
+necessarily happen with floating point numbers. If the number is
+sufficiently big, adding 1 to it might not even register in the mantissa
+(remember, both parts are only so long). This affects several things,
+especially order of operations. If you add 1.0 to a given floating point
+number, it might not even affect the number if it is large enough. For
+example, on x86 platforms, a four-byte floating-point number, although
+it can represent very large numbers, cannot have 1.0 added to it past
+16777216.0, because it is no longer significant. The number no longer
+changes when 1.0 is added to it. So, if there is a multiplication
+followed by an addition it may give a different result than if the
+addition is performed first.</p>
+<p>You should note that it takes most computers a lot longer to do
+floating-point arithmetic than it does integer arithmetic. So, for
+programs that really need speed, integers are mostly used.</p>
+</section>
+<section id="negative-numbers">
+<h3>Negative Numbers<a class="headerlink" href="#negative-numbers" title="Link to this heading">¶</a></h3>
+<p>How would you think that negative numbers on a computer might be
+represented? One thought might be to use the first digit of a number as
+the sign, so <code class="docutils literal notranslate"><span class="pre">00000000000000000000000000000001</span></code> would represent the
+number 1, and <code class="docutils literal notranslate"><span class="pre">10000000000000000000000000000001</span></code> would represent -1.
+This makes a lot of sense, and in fact some old processors work this
+way. However, it has some problems. First of all, it takes a lot more
+circuitry to add and subtract signed numbers represented this way. Even
+more problematic, this representation has a problem with the number 0.
+In this system, you could have both a negative and a positive 0. This
+leads to a lot of questions, like “should negative zero be equal to
+positive zero?”, and “What should the sign of zero be in various
+circumstances?”.</p>
+<p>These problems were overcome by using a representation of negative
+numbers called <em>two’s complement</em> representation. To get the negative
+representation of a number in two’s complement form, you must perform
+the following steps:</p>
+<ol class="arabic simple">
+<li><p>Perform a NOT operation on the number</p></li>
+<li><p>Add one to the resulting number</p></li>
+</ol>
+<p>So, to get the negative of <code class="docutils literal notranslate"><span class="pre">00000000000000000000000000000001</span></code>, you
+would first do a NOT operation, which gives
+<code class="docutils literal notranslate"><span class="pre">11111111111111111111111111111110</span></code>, and then add one, giving
+<code class="docutils literal notranslate"><span class="pre">11111111111111111111111111111111</span></code>. To get negative two, first take
+<code class="docutils literal notranslate"><span class="pre">00000000000000000000000000000010</span></code>. The NOT of that number is
+<code class="docutils literal notranslate"><span class="pre">11111111111111111111111111111101</span></code>. Adding one gives
+<code class="docutils literal notranslate"><span class="pre">11111111111111111111111111111110</span></code>. With this representation, you can
+add numbers just as if they were positive, and come out with the right
+answers. For example, if you add one plus negative one in binary, you
+will notice that all of the numbers flip to zero. Also, the first digit
+still carries the sign bit, making it simple to determine whether or not
+the number is positive or negative. Negative numbers will always have a
+<code class="docutils literal notranslate"><span class="pre">1</span></code> in the leftmost bit. This also changes which numbers are valid for
+a given number of bits. With signed numbers, the possible magnitude of
+the values is split to allow for both positive and negative numbers. For
+example, a byte can normally have values up to 255. A signed byte,
+however, can store values from -128 to 127.</p>
+<p>One thing to note about the two’s complement representation of signed
+numbers is that, unlike unsigned quantities, if you increase the number
+of bits, you can’t just add zeroes to the left of the number. For
+example, let’s say we are dealing with four-bit quantities and we had
+the number -3, <code class="docutils literal notranslate"><span class="pre">1101</span></code>. If we were to extend this into an eight-bit
+register, we could not represent it as <code class="docutils literal notranslate"><span class="pre">00001101</span></code> as this would
+represent 13, not -3. When you increase the size of a signed quantity in
+two’s complement representation, you have to perform <em>sign extension</em>.
+Sign extension means that you have to pad the left-hand side of the
+quantity with whatever digit is in the sign digit when you add bits. So,
+if we extend a negative number by 4 digits, we should fill the new
+digits with a 1. If we extend a positive number by 4 digits, we should
+fill the new digits with a 0. So, the extension of -3 from four to eight
+bits will yield <code class="docutils literal notranslate"><span class="pre">11111101</span></code>.</p>
+<p>The x86 processor has different forms of several instructions depending
+on whether they expect the quantities they operate on to be signed or
+unsigned. These are listed in <a class="reference internal" href="instructionsap.html#instructionsappendix"><span class="std std-ref">Common x86 Instructions</span></a>. For
+example, the x86 processor has both a sign-preserving shift-right,
+<code class="docutils literal notranslate"><span class="pre">sarl</span></code>, and a shift-right which does not preserve the sign bit,
+<code class="docutils literal notranslate"><span class="pre">shrl</span></code>.</p>
+</section>
+</section>
+<section id="octal-and-hexadecimal-numbers">
+<span id="octalhexadecimal"></span><h2>Octal and Hexadecimal Numbers<a class="headerlink" href="#octal-and-hexadecimal-numbers" title="Link to this heading">¶</a></h2>
+<p>The numbering systems discussed so far have been decimal and binary.
+However, two others are used common in computing - octal and
+hexadecimal. In fact, they are probably written more often than binary.
+Octal is a representation that only uses the numbers 0 through 7. So the
+octal number 10 is actually 8 in decimal because it is one group of
+eight. Octal 121 is decimal 81 (one group of 64 (8^2), two groups of 8,
+and one left over). What makes octal nice is that every 3 binary digits
+make one octal digit (there is no such grouping of binary digits into
+decimal). So 0 is 000, 1 is 001, 2 is 010, 3 is 011, 4 is 100, 5 is 101,
+6 is 110, and 7 is 111.</p>
+<p>Permissions in Linux are done using octal. This is because Linux
+permissions are based on the ability to read, write and execute. The
+first bit is the read permission, the second bit is the write
+permission, and the third bit is the execute permission. So, 0 (000)
+gives no permissions, 6 (110) gives read and write permission, and 5
+(101) gives read and execute permissions. These numbers are then used
+for the three different sets of permissions - the owner, the group, and
+everyone else. The number 0644 means read and write for the first
+permission set, and read-only for the second and third set. The first
+permission set is for the owner of the file. The third permission set is
+for the group owner of the file. The last permission set is for everyone
+else. So, <code class="docutils literal notranslate"><span class="pre">0751</span></code> means that the owner of the file can read, write, and
+execute the file, the group members can read and execute the file, and
+everyone else can only execute the file.</p>
+<p>Anyway, as you can see, octal is used to group bits (binary digits) into
+threes. The way the assembler knows that a number is octal is because
+octal numbers are prefixed with a zero. For example 010 means 10 in
+octal, which is 8 in decimal. If you just write 10 that means 10 in
+decimal. The beginning zero is what differentiates the two. So, <em>be
+careful not to put any leading zeroes in front of decimal numbers, or
+they will be interepreted as octal numbers</em>!</p>
+<p>Hexadecimal numbers (also called just “hex”) use the numbers 1-15 for
+each digit. however, since 10-15 don’t have their own numbers,
+hexadecimal uses the letters <code class="docutils literal notranslate"><span class="pre">a</span></code> through <code class="docutils literal notranslate"><span class="pre">f</span></code> to represent them. For
+example, the letter <code class="docutils literal notranslate"><span class="pre">a</span></code> represents 10, the letter <code class="docutils literal notranslate"><span class="pre">b</span></code> represents 11,
+and so on. 10 in hexadecimal is 16 in decimal. In octal, each digit
+represented three bits. In hexadecimal, each digit represents four bits.
+Every two digits is a full byte, and eight digits is a 32-bit word. So
+you see, it is considerably easier to write a hexadecimal number than it
+is to write a binary number, because it’s only a quarter as many digits.
+The most important number to remember in hexadecimal is <code class="docutils literal notranslate"><span class="pre">f</span></code>, which
+means that all bits are set. So, if I want to set all of the bits of a
+register to 1, I can just do</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl  $0xFFFFFFFF, %eax
+</pre></div>
+</div>
+<p>Which is considerably easier and less error-prone than writing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl  $0b11111111111111111111111111111111, %eax
+</pre></div>
+</div>
+<p>Note also that hexadecimal numbers are prefixed with <code class="docutils literal notranslate"><span class="pre">0x</span></code>. So, when we
+do</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int   $0x80
+</pre></div>
+</div>
+<p>We are calling interrupt number 128 (8 groups of 16), or interrupt
+number <code class="docutils literal notranslate"><span class="pre">0b00000000000000000000000010000000</span></code>.</p>
+<p>Hexadecimal and octal numbers take some getting used to, but they are
+heavily used in computer programming. It might be worthwhile to make up
+some numbers in hex and try to convert them back and forth to binary,
+decimal, and octal.</p>
+</section>
+<section id="order-of-bytes-in-a-word">
+<h2>Order of Bytes in a Word<a class="headerlink" href="#order-of-bytes-in-a-word" title="Link to this heading">¶</a></h2>
+<p>One thing that confuses many people when dealing with bits and bytes on
+a low level is that, when bytes are written from registers to memory,
+their bytes are written out least-significant-portion-first. <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> What
+most people expect is that if they have a word in a register, say
+<code class="docutils literal notranslate"><span class="pre">0x5d</span> <span class="pre">23</span> <span class="pre">ef</span> <span class="pre">ee</span></code> (the spacing is so you can see where the bytes are),
+the bytes will be written to memory in that order. However, on x86
+processors, the bytes are actually written in reverse order. In memory
+the bytes would be <code class="docutils literal notranslate"><span class="pre">0xee</span> <span class="pre">ef</span> <span class="pre">23</span> <span class="pre">5d</span></code> on x86 processors. The bytes are
+written in reverse order from what they would appear conceptually, but
+the bits within the bytes are ordered normally.</p>
+<p>Not all processors behave this way. The x86 processor is a
+<em>little-endian</em> processor, which means that it stores the “little end”,
+or least-significant byte of its words first.</p>
+<p><img alt="Register-to-memory transfers on little-endian systems" src="images/littleendian.png" /></p>
+<p>Other processors are <em>big-endian</em> processors, which means that they
+store the “big end”, or most significant byte, of their words first, the
+way we would naturally read a number.</p>
+<p><img alt="Register-to-memory transfers on big-endian systems" src="images/bigendian.png" /></p>
+<p>This difference is not normally a problem (although it has sparked many
+technical controversies throughout the years). Because the bytes are
+reversed again (or not, if it is a big-endian processor) when being read
+back into a register, the programmer usually never notices what order
+the bytes are in. The byte-switching magic happens automatically behind
+the scenes during register-to-memory transfers. However, the byte order
+can cause problems in several instances:</p>
+<ul class="simple">
+<li><p>If you try to read in several bytes at a time using <code class="docutils literal notranslate"><span class="pre">movl</span></code> but deal
+with them on a byte-by-byte basis using the least significant byte
+(i.e. - by using %al; and/or shifting of the register), this
+will be in a different order than they appear in memory.</p></li>
+<li><p>If you read or write files written for different architectures, you
+may have to account for whatever order they write their bytes in.</p></li>
+<li><p>If you read or write to network sockets, you may have to account for
+a different byte order in the protocol.</p></li>
+</ul>
+<p>As long as you are aware of the issue, it usually isn’t a big deal. For
+more in-depth look at byte order issues, you should read DAV’s Endian
+FAQ at <a class="reference external" href="http://www.rdrop.com/~cary/html/endian_faq.html">http://www.rdrop.com/~cary/html/endian_faq.html</a>, especially the
+article “On Holy Wars and a Plea for Peace” by Daniel Cohen.</p>
+</section>
+<section id="converting-numbers-for-display">
+<h2>Converting Numbers for Display<a class="headerlink" href="#converting-numbers-for-display" title="Link to this heading">¶</a></h2>
+<p>So far, we have been unable to display any number stored to the user,
+except by the extremely limitted means of passing it through exit codes.
+In this section, we will discuss converting positive numbers into
+strings for display.</p>
+<p>The function will be called <code class="docutils literal notranslate"><span class="pre">integer2string</span></code>, and it will take two
+parameters - an integer to convert and a string buffer filled with null
+characters (zeroes). The buffer will be assumed to be big enough to
+store the entire number as a string.(at least 11 characters long, to
+include a trailing null character).</p>
+<p>Remember that the way that we see numbers is in base 10. Therefore, to
+access the individual decimal digits of a number, we need to be dividing
+by 10 and displaying the remainder for each digit. Therefore, the
+process will look like this:</p>
+<ul class="simple">
+<li><p>Divide the number by ten</p></li>
+<li><p>The remainder is the current digit. Convert it to a character and
+store it.</p></li>
+<li><p>We are finished if the quotient is zero.</p></li>
+<li><p>Otherwise, take the quotient and the next location in the buffer and
+repeat the process.</p></li>
+</ul>
+<p>The only problem is that since this process deals with the one’s place
+first, it will leave the number backwards. Therefore, we will have to
+finish by reversing the characters. We will do this by storing the
+characters on the stack as we compute them. This way, as we pop them
+back off to fill in the buffer, it will be in the reverse order that we
+pushed them on.</p>
+<p>The code for the function should be put in a file called
+<code class="docutils literal notranslate"><span class="pre">integer-to-string.s</span></code> and should be entered as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">src/integer-to-string.s</span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1">#PURPOSE: Convert an integer number to a decimal string </span>
+<span class="linenos">  2</span><span class="c1">#         for display</span>
+<span class="linenos">  3</span><span class="c1">#</span>
+<span class="linenos">  4</span><span class="c1">#INPUT:   A buffer large enough to hold the largest </span>
+<span class="linenos">  5</span><span class="c1">#         possible number</span>
+<span class="linenos">  6</span><span class="c1">#         An integer to convert</span>
+<span class="linenos">  7</span><span class="c1">#</span>
+<span class="linenos">  8</span><span class="c1">#OUTPUT:  The buffer will be overwritten with the </span>
+<span class="linenos">  9</span><span class="c1">#         decimal string</span>
+<span class="linenos"> 10</span><span class="c1">#</span>
+<span class="linenos"> 11</span><span class="c1">#Variables:</span>
+<span class="linenos"> 12</span><span class="c1">#</span>
+<span class="linenos"> 13</span><span class="c1"># %ecx will hold the count of characters processed</span>
+<span class="linenos"> 14</span><span class="c1"># %eax will hold the current value</span>
+<span class="linenos"> 15</span><span class="c1"># %edi will hold the base (10)</span>
+<span class="linenos"> 16</span><span class="c1">#</span>
+<span class="linenos"> 17</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_VALUE</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span>
+<span class="linenos"> 18</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_BUFFER</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">integer2string</span>
+<span class="linenos"> 21</span><span class="w">	</span><span class="na">.type</span><span class="w"> </span><span class="no">integer2string</span><span class="p">,</span><span class="w"> </span><span class="na">@function</span>
+<span class="linenos"> 22</span><span class="nl">integer2string:</span>
+<span class="linenos"> 23</span><span class="w">	</span><span class="c1">#Normal function beginning</span>
+<span class="linenos"> 24</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos"> 25</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="w">	</span><span class="c1">#Current character count</span>
+<span class="linenos"> 28</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos"> 29</span>
+<span class="linenos"> 30</span><span class="w">	</span><span class="c1">#Move the value into position</span>
+<span class="linenos"> 31</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_VALUE</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span><span class="w">	</span><span class="c1">#When we divide by 10, the 10</span>
+<span class="linenos"> 34</span><span class="w">	</span><span class="c1">#must be in a register or memory location</span>
+<span class="linenos"> 35</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$10</span><span class="p">,</span><span class="w"> </span><span class="nv">%edi</span>
+<span class="linenos"> 36</span>
+<span class="linenos"> 37</span><span class="nl">conversion_loop:</span>
+<span class="linenos"> 38</span><span class="w">	</span><span class="c1">#Division is actually performed on the</span>
+<span class="linenos"> 39</span><span class="w">	</span><span class="c1">#combined %edx:%eax register, so first</span>
+<span class="linenos"> 40</span><span class="w">	</span><span class="c1">#clear out %edx</span>
+<span class="linenos"> 41</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos"> 42</span>
+<span class="linenos"> 43</span><span class="w">	</span><span class="c1">#Divide %edx:%eax (which are implied) by 10.</span>
+<span class="linenos"> 44</span><span class="w">	</span><span class="c1">#Store the quotient in %eax and the remainder</span>
+<span class="linenos"> 45</span><span class="w">	</span><span class="c1">#in %edx (both of which are implied).</span>
+<span class="linenos"> 46</span><span class="w">	</span><span class="nf">divl</span><span class="w">  </span><span class="nv">%edi</span>
+<span class="linenos"> 47</span>
+<span class="linenos"> 48</span><span class="w">	</span><span class="c1">#Quotient is in the right place.  %edx has</span>
+<span class="linenos"> 49</span><span class="w">	</span><span class="c1">#the remainder, which now needs to be converted</span>
+<span class="linenos"> 50</span><span class="w">	</span><span class="c1">#into a number.  So, %edx has a number that is</span>
+<span class="linenos"> 51</span><span class="w">	</span><span class="c1">#0 through 9.  You could also interpret this as</span>
+<span class="linenos"> 52</span><span class="w">	</span><span class="c1">#an index on the ASCII table starting from the</span>
+<span class="linenos"> 53</span><span class="w">	</span><span class="c1">#character &#39;0&#39;.  The ascii code for &#39;0&#39; plus zero</span>
+<span class="linenos"> 54</span><span class="w">	</span><span class="c1">#is still the ascii code for &#39;0&#39;.  The ascii code</span>
+<span class="linenos"> 55</span><span class="w">	</span><span class="c1">#for &#39;0&#39; plus 1 is the ascii code for the </span>
+<span class="linenos"> 56</span><span class="w">	</span><span class="c1">#character &#39;1&#39;.  Therefore, the following </span>
+<span class="linenos"> 57</span><span class="w">	</span><span class="c1">#instruction will give us the character for the </span>
+<span class="linenos"> 58</span><span class="w">	</span><span class="c1">#number stored in %edx</span>
+<span class="linenos"> 59</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$</span><span class="err">&#39;</span><span class="mi">0</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos"> 60</span>
+<span class="linenos"> 61</span><span class="w">	</span><span class="c1">#Now we will take this value and push it on the </span>
+<span class="linenos"> 62</span><span class="w">	</span><span class="c1">#stack.  This way, when we are done, we can just </span>
+<span class="linenos"> 63</span><span class="w">	</span><span class="c1">#pop off the characters one-by-one and they will </span>
+<span class="linenos"> 64</span><span class="w">	</span><span class="c1">#be in the right order.  Note that we are pushing </span>
+<span class="linenos"> 65</span><span class="w">	</span><span class="c1">#the whole register, but we only need the byte </span>
+<span class="linenos"> 66</span><span class="w">	</span><span class="c1">#in %dl (the last byte of the %edx register) for </span>
+<span class="linenos"> 67</span><span class="w">	</span><span class="c1">#the character.</span>
+<span class="linenos"> 68</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="w">	</span><span class="c1">#Increment the digit count</span>
+<span class="linenos"> 71</span><span class="w">	</span><span class="nf">incl</span><span class="w">  </span><span class="nv">%ecx</span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span><span class="w">	</span><span class="c1">#Check to see if %eax is zero yet, go to next</span>
+<span class="linenos"> 74</span><span class="w">	</span><span class="c1">#step if so.</span>
+<span class="linenos"> 75</span><span class="w">	</span><span class="nf">cmpl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos"> 76</span><span class="w">	</span><span class="nf">je</span><span class="w">    </span><span class="no">end_conversion_loop</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span><span class="w">	</span><span class="c1">#%eax already has its new value.</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span><span class="w">	</span><span class="nf">jmp</span><span class="w"> </span><span class="no">conversion_loop</span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span><span class="nl">end_conversion_loop:</span>
+<span class="linenos"> 83</span><span class="w">	</span><span class="c1">#The string is now on the stack, if we pop it</span>
+<span class="linenos"> 84</span><span class="w">	</span><span class="c1">#off a character at a time we can copy it into</span>
+<span class="linenos"> 85</span><span class="w">	</span><span class="c1">#the buffer and be done.</span>
+<span class="linenos"> 86</span>
+<span class="linenos"> 87</span><span class="w">	</span><span class="c1">#Get the pointer to the buffer in %edx</span>
+<span class="linenos"> 88</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_BUFFER</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos"> 89</span><span class="w">	</span>
+<span class="linenos"> 90</span><span class="nl">copy_reversing_loop:</span>
+<span class="linenos"> 91</span><span class="w">	</span><span class="c1">#We pushed a whole register, but we only need</span>
+<span class="linenos"> 92</span><span class="w">	</span><span class="c1">#the last byte.  So we are going to pop off to</span>
+<span class="linenos"> 93</span><span class="w">	</span><span class="c1">#the entire %eax register, but then only move the</span>
+<span class="linenos"> 94</span><span class="w">	</span><span class="c1">#small part (%al) into the character string.</span>
+<span class="linenos"> 95</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%eax</span>
+<span class="linenos"> 96</span><span class="w">	</span><span class="nf">movb</span><span class="w">  </span><span class="nv">%al</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nv">%edx</span><span class="p">)</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span><span class="w">	</span><span class="c1">#Decreasing %ecx so we know when we are finished</span>
+<span class="linenos"> 99</span><span class="w">	</span><span class="nf">decl</span><span class="w">  </span><span class="nv">%ecx</span>
+<span class="linenos">100</span><span class="w">	</span><span class="c1">#Increasing %edx so that it will be pointing to </span>
+<span class="linenos">101</span><span class="w">	</span><span class="c1">#the next byte</span>
+<span class="linenos">102</span><span class="w">	</span><span class="nf">incl</span><span class="w">  </span><span class="nv">%edx</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span><span class="w">	</span><span class="c1">#Check to see if we are finished</span>
+<span class="linenos">105</span><span class="w">	</span><span class="nf">cmpl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">106</span><span class="w">	</span><span class="c1">#If so, jump to the end of the function</span>
+<span class="linenos">107</span><span class="w">	</span><span class="nf">je</span><span class="w">    </span><span class="no">end_copy_reversing_loop</span>
+<span class="linenos">108</span><span class="w">	</span><span class="c1">#Otherwise, repeat the loop</span>
+<span class="linenos">109</span><span class="w">	</span><span class="nf">jmp</span><span class="w">   </span><span class="no">copy_reversing_loop</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span><span class="nl">end_copy_reversing_loop:</span>
+<span class="linenos">112</span><span class="w">	</span><span class="c1">#Done copying.  Now write a null byte and return</span>
+<span class="linenos">113</span><span class="w">	</span><span class="nf">movb</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nv">%edx</span><span class="p">)</span>
+<span class="linenos">114</span><span class="w">	</span>
+<span class="linenos">115</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%ebp</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">116</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebp</span>
+<span class="linenos">117</span><span class="w">	</span><span class="nf">ret</span>
+<span class="linenos">118</span><span class="w">	</span>
+</pre></div>
+</div>
+</div>
+<p>To show this used in a full program, use the following code, along with
+the <code class="docutils literal notranslate"><span class="pre">count_chars</span></code> and <code class="docutils literal notranslate"><span class="pre">write_newline</span></code> functions written about in
+previous chapters. The code should be in a file called
+<code class="docutils literal notranslate"><span class="pre">conversion-program.s</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">src/conversion-program.s</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;linux.s&quot;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="w">	</span><span class="c1">#This is where it will be stored</span>
+<span class="linenos"> 6</span><span class="nl">tmp_buffer:</span>
+<span class="linenos"> 7</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;\0\0\0\0\0\0\0\0\0\0\0&quot;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span>
+<span class="linenos">10</span><span class="w">	</span>
+<span class="linenos">11</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+<span class="linenos">12</span><span class="nl">_start:</span>
+<span class="linenos">13</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">	</span><span class="c1">#Storage for the result</span>
+<span class="linenos">16</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$tmp_buffer</span>
+<span class="linenos">17</span><span class="w">	</span><span class="c1">#Number to convert</span>
+<span class="linenos">18</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$824</span>
+<span class="linenos">19</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">integer2string</span>
+<span class="linenos">20</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$8</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">	</span><span class="c1">#Get the character count for our system call</span>
+<span class="linenos">23</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$tmp_buffer</span>
+<span class="linenos">24</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">count_chars</span>
+<span class="linenos">25</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$4</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="w">	</span><span class="c1">#The count goes in %edx for SYS_WRITE</span>
+<span class="linenos">28</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="w">	</span><span class="c1">#Make the system call</span>
+<span class="linenos">31</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_WRITE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">32</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$STDOUT</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">33</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$tmp_buffer</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="w">	</span><span class="c1">#Write a carriage return</span>
+<span class="linenos">38</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$STDOUT</span>
+<span class="linenos">39</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">write_newline</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="w">	</span><span class="c1">#Exit</span>
+<span class="linenos">42</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_EXIT</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">43</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">44</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+</pre></div>
+</div>
+</div>
+<p>To build the program, issue the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">integer</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">string</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">integer</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">number</span><span class="o">.</span><span class="n">o</span>
+<span class="k">as</span> <span class="n">count</span><span class="o">-</span><span class="n">chars</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">count</span><span class="o">-</span><span class="n">chars</span><span class="o">.</span><span class="n">o</span>
+<span class="k">as</span> <span class="n">write</span><span class="o">-</span><span class="n">newline</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">newline</span><span class="o">.</span><span class="n">o</span>
+<span class="k">as</span> <span class="n">conversion</span><span class="o">-</span><span class="n">program</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">conversion</span><span class="o">-</span><span class="n">program</span><span class="o">.</span><span class="n">o</span>
+<span class="n">ld</span> <span class="n">integer</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">number</span><span class="o">.</span><span class="n">o</span> <span class="n">count</span><span class="o">-</span><span class="n">chars</span><span class="o">.</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">newline</span><span class="o">.</span><span class="n">o</span> <span class="n">conversion</span><span class="o">-</span><span class="n">program</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">conversion</span><span class="o">-</span><span class="n">program</span>
+</pre></div>
+</div>
+<p>To run just type <code class="docutils literal notranslate"><span class="pre">./conversion-program</span></code> and the output should say
+<code class="docutils literal notranslate"><span class="pre">824</span></code>.</p>
+</section>
+<section id="review">
+<h2>Review<a class="headerlink" href="#review" title="Link to this heading">¶</a></h2>
+<section id="know-the-concepts">
+<h3>Know the Concepts<a class="headerlink" href="#know-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Convert the decimal number 5,294 to binary.</p></li>
+<li><p>What number does 0x0234aeff represent? Specify in binary, octal, and
+decimal.</p></li>
+<li><p>Add the binary numbers 10111001 and 101011.</p></li>
+<li><p>Multiply the binary numbers 1100 1010110.</p></li>
+<li><p>Convert the results of the previous two problems into decimal.</p></li>
+<li><p>Describe how AND, OR, NOT, and XOR work.</p></li>
+<li><p>What is masking for?</p></li>
+<li><p>What number would you use for the flags of the <code class="docutils literal notranslate"><span class="pre">open</span></code> system call
+if you wanted to open the file for writing, and create the file if it
+doesn’t exist?</p></li>
+<li><p>How would you represent -55 in a thirty-two bit register?</p></li>
+<li><p>Sign-extend the previous quantity into a 64-bit register.</p></li>
+<li><p>Describe the difference between little-endian and big-endian storage
+of words in memory.</p></li>
+</ul>
+</section>
+<section id="use-the-concepts">
+<h3>Use the Concepts<a class="headerlink" href="#use-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Go back to previous programs that returned numeric results through
+the exit status code, and rewrite them to print out the results
+instead using our integer to string conversion function.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">integer2string</span></code> code to return results in octal rather
+than decimal.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">integer2string</span></code> code so that the conversion base is a
+parameter rather than hardcoded.</p></li>
+<li><p>Write a function called <code class="docutils literal notranslate"><span class="pre">is_negative</span></code> that takes a single integer
+as a parameter and returns 1 if the parameter is negative, and 0 if
+the parameter is positive.</p></li>
+</ul>
+</section>
+<section id="going-further">
+<h3>Going Further<a class="headerlink" href="#going-further" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">integer2string</span></code> code so that the conversion base can be
+greater than 10 (this requires you to use letters for numbers past
+9).</p></li>
+<li><p>Create a function that does the reverse of <code class="docutils literal notranslate"><span class="pre">integer2string</span></code> called
+<code class="docutils literal notranslate"><span class="pre">number2integer</span></code> which takes a character string and converts it to
+a register-sized integer. Test it by running that integer back
+through the <code class="docutils literal notranslate"><span class="pre">integer2string</span></code> function and displaying the results.</p></li>
+<li><p>Write a program that stores likes and dislikes into a single machine
+word, and then compares two sets of likes and dislikes for
+commonalities.</p></li>
+<li><p>Write a program that reads a string of characters from STDIN and
+converts them to a number.</p></li>
+</ul>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p><em>Significance</em> in this context is referring to which digit they
+represent. For example, in the number 294, the digit 2 is the most
+significant because it represents the hundreds place, 9 is the next
+most significant, and 4 is the least significant.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="otherlang.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">High-Level Languages</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="linking.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Sharing Functions with Code Libraries</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Counting Like a Computer</a><ul>
+<li><a class="reference internal" href="#counting">Counting</a><ul>
+<li><a class="reference internal" href="#counting-like-a-human">Counting Like a Human</a></li>
+<li><a class="reference internal" href="#id1">Counting Like a Computer</a></li>
+<li><a class="reference internal" href="#conversions-between-binary-and-decimal">Conversions Between Binary and Decimal</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#truth-falsehood-and-binary-numbers">Truth, Falsehood, and Binary Numbers</a></li>
+<li><a class="reference internal" href="#the-program-status-register">The Program Status Register</a></li>
+<li><a class="reference internal" href="#other-numbering-systems">Other Numbering Systems</a><ul>
+<li><a class="reference internal" href="#floating-point-numbers">Floating-point Numbers</a></li>
+<li><a class="reference internal" href="#negative-numbers">Negative Numbers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#octal-and-hexadecimal-numbers">Octal and Hexadecimal Numbers</a></li>
+<li><a class="reference internal" href="#order-of-bytes-in-a-word">Order of Bytes in a Word</a></li>
+<li><a class="reference internal" href="#converting-numbers-for-display">Converting Numbers for Display</a></li>
+<li><a class="reference internal" href="#review">Review</a><ul>
+<li><a class="reference internal" href="#know-the-concepts">Know the Concepts</a></li>
+<li><a class="reference internal" href="#use-the-concepts">Use the Concepts</a></li>
+<li><a class="reference internal" href="#going-further">Going Further</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

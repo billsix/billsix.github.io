@@ -1,0 +1,1466 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Sharing Functions with Code Libraries" href="linking.html"><link rel="prev" title="Developing Robust Programs" href="robust.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Intermediate Memory Topics - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/memoryint.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="intermediate-memory-topics">
+<span id="memoryintermediate"></span><h1>Intermediate Memory Topics<a class="headerlink" href="#intermediate-memory-topics" title="Link to this heading">¶</a></h1>
+<section id="how-a-computer-views-memory">
+<h2>How a Computer Views Memory<a class="headerlink" href="#how-a-computer-views-memory" title="Link to this heading">¶</a></h2>
+<p>Let’s review how memory within a computer works. You may also want to
+re-read <a class="reference internal" href="memory.html#computerarchitecture"><span class="std std-ref">Computer Architecture</span></a>.</p>
+<p>A computer looks at memory as a long sequence of numbered storage
+locations. A sequence of <em>millions</em> of numbered storage locations.
+Everything is stored in these locations. Your programs are stored there,
+your data is stored there, everything. Each storage location looks like
+every other one. The locations holding your program are just like the
+ones holding your data. In fact, the computer has no idea which are
+which, except that the executable file tells it where to start
+executing.</p>
+<p>These storage locations are called bytes. The computer can combine up to
+four of them together into a single word. Normally numeric data is
+operated on a word at a time. As we mentioned, instructions are also
+stored in this same memory. Each instruction is a different length. Most
+instructions take up one or two storage locations for the instruction
+itself, and then storage locations for the instruction’s arguments. For
+example, the instruction</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="n">data_items</span><span class="p">(,</span><span class="o">%</span><span class="n">edi</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="o">%</span><span class="n">ebx</span>
+</pre></div>
+</div>
+<p>takes up 7 storage locations. The first two hold the instruction, the
+third one tells which registers to use, and the next four hold the
+storage location of <code class="docutils literal notranslate"><span class="pre">data_items</span></code>. In memory, instructions look just
+like all the other numbers, and the instructions themselves can be moved
+into and out of registers just like numbers, because that’s what they
+are.</p>
+<p>This chapter is focused on the details of computer memory. To get
+started let’s review some basic terms that we will be using in this
+chapter:</p>
+<dl>
+<dt>Byte</dt><dd><p>This is the size of a storage location. On x86 processors, a byte can
+hold numbers between 0 and 255.</p>
+</dd>
+<dt>Word</dt><dd><p>This is the size of a normal register. On x86 processors, a word is
+four bytes long. Most computer operations handle a word at a time.</p>
+</dd>
+<dt>Address</dt><dd><p>An address is a number that refers to a byte in memory. For example,
+the first byte on a computer has an address of 0, the second has an
+address of 1, and so on. <a class="footnote-reference brackets" href="#id7" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Every piece of data on the computer not
+in a register has an address. The address of data which spans several
+bytes is the same as the address of its first byte.</p>
+<p>Normally, we don’t ever type the numeric address of anything, but we
+let the assembler do it for us. When we use labels in code, the
+symbol used in the label will be equivalent to the address it is
+labelling. The assembler will then replace that symbol with its
+address wherever you use it in your program. For example, say you
+have the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">.</span><span class="n">section</span> <span class="o">.</span><span class="n">data</span>
+<span class="n">my_data</span><span class="p">:</span>
+    <span class="o">.</span><span class="n">long</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>Now, any time in the program that <code class="docutils literal notranslate"><span class="pre">my_data</span></code> is used, it will be
+replaced by the address of the first value of the <code class="docutils literal notranslate"><span class="pre">.long</span></code>
+directive.</p>
+</dd>
+<dt>Pointer</dt><dd><p>A pointer is a register or memory word whose value is an address. In
+our programs we use <code class="docutils literal notranslate"><span class="pre">%ebp</span></code> as a pointer to the current stack frame.
+All base pointer addressing involves pointers. Programming uses a lot
+of pointers, so it’s an important concept to grasp.</p>
+</dd>
+</dl>
+</section>
+<section id="the-memory-layout-of-a-linux-program">
+<h2>The Memory Layout of a Linux Program<a class="headerlink" href="#the-memory-layout-of-a-linux-program" title="Link to this heading">¶</a></h2>
+<p>When you program is loaded into memory, each <code class="docutils literal notranslate"><span class="pre">.section</span></code> is
+loaded into its own region of memory. All of the code and data declared
+in each section is brought together, even if they were separated in your
+source code.</p>
+<p>The actual instructions (the <code class="docutils literal notranslate"><span class="pre">.text</span></code> section) are loaded at the
+address 0x08048000 (numbers starting with <code class="docutils literal notranslate"><span class="pre">0x</span></code> are in hexadecimal,
+which will be discussed in <a class="reference internal" href="counting.html#countingchapter"><span class="std std-ref">Counting Like a Computer</span></a>). <a class="footnote-reference brackets" href="#id8" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> The
+<code class="docutils literal notranslate"><span class="pre">.data</span></code> section is loaded immediately after that, followed by the
+<code class="docutils literal notranslate"><span class="pre">.bss</span></code> section.</p>
+<p>The last byte that can be addressed on Linux is location 0xbfffffff.
+Linux starts the stack here and grows it downward toward the other
+sections. Between them is a huge gap. The initial layout of the stack is
+as follows: At the bottom of the stack (the bottom of the stack is the
+top address of memory - see <a class="reference internal" href="functions.html#functionschapter"><span class="std std-ref">All About Functions</span></a>), there is a
+word of memory that is zero. After that comes the null-terminated name
+of the program using ASCII characters. After the program name comes the
+program’s environment variables (these are not important to us in this
+book). Then come the program’s command-line arguments. These are the
+values that the user typed in on the command line to run this program.
+When we run <code class="docutils literal notranslate"><span class="pre">as</span></code>, for example, we give it several arguments - <code class="docutils literal notranslate"><span class="pre">as</span></code>,
+<code class="docutils literal notranslate"><span class="pre">sourcefile.s</span></code>, <code class="docutils literal notranslate"><span class="pre">-o</span></code>, and <code class="docutils literal notranslate"><span class="pre">objectfile.o</span></code>. After these, we have the
+number of arguments that were used. When the program begins, this is
+where the stack pointer, %esp;, is pointing. Further
+pushes on the stack move %esp; down in memory. For example, the
+instruction</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pushl</span> <span class="o">%</span><span class="n">eax</span>
+</pre></div>
+</div>
+<p>is equivalent to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl %eax, (%esp)
+subl $4, %esp
+</pre></div>
+</div>
+<p>Likewise, the instruction</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">popl</span> <span class="o">%</span><span class="n">eax</span>
+</pre></div>
+</div>
+<p>is the same as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl (%esp), %eax
+addl $4, %esp
+</pre></div>
+</div>
+<p>Your program’s data region starts at the bottom of memory and goes up.
+The stack starts at the top of memory, and moves downward with each
+push. This middle part between the stack and your program’s data
+sections is inaccessible memory - you are not allowed to access it until
+you tell the kernel that you need it. <a class="footnote-reference brackets" href="#id9" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> If you try, you will get an
+error (the error message is usually “segmentation fault”). The same will
+happen if you try to access data before the beginning of your program,
+0x08048000. The last accessible memory address to your program is called
+the <em>system break</em> (also called the <em>current break</em> or just the
+<em>break</em>).</p>
+<p><img alt="Memory Layout of a Linux Program at Startup" src="images/memorylayout.png" /></p>
+</section>
+<section id="every-memory-address-is-a-lie">
+<h2>Every Memory Address is a Lie<a class="headerlink" href="#every-memory-address-is-a-lie" title="Link to this heading">¶</a></h2>
+<p>So, why does the computer not allow you to access memory in the break
+area? To answer this question, we will have to delve into the depths of
+how your computer really handles memory.</p>
+<p>You may have wondered, since every program gets loaded into the same
+place in memory, don’t they step on each other, or overwrite each other?
+It would seem so. However, as a program writer, you only access <em>virtual
+memory</em>.</p>
+<p><em>Physical memory</em> refers to the actual RAM chips inside your computer
+and what they contain. It’s usually between 16 and 512 Megabytes on
+modern computers. If we talk about a <em>physical memory address</em>, we are
+talking about where exactly on these chips a piece of memory is located.
+Virtual memory is the way <em>your program</em> thinks about memory. Before
+loading your program, Linux finds an empty physical memory space large
+enough to fit your program, and then tells the processor to pretend that
+this memory is actually at the address 0x0804800 to load your program
+into. Confused yet? Let me explain further.</p>
+<p>Each program gets its own sandbox to play in. Every program running on
+your computer thinks that it was loaded at memory address 0x0804800, and
+that its stack starts at 0xbffffff. When Linux loads a program, it finds
+a section of unused memory, and then tells the processor to use that
+section of memory as the address 0x0804800 for this program. The address
+that a program believes it uses is called the virtual address, while the
+actual address on the chips that it refers to is called the physical
+address. The process of assigning virtual addresses to physical
+addresses is called <em>mapping</em>.</p>
+<p>Earlier we talked about the inaccessible memory between the <code class="docutils literal notranslate"><span class="pre">.bss</span></code> and
+the stack, but we didn’t talk about why it was there. The reason is that
+this region of virtual memory addresses hasn’t been mapped onto physical
+memory addresses. The mapping process takes up considerable time and
+space, so if every possible virtual address of every possible program
+were mapped, you would not have enough physical memory to even run one
+program. So, the break is the beginning of the area that contains
+unmapped memory. With the stack, however, Linux will automatically map
+in memory that is accessed from stack pushes.</p>
+<p>Of course, this is a very simplified view of virtual memory. The full
+concept is much more advanced. For example, Virtual memory can be mapped
+to more than just physical memory; it can be mapped to disk as well.
+Swap partitions on Linux allow Linux’s virtual memory system to map
+memory not only to physical RAM, but also to disk blocks as well. For
+example, let’s say you only have 16 Megabytes of physical memory. Let’s
+also say that 8 Megabytes are being used by Linux and some basic
+applications, and you want to run a program that requires 20 Megabytes
+of memory. Can you? The answer is yes, but only if you have set up a
+swap partition. What happens is that after all of your remaining 8
+Megabytes of physical memory have been mapped into virtual memory, Linux
+starts mapping parts of your application’s virtual memory to disk
+blocks. So, if you access a “memory” location in your program, that
+location may not actually be in memory at all, but on disk. As the
+programmer you won’t know the difference, though, because it is all
+handled behind the scenes by Linux.</p>
+<p>Now, x86 processors cannot run instructions directly from disk, nor can
+they access data directly from disk. This requires the help of the
+operating system. When you try to access memory that is mapped to disk,
+the processor notices that it can’t service your memory request
+directly. It then asks Linux to step in. Linux notices that the memory
+is actually on disk. Therefore, it moves some data that is currently in
+memory onto disk to make room, and then moves the memory being accessed
+from the disk back into physical memory. It then adjusts the processor’s
+virtual-to-physical memory lookup tables so that it can find the memory
+in the new location. Finally, Linux returns control to the program and
+restarts it at the instruction which was trying to access the data in
+the first place. This instruction can now be completed successfully,
+because the memory is now in physical RAM. <a class="footnote-reference brackets" href="#id10" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p>
+<p>Here is an overview of the way memory accesses are handled under Linux:</p>
+<ul class="simple">
+<li><p>The program tries to load memory from a virtual address.</p></li>
+<li><p>The processor, using tables supplied by Linux, transforms the virtual
+memory address into a physical memory address on the fly.</p></li>
+<li><p>If the processor does not have a physical address listed for the
+memory address, it sends a request to Linux to load it.</p></li>
+<li><p>Linux looks at the address. If it is mapped to a disk location, it
+continues on to the next step. Otherwise, it terminates the program
+with a segmentation fault error.</p></li>
+<li><p>If there is not enough room to load the memory from disk, Linux will
+move another part of the program or another program onto disk to make
+room.</p></li>
+<li><p>Linux then moves the data into a free physical memory address.</p></li>
+<li><p>Linux updates the processor’s virtual-to-physical memory mapping
+tables to reflect the changes.</p></li>
+<li><p>Linux restores control to the program, causing it to re-issue the
+instruction which caused this process to happen.</p></li>
+<li><p>The processor can now handle the instruction using the newly-loaded
+memory and translation tables.</p></li>
+</ul>
+<p>It’s a lot of work for the operating system, but it gives the user and
+the programmer great flexibility when it comes to memory management.</p>
+<p>Now, in order to make the process more efficient, memory is separated
+out into groups called <em>pages</em>. When running Linux on x86 processors, a
+page is 4096 bytes of memory. All of the memory mappings are done a page
+at a time. Physical memory assignment, swapping, mapping, etc. are all
+done to memory pages instead of individual memory addresses. What this
+means to you as a programmer is that whenever you are programming, you
+should try to keep most memory accesses within the same basic range of
+memory, so you will only need a page or two of memory at a time.
+Otherwise, Linux may have to keep moving pages on and off of disk to
+satisfy your memory needs. Disk access is slow, so this can really slow
+down your program.</p>
+<p>Sometimes so many programs can be loaded that there is hardly enough
+physical memory for them. They wind up spending more time just swapping
+memory on and off of disk than they do actually processing it. This
+leads to a condition called <em>swap death</em> which leads to your system
+being unresponsive and unproductive. It’s usually usually recoverable if
+you start terminating your memory-hungry programs, but it’s a pain.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The amount of memory that your program currently has in physical
+memory is called its resident set size, and can be viewed by using
+the program <code class="docutils literal notranslate"><span class="pre">top</span></code>. The resident set size is listed under the column
+labelled “RSS”.</p>
+</div>
+</section>
+<section id="getting-more-memory">
+<span id="dynamicmemory"></span><h2>Getting More Memory<a class="headerlink" href="#getting-more-memory" title="Link to this heading">¶</a></h2>
+<p>We now know that Linux maps all of our virtual memory into physical
+memory or swap. If you try to access a piece of virtual memory that
+hasn’t been mapped yet, it triggers an error known as a segmentation
+fault, which will terminate your program. The program break point, if
+you remember, is the last valid address you can use. Now, this is all
+great if you know beforehand how much storage you will need. You can
+just add all the memory you need to your <code class="docutils literal notranslate"><span class="pre">.data</span></code> or <code class="docutils literal notranslate"><span class="pre">.bss</span></code> sections,
+and it will all be there. However, let’s say you don’t know how much
+memory you will need. For example, with a text editor, you don’t know
+how long the person’s file will be. You could try to find a maximum file
+size, and just tell the user that they can’t go beyond that, but that’s
+a waste if the file is small. Therefore Linux has a facility to move the
+break point to accomodate an application’s memory needs.</p>
+<p>If you need more memory, you can just tell Linux where you want the new
+break point to be, and Linux will map all the memory you need between
+the current and new break point, and then move the break point to the
+spot you specify. That memory is now available for your program to use.
+The way we tell Linux to move the break point is through the <code class="docutils literal notranslate"><span class="pre">brk</span></code>
+system call. The <code class="docutils literal notranslate"><span class="pre">brk</span></code> system call is call number 45 (which will be in
+%eax;). %ebx; should be loaded with the requested
+breakpoint. Then you call <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">$0x80</span></code> to signal Linux to do its work.
+After mapping in your memory, Linux will return the new break point in
+%eax;. The new break point might actually be larger than what you
+asked for, because Linux rounds up to the nearest page. If there is not
+enough physical memory or swap to fulfill your request, Linux will
+return a zero in %eax;. Also, if you call <code class="docutils literal notranslate"><span class="pre">brk</span></code> with a zero in
+%ebx;, it will simply return the last usable memory address.</p>
+<p>The problem with this method is keeping track of the memory we request.
+Let’s say I need to move the break to have room to load a file, and then
+need to move a break again to load another file. Let’s say I then get
+rid of the first file. You now have a giant gap in memory that’s mapped,
+but that you aren’t using. If you continue to move the break in this way
+for each file you load, you can easily run out of memory. So, what is
+needed is a <em>memory manager</em>.</p>
+<p>A memory manager is a set of routines that takes care of the dirty work
+of getting your program memory for you. Most memory managers have two
+basic functions - <code class="docutils literal notranslate"><span class="pre">allocate</span></code> and <code class="docutils literal notranslate"><span class="pre">deallocate</span></code>. <a class="footnote-reference brackets" href="#id11" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a> Whenever you
+need a certain amount of memory, you can simply tell <code class="docutils literal notranslate"><span class="pre">allocate</span></code> how
+much you need, and it will give you back an address to the memory. When
+you’re done with it, you tell <code class="docutils literal notranslate"><span class="pre">deallocate</span></code> that you are through with
+it. <code class="docutils literal notranslate"><span class="pre">allocate</span></code> will then be able to reuse the memory. This pattern of
+memory management is called <em>dynamic memory allocation</em>. This minimizes
+the number of “holes” in your memory, making sure that you are making
+the best use of it you can. The pool of memory used by memory managers
+is commonly referred to as <em>the heap</em>.</p>
+<p>The way memory managers work is that they keep track of where the system
+break is, and where the memory that you have allocated is. They mark
+each block of memory in the heap as being used or unused. When you
+request memory, the memory manager checks to see if there are any unused
+blocks of the appropriate size. If not, it calls the <code class="docutils literal notranslate"><span class="pre">brk</span></code> system call
+to request more memory. When you free memory it marks the block as
+unused so that future requests can retrieve it. In the next section we
+will look at building our own memory manager.</p>
+</section>
+<section id="a-simple-memory-manager">
+<h2>A Simple Memory Manager<a class="headerlink" href="#a-simple-memory-manager" title="Link to this heading">¶</a></h2>
+<p>Here I will show you a simple memory manager. It is very primitive but
+it shows the principles quite well. As usual, I will give you the
+program first for you to look through. Afterwards will follow an
+in-depth explanation. It looks long, but it is mostly comments.</p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">src/alloc.s</span><a class="headerlink" href="#id13" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="w">	</span><span class="c1">#PURPOSE: Program to manage memory usage - allocates</span>
+<span class="linenos">  2</span><span class="w">	</span><span class="c1">#         and deallocates memory as requested</span>
+<span class="linenos">  3</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">  4</span><span class="w">	</span><span class="c1">#NOTES:   The programs using these routines will ask</span>
+<span class="linenos">  5</span><span class="w">	</span><span class="c1">#         for a certain size of memory.  We actually</span>
+<span class="linenos">  6</span><span class="w">	</span><span class="c1">#         use more than that size, but we put it</span>
+<span class="linenos">  7</span><span class="w">	</span><span class="c1">#         at the beginning, before the pointer</span>
+<span class="linenos">  8</span><span class="w">	</span><span class="c1">#         we hand back.  We add a size field and</span>
+<span class="linenos">  9</span><span class="w">	</span><span class="c1">#         an AVAILABLE/UNAVAILABLE marker.  So, the</span>
+<span class="linenos"> 10</span><span class="w">	</span><span class="c1">#         memory looks like this</span>
+<span class="linenos"> 11</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos"> 12</span><span class="w">	</span><span class="c1"># #########################################################</span>
+<span class="linenos"> 13</span><span class="w">	</span><span class="c1"># #Available Marker#Size of memory#Actual memory locations#</span>
+<span class="linenos"> 14</span><span class="w">	</span><span class="c1"># #########################################################</span>
+<span class="linenos"> 15</span><span class="w">	</span><span class="c1">#                                  ^--Returned pointer</span>
+<span class="linenos"> 16</span><span class="w">	</span><span class="c1">#                                     points here</span>
+<span class="linenos"> 17</span><span class="w">	</span><span class="c1">#         The pointer we return only points to the actual </span>
+<span class="linenos"> 18</span><span class="w">	</span><span class="c1">#         locations requested to make it easier for the </span>
+<span class="linenos"> 19</span><span class="w">	</span><span class="c1">#         calling program.  It also allows us to change our </span>
+<span class="linenos"> 20</span><span class="w">	</span><span class="c1">#         structure without the calling program having to </span>
+<span class="linenos"> 21</span><span class="w">	</span><span class="c1">#         change at all.</span>
+<span class="linenos"> 22</span>
+<span class="linenos"> 23</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span><span class="c1">#######GLOBAL VARIABLES########</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="c1">#This points to the beginning of the memory we are managing</span>
+<span class="linenos"> 28</span><span class="nl">heap_begin:</span>
+<span class="linenos"> 29</span><span class="w">	</span><span class="na">.long</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="c1">#This points to one location past the memory we are managing</span>
+<span class="linenos"> 32</span><span class="nl">current_break:</span>
+<span class="linenos"> 33</span><span class="w">	</span><span class="na">.long</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 34</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span>
+<span class="linenos"> 37</span><span class="c1">######STRUCTURE INFORMATION####</span>
+<span class="linenos"> 38</span><span class="w">	</span><span class="c1">#size of space for memory region header</span>
+<span class="linenos"> 39</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">HEADER_SIZE</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="w">  </span>
+<span class="linenos"> 40</span><span class="w">	</span><span class="c1">#Location of the &quot;available&quot; flag in the header</span>
+<span class="linenos"> 41</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">HDR_AVAIL_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
+<span class="linenos"> 42</span><span class="w">	</span><span class="c1">#Location of the size field in the header</span>
+<span class="linenos"> 43</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">HDR_SIZE_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w">  </span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span><span class="w">	</span>
+<span class="linenos"> 46</span><span class="c1">###########CONSTANTS###########</span>
+<span class="linenos"> 47</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">UNAVAILABLE</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="c1">#This is the number we will use to mark</span>
+<span class="linenos"> 48</span><span class="w">	                    </span><span class="c1">#space that has been given out</span>
+<span class="linenos"> 49</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">AVAILABLE</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="c1">#This is the number we will use to mark</span>
+<span class="linenos"> 50</span><span class="w">	                    </span><span class="c1">#space that has been returned, and is</span>
+<span class="linenos"> 51</span><span class="w">	                    </span><span class="c1">#available for giving</span>
+<span class="linenos"> 52</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">SYS_BRK</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="w">    </span><span class="c1">#system call number for the break </span>
+<span class="linenos"> 53</span><span class="w">	                    </span><span class="c1">#system call</span>
+<span class="linenos"> 54</span>
+<span class="linenos"> 55</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">LINUX_SYSCALL</span><span class="p">,</span><span class="w"> </span><span class="mi">0x80</span><span class="w"> </span><span class="c1">#make system calls easier to read</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span>
+<span class="linenos"> 58</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span>
+<span class="linenos"> 59</span>
+<span class="linenos"> 60</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="c1">##########FUNCTIONS############</span>
+<span class="linenos"> 63</span>
+<span class="linenos"> 64</span><span class="w">	</span><span class="c1">##allocate_init## </span>
+<span class="linenos"> 65</span><span class="w">	</span><span class="c1">#PURPOSE: call this function to initialize the</span>
+<span class="linenos"> 66</span><span class="w">	</span><span class="c1">#         functions (specifically, this sets heap_begin and</span>
+<span class="linenos"> 67</span><span class="w">	</span><span class="c1">#         current_break).  This has no parameters and no </span>
+<span class="linenos"> 68</span><span class="w">	</span><span class="c1">#         return value.</span>
+<span class="linenos"> 69</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">allocate_init</span>
+<span class="linenos"> 70</span><span class="w">	</span><span class="na">.type</span><span class="w"> </span><span class="no">allocate_init</span><span class="p">,</span><span class="na">@function</span>
+<span class="linenos"> 71</span><span class="nl">allocate_init:</span>
+<span class="linenos"> 72</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebp</span><span class="w">                  </span><span class="c1">#standard function stuff</span>
+<span class="linenos"> 73</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span><span class="w">	</span><span class="c1">#If the brk system call is called with 0 in %ebx, it</span>
+<span class="linenos"> 76</span><span class="w">	</span><span class="c1">#returns the last valid usable address	</span>
+<span class="linenos"> 77</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_BRK</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">        </span><span class="c1">#find out where the break is</span>
+<span class="linenos"> 78</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span><span class="w">              </span>
+<span class="linenos"> 79</span><span class="w">	</span><span class="no">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span><span class="w">	</span><span class="nf">incl</span><span class="w">  </span><span class="nv">%eax</span><span class="w">                  </span><span class="c1">#%eax now has the last valid</span>
+<span class="linenos"> 82</span><span class="w">	                            </span><span class="c1">#address, and we want the </span>
+<span class="linenos"> 83</span><span class="w">	                            </span><span class="c1">#memory location after that</span>
+<span class="linenos"> 84</span>
+<span class="linenos"> 85</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="no">current_break</span><span class="w">   </span><span class="c1">#store the current break</span>
+<span class="linenos"> 86</span>
+<span class="linenos"> 87</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="no">heap_begin</span><span class="w">      </span><span class="c1">#store the current break as our</span>
+<span class="linenos"> 88</span><span class="w">	                            </span><span class="c1">#first address. This will cause</span>
+<span class="linenos"> 89</span><span class="w">	                            </span><span class="c1">#the allocate function to get</span>
+<span class="linenos"> 90</span><span class="w">	                            </span><span class="c1">#more memory from Linux the </span>
+<span class="linenos"> 91</span><span class="w">	                            </span><span class="c1">#first time it is run</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%ebp</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span><span class="w">            </span><span class="c1">#exit the function</span>
+<span class="linenos"> 94</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebp</span>
+<span class="linenos"> 95</span><span class="w">	</span><span class="nf">ret</span>
+<span class="linenos"> 96</span><span class="c1">#####END OF FUNCTION#######</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span><span class="w">	</span><span class="c1">##allocate##</span>
+<span class="linenos">100</span><span class="w">	</span><span class="c1">#PURPOSE:    This function is used to grab a section of </span>
+<span class="linenos">101</span><span class="w">	</span><span class="c1">#            memory. It checks to see if there are any </span>
+<span class="linenos">102</span><span class="w">	</span><span class="c1">#            free blocks, and, if not, it asks Linux </span>
+<span class="linenos">103</span><span class="w">	</span><span class="c1">#            for a new one.</span>
+<span class="linenos">104</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">105</span><span class="w">	</span><span class="c1">#PARAMETERS: This function has one parameter - the size</span>
+<span class="linenos">106</span><span class="w">	</span><span class="c1">#            of the memory block we want to allocate</span>
+<span class="linenos">107</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">108</span><span class="w">	</span><span class="c1">#RETURN VALUE:</span>
+<span class="linenos">109</span><span class="w">	</span><span class="c1">#            This function returns the address of the </span>
+<span class="linenos">110</span><span class="w">	</span><span class="c1">#            allocated memory in %eax.  If there is no </span>
+<span class="linenos">111</span><span class="w">	</span><span class="c1">#            memory available, it will return 0 in %eax</span>
+<span class="linenos">112</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">113</span><span class="w">	</span><span class="c1">######PROCESSING########</span>
+<span class="linenos">114</span><span class="w">	</span><span class="c1">#Variables used:</span>
+<span class="linenos">115</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">116</span><span class="w">	</span><span class="c1">#   %ecx - hold the size of the requested memory </span>
+<span class="linenos">117</span><span class="w">	</span><span class="c1">#          (first/only parameter)</span>
+<span class="linenos">118</span><span class="w">	</span><span class="c1">#   %eax - current memory region being examined</span>
+<span class="linenos">119</span><span class="w">	</span><span class="c1">#   %ebx - current break position</span>
+<span class="linenos">120</span><span class="w">	</span><span class="c1">#   %edx - size of current memory region</span>
+<span class="linenos">121</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">122</span><span class="w">	</span><span class="c1">#We scan through each memory region starting with </span>
+<span class="linenos">123</span><span class="w">	</span><span class="c1">#heap_begin. We look at the size of each one, and if </span>
+<span class="linenos">124</span><span class="w">	</span><span class="c1">#it has been allocated.  If it&#39;s big enough for the </span>
+<span class="linenos">125</span><span class="w">	</span><span class="c1">#requested size, and its available, it grabs that one.  </span>
+<span class="linenos">126</span><span class="w">	</span><span class="c1">#If it does not find a region large enough, it asks </span>
+<span class="linenos">127</span><span class="w">	</span><span class="c1">#Linux for more memory.  In that case, it moves </span>
+<span class="linenos">128</span><span class="w">	</span><span class="c1">#current_break up</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">allocate</span>
+<span class="linenos">131</span><span class="w">	</span><span class="na">.type</span><span class="w"> </span><span class="no">allocate</span><span class="p">,</span><span class="na">@function</span>
+<span class="linenos">132</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_MEM_SIZE</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="c1">#stack position of the memory size </span>
+<span class="linenos">133</span><span class="w">	                    </span><span class="c1">#to allocate</span>
+<span class="linenos">134</span><span class="nl">allocate:</span>
+<span class="linenos">135</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebp</span><span class="w">                  </span><span class="c1">#standard function stuff</span>
+<span class="linenos">136</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">137</span>
+<span class="linenos">138</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_MEM_SIZE</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%ecx</span><span class="w"> </span><span class="c1">#%ecx will hold the size </span>
+<span class="linenos">139</span><span class="w">	               </span><span class="c1">#we are looking for (which is the first</span>
+<span class="linenos">140</span><span class="w">	               </span><span class="c1">#and only parameter)</span>
+<span class="linenos">141</span>
+<span class="linenos">142</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">heap_begin</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">      </span><span class="c1">#%eax will hold the current </span>
+<span class="linenos">143</span><span class="w">	                            </span><span class="c1">#search location</span>
+<span class="linenos">144</span>
+<span class="linenos">145</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">current_break</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span><span class="w">   </span><span class="c1">#%ebx will hold the current </span>
+<span class="linenos">146</span><span class="w">	                            </span><span class="c1">#break </span>
+<span class="linenos">147</span>
+<span class="linenos">148</span><span class="w">	</span>
+<span class="linenos">149</span><span class="nl">alloc_loop_begin:</span><span class="w">               </span><span class="c1">#here we iterate through each</span>
+<span class="linenos">150</span><span class="w">                                </span><span class="c1">#memory region</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span><span class="w">	</span><span class="nf">cmpl</span><span class="w">  </span><span class="nv">%ebx</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">        </span><span class="c1">#need more memory if these are equal</span>
+<span class="linenos">153</span><span class="w">	</span><span class="nf">je</span><span class="w">    </span><span class="no">move_break</span>
+<span class="linenos">154</span>
+<span class="linenos">155</span><span class="w">	</span><span class="c1">#grab the size of this memory</span>
+<span class="linenos">156</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">HDR_SIZE_OFFSET</span><span class="p">(</span><span class="nv">%eax</span><span class="p">),</span><span class="w"> </span><span class="nv">%edx</span><span class="w">  </span>
+<span class="linenos">157</span><span class="w">	</span><span class="c1">#If the space is unavailable, go to the</span>
+<span class="linenos">158</span><span class="w">	</span><span class="nf">cmpl</span><span class="w">  </span><span class="no">$UNAVAILABLE</span><span class="p">,</span><span class="w"> </span><span class="no">HDR_AVAIL_OFFSET</span><span class="p">(</span><span class="nv">%eax</span><span class="p">)</span><span class="w">  </span>
+<span class="linenos">159</span><span class="w">	</span><span class="no">je</span><span class="w">    </span><span class="no">next_location</span><span class="w">         </span><span class="c1">#next one</span>
+<span class="linenos">160</span>
+<span class="linenos">161</span><span class="w">	</span><span class="nf">cmpl</span><span class="w">  </span><span class="nv">%edx</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span><span class="w">     </span><span class="c1">#If the space is available, compare</span>
+<span class="linenos">162</span><span class="w">	</span><span class="nf">jle</span><span class="w">   </span><span class="no">allocate_here</span><span class="w">  </span><span class="c1">#the size to the needed size.  If its</span>
+<span class="linenos">163</span><span class="w">	                     </span><span class="c1">#big enough, go to allocate_here</span>
+<span class="linenos">164</span>
+<span class="linenos">165</span><span class="nl">next_location:</span>
+<span class="linenos">166</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$HEADER_SIZE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w"> </span><span class="c1">#The total size of the memory </span>
+<span class="linenos">167</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="nv">%edx</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">         </span><span class="c1">#region is the sum of the size </span>
+<span class="linenos">168</span><span class="w">	                         </span><span class="c1">#requested (currently stored </span>
+<span class="linenos">169</span><span class="w">	                         </span><span class="c1">#in %edx), plus another 8 bytes </span>
+<span class="linenos">170</span><span class="w">	                         </span><span class="c1">#for the header (4 for the </span>
+<span class="linenos">171</span><span class="w">	                         </span><span class="c1">#AVAILABLE/UNAVAILABLE flag,</span>
+<span class="linenos">172</span><span class="w">	                         </span><span class="c1">#and 4 for the size of the </span>
+<span class="linenos">173</span><span class="w">	                         </span><span class="c1">#region). So, adding %edx and $8 </span>
+<span class="linenos">174</span><span class="w">	                         </span><span class="c1">#to %eax will get the address </span>
+<span class="linenos">175</span><span class="w">	                         </span><span class="c1">#of the next memory region</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span><span class="w">	</span><span class="nf">jmp</span><span class="w">   </span><span class="no">alloc_loop_begin</span><span class="w">      </span><span class="c1">#go look at the next location</span>
+<span class="linenos">178</span>
+<span class="linenos">179</span><span class="nl">allocate_here:</span><span class="w">                      </span><span class="c1">#if we&#39;ve made it here,</span>
+<span class="linenos">180</span><span class="w">                                    </span><span class="c1">#that means that the </span>
+<span class="linenos">181</span><span class="w">	                            </span><span class="c1">#region header of the region </span>
+<span class="linenos">182</span><span class="w">	                            </span><span class="c1">#to allocate is in %eax</span>
+<span class="linenos">183</span>
+<span class="linenos">184</span><span class="w">	</span><span class="c1">#mark space as unavailable</span>
+<span class="linenos">185</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$UNAVAILABLE</span><span class="p">,</span><span class="w"> </span><span class="no">HDR_AVAIL_OFFSET</span><span class="p">(</span><span class="nv">%eax</span><span class="p">)</span><span class="w">  </span>
+<span class="linenos">186</span><span class="w">	</span><span class="no">addl</span><span class="w">  </span><span class="no">$HEADER_SIZE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">    </span><span class="c1">#move %eax past the header to</span>
+<span class="linenos">187</span><span class="w">	                            </span><span class="c1">#the usable memory (since</span>
+<span class="linenos">188</span><span class="w">	                            </span><span class="c1">#that&#39;s what we return)</span>
+<span class="linenos">189</span>
+<span class="linenos">190</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%ebp</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span><span class="w">            </span><span class="c1">#return from the function</span>
+<span class="linenos">191</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebp</span>
+<span class="linenos">192</span><span class="w">	</span><span class="nf">ret</span>
+<span class="linenos">193</span><span class="w">	</span>
+<span class="linenos">194</span><span class="w">	</span>
+<span class="linenos">195</span><span class="nl">move_break:</span><span class="w">                      </span><span class="c1">#if we&#39;ve made it here, that</span>
+<span class="linenos">196</span><span class="w">                                 </span><span class="c1">#means that we have exhausted </span>
+<span class="linenos">197</span><span class="w">                                 </span><span class="c1">#all addressable memory, and </span>
+<span class="linenos">198</span><span class="w">                                 </span><span class="c1">#we need to ask for more.  </span>
+<span class="linenos">199</span><span class="w">	                         </span><span class="c1">#%ebx holds the current </span>
+<span class="linenos">200</span><span class="w">	                         </span><span class="c1">#endpoint of the data,</span>
+<span class="linenos">201</span><span class="w">                                 </span><span class="c1">#and %ecx holds its size</span>
+<span class="linenos">202</span>
+<span class="linenos">203</span><span class="w">	                         </span><span class="c1">#we need to increase %ebx to</span>
+<span class="linenos">204</span><span class="w">	                         </span><span class="c1">#where we _want_ memory </span>
+<span class="linenos">205</span><span class="w">	                         </span><span class="c1">#to end, so we</span>
+<span class="linenos">206</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$HEADER_SIZE</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span><span class="w"> </span><span class="c1">#add space for the headers </span>
+<span class="linenos">207</span><span class="w">	                         </span><span class="c1">#structure</span>
+<span class="linenos">208</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="nv">%ecx</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span><span class="w">         </span><span class="c1">#add space to the break for</span>
+<span class="linenos">209</span><span class="w">	                         </span><span class="c1">#the data requested</span>
+<span class="linenos">210</span>
+<span class="linenos">211</span><span class="w">	                         </span><span class="c1">#now its time to ask Linux</span>
+<span class="linenos">212</span><span class="w">	                         </span><span class="c1">#for more memory</span>
+<span class="linenos">213</span>
+<span class="linenos">214</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%eax</span><span class="w">               </span><span class="c1">#save needed registers</span>
+<span class="linenos">215</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">216</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">217</span>
+<span class="linenos">218</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_BRK</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">     </span><span class="c1">#reset the break (%ebx has</span>
+<span class="linenos">219</span><span class="w">	                         </span><span class="c1">#the requested break point)</span>
+<span class="linenos">220</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span><span class="w">     </span>
+<span class="linenos">221</span><span class="w">	               </span><span class="c1">#under normal conditions, this should</span>
+<span class="linenos">222</span><span class="w">	               </span><span class="c1">#return the new break in %eax, which</span>
+<span class="linenos">223</span><span class="w">	               </span><span class="c1">#will be either 0 if it fails, or</span>
+<span class="linenos">224</span><span class="w">	               </span><span class="c1">#it will be equal to or larger than</span>
+<span class="linenos">225</span><span class="w">	               </span><span class="c1">#we asked for.  We don&#39;t care </span>
+<span class="linenos">226</span><span class="w">	               </span><span class="c1">#in this program where it actually</span>
+<span class="linenos">227</span><span class="w">	               </span><span class="c1">#sets the break, so as long as %eax</span>
+<span class="linenos">228</span><span class="w">	               </span><span class="c1">#isn&#39;t 0, we don&#39;t care what it is</span>
+<span class="linenos">229</span>
+<span class="linenos">230</span><span class="w">	</span><span class="nf">cmpl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">           </span><span class="c1">#check for error conditions</span>
+<span class="linenos">231</span><span class="w">	</span><span class="nf">je</span><span class="w">    </span><span class="no">error</span>
+<span class="linenos">232</span>
+<span class="linenos">233</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebx</span><span class="w">               </span><span class="c1">#restore saved registers</span>
+<span class="linenos">234</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ecx</span>
+<span class="linenos">235</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%eax</span>
+<span class="linenos">236</span>
+<span class="linenos">237</span><span class="w">	</span><span class="c1">#set this memory as unavailable, since we&#39;re about to </span>
+<span class="linenos">238</span><span class="w">	</span><span class="c1">#give it away</span>
+<span class="linenos">239</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$UNAVAILABLE</span><span class="p">,</span><span class="w"> </span><span class="no">HDR_AVAIL_OFFSET</span><span class="p">(</span><span class="nv">%eax</span><span class="p">)</span>
+<span class="linenos">240</span><span class="w">	</span><span class="c1">#set the size of the memory</span>
+<span class="linenos">241</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%ecx</span><span class="p">,</span><span class="w"> </span><span class="no">HDR_SIZE_OFFSET</span><span class="p">(</span><span class="nv">%eax</span><span class="p">)</span>
+<span class="linenos">242</span><span class="w">	</span>
+<span class="linenos">243</span><span class="w">	</span><span class="c1">#move %eax to the actual start of usable memory.  </span>
+<span class="linenos">244</span><span class="w">	</span><span class="c1">#%eax now holds the return value</span>
+<span class="linenos">245</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$HEADER_SIZE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">    </span>
+<span class="linenos">246</span>
+<span class="linenos">247</span><span class="w">	</span><span class="no">movl</span><span class="w">  </span><span class="nv">%ebx</span><span class="p">,</span><span class="w"> </span><span class="no">current_break</span><span class="w">   </span><span class="c1">#save the new break</span>
+<span class="linenos">248</span>
+<span class="linenos">249</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%ebp</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span><span class="w">            </span><span class="c1">#return the function</span>
+<span class="linenos">250</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebp</span>
+<span class="linenos">251</span><span class="w">	</span><span class="nf">ret</span>
+<span class="linenos">252</span>
+<span class="linenos">253</span><span class="nl">error:</span>
+<span class="linenos">254</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">              </span><span class="c1">#on error, we return zero</span>
+<span class="linenos">255</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%ebp</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">256</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebp</span>
+<span class="linenos">257</span><span class="w">	</span><span class="nf">ret</span>
+<span class="linenos">258</span><span class="c1">########END OF FUNCTION########</span>
+<span class="linenos">259</span><span class="w">	</span>
+<span class="linenos">260</span>
+<span class="linenos">261</span><span class="w">	</span><span class="c1">##deallocate##</span>
+<span class="linenos">262</span><span class="w">	</span><span class="c1">#PURPOSE:    </span>
+<span class="linenos">263</span><span class="w">	</span><span class="c1">#    The purpose of this function is to give back</span>
+<span class="linenos">264</span><span class="w">	</span><span class="c1">#    a region of memory to the pool after we&#39;re done</span>
+<span class="linenos">265</span><span class="w">	</span><span class="c1">#    using it.</span>
+<span class="linenos">266</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">267</span><span class="w">	</span><span class="c1">#PARAMETERS: </span>
+<span class="linenos">268</span><span class="w">	</span><span class="c1">#    The only parameter is the address of the memory</span>
+<span class="linenos">269</span><span class="w">	</span><span class="c1">#    we want to return to the memory pool.</span>
+<span class="linenos">270</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">271</span><span class="w">	</span><span class="c1">#RETURN VALUE:</span>
+<span class="linenos">272</span><span class="w">	</span><span class="c1">#    There is no return value</span>
+<span class="linenos">273</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">274</span><span class="w">	</span><span class="c1">#PROCESSING: </span>
+<span class="linenos">275</span><span class="w">	</span><span class="c1">#    If you remember, we actually hand the program the</span>
+<span class="linenos">276</span><span class="w">	</span><span class="c1">#    start of the memory that they can use, which is</span>
+<span class="linenos">277</span><span class="w">	</span><span class="c1">#    8 storage locations after the actual start of the</span>
+<span class="linenos">278</span><span class="w">	</span><span class="c1">#    memory region.  All we have to do is go back</span>
+<span class="linenos">279</span><span class="w">	</span><span class="c1">#    8 locations and mark that memory as available,</span>
+<span class="linenos">280</span><span class="w">	</span><span class="c1">#    so that the allocate function knows it can use it.</span>
+<span class="linenos">281</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">deallocate</span>
+<span class="linenos">282</span><span class="w">	</span><span class="na">.type</span><span class="w"> </span><span class="no">deallocate</span><span class="p">,</span><span class="na">@function</span>
+<span class="linenos">283</span><span class="w">	</span><span class="c1">#stack position of the memory region to free</span>
+<span class="linenos">284</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_MEMORY_SEG</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w">     </span>
+<span class="linenos">285</span><span class="no">deallocate</span><span class="p">:</span>
+<span class="linenos">286</span><span class="w">	</span><span class="c1">#since the function is so simple, we</span>
+<span class="linenos">287</span><span class="w">	</span><span class="c1">#don&#39;t need any of the fancy function stuff</span>
+<span class="linenos">288</span><span class="w">	</span>
+<span class="linenos">289</span><span class="w">	</span><span class="c1">#get the address of the memory to free </span>
+<span class="linenos">290</span><span class="w">	</span><span class="c1">#(normally this is 8(%ebp), but since</span>
+<span class="linenos">291</span><span class="w">	</span><span class="c1">#we didn&#39;t push %ebp or move %esp to </span>
+<span class="linenos">292</span><span class="w">	</span><span class="c1">#%ebp, we can just do 4(%esp)</span>
+<span class="linenos">293</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_MEMORY_SEG</span><span class="p">(</span><span class="nv">%esp</span><span class="p">),</span><span class="w"> </span><span class="nv">%eax</span><span class="w"> </span>
+<span class="linenos">294</span><span class="w">	      </span>
+<span class="linenos">295</span>
+<span class="linenos">296</span><span class="w">	</span><span class="c1">#get the pointer to the real beginning of the memory</span>
+<span class="linenos">297</span><span class="w">	</span><span class="nf">subl</span><span class="w">  </span><span class="no">$HEADER_SIZE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">  </span>
+<span class="linenos">298</span>
+<span class="linenos">299</span><span class="w">	</span><span class="c1">#mark it as available</span>
+<span class="linenos">300</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$AVAILABLE</span><span class="p">,</span><span class="w"> </span><span class="no">HDR_AVAIL_OFFSET</span><span class="p">(</span><span class="nv">%eax</span><span class="p">)</span>
+<span class="linenos">301</span>
+<span class="linenos">302</span><span class="w">	</span><span class="c1">#return</span>
+<span class="linenos">303</span><span class="w">	</span><span class="nf">ret</span><span class="w"> </span>
+<span class="linenos">304</span><span class="c1">########END OF FUNCTION##########</span>
+</pre></div>
+</div>
+</div>
+<p>The first thing to notice is that there is no <code class="docutils literal notranslate"><span class="pre">_start</span></code> symbol. The
+reason is that this is just a set of functions. A memory manager by
+itself is not a full program - it doesn’t do anything. It is simply a
+utility to be used by other programs.</p>
+<p>To assemble the program, do the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">alloc</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">alloc</span><span class="o">.</span><span class="n">o</span>
+</pre></div>
+</div>
+<p>Okay, now let’s look at the code.</p>
+<section id="variables-and-constants">
+<h3>Variables and Constants<a class="headerlink" href="#variables-and-constants" title="Link to this heading">¶</a></h3>
+<p>At the beginning of the program, we have two locations set up:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heap_begin</span><span class="p">:</span>
+    <span class="o">.</span><span class="n">long</span> <span class="mi">0</span>
+
+<span class="n">current_break</span><span class="p">:</span>
+    <span class="o">.</span><span class="n">long</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Remember, the section of memory being managed is commonly referred to as
+the <em>heap</em>. When we assemble the program, we have no idea where the
+beginning of the heap is, nor where the current break is. Therefore, we
+reserve space for their addresses, but just fill them with a 0 for the
+time being.</p>
+<p>Next we have a set of constants to define the structure of the heap. The
+way this memory manager works is that before each region of memory
+allocated, we will have a short record describing the memory. This
+record has a word reserved for the available flag and a word for the
+region’s size. The actual memory allocated immediately follows this
+record. The available flag is used to mark whether this region is
+available for allocations, or if it is currently in use. The size field
+lets us know both whether or not this region is big enough for an
+allocation request, as well as the location of the next memory region.
+The following constants describe this record:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">equ</span> <span class="n">HEADER_SIZE</span><span class="p">,</span> <span class="mi">8</span>
+<span class="o">.</span><span class="n">equ</span> <span class="n">HDR_AVAIL_OFFSET</span><span class="p">,</span> <span class="mi">0</span>
+<span class="o">.</span><span class="n">equ</span> <span class="n">HDR_SIZE_OFFSET</span><span class="p">,</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>This says that the header is 8 bytes total, the available flag is offset
+0 bytes from the beginning, and the size field is offset 4 bytes from
+the beginning. If we are careful to always use these constants, then we
+protect ourselves from having to do too much work if we later decide to
+add more information to the header.</p>
+<p>The values that we will use for our <code class="docutils literal notranslate"><span class="pre">available</span></code> field are either 0 for
+unavailable, or 1 for available. To make this easier to read, we have
+the following definitions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">equ</span> <span class="n">UNAVAILABLE</span><span class="p">,</span> <span class="mi">0</span>
+<span class="o">.</span><span class="n">equ</span> <span class="n">AVAILABLE</span><span class="p">,</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Finally, we have our Linux system call definitions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">equ</span> <span class="n">BRK</span><span class="p">,</span> <span class="mi">45</span>
+<span class="o">.</span><span class="n">equ</span> <span class="n">LINUX_SYSCALL</span><span class="p">,</span> <span class="mh">0x80</span>
+</pre></div>
+</div>
+</section>
+<section id="the-allocate-init-function">
+<h3>The <code class="docutils literal notranslate"><span class="pre">allocate_init</span></code> function<a class="headerlink" href="#the-allocate-init-function" title="Link to this heading">¶</a></h3>
+<p>Okay, this is a simple function. All it does is set up the
+<code class="docutils literal notranslate"><span class="pre">heap_begin</span></code> and <code class="docutils literal notranslate"><span class="pre">current_break</span></code> variables we discussed earlier. So,
+if you remember the discussion earlier, the current break can be found
+using the <code class="docutils literal notranslate"><span class="pre">brk</span></code> system call. So, the function starts like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pushl %ebp
+movl  %esp, %ebp
+
+movl  $SYS_BRK, %eax
+movl  $0,  %ebx
+int   $LINUX_SYSCALL
+</pre></div>
+</div>
+<p>Anyway, after <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">$LINUX_SYSCALL</span></code>, <code class="docutils literal notranslate"><span class="pre">%eax</span></code> holds the last valid
+address. We actually want the first invalid address instead of the last
+valid address, so we just increment <code class="docutils literal notranslate"><span class="pre">%eax</span></code>. Then we move that value to
+the <code class="docutils literal notranslate"><span class="pre">heap_begin</span></code> and <code class="docutils literal notranslate"><span class="pre">current_break</span></code> locations. Then we leave the
+function. The code looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">incl</span>  <span class="o">%</span><span class="n">eax</span>
+<span class="n">movl</span>  <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="n">current_break</span>
+<span class="n">movl</span>  <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="n">heap_begin</span>
+<span class="n">movl</span>  <span class="o">%</span><span class="n">ebp</span><span class="p">,</span> <span class="o">%</span><span class="n">esp</span>
+<span class="n">popl</span>  <span class="o">%</span><span class="n">ebp</span>
+<span class="n">ret</span>
+</pre></div>
+</div>
+<p>The heap consists of the memory between <code class="docutils literal notranslate"><span class="pre">heap_begin</span></code> and
+<code class="docutils literal notranslate"><span class="pre">current_break</span></code>, so this says that we start off with a heap of zero
+bytes. Our <code class="docutils literal notranslate"><span class="pre">allocate</span></code> function will then extend the heap as much as it
+needs to when it is called.</p>
+</section>
+<section id="the-allocate-function">
+<h3>The <code class="docutils literal notranslate"><span class="pre">allocate</span></code> function<a class="headerlink" href="#the-allocate-function" title="Link to this heading">¶</a></h3>
+<p>This is the doozy function. Let’s start by looking at an outline of the
+function:</p>
+<ol class="arabic simple">
+<li><p>Start at the beginning of the heap.</p></li>
+<li><p>Check to see if we’re at the end of the heap.</p></li>
+<li><p>If we are at the end of the heap, grab the memory we need from Linux,
+mark it as “unavailable” and return it. If Linux won’t give us any
+more, return a 0.</p></li>
+<li><p>If the current memory region is marked “unavailable”, go to the next
+one, and go back to step 2.</p></li>
+<li><p>If the current memory region is too small to hold the requested
+amount of space, go back to step 2.</p></li>
+<li><p>If the memory region is available and large enough, mark it as
+“unavailable” and return it.</p></li>
+</ol>
+<p>Now, look back through the code with this in mind. Be sure to read the
+comments so you’ll know which register holds which value.</p>
+<p>Now that you’ve looked back through the code, let’s examine it one line
+at a time. We start off like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pushl</span> <span class="o">%</span><span class="n">ebp</span>
+<span class="n">movl</span>  <span class="o">%</span><span class="n">esp</span><span class="p">,</span> <span class="o">%</span><span class="n">ebp</span>
+<span class="n">movl</span>  <span class="n">ST_MEM_SIZE</span><span class="p">(</span><span class="o">%</span><span class="n">ebp</span><span class="p">),</span> <span class="o">%</span><span class="n">ecx</span>
+<span class="n">movl</span>  <span class="n">heap_begin</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+<span class="n">movl</span>  <span class="n">current_break</span><span class="p">,</span> <span class="o">%</span><span class="n">ebx</span>
+</pre></div>
+</div>
+<p>This part initializes all of our registers. The first two lines are
+standard function stuff. The next move pulls the size of the memory to
+allocate off of the stack. This is our only function parameter. After
+that, it moves the beginning heap address and the end of the heap into
+registers. I am now ready to do processing.</p>
+<p>The next section is marked <code class="docutils literal notranslate"><span class="pre">alloc_loop_begin</span></code>. In this loop we are
+going to examine memory regions until we either find an open memory
+region or determine that we need more memory. Our first instructions
+check to see if we need more memory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmpl</span> <span class="o">%</span><span class="n">ebx</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+<span class="n">je</span>   <span class="n">move_break</span>
+</pre></div>
+</div>
+<p>%eax; holds the current memory region being examined and
+%ebx; holds the location past the end of the heap. Therefore if
+the next region to be examined is past the end of the heap, it means we
+need more memory to allocate a region of this size. Let’s skip down to
+<code class="docutils literal notranslate"><span class="pre">move_break</span></code> and see what happens there:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>move_break:
+    addl  $HEADER_SIZE, %ebx
+    addl  %ecx, %ebx
+    pushl %eax
+    pushl %ecx
+    pushl %ebx
+    movl  $SYS_BRK, %eax
+    int   $LINUX_SYSCALL
+</pre></div>
+</div>
+<p>When we reach this point in the code, %ebx; holds where we want
+the next region of memory to be. So, we add our header size and region
+size to %ebx;, and that’s where we want the system break to be.
+We then push all the registers we want to save on the stack, and call
+the <code class="docutils literal notranslate"><span class="pre">brk</span></code> system call. After that we check for errors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmpl  $0, %eax
+je    error
+</pre></div>
+</div>
+<p>If there were no errors we pop the registers back off the stack, mark
+the memory as unavailable, record the size of the memory, and make sure
+%eax; points to the start of usable memory (which is <em>after</em> the
+header).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>popl  %ebx
+popl  %ecx
+popl  %eax
+movl  $UNAVAILABLE, HDR_AVAIL_OFFSET(%eax)
+movl  %ecx, HDR_SIZE_OFFSET(%eax)
+addl  $HEADER_SIZE, %eax
+</pre></div>
+</div>
+<p>Then we store the new program break and return the pointer to the
+allocated memory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span>  <span class="o">%</span><span class="n">ebx</span><span class="p">,</span> <span class="n">current_break</span>
+<span class="n">movl</span>  <span class="o">%</span><span class="n">ebp</span><span class="p">,</span> <span class="o">%</span><span class="n">esp</span>
+<span class="n">popl</span>  <span class="o">%</span><span class="n">ebp</span>
+<span class="n">ret</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">error</span></code> code just returns 0 in %eax;, so we won’t discuss
+it.</p>
+<p>Let’s go back look at the rest of the loop. What happens if the current
+memory being looked at isn’t past the end of the heap? Well, let’s look.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl HDR_SIZE_OFFSET(%eax), %edx
+cmpl $UNAVAILABLE, HDR_AVAIL_OFFSET(%eax)
+je   next_location
+</pre></div>
+</div>
+<p>This first grabs the size of the memory region and puts it in
+%edx;. Then it looks at the available flag to see if it is set to
+<code class="docutils literal notranslate"><span class="pre">UNAVAILABLE</span></code>. If so, that means that memory region is in use, so
+we’ll have to skip over it. So, if the available flag is set to
+<code class="docutils literal notranslate"><span class="pre">UNAVAILABLE</span></code>, you go to the code labeled <code class="docutils literal notranslate"><span class="pre">next_location</span></code>. If the
+available flag is set to <code class="docutils literal notranslate"><span class="pre">AVAILABLE</span></code>, then we keep on going.</p>
+<p>Let’s say that the space was available, and so we keep going. Then we
+check to see if this space is big enough to hold the requested amount of
+memory. The size of this region is being held in %edx;, so we do
+this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmpl</span>  <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="o">%</span><span class="n">ecx</span>
+<span class="n">jle</span>   <span class="n">allocate_here</span>
+</pre></div>
+</div>
+<p>If the requested size is less than or equal to the current region’s
+size, we can use this block. It doesn’t matter if the current region is
+larger than requested, because the extra space will just be unused. So,
+let’s jump down to <code class="docutils literal notranslate"><span class="pre">allocate_here</span></code> and see what happens:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl  $UNAVAILABLE, HDR_AVAIL_OFFSET(%eax)
+addl  $HEADER_SIZE, %eax
+movl  %ebp, %esp
+popl  %ebp
+ret
+</pre></div>
+</div>
+<p>It marks the memory as being unavailable. Then it moves the pointer
+%eax; past the header, and uses it as the return value for the
+function. Remember, the person using this function doesn’t need to even
+know about our memory header record. They just need a pointer to usable
+memory.</p>
+<p>Okay, so let’s say the region wasn’t big enough. What then? Well, we
+would then be at the code labeled <code class="docutils literal notranslate"><span class="pre">next_location</span></code>. This section of
+code is used any time that we figure out that the current memory region
+won’t work for allocating memory. All it does is advance %eax; to
+the next possible memory region, and goes back to the beginning of the
+loop. Remember that %edx; is holding the size of the current
+memory region, and <code class="docutils literal notranslate"><span class="pre">HEADER_SIZE</span></code> is the symbol for the size of the
+memory region’s header. So this code will move us to the next memory
+region:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>addl  $HEADER_SIZE, %eax
+addl  %edx, %eax
+jmp   alloc_loop_begin
+</pre></div>
+</div>
+<p>And now the function runs another loop.</p>
+<p>Whenever you have a loop, you must make sure that it will <em>always</em> end.
+The best way to do that is to examine all of the possibilities, and make
+sure that all of them eventually lead to the loop ending. In our case,
+we have the following possibilities:</p>
+<ul class="simple">
+<li><p>We will reach the end of the heap</p></li>
+<li><p>We will find a memory region that’s available and large enough</p></li>
+<li><p>We will go to the next location</p></li>
+</ul>
+<p>The first two items are conditions that will cause the loop to end. The
+third one will keep it going. However, even if we never find an open
+region, we will eventually reach the end of the heap, because it is a
+finite size. Therefore, we know that no matter which condition is true,
+the loop has to eventually hit a terminating condition.</p>
+</section>
+<section id="the-deallocate-function">
+<h3>The <code class="docutils literal notranslate"><span class="pre">deallocate</span></code> function<a class="headerlink" href="#the-deallocate-function" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">deallocate</span></code> function is much easier than the <code class="docutils literal notranslate"><span class="pre">allocate</span></code> one.
+That’s because it doesn’t have to do any searching at all. It can just
+mark the current memory region as <code class="docutils literal notranslate"><span class="pre">AVAILABLE</span></code>, and <code class="docutils literal notranslate"><span class="pre">allocate</span></code> will
+find it next time it is called. So we have:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl  ST_MEMORY_SEG(%esp), %eax
+subl  $HEADER_SIZE, %eax
+movl  $AVAILABLE, HDR_AVAIL_OFFSET(%eax)
+ret
+</pre></div>
+</div>
+<p>In this function, we don’t have to save %ebp; or
+%esp; since we’re not changing them, nor do we have to
+restore them at the end. All we’re doing is reading the address of the
+memory region from the stack, backing up to the beginning of the header,
+and marking the region as available. This function has no return value,
+so we don’t care what we leave in %eax;.</p>
+</section>
+<section id="performance-issues-and-other-problems">
+<h3>Performance Issues and Other Problems<a class="headerlink" href="#performance-issues-and-other-problems" title="Link to this heading">¶</a></h3>
+<p>Our simplistic memory manager is not really useful for anything more
+than an academic exercise. This section looks at the problems with such
+a simplistic allocator.</p>
+<p>The biggest problem here is speed. Now, if there are only a few
+allocations made, then speed won’t be a big issue. But think about what
+happens if you make a thousand allocations. On allocation number 1000,
+you have to search through 999 memory regions to find that you have to
+request more memory. As you can see, that’s getting pretty slow. In
+addition, remember that Linux can keep pages of memory on disk instead
+of in memory. So, since you have to go through every piece of memory
+your program’s memory, that means that Linux has to load every part of
+memory that’s currently on disk to check to see if it is available. You
+can see how this could get really, really slow. <a class="footnote-reference brackets" href="#id12" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a> This method is said
+to run in <em>linear</em> time, which means that every element you have to
+manage makes your program take longer. A program that runs in <em>constant</em>
+time takes the same amount of time no matter how many elements you are
+managing. Take the <code class="docutils literal notranslate"><span class="pre">deallocate</span></code> function, for instance. It only runs 4
+instructions, no matter how many elements we are managing, or where they
+are in memory. In fact, although our <code class="docutils literal notranslate"><span class="pre">allocate</span></code> function is one of the
+slowest of all memory managers, the <code class="docutils literal notranslate"><span class="pre">deallocate</span></code> function is one of
+the fastest.</p>
+<p>Another performance problem is the number of times we’re calling the
+<code class="docutils literal notranslate"><span class="pre">brk</span></code> system call. System calls take a long time. They aren’t like
+functions, because the processor has to switch modes. Your program isn’t
+allowed to map itself memory, but the Linux kernel is. So, the processor
+has to switch into <em>kernel mode</em>, then Linux maps the memory, and then
+switches back to <em>user mode</em> for your application to continue running.
+This is also called a <em>context switch</em>. Context switches are relatively
+slow on x86 processors. Generally, you should avoid calling the kernel
+unless you really need to.</p>
+<p>Another problem that we have is that we aren’t recording where Linux
+actually sets the break. Previously we mentioned that Linux might
+actually set the break past where we requested it. In this program, we
+don’t even look at where Linux actually sets the break - we just assume
+it sets it where we requested. That’s not really a bug, but it will lead
+to unnecessary <code class="docutils literal notranslate"><span class="pre">brk</span></code> system calls when we already have the memory
+mapped in.</p>
+<p>Another problem we have is that if we are looking for a 5-byte region of
+memory, and the first open one we come to is 1000 bytes, we will simply
+mark the whole thing as allocated and return it. This leaves 995 bytes
+of unused, but allocated, memory. It would be nice in such situations to
+break it apart so the other 995 bytes can be used later. It would also
+be nice to combine consecutive free spaces when looking for large
+allocations.</p>
+</section>
+</section>
+<section id="using-our-allocator">
+<h2>Using our Allocator<a class="headerlink" href="#using-our-allocator" title="Link to this heading">¶</a></h2>
+<p>The programs we do in this book aren’t complicated enough to necessitate
+a memory manager. Therefore, we will just use our memory manager to
+allocate a buffer for one of our file reading/writing programs instead
+of assigning it in the <code class="docutils literal notranslate"><span class="pre">.bss</span></code>.</p>
+<p>The program we will demonstrate this on is <code class="docutils literal notranslate"><span class="pre">read-records.s</span></code> from
+<a class="reference internal" href="records.html#records"><span class="std std-ref">Reading and Writing Simple Records</span></a>. This program uses a buffer named <code class="docutils literal notranslate"><span class="pre">record_buffer</span></code>
+to handle its input/output needs. We will simply change this from being
+a buffer defined in <code class="docutils literal notranslate"><span class="pre">.bss</span></code> to being a pointer to a
+dynamically-allocated buffer using our memory manager. You will need to
+have the code from that program handy as we will only be discussing the
+changes in this section.</p>
+<p>The first change we need to make is in the declaration. Currently it
+looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">section</span> <span class="o">.</span><span class="n">bss</span>
+<span class="o">.</span><span class="n">lcomm</span><span class="p">,</span> <span class="n">record_buffer</span><span class="p">,</span> <span class="n">RECORD_SIZE</span>
+</pre></div>
+</div>
+<p>It would be a misnomer to keep the same name, since we are switching it
+from being an actual buffer to being a pointer to a buffer. In addition,
+it now only needs to be one word big (enough to hold a pointer). The new
+declaration will stay in the <code class="docutils literal notranslate"><span class="pre">.data</span></code> section and look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">record_buffer_ptr</span><span class="p">:</span>
+    <span class="o">.</span><span class="n">long</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Our next change is we need to initialize our memory manager immediately
+after we start our program. Therefore, right after the stack is set up,
+the following call needs to be added:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">call</span> <span class="n">allocate_init</span>
+</pre></div>
+</div>
+<p>After that, the memory manager is ready to start servicing memory
+allocation requests. We need to allocate enough memory to hold these
+records that we are reading. Therefore, we will call <code class="docutils literal notranslate"><span class="pre">allocate</span></code> to
+allocate this memory, and then save the pointer it returns into
+<code class="docutils literal notranslate"><span class="pre">record_buffer_ptr</span></code>. Like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pushl $RECORD_SIZE
+call  allocate
+movl  %eax, record_buffer_ptr
+</pre></div>
+</div>
+<p>Now, when we make the call to <code class="docutils literal notranslate"><span class="pre">read_record</span></code>, it is expecting a
+pointer. In the old code, the pointer was the immediate-mode reference
+to <code class="docutils literal notranslate"><span class="pre">record_buffer</span></code>. Now, <code class="docutils literal notranslate"><span class="pre">record_buffer_ptr</span></code> just holds the pointer
+rather than the buffer itself. Therefore, we must do a direct mode load
+to get the value in <code class="docutils literal notranslate"><span class="pre">record_buffer_ptr</span></code>. We need to remove this line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pushl $record_buffer
+</pre></div>
+</div>
+<p>And put this line in its place:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pushl</span> <span class="n">record_buffer_ptr</span>
+</pre></div>
+</div>
+<p>The next change comes when we are trying to find the address of the
+firstname field of our record. In the old code, it was
+<code class="docutils literal notranslate"><span class="pre">$RECORD_FIRSTNAME</span> <span class="pre">+</span> <span class="pre">record_buffer</span></code>. However, that only works because
+it is a constant offset from a constant address. In the new code, it is
+the offset of an address stored in <code class="docutils literal notranslate"><span class="pre">record_buffer_ptr</span></code>. To get that
+value, we will need to move the pointer into a register, and then add
+<code class="docutils literal notranslate"><span class="pre">$RECORD_FIRSTNAME</span></code> to it to get the pointer. So where we have the
+following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pushl $RECORD_FIRSTNAME + record_buffer
+</pre></div>
+</div>
+<p>We need to replace it with this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl  record_buffer_ptr, %eax
+addl  $RECORD_FIRSTNAME, %eax
+pushl %eax
+</pre></div>
+</div>
+<p>Similarly, we need to change the line that says</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl  $RECORD_FIRSTNAME + record_buffer, %ecx
+</pre></div>
+</div>
+<p>so that it reads like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl  record_buffer_ptr, %ecx
+addl  $RECORD_FIRSTNAME, %ecx
+</pre></div>
+</div>
+<p>Finally, one change that we need to make is to deallocate the memory
+once we are done with it (in this program it’s not necessary, but it’s a
+good practice anyway). To do that, we just send <code class="docutils literal notranslate"><span class="pre">record_buffer_ptr</span></code> to
+the <code class="docutils literal notranslate"><span class="pre">deallocate</span></code> function right before exitting:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pushl</span> <span class="n">record_buffer_ptr</span>
+<span class="n">call</span>  <span class="n">deallocate</span>
+</pre></div>
+</div>
+<p>Now you can build your program with the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">read</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">o</span>
+<span class="n">ld</span> <span class="n">alloc</span><span class="o">.</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">newline</span><span class="o">.</span><span class="n">o</span> <span class="n">count</span><span class="o">-</span><span class="n">chars</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">records</span>
+</pre></div>
+</div>
+<p>You can then run your program by doing <code class="docutils literal notranslate"><span class="pre">./read-records</span></code>.</p>
+<p>The uses of dynamic memory allocation may not be apparent to you at this
+point, but as you go from academic exercises to real-life programs you
+will use it continually.</p>
+</section>
+<section id="more-information">
+<h2>More Information<a class="headerlink" href="#more-information" title="Link to this heading">¶</a></h2>
+<p>More information on memory handling in Linux and other operating systems
+can be found at the following locations:</p>
+<ul class="simple">
+<li><p>More information about the memory layout of Linux programs can be
+found in Konstantin Boldyshev’s document, “Startup state of a
+Linux/i386 ELF binary”, available at
+<a class="reference external" href="http://linuxassembly.org/startup.html">http://linuxassembly.org/startup.html</a></p></li>
+<li><p>A good overview of virtual memory in many different systems is
+available at <a class="reference external" href="http://cne.gmu.edu/modules/vm/">http://cne.gmu.edu/modules/vm/</a></p></li>
+<li><p>Several in-depth articles on Linux’s virtual memory subsystem is
+available at <a class="reference external" href="http://www.nongnu.org/lkdp/files.html">http://www.nongnu.org/lkdp/files.html</a></p></li>
+<li><p>Doug Lea has written up a description of his popular memory allocator
+at <a class="reference external" href="http://gee.cs.oswego.edu/dl/html/malloc.html">http://gee.cs.oswego.edu/dl/html/malloc.html</a></p></li>
+<li><p>A paper on the 4.4 BSD memory allocator is available at
+<a class="reference external" href="http://docs.freebsd.org/44doc/papers/malloc.html">http://docs.freebsd.org/44doc/papers/malloc.html</a></p></li>
+</ul>
+</section>
+<section id="review">
+<h2>Review<a class="headerlink" href="#review" title="Link to this heading">¶</a></h2>
+<section id="know-the-concepts">
+<h3>Know the Concepts<a class="headerlink" href="#know-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Describe the layout of memory when a Linux program starts.</p></li>
+<li><p>What is the heap?</p></li>
+<li><p>What is the current break?</p></li>
+<li><p>Which direction does the stack grow in?</p></li>
+<li><p>Which direction does the heap grow in?</p></li>
+<li><p>What happens when you access unmapped memory?</p></li>
+<li><p>How does the operating system prevent processes from writing over
+each other’s memory?</p></li>
+<li><p>Describe the process that occurs if a piece of memory you are using
+is currently residing on disk?</p></li>
+<li><p>Why do you need an allocator?</p></li>
+</ul>
+</section>
+<section id="use-the-concepts">
+<h3>Use the Concepts<a class="headerlink" href="#use-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Modify the memory manager so that it calls <code class="docutils literal notranslate"><span class="pre">allocate_init</span></code>
+automatically if it hasn’t been initialized.</p></li>
+<li><p>Modify the memory manager so that if the requested size of memory is
+smaller than the region chosen, it will break up the region into
+multiple parts. Be sure to take into account the size of the new
+header record when you do this.</p></li>
+<li><p>Modify one of your programs that uses buffers to use the memory
+manager to get buffer memory rather than using the <code class="docutils literal notranslate"><span class="pre">.bss</span></code>.</p></li>
+</ul>
+</section>
+<section id="going-further">
+<h3>Going Further<a class="headerlink" href="#going-further" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Research <em>garbage collection</em>. What advantages and disadvantages does
+this have over the style of memory management used here?</p></li>
+<li><p>Research <em>reference counting</em>. What advantages and disadvantages does
+this have over the style of memory management used here?</p></li>
+<li><p>Change the name of the functions to <code class="docutils literal notranslate"><span class="pre">malloc</span></code> and <code class="docutils literal notranslate"><span class="pre">free</span></code>, and
+build them into a shared library. Use <code class="docutils literal notranslate"><span class="pre">LD_PRELOAD</span></code> to force them to
+be used as your memory manager instead of the default one. Add some
+<code class="docutils literal notranslate"><span class="pre">write</span></code> system calls to STDOUT to verify that your memory manager
+is being used instead of the default one.</p></li>
+</ul>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>You actually never use addresses this low, but it works for
+discussion.</p>
+</aside>
+<aside class="footnote brackets" id="id8" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Addresses mentioned in this chapter are not set in stone and may vary
+based on kernel version.</p>
+</aside>
+<aside class="footnote brackets" id="id9" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>The stack can access it as it grows downward, and you can access the
+stack regions through %esp;. However, your program’s
+data section doesn’t grow that way. The way to grow that will be
+explained shortly.</p>
+</aside>
+<aside class="footnote brackets" id="id10" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p>Note that not only can Linux have a virtual address map to a
+different physical address, it can also move those mappings around as
+needed.</p>
+</aside>
+<aside class="footnote brackets" id="id11" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">5</a><span class="fn-bracket">]</span></span>
+<p>The function names usually aren’t <code class="docutils literal notranslate"><span class="pre">allocate</span></code> and <code class="docutils literal notranslate"><span class="pre">deallocate</span></code>,
+but the functionality will be the same. In the C programming
+language, for example, they are named <code class="docutils literal notranslate"><span class="pre">malloc</span></code> and <code class="docutils literal notranslate"><span class="pre">free</span></code>.</p>
+</aside>
+<aside class="footnote brackets" id="id12" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">6</a><span class="fn-bracket">]</span></span>
+<p>This is why adding more memory to your computer makes it run faster.
+The more memory your computer has, the less it puts on disk, so it
+doesn’t have to always be interrupting your programs to retreive
+pages off the disk.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="linking.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Sharing Functions with Code Libraries</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="robust.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Developing Robust Programs</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Intermediate Memory Topics</a><ul>
+<li><a class="reference internal" href="#how-a-computer-views-memory">How a Computer Views Memory</a></li>
+<li><a class="reference internal" href="#the-memory-layout-of-a-linux-program">The Memory Layout of a Linux Program</a></li>
+<li><a class="reference internal" href="#every-memory-address-is-a-lie">Every Memory Address is a Lie</a></li>
+<li><a class="reference internal" href="#getting-more-memory">Getting More Memory</a></li>
+<li><a class="reference internal" href="#a-simple-memory-manager">A Simple Memory Manager</a><ul>
+<li><a class="reference internal" href="#variables-and-constants">Variables and Constants</a></li>
+<li><a class="reference internal" href="#the-allocate-init-function">The <code class="docutils literal notranslate"><span class="pre">allocate_init</span></code> function</a></li>
+<li><a class="reference internal" href="#the-allocate-function">The <code class="docutils literal notranslate"><span class="pre">allocate</span></code> function</a></li>
+<li><a class="reference internal" href="#the-deallocate-function">The <code class="docutils literal notranslate"><span class="pre">deallocate</span></code> function</a></li>
+<li><a class="reference internal" href="#performance-issues-and-other-problems">Performance Issues and Other Problems</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-our-allocator">Using our Allocator</a></li>
+<li><a class="reference internal" href="#more-information">More Information</a></li>
+<li><a class="reference internal" href="#review">Review</a><ul>
+<li><a class="reference internal" href="#know-the-concepts">Know the Concepts</a></li>
+<li><a class="reference internal" href="#use-the-concepts">Use the Concepts</a></li>
+<li><a class="reference internal" href="#going-further">Going Further</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

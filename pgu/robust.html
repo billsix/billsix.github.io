@@ -1,0 +1,706 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Intermediate Memory Topics" href="memoryint.html"><link rel="prev" title="Dealing with Files" href="files.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Developing Robust Programs - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/robust.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="developing-robust-programs">
+<span id="developingrobustprograms"></span><h1>Developing Robust Programs<a class="headerlink" href="#developing-robust-programs" title="Link to this heading">¶</a></h1>
+<p>This chapter deals with developing programs that are <em>robust</em>. Robust
+programs are able to handle error conditions gracefully. They are
+programs that do not crash no matter what the user does. Building robust
+programs is essential to the practice of programming. Writing robust
+programs takes discipline and work - it usually entails finding every
+possible problem that can occur, and coming up with an action plan for
+your program to take.</p>
+<section id="where-does-the-time-go">
+<h2>Where Does the Time Go?<a class="headerlink" href="#where-does-the-time-go" title="Link to this heading">¶</a></h2>
+<p>Programmers schedule poorly. In almost every programming project,
+programmers will take two, four, or even eight times as long to develop
+a program or function than they originally estimated. There are many
+reasons for this problem, including:</p>
+<ul class="simple">
+<li><p>Programmers don’t always schedule time for meetings or other
+non-coding activities that make up every day.</p></li>
+<li><p>Programmers often underestimate feedback times (how long it takes to
+pass change requests and approvals back and forth) for projects.</p></li>
+<li><p>Programmers don’t always understand the full scope of what they are
+producing.</p></li>
+<li><p>Programmers often have to estimate a schedule on a totally different
+kind of project than they are used to, and thus are unable to
+schedule accurately.</p></li>
+<li><p>Programmers often underestimate the amount of time it takes to get a
+program fully robust.</p></li>
+</ul>
+<p>The last item is the one we are interested in here. <em>It takes a lot of
+time and effort to develop robust programs.</em> More so than people usually
+guess, including experienced programmers. Programmers get so focused on
+simply solving the problem at hand that they fail to look at the
+possible side issues.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">toupper</span></code> program, we do not have any course of action if the
+file the user selects does not exist. The program will go ahead and try
+to work anyway. It doesn’t report any error message so the user won’t
+even know that they typed in the name wrong. Let’s say that the
+destination file is on a network drive, and the network temporarily
+fails. The operating system is returning a status code to us in
+%eax;, but we aren’t checking it. Therefore, if a failure
+occurs, the user is totally unaware. This program is definitely not
+robust. As you can see, even in a simple program there are a lot of
+things that can go wrong that a programmer must contend with.</p>
+<p>In a large program, it gets much more problematic. There are usually
+many more possible error conditions than possible successful conditions.
+Therefore, you should always expect to spend the majority of your time
+checking status codes, writing error handlers, and performing similar
+tasks to make your program robust. If it takes two weeks to develop a
+program, it will likely take at least two more to make it robust.
+Remember that every error message that pops up on your screen had to be
+programmed in by someone.</p>
+</section>
+<section id="some-tips-for-developing-robust-programs">
+<h2>Some Tips for Developing Robust Programs<a class="headerlink" href="#some-tips-for-developing-robust-programs" title="Link to this heading">¶</a></h2>
+<section id="user-testing">
+<h3>User Testing<a class="headerlink" href="#user-testing" title="Link to this heading">¶</a></h3>
+<p>Testing is one of the most essential things a programmer does. If you
+haven’t tested something, you should assume it doesn’t work. However,
+testing isn’t just about making sure your program works, it’s about
+making sure your program doesn’t break. For example, if I have a program
+that is only supposed to deal with positive numbers, you need to test
+what happens if the user enters a negative number. Or a letter. Or the
+number zero. You must test what happens if they put spaces before their
+numbers, spaces after their numbers, and other little possibilities. You
+need to make sure that you handle the user’s data in a way that makes
+sense to the user, and that you pass on that data in a way that makes
+sense to the rest of your program. When your program finds input that
+doesn’t make sense, it needs to perform appropriate actions. Depending
+on your program, this may include ending the program, prompting the user
+to re-enter values, notifying a central error log, rolling back an
+operation, or ignoring it and continuing.</p>
+<p>Not only should you test your programs, you need to have others test it
+as well. You should enlist other programmers and users of your program
+to help you test your program. If something is a problem for your users,
+even if it seems okay to you, it needs to be fixed. If the user doesn’t
+know how to use your program correctly, that should be treated as a bug
+that needs to be fixed.</p>
+<p>You will find that users find a lot more bugs in your program than you
+ever could. The reason is that users don’t know what the computer
+expects. You know what kinds of data the computer expects, and therefore
+are much more likely to enter data that makes sense to the computer.
+Users enter data that makes sense to them. Allowing non-programmers to
+use your program for testing purposes usually gives you much more
+accurate results as to how robust your program truly is.</p>
+</section>
+<section id="data-testing">
+<h3>Data Testing<a class="headerlink" href="#data-testing" title="Link to this heading">¶</a></h3>
+<p>When designing programs, each of your functions needs to be very
+specific about the type and range of data that it will or won’t accept.
+You then need to test these functions to make sure that they perform to
+specification when handed the appropriate data. Most important is
+testing <em>corner cases</em> or <em>edge cases</em>. Corner cases are the inputs that
+are most likely to cause problems or behave unexpectedly.</p>
+<p>When testing numeric data, there are several corner cases you always
+need to test:</p>
+<ul class="simple">
+<li><p>The number 0</p></li>
+<li><p>The number 1</p></li>
+<li><p>A number within the expected range</p></li>
+<li><p>A number outside the expected range</p></li>
+<li><p>The first number in the expected range</p></li>
+<li><p>The last number in the expected range</p></li>
+<li><p>The first number below the expected range</p></li>
+<li><p>The first number above the expected range</p></li>
+</ul>
+<p>For example, if I have a program that is supposed to accept values
+between 5 and 200, I should test 0, 1, 4, 5, 153, 200, 201, and 255 at a
+minimum (153 and 255 were randomly chosen inside and outside the range,
+respectively). The same goes for any lists of data you have. You need to
+test that your program behaves as expected for lists of 0 items, 1 item,
+massive numbers of items, and so on. In addition, you should also test
+any turning points you have. For example, if you have different code to
+handle people under and over age 30, for example, you would need to test
+it on people of ages 29, 30, and 31 at least.</p>
+<p>There will be some internal functions that you assume get good data
+because you have checked for errors before this point. However, while in
+development you often need to check for errors anyway, as your other
+code may have errors in it. To verify the consistency and validity of
+data during development, most languages have a facility to easily check
+assumptions about data correctness. In the C language there is the
+<code class="docutils literal notranslate"><span class="pre">assert</span></code> macro. You can simply put in your code
+<code class="docutils literal notranslate"><span class="pre">assert(a</span> <span class="pre">&gt;</span> <span class="pre">b);</span></code>, and it will give an error if it reaches that code
+when the condition is not true. In addition, since such a check is a
+waste of time after your code is stable, the <code class="docutils literal notranslate"><span class="pre">assert</span></code> macro allows you
+to turn off asserts at compile-time. This makes sure that your functions
+are receiving good data without causing unnecessary slowdowns for code
+released to the public.</p>
+</section>
+<section id="module-testing">
+<h3>Module Testing<a class="headerlink" href="#module-testing" title="Link to this heading">¶</a></h3>
+<p>Not only should you test your program as a whole, you need to test the
+individual pieces of your program. As you develop your program, you
+should test individual functions by providing it with data you create to
+make sure it responds appropriately.</p>
+<p>In order to do this effectively, you have to develop functions whose
+sole purpose is to call functions for testing. These are called
+<em>drivers</em> (not to be confused with hardware drivers) . They simply load
+your function, supply it with data, and check the results. This is
+especially useful if you are working on pieces of an unfinished program.
+Since you can’t test all of the pieces together, you can create a driver
+program that will test each function individually.</p>
+<p>Also, the code you are testing may make calls to functions not developed
+yet. In order to overcome this problem, you can write a small function
+called a <em>stub</em> which simply returns the values that function needs to
+proceed. For example, in an e-commerce application, I had a function
+called <code class="docutils literal notranslate"><span class="pre">is_ready_to_checkout</span></code>. Before I had time to actually write the
+function I just set it to return true on every call so that the
+functions which relied on it would have an answer. This allowed me to
+test functions which relied on <code class="docutils literal notranslate"><span class="pre">is_ready_to_checkout</span></code> without the
+function being fully implemented.</p>
+</section>
+</section>
+<section id="handling-errors-effectively">
+<span id="handlingerrors"></span><h2>Handling Errors Effectively<a class="headerlink" href="#handling-errors-effectively" title="Link to this heading">¶</a></h2>
+<p>Not only is it important to know how to test, but it is also important
+to know what to do when an error is detected.</p>
+<section id="have-an-error-code-for-everything">
+<h3>Have an Error Code for Everything<a class="headerlink" href="#have-an-error-code-for-everything" title="Link to this heading">¶</a></h3>
+<p>Truly robust software has a unique error code for every possible
+contingency. By simply knowing the error code, you should be able to
+find the location in your code where that error was signalled.</p>
+<p>This is important because the error code is usually all the user has to
+go on when reporting errors. Therefore, it needs to be as useful as
+possible.</p>
+<p>Error codes should also be accompanied by descriptive error messages.
+However, only in rare circumstances should the error message try to
+predict <em>why</em> the error occurred. It should simply relate what happened.
+Back in 1995 I worked for an Internet Service Provider. One of the web
+browsers we supported tried to guess the cause for every network error,
+rather than just reporting the error. If the computer wasn’t connected
+to the Internet and the user tried to connect to a website, it would say
+that there was a problem with the Internet Service Provider, that the
+server was down, and that the user should contact their Internet Service
+Provider to correct the problem. Nearly a quarter of our calls were from
+people who had received this message, but merely needed to connect to
+the Internet before trying to use their browser. As you can see, trying
+to diagnose what the problem is can lead to a lot more problems than it
+fixes. It is better to just report error codes and messages, and have
+separate resources for the user to troubleshooting the application. A
+troubleshooting guide, not the program itself, is an appropriate place
+to list possible reasons and courses for action for each error message.</p>
+</section>
+<section id="recovery-points">
+<h3>Recovery Points<a class="headerlink" href="#recovery-points" title="Link to this heading">¶</a></h3>
+<p>In order to simplify error handling, it is often useful to break your
+program apart into distinct units, where each unit fails and is
+recovered as a whole. For example, you could break your program up so
+that reading the configuration file was a unit. If reading the
+configuration file failed at any point (opening the file, reading the
+file, trying to decode the file, etc.) then the program would simply
+treat it as a configuration file problem and skip to the <em>recovery
+point</em> for that problem. This way you greatly reduce the number of
+error-handling mechanism you need for your program, because error
+recovery is done on a much more general level.</p>
+<p>Note that even with recovery points, your error messages need to be
+specific as to what the problem was. Recovery points are basic units for
+error recovery, not for error detection. Error detection still needs to
+be extremely exact, and the error reports need exact error codes and
+messages.</p>
+<p>When using recovery points, you often need to include cleanup code to
+handle different contingencies. For example, in our configuration file
+example, the recovery function would need to include code to check and
+see if the configuration file was still open. Depending on where the
+error occurred, the file may have been left open. The recovery function
+needs to check for this condition, and any other condition that might
+lead to system instability, and return the program to a consistent
+state.</p>
+<p>The simplest way to handle recovery points is to wrap the whole program
+into a single recovery point. You would just have a simple
+error-reporting function that you can call with an error code and a
+message. The function would print them and and simply exit the program.
+This is not usually the best solution for real-world situations, but it
+is a good fall-back, last resort mechanism.</p>
+</section>
+</section>
+<section id="making-our-program-more-robust">
+<h2>Making Our Program More Robust<a class="headerlink" href="#making-our-program-more-robust" title="Link to this heading">¶</a></h2>
+<p>This section will go through making the <code class="docutils literal notranslate"><span class="pre">add-year.s</span></code> program from
+<a class="reference internal" href="records.html#records"><span class="std std-ref">Reading and Writing Simple Records</span></a> a little more robust.</p>
+<p>Since this is a pretty simple program, we will limit ourselves to a
+single recovery point that covers the whole program. The only thing we
+will do to recover is to print the error and exit. The code to do that
+is pretty simple:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">src/error-exit.s</span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;linux.s&quot;</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_ERROR_CODE</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span>
+<span class="linenos"> 3</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_ERROR_MSG</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span>
+<span class="linenos"> 4</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">error_exit</span>
+<span class="linenos"> 5</span><span class="w">	</span><span class="na">.type</span><span class="w"> </span><span class="no">error_exit</span><span class="p">,</span><span class="w"> </span><span class="na">@function</span>
+<span class="linenos"> 6</span><span class="nl">error_exit:</span>
+<span class="linenos"> 7</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w">	</span><span class="c1">#Write out error code</span>
+<span class="linenos">11</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_ERROR_CODE</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">12</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">13</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">count_chars</span>
+<span class="linenos">14</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ecx</span>
+<span class="linenos">15</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">16</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$STDERR</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">17</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_WRITE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">18</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">19</span><span class="w">	</span>
+<span class="linenos">20</span><span class="w">	</span><span class="c1">#Write out error message</span>
+<span class="linenos">21</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_ERROR_MSG</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">22</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">23</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">count_chars</span>
+<span class="linenos">24</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ecx</span>
+<span class="linenos">25</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">26</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$STDERR</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">27</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_WRITE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">28</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$STDERR</span>
+<span class="linenos">31</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">write_newline</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="w">	</span><span class="c1">#Exit with status 1</span>
+<span class="linenos">34</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_EXIT</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">35</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$1</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">36</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+</pre></div>
+</div>
+</div>
+<p>Enter it in a file called <code class="docutils literal notranslate"><span class="pre">error-exit.s</span></code>. To call it, you just need to
+push the address of an error message, and then an error code onto the
+stack, and call the function.</p>
+<p>Now let’s look for potential error spots in our <code class="docutils literal notranslate"><span class="pre">add-year</span></code> program.
+First of all, we don’t check to see if either of our <code class="docutils literal notranslate"><span class="pre">open</span></code> system
+calls actually complete properly. Linux returns its status code in
+%eax;, so we need to check and see if there is an error.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    #Open file for reading
+    movl  $SYS_OPEN, %eax
+    movl  $input_file_name, %ebx
+    movl  $0, %ecx
+    movl  $0666, %edx
+    int   $LINUX_SYSCALL
+
+    movl  %eax, INPUT_DESCRIPTOR(%ebp)
+
+    #This will test and see if %eax is
+    #negative.  If it is not negative, it
+    #will jump to continue_processing.
+    #Otherwise it will handle the error
+    #condition that the negative number
+    #represents.
+    cmpl  $0, %eax
+    jl    continue_processing
+
+
+    #Send the error
+    .section .data
+no_open_file_code:
+    .ascii &quot;0001: \0&quot;
+no_open_file_msg:
+    .ascii &quot;Can&#39;t Open Input File\0&quot;
+
+    .section .text
+    pushl $no_open_file_msg
+    pushl $no_open_file_code
+    call  error_exit
+
+continue_processing:
+    #Rest of program
+</pre></div>
+</div>
+<p>So, after calling the system call, we check and see if we have an error
+by checking to see if the result of the system call is less than zero.
+If so, we call our error reporting and exit routine.</p>
+<p>After every system call, function call, or instruction which can have
+erroneous results you should add error checking and handling code.</p>
+<p>To assemble and link the files, do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">add</span><span class="o">-</span><span class="n">year</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">add</span><span class="o">-</span><span class="n">year</span><span class="o">.</span><span class="n">o</span>
+<span class="k">as</span> <span class="n">error</span><span class="o">-</span><span class="n">exit</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">error</span><span class="o">-</span><span class="n">exit</span><span class="o">.</span><span class="n">o</span>
+<span class="n">ld</span> <span class="n">add</span><span class="o">-</span><span class="n">year</span><span class="o">.</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">newline</span><span class="o">.</span><span class="n">o</span> <span class="n">error</span><span class="o">-</span><span class="n">exit</span><span class="o">.</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span> <span class="n">count</span><span class="o">-</span><span class="n">chars</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">add</span><span class="o">-</span><span class="n">year</span>
+</pre></div>
+</div>
+<p>Now try to run it without the necessary files. It now exits cleanly and
+gracefully!</p>
+</section>
+<section id="review">
+<h2>Review<a class="headerlink" href="#review" title="Link to this heading">¶</a></h2>
+<section id="know-the-concepts">
+<h3>Know the Concepts<a class="headerlink" href="#know-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>What are the reasons programmer’s have trouble with scheduling?</p></li>
+<li><p>Find your favorite program, and try to use it in a completely wrong
+manner. Open up files of the wrong type, choose invalid options,
+close windows that are supposed to be open, etc. Count how many
+different error scenarios they had to account for.</p></li>
+<li><p>What are corner cases? Can you list examples of numeric corner cases?</p></li>
+<li><p>Why is user testing so important?</p></li>
+<li><p>What are stubs and drivers used for? What’s the difference between
+the two?</p></li>
+<li><p>What are recovery points used for?</p></li>
+<li><p>How many different error codes should a program have?</p></li>
+</ul>
+</section>
+<section id="use-the-concepts">
+<h3>Use the Concepts<a class="headerlink" href="#use-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Go through the <code class="docutils literal notranslate"><span class="pre">add-year.s</span></code> program and add error-checking code
+after every system call.</p></li>
+<li><p>Find one other program we have done so far, and add error-checking to
+that program.</p></li>
+<li><p>Add a recovery mechanism for <code class="docutils literal notranslate"><span class="pre">add-year.s</span></code> that allows it to read
+from STDIN if it cannot open the standard file.</p></li>
+</ul>
+</section>
+<section id="going-further">
+<h3>Going Further<a class="headerlink" href="#going-further" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>What, if anything, should you do if your error-reporting function
+fails? Why?</p></li>
+<li><p>Try to find bugs in at least one open-source program. File a bug
+report for it.</p></li>
+<li><p>Try to fix the bug you found in the previous exercise.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="memoryint.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Intermediate Memory Topics</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="files.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Dealing with Files</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Developing Robust Programs</a><ul>
+<li><a class="reference internal" href="#where-does-the-time-go">Where Does the Time Go?</a></li>
+<li><a class="reference internal" href="#some-tips-for-developing-robust-programs">Some Tips for Developing Robust Programs</a><ul>
+<li><a class="reference internal" href="#user-testing">User Testing</a></li>
+<li><a class="reference internal" href="#data-testing">Data Testing</a></li>
+<li><a class="reference internal" href="#module-testing">Module Testing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#handling-errors-effectively">Handling Errors Effectively</a><ul>
+<li><a class="reference internal" href="#have-an-error-code-for-everything">Have an Error Code for Everything</a></li>
+<li><a class="reference internal" href="#recovery-points">Recovery Points</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#making-our-program-more-robust">Making Our Program More Robust</a></li>
+<li><a class="reference internal" href="#review">Review</a><ul>
+<li><a class="reference internal" href="#know-the-concepts">Know the Concepts</a></li>
+<li><a class="reference internal" href="#use-the-concepts">Use the Concepts</a></li>
+<li><a class="reference internal" href="#going-further">Going Further</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

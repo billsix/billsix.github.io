@@ -1,0 +1,492 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Reading and Writing Simple Records" href="records.html"><link rel="prev" title="Optimization" href="optimization.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Moving On from Here - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/wherenext.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="moving-on-from-here">
+<span id="wherenextch"></span><h1>Moving On from Here<a class="headerlink" href="#moving-on-from-here" title="Link to this heading">¶</a></h1>
+<p>Congratulations on getting this far. You should now have a basis for
+understanding the issues involved in many areas of programming. Even if
+you never use assembly language again, you have gained a valuable
+perspective and mental framework for understanding the rest of computer
+science.</p>
+<p>There are essentially three methods to learn to program:</p>
+<ul class="simple">
+<li><p>From the Bottom Up - This is how this book teaches. It starts with
+low-level programming, and works toward more generalized teaching.</p></li>
+<li><p>From the Top Down - This is the opposite direction. This focuses on
+what you want to do with the computer, and teaches you how to break
+it down more and more until you get to the low levels.</p></li>
+<li><p>From the Middle - This is characterized by books which teach a
+specific programming language or API. These are not as concerned with
+concepts as they are with specifics.</p></li>
+</ul>
+<p>Different people like different approaches, but a good programmer takes
+all of them into account. The bottom-up approaches help you understand
+the machine aspects, the top-down approaches help you understand the
+problem-area aspects, and the middle approaches help you with practical
+questions and answers. To leave any of these aspects out would be a
+mistake.</p>
+<p>Computer Programming is a vast subject. As a programmer, you will need
+to be prepared to be constantly learning and pushing your limits. These
+books will help you do that. They not only teach their subjects, but
+also teach various ways and methods of <em>thinking</em>. As Alan Perlis said,
+“A language that doesn’t affect the way you think about programming is
+not worth knowing”
+(<a class="reference external" href="http://www.cs.yale.edu/homes/perlis-alan/quotes.html">http://www.cs.yale.edu/homes/perlis-alan/quotes.html</a>). If you are
+constantly looking for new and better ways of doing and thinking, you
+will make a successful programmer. If you do not seek to enhance
+yourself, “A little sleep, a little slumber, a little folding of the
+hands to rest - and poverty will come on you like a bandit and scarcity
+like an armed man.” (Proverbs 24:33-34 NIV). Perhaps not quite that
+severe, but still, it is best to always be learning.</p>
+<p>These books were selected because of their content and the amount of
+respect they have in the computer science world. Each of them brings
+something unique. There are many books here. The best way to start would
+be to look through online reviews of several of the books, and find a
+starting point that interests you.</p>
+<section id="from-the-bottom-up">
+<h2>From the Bottom Up<a class="headerlink" href="#from-the-bottom-up" title="Link to this heading">¶</a></h2>
+<p>This list is in the best reading order I could find. It’s not
+necessarily easiest to hardest, but based on subject matter.</p>
+<ul class="simple">
+<li><p>Programming from the Ground Up by Jonathan Bartlett</p></li>
+<li><p>Introduction to Algorithms by Thomas H. Cormen, Charles E. Leiserson,
+and Ronald L. Rivest</p></li>
+<li><p>The Art of Computer Programming by Donald Knuth (3 volume set -
+volume 1 is the most important)</p></li>
+<li><p>Programming Languages by Samuel N. Kamin</p></li>
+<li><p>Modern Operating Systems by Andrew Tanenbaum</p></li>
+<li><p>Linkers and Loaders by John Levine</p></li>
+<li><p>Computer Organization and Design: The Hardware/Software Interface by
+David Patterson and John Hennessy</p></li>
+</ul>
+</section>
+<section id="from-the-top-down">
+<h2>From the Top Down<a class="headerlink" href="#from-the-top-down" title="Link to this heading">¶</a></h2>
+<p>These books are arranged from the simplest to the hardest. However, they
+can be read in any order you feel comfortable with.</p>
+<ul class="simple">
+<li><p>How to Design Programs by Matthias Felleisen, Robert Bruce Findler,
+Matthew Flatt, and Shiram Krishnamurthi, available online at
+<a class="reference external" href="http://www.htdp.org/">http://www.htdp.org/</a></p></li>
+<li><p>Simply Scheme: An Introduction to Computer Science by Brian Harvey
+and Matthew Wright</p></li>
+<li><p>How to Think Like a Computer Scientist: Learning with Python by Allen
+Downey, Jeff Elkner, and Chris Meyers, available online at
+<a class="reference external" href="http://www.greenteapress.com/thinkpython/">http://www.greenteapress.com/thinkpython/</a></p></li>
+<li><p>Structure and Interpretation of Computer Programs by Harold Abelson
+and Gerald Jay Sussman with Julie Sussman, available online at
+<a class="reference external" href="http://mitpress.mit.edu/sicp/">http://mitpress.mit.edu/sicp/</a></p></li>
+<li><p>Design Patterns by Erich Gamma, Richard Helm, Ralph Johnson, and John
+Vlissides</p></li>
+<li><p>What not How: The Rules Approach to Application Development by Chris
+Date</p></li>
+<li><p>The Algorithm Design Manual by Steve Skiena</p></li>
+<li><p>Programming Language Pragmatics by Michael Scott</p></li>
+<li><p>Essentials of Programming Languages by Daniel P. Friedman, Mitchell
+Wand, and Christopher T. Haynes</p></li>
+</ul>
+</section>
+<section id="from-the-middle-out">
+<h2>From the Middle Out<a class="headerlink" href="#from-the-middle-out" title="Link to this heading">¶</a></h2>
+<p>Each of these is the best book on its subject. If you need to know these
+languages, these will tell you all you need to know.</p>
+<ul class="simple">
+<li><p>Programming Perl by Larry Wall, Tom Christiansen, and Jon Orwant</p></li>
+<li><p>Common LISP: The Language by Guy R. Steele</p></li>
+<li><p>ANSI Common LISP by Paul Graham</p></li>
+<li><p>The C Programming Language by Brian W. Kernighan and Dennis M.
+Ritchie</p></li>
+<li><p>The Waite Group’s C Primer Plus by Stephen Prata</p></li>
+<li><p>The C++ Programming Language by Bjarne Stroustrup</p></li>
+<li><p>Thinking in Java by Bruce Eckel, available online at
+<a class="reference external" href="http://www.mindview.net/Books/TIJ/">http://www.mindview.net/Books/TIJ/</a></p></li>
+<li><p>The Scheme Programming Language by Kent Dybvig</p></li>
+<li><p>Linux Assembly Language Programming by Bob Neveln</p></li>
+</ul>
+</section>
+<section id="specialized-topics">
+<h2>Specialized Topics<a class="headerlink" href="#specialized-topics" title="Link to this heading">¶</a></h2>
+<p>These books are the best books that cover their topic. They are thorough
+and authoritative. To get a broad base of knowledge, you should read
+several outside of the areas you normally program in.</p>
+<ul class="simple">
+<li><p>Practical Programming - Programming Pearls and More Programming
+Pearls by Jon Louis Bentley</p></li>
+<li><p>Databases - Understanding Relational Databases by Fabian Pascal</p></li>
+<li><p>Project Management - The Mythical Man-Month by Fred P. Brooks</p></li>
+<li><p>UNIX Programming - The Art of UNIX Programming by Eric S. Raymond,
+available online at <a class="reference external" href="http://www.catb.org/~esr/writings/taoup/">http://www.catb.org/~esr/writings/taoup/</a></p></li>
+<li><p>UNIX Programming - Advanced Programming in the UNIX Environment by W.
+Richard Stevens</p></li>
+<li><p>Network Programming - UNIX Network Programming (2 volumes) by W.
+Richard Stevens</p></li>
+<li><p>Generic Programming - Modern C++ Design by Andrei Alexandrescu</p></li>
+<li><p>Compilers - The Art of Compiler Design: Theory and Practice by Thomas
+Pittman and James Peters</p></li>
+<li><p>Compilers - Advanced Compiler Design and Implementation by Steven
+Muchnick</p></li>
+<li><p>Development Process - Refactoring: Improving the Design of Existing
+Code by Martin Fowler, Kent Beck, John Brant, William Opdyke, and Don
+Roberts</p></li>
+<li><p>Typesetting - Computers and Typesetting (5 volumes) by Donald Knuth</p></li>
+<li><p>Cryptography - Applied Cryptography by Bruce Schneier</p></li>
+<li><p>Linux - Professional Linux Programming by Neil Matthew, Richard
+Stones, and 14 other people</p></li>
+<li><p>Linux Kernel - Linux Device Drivers by Alessandro Rubini and Jonathan
+Corbet</p></li>
+<li><p>Open Source Programming - The Cathedral and the Bazaar: Musings on
+Linux and Open Source by an Accidental Revolutionary by Eric S.
+Raymond</p></li>
+<li><p>Computer Architecture - Computer Architecture: A Quantitative
+Approach by David Patterson and John Hennessy</p></li>
+</ul>
+</section>
+<section id="further-resources-on-assembly-language">
+<h2>Further Resources on Assembly Language<a class="headerlink" href="#further-resources-on-assembly-language" title="Link to this heading">¶</a></h2>
+<p>In assembly language, your best resources are on the web.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.linuxassembly.org/">http://www.linuxassembly.org/</a> - a great resource for Linux assembly
+language programmers</p></li>
+<li><p><a class="reference external" href="http://www.sandpile.org/">http://www.sandpile.org/</a> - a repository of reference material on x86,
+x86-64, and compatible processors</p></li>
+<li><p><a class="reference external" href="http://www.x86.org/">http://www.x86.org/</a> - Dr. Dobb’s Journal Microprocessor Resources</p></li>
+<li><p><a class="reference external" href="http://www.drpaulcarter.com/pcasm/">http://www.drpaulcarter.com/pcasm/</a> - Dr. Paul Carter’s PC Assembly
+Language Page</p></li>
+<li><p><a class="reference external" href="http://webster.cs.ucr.edu/">http://webster.cs.ucr.edu/</a> - The Art of Assembly Home Page</p></li>
+<li><p><a class="reference external" href="http://www.intel.com/design/pentium/manuals/">http://www.intel.com/design/pentium/manuals/</a> - Intel’s manuals for
+their processors</p></li>
+<li><p><a class="reference external" href="http://www.janw.easynet.be/">http://www.janw.easynet.be/</a> - Jan Wagemaker’s Linux assembly language
+examples</p></li>
+<li><p><a class="reference external" href="http://www.azillionmonkeys.com/qed/asm.html">http://www.azillionmonkeys.com/qed/asm.html</a> - Paul Hsieh’s x86
+Assembly Page</p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="records.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Reading and Writing Simple Records</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="optimization.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Optimization</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Moving On from Here</a><ul>
+<li><a class="reference internal" href="#from-the-bottom-up">From the Bottom Up</a></li>
+<li><a class="reference internal" href="#from-the-top-down">From the Top Down</a></li>
+<li><a class="reference internal" href="#from-the-middle-out">From the Middle Out</a></li>
+<li><a class="reference internal" href="#specialized-topics">Specialized Topics</a></li>
+<li><a class="reference internal" href="#further-resources-on-assembly-language">Further Resources on Assembly Language</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

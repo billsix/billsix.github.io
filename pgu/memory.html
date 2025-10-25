@@ -1,0 +1,706 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Your First Programs" href="firstprog.html"><link rel="prev" title="Introduction" href="intro.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Computer Architecture - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/memory.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="computer-architecture">
+<span id="computerarchitecture"></span><h1>Computer Architecture<a class="headerlink" href="#computer-architecture" title="Link to this heading">¶</a></h1>
+<p>Before learning how to program, you need to first understand how a
+computer interprets programs. You don’t need a degree in electrical
+engineering, but you need to understand some basics.</p>
+<p>Modern computer architecture is based off of an architecture called the
+Von Neumann architecture, named after its creator. The Von Neumann
+architecture divides the computer up into two main parts - the CPU (for
+Central Processing Unit) and the memory. This architecture is used in
+all modern computers, including personal computers, supercomputers,
+mainframes, and even cell phones.</p>
+<section id="structure-of-computer-memory">
+<h2>Structure of Computer Memory<a class="headerlink" href="#structure-of-computer-memory" title="Link to this heading">¶</a></h2>
+<p>To understand how the computer views memory, imagine your local post
+office. They usually have a room filled with PO Boxes. These boxes are
+similar to computer memory in that each are numbered sequences of
+fixed-size storage locations. For example, if you have 256 megabytes of
+computer memory, that means that your computer contains roughly 256
+million fixed-size storage locations. Or, to use our analogy, 256
+million PO Boxes. Each location has a number, and each location has the
+same, fixed-length size. The difference between a PO Box and computer
+memory is that you can store all different kinds of things in a PO Box,
+but you can only store a single number in a computer memory storage
+location.</p>
+<p><img alt="Memory locations are like PO Boxes" src="images/mailbox.png" /></p>
+<p>You may wonder why a computer is organized this way. It is because it is
+simple to implement. If the computer were composed of a lot of
+differently-sized locations, or if you could store different kinds of
+data in them, it would be difficult and expensive to implement.</p>
+<p>The computer’s memory is used for a number of different things. All of
+the results of any calculations are stored in memory. In fact,
+everything that is “stored” is stored in memory. Think of your computer
+at home, and imagine what all is stored in your computer’s memory.</p>
+<ul class="simple">
+<li><p>The location of your cursor on the screen</p></li>
+<li><p>The size of each window on the screen</p></li>
+<li><p>The shape of each letter of each font being used</p></li>
+<li><p>The layout of all of the controls on each window</p></li>
+<li><p>The graphics for all of the toolbar icons</p></li>
+<li><p>The text for each error message and dialog box</p></li>
+<li><p>The list goes on and on…</p></li>
+</ul>
+<p>In addition to all of this, the Von Neumann architecture specifies that
+not only computer data should live in memory, but the programs that
+control the computer’s operation should live there, too. In fact, in a
+computer, there is no difference between a program and a program’s data
+except how it is used by the computer. They are both stored and accessed
+the same way.</p>
+</section>
+<section id="the-cpu">
+<h2>The CPU<a class="headerlink" href="#the-cpu" title="Link to this heading">¶</a></h2>
+<p>So how does the computer function? Obviously, simply storing data
+doesn’t do much help - you need to be able to access, manipulate, and
+move it. That’s where the CPU comes in.</p>
+<p>The CPU reads in instructions from memory one at a time and executes
+them. This is known as the <em>fetch-execute cycle</em>. The CPU contains the
+following elements to accomplish this:</p>
+<ul class="simple">
+<li><p>Program Counter</p></li>
+<li><p>Instruction Decoder</p></li>
+<li><p>Data bus</p></li>
+<li><p>General-purpose registers</p></li>
+<li><p>Arithmetic and logic unit</p></li>
+</ul>
+<p>The <em>program counter</em> is used to tell the computer where to fetch the
+next instruction from. We mentioned earlier that there is no difference
+between the way data and programs are stored, they are just interpreted
+differently by the CPU. The program counter holds the memory address of
+the next instruction to be executed. The CPU begins by looking at the
+program counter, and fetching whatever number is stored in memory at the
+location specified. It is then passed on to the <em>instruction decoder</em>
+which figures out what the instruction means. This includes what process
+needs to take place (addition, subtraction, multiplication, data
+movement, etc.) and what memory locations are going to be involved in
+this process. Computer instructions usually consist of both the actual
+instruction and the list of memory locations that are used to carry it
+out.</p>
+<p>Now the computer uses the <em>data bus</em> to fetch the memory locations to be
+used in the calculation. The data bus is the connection between the CPU
+and memory. It is the actual wire that connects them. If you look at the
+motherboard of the computer, the wires that go out from the memory are
+your data bus.</p>
+<p>In addition to the memory on the outside of the processor, the processor
+itself has some special, high-speed memory locations called registers.
+There are two kinds of registers - <em>general registers</em> and
+<em>special-purpose registers</em>. General-purpose registers are where the
+main action happens. Addition, subtraction, multiplication,
+comparisions, and other operations generally use general-purpose
+registers for processing. However, computers have very few
+general-purpose registers. Most information is stored in main memory,
+brought in to the registers for processing, and then put back into
+memory when the processing is completed. <em>special-purpose registers</em> are
+registers which have very specific purposes. We will discuss these as we
+come to them.</p>
+<p>Now that the CPU has retrieved all of the data it needs, it passes on
+the data and the decoded instruction to the <em>arithmetic and logic unit</em>
+for further processing. Here the instruction is actually executed. After
+the results of the computation have been calculated, the results are
+then placed on the data bus and sent to the appropriate location in
+memory or in a register, as specified by the instruction.</p>
+<p>This is a very simplified explanation. Processors have advanced quite a
+bit in recent years, and are now much more complex. Although the basic
+operation is still the same, it is complicated by the use of cache
+hierarchies, superscalar processors, pipelining, branch prediction,
+out-of-order execution, microcode translation, coprocessors, and other
+optimizations. Don’t worry if you don’t know what those words mean, you
+can just use them as Internet search terms if you want to learn more
+about the CPU.</p>
+</section>
+<section id="some-terms">
+<h2>Some Terms<a class="headerlink" href="#some-terms" title="Link to this heading">¶</a></h2>
+<p>Computer memory is a numbered sequence of fixed-size storage locations.
+The number attached to each storage location is called its <em>address</em>.
+The size of a single storage location is called a <em>byte</em>. On x86
+processors, a byte is a number between 0 and 255.</p>
+<p>You may be wondering how computers can display and use text, graphics,
+and even large numbers when all they can do is store numbers between 0
+and 255. First of all, specialized hardware like graphics cards have
+special interpretations of each number. When displaying to the screen,
+the computer uses ASCII code tables to translate the numbers you are
+sending it into letters to display on the screen, with each number
+translating to exactly one letter or numeral. <a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> For example, the
+capital letter A is represented by the number 65. The numeral 1 is
+represented by the number 49. So, to print out “HELLO”, you would
+actually give the computer the sequence of numbers 72, 69, 76, 76, 79.
+To print out the number 100, you would give the computer the sequence of
+numbers 49, 48, 48. A list of ASCII characters and their numeric codes
+is found in <a class="reference internal" href="asciiap.html#asciilisting"><span class="std std-ref">Table of ASCII Codes</span></a>.</p>
+<p>In addition to using numbers to represent ASCII characters, you as the
+programmer get to make the numbers mean anything you want them to, as
+well. For example, if I am running a store, I would use a number to
+represent each item I was selling. Each number would be linked to a
+series of other numbers which would be the ASCII codes for what I wanted
+to display when the items were scanned in. I would have more numbers for
+the price, how many I have in inventory, and so on.</p>
+<p>So what about if we need numbers larger than 255? We can simply use a
+combination of bytes to represent larger numbers. Two bytes can be used
+to represent any number between 0 and 65535. Four bytes can be used to
+represent any number between 0 and 4294967295. Now, it is quite
+difficult to write programs to stick bytes together to increase the size
+of your numbers, and requires a bit of math. Luckily, the computer will
+do it for us for numbers up to 4 bytes long. In fact, four-byte numbers
+are what we will work with by default.</p>
+<p>We mentioned earlier that in addition to the regular memory that the
+computer has, it also has special-purpose storage locations called
+<em>registers</em>. Registers are what the computer uses for computation. Think
+of a register as a place on your desk - it holds things you are
+currently working on. You may have lots of information tucked away in
+folders and drawers, but the stuff you are working on right now is on
+the desk. Registers keep the contents of numbers that you are currently
+manipulating.</p>
+<p>On the computers we are using, registers are each four bytes long. The
+size of a typical register is called a computer’s <em>word</em> size. x86
+processors have four-byte words. This means that it is most natural on
+these computers to do computations four bytes at a time. <a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> This gives
+us roughly 4 billion values.</p>
+<p>Addresses are also four bytes (1 word) long, and therefore also fit into
+a register. x86 processors can access up to 4294967296 bytes if enough
+memory is installed. Notice that this means that we can store addresses
+the same way we store any other number. In fact, the computer can’t tell
+the difference between a value that is an address, a value that is a
+number, a value that is an ASCII code, or a value that you have decided
+to use for another purpose. A number becomes an ASCII code when you
+attempt to display it. A number becomes an address when you try to look
+up the byte it points to. Take a moment to think about this, because it
+is crucial to understanding how computer programs work.</p>
+<p>Addresses which are stored in memory are also called <em>pointers</em>, because
+instead of having a regular value in them, they point you to a different
+location in memory.</p>
+<p>As we’ve mentioned, computer instructions are also stored in memory. In
+fact, they are stored exactly the same way that other data is stored.
+The only way the computer knows that a memory location is an instruction
+is that a special-purpose register called the instruction pointer points
+to them at one point or another. If the instruction pointer points to a
+memory word, it is loaded as an instruction. Other than that, the
+computer has no way of knowing the difference between programs and other
+types of data. <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p>
+</section>
+<section id="interpreting-memory">
+<span id="interpretingmemory"></span><h2>Interpreting Memory<a class="headerlink" href="#interpreting-memory" title="Link to this heading">¶</a></h2>
+<p>Computers are very exact. Because they are exact, programmers have to be
+equally exact. A computer has no idea what your program is supposed to
+do. Therefore, it will only do exactly what you tell it to do. If you
+accidentally print out a regular number instead of the ASCII codes that
+make up the number’s digits, the computer will let you - and you will
+wind up with jibberish on your screen (it will try to look up what your
+number represents in ASCII and print that). If you tell the computer to
+start executing instructions at a location containing data instead of
+program instructions, who knows how the computer will interpret that -
+but it will certainly try. The computer will execute your instructions
+in the exact order you specify, even if it doesn’t make sense.</p>
+<p>The point is, the computer will do exactly what you tell it, no matter
+how little sense it makes. Therefore, as a programmer, you need to know
+exactly how you have your data arranged in memory. Remember, computers
+can only store numbers, so letters, pictures, music, web pages,
+documents, and anything else are just long sequences of numbers in the
+computer, which particular programs know how to interpret.</p>
+<p>For example, say that you wanted to store customer information in
+memory. One way to do so would be to set a maximum size for the
+customer’s name and address - say 50 ASCII characters for each, which
+would be 50 bytes for each. Then, after that, have a number for the
+customer’s age and their customer id. In this case, you would have a
+block of memory that would look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Start</span> <span class="n">of</span> <span class="n">Record</span><span class="p">:</span>
+     <span class="n">Customer</span><span class="s1">&#39;s name (50 bytes) - start of record</span>
+     <span class="n">Customer</span><span class="s1">&#39;s address (50 bytes) - start of record + 50 bytes</span>
+     <span class="n">Customer</span><span class="s1">&#39;s age (1 word = 4 bytes) - start of record + 100 bytes</span>
+     <span class="n">Customer</span><span class="s1">&#39;s id number (1 word = 4 bytes) - start of record + 104 bytes</span>
+</pre></div>
+</div>
+<p>This way, given the address of a customer record, you know where the
+rest of the data lies. However, it does limit the customer’s name and
+address to only 50 ASCII characters each.</p>
+<p>What if we didn’t want to specify a limit? Another way to do this would
+be to have in our record pointers to this information. For example,
+instead of the customer’s name, we would have a pointer to their name.
+In this case, the memory would look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Start</span> <span class="n">of</span> <span class="n">Record</span><span class="p">:</span>
+     <span class="n">Customer</span><span class="s1">&#39;s name pointer (1 word) - start of record</span>
+     <span class="n">Customer</span><span class="s1">&#39;s address pointer (1 word) - start of record + 4</span>
+     <span class="n">Customer</span><span class="s1">&#39;s age (1 word) - start of record + 8</span>
+     <span class="n">Customer</span><span class="s1">&#39;s id number (1 word) - start of record + 12</span>
+</pre></div>
+</div>
+<p>The actual name and address would be stored elsewhere in memory. This
+way, it is easy to tell where each part of the data is from the start of
+the record, without explicitly limitting the size of the name and
+address. If the length of the fields within our records could change, we
+would have no idea where the next field started. Because records would
+be different sizes, it would also be hard to find where the next record
+began. Therefore, almost all records are of fixed lengths.
+Variable-length data is usually stored separately from the rest of the
+record.</p>
+</section>
+<section id="data-accessing-methods">
+<span id="dataaccessingmethods"></span><h2>Data Accessing Methods<a class="headerlink" href="#data-accessing-methods" title="Link to this heading">¶</a></h2>
+<p>Processors have a number of different ways of accessing data, known as
+addressing modes. The simplest mode is <em>immediate mode</em>, in which the
+data to access is embedded in the instruction itself. For example, if we
+want to initialize a register to 0, instead of giving the computer an
+address to read the 0 from, we would specify immediate mode, and give it
+the number 0.</p>
+<p>In the <em>register addressing mode</em>, the instruction contains a register
+to access, rather than a memory location. The rest of the modes will
+deal with addresses.</p>
+<p>In the <em>direct addressing mode</em>, the instruction contains the memory
+address to access. For example, I could say, please load this register
+with the data at address 2002. The computer would go directly to byte
+number 2002 and copy the contents into our register.</p>
+<p>In the <em>indexed addressing mode</em>, the instruction contains a memory
+address to access, and also specifies an <em>index register</em> to offset that
+address. For example, we could specify address 2002 and an index
+register. If the index register contains the number 4, the actual
+address the data is loaded from would be 2006. This way, if you have a
+set of numbers starting at location 2002, you can cycle between each of
+them using an index register. On x86 processors, you can also specify a
+<em>multiplier</em> for the index. This allows you to access memory a byte at a
+time or a word at a time (4 bytes). If you are accessing an entire word,
+your index will need to be multiplied by 4 to get the exact location of
+the fourth element from your address. For example, if you wanted to
+access the fourth byte from location 2002, you would load your index
+register with 3 (remember, we start counting at 0) and set the
+multiplier to 1 since you are going a byte at a time. This would get you
+location 2005. However, if you wanted to access the fourth word from
+location 2002, you would load your index register with 3 and set the
+multiplier to 4. This would load from location 2014 - the fourth word.
+Take the time to calculate these yourself to make sure you understand
+how it works.</p>
+<p>In the <em>indirect addressing mode</em>, the instruction contains a register
+that contains a pointer to where the data should be accessed. For
+example, if we used indirect addressing mode and specified the
+%eax; register, and the %eax; register contained the value
+4, whatever value was at memory location 4 would be used. In direct
+addressing, we would just load the value 4, but in indirect addressing,
+we use 4 as the address to use to find the data we want.</p>
+<p>Finally, there is the <em>base pointer addressing mode</em>. This is similar to
+indirect addressing, but you also include a number called the <em>offset</em>
+to add to the register’s value before using it for lookup. We will use
+this mode quite a bit in this book.</p>
+<p>In <a class="reference external" href="#interpretingmemory">Interpreting Memory</a> we discussed having a
+structure in memory holding customer information. Let’s say we wanted to
+access the customer’s age, which was the eighth byte of the data, and we
+had the address of the start of the structure in a register. We could
+use base pointer addressing and specify the register as the base
+pointer, and 8 as our offset. This is a lot like indexed addressing,
+with the difference that the offset is constant and the pointer is held
+in a register, and in indexed addressing the offset is in a register and
+the pointer is constant.</p>
+<p>There are other forms of addressing, but these are the most important
+ones.</p>
+</section>
+<section id="review">
+<h2>Review<a class="headerlink" href="#review" title="Link to this heading">¶</a></h2>
+<section id="know-the-concepts">
+<h3>Know the Concepts<a class="headerlink" href="#know-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Describe the fetch-execute cycle.</p></li>
+<li><p>What is a register? How would computation be more difficult without
+registers?</p></li>
+<li><p>How do you represent numbers larger than 255?</p></li>
+<li><p>How big are the registers on the machines we will be using?</p></li>
+<li><p>How does a computer know how to interpret a given byte or set of
+bytes of memory?</p></li>
+<li><p>What are the addressing modes and what are they used for?</p></li>
+<li><p>What does the instruction pointer do?</p></li>
+</ul>
+</section>
+<section id="use-the-concepts">
+<h3>Use the Concepts<a class="headerlink" href="#use-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>What data would you use in an employee record? How would you lay it
+out in memory?</p></li>
+<li><p>If I had the pointer to the beginning of the employee record above,
+and wanted to access a particular piece of data inside of it, what
+addressing mode would I use?</p></li>
+<li><p>In base pointer addressing mode, if you have a register holding the
+value 3122, and an offset of 20, what address would you be trying to
+access?</p></li>
+<li><p>In indexed addressing mode, if the base address is 6512, the index
+register has a 5, and the multiplier is 4, what address would you be
+trying to access?</p></li>
+<li><p>In indexed addressing mode, if the base address is 123472, the index
+register has a 0, and the multiplier is 4, what address would you be
+trying to access?</p></li>
+<li><p>In indexed addressing mode, if the base address is 9123478, the index
+register has a 20, and the multiplier is 1, what address would you be
+trying to access?</p></li>
+</ul>
+</section>
+<section id="going-further">
+<h3>Going Further<a class="headerlink" href="#going-further" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>What are the minimum number of addressing modes needed for
+computation?</p></li>
+<li><p>Why include addressing modes that aren’t strictly needed?</p></li>
+<li><p>Research and then describe how pipelining (or one of the other
+complicating factors) affects the fetch-execute cycle.</p></li>
+<li><p>Research and then describe the tradeoffs between fixed-length
+instructions and variable-length instructions.</p></li>
+</ul>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>With the advent of international character sets and Unicode, this is
+not entirely true anymore. However, for the purposes of keeping this
+simple for beginners, we will use the assumption that one number
+translates directly to one character. For more information, see
+<a class="reference internal" href="asciiap.html#asciilisting"><span class="std std-ref">Table of ASCII Codes</span></a>.</p>
+</aside>
+<aside class="footnote brackets" id="id5" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Previous incarnations of x86 processors only had two-byte words.
+Therefore, most other literature dealing with x86 processors refers
+to two-byte entities as words for historical reasons, and therefore
+refer to four-byte entities as double-words. We are using the term
+<em>word</em> to mean the normal register size of a computer, which in this
+case is four bytes. More information is available in
+<a class="reference internal" href="instructionsap.html#instructionsappendix"><span class="std std-ref">Common x86 Instructions</span></a>,</p>
+</aside>
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>Note that here we are talking about general computer theory. Some
+processors and operating systems actually mark the regions of memory
+that can be executed with a special marker that indicates this.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="firstprog.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Your First Programs</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="intro.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Introduction</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Computer Architecture</a><ul>
+<li><a class="reference internal" href="#structure-of-computer-memory">Structure of Computer Memory</a></li>
+<li><a class="reference internal" href="#the-cpu">The CPU</a></li>
+<li><a class="reference internal" href="#some-terms">Some Terms</a></li>
+<li><a class="reference internal" href="#interpreting-memory">Interpreting Memory</a></li>
+<li><a class="reference internal" href="#data-accessing-methods">Data Accessing Methods</a></li>
+<li><a class="reference internal" href="#review">Review</a><ul>
+<li><a class="reference internal" href="#know-the-concepts">Know the Concepts</a></li>
+<li><a class="reference internal" href="#use-the-concepts">Use the Concepts</a></li>
+<li><a class="reference internal" href="#going-further">Going Further</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

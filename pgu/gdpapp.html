@@ -1,0 +1,569 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Table of ASCII Codes" href="asciiap.html"><link rel="prev" title="Reading and Writing Simple Records" href="records.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Using the GDB Debugger - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/gdpapp.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="using-the-gdb-debugger">
+<span id="gdbappendix"></span><h1>Using the GDB Debugger<a class="headerlink" href="#using-the-gdb-debugger" title="Link to this heading">¶</a></h1>
+<p>By the time you read this appendix, you will likely have written at
+least one program with an error in it. In assembly language, even minor
+errors usually have results such as the whole program crashing with a
+segmentation fault error. In most programming languages, you can simply
+print out the values in your variables as you go along, and use that
+output to find out where you went wrong. In assembly language, calling
+output functions is not so easy. Therefore, to aid in determining the
+source of errors, you must use a <em>source debugger</em>.</p>
+<p>A debugger is a program that helps you find bugs by stepping through the
+program one step at a time, letting you examine memory and register
+contents along the way. A <em>source debugger</em> is a debugger that allows
+you to tie the debugging operation directly to the source code of a
+program. This means that the debugger allows you to look at the source
+code as you typed it in - complete with symbols, labels, and comments.</p>
+<p>The debugger we will be looking at is GDB - the GNU Debugger. This
+application is present on almost all GNU/Linux distributions. It can
+debug programs in multiple programming languages, including assembly
+language.</p>
+<section id="an-example-debugging-session">
+<h2>An Example Debugging Session<a class="headerlink" href="#an-example-debugging-session" title="Link to this heading">¶</a></h2>
+<p>The best way to explain how a debugger works is by using it. The program
+we will be using the debugger on is the <code class="docutils literal notranslate"><span class="pre">maximum</span></code> program used in
+<a class="reference internal" href="firstprog.html#firstprogs"><span class="std std-ref">Your First Programs</span></a>. Let’s say that you entered the program perfectly,
+except that you left out the line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">incl</span> <span class="o">%</span><span class="n">edi</span>
+</pre></div>
+</div>
+<p>When you run the program, it just goes in an infinite loop - it never
+exits. To determine the cause, you need to run the program under GDB.
+However, to do this, you need to have the assembler include debugging
+information in the executable. All you need to do to enable this is to
+add the <code class="docutils literal notranslate"><span class="pre">--gstabs</span></code> option to the <code class="docutils literal notranslate"><span class="pre">as</span></code> command. So, you would
+assemble it like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="o">--</span><span class="n">gstabs</span> <span class="n">maximum</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">maximum</span><span class="o">.</span><span class="n">o</span>
+</pre></div>
+</div>
+<p>Linking would be the same as normal. “stabs” is the debugging format
+used by GDB. Now, to run the program under the debugger, you would type
+in <code class="docutils literal notranslate"><span class="pre">gdb</span> <span class="pre">./maximum</span></code>. Be sure that the source files are in the current
+directory. The output should look similar to this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GNU</span> <span class="n">gdb</span> <span class="n">Red</span> <span class="n">Hat</span> <span class="n">Linux</span> <span class="p">(</span><span class="mf">5.2.1</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">Copyright</span> <span class="mi">2002</span> <span class="n">Free</span> <span class="n">Software</span> <span class="n">Foundation</span><span class="p">,</span> <span class="n">Inc</span><span class="o">.</span>
+<span class="n">GDB</span> <span class="ow">is</span> <span class="n">free</span> <span class="n">software</span><span class="p">,</span> <span class="n">covered</span> <span class="n">by</span> <span class="n">the</span> <span class="n">GNU</span> <span class="n">General</span> <span class="n">Public</span>
+<span class="n">License</span><span class="p">,</span> <span class="ow">and</span> <span class="n">you</span> <span class="n">are</span> <span class="n">welcome</span> <span class="n">to</span> <span class="n">change</span> <span class="n">it</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span>
+<span class="n">distribute</span> <span class="n">copies</span> <span class="n">of</span> <span class="n">it</span> <span class="n">under</span> <span class="n">certain</span> <span class="n">conditions</span><span class="o">.</span> <span class="n">Type</span>
+<span class="s2">&quot;show copying&quot;</span> <span class="n">to</span> <span class="n">see</span> <span class="n">the</span> <span class="n">conditions</span><span class="o">.</span>  <span class="n">There</span> <span class="ow">is</span>
+<span class="n">absolutely</span> <span class="n">no</span> <span class="n">warranty</span> <span class="k">for</span> <span class="n">GDB</span><span class="o">.</span>  <span class="n">Type</span> <span class="s2">&quot;show warranty&quot;</span>
+<span class="k">for</span> <span class="n">details</span><span class="o">.</span>
+<span class="n">This</span> <span class="n">GDB</span> <span class="n">was</span> <span class="n">configured</span> <span class="k">as</span> <span class="s2">&quot;i386-redhat-linux&quot;</span><span class="o">...</span>
+<span class="p">(</span><span class="n">gdb</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Depending on which version of GDB you are running, this output may vary
+slightly. At this point, the program is loaded, but is not running yet.
+The debugger is waiting your command. To run your program, just type in
+<code class="docutils literal notranslate"><span class="pre">run</span></code>. This will not return, because the program is running in an
+infinite loop. To stop the program, hit control-c. The screen will then
+say this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">program</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">johnnyb</span><span class="o">/</span><span class="n">maximum</span>
+
+<span class="n">Program</span> <span class="n">received</span> <span class="n">signal</span> <span class="n">SIGINT</span><span class="p">,</span> <span class="n">Interrupt</span><span class="o">.</span>
+<span class="n">start_loop</span> <span class="p">()</span> <span class="n">at</span> <span class="n">maximum</span><span class="o">.</span><span class="n">s</span><span class="p">:</span><span class="mi">34</span>
+<span class="mi">34</span>              <span class="n">movl</span> <span class="n">data_items</span><span class="p">(,</span><span class="o">%</span><span class="n">edi</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+<span class="n">Current</span> <span class="n">language</span><span class="p">:</span>  <span class="n">auto</span><span class="p">;</span> <span class="n">currently</span> <span class="n">asm</span>
+<span class="p">(</span><span class="n">gdb</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This tells you that the program was interrupted by the SIGINT signal
+(from your control-c), and was within the section labelled
+<code class="docutils literal notranslate"><span class="pre">start_loop</span></code>, and was executing on line 34 when it stopped. It gives
+you the code that it is about to execute. Depending on exactly when you
+hit control-c, it may have stopped on a different line or a different
+instruction than the example.</p>
+<p>One of the best ways to find bugs in a program is to follow the flow of
+the program to see where it is branching incorrectly. To follow the flow
+of this program, keep on entering <code class="docutils literal notranslate"><span class="pre">stepi</span></code> (for “step
+instruction”), which will cause the computer to execute one instruction
+at a time. If you do this several times, your output will look something
+like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) stepi
+35              cmpl %ebx, %eax
+(gdb) stepi
+36              jle start_loop
+(gdb) stepi
+32              cmpl $0, %eax
+(gdb) stepi
+33              je loop_exit
+(gdb) stepi
+34              movl data_items(,%edi,4), %eax
+(gdb) stepi
+35              cmpl %ebx, %eax
+(gdb) stepi
+36              jle start_loop
+(gdb) step
+32              cmpl $0, %eax
+</pre></div>
+</div>
+<p>As you can tell, it has looped. In general, this is good, since we wrote
+it to loop. However, the problem is that it is <em>never stopping</em>.
+Therefore, to find out what the problem is, let’s look at the point in
+our code where we should be exitting the loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmpl  $0, %eax
+je    loop_exit
+</pre></div>
+</div>
+<p>Basically, it is checking to see if %eax; hits zero. If so, it
+should exit the loop. There are several things to check here. First of
+all, you may have left this piece out altogether. It is not uncommon for
+a programmer to forget to include a way to exit a loop. However, this is
+not the case here. Second, you should make sure that <code class="docutils literal notranslate"><span class="pre">loop_exit</span></code>
+actually is outside the loop. If we put the label in the wrong place,
+strange things would happen. However, again, this is not the case.</p>
+<p>Neither of those potential problems are the culprit. So, the next option
+is that perhaps %eax; has the wrong value. There are two ways to
+check the contents of register in GDB. The first one is the command
+<code class="docutils literal notranslate"><span class="pre">info</span> <span class="pre">register</span></code>. This will display the contents of all
+registers in hexadecimal. However, we are only interested in
+%eax; at this point. To just display %eax; we can do
+<code class="docutils literal notranslate"><span class="pre">print/$eax</span></code> to print it in hexadecimal, or do <code class="docutils literal notranslate"><span class="pre">print/d</span> <span class="pre">$eax</span></code>
+to print it in decimal. Notice that in GDB, registers are prefixed with
+dollar signs rather than percent signs. Your screen should have this on
+it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) print/d $eax
+$1 = 3
+(gdb)
+</pre></div>
+</div>
+<p>This means that the result of your first inquiry is 3. Every inquiry you
+make will be assigned a number prefixed with a dollar sign. Now, if you
+look back into the code, you will find that 3 is the first number in the
+list of numbers to search through. If you step through the loop a few
+more times, you will find that in every loop iteration %eax; has
+the number 3. This is not what should be happening. %eax; should
+go to the next value in the list in every iteration.</p>
+<p>Okay, now we know that %eax; is being loaded with the same value
+over and over again. Let’s search to see where %eax; is being
+loaded from. The line of code is this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="n">data_items</span><span class="p">(,</span><span class="o">%</span><span class="n">edi</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+</pre></div>
+</div>
+<p>So, step until this line of code is ready to execute. Now, this code
+depends on two values - <code class="docutils literal notranslate"><span class="pre">data_items</span></code> and %edi;. <code class="docutils literal notranslate"><span class="pre">data_items</span></code>
+is a symbol, and therefore constant. It’s a good idea to check your
+source code to make sure the label is in front of the right data, but in
+our case it is. Therefore, we need to look at %edi;. So, we need
+to print it out. It will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) print/d $edi
+$2 = 0
+(gdb)
+</pre></div>
+</div>
+<p>This indicates that %edi; is set to zero, which is why it keeps
+on loading the first element of the array. This should cause you to ask
+yourself two questions - what is the purpose of %edi;, and how
+should its value be changed? To answer the first question, we just need
+to look in the comments. %edi; is holding the current index of
+<code class="docutils literal notranslate"><span class="pre">data_items</span></code>. Since our search is a sequential search through the list
+of numbers in <code class="docutils literal notranslate"><span class="pre">data_items</span></code>, it would make sense that %edi;
+should be incremented with every loop iteration.</p>
+<p>Scanning the code, there is no code which alters %edi; at all.
+Therefore, we should add a line to increment %edi; at the
+beginning of every loop iteration. This happens to be exactly the line
+we tossed out at the beginning. Assembling, linking, and running the
+program again will show that it now works correctly.</p>
+<p>Hopefully this exercise provided some insight into using GDB to help you
+find errors in your programs.</p>
+</section>
+<section id="breakpoints-and-other-gdb-features">
+<h2>Breakpoints and Other GDB Features<a class="headerlink" href="#breakpoints-and-other-gdb-features" title="Link to this heading">¶</a></h2>
+<p>The program we entered in the last section had an infinite loop, and
+could be easily stopped using control-c. Other programs may simply abort
+or finish with errors. In these cases, control-c doesn’t help, because
+by the time you press control-c, the program is already finished. To fix
+this, you need to set <em>breakpoints</em>. A breakpoint is a place in the
+source code that you have marked to indicate to the debugger that it
+should stop the program when it hits that point.</p>
+<p>To set breakpoints you have to set them up before you run the program.
+Before issuing the <code class="docutils literal notranslate"><span class="pre">run</span></code> command, you can set up breakpoints using the
+<code class="docutils literal notranslate"><span class="pre">break</span></code> command. For example, to break on line 27, issue the
+command <code class="docutils literal notranslate"><span class="pre">break</span> <span class="pre">27</span></code>. Then, when the program crosses line 27, it will
+stop running, and print out the current line and instruction. You can
+then step through the program from that point and examine registers and
+memory. To look at the lines and line numbers of your program, you can
+simply use the command <code class="docutils literal notranslate"><span class="pre">l</span></code>. This will print out your program with line
+numbers a screen at a time.</p>
+<p>When dealing with functions, you can also break on the function names.
+For example, in the factorial program in <a class="reference internal" href="functions.html#functionschapter"><span class="std std-ref">All About Functions</span></a>, we
+could set a breakpoint for the factorial function by typing in
+<code class="docutils literal notranslate"><span class="pre">break</span> <span class="pre">factorial</span></code>. This will cause the debugger to break immediately
+after the function call and the function setup (it skips the pushing of
+%ebp; and the copying of %esp;).</p>
+<p>When stepping through code, you often don’t want to have to step through
+every instruction of every function. Well-tested functions are usually a
+waste of time to step through except on rare occasion. Therefore, if you
+use the <code class="docutils literal notranslate"><span class="pre">nexti</span></code> command instead of the <code class="docutils literal notranslate"><span class="pre">stepi</span></code> command,
+GDB will wait until completion of the function before going on.
+Otherwise, with <code class="docutils literal notranslate"><span class="pre">stepi</span></code>, GDB would step you through every instruction
+within every called function.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>One problem that GDB has is with handling interrupts. Often times GDB
+will miss the instruction that immediately follows an interrupt. The
+instruction is actually executed, but GDB doesn’t step through it.
+This should not be a problem - just be aware that it may happen.</p>
+</div>
+</section>
+<section id="gdb-quick-reference">
+<span id="gdbquickref"></span><h2>GDB Quick-Reference<a class="headerlink" href="#gdb-quick-reference" title="Link to this heading">¶</a></h2>
+<p>This quick-reference table is copyright 2002 Robert M. Dondero, Jr., and
+is used by permission in this book. Parameters listed in brackets are
+optional.</p>
+<div class="table-wrapper docutils container" id="id1">
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Common GDB Debugging Commands</span><a class="headerlink" href="#id1" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Miscellaneous</p></th>
+<th class="head"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>quit</p></td>
+<td><p>Exit GDB</p></td>
+</tr>
+<tr class="row-odd"><td><p>help [cmd]</p></td>
+<td><p>Print description of debugger command
+<code class="docutils literal notranslate"><span class="pre">cmd</span></code>. Without <code class="docutils literal notranslate"><span class="pre">cmd</span></code>, prints a
+list of topics.</p></td>
+</tr>
+<tr class="row-even"><td><p>directory [dir1] [dir2] …</p></td>
+<td><p>Add directories <code class="docutils literal notranslate"><span class="pre">dir1</span></code>, <code class="docutils literal notranslate"><span class="pre">dir2</span></code>,
+etc. to the list of directories
+searched for source files.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="asciiap.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Table of ASCII Codes</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="records.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Reading and Writing Simple Records</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Using the GDB Debugger</a><ul>
+<li><a class="reference internal" href="#an-example-debugging-session">An Example Debugging Session</a></li>
+<li><a class="reference internal" href="#breakpoints-and-other-gdb-features">Breakpoints and Other GDB Features</a></li>
+<li><a class="reference internal" href="#gdb-quick-reference">GDB Quick-Reference</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

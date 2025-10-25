@@ -1,0 +1,1116 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Using the GDB Debugger" href="gdpapp.html"><link rel="prev" title="Moving On from Here" href="wherenext.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Reading and Writing Simple Records - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstprog.html">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/records.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="reading-and-writing-simple-records">
+<span id="records"></span><h1>Reading and Writing Simple Records<a class="headerlink" href="#reading-and-writing-simple-records" title="Link to this heading">¶</a></h1>
+<p>As mentioned in <a class="reference internal" href="files.html#filesch"><span class="std std-ref">Dealing with Files</span></a>, many applications deal with data
+that is <em>persistent</em> - meaning that the data lives longer than the
+program by being stored on disk in files. You can shut down the program
+and open it back up, and you are back where you started. Now, there are
+two basic kinds of persistent data - structured and unstructured.
+Unstructured data is like what we dealt with in the <code class="docutils literal notranslate"><span class="pre">toupper</span></code> program.
+It just dealt with text files that were entered by a person. The
+contents of the files weren’t usable by a program because a program
+can’t interpret what the user is trying to say in random text.</p>
+<p>Structured data, on the other hand, is what computers excel at handling.
+Structured data is data that is divided up into fields and records. For
+the most part, the fields and records are fixed-length. Because the data
+is divided into fixed-length records and fixed-format fields, the
+computer can interpret the data. Structured data can contain
+variable-length fields, but at that point you are usually better off
+with a database.  <a class="footnote-reference brackets" href="#id6" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<p>This chapter deals with reading and writing simple fixed-length records.
+Let’s say we wanted to store some basic information about people we
+know. We could imagine the following example fixed-length record about
+people:</p>
+<ul class="simple">
+<li><p>Firstname - 40 bytes</p></li>
+<li><p>Lastname - 40 bytes</p></li>
+<li><p>Address - 240 bytes</p></li>
+<li><p>Age - 4 bytes</p></li>
+</ul>
+<p>In this, everything is character data except for the age, which is
+simply a numeric field, using a standard 4-byte word (we could just use
+a single byte for this, but keeping it at a word makes it easier to
+process).</p>
+<p>In programming, you often have certain definitions that you will use
+over and over again within the program, or perhaps within several
+programs. It is good to separate these out into files that are simply
+included into the assembly language files as needed. For example, in our
+next programs we will need to access the different parts of the record
+above. This means we need to know the offsets of each field from the
+beginning of the record in order to access them using base pointer
+addressing. The following constants describe the offsets to the above
+structure. Put them in a file named <code class="docutils literal notranslate"><span class="pre">record-def.s</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">src/record-def.s</span><a class="headerlink" href="#id11" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">RECORD_FIRSTNAME</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos">2</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">RECORD_LASTNAME</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span>
+<span class="linenos">3</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">RECORD_ADDRESS</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span>
+<span class="linenos">4</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">RECORD_AGE</span><span class="p">,</span><span class="w"> </span><span class="mi">320</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">RECORD_SIZE</span><span class="p">,</span><span class="w"> </span><span class="mi">324</span>
+</pre></div>
+</div>
+</div>
+<p>In addition, there are several constants that we have been defining over
+and over in our programs, and it is useful to put them in a file, so
+that we don’t have to keep entering them. Put the following constants in
+a file called <code class="docutils literal notranslate"><span class="pre">linux.s</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">src/linux.s</span><a class="headerlink" href="#id12" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">	</span><span class="c1">#Common Linux Definitions</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="w">	</span><span class="c1">#System Call Numbers</span>
+<span class="linenos"> 4</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">SYS_EXIT</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos"> 5</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">SYS_READ</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">SYS_WRITE</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span>
+<span class="linenos"> 7</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">SYS_OPEN</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">SYS_CLOSE</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span>
+<span class="linenos"> 9</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">SYS_BRK</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w">	</span><span class="c1">#System Call Interrupt Number</span>
+<span class="linenos">12</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">LINUX_SYSCALL</span><span class="p">,</span><span class="w"> </span><span class="mi">0x80</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">	</span><span class="c1">#Standard File Descriptors</span>
+<span class="linenos">15</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">STDIN</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos">16</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">STDOUT</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">17</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">STDERR</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">	</span><span class="c1">#Common Status Codes</span>
+<span class="linenos">20</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">END_OF_FILE</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<p>We will write three programs in this chapter using the structure defined
+in <code class="docutils literal notranslate"><span class="pre">record-def.s</span></code>. The first program will build a file containing
+several records as defined above. The second program will display the
+records in the file. The third program will add 1 year to the age of
+every record.</p>
+<p>In addition to the standard constants we will be using throughout the
+programs, there are also two functions that we will be using in several
+of the programs - one which reads a record and one which writes a
+record.</p>
+<p>What parameters do these functions need in order to operate? We
+basically need:</p>
+<ul class="simple">
+<li><p>The location of a buffer that we can read a record into</p></li>
+<li><p>The file descriptor that we want to read from or write to</p></li>
+</ul>
+<p>Let’s look at our reading function first:</p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">src/read-record.s</span><a class="headerlink" href="#id13" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;record-def.s&quot;</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;linux.s&quot;</span>
+<span class="linenos"> 3</span><span class="w">	</span>
+<span class="linenos"> 4</span><span class="c1">#PURPOSE:   This function reads a record from the file </span>
+<span class="linenos"> 5</span><span class="c1">#           descriptor</span>
+<span class="linenos"> 6</span><span class="c1">#</span>
+<span class="linenos"> 7</span><span class="c1">#INPUT:     The file descriptor and a buffer</span>
+<span class="linenos"> 8</span><span class="c1">#</span>
+<span class="linenos"> 9</span><span class="c1">#OUTPUT:    This function writes the data to the buffer </span>
+<span class="linenos">10</span><span class="c1">#           and returns a status code.</span>
+<span class="linenos">11</span><span class="c1">#</span>
+<span class="linenos">12</span><span class="c1">#STACK LOCAL VARIABLES</span>
+<span class="linenos">13</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_READ_BUFFER</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span>
+<span class="linenos">14</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_FILEDES</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span>
+<span class="linenos">15</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span><span class="w"> </span>
+<span class="linenos">16</span><span class="w">	</span><span class="no">.globl</span><span class="w"> </span><span class="no">read_record</span>
+<span class="linenos">17</span><span class="w">	</span><span class="na">.type</span><span class="w"> </span><span class="no">read_record</span><span class="p">,</span><span class="w"> </span><span class="na">@function</span>
+<span class="linenos">18</span><span class="nl">read_record:</span>
+<span class="linenos">19</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">20</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">23</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_FILEDES</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">24</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_READ_BUFFER</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">25</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$RECORD_SIZE</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">26</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_READ</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">27</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="w">	</span><span class="c1">#NOTE - %eax has the return value, which we will</span>
+<span class="linenos">30</span><span class="w">	</span><span class="c1">#       give back to our calling program</span>
+<span class="linenos">31</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebx</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%ebp</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">34</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebp</span>
+<span class="linenos">35</span><span class="w">	</span><span class="nf">ret</span>
+</pre></div>
+</div>
+</div>
+<p>It’s a pretty simple function. It just reads data the size of our
+structure into an appropriately sized buffer from the given file
+descriptor. The writing one is similar:</p>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">src/write-record.s</span><a class="headerlink" href="#id14" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;linux.s&quot;</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;record-def.s&quot;</span><span class="w">	</span>
+<span class="linenos"> 3</span><span class="c1">#PURPOSE:   This function writes a record to </span>
+<span class="linenos"> 4</span><span class="c1">#           the given file descriptor</span>
+<span class="linenos"> 5</span><span class="c1">#</span>
+<span class="linenos"> 6</span><span class="c1">#INPUT:     The file descriptor and a buffer</span>
+<span class="linenos"> 7</span><span class="c1">#</span>
+<span class="linenos"> 8</span><span class="c1">#OUTPUT:    This function produces a status code</span>
+<span class="linenos"> 9</span><span class="c1">#</span>
+<span class="linenos">10</span><span class="c1">#STACK LOCAL VARIABLES</span>
+<span class="linenos">11</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_WRITE_BUFFER</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span>
+<span class="linenos">12</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_FILEDES</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span>
+<span class="linenos">13</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span><span class="w"> </span>
+<span class="linenos">14</span><span class="w">	</span><span class="no">.globl</span><span class="w"> </span><span class="no">write_record</span>
+<span class="linenos">15</span><span class="w">	</span><span class="na">.type</span><span class="w"> </span><span class="no">write_record</span><span class="p">,</span><span class="w"> </span><span class="na">@function</span>
+<span class="linenos">16</span><span class="nl">write_record:</span>
+<span class="linenos">17</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">18</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">21</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_WRITE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">22</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_FILEDES</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">23</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_WRITE_BUFFER</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">24</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$RECORD_SIZE</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">25</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="w">	</span><span class="c1">#NOTE - %eax has the return value, which we will</span>
+<span class="linenos">28</span><span class="w">	</span><span class="c1">#       give back to our calling program</span>
+<span class="linenos">29</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebx</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%ebp</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">32</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebp</span>
+<span class="linenos">33</span><span class="w">	</span><span class="nf">ret</span>
+</pre></div>
+</div>
+</div>
+<p>Now that we have our basic definitions down, we are ready to write our
+programs.</p>
+<section id="writing-records">
+<h2>Writing Records<a class="headerlink" href="#writing-records" title="Link to this heading">¶</a></h2>
+<p>This program will simply write some hardcoded records to disk. It will:</p>
+<ul class="simple">
+<li><p>Open the file</p></li>
+<li><p>Write three records</p></li>
+<li><p>Close the file</p></li>
+</ul>
+<p>Type the following code into a file called <code class="docutils literal notranslate"><span class="pre">write-records.s</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">src/write-records.s</span><a class="headerlink" href="#id15" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;linux.s&quot;</span>
+<span class="linenos">  2</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;record-def.s&quot;</span>
+<span class="linenos">  3</span>
+<span class="linenos">  4</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos">  5</span>
+<span class="linenos">  6</span><span class="w">	</span><span class="c1">#Constant data of the records we want to write</span>
+<span class="linenos">  7</span><span class="w">	</span><span class="c1">#Each text data item is padded to the proper</span>
+<span class="linenos">  8</span><span class="w">	</span><span class="c1">#length with null (i.e. 0) bytes.</span>
+<span class="linenos">  9</span>
+<span class="linenos"> 10</span><span class="w">	</span><span class="c1">#.rept is used to pad each item.  .rept tells</span>
+<span class="linenos"> 11</span><span class="w">	</span><span class="c1">#the assembler to repeat the section between</span>
+<span class="linenos"> 12</span><span class="w">	</span><span class="c1">#.rept and .endr the number of times specified.</span>
+<span class="linenos"> 13</span><span class="w">	</span><span class="c1">#This is used in this program to add extra null</span>
+<span class="linenos"> 14</span><span class="w">	</span><span class="c1">#characters at the end of each field to fill</span>
+<span class="linenos"> 15</span><span class="w">	</span><span class="c1">#it up</span>
+<span class="linenos"> 16</span><span class="nl">record1:</span><span class="w">	</span>
+<span class="linenos"> 17</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;Fredrick\0&quot;</span>
+<span class="linenos"> 18</span><span class="w">	</span><span class="na">.rept</span><span class="w"> </span><span class="mi">31</span><span class="w"> </span><span class="c1">#Padding to 40 bytes</span>
+<span class="linenos"> 19</span><span class="w">	</span><span class="na">.byte</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 20</span><span class="w">	</span><span class="na">.endr</span>
+<span class="linenos"> 21</span><span class="w">	</span>
+<span class="linenos"> 22</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;Bartlett\0&quot;</span>
+<span class="linenos"> 23</span><span class="w">	</span><span class="na">.rept</span><span class="w"> </span><span class="mi">31</span><span class="w"> </span><span class="c1">#Padding to 40 bytes</span>
+<span class="linenos"> 24</span><span class="w">	</span><span class="na">.byte</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 25</span><span class="w">	</span><span class="na">.endr</span>
+<span class="linenos"> 26</span><span class="w">	</span>
+<span class="linenos"> 27</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;4242 S Prairie\nTulsa, OK 55555\0&quot;</span>
+<span class="linenos"> 28</span><span class="w">	</span><span class="na">.rept</span><span class="w"> </span><span class="mi">209</span><span class="w"> </span><span class="c1">#Padding to 240 bytes</span>
+<span class="linenos"> 29</span><span class="w">	</span><span class="na">.byte</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 30</span><span class="w">	</span><span class="na">.endr</span>
+<span class="linenos"> 31</span><span class="w">	</span>
+<span class="linenos"> 32</span><span class="w">	</span><span class="na">.long</span><span class="w"> </span><span class="mi">45</span>
+<span class="linenos"> 33</span><span class="w">	</span>
+<span class="linenos"> 34</span><span class="nl">record2:</span><span class="w">	</span>
+<span class="linenos"> 35</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;Marilyn\0&quot;</span>
+<span class="linenos"> 36</span><span class="w">	</span><span class="na">.rept</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span><span class="c1">#Padding to 40 bytes</span>
+<span class="linenos"> 37</span><span class="w">	</span><span class="na">.byte</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 38</span><span class="w">	</span><span class="na">.endr</span>
+<span class="linenos"> 39</span><span class="w">	</span>
+<span class="linenos"> 40</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;Taylor\0&quot;</span>
+<span class="linenos"> 41</span><span class="w">	</span><span class="na">.rept</span><span class="w"> </span><span class="mi">33</span><span class="w"> </span><span class="c1">#Padding to 40 bytes</span>
+<span class="linenos"> 42</span><span class="w">	</span><span class="na">.byte</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 43</span><span class="w">	</span><span class="na">.endr</span>
+<span class="linenos"> 44</span><span class="w">	</span>
+<span class="linenos"> 45</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;2224 S Johannan St\nChicago, IL 12345\0&quot;</span>
+<span class="linenos"> 46</span><span class="w">	</span><span class="na">.rept</span><span class="w"> </span><span class="mi">203</span><span class="w"> </span><span class="c1">#Padding to 240 bytes</span>
+<span class="linenos"> 47</span><span class="w">	</span><span class="na">.byte</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 48</span><span class="w">	</span><span class="na">.endr</span>
+<span class="linenos"> 49</span><span class="w">	</span>
+<span class="linenos"> 50</span><span class="w">	</span><span class="na">.long</span><span class="w"> </span><span class="mi">29</span>
+<span class="linenos"> 51</span>
+<span class="linenos"> 52</span><span class="nl">record3:</span><span class="w">	</span>
+<span class="linenos"> 53</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;Derrick\0&quot;</span>
+<span class="linenos"> 54</span><span class="w">	</span><span class="na">.rept</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span><span class="c1">#Padding to 40 bytes</span>
+<span class="linenos"> 55</span><span class="w">	</span><span class="na">.byte</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 56</span><span class="w">	</span><span class="na">.endr</span>
+<span class="linenos"> 57</span><span class="w">	</span>
+<span class="linenos"> 58</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;McIntire\0&quot;</span>
+<span class="linenos"> 59</span><span class="w">	</span><span class="na">.rept</span><span class="w"> </span><span class="mi">31</span><span class="w"> </span><span class="c1">#Padding to 40 bytes</span>
+<span class="linenos"> 60</span><span class="w">	</span><span class="na">.byte</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 61</span><span class="w">	</span><span class="na">.endr</span>
+<span class="linenos"> 62</span><span class="w">	</span>
+<span class="linenos"> 63</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;500 W Oakland\nSan Diego, CA 54321\0&quot;</span>
+<span class="linenos"> 64</span><span class="w">	</span><span class="na">.rept</span><span class="w"> </span><span class="mi">206</span><span class="w"> </span><span class="c1">#Padding to 240 bytes</span>
+<span class="linenos"> 65</span><span class="w">	</span><span class="na">.byte</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 66</span><span class="w">	</span><span class="na">.endr</span>
+<span class="linenos"> 67</span><span class="w">	</span>
+<span class="linenos"> 68</span><span class="w">	</span><span class="na">.long</span><span class="w"> </span><span class="mi">36</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="w">	</span><span class="c1">#This is the name of the file we will write to</span>
+<span class="linenos"> 71</span><span class="nl">file_name:</span>
+<span class="linenos"> 72</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;test.dat\0&quot;</span>
+<span class="linenos"> 73</span>
+<span class="linenos"> 74</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_FILE_DESCRIPTOR</span><span class="p">,</span><span class="w"> </span><span class="mi">-4</span>
+<span class="linenos"> 75</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+<span class="linenos"> 76</span><span class="nl">_start:</span>
+<span class="linenos"> 77</span><span class="w">	</span><span class="c1">#Copy the stack pointer to %ebp</span>
+<span class="linenos"> 78</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos"> 79</span><span class="w">	</span><span class="c1">#Allocate space to hold the file descriptor</span>
+<span class="linenos"> 80</span><span class="w">	</span><span class="nf">subl</span><span class="w">  </span><span class="no">$4</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span><span class="w">	</span><span class="c1">#Open the file</span>
+<span class="linenos"> 83</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_OPEN</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos"> 84</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$file_name</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos"> 85</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0101</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span><span class="w"> </span><span class="c1">#This says to create if it </span>
+<span class="linenos"> 86</span><span class="w">	                  </span><span class="c1">#doesn&#39;t exist, and open for </span>
+<span class="linenos"> 87</span><span class="w">	                  </span><span class="c1">#writing</span>
+<span class="linenos"> 88</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0666</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos"> 89</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span><span class="w">	</span><span class="c1">#Store the file descriptor away</span>
+<span class="linenos"> 92</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="no">ST_FILE_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos"> 93</span>
+<span class="linenos"> 94</span><span class="w">	</span><span class="c1">#Write the first record</span>
+<span class="linenos"> 95</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">ST_FILE_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos"> 96</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$record1</span>
+<span class="linenos"> 97</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">write_record</span>
+<span class="linenos"> 98</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$8</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span><span class="w"> </span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span><span class="w">	</span><span class="c1">#Write the second record</span>
+<span class="linenos">101</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">ST_FILE_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos">102</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$record2</span>
+<span class="linenos">103</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">write_record</span>
+<span class="linenos">104</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$8</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span><span class="w"> </span>
+<span class="linenos">105</span>
+<span class="linenos">106</span><span class="w">	</span><span class="c1">#Write the third record</span>
+<span class="linenos">107</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">ST_FILE_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos">108</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$record3</span>
+<span class="linenos">109</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">write_record</span>
+<span class="linenos">110</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$8</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span><span class="w"> </span>
+<span class="linenos">111</span>
+<span class="linenos">112</span><span class="w">	</span><span class="c1">#Close the file descriptor</span>
+<span class="linenos">113</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_CLOSE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">114</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_FILE_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%ebx</span><span class="w">	</span>
+<span class="linenos">115</span><span class="w">	</span><span class="no">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span><span class="w">	</span><span class="c1">#Exit the program</span>
+<span class="linenos">118</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_EXIT</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">119</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">120</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+</pre></div>
+</div>
+</div>
+<p>This is a fairly simple program. It merely consists of defining the data
+we want to write in the <code class="docutils literal notranslate"><span class="pre">.data</span></code> section, and then calling the
+right system calls and function calls to accomplish it. For a refresher
+of all of the system calls used, see <a class="reference internal" href="syscallap.html#syscallap"><span class="std std-ref">Important System Calls</span></a>.</p>
+<p>You may have noticed the lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">include</span> <span class="s2">&quot;linux.s&quot;</span>
+<span class="o">.</span><span class="n">include</span> <span class="s2">&quot;record-def.s&quot;</span>
+</pre></div>
+</div>
+<p>These statements cause the given files to basically be pasted right
+there in the code. You don’t need to do this with functions, because the
+linker can take care of combining functions exported with
+<code class="docutils literal notranslate"><span class="pre">.globl</span></code>. However, constants defined in another file do need to
+be imported in this way.</p>
+<p>Also, you may have noticed the use of a new assembler directive,
+<code class="docutils literal notranslate"><span class="pre">.rept</span></code>. This directive repeats the contents of the file between
+the <code class="docutils literal notranslate"><span class="pre">.rept</span></code> and the <code class="docutils literal notranslate"><span class="pre">.endr</span></code> directives the number of times
+specified after <code class="docutils literal notranslate"><span class="pre">.rept</span></code>. This is usually used the way we used it - to
+pad values in the <code class="docutils literal notranslate"><span class="pre">.data</span></code> section. In our case, we are adding
+null characters to the end of each field until they are their defined
+lengths.</p>
+<p>To build the application, run the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">write</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">o</span>
+<span class="k">as</span> <span class="n">write</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span>
+<span class="n">ld</span> <span class="n">write</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">records</span>
+</pre></div>
+</div>
+<p>Here we are assembling two files separately, and then combining them
+together using the linker. To run the program, just type the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">write</span><span class="o">-</span><span class="n">records</span>
+</pre></div>
+</div>
+<p>This will cause a file called <code class="docutils literal notranslate"><span class="pre">test.dat</span></code> to be created containing the
+records. However, since they contain non-printable characters (the null
+character, specifically), they may not be viewable by a text editor.
+Therefore we need the next program to read them for us.</p>
+</section>
+<section id="reading-records">
+<h2>Reading Records<a class="headerlink" href="#reading-records" title="Link to this heading">¶</a></h2>
+<p>Now we will consider the process of reading records. In this program, we
+will read each record and display the first name listed with each
+record.</p>
+<p>Since each person’s name is a different length, we will need a function
+to count the number of characters we want to write. Since we pad each
+field with null characters, we can simply count characters until we
+reach a null character. <a class="footnote-reference brackets" href="#id7" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> Note that this means our records must
+contain at least one null character each.</p>
+<p>Here is the code. Put it in a file called <code class="docutils literal notranslate"><span class="pre">count-chars.s</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">src/count-chars.s</span><a class="headerlink" href="#id16" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">#PURPOSE:  Count the characters until a null byte is reached.</span>
+<span class="linenos"> 2</span><span class="c1">#</span>
+<span class="linenos"> 3</span><span class="c1">#INPUT:    The address of the character string</span>
+<span class="linenos"> 4</span><span class="c1">#</span>
+<span class="linenos"> 5</span><span class="c1">#OUTPUT:   Returns the count in %eax</span>
+<span class="linenos"> 6</span><span class="c1">#</span>
+<span class="linenos"> 7</span><span class="c1">#PROCESS:  </span>
+<span class="linenos"> 8</span><span class="c1">#  Registers used:</span>
+<span class="linenos"> 9</span><span class="c1">#    %ecx - character count</span>
+<span class="linenos">10</span><span class="c1">#    %al - current character</span>
+<span class="linenos">11</span><span class="c1">#    %edx - current character address</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">	</span><span class="na">.type</span><span class="w"> </span><span class="no">count_chars</span><span class="p">,</span><span class="w"> </span><span class="na">@function</span>
+<span class="linenos">14</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">count_chars</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">	</span><span class="c1">#This is where our one parameter is on the stack</span>
+<span class="linenos">17</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_STRING_START_ADDRESS</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span>
+<span class="linenos">18</span><span class="nl">count_chars:</span>
+<span class="linenos">19</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">20</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">21</span><span class="w">	</span>
+<span class="linenos">22</span><span class="w">	</span><span class="c1">#Counter starts at zero</span>
+<span class="linenos">23</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span><span class="w">  </span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">	</span><span class="c1">#Starting address of data</span>
+<span class="linenos">26</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_STRING_START_ADDRESS</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="nl">count_loop_begin:</span>
+<span class="linenos">29</span><span class="w">	</span><span class="c1">#Grab the current character</span>
+<span class="linenos">30</span><span class="w">	</span><span class="nf">movb</span><span class="w">  </span><span class="p">(</span><span class="nv">%edx</span><span class="p">),</span><span class="w"> </span><span class="nv">%al</span>
+<span class="linenos">31</span><span class="w">	</span><span class="c1">#Is it null?</span>
+<span class="linenos">32</span><span class="w">	</span><span class="nf">cmpb</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%al</span>
+<span class="linenos">33</span><span class="w">	</span><span class="c1">#If yes, we&#39;re done</span>
+<span class="linenos">34</span><span class="w">	</span><span class="nf">je</span><span class="w">    </span><span class="no">count_loop_end</span>
+<span class="linenos">35</span><span class="w">	</span><span class="c1">#Otherwise, increment the counter and the pointer</span>
+<span class="linenos">36</span><span class="w">	</span><span class="nf">incl</span><span class="w">  </span><span class="nv">%ecx</span>
+<span class="linenos">37</span><span class="w">	</span><span class="nf">incl</span><span class="w">  </span><span class="nv">%edx</span>
+<span class="linenos">38</span><span class="w">	</span><span class="c1">#Go back to the beginning of the loop</span>
+<span class="linenos">39</span><span class="w">	</span><span class="nf">jmp</span><span class="w">   </span><span class="no">count_loop_begin</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="nl">count_loop_end:</span>
+<span class="linenos">42</span><span class="w">	</span><span class="c1">#We&#39;re done.  Move the count into %eax</span>
+<span class="linenos">43</span><span class="w">	</span><span class="c1">#and return.</span>
+<span class="linenos">44</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%ecx</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebp</span>
+<span class="linenos">47</span><span class="w">	</span><span class="nf">ret</span>
+</pre></div>
+</div>
+</div>
+<p>As you can see, it’s a fairly straightforward function. It simply loops
+through the bytes, counting as it goes, until it hits a null character.
+Then it returns the count.</p>
+<p>Our record-reading program will be fairly straightforward, too. It will
+do the following:</p>
+<ul class="simple">
+<li><p>Open the file</p></li>
+<li><p>Attempt to read a record</p></li>
+<li><p>If we are at the end of the file, exit</p></li>
+<li><p>Otherwise, count the characters of the first name</p></li>
+<li><p>Write the first name to <code class="docutils literal notranslate"><span class="pre">STDOUT</span></code></p></li>
+<li><p>Write a newline to <code class="docutils literal notranslate"><span class="pre">STDOUT</span></code></p></li>
+<li><p>Go back to read another record</p></li>
+</ul>
+<p>To write this, we need one more simple function - a function to write
+out a newline to <code class="docutils literal notranslate"><span class="pre">STDOUT</span></code>. Put the following code into
+<code class="docutils literal notranslate"><span class="pre">write-newline.s</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">src/write-newline.s</span><a class="headerlink" href="#id17" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;linux.s&quot;</span><span class="w">	</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="no">.globl</span><span class="w"> </span><span class="no">write_newline</span>
+<span class="linenos"> 3</span><span class="w">	</span><span class="na">.type</span><span class="w"> </span><span class="no">write_newline</span><span class="p">,</span><span class="w"> </span><span class="na">@function</span>
+<span class="linenos"> 4</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos"> 5</span><span class="nl">newline:</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;\n&quot;</span>
+<span class="linenos"> 7</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_FILEDES</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span>
+<span class="linenos"> 9</span><span class="nl">write_newline:</span>
+<span class="linenos">10</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">11</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_WRITE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">14</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">ST_FILEDES</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">15</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$newline</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">16</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$1</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">17</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">18</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%ebp</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">19</span><span class="w">	</span><span class="nf">popl</span><span class="w">  </span><span class="nv">%ebp</span>
+<span class="linenos">20</span><span class="w">	</span><span class="nf">ret</span>
+</pre></div>
+</div>
+</div>
+<p>Now we are ready to write the main program. Here is the code to
+<code class="docutils literal notranslate"><span class="pre">read-records.s</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">src/read-records.s</span><a class="headerlink" href="#id18" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;linux.s&quot;</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;record-def.s&quot;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos"> 5</span><span class="nl">file_name:</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;test.dat\0&quot;</span>
+<span class="linenos"> 7</span><span class="w">	</span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.bss</span>
+<span class="linenos"> 9</span><span class="w">	</span><span class="na">.lcomm</span><span class="w"> </span><span class="no">record_buffer</span><span class="p">,</span><span class="w"> </span><span class="no">RECORD_SIZE</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span>
+<span class="linenos">13</span><span class="w">	</span><span class="c1">#Main program</span>
+<span class="linenos">14</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+<span class="linenos">15</span><span class="nl">_start:</span>
+<span class="linenos">16</span><span class="w">	</span><span class="c1">#These are the locations on the stack where</span>
+<span class="linenos">17</span><span class="w">	</span><span class="c1">#we will store the input and output descriptors</span>
+<span class="linenos">18</span><span class="w">	</span><span class="c1">#(FYI - we could have used memory addresses in</span>
+<span class="linenos">19</span><span class="w">	</span><span class="c1">#a .data section instead)</span>
+<span class="linenos">20</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_INPUT_DESCRIPTOR</span><span class="p">,</span><span class="w"> </span><span class="mi">-4</span>
+<span class="linenos">21</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_OUTPUT_DESCRIPTOR</span><span class="p">,</span><span class="w"> </span><span class="mi">-8</span>
+<span class="linenos">22</span><span class="w">	</span>
+<span class="linenos">23</span><span class="w">	</span><span class="c1">#Copy the stack pointer to %ebp</span>
+<span class="linenos">24</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">25</span><span class="w">	</span><span class="c1">#Allocate space to hold the file descriptors</span>
+<span class="linenos">26</span><span class="w">	</span><span class="nf">subl</span><span class="w">  </span><span class="no">$8</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="w">	</span><span class="c1">#Open the file</span>
+<span class="linenos">29</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_OPEN</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">30</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$file_name</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">31</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span><span class="w">    </span><span class="c1">#This says to open read-only</span>
+<span class="linenos">32</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0666</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">33</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="w">	</span><span class="c1">#Save file descriptor</span>
+<span class="linenos">36</span><span class="w">	</span>
+<span class="linenos">37</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="no">ST_INPUT_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="w">	</span><span class="c1">#Even though it&#39;s a constant, we are</span>
+<span class="linenos">40</span><span class="w">	</span><span class="c1">#saving the output file descriptor in</span>
+<span class="linenos">41</span><span class="w">	</span><span class="c1">#a local variable so that if we later</span>
+<span class="linenos">42</span><span class="w">	</span><span class="c1">#decide that it isn&#39;t always going to</span>
+<span class="linenos">43</span><span class="w">	</span><span class="c1">#be STDOUT, we can change it easily.</span>
+<span class="linenos">44</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$STDOUT</span><span class="p">,</span><span class="w"> </span><span class="no">ST_OUTPUT_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span><span class="nl">record_read_loop:</span><span class="w">	</span>
+<span class="linenos">48</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">ST_INPUT_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos">49</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$record_buffer</span>
+<span class="linenos">50</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">read_record</span>
+<span class="linenos">51</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$8</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span><span class="w">	</span><span class="c1">#Returns the number of bytes read.</span>
+<span class="linenos">54</span><span class="w">	</span><span class="c1">#If it isn&#39;t the same number we</span>
+<span class="linenos">55</span><span class="w">	</span><span class="c1">#requested, then it&#39;s either an</span>
+<span class="linenos">56</span><span class="w">	</span><span class="c1">#end-of-file, or an error, so we&#39;re</span>
+<span class="linenos">57</span><span class="w">	</span><span class="c1">#quitting</span>
+<span class="linenos">58</span><span class="w">	</span><span class="nf">cmpl</span><span class="w">  </span><span class="no">$RECORD_SIZE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">59</span><span class="w">	</span><span class="nf">jne</span><span class="w">   </span><span class="no">finished_reading</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="w">	</span><span class="c1">#Otherwise, print out the first name</span>
+<span class="linenos">62</span><span class="w">	</span><span class="c1">#but first, we must know it&#39;s size</span>
+<span class="linenos">63</span><span class="w">	</span><span class="nf">pushl</span><span class="w">  </span><span class="no">$RECORD_FIRSTNAME</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="no">record_buffer</span>
+<span class="linenos">64</span><span class="w">	</span><span class="nf">call</span><span class="w">   </span><span class="no">count_chars</span>
+<span class="linenos">65</span><span class="w">	</span><span class="nf">addl</span><span class="w">   </span><span class="no">$4</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="w">	</span><span class="nf">movl</span><span class="w">   </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">68</span><span class="w">	</span><span class="nf">movl</span><span class="w">   </span><span class="no">ST_OUTPUT_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">),</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">69</span><span class="w">	</span><span class="nf">movl</span><span class="w">   </span><span class="no">$SYS_WRITE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">70</span><span class="w">	</span><span class="nf">movl</span><span class="w">   </span><span class="no">$RECORD_FIRSTNAME</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="no">record_buffer</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">71</span><span class="w">	</span><span class="nf">int</span><span class="w">    </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">72</span>
+<span class="linenos">73</span><span class="w">	</span><span class="nf">pushl</span><span class="w">  </span><span class="no">ST_OUTPUT_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos">74</span><span class="w">	</span><span class="nf">call</span><span class="w">   </span><span class="no">write_newline</span>
+<span class="linenos">75</span><span class="w">	</span><span class="nf">addl</span><span class="w">   </span><span class="no">$4</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">76</span>
+<span class="linenos">77</span><span class="w">	</span><span class="nf">jmp</span><span class="w">    </span><span class="no">record_read_loop</span>
+<span class="linenos">78</span><span class="w">	</span>
+<span class="linenos">79</span><span class="nl">finished_reading:</span>
+<span class="linenos">80</span><span class="w">	</span><span class="nf">movl</span><span class="w">   </span><span class="no">$SYS_EXIT</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">81</span><span class="w">	</span><span class="nf">movl</span><span class="w">   </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">82</span><span class="w">	</span><span class="nf">int</span><span class="w">    </span><span class="no">$LINUX_SYSCALL</span>
+</pre></div>
+</div>
+</div>
+<p>To build this program, we need to assemble all of the parts and link
+them together:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">read</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span>
+<span class="k">as</span> <span class="n">count</span><span class="o">-</span><span class="n">chars</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">count</span><span class="o">-</span><span class="n">chars</span><span class="o">.</span><span class="n">o</span>
+<span class="k">as</span> <span class="n">write</span><span class="o">-</span><span class="n">newline</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">newline</span><span class="o">.</span><span class="n">o</span>
+<span class="k">as</span> <span class="n">read</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">o</span>
+<span class="n">ld</span> <span class="n">read</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span> <span class="n">count</span><span class="o">-</span><span class="n">chars</span><span class="o">.</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">newline</span><span class="o">.</span><span class="n">o</span> \
+   <span class="n">read</span><span class="o">-</span><span class="n">records</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">records</span>
+</pre></div>
+</div>
+<p>The backslash in the first line simply means that the command continues
+on the next line. You can run your program by doing <code class="docutils literal notranslate"><span class="pre">./read-records</span></code>.</p>
+<p>As you can see, this program opens the file and then runs a loop of
+reading, checking for the end of file, and writing the firstname. The
+one construct that might be new is the line that says:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pushl  $RECORD_FIRSTNAME + record_buffer
+</pre></div>
+</div>
+<p>It looks like we are combining and add instruction with a push
+instruction, but we are not. You see, both <code class="docutils literal notranslate"><span class="pre">RECORD_FIRSTNAME</span></code> and
+<code class="docutils literal notranslate"><span class="pre">record_buffer</span></code> are constants. The first is a direct constant, created
+through the use of a <code class="docutils literal notranslate"><span class="pre">.equ</span></code> directive, while the latter is defined
+automatically by the assembler through its use as a label (it’s value
+being the address that the data that follows it will start at). Since
+they are both constants that the assembler knows, it is able to add them
+together while it is assembling your program, so the whole instruction
+is a single immediate-mode push of a single constant.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">RECORD_FIRSTNAME</span></code> constant is the number of bytes after the
+beginning of a record before we hit the first name. <code class="docutils literal notranslate"><span class="pre">record_buffer</span></code> is
+the name of our buffer for holding records. Adding them together gets us
+the address of the first name member of the record stored in
+<code class="docutils literal notranslate"><span class="pre">record_buffer</span></code>.</p>
+</section>
+<section id="modifying-the-records">
+<h2>Modifying the Records<a class="headerlink" href="#modifying-the-records" title="Link to this heading">¶</a></h2>
+<p>In this section, we will write a program that:</p>
+<ul class="simple">
+<li><p>Opens an input and output file</p></li>
+<li><p>Reads records from the input</p></li>
+<li><p>Increments the age</p></li>
+<li><p>Writes the new record to the output file</p></li>
+</ul>
+<p>Like most programs we’ve encountered recently, this program is pretty
+straightforward. <a class="footnote-reference brackets" href="#id8" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">src/add-year.s</span><a class="headerlink" href="#id19" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;linux.s&quot;</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="na">.include</span><span class="w"> </span><span class="s">&quot;record-def.s&quot;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos"> 5</span><span class="nl">input_file_name:</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;test.dat\0&quot;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="nl">output_file_name:</span>
+<span class="linenos"> 9</span><span class="w">	</span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;testout.dat\0&quot;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.bss</span>
+<span class="linenos">13</span><span class="w">	</span><span class="na">.lcomm</span><span class="w"> </span><span class="no">record_buffer</span><span class="p">,</span><span class="w"> </span><span class="no">RECORD_SIZE</span>
+<span class="linenos">14</span><span class="w">	</span>
+<span class="linenos">15</span><span class="w">	</span><span class="c1">#Stack offsets of local variables</span>
+<span class="linenos">16</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_INPUT_DESCRIPTOR</span><span class="p">,</span><span class="w"> </span><span class="mi">-4</span>
+<span class="linenos">17</span><span class="w">	</span><span class="na">.equ</span><span class="w"> </span><span class="no">ST_OUTPUT_DESCRIPTOR</span><span class="p">,</span><span class="w"> </span><span class="mi">-8</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span>
+<span class="linenos">20</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+<span class="linenos">21</span><span class="nl">_start:</span>
+<span class="linenos">22</span><span class="w">	</span><span class="c1">#Copy stack pointer and make room for local variables</span>
+<span class="linenos">23</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%esp</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebp</span>
+<span class="linenos">24</span><span class="w">	</span><span class="nf">subl</span><span class="w">  </span><span class="no">$8</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="w">	</span><span class="c1">#Open file for reading</span>
+<span class="linenos">27</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_OPEN</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">28</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$input_file_name</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">29</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span>
+<span class="linenos">30</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0666</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">31</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="no">ST_INPUT_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="w">	</span><span class="c1">#Open file for writing</span>
+<span class="linenos">36</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_OPEN</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">37</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$output_file_name</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">38</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0101</span><span class="p">,</span><span class="w"> </span><span class="nv">%ecx</span><span class="w"> </span>
+<span class="linenos">39</span><span class="w">	</span><span class="no">movl</span><span class="w">  </span><span class="no">$0666</span><span class="p">,</span><span class="w"> </span><span class="nv">%edx</span>
+<span class="linenos">40</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="no">ST_OUTPUT_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="nl">loop_begin:</span>
+<span class="linenos">45</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">ST_INPUT_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos">46</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$record_buffer</span>
+<span class="linenos">47</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">read_record</span>
+<span class="linenos">48</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$8</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">49</span>
+<span class="linenos">50</span><span class="w">	</span><span class="c1">#Returns the number of bytes read.</span>
+<span class="linenos">51</span><span class="w">	</span><span class="c1">#If it isn&#39;t the same number we</span>
+<span class="linenos">52</span><span class="w">	</span><span class="c1">#requested, then it&#39;s either an</span>
+<span class="linenos">53</span><span class="w">	</span><span class="c1">#end-of-file, or an error, so we&#39;re</span>
+<span class="linenos">54</span><span class="w">	</span><span class="c1">#quitting</span>
+<span class="linenos">55</span><span class="w">	</span><span class="nf">cmpl</span><span class="w">  </span><span class="no">$RECORD_SIZE</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">56</span><span class="w">	</span><span class="nf">jne</span><span class="w">   </span><span class="no">loop_end</span>
+<span class="linenos">57</span>
+<span class="linenos">58</span><span class="w">	</span><span class="c1">#Increment the age</span>
+<span class="linenos">59</span><span class="w">	</span><span class="nf">incl</span><span class="w">  </span><span class="no">record_buffer</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="no">RECORD_AGE</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="w">	</span><span class="c1">#Write the record out</span>
+<span class="linenos">62</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">ST_OUTPUT_DESCRIPTOR</span><span class="p">(</span><span class="nv">%ebp</span><span class="p">)</span>
+<span class="linenos">63</span><span class="w">	</span><span class="nf">pushl</span><span class="w"> </span><span class="no">$record_buffer</span>
+<span class="linenos">64</span><span class="w">	</span><span class="nf">call</span><span class="w">  </span><span class="no">write_record</span>
+<span class="linenos">65</span><span class="w">	</span><span class="nf">addl</span><span class="w">  </span><span class="no">$8</span><span class="p">,</span><span class="w"> </span><span class="nv">%esp</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="w">	</span><span class="nf">jmp</span><span class="w">   </span><span class="no">loop_begin</span>
+<span class="linenos">68</span>
+<span class="linenos">69</span><span class="nl">loop_end:</span>
+<span class="linenos">70</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$SYS_EXIT</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span>
+<span class="linenos">71</span><span class="w">	</span><span class="nf">movl</span><span class="w">  </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span>
+<span class="linenos">72</span><span class="w">	</span><span class="nf">int</span><span class="w">   </span><span class="no">$LINUX_SYSCALL</span>
+</pre></div>
+</div>
+</div>
+<p>You can type it in as <code class="docutils literal notranslate"><span class="pre">add-year.s</span></code>. To build it, type the
+following <a class="footnote-reference brackets" href="#id9" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">add</span><span class="o">-</span><span class="n">year</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">add</span><span class="o">-</span><span class="n">year</span><span class="o">.</span><span class="n">o</span>
+<span class="n">ld</span> <span class="n">add</span><span class="o">-</span><span class="n">year</span><span class="o">.</span><span class="n">o</span> <span class="n">read</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span> <span class="n">write</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">add</span><span class="o">-</span><span class="n">year</span>
+</pre></div>
+</div>
+<p>To run the program, just type in the following <a class="footnote-reference brackets" href="#id10" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">add</span><span class="o">-</span><span class="n">year</span>
+</pre></div>
+</div>
+<p>This will add a year to every record listed in <code class="docutils literal notranslate"><span class="pre">test.dat</span></code> and write
+the new records to the file <code class="docutils literal notranslate"><span class="pre">testout.dat</span></code>.</p>
+<p>As you can see, writing fixed-length records is pretty simple. You only
+have to read in blocks of data to a buffer, process them, and write them
+back out. Unfortunately, this program doesn’t write the new ages out to
+the screen so you can verify your program’s effectiveness. This is
+because we won’t get to displaying numbers until <a class="reference internal" href="linking.html#linking"><span class="std std-ref">Sharing Functions with Code Libraries</span></a> and
+<a class="reference internal" href="counting.html#countingchapter"><span class="std std-ref">Counting Like a Computer</span></a>. After reading those you may want to come
+back and rewrite this program to display the numeric data that we are
+modifying.</p>
+</section>
+<section id="review">
+<h2>Review<a class="headerlink" href="#review" title="Link to this heading">¶</a></h2>
+<section id="know-the-concepts">
+<h3>Know the Concepts<a class="headerlink" href="#know-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>What is a record?</p></li>
+<li><p>What is the advantage of fixed-length records over variable-length
+records?</p></li>
+<li><p>How do you include constants in multiple assembly source files?</p></li>
+<li><p>Why might you want to split up a project into multiple source files?</p></li>
+<li><p>What does the instruction <code class="docutils literal notranslate"><span class="pre">incl</span> <span class="pre">record_buffer</span> <span class="pre">+</span> <span class="pre">RECORD_AGE</span></code> do?
+What addressing mode is it using? How many operands does the <code class="docutils literal notranslate"><span class="pre">incl</span></code>
+instructions have in this case? Which parts are being handled by the
+assembler and which parts are being handled when the program is run?</p></li>
+</ul>
+</section>
+<section id="use-the-concepts">
+<h3>Use the Concepts<a class="headerlink" href="#use-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add another data member to the person structure defined in this
+chapter, and rewrite the reading and writing functions and programs
+to take them into account. Remember to reassemble and relink your
+files before running your programs.</p></li>
+<li><p>Create a program that uses a loop to write 30 identical records to a
+file.</p></li>
+<li><p>Create a program to find the largest age in the file and return that
+age as the status code of the program.</p></li>
+<li><p>Create a program to find the smallest age in the file and return that
+age as the status code of the program.</p></li>
+</ul>
+</section>
+<section id="going-further">
+<h3>Going Further<a class="headerlink" href="#going-further" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Rewrite the programs in this chapter to use command-line arguments to
+specify the filesnames.</p></li>
+<li><p>Research the <code class="docutils literal notranslate"><span class="pre">lseek</span></code> system call. Rewrite the <code class="docutils literal notranslate"><span class="pre">add-year</span></code> program
+to open the source file for both reading and writing (use $2 for the
+read/write mode), and write the modified records back to the same
+file they were read from.</p></li>
+<li><p>Research the various error codes that can be returned by the system
+calls made in these programs. Pick one to rewrite, and add code that
+checks %eax; for error conditions, and, if one is
+found, writes a message about it to <code class="docutils literal notranslate"><span class="pre">STDERR</span></code> and exit.</p></li>
+<li><p>Write a program that will add a single record to the file by reading
+the data from the keyboard. Remember, you will have to make sure that
+the data has at least one null character at the end, and you need to
+have a way for the user to indicate they are done typing. Because we
+have not gotten into characters to numbers conversion, you will not
+be able to read the age in from the keyboard, so you’ll have to have
+a default age.</p></li>
+<li><p>Write a function called <code class="docutils literal notranslate"><span class="pre">compare-strings</span></code> that will compare two
+strings up to 5 characters. Then write a program that allows the user
+to enter 5 characters, and have the program return all records whose
+first name starts with those 5 characters.</p></li>
+</ul>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>A database is a program which handles persistent structured data for
+you. You don’t have to write the programs to read and write the data
+to disk, to do lookups, or even to do basic processing. It is a very
+high-level interface to structured data which, although it adds some
+overhead and additional complexity, is very useful for complex data
+processing tasks. References for learning how databases work are
+listed in <a class="reference internal" href="wherenext.html#wherenextch"><span class="std std-ref">Moving On from Here</span></a>.</p>
+</aside>
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>If you have used C, this is what the <code class="docutils literal notranslate"><span class="pre">strlen</span></code> function does.</p>
+</aside>
+<aside class="footnote brackets" id="id8" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>You will find that after learning the mechanics of programming, most
+programs are pretty straightforward once you know exactly what it is
+you want to do. Most of them initialize data, do some processing in a
+loop, and then clean everything up.</p>
+</aside>
+<aside class="footnote brackets" id="id9" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p>This assumes that you have already built the object files
+<code class="docutils literal notranslate"><span class="pre">read-record.o</span></code> and <code class="docutils literal notranslate"><span class="pre">write-record.o</span></code> in the previous examples. If
+not, you will have to do so.</p>
+</aside>
+<aside class="footnote brackets" id="id10" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">5</a><span class="fn-bracket">]</span></span>
+<p>This is assuming you created the file in a previous run of
+<code class="docutils literal notranslate"><span class="pre">write-records</span></code>. If not, you need to run <code class="docutils literal notranslate"><span class="pre">write-records</span></code> first
+before running this program.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="gdpapp.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Using the GDB Debugger</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="wherenext.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Moving On from Here</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Reading and Writing Simple Records</a><ul>
+<li><a class="reference internal" href="#writing-records">Writing Records</a></li>
+<li><a class="reference internal" href="#reading-records">Reading Records</a></li>
+<li><a class="reference internal" href="#modifying-the-records">Modifying the Records</a></li>
+<li><a class="reference internal" href="#review">Review</a><ul>
+<li><a class="reference internal" href="#know-the-concepts">Know the Concepts</a></li>
+<li><a class="reference internal" href="#use-the-concepts">Use the Concepts</a></li>
+<li><a class="reference internal" href="#going-further">Going Further</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

@@ -1,0 +1,1363 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="All About Functions" href="functions.html"><link rel="prev" title="Computer Architecture" href="memory.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Your First Programs - Programming From The Ground Up 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Programming From The Ground Up 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Programming From The Ground Up 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Computer Architecture</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Your First Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">All About Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Dealing with Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robust.html">Developing Robust Programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memoryint.html">Intermediate Memory Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linking.html">Sharing Functions with Code Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting.html">Counting Like a Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otherlang.html">High-Level Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wherenext.html">Moving On from Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Reading and Writing Simple Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gdpapp.html">Using the GDB Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asciiap.html">Table of ASCII Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cch.html">The C Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctranslationap.html">C Idioms in Assembly Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guiap.html">GUI Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructionsap.html">Common x86 Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdlap.html">GNU Free Documentation License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/firstprog.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="your-first-programs">
+<span id="firstprogs"></span><h1>Your First Programs<a class="headerlink" href="#your-first-programs" title="Link to this heading">¶</a></h1>
+<p>In this chapter you will learn the process for writing and building
+Linux assembly-language programs. In addition, you will learn the
+structure of assembly-language programs, and a few assembly-language
+commands. As you go through this chapter, you may want to refer also to
+<a class="reference internal" href="instructionsap.html#instructionsappendix"><span class="std std-ref">Common x86 Instructions</span></a> and <a class="reference internal" href="gdpapp.html#gdbappendix"><span class="std std-ref">Using the GDB Debugger</span></a>.</p>
+<p>These programs may overwhelm you at first. However, go through them with
+diligence, read them and their explanations as many times as necessary,
+and you will have a solid foundation of knowledge to build on. Please
+tinker around with the programs as much as you can. Even if your
+tinkering does not work, every failure will help you learn.</p>
+<section id="entering-in-the-program">
+<h2>Entering in the Program<a class="headerlink" href="#entering-in-the-program" title="Link to this heading">¶</a></h2>
+<p>Okay, this first program is simple. In fact, it’s not going to do
+anything but exit! It’s short, but it shows some basics about assembly
+language and Linux programming. You need to enter the program in an
+editor exactly as written, with the filename <code class="docutils literal notranslate"><span class="pre">exit.s</span></code>. The program
+follows. Don’t worry about not understanding it. This section only deals
+with typing it in and running it. In <a class="reference external" href="#assemblyoutline">Outline of an Assembly Language
+Program</a> we will describe how it works.</p>
+<div class="literal-block-wrapper docutils container" id="id29">
+<div class="code-block-caption"><span class="caption-text">src/exit.s</span><a class="headerlink" href="#id29" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">	</span><span class="c1">#PURPOSE:  Simple program that exits and returns a</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="c1">#          status code back to the Linux kernel</span>
+<span class="linenos"> 3</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="w">	</span><span class="c1">#INPUT:    none</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="c1">#OUTPUT:   returns a status code.  This can be viewed</span>
+<span class="linenos"> 9</span><span class="w">	</span><span class="c1">#          by typing</span>
+<span class="linenos">10</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">11</span><span class="w">	</span><span class="c1">#          echo $?</span>
+<span class="linenos">12</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">13</span><span class="w">	</span><span class="c1">#          after running the program</span>
+<span class="linenos">14</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">	</span><span class="c1">#VARIABLES:</span>
+<span class="linenos">17</span><span class="w">	</span><span class="c1">#          %eax holds the system call number </span>
+<span class="linenos">18</span><span class="w">	</span><span class="c1">#          %ebx holds the return status </span>
+<span class="linenos">19</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">20</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span>
+<span class="linenos">23</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+<span class="linenos">24</span><span class="nl">_start:</span>
+<span class="linenos">25</span><span class="w">	</span><span class="nf">movl</span><span class="w"> </span><span class="no">$1</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">      </span><span class="c1"># this is the linux kernel command  </span>
+<span class="linenos">26</span><span class="w">	                   </span><span class="c1"># number (system call) for exiting </span>
+<span class="linenos">27</span><span class="w">	                   </span><span class="c1"># a program</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="w">	</span><span class="nf">movl</span><span class="w"> </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span><span class="w">      </span><span class="c1"># this is the status number we will</span>
+<span class="linenos">30</span><span class="w">	                   </span><span class="c1"># return to the operating system.</span>
+<span class="linenos">31</span><span class="w">	                   </span><span class="c1"># Change this around and it will</span>
+<span class="linenos">32</span><span class="w">	                   </span><span class="c1"># return different things to </span>
+<span class="linenos">33</span><span class="w">	                   </span><span class="c1"># echo $?</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="w">	</span><span class="nf">int</span><span class="w"> </span><span class="no">$0x80</span><span class="w">          </span><span class="c1"># this wakes up the kernel to run</span>
+<span class="linenos">36</span><span class="w">	                   </span><span class="c1"># the exit command</span>
+</pre></div>
+</div>
+</div>
+<p>What you have typed in is called the <em>source code</em>. Source code is the
+human-readable form of a program. In order to transform it into a
+program that a computer can run, we need to <em>assemble</em> and <em>link</em> it.</p>
+<p>The first step is to <em>assemble</em> it. Assembling is the process that
+transforms what you typed into instructions for the machine. The machine
+itself only reads sets of numbers, but humans prefer words. An <em>assembly
+language</em> is a more human-readable form of the instructions a computer
+understands. Assembling transforms the human-readable file into a
+machine-readable one. To assembly the program type in the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="o">--</span><span class="mi">32</span> <span class="n">exit</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">exit</span><span class="o">.</span><span class="n">o</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">as</span></code> is the command which runs the assembler, <code class="docutils literal notranslate"><span class="pre">exit.s</span></code> is the source
+file, and <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">exit.o</span></code> tells the assemble to put its output in the file
+<code class="docutils literal notranslate"><span class="pre">exit.o</span></code>. <code class="docutils literal notranslate"><span class="pre">exit.o</span></code> is an <em>object file</em>. An object file is code that
+is in the machine’s language, but has not been completely put together.
+In most large programs, you will have several source files, and you will
+convert each one into an object file. The <em>linker</em> is the program that
+is responsible for putting the object files together and adding
+information to it so that the kernel knows how to load and run it. In
+our case, we only have one object file, so the linker is only adding the
+information to enable it to run. To <em>link</em> the file, enter the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ld</span> <span class="o">-</span><span class="n">m</span> <span class="n">elf_i386</span> <span class="n">exit</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">exit</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ld</span></code> is the command to run the linker, <code class="docutils literal notranslate"><span class="pre">exit.o</span></code> is the object file
+we want to link, and <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">exit</span></code> instructs the linker to output the new
+program into a file called <code class="docutils literal notranslate"><span class="pre">exit</span></code>. <a class="footnote-reference brackets" href="#id15" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> If any of these commands
+reported errors, you have either mistyped your program or the command.
+After correcting the program, you have to re-run all the commands. <em>You
+must always re-assemble and re-link programs after you modify the source
+file for the changes to occur in the program</em>. You can run <code class="docutils literal notranslate"><span class="pre">exit</span></code> by
+typing in the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">exit</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">./</span></code> is used to tell the computer that the program isn’t in one of
+the normal program directories, but is the current directory
+instead <a class="footnote-reference brackets" href="#id16" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>. You’ll notice when you type this command, the only thing
+that happens is that you’ll go to the next line. That’s because this
+program does nothing but exit. However, immediately after you run the
+program, if you type in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>echo $?
+</pre></div>
+</div>
+<p>It will say <code class="docutils literal notranslate"><span class="pre">0</span></code>. What is happening is that every program when it exits
+gives Linux an <em>exit status code</em>, which tells it if everything went all
+right. If everything was okay, it returns 0. UNIX programs return
+numbers other than zero to indicate failure or other errors, warnings,
+or statuses. The programmer determines what each number means. You can
+view this code by typing in <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$?</span></code>. In the following section we
+will look at what each part of the code does.</p>
+</section>
+<section id="outline-of-an-assembly-language-program">
+<span id="assemblyoutline"></span><h2>Outline of an Assembly Language Program<a class="headerlink" href="#outline-of-an-assembly-language-program" title="Link to this heading">¶</a></h2>
+<p>Take a look at the program we just entered. At the beginning there are
+lots of lines that begin with hashes (<code class="docutils literal notranslate"><span class="pre">#</span></code>). These are <em>comments</em>.
+Comments are not translated by the assembler. They are used only for the
+programmer to talk to anyone who looks at the code in the future. Most
+programs you write will be modified by others. Get into the habit of
+writing comments in your code that will help them understand both why
+the program exists and how it works. Always include the following in
+your comments:</p>
+<ul class="simple">
+<li><p>The purpose of the code</p></li>
+<li><p>An overview of the processing involved</p></li>
+<li><p>Anything strange your program does and why it does it <a class="footnote-reference brackets" href="#id17" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
+</ul>
+<p>After the comments, the next line says</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">section</span> <span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+<p>Anything starting with a period isn’t directly translated into a machine
+instruction. Instead, it’s an instruction to the assembler itself. These
+are called <em>assembler directives</em> or <em>pseudo-operations</em> because they
+are handled by the assembler and are not actually run by the computer.
+The <code class="docutils literal notranslate"><span class="pre">.section</span></code> command breaks your program up into sections. This
+command starts the data section, where you list any memory storage you
+will need for data. Our program doesn’t use any, so we don’t need the
+section. It’s just here for completeness. Almost every program you write
+in the future will have data.</p>
+<p>Right after this you have</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">section</span> <span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+<p>which starts the text section. The text section of a program is where
+the program instructions live.</p>
+<p>The next instruction is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">globl</span> <span class="n">_start</span>
+</pre></div>
+</div>
+<p>This instructs the assembler that <code class="docutils literal notranslate"><span class="pre">_start</span></code> is important to remember.
+<code class="docutils literal notranslate"><span class="pre">_start</span></code> is a <em>symbol</em>, which means that it is going to be replaced by
+something else either during assembly or linking. Symbols are generally
+used to mark locations of programs or data, so you can refer to them by
+name instead of by their location number. Imagine if you had to refer to
+every memory location by its address. First of all, it would be very
+confusing because you would have to memorize or look up the numeric
+memory address of every piece of code or data. In addition, every time
+you had to insert a piece of data or code you would have to change all
+the addresses in your program! Symbols are used so that the assembler
+and linker can take care of keeping track of addresses, and you can
+concentrate on writing your program.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.globl</span></code> means that the assembler shouldn’t discard this symbol after
+assembly, because the linker will need it. <code class="docutils literal notranslate"><span class="pre">_start</span></code> is a special
+symbol that always needs to be marked with <code class="docutils literal notranslate"><span class="pre">.globl</span></code> because it marks
+the location of the start of the program. <em>Without marking this location
+in this way, when the computer loads your program it won’t know where to
+begin running your program</em>.</p>
+<p>The next line</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_start</span><span class="p">:</span>
+</pre></div>
+</div>
+<p><em>defines</em> the value of the <code class="docutils literal notranslate"><span class="pre">_start</span></code> label. A <em>label</em> is a symbol
+followed by a colon. Labels define a symbol’s value. When the assembler
+is assembling the program, it has to assign each data value and
+instruction an address. Labels tell the assembler to make the symbol’s
+value be wherever the next instruction or data element will be. This
+way, if the actual physical location of the data or instruction changes,
+you don’t have to rewrite any references to it - the symbol
+automatically gets the new value.</p>
+<p>Now we get into actual computer instructions. The first such instruction
+is this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl $1, %eax
+</pre></div>
+</div>
+<p>When the program runs, this instruction transfers the number <code class="docutils literal notranslate"><span class="pre">1</span></code> into
+the %eax; register. In assembly language, many instructions have
+<em>operands</em>. <code class="docutils literal notranslate"><span class="pre">movl</span></code> has two operands - the <em>source</em> and the
+<em>destination</em>. In this case, the source is the literal number 1, and the
+destination is the %eax; register. Operands can be numbers,
+memory location references, or registers. Different instructions allow
+different types of operands. See <a class="reference internal" href="instructionsap.html#instructionsappendix"><span class="std std-ref">Common x86 Instructions</span></a> for
+more information on which instructions take which kinds of operands.</p>
+<p>On most instructions which have two operands, the first one is the
+source operand and the second one is the destination. Note that in these
+cases, the source operand is not modified at all. Other instructions of
+this type are, for example, <code class="docutils literal notranslate"><span class="pre">addl</span></code>, <code class="docutils literal notranslate"><span class="pre">subl</span></code>, and <code class="docutils literal notranslate"><span class="pre">imull</span></code>. These
+add/subtract/multiply the source operand from/to/by the destination
+operand and and save the result in the destination operand. Other
+instructions may have an operand hardcoded in. <code class="docutils literal notranslate"><span class="pre">idivl</span></code>, for example,
+requires that the dividend be in %eax;, and %edx; be zero,
+and the quotient is then transferred to %eax; and the remainder
+to %edx;. However, the divisor can be any register or memory
+location.</p>
+<p>On x86 processors, there are several general-purpose registers <a class="footnote-reference brackets" href="#id18" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a> (all
+of which can be used with <code class="docutils literal notranslate"><span class="pre">movl</span></code>):</p>
+<ul class="simple">
+<li><p>%eax;</p></li>
+<li><p>%ebx;</p></li>
+<li><p>%ecx;</p></li>
+<li><p>%edx;</p></li>
+<li><p>%edi;</p></li>
+<li><p>%esi;</p></li>
+</ul>
+<p>In addition to these general-purpose registers, there are also several
+special-purpose registers, including:</p>
+<ul class="simple">
+<li><p>%ebp;</p></li>
+<li><p>%esp;</p></li>
+<li><p>%eip;</p></li>
+<li><p>%eflags;</p></li>
+</ul>
+<p>We’ll discuss these later, just be aware that they exist. <a class="footnote-reference brackets" href="#id19" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a> Some of
+these registers, like %eip; and %eflags;
+can only be accessed through special instructions. The others can be
+accessed using the same instructions as general-purpose registers, but
+they have special meanings, special uses, or are simply faster when used
+in a specific way.</p>
+<p>So, the <code class="docutils literal notranslate"><span class="pre">movl</span></code> instruction moves the number <code class="docutils literal notranslate"><span class="pre">1</span></code> into <code class="docutils literal notranslate"><span class="pre">%eax</span></code>. The
+dollar-sign in front of the one indicates that we want to use immediate
+mode addressing (refer back to <a class="reference internal" href="memory.html#dataaccessingmethods"><span class="std std-ref">Data Accessing Methods</span></a>). Without
+the dollar-sign it would do direct addressing, loading whatever number
+is at address <code class="docutils literal notranslate"><span class="pre">1</span></code>. We want the actual number <code class="docutils literal notranslate"><span class="pre">1</span></code> loaded in, so we
+have to use immediate mode.</p>
+<p>The reason we are moving the number 1 into %eax; is because we
+are preparing to call the Linux Kernel. The number <code class="docutils literal notranslate"><span class="pre">1</span></code> is the number
+of the <code class="docutils literal notranslate"><span class="pre">exit</span></code> <em>system call</em> . We will discuss system calls in more
+depth soon, but basically they are requests for the operating system’s
+help. Normal programs can’t do everything. Many operations such as
+calling other programs, dealing with files, and exiting have to be
+handled by the operating system through system calls. When you make a
+system call, which we will do shortly, the system call number has to be
+loaded into %eax; (for a complete listing of system calls
+and their numbers, see <a class="reference internal" href="syscallap.html#syscallap"><span class="std std-ref">Important System Calls</span></a>). Depending on the system
+call, other registers may have to have values in them as well. Note that
+system calls is not the only use or even the main use of registers. It
+is just the one we are dealing with in this first program. Later
+programs will use registers for regular computation.</p>
+<p>The operating system, however, usually needs more information than just
+which call to make. For example, when dealing with files, the operating
+system needs to know which file you are dealing with, what data you want
+to write, and other details. The extra details, called <em>parameters</em> are
+stored in other registers. In the case of the <code class="docutils literal notranslate"><span class="pre">exit</span></code> system call, the
+operating system requires a status code be loaded in
+%ebx;. This value is then returned to the system. This is
+the value you retrieved when you typed <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$?</span></code>. So, we load
+%ebx; with <code class="docutils literal notranslate"><span class="pre">0</span></code> by typing the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl $0, %ebx
+</pre></div>
+</div>
+<p>Now, loading registers with these numbers doesn’t do anything itself.
+Registers are used for all sorts of things besides system calls. They
+are where all program logic such as addition, subtraction, and
+comparisons take place. Linux simply requires that certain registers be
+loaded with certain parameter values before making a system call.
+%eax; is always required to be loaded with the system
+call number. For the other registers, however, each system call has
+different requirements. In the <code class="docutils literal notranslate"><span class="pre">exit</span></code> system call,
+%ebx; is required to be loaded with the exit status. We
+will discuss different system calls as they are needed. For a list of
+common system calls and what is required to be in each register, see
+<a class="reference internal" href="syscallap.html#syscallap"><span class="std std-ref">Important System Calls</span></a></p>
+<p>The next instruction is the “magic” one. It looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int $0x80
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">int</span></code> stands for <em>interrupt</em>. The <code class="docutils literal notranslate"><span class="pre">0x80</span></code> is the interrupt
+number to use. <a class="footnote-reference brackets" href="#id20" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a> An <em>interrupt</em> interrupts the normal program flow,
+and transfers control from our program to Linux so that it will do a
+system call. <a class="footnote-reference brackets" href="#id21" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a>. You can think of it as like signaling Batman(or
+Larry-Boy <a class="footnote-reference brackets" href="#id22" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></a>, if you prefer). You need something done, you send the
+signal, and then he comes to the rescue. You don’t care how he does his
+work - it’s more or less magic - and when he’s done you’re back in
+control. In this case, all we’re doing is asking Linux to terminate the
+program, in which case we won’t be back in control. If we didn’t signal
+the interrupt, then no system call would have been performed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To recap - Operating System features are accessed through system
+calls. These are invoked by setting up the registers in a special way
+and issuing the instruction <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">$0x80</span></code>. Linux knows which system
+call we want to access by what we stored in the %eax;
+register. Each system call has other requirements as to what needs to
+be stored in the other registers. System call number 1 is the
+<code class="docutils literal notranslate"><span class="pre">exit</span></code> system call, which requires the status code to be placed in
+%ebx;.</p>
+</div>
+<p>Now that you’ve assembled, linked, run, and examined the program, you
+should make some basic edits. Do things like change the number that is
+loaded into <code class="docutils literal notranslate"><span class="pre">%ebx</span></code>, and watch it come out at the end with
+<code class="docutils literal notranslate"><span class="pre">echo$?</span></code>. Don’t forget to assemble and link it again before
+running it. Add some comments. Don’t worry, the worse thing that would
+happen is that the program won’t assemble or link, or will freeze your
+screen. That’s just part of learning!</p>
+</section>
+<section id="planning-the-program">
+<h2>Planning the Program<a class="headerlink" href="#planning-the-program" title="Link to this heading">¶</a></h2>
+<p>In our next program we will try to find the maximum of a list of
+numbers. Computers are very detail-oriented, so in order to write the
+program we will have to have planned out a number of details. These
+details include:</p>
+<ul class="simple">
+<li><p>Where will the original list of numbers be stored?</p></li>
+<li><p>What procedure will we need to follow to find the maximum number?</p></li>
+<li><p>How much storage do we need to carry out that procedure?</p></li>
+<li><p>Will all of the storage fit into registers, or do we need to use some
+memory as well?</p></li>
+</ul>
+<p>You might not think that something as simple as finding the maximum
+number from a list would take much planning. You can usually tell people
+to find the maximum number, and they can do so with little trouble.
+However, our minds are used to putting together complex tasks
+automatically. Computers need to be instructed through the process. In
+addition, we can usually hold any number of things in our mind without
+much trouble. We usually don’t even realize we are doing it. For
+example, if you scan a list of numbers for the maximum, you will
+probably keep in mind both the highest number you’ve seen so far, and
+where you are in the list. While your mind does this automatically, with
+computers you have to explicitly set up storage for holding the current
+position on the list and the current maximum number. You also have other
+problems such as how to know when to stop. When reading a piece of
+paper, you can stop when you run out of numbers. However, the computer
+only contains numbers, so it has no idea when it has reached the last of
+<em>your</em> numbers.</p>
+<p>In computers, you have to plan every step of the way. So, let’s do a
+little planning. First of all, just for reference, let’s name the
+address where the list of numbers starts as <code class="docutils literal notranslate"><span class="pre">data_items</span></code>. Let’s say
+that the last number in the list will be a zero, so we know where to
+stop. We also need a value to hold the current position in the list, a
+value to hold the current list element being examined, and the current
+highest value on the list. Let’s assign each of these a register:</p>
+<ul class="simple">
+<li><p>%edi; will hold the current position in the list.</p></li>
+<li><p>%ebx; will hold the current highest value in the list.</p></li>
+<li><p>%eax; will hold the current element being examined.</p></li>
+</ul>
+<p>When we begin the program and look at the first item in the list, since
+we haven’t seen any other items, that item will automatically be the
+current largest element in the list. Also, we will set the current
+position in the list to be zero - the first element. From then, we will
+follow the following steps:</p>
+<ol class="arabic simple">
+<li><p>Check the current list element (%eax;) to see if it’s zero
+(the terminating element).</p></li>
+<li><p>If it is zero, exit.</p></li>
+<li><p>Increase the current position (%edi;).</p></li>
+<li><p>Load the next value in the list into the current value register
+(%eax;). What addressing mode might we use here? Why?</p></li>
+<li><p>Compare the current value (%eax;) with the current highest
+value (%ebx;).</p></li>
+<li><p>If the current value is greater than the current highest value,
+replace the current highest value with the current value.</p></li>
+<li><p>Repeat.</p></li>
+</ol>
+<p>That is the procedure. Many times in that procedure I made use of the
+word “if”. These places are where decisions are to be made. You see, the
+computer doesn’t follow the exact same sequence of instructions every
+time. Depending on which “if”s are correct, the computer may follow a
+different set of instructions. The second time through, it might not
+have the highest value. In that case, it will skip step 6, but come back
+to step 7. In every case except the last one, it will skip step 2. In
+more complicated programs, the skipping around increases dramatically.</p>
+<p>These “if”s are a class of instructions called <em>flow control</em>
+instructions, because they tell the computer which steps to follow and
+which paths to take. In the previous program, we did not have any flow
+control instructions, as there was only one possible path to take -
+exit. This program is much more dynamic in that it is directed by data.
+Depending on what data it receives, it will follow different instruction
+paths.</p>
+<p>In this program, this will be accomplished by two different
+instructions, the conditional jump and the unconditional jump. The
+conditional jump changes paths based on the results of a previous
+comparison or calculation. The unconditional jump just goes directly to
+a different path no matter what. The unconditional jump may seem
+useless, but it is very necessary since all of the instructions will be
+laid out on a line. If a path needs to converge back to the main path,
+it will have to do this by an unconditional jump. We will see more of
+both of these jumps in the next section.</p>
+<p>Another use of flow control is in implementing loops. A loop is a piece
+of program code that is meant to be repeated. In our example, the first
+part of the program (setting the current position to 0 and loading the
+current highest value with the current value) was only done once, so it
+wasn’t a loop. However, the next part is repeated over and over again
+for every number in the list. It is only left when we have come to the
+last element, indicated by a zero. This is called a <em>loop</em> because it
+occurs over and over again. It is implemented by doing unconditional
+jumps to the beginning of the loop at the end of the loop, which causes
+it to start over. However, you have to always remember to have a
+conditional jump to exit the loop somewhere, or the loop will continue
+forever! This condition is called an <em>infinite loop</em>. If we accidentally
+left out step 1, 2, or 3, the loop (and our program) would never end.</p>
+<p>In the next section, we will implement this program that we have
+planned. Program planning sounds complicated - and it is, to some
+degree. When you first start programming, it’s often hard to convert our
+normal thought process into a procedure that the computer can
+understand. We often forget the number of “temporary storage locations”
+that our minds are using to process problems. As you read and write
+programs, however, this will eventually become very natural to you. Just
+have patience.</p>
+</section>
+<section id="finding-a-maximum-value">
+<span id="maximum"></span><h2>Finding a Maximum Value<a class="headerlink" href="#finding-a-maximum-value" title="Link to this heading">¶</a></h2>
+<p>Enter the following program as <code class="docutils literal notranslate"><span class="pre">maximum.s</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id30">
+<div class="code-block-caption"><span class="caption-text">src/maximum.s</span><a class="headerlink" href="#id30" title="Link to this code">¶</a></div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">	</span><span class="c1">#PURPOSE:  This program finds the maximum number of a</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="c1">#          set of data items.</span>
+<span class="linenos"> 3</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="w">	</span><span class="c1">#VARIABLES: The registers have the following uses:</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos"> 7</span><span class="w">	</span><span class="c1"># %edi - Holds the index of the data item being examined </span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="c1"># %ebx - Largest data item found</span>
+<span class="linenos"> 9</span><span class="w">	</span><span class="c1"># %eax - Current data item</span>
+<span class="linenos">10</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">11</span><span class="w">	</span><span class="c1"># The following memory locations are used:</span>
+<span class="linenos">12</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">13</span><span class="w">	</span><span class="c1"># data_items - contains the item data.  A 0 is used</span>
+<span class="linenos">14</span><span class="w">	</span><span class="c1">#              to terminate the data</span>
+<span class="linenos">15</span><span class="w">	</span><span class="c1">#</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.data</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="nl">data_items:</span><span class="w">                       </span><span class="c1">#These are the data items</span>
+<span class="linenos">20</span><span class="w">	</span><span class="na">.long</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">67</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">222</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">54</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">44</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">66</span><span class="p">,</span><span class="mi">0</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">	</span><span class="na">.section</span><span class="w"> </span><span class="no">.text</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">	</span><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+<span class="linenos">25</span><span class="nl">_start:</span>
+<span class="linenos">26</span><span class="w">	</span><span class="nf">movl</span><span class="w"> </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%edi</span><span class="w">             </span><span class="c1"># move 0 into the index register</span>
+<span class="linenos">27</span><span class="w">	</span><span class="nf">movl</span><span class="w"> </span><span class="no">data_items</span><span class="p">(,</span><span class="nv">%edi</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="nv">%eax</span><span class="w"> </span><span class="c1"># load the first byte of data</span>
+<span class="linenos">28</span><span class="w">	</span><span class="nf">movl</span><span class="w"> </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span><span class="w">           </span><span class="c1"># since this is the first item, %eax is</span>
+<span class="linenos">29</span><span class="w">	                          </span><span class="c1"># the biggest</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="nl">start_loop:</span><span class="w">	                  </span><span class="c1"># start loop</span>
+<span class="linenos">32</span><span class="w">	</span><span class="nf">cmpl</span><span class="w"> </span><span class="no">$0</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">             </span><span class="c1"># check to see if we&#39;ve hit the end</span>
+<span class="linenos">33</span><span class="w">	</span><span class="nf">je</span><span class="w"> </span><span class="no">loop_exit</span>
+<span class="linenos">34</span><span class="w">	</span><span class="nf">incl</span><span class="w"> </span><span class="nv">%edi</span><span class="w">                 </span><span class="c1"># load next value</span>
+<span class="linenos">35</span><span class="w">	</span><span class="nf">movl</span><span class="w"> </span><span class="no">data_items</span><span class="p">(,</span><span class="nv">%edi</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="nv">%eax</span><span class="w"> </span>
+<span class="linenos">36</span><span class="w">	</span><span class="no">cmpl</span><span class="w"> </span><span class="nv">%ebx</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">           </span><span class="c1"># compare values</span>
+<span class="linenos">37</span><span class="w">	</span><span class="nf">jle</span><span class="w"> </span><span class="no">start_loop</span><span class="w">            </span><span class="c1"># jump to loop beginning if the new </span>
+<span class="linenos">38</span><span class="w">	                          </span><span class="c1"># one isn&#39;t bigger</span>
+<span class="linenos">39</span><span class="w">	</span><span class="nf">movl</span><span class="w"> </span><span class="nv">%eax</span><span class="p">,</span><span class="w"> </span><span class="nv">%ebx</span><span class="w">           </span><span class="c1"># move the value as the largest </span>
+<span class="linenos">40</span><span class="w">	</span><span class="nf">jmp</span><span class="w"> </span><span class="no">start_loop</span><span class="w">            </span><span class="c1"># jump to loop beginning</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="nl">loop_exit:</span>
+<span class="linenos">43</span><span class="w">	</span><span class="c1"># %ebx is the status code for the exit system call</span>
+<span class="linenos">44</span><span class="w">	</span><span class="c1"># and it already has the maximum number</span>
+<span class="linenos">45</span><span class="w">        </span><span class="nf">movl</span><span class="w"> </span><span class="no">$1</span><span class="p">,</span><span class="w"> </span><span class="nv">%eax</span><span class="w">             </span><span class="mi">#1</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">the</span><span class="w"> </span><span class="no">exit</span><span class="p">()</span><span class="w"> </span><span class="no">syscall</span>
+<span class="linenos">46</span><span class="w">        </span><span class="nf">int</span><span class="w">  </span><span class="no">$0x80</span>
+</pre></div>
+</div>
+</div>
+<p>Now, assemble and link it with these commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span> <span class="n">maximum</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">maximum</span><span class="o">.</span><span class="n">o</span>
+<span class="n">ld</span> <span class="n">maximum</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">maximum</span>
+</pre></div>
+</div>
+<p>Now run it, and check its status.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>./maximum
+echo $?
+</pre></div>
+</div>
+<p>You’ll notice it returns the value <code class="docutils literal notranslate"><span class="pre">222</span></code>. Let’s take a look at the
+program and what it does. If you look in the comments, you’ll see that
+the program finds the maximum of a set of numbers (aren’t comments
+wonderful!). You may also notice that in this program we actually have
+something in the data section. These lines are the data section:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_items</span><span class="p">:</span>                       <span class="c1">#These are the data items</span>
+        <span class="o">.</span><span class="n">long</span> <span class="mi">3</span><span class="p">,</span><span class="mi">67</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">222</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">54</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">44</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">66</span><span class="p">,</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>Lets look at this. <code class="docutils literal notranslate"><span class="pre">data_items</span></code> is a label that refers to the location
+that follows it. Then, there is a directive that starts with
+<code class="docutils literal notranslate"><span class="pre">.long</span></code>. That causes the assembler to reserve memory for the list
+of numbers that follow it. <code class="docutils literal notranslate"><span class="pre">data_items</span></code> refers to the location of the
+first one. Because <code class="docutils literal notranslate"><span class="pre">data_items</span></code> is a label, any time in our program
+where we need to refer to this address we can use the <code class="docutils literal notranslate"><span class="pre">data_items</span></code>
+symbol, and the assembler will substitute it with the address where the
+numbers start during assembly. For example, the instruction
+<code class="docutils literal notranslate"><span class="pre">movl</span> <span class="pre">data_items,</span> <span class="pre">%eax</span></code> would move the value 3 into %eax;.
+There are several different types of memory locations other than
+<code class="docutils literal notranslate"><span class="pre">.long</span></code> that can be reserved. The main ones are as follows:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">.byte</span></code></dt><dd><p>Bytes take up one storage location for each number. They are limited
+to numbers between 0 and 255.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">.int</span></code></dt><dd><p>Ints (which differ from the <code class="docutils literal notranslate"><span class="pre">int</span></code> instruction) take up two storage
+locations for each number. These are limitted to numbers between 0
+and 65535. <a class="footnote-reference brackets" href="#id23" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">.long</span></code></dt><dd><p>Longs take up four storage locations. This is the same amount of
+space the registers use, which is why they are used in this program.
+They can hold numbers between 0 and 4294967295.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">.ascii</span></code></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">.ascii</span></code> directive is to enter in characters into memory.
+Characters each take up one storage location (they are converted into
+bytes internally). So, if you gave the directive
+<code class="docutils literal notranslate"><span class="pre">.ascii</span> <span class="pre">&quot;Hello</span> <span class="pre">there\0&quot;</span></code>, the assembler would reserve 12 storage
+locations (bytes). The first byte contains the numeric code for
+<code class="docutils literal notranslate"><span class="pre">H</span></code>, the second byte contains the numeric code for <code class="docutils literal notranslate"><span class="pre">e</span></code>, and so
+forth. The last character is represented by <code class="docutils literal notranslate"><span class="pre">\0</span></code>, and it is the
+terminating character (it will never display, it just tells other
+parts of the program that that’s the end of the characters). Letters
+and numbers that start with a backslash represent characters that are
+not typeable on the keyboard or easily viewable on the screen. For
+example, <code class="docutils literal notranslate"><span class="pre">\n</span></code> refers to the “newline” character which causes the
+computer to start output on the next line and <code class="docutils literal notranslate"><span class="pre">\t</span></code> refers to the
+“tab” character. All of the letters in an <code class="docutils literal notranslate"><span class="pre">.ascii</span></code> directive should
+be in quotes.</p>
+</dd>
+</dl>
+<p>In our example, the assembler reserves 14 <code class="docutils literal notranslate"><span class="pre">.long</span></code>s, one right after
+another. Since each long takes up 4 bytes, that means that the whole
+list takes up 56 bytes. These are the numbers we will be searching
+through to find the maximum. <code class="docutils literal notranslate"><span class="pre">data_items</span></code> is used by the assembler to
+refer to the address of the first of these values.</p>
+<p>Take note that the last data item in the list is a zero. I decided to
+use a zero to tell my program that it has hit the end of the list. I
+could have done this other ways. I could have had the size of the list
+hard-coded into the program. Also, I could have put the length of the
+list as the first item, or in a separate location. I also could have
+made a symbol which marked the last location of the list items. No
+matter how I do it, I must have some method of determining the end of
+the list. The computer knows nothing - it can only do what it is told.
+It’s not going to stop processing unless I give it some sort of signal.
+Otherwise it would continue processing past the end of the list into the
+data that follows it, and even to locations where we haven’t put any
+data.</p>
+<p>Notice that we don’t have a <code class="docutils literal notranslate"><span class="pre">.globl</span></code> declaration for
+<code class="docutils literal notranslate"><span class="pre">data_items</span></code>. This is because we only refer to these locations within
+the program. No other file or program needs to know where they are
+located. This is in contrast to the <code class="docutils literal notranslate"><span class="pre">_start</span></code> symbol, which Linux
+needs to know where it is so that it knows where to begin the program’s
+execution. It’s not an error to write <code class="docutils literal notranslate"><span class="pre">.globl</span> <span class="pre">data_items</span></code>, it’s just
+not necessary. Anyway, play around with this line and add your own
+numbers. Even though they are <code class="docutils literal notranslate"><span class="pre">.long</span></code>, the program will produce
+strange results if any number is greater than 255, because that’s the
+largest allowed exit status. Also notice that if you move the 0 to
+earlier in the list, the rest get ignored. <em>Remember that any time you
+change the source file, you have to re-assemble and re-link your
+program. Do this now and see the results</em>.</p>
+<p>All right, we’ve played with the data a little bit. Now let’s look at
+the code. In the comments you will notice that we’ve marked some
+<em>variables</em> that we plan to use. A variable is a dedicated storage
+location used for a specific purpose, usually given a distinct name by
+the programmer. We talked about these in the previous section, but
+didn’t give them a name. In this program, we have several variables:</p>
+<ul class="simple">
+<li><p>a variable for the current maximum number found</p></li>
+<li><p>a variable for which number of the list we are currently examining,
+called the index</p></li>
+<li><p>a variable holding the current number being examined</p></li>
+</ul>
+<p>In this case,we have few enough variables that we can hold them all in
+registers. In larger programs, you have to put them in memory, and then
+move them to registers when you are ready to use them. We will discuss
+how to do that later. When people start out programming, they usually
+underestimate the number of variables they will need. People are not
+used to having to think through every detail of a process, and therefore
+leave out needed variables in their first programming attempts.</p>
+<p>In this program, we are using %ebx; as the location of the
+largest item we’ve found. %edi; is used as the <em>index</em> to the
+current data item we’re looking at. Now, let’s talk about what an index
+is. When we read the information from <code class="docutils literal notranslate"><span class="pre">data_items</span></code>, we will start with
+the first one (data item number 0), then go to the second one (data item
+number 1), then the third (data item number 2), and so on. The data item
+number is the <em>index</em> of <code class="docutils literal notranslate"><span class="pre">data_items</span></code>. You’ll notice that the first
+instruction we give to the computer is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl $0, %edi
+</pre></div>
+</div>
+<p>Since we are using <code class="docutils literal notranslate"><span class="pre">%edi</span></code> as our index, and we want to start looking
+at the first item, we load <code class="docutils literal notranslate"><span class="pre">%edi</span></code> with 0. Now, the next instruction is
+tricky, but crucial to what we’re doing. It says:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="n">data_items</span><span class="p">(,</span><span class="o">%</span><span class="n">edi</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+</pre></div>
+</div>
+<p>movl
+Now to understand this line, you need to keep several things in mind:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data_items</span></code> is the location number of the start of our number
+list.</p></li>
+<li><p>Each number is stored across 4 storage locations (because we declared
+it using <code class="docutils literal notranslate"><span class="pre">.long</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%edi</span></code> is holding 0 at this point</p></li>
+</ul>
+<p>So, basically what this line does is say, “start at the beginning of
+data_items, and take the first item number (because <code class="docutils literal notranslate"><span class="pre">%edi</span></code> is 0), and
+remember that each number takes up four storage locations.” Then it
+stores that number in <code class="docutils literal notranslate"><span class="pre">%eax</span></code>. This is how you write indexed addressing
+mode instructions in assembly language. The instruction in a general
+form is this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span>  <span class="n">BEGINNINGADDRESS</span><span class="p">(,</span><span class="o">%</span><span class="n">INDEXREGISTER</span><span class="p">,</span><span class="n">WORDSIZE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In our case <code class="docutils literal notranslate"><span class="pre">data_items</span></code> was our beginning address, %edi; was
+our index register, and 4 was our word size. This topic is discussed
+further in <a class="reference external" href="#movaddrmodes">Addressing Modes</a>.</p>
+<p>If you look at the numbers in <code class="docutils literal notranslate"><span class="pre">data_items</span></code>, you will see that the
+number 3 is now in %eax;. If %edi; was set to 1, the
+number 67 would be in %eax;, and if it was set to 2, the number
+34 would be in %eax;, and so forth. Very strange things would
+happen if we used a number other than 4 as the size of our storage
+locations. <a class="footnote-reference brackets" href="#id24" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></a> The way you write this is very awkward, but if you know
+what each piece does, it’s not too difficult. For more information about
+this, see <a class="reference external" href="#movaddrmodes">Addressing Modes</a></p>
+<p>Let’s look at the next line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="o">%</span><span class="n">ebx</span>
+</pre></div>
+</div>
+<p>We have the first item to look at stored in <code class="docutils literal notranslate"><span class="pre">%eax</span></code>. Since it is the
+first item, we know it’s the biggest one we’ve looked at. We store it in
+<code class="docutils literal notranslate"><span class="pre">%ebx</span></code>, since that’s where we are keeping the largest number found.
+Also, even though <code class="docutils literal notranslate"><span class="pre">movl</span></code> stands for <em>move</em>, it actually copies the
+value, so <code class="docutils literal notranslate"><span class="pre">%eax</span></code> and <code class="docutils literal notranslate"><span class="pre">%ebx</span></code> both contain the starting value. <a class="footnote-reference brackets" href="#id25" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></a></p>
+<p>Now we move into a <em>loop</em>. A loop is a segment of your program that
+might run more than once. We have marked the starting location of the
+loop in the symbol <code class="docutils literal notranslate"><span class="pre">start_loop</span></code>. The reason we are doing a loop is
+because we don’t know how many data items we have to process, but the
+procedure will be the same no matter how many there are. We don’t want
+to have to rewrite our program for every list length possible. In fact,
+we don’t even want to have to write out code for a comparison for every
+list item. Therefore, we have a single section of code (a loop) that we
+execute over and over again for every element in <code class="docutils literal notranslate"><span class="pre">data_items</span></code>.</p>
+<p>In the previous section, we outlined what this loop needed to do. Let’s
+review:</p>
+<ul class="simple">
+<li><p>Check to see if the current value being looked at is zero. If so,
+that means we are at the end of our data and should exit the loop.</p></li>
+<li><p>We have to load the next value of our list.</p></li>
+<li><p>We have to see if the next value is bigger than our current biggest
+value.</p></li>
+<li><p>If it is, we have to copy it to the location we are holding the
+largest value in.</p></li>
+<li><p>Now we need to go back to the beginning of the loop.</p></li>
+</ul>
+<p>Okay, so now lets go to the code. We have the beginning of the loop
+marked with <code class="docutils literal notranslate"><span class="pre">start_loop</span></code>. That is so we know where to go back to at
+the end of our loop. Then we have these instructions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmpl $0, %eax
+je loop_exit
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">cmpl</span></code> instruction compares the two values. Here, we are
+comparing the number 0 to the number stored in %eax; This compare
+instruction also affects a register not mentioned here, the
+%eflags; register. This is also known as the status
+register, and has many uses which we will discuss later. Just be aware
+that the result of the comparison is stored in the status register. The
+next line is a flow control instruction which says to <em>jump</em> to the
+<code class="docutils literal notranslate"><span class="pre">loop_exit</span></code> location if the values that were just compared are equal
+(that’s what the <code class="docutils literal notranslate"><span class="pre">e</span></code> of <code class="docutils literal notranslate"><span class="pre">je</span></code> means). It uses the status register to
+hold the value of the last comparison. We used <code class="docutils literal notranslate"><span class="pre">je</span></code>, but there are
+many jump statements that you can use:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">je</span></code></dt><dd><p>Jump if the values were equal</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jg</span></code></dt><dd><p>Jump if the second value was greater than the first value <a class="footnote-reference brackets" href="#id26" id="id12" role="doc-noteref"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jge</span></code></dt><dd><p>Jump if the second value was greater than or equal to the first value</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jl</span></code></dt><dd><p>Jump if the second value was less than the first value</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jle</span></code></dt><dd><p>Jump if the second value was less than or equal to the first value</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jmp</span></code></dt><dd><p>Jump no matter what. This does not need to be preceeded by a
+comparison.</p>
+</dd>
+</dl>
+<p>The complete list is documented in <a class="reference internal" href="instructionsap.html#instructionsappendix"><span class="std std-ref">Common x86 Instructions</span></a>. In
+this case, we are jumping if %eax; holds the value of zero. If
+so, we are done and we go to <code class="docutils literal notranslate"><span class="pre">loop_exit</span></code>. <a class="footnote-reference brackets" href="#id27" id="id13" role="doc-noteref"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></a></p>
+<p>If the last loaded element was not zero, we go on to the next
+instructions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">incl</span> <span class="o">%</span><span class="n">edi</span>
+<span class="n">movl</span> <span class="n">data_items</span><span class="p">(,</span><span class="o">%</span><span class="n">edi</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+</pre></div>
+</div>
+<p>If you remember from our previous discussion, %edi; contains the
+index to our list of values in <code class="docutils literal notranslate"><span class="pre">data_items</span></code>. <code class="docutils literal notranslate"><span class="pre">incl</span></code> increments
+the value of %edi; by one. Then the <code class="docutils literal notranslate"><span class="pre">movl</span></code> is just like the one
+we did beforehand. However, since we already incremented %edi;,
+%eax; is getting the next value from the list. Now %eax;
+has the next value to be tested. So, let’s test it!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmpl</span> <span class="o">%</span><span class="n">ebx</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+<span class="n">jle</span> <span class="n">start_loop</span>
+</pre></div>
+</div>
+<p>Here we compare our current value, stored in %eax; to our biggest
+value so far, stored in %ebx;. If the current value is less or
+equal to our biggest value so far, we don’t care about it, so we just
+jump back to the beginning of the loop. Otherwise, we need to record
+that value as the largest one:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="o">%</span><span class="n">ebx</span>
+<span class="n">jmp</span> <span class="n">start_loop</span>
+</pre></div>
+</div>
+<p>which moves the current value into %ebx;, which we are using to
+store the current largest value, and starts the loop over again.</p>
+<p>Okay, so the loop executes until it reaches a 0, when it jumps to
+<code class="docutils literal notranslate"><span class="pre">loop_exit</span></code>. This part of the program calls the Linux kernel to exit.
+If you remember from the last program, when you call the operating
+system (remember it’s like signaling Batman), you store the system call
+number in %eax; (1 for the <code class="docutils literal notranslate"><span class="pre">exit</span></code> call), and store the
+other values in the other registers. The exit call requires that we put
+our exit status in %ebx; We already have the exit status
+there since we are using %ebx; as our largest number, so all we
+have to do is load %eax; with the number one and call the kernel
+to exit. Like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl $1, %eax
+int  $0x80
+</pre></div>
+</div>
+<p>Okay, that was a lot of work and explanation, especially for such a
+small program. But hey, you’re learning a lot! Now, read through the
+whole program again, paying special attention to the comments. Make sure
+that you understand what is going on at each line. If you don’t
+understand a line, go back through this section and figure out what the
+line means.</p>
+<p>You might also grab a piece of paper, and go through the program
+step-by-step, recording every change to every register, so you can see
+more clearly what is going on.</p>
+</section>
+<section id="addressing-modes">
+<span id="movaddrmodes"></span><h2>Addressing Modes<a class="headerlink" href="#addressing-modes" title="Link to this heading">¶</a></h2>
+<p>In <a class="reference internal" href="memory.html#dataaccessingmethods"><span class="std std-ref">Data Accessing Methods</span></a> we learned the different types of
+addressing modes available for use in assembly language. This section
+will deal with how those addressing modes are represented in assembly
+language instructions.</p>
+<p>The general form of memory address references is this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ADDRESS_OR_OFFSET</span><span class="p">(</span><span class="o">%</span><span class="n">BASE_OR_OFFSET</span><span class="p">,</span><span class="o">%</span><span class="n">INDEX</span><span class="p">,</span><span class="n">MULTIPLIER</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All of the fields are optional. To calculate the address, simply perform
+the following calculation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FINAL</span> <span class="n">ADDRESS</span> <span class="o">=</span> <span class="n">ADDRESS_OR_OFFSET</span> <span class="o">+</span> <span class="o">%</span><span class="n">BASE_OR_OFFSET</span> <span class="o">+</span> <span class="n">MULTIPLIER</span> <span class="o">*</span> <span class="o">%</span><span class="n">INDEX</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ADDRESS_OR_OFFSET</span></code> and <code class="docutils literal notranslate"><span class="pre">MULTIPLIER</span></code> must both be constants, while
+the other two must be registers. If any of the pieces is left out, it is
+just substituted with zero in the equation.</p>
+<p>All of the addressing modes mentioned in <a class="reference internal" href="memory.html#dataaccessingmethods"><span class="std std-ref">Data Accessing Methods</span></a>
+except immediate-mode can be represented in this fashion.</p>
+<dl>
+<dt>direct addressing mode</dt><dd><p>This is done by only using the <code class="docutils literal notranslate"><span class="pre">ADDRESS_OR_OFFSET</span></code> portion.
+Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="n">ADDRESS</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+</pre></div>
+</div>
+<p>This loads %eax; with the value at memory address <code class="docutils literal notranslate"><span class="pre">ADDRESS</span></code>.</p>
+</dd>
+<dt>indexed addressing mode</dt><dd><p>This is done by using the <code class="docutils literal notranslate"><span class="pre">ADDRESS_OR_OFFSET</span></code> and the <code class="docutils literal notranslate"><span class="pre">%INDEX</span></code>
+portion. You can use any general-purpose register as the index
+register. You can also have a constant multiplier of 1, 2, or 4 for
+the index register, to make it easier to index by bytes,
+double-bytes, and words. For example, let’s say that we had a string
+of bytes as <code class="docutils literal notranslate"><span class="pre">string_start</span></code> and wanted to access the third one (an
+index of 2 since we start counting the index at zero), and
+%ecx; held the value 2. If you wanted to load it into
+%eax; you could do the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="n">string_start</span><span class="p">(,</span><span class="o">%</span><span class="n">ecx</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+</pre></div>
+</div>
+<p>This starts at <code class="docutils literal notranslate"><span class="pre">string_start</span></code>, and adds <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">*</span> <span class="pre">%ecx</span></code> to that
+address, and loads the value into %eax;.</p>
+</dd>
+<dt>indirect addressing mode</dt><dd><p>Indirect addressing mode loads a value from the address indicated by
+a register. For example, if %eax; held an address, we could
+move the value at that address to %ebx; by doing the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="p">(</span><span class="o">%</span><span class="n">eax</span><span class="p">),</span> <span class="o">%</span><span class="n">ebx</span>
+</pre></div>
+</div>
+</dd>
+<dt>base pointer addressing mode</dt><dd><p>Base-pointer addressing is similar to indirect addressing, except
+that it adds a constant value to the address in the register. For
+example, if you have a record where the age value is 4 bytes into the
+record, and you have the address of the record in %eax;, you
+can retrieve the age into %ebx; by issuing the following
+instruction:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span>  <span class="mi">4</span><span class="p">(</span><span class="o">%</span><span class="n">eax</span><span class="p">),</span> <span class="o">%</span><span class="n">ebx</span>
+</pre></div>
+</div>
+</dd>
+<dt>immediate mode</dt><dd><p>Immediate mode is very simple. It does not follow the general form we
+have been using. Immediate mode is used to load direct values into
+registers or memory locations. For example, if you wanted to load the
+number 12 into %eax;, you would simply do the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>movl $12, %eax
+</pre></div>
+</div>
+<p>Notice that to indicate immediate mode, we used a dollar sign in
+front of the number. If we did not, it would be direct addressing
+mode, in which case the value located at memory location 12 would be
+loaded into %eax; rather than the number 12 itself.</p>
+</dd>
+<dt>register addressing mode</dt><dd><p>Register mode simply moves data in or out of a register. In all of
+our examples, register addressing mode was used for the other
+operand.</p>
+</dd>
+</dl>
+<p>These addressing modes are very important, as every memory access will
+use one of these. Every mode except immediate mode can be used as either
+the source or destination operand. Immediate mode can only be a source
+operand.</p>
+<p>In addition to these modes, there are also different instructions for
+different sizes of values to move. For example, we have been using
+<code class="docutils literal notranslate"><span class="pre">movl</span></code> to move data a word at a time. in many cases, you will only
+want to move data a byte at a time. This is accomplished by the
+instruction <code class="docutils literal notranslate"><span class="pre">movb</span></code>. However, since the registers we have discussed
+are word-sized and not byte-sized, you cannot use the full register.
+Instead, you have to use a portion of the register.</p>
+<p>Take for instance eax;. If you only wanted to work with two bytes at a
+time, you could just use %ax;. %ax; is the
+least-significant half (i.e. - the last part of the number) of the eax;
+register, and is useful when dealing with two-byte quantities.
+%ax; is further divided up into %al; and
+%ah;. %al; is the least-significant byte of
+%ax;, and %ah; is the most significant byte. <a class="footnote-reference brackets" href="#id28" id="id14" role="doc-noteref"><span class="fn-bracket">[</span>14<span class="fn-bracket">]</span></a> Loading
+a value into %eax; will wipe out whatever was in %al; and
+%ah; (and also %ax;, since %ax; is made up of
+them). Similarly, loading a value into either %al; or %ah;
+will corrupt any value that was formerly in %eax;. Basically,
+it’s wise to only use a register for either a byte or a word, but never
+both at the same time.</p>
+<p><img alt="Layout of the %eax; register" src="images/registerdescription.png" /></p>
+<p>For a more comprehensive list of instructions, see
+<a class="reference internal" href="instructionsap.html#instructionsappendix"><span class="std std-ref">Common x86 Instructions</span></a>.</p>
+</section>
+<section id="review">
+<h2>Review<a class="headerlink" href="#review" title="Link to this heading">¶</a></h2>
+<section id="know-the-concepts">
+<h3>Know the Concepts<a class="headerlink" href="#know-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>What does it mean if a line in the program starts with the ‘#’
+character?</p></li>
+<li><p>What is the difference between an assembly language file and an
+object code file?</p></li>
+<li><p>What does the linker do?</p></li>
+<li><p>How do you check the result status code of the last program you ran?</p></li>
+<li><p>What is the difference between <code class="docutils literal notranslate"><span class="pre">movl</span> <span class="pre">$1,</span> <span class="pre">%eax</span></code> and
+<code class="docutils literal notranslate"><span class="pre">movl</span> <span class="pre">1,</span> <span class="pre">%eax</span></code>?</p></li>
+<li><p>Which register holds the system call number?</p></li>
+<li><p>What are indexes used for?</p></li>
+<li><p>Why do indexes usually start at 0?</p></li>
+<li><p>If I issued the command <code class="docutils literal notranslate"><span class="pre">movl</span> <span class="pre">data_items(,%edi,4),</span> <span class="pre">%eax</span></code> and
+data_items was address 3634 and %edi; held the value 13, what
+address would you be using to move into %eax;?</p></li>
+<li><p>List the general-purpose registers.</p></li>
+<li><p>What is the difference between <code class="docutils literal notranslate"><span class="pre">movl</span></code> and <code class="docutils literal notranslate"><span class="pre">movb</span></code>?</p></li>
+<li><p>What is flow control?</p></li>
+<li><p>What does a conditional jump do?</p></li>
+<li><p>What things do you have to plan for when writing a program?</p></li>
+<li><p>Go through every instruction and list what addressing mode is being
+used for each operand.</p></li>
+</ul>
+</section>
+<section id="use-the-concepts">
+<h3>Use the Concepts<a class="headerlink" href="#use-the-concepts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Modify the first program to return the value 3.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">maximum</span></code> program to find the minimum instead.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">maximum</span></code> program to use the number 255 to end the list
+rather than the number 0</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">maximum</span></code> program to use an ending address rather than
+the number 0 to know when to stop.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">maximum</span></code> program to use a length count rather than the
+number 0 to know when to stop.</p></li>
+<li><p>What would the instruction <code class="docutils literal notranslate"><span class="pre">movl</span> <span class="pre">_start,</span> <span class="pre">%eax</span></code> do? Be specific,
+based on your knowledge of both addressing modes and the meaning of
+<code class="docutils literal notranslate"><span class="pre">_start</span></code>. How would this differ from the instruction
+<code class="docutils literal notranslate"><span class="pre">movl</span> <span class="pre">$_start,</span> <span class="pre">%eax</span></code>?</p></li>
+</ul>
+</section>
+<section id="going-further">
+<h3>Going Further<a class="headerlink" href="#going-further" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Modify the first program to leave off the <code class="docutils literal notranslate"><span class="pre">int</span></code> instruction line.
+Assemble, link, and execute the new program. What error message do
+you get. Why do you think this might be?</p></li>
+<li><p>So far, we have discussed three approaches to finding the end of the
+list - using a special number, using the ending address, and using
+the length count. Which approach do you think is best? Why? Which
+approach would you use if you knew that the list was sorted? Why?</p></li>
+</ul>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id15" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>If you are new to Linux and UNIX, you may not be aware that files
+don’t have to have extensions. In fact, while Windows uses the
+<code class="docutils literal notranslate"><span class="pre">.exe</span></code> extension to signify an executable program, UNIX executables
+usually have no extension.</p>
+</aside>
+<aside class="footnote brackets" id="id16" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p><code class="docutils literal notranslate"><span class="pre">.</span></code> refers to the current directory in Linux and UNIX systems.</p>
+</aside>
+<aside class="footnote brackets" id="id17" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>You’ll find that many programs end up doing things strange ways.
+Usually there is a reason for that, but, unfortunately, programmers
+never document such things in their comments. So, future programmers
+either have to learn the reason the hard way by modifying the code
+and watching it break, or just leaving it alone whether it is still
+needed or not. You should <em>always</em> document any strange behavior your
+program performs. Unfortunately, figuring out what is strange and
+what is straightforward comes mostly with experience.</p>
+</aside>
+<aside class="footnote brackets" id="id18" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p>Note that on x86 processors, even the general-purpose registers have
+some special purposes, or used to before it went 32-bit. However,
+these are general-purpose registers for most instructions. Each of
+them has at least one instruction where it is used in a special way.
+However, for most of them, those instructions aren’t covered in this
+book.</p>
+</aside>
+<aside class="footnote brackets" id="id19" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">5</a><span class="fn-bracket">]</span></span>
+<p>You may be wondering, <em>why do all of these registers begin with the
+letter ``e``?</em> The reason is that early generations of x86 processors
+were 16 bits rather than 32 bits. Therefore, the registers were only
+half the length they are now. In later generations of x86 processors,
+the size of the registers doubled. They kept the old names to refer
+to the first half of the register, and added an <code class="docutils literal notranslate"><span class="pre">e</span></code> to refer to the
+extended versions of the register. Usually you will only use the
+extended versions. Newer models also offer a 64-bit mode, which
+doubles the size of these registers yet again and uses an <code class="docutils literal notranslate"><span class="pre">r</span></code>
+prefix to indicate the larger registers (i.e. %rax; is the
+64-bit version of eax;). However, these processors are not widely
+used, and are not covered in this book.</p>
+</aside>
+<aside class="footnote brackets" id="id20" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">6</a><span class="fn-bracket">]</span></span>
+<p>You may be wondering why it’s <code class="docutils literal notranslate"><span class="pre">0x80</span></code> instead of just <code class="docutils literal notranslate"><span class="pre">80</span></code>. The
+reason is that the number is written in hexadecimal. In hexadecimal,
+a single digit can hold 16 values instead of the normal 10. This is
+done by utilizing the letters <code class="docutils literal notranslate"><span class="pre">a</span></code> through <code class="docutils literal notranslate"><span class="pre">f</span></code> in addition to the
+regular digits. <code class="docutils literal notranslate"><span class="pre">a</span></code> represents 10, <code class="docutils literal notranslate"><span class="pre">b</span></code> represents 11, and so on.
+0x10 represents the number 16, and so on. This will be discussed more
+in depth later, but just be aware that numbers starting with <code class="docutils literal notranslate"><span class="pre">0x</span></code>
+are in hexadecimal. Tacking on an <code class="docutils literal notranslate"><span class="pre">H</span></code> at the end is also sometimes
+used instead, but we won’t do that in this book. For more information
+about this, see <a class="reference internal" href="counting.html#countingchapter"><span class="std std-ref">Counting Like a Computer</span></a></p>
+</aside>
+<aside class="footnote brackets" id="id21" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">7</a><span class="fn-bracket">]</span></span>
+<p>Actually, the interrupt transfers control to whoever set up an
+<em>interrupt handler</em> for the interrupt number. In the case of Linux,
+all of them are set to be handled by the Linux kernel.</p>
+</aside>
+<aside class="footnote brackets" id="id22" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">8</a><span class="fn-bracket">]</span></span>
+<p>If you don’t watch Veggie Tales, you should. Start with Dave and the
+Giant Pickle.</p>
+</aside>
+<aside class="footnote brackets" id="id23" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">9</a><span class="fn-bracket">]</span></span>
+<p>Note that no numbers in assembly language (or any other computer
+language I’ve seen) have commas embedded in them. So, always write
+numbers like <code class="docutils literal notranslate"><span class="pre">65535</span></code>, and never like <code class="docutils literal notranslate"><span class="pre">65,535</span></code>.</p>
+</aside>
+<aside class="footnote brackets" id="id24" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">10</a><span class="fn-bracket">]</span></span>
+<p>The instruction doesn’t really use 4 for the size of the storage
+locations, although looking at it that way works for our purposes
+now. It’s actually what’s called a <em>multiplier</em>. basically, the way
+it works is that you start at the location specified by
+<code class="docutils literal notranslate"><span class="pre">data_items</span></code>, then you add <code class="docutils literal notranslate"><span class="pre">%edi</span></code>*4 storage locations, and
+retrieve the number there. Usually, you use the size of the numbers
+as your multiplier, but in some circumstances you’ll want to do other
+things.</p>
+</aside>
+<aside class="footnote brackets" id="id25" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">11</a><span class="fn-bracket">]</span></span>
+<p>Also, the <code class="docutils literal notranslate"><span class="pre">l</span></code> in <code class="docutils literal notranslate"><span class="pre">movl</span></code> stands for <em>move long</em> since we are
+moving a value that takes up four storage locations.</p>
+</aside>
+<aside class="footnote brackets" id="id26" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">12</a><span class="fn-bracket">]</span></span>
+<p>notice that the comparison is to see if the <em>second</em> value is greater
+than the first. I would have thought it the other way around. You
+will find a lot of things like this when learning programming. It
+occurs because different things make sense to different people.
+Anyway, you’ll just have to memorize such things and go on.</p>
+</aside>
+<aside class="footnote brackets" id="id27" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">13</a><span class="fn-bracket">]</span></span>
+<p>The names of these symbols can be anything you want them to be, as
+long as they only contain letters and the underscore
+character(<code class="docutils literal notranslate"><span class="pre">_</span></code>). The only one that is forced is <code class="docutils literal notranslate"><span class="pre">_start</span></code>,
+and possibly others that you declare with <code class="docutils literal notranslate"><span class="pre">.globl</span></code>. However,
+if it is a symbol you define and only you use, feel free to call it
+anything you want that is adequately descriptive (remember that
+others will have to modify your code later, and will have to figure
+out what your symbols mean).</p>
+</aside>
+<aside class="footnote brackets" id="id28" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id14">14</a><span class="fn-bracket">]</span></span>
+<p>When we talk about the most or least <em>significant</em> byte, it may be a
+little confusing. Let’s take the number 5432. In that number, 54 is
+the most significant half of that number and 32 is the least
+significant half. You can’t quite divide it like that for registers,
+since they operate on base 2 rather than base 10 numbers, but that’s
+the basic idea. For more information on this topic, see
+<a class="reference internal" href="counting.html#countingchapter"><span class="std std-ref">Counting Like a Computer</span></a>.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="functions.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">All About Functions</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="memory.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Computer Architecture</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jonathan Bartlett
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Your First Programs</a><ul>
+<li><a class="reference internal" href="#entering-in-the-program">Entering in the Program</a></li>
+<li><a class="reference internal" href="#outline-of-an-assembly-language-program">Outline of an Assembly Language Program</a></li>
+<li><a class="reference internal" href="#planning-the-program">Planning the Program</a></li>
+<li><a class="reference internal" href="#finding-a-maximum-value">Finding a Maximum Value</a></li>
+<li><a class="reference internal" href="#addressing-modes">Addressing Modes</a></li>
+<li><a class="reference internal" href="#review">Review</a><ul>
+<li><a class="reference internal" href="#know-the-concepts">Know the Concepts</a></li>
+<li><a class="reference internal" href="#use-the-concepts">Use the Concepts</a></li>
+<li><a class="reference internal" href="#going-further">Going Further</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=d45e8c67"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>
