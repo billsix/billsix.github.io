@@ -1,14 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="en" data-content_root="./">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Rotation Fix Attempt 1 - Demo 08" href="ch08.html" /><link rel="prev" title="Modelspace - Demo 06" href="ch06.html" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Rotation Fix Attempt 1 - Demo 08" href="ch08.html"><link rel="prev" title="Modelspace - Demo 06" href="ch06.html">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2025.07.19 -->
-        <title>Rotations - Demo 07 - Model View Projection 0.0.02 documentation</title>
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Rotations - Demo 07 - Model View Projection 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
-    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
     
@@ -23,14 +23,14 @@
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #2b2b2b;
-  --color-code-foreground: #f8f8f2;
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #2b2b2b;
-  --color-code-foreground: #f8f8f2;
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
   
       }
     }
@@ -145,14 +145,10 @@
   </symbol>
 </svg>
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation">
-  <div class="visually-hidden">Hide navigation sidebar</div>
-</label>
-<label class="overlay toc-overlay" for="__toc">
-  <div class="visually-hidden">Hide table of contents sidebar</div>
-</label>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
 
 <a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
@@ -162,17 +158,15 @@
   <header class="mobile-header">
     <div class="header-left">
       <label class="nav-overlay-icon" for="__navigation">
-        <div class="visually-hidden">Toggle site navigation sidebar</div>
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Model View Projection 0.0.02 documentation</div></a>
+      <a href="index.html"><div class="brand">Model View Projection 0.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
-        <button class="theme-toggle">
-          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
           <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
           <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -180,8 +174,7 @@
         </button>
       </div>
       <label class="toc-overlay-icon toc-header-icon" for="__toc">
-        <div class="visually-hidden">Toggle table of contents sidebar</div>
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
   </header>
@@ -190,7 +183,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
-  <span class="sidebar-brand-text">Model View Projection 0.0.02 documentation</span>
+  <span class="sidebar-brand-text">Model View Projection 0.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -255,8 +248,7 @@
   </a>
 </div>
 <div class="theme-toggle-container theme-toggle-content">
-            <button class="theme-toggle">
-              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
               <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -264,8 +256,7 @@
             </button>
           </div>
           <label class="toc-overlay-icon toc-content-icon" for="__toc">
-            <div class="visually-hidden">Toggle table of contents sidebar</div>
-            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
@@ -491,34 +482,34 @@ given properties of trigonometry.</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">142</span><span class="k">def</span> <span class="nf">rotate_90_degrees</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">143</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">144</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">Vector2D</span><span class="p">)</span>
-<span class="linenos">145</span>        <span class="k">return</span> <span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-<span class="linenos">146</span>
-<span class="linenos">147</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">148</span>        <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
-<span class="linenos">149</span>
-<span class="linenos">150</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
-<span class="linenos">151</span>
-<span class="linenos">152</span>
-<span class="linenos">153</span><span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">154</span>    <span class="n">r90</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">rotate_90_degrees</span><span class="p">()</span>
-<span class="linenos">155</span>
-<span class="linenos">156</span>    <span class="k">def</span> <span class="nf">create_rotate_function</span><span class="p">(</span>
-<span class="linenos">157</span>        <span class="n">perp</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">,</span>
-<span class="linenos">158</span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">],</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">]:</span>
-<span class="linenos">159</span>        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">160</span>            <span class="n">parallel</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">*</span> <span class="n">vector</span>
-<span class="linenos">161</span>            <span class="n">perpendicular</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">*</span> <span class="n">perp</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
-<span class="linenos">162</span>            <span class="k">return</span> <span class="n">parallel</span> <span class="o">+</span> <span class="n">perpendicular</span>
-<span class="linenos">163</span>
-<span class="linenos">164</span>        <span class="k">return</span> <span class="n">f</span>
-<span class="linenos">165</span>
-<span class="linenos">166</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">(</span>
-<span class="linenos">167</span>        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">r90</span><span class="p">),</span>
-<span class="linenos">168</span>        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">r90</span><span class="p">)),</span>
-<span class="linenos">169</span>    <span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 82</span><span class="k">def</span> <span class="nf">rotate_90_degrees</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos"> 83</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
+<span class="linenos"> 84</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">Vector2D</span><span class="p">)</span>
+<span class="linenos"> 85</span>        <span class="k">return</span> <span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="linenos"> 86</span>
+<span class="linenos"> 87</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
+<span class="linenos"> 88</span>        <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span><span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos"> 94</span>    <span class="n">r90</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">rotate_90_degrees</span><span class="p">()</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span>    <span class="k">def</span> <span class="nf">create_rotate_function</span><span class="p">(</span>
+<span class="linenos"> 97</span>        <span class="n">perp</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">,</span>
+<span class="linenos"> 98</span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">],</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">]:</span>
+<span class="linenos"> 99</span>        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">100</span>            <span class="n">parallel</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">*</span> <span class="n">vector</span>
+<span class="linenos">101</span>            <span class="n">perpendicular</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">*</span> <span class="n">perp</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+<span class="linenos">102</span>            <span class="k">return</span> <span class="n">parallel</span> <span class="o">+</span> <span class="n">perpendicular</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span>        <span class="k">return</span> <span class="n">f</span>
+<span class="linenos">105</span>
+<span class="linenos">106</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">(</span>
+<span class="linenos">107</span>        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">r90</span><span class="p">),</span>
+<span class="linenos">108</span>        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">r90</span><span class="p">)),</span>
+<span class="linenos">109</span>    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -802,7 +793,7 @@ provides a solution.</p>
       
     </aside>
   </div>
-</div><script src="static/documentation_options.js?v=5f733c1d"></script>
+</div><script src="static/documentation_options.js?v=e3a6060d"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/scripts/furo.js?v=46bd48cc"></script>

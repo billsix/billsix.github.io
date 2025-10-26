@@ -1,14 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="en" data-content_root="./">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Rotations - Demo 07" href="ch07.html" /><link rel="prev" title="Add Translate Method to Vector - Demo 05" href="ch05.html" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Rotations - Demo 07" href="ch07.html"><link rel="prev" title="Add Translate Method to Vector - Demo 05" href="ch05.html">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2025.07.19 -->
-        <title>Modelspace - Demo 06 - Model View Projection 0.0.02 documentation</title>
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+        <title>Modelspace - Demo 06 - Model View Projection 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
-    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
     
@@ -23,14 +23,14 @@
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #2b2b2b;
-  --color-code-foreground: #f8f8f2;
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #2b2b2b;
-  --color-code-foreground: #f8f8f2;
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
   
       }
     }
@@ -145,14 +145,10 @@
   </symbol>
 </svg>
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation">
-  <div class="visually-hidden">Hide navigation sidebar</div>
-</label>
-<label class="overlay toc-overlay" for="__toc">
-  <div class="visually-hidden">Hide table of contents sidebar</div>
-</label>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
 
 <a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
@@ -162,17 +158,15 @@
   <header class="mobile-header">
     <div class="header-left">
       <label class="nav-overlay-icon" for="__navigation">
-        <div class="visually-hidden">Toggle site navigation sidebar</div>
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Model View Projection 0.0.02 documentation</div></a>
+      <a href="index.html"><div class="brand">Model View Projection 0.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
-        <button class="theme-toggle">
-          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
           <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
           <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -180,8 +174,7 @@
         </button>
       </div>
       <label class="toc-overlay-icon toc-header-icon" for="__toc">
-        <div class="visually-hidden">Toggle table of contents sidebar</div>
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
   </header>
@@ -190,7 +183,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
-  <span class="sidebar-brand-text">Model View Projection 0.0.02 documentation</span>
+  <span class="sidebar-brand-text">Model View Projection 0.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -255,8 +248,7 @@
   </a>
 </div>
 <div class="theme-toggle-container theme-toggle-content">
-            <button class="theme-toggle">
-              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
               <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -264,8 +256,7 @@
             </button>
           </div>
           <label class="toc-overlay-icon toc-content-icon" for="__toc">
-            <div class="visually-hidden">Toggle table of contents sidebar</div>
-            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
@@ -697,17 +688,68 @@ the respective components together, and create a new Vector2D.</p>
 </div>
 </div>
 <p>In a Python class, we can overload the ‘+’ symbol, to make
-objects addable, by implementing the <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D.__add__" title="modelviewprojection.mathutils1d.Vector1D.__add__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D.__add__()</span></code></a>
+objects addable, by implementing the <code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D.__add__()</span></code>
 method.</p>
 <div class="literal-block-wrapper docutils container" id="id15">
-<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils1d.py</span><a class="headerlink" href="#id15" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">51</span>    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="s2">&quot;mu.Vector&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Vector1D&quot;</span><span class="p">:</span>
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id15" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">40</span>    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+<span class="linenos">41</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">42</span><span class="sd">        Add together two Vectors, component-wise.</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="sd">        Args:</span>
+<span class="linenos">45</span><span class="sd">            rhs (Vector): The vector on the right hand side of the addition</span>
+<span class="linenos">46</span><span class="sd">                            symbol</span>
+<span class="linenos">47</span><span class="sd">        Returns:</span>
+<span class="linenos">48</span><span class="sd">            Vector: The Vector that represents the additon of the two</span>
+<span class="linenos">49</span><span class="sd">                    input Vectors</span>
+<span class="linenos">50</span><span class="sd">        Raises:</span>
+<span class="linenos">51</span><span class="sd">            Nothing</span>
+<span class="linenos">52</span><span class="sd">        Example:</span>
+<span class="linenos">53</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils1d import Vector1D</span>
+<span class="linenos">54</span><span class="sd">            &gt;&gt;&gt; a = Vector1D(x=2)</span>
+<span class="linenos">55</span><span class="sd">            &gt;&gt;&gt; b = Vector1D(x=5)</span>
+<span class="linenos">56</span><span class="sd">            &gt;&gt;&gt; a + b</span>
+<span class="linenos">57</span><span class="sd">            Vector1D(x=7)</span>
+<span class="linenos">58</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils2d import Vector2D</span>
+<span class="linenos">59</span><span class="sd">            &gt;&gt;&gt; a = Vector2D(x=2, y=3)</span>
+<span class="linenos">60</span><span class="sd">            &gt;&gt;&gt; b = Vector2D(x=5, y=6)</span>
+<span class="linenos">61</span><span class="sd">            &gt;&gt;&gt; a + b</span>
+<span class="linenos">62</span><span class="sd">            Vector2D(x=7, y=9)</span>
+<span class="linenos">63</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
+<span class="linenos">64</span><span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2, y=3, z=1)</span>
+<span class="linenos">65</span><span class="sd">            &gt;&gt;&gt; b = Vector3D(x=5, y=6, z=10)</span>
+<span class="linenos">66</span><span class="sd">            &gt;&gt;&gt; a + b</span>
+<span class="linenos">67</span><span class="sd">            Vector3D(x=7, y=9, z=11)</span>
+<span class="linenos">68</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos">69</span>
+<span class="linenos">70</span>        <span class="c1"># doc-region-begin define add</span>
+<span class="linenos">71</span>        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">rhs</span><span class="p">):</span>
+<span class="linenos">72</span>            <span class="k">return</span> <span class="bp">NotImplemented</span>
+<span class="linenos">73</span>        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span>
+<span class="linenos">74</span>            <span class="o">*</span><span class="p">[</span>
+<span class="linenos">75</span>                <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="linenos">76</span>                <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+<span class="linenos">77</span>                    <span class="n">dataclasses</span><span class="o">.</span><span class="n">astuple</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">astuple</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+<span class="linenos">78</span>                <span class="p">)</span>
+<span class="linenos">79</span>            <span class="p">]</span>
+<span class="linenos">80</span>        <span class="p">)</span>
+<span class="linenos">81</span>        <span class="c1"># doc-region-end define add</span>
+<span class="linenos">82</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id16">
-<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils1d.py</span><a class="headerlink" href="#id16" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">80</span>        <span class="k">return</span> <span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id16" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">71</span>        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">rhs</span><span class="p">):</span>
+<span class="linenos">72</span>            <span class="k">return</span> <span class="bp">NotImplemented</span>
+<span class="linenos">73</span>        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span>
+<span class="linenos">74</span>            <span class="o">*</span><span class="p">[</span>
+<span class="linenos">75</span>                <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="linenos">76</span>                <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+<span class="linenos">77</span>                    <span class="n">dataclasses</span><span class="o">.</span><span class="n">astuple</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">astuple</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+<span class="linenos">78</span>                <span class="p">)</span>
+<span class="linenos">79</span>            <span class="p">]</span>
+<span class="linenos">80</span>        <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -716,13 +758,13 @@ by implementing the <a class="reference internal" href="api.html#modelviewprojec
 method.</p>
 <div class="literal-block-wrapper docutils container" id="id17">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id17" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">56</span>    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">137</span>    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id18">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id18" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">71</span>        <span class="k">return</span> <span class="bp">self</span> <span class="o">+</span> <span class="o">-</span><span class="n">rhs</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">152</span>        <span class="k">return</span> <span class="bp">self</span> <span class="o">+</span> <span class="o">-</span><span class="n">rhs</span>
 </pre></div>
 </div>
 </div>
@@ -733,14 +775,14 @@ is a function on the mathutils module, not a method
 on Vector2D class, and it’s wrapped in a class named “InvertibleFunction”</p>
 <div class="literal-block-wrapper docutils container" id="id19">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id19" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">326</span><span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">327</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">328</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">b</span>
-<span class="linenos">329</span>
-<span class="linenos">330</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">331</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">b</span>
-<span class="linenos">332</span>
-<span class="linenos">333</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">407</span><span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">408</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">409</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">b</span>
+<span class="linenos">410</span>
+<span class="linenos">411</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">412</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">b</span>
+<span class="linenos">413</span>
+<span class="linenos">414</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -755,21 +797,21 @@ holds onto the second function, for later use to be able to undo the function’
 application.</p>
 <div class="literal-block-wrapper docutils container" id="id20">
 <div class="code-block-caption"><span class="caption-text">tests/test_mathutils2d.py</span><a class="headerlink" href="#id20" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">164</span><span class="k">def</span> <span class="nf">test_translate</span><span class="p">():</span>
-<span class="linenos">165</span>    <span class="n">fn</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">))</span>
-<span class="linenos">166</span>    <span class="n">fn_inv</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-<span class="linenos">167</span>
-<span class="linenos">168</span>    <span class="n">input_output_pairs</span> <span class="o">=</span> <span class="p">[</span>
-<span class="linenos">169</span>        <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]],</span>
-<span class="linenos">170</span>        <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]],</span>
-<span class="linenos">171</span>        <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]],</span>
-<span class="linenos">172</span>    <span class="p">]</span>
-<span class="linenos">173</span>
-<span class="linenos">174</span>    <span class="k">for</span> <span class="n">input_val</span><span class="p">,</span> <span class="n">output_val</span> <span class="ow">in</span> <span class="n">input_output_pairs</span><span class="p">:</span>
-<span class="linenos">175</span>        <span class="n">wrap_vec2_test</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">input_val</span><span class="p">,</span> <span class="n">output_val</span><span class="p">)</span>
-<span class="linenos">176</span>        <span class="n">wrap_vec2_test</span><span class="p">(</span><span class="n">fn_inv</span><span class="p">,</span> <span class="n">output_val</span><span class="p">,</span> <span class="n">input_val</span><span class="p">)</span>
-<span class="linenos">177</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">165</span><span class="k">def</span> <span class="nf">test_translate</span><span class="p">():</span>
+<span class="linenos">166</span>    <span class="n">fn</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">3.0</span><span class="p">))</span>
+<span class="linenos">167</span>    <span class="n">fn_inv</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+<span class="linenos">168</span>
+<span class="linenos">169</span>    <span class="n">input_output_pairs</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">170</span>        <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]],</span>
+<span class="linenos">171</span>        <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]],</span>
+<span class="linenos">172</span>        <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]],</span>
+<span class="linenos">173</span>    <span class="p">]</span>
+<span class="linenos">174</span>
+<span class="linenos">175</span>    <span class="k">for</span> <span class="n">input_val</span><span class="p">,</span> <span class="n">output_val</span> <span class="ow">in</span> <span class="n">input_output_pairs</span><span class="p">:</span>
+<span class="linenos">176</span>        <span class="n">wrap_vec2_test</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">input_val</span><span class="p">,</span> <span class="n">output_val</span><span class="p">)</span>
+<span class="linenos">177</span>        <span class="n">wrap_vec2_test</span><span class="p">(</span><span class="n">fn_inv</span><span class="p">,</span> <span class="n">output_val</span><span class="p">,</span> <span class="n">input_val</span><span class="p">)</span>
 <span class="linenos">178</span>
+<span class="linenos">179</span>
 </pre></div>
 </div>
 </div>
@@ -789,88 +831,88 @@ composing t_inv and t results in no transformation.</p>
 <p>Here’s how InvertibleFunction is implemented:</p>
 <div class="literal-block-wrapper docutils container" id="id21">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id21" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">106</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="linenos">107</span><span class="k">class</span> <span class="nc">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">108</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos">109</span><span class="sd">    Class that wraps a function and its</span>
-<span class="linenos">110</span><span class="sd">    inverse function.  The function takes</span>
-<span class="linenos">111</span><span class="sd">    type T as it&#39;s argument and it&#39;s evaluation</span>
-<span class="linenos">112</span><span class="sd">    results in a value of type T.</span>
-<span class="linenos">113</span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos">114</span>
-<span class="linenos">115</span>    <span class="n">func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">Vector</span><span class="p">]</span>  <span class="c1">#: The wrapped function</span>
-<span class="linenos">116</span>    <span class="n">inverse</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
-<span class="linenos">117</span>        <span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">Vector</span>
-<span class="linenos">118</span>    <span class="p">]</span>  <span class="c1">#: The inverse of the wrapped function</span>
-<span class="linenos">119</span>
-<span class="linenos">120</span>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">121</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos">122</span><span class="sd">        Execute a function with the given value.</span>
-<span class="linenos">123</span>
-<span class="linenos">124</span><span class="sd">        Args:</span>
-<span class="linenos">125</span><span class="sd">            func (typing.Callable[[Vector], Vector]): A function that takes a value of type Vector</span>
-<span class="linenos">126</span><span class="sd">                                     and returns a value of the same type Vector.</span>
-<span class="linenos">127</span><span class="sd">            value (Vector): The input value to pass to the function</span>
-<span class="linenos">128</span><span class="sd">        Returns:</span>
-<span class="linenos">129</span><span class="sd">            Vector: The result of calling func(value). Will be the same type as the</span>
-<span class="linenos">130</span><span class="sd">                input value.</span>
-<span class="linenos">131</span><span class="sd">        Raises:</span>
-<span class="linenos">132</span><span class="sd">            Nothing</span>
-<span class="linenos">133</span><span class="sd">        Example:</span>
-<span class="linenos">134</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils import InvertibleFunction</span>
-<span class="linenos">135</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils import inverse</span>
-<span class="linenos">136</span><span class="sd">            &gt;&gt;&gt; def f(x):</span>
-<span class="linenos">137</span><span class="sd">            ...     return 2 + x</span>
-<span class="linenos">138</span><span class="sd">            ...</span>
-<span class="linenos">139</span><span class="sd">            &gt;&gt;&gt; def f_inv(x):</span>
-<span class="linenos">140</span><span class="sd">            ...     return x - 2</span>
-<span class="linenos">141</span><span class="sd">            ...</span>
-<span class="linenos">142</span><span class="sd">            &gt;&gt;&gt; foo = InvertibleFunction(func=f, inverse=f_inv)</span>
-<span class="linenos">143</span><span class="sd">            &gt;&gt;&gt; foo # doctest: +ELLIPSIS</span>
-<span class="linenos">144</span><span class="sd">            InvertibleFunction(func=&lt;function f at 0x...&gt;, inverse=&lt;function f_inv at 0x...&gt;)</span>
-<span class="linenos">145</span><span class="sd">            &gt;&gt;&gt; foo(5)</span>
-<span class="linenos">146</span><span class="sd">            7</span>
-<span class="linenos">147</span><span class="sd">            &gt;&gt;&gt; inverse(foo) # doctest: +ELLIPSIS</span>
-<span class="linenos">148</span><span class="sd">            InvertibleFunction(func=&lt;function f_inv at 0x...&gt;, inverse=&lt;function f at 0x...&gt;)</span>
-<span class="linenos">149</span><span class="sd">            &gt;&gt;&gt; inverse(foo)(foo(5))</span>
-<span class="linenos">150</span><span class="sd">            5</span>
-<span class="linenos">151</span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos">152</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="linenos">153</span>
-<span class="linenos">154</span>
-<span class="linenos">155</span><span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">156</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos">157</span><span class="sd">    Get the inverse of the InvertibleFunction</span>
-<span class="linenos">158</span>
-<span class="linenos">159</span><span class="sd">    Args:</span>
-<span class="linenos">160</span><span class="sd">        f: InvertibleFunction: A function with it&#39;s associated inverse</span>
-<span class="linenos">161</span><span class="sd">           function.</span>
-<span class="linenos">162</span><span class="sd">    Returns:</span>
-<span class="linenos">163</span><span class="sd">        InvertibleFunction: The Inverse of the function</span>
-<span class="linenos">164</span><span class="sd">           function.</span>
-<span class="linenos">165</span><span class="sd">    Raises:</span>
-<span class="linenos">166</span><span class="sd">        Nothing</span>
-<span class="linenos">167</span><span class="sd">    Example:</span>
-<span class="linenos">168</span><span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import InvertibleFunction</span>
-<span class="linenos">169</span><span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import inverse</span>
-<span class="linenos">170</span><span class="sd">        &gt;&gt;&gt; def f(x):</span>
-<span class="linenos">171</span><span class="sd">        ...     return 2 + x</span>
-<span class="linenos">172</span><span class="sd">        ...</span>
-<span class="linenos">173</span><span class="sd">        &gt;&gt;&gt; def f_inv(x):</span>
-<span class="linenos">174</span><span class="sd">        ...     return x - 2</span>
-<span class="linenos">175</span><span class="sd">        ...</span>
-<span class="linenos">176</span><span class="sd">        &gt;&gt;&gt; foo = InvertibleFunction(func=f, inverse=f_inv)</span>
-<span class="linenos">177</span><span class="sd">        &gt;&gt;&gt; foo # doctest: +ELLIPSIS</span>
-<span class="linenos">178</span><span class="sd">        InvertibleFunction(func=&lt;function f at 0x...&gt;, inverse=&lt;function f_inv at 0x...&gt;)</span>
-<span class="linenos">179</span><span class="sd">        &gt;&gt;&gt; foo(5)</span>
-<span class="linenos">180</span><span class="sd">        7</span>
-<span class="linenos">181</span><span class="sd">        &gt;&gt;&gt; inverse(foo) # doctest: +ELLIPSIS</span>
-<span class="linenos">182</span><span class="sd">        InvertibleFunction(func=&lt;function f_inv at 0x...&gt;, inverse=&lt;function f at 0x...&gt;)</span>
-<span class="linenos">183</span><span class="sd">        &gt;&gt;&gt; inverse(foo)(foo(5))</span>
-<span class="linenos">184</span><span class="sd">        5</span>
-<span class="linenos">185</span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos">186</span>
-<span class="linenos">187</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">inverse</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">187</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="linenos">188</span><span class="k">class</span> <span class="nc">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">189</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">190</span><span class="sd">    Class that wraps a function and its</span>
+<span class="linenos">191</span><span class="sd">    inverse function.  The function takes</span>
+<span class="linenos">192</span><span class="sd">    type T as it&#39;s argument and it&#39;s evaluation</span>
+<span class="linenos">193</span><span class="sd">    results in a value of type T.</span>
+<span class="linenos">194</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">195</span>
+<span class="linenos">196</span>    <span class="n">func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">Vector</span><span class="p">]</span>  <span class="c1">#: The wrapped function</span>
+<span class="linenos">197</span>    <span class="n">inverse</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
+<span class="linenos">198</span>        <span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">Vector</span>
+<span class="linenos">199</span>    <span class="p">]</span>  <span class="c1">#: The inverse of the wrapped function</span>
+<span class="linenos">200</span>
+<span class="linenos">201</span>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">202</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">203</span><span class="sd">        Execute a function with the given value.</span>
+<span class="linenos">204</span>
+<span class="linenos">205</span><span class="sd">        Args:</span>
+<span class="linenos">206</span><span class="sd">            func (typing.Callable[[Vector], Vector]): A function that takes a value of type Vector</span>
+<span class="linenos">207</span><span class="sd">                                     and returns a value of the same type Vector.</span>
+<span class="linenos">208</span><span class="sd">            value (Vector): The input value to pass to the function</span>
+<span class="linenos">209</span><span class="sd">        Returns:</span>
+<span class="linenos">210</span><span class="sd">            Vector: The result of calling func(value). Will be the same type as the</span>
+<span class="linenos">211</span><span class="sd">                input value.</span>
+<span class="linenos">212</span><span class="sd">        Raises:</span>
+<span class="linenos">213</span><span class="sd">            Nothing</span>
+<span class="linenos">214</span><span class="sd">        Example:</span>
+<span class="linenos">215</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils import InvertibleFunction</span>
+<span class="linenos">216</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils import inverse</span>
+<span class="linenos">217</span><span class="sd">            &gt;&gt;&gt; def f(x):</span>
+<span class="linenos">218</span><span class="sd">            ...     return 2 + x</span>
+<span class="linenos">219</span><span class="sd">            ...</span>
+<span class="linenos">220</span><span class="sd">            &gt;&gt;&gt; def f_inv(x):</span>
+<span class="linenos">221</span><span class="sd">            ...     return x - 2</span>
+<span class="linenos">222</span><span class="sd">            ...</span>
+<span class="linenos">223</span><span class="sd">            &gt;&gt;&gt; foo = InvertibleFunction(func=f, inverse=f_inv)</span>
+<span class="linenos">224</span><span class="sd">            &gt;&gt;&gt; foo # doctest: +ELLIPSIS</span>
+<span class="linenos">225</span><span class="sd">            InvertibleFunction(func=&lt;function f at 0x...&gt;, inverse=&lt;function f_inv at 0x...&gt;)</span>
+<span class="linenos">226</span><span class="sd">            &gt;&gt;&gt; foo(5)</span>
+<span class="linenos">227</span><span class="sd">            7</span>
+<span class="linenos">228</span><span class="sd">            &gt;&gt;&gt; inverse(foo) # doctest: +ELLIPSIS</span>
+<span class="linenos">229</span><span class="sd">            InvertibleFunction(func=&lt;function f_inv at 0x...&gt;, inverse=&lt;function f at 0x...&gt;)</span>
+<span class="linenos">230</span><span class="sd">            &gt;&gt;&gt; inverse(foo)(foo(5))</span>
+<span class="linenos">231</span><span class="sd">            5</span>
+<span class="linenos">232</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos">233</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="linenos">234</span>
+<span class="linenos">235</span>
+<span class="linenos">236</span><span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">237</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">238</span><span class="sd">    Get the inverse of the InvertibleFunction</span>
+<span class="linenos">239</span>
+<span class="linenos">240</span><span class="sd">    Args:</span>
+<span class="linenos">241</span><span class="sd">        f: InvertibleFunction: A function with it&#39;s associated inverse</span>
+<span class="linenos">242</span><span class="sd">           function.</span>
+<span class="linenos">243</span><span class="sd">    Returns:</span>
+<span class="linenos">244</span><span class="sd">        InvertibleFunction: The Inverse of the function</span>
+<span class="linenos">245</span><span class="sd">           function.</span>
+<span class="linenos">246</span><span class="sd">    Raises:</span>
+<span class="linenos">247</span><span class="sd">        Nothing</span>
+<span class="linenos">248</span><span class="sd">    Example:</span>
+<span class="linenos">249</span><span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import InvertibleFunction</span>
+<span class="linenos">250</span><span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import inverse</span>
+<span class="linenos">251</span><span class="sd">        &gt;&gt;&gt; def f(x):</span>
+<span class="linenos">252</span><span class="sd">        ...     return 2 + x</span>
+<span class="linenos">253</span><span class="sd">        ...</span>
+<span class="linenos">254</span><span class="sd">        &gt;&gt;&gt; def f_inv(x):</span>
+<span class="linenos">255</span><span class="sd">        ...     return x - 2</span>
+<span class="linenos">256</span><span class="sd">        ...</span>
+<span class="linenos">257</span><span class="sd">        &gt;&gt;&gt; foo = InvertibleFunction(func=f, inverse=f_inv)</span>
+<span class="linenos">258</span><span class="sd">        &gt;&gt;&gt; foo # doctest: +ELLIPSIS</span>
+<span class="linenos">259</span><span class="sd">        InvertibleFunction(func=&lt;function f at 0x...&gt;, inverse=&lt;function f_inv at 0x...&gt;)</span>
+<span class="linenos">260</span><span class="sd">        &gt;&gt;&gt; foo(5)</span>
+<span class="linenos">261</span><span class="sd">        7</span>
+<span class="linenos">262</span><span class="sd">        &gt;&gt;&gt; inverse(foo) # doctest: +ELLIPSIS</span>
+<span class="linenos">263</span><span class="sd">        InvertibleFunction(func=&lt;function f_inv at 0x...&gt;, inverse=&lt;function f at 0x...&gt;)</span>
+<span class="linenos">264</span><span class="sd">        &gt;&gt;&gt; inverse(foo)(foo(5))</span>
+<span class="linenos">265</span><span class="sd">        5</span>
+<span class="linenos">266</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">267</span>
+<span class="linenos">268</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">inverse</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -883,33 +925,36 @@ that scaled the Vector2D by the same amount in all directions.  We do this
 by implementing the ‘__mul__’ and ‘__rmul__’ methods, where __rmul__ just means
 that this object is on the right hand side of the multiplication.</p>
 <div class="literal-block-wrapper docutils container" id="id22">
-<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id22" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 97</span>    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Vector2D&quot;</span><span class="p">:</span>
-<span class="linenos"> 98</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos"> 99</span><span class="sd">        Multiply the Vector2D by a scalar number</span>
-<span class="linenos">100</span>
-<span class="linenos">101</span><span class="sd">        Let :math:`\\vec{a} = \\begin{bmatrix} a_x \\\\ a_y \\end{bmatrix}` and constant scalar :math:`s`:</span>
-<span class="linenos">102</span>
-<span class="linenos">103</span><span class="sd">        .. math::</span>
-<span class="linenos">104</span>
-<span class="linenos">105</span><span class="sd">             s*\\vec{a} = \\begin{bmatrix} s*a_x \\\\ s*a_y \\end{bmatrix}</span>
-<span class="linenos">106</span>
-<span class="linenos">107</span><span class="sd">        Args:</span>
-<span class="linenos">108</span><span class="sd">            rhs (Vector2D): The scalar to be multiplied to the Vector&#39;s component</span>
-<span class="linenos">109</span><span class="sd">                            subtraction symbol</span>
-<span class="linenos">110</span><span class="sd">        Returns:</span>
-<span class="linenos">111</span><span class="sd">            Vector2D: The Vector2D that represents scalar times the amount of the input Vector2D</span>
-<span class="linenos">112</span>
-<span class="linenos">113</span><span class="sd">        Raises:</span>
-<span class="linenos">114</span><span class="sd">            Nothing</span>
-<span class="linenos">115</span><span class="sd">        Example:</span>
-<span class="linenos">116</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils2d import Vector2D</span>
-<span class="linenos">117</span><span class="sd">            &gt;&gt;&gt; a = Vector2D(x=2.0, y=3.0)</span>
-<span class="linenos">118</span><span class="sd">            &gt;&gt;&gt; a * 4</span>
-<span class="linenos">119</span><span class="sd">            Vector2D(x=8.0, y=12.0)</span>
-<span class="linenos">120</span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos">121</span>        <span class="k">return</span> <span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">))</span>
-<span class="linenos">122</span>
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id22" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 86</span>    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+<span class="linenos"> 87</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 88</span><span class="sd">        Multiply the Vector by a scalar number, component-wise</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="sd">        Args:</span>
+<span class="linenos"> 91</span><span class="sd">            rhs (Vector): The scalar to be multiplied to the Vector&#39;s component</span>
+<span class="linenos"> 92</span><span class="sd">                          subtraction symbol</span>
+<span class="linenos"> 93</span><span class="sd">        Returns:</span>
+<span class="linenos"> 94</span><span class="sd">            Vector: The Vector that represents scalar times the amount of the input</span>
+<span class="linenos"> 95</span><span class="sd">                    Vector</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="sd">        Raises:</span>
+<span class="linenos"> 98</span><span class="sd">            Nothing</span>
+<span class="linenos"> 99</span><span class="sd">        Example:</span>
+<span class="linenos">100</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils1d import Vector1D</span>
+<span class="linenos">101</span><span class="sd">            &gt;&gt;&gt; a = Vector1D(x=2)</span>
+<span class="linenos">102</span><span class="sd">            &gt;&gt;&gt; a * 4</span>
+<span class="linenos">103</span><span class="sd">            Vector1D(x=8)</span>
+<span class="linenos">104</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils2d import Vector2D</span>
+<span class="linenos">105</span><span class="sd">            &gt;&gt;&gt; a = Vector2D(x=2, y=3)</span>
+<span class="linenos">106</span><span class="sd">            &gt;&gt;&gt; a * 4</span>
+<span class="linenos">107</span><span class="sd">            Vector2D(x=8, y=12)</span>
+<span class="linenos">108</span><span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils3d import Vector3D</span>
+<span class="linenos">109</span><span class="sd">            &gt;&gt;&gt; a = Vector3D(x=2, y=3, z=5)</span>
+<span class="linenos">110</span><span class="sd">            &gt;&gt;&gt; a * 4</span>
+<span class="linenos">111</span><span class="sd">            Vector3D(x=8, y=12, z=20)</span>
+<span class="linenos">112</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos">113</span>        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="o">*</span><span class="p">[</span><span class="n">scalar</span> <span class="o">*</span> <span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">astuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)])</span>
+<span class="linenos">114</span>
 </pre></div>
 </div>
 </div>
@@ -921,17 +966,17 @@ but the function for scaling “f”, and the inverse of “f” named “f_inv�
 This is because we will be scaling many Vector2Ds using the same scaling factor.</p>
 <div class="literal-block-wrapper docutils container" id="id23">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id23" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">338</span><span class="k">def</span> <span class="nf">uniform_scale</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">339</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">340</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">m</span>
-<span class="linenos">341</span>
-<span class="linenos">342</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">343</span>        <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
-<span class="linenos">344</span>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not invertible.  Scaling factor cannot be zero.&quot;</span><span class="p">)</span>
-<span class="linenos">345</span>
-<span class="linenos">346</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span>
-<span class="linenos">347</span>
-<span class="linenos">348</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">419</span><span class="k">def</span> <span class="nf">uniform_scale</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">420</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">421</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">m</span>
+<span class="linenos">422</span>
+<span class="linenos">423</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">424</span>        <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+<span class="linenos">425</span>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not invertible.  Scaling factor cannot be zero.&quot;</span><span class="p">)</span>
+<span class="linenos">426</span>
+<span class="linenos">427</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span>
+<span class="linenos">428</span>
+<span class="linenos">429</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1198,7 +1243,7 @@ on the bottom and on the left.</p>
       
     </aside>
   </div>
-</div><script src="static/documentation_options.js?v=5f733c1d"></script>
+</div><script src="static/documentation_options.js?v=e3a6060d"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/scripts/furo.js?v=46bd48cc"></script>
