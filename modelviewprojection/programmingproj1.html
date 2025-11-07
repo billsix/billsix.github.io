@@ -5,9 +5,9 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Window Resizing and Proportionality - Demo 03" href="ch03.html"><link rel="prev" title="Math Homework #1" href="mathhomework1.html">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
         <title>Programming Project #1 - Model View Projection 0.0.2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
@@ -222,6 +222,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot2d.html">Plot 2D</a></li>
 </ul>
 
 </div>
@@ -268,24 +269,24 @@
 should get you started with a bunch of example code.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">assignments/assignment1.py</span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">295</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-<span class="linenos">296</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
-<span class="linenos">297</span>
-<span class="linenos">298</span>    <span class="n">elapsed_time_in_seconds</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">-</span> <span class="n">program_start_time</span>
-<span class="linenos">299</span>
-<span class="linenos">300</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
-<span class="linenos">301</span>    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-<span class="linenos">302</span>    <span class="n">glClear</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">]))</span>
-<span class="linenos">303</span>
-<span class="linenos">304</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
-<span class="linenos">305</span>    <span class="n">draw_a_triangle</span><span class="p">()</span>
-<span class="linenos">306</span>    <span class="n">draw_an_oscillating_triangle</span><span class="p">(</span><span class="n">elapsed_time_in_seconds</span><span class="p">)</span>
-<span class="linenos">307</span>    <span class="n">draw_x_squared_with_precomputed_values</span><span class="p">()</span>
-<span class="linenos">308</span>    <span class="n">use_plot_function_for_x_minus_onehalf_squared</span><span class="p">()</span>
-<span class="linenos">309</span>    <span class="n">use_plot_function_with_unnamed_function</span><span class="p">(</span><span class="n">elapsed_time_in_seconds</span><span class="p">)</span>
-<span class="linenos">310</span>    <span class="n">draw_circle</span><span class="p">()</span>
-<span class="linenos">311</span>
-<span class="linenos">312</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">274</span><span class="k">while</span> <span class="ow">not</span> <span class="n">glfw</span><span class="o">.</span><span class="n">window_should_close</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+<span class="linenos">275</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">poll_events</span><span class="p">()</span>
+<span class="linenos">276</span>
+<span class="linenos">277</span>    <span class="n">elapsed_time_in_seconds</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">-</span> <span class="n">program_start_time</span>
+<span class="linenos">278</span>
+<span class="linenos">279</span>    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">glfw</span><span class="o">.</span><span class="n">get_framebuffer_size</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+<span class="linenos">280</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="linenos">281</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glClear</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">,</span> <span class="n">GL</span><span class="o">.</span><span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">]))</span>
+<span class="linenos">282</span>
+<span class="linenos">283</span>    <span class="n">draw_in_square_viewport</span><span class="p">()</span>
+<span class="linenos">284</span>    <span class="n">draw_a_quadrilateral</span><span class="p">()</span>
+<span class="linenos">285</span>    <span class="n">draw_an_oscillating_triangle</span><span class="p">(</span><span class="n">elapsed_time_in_seconds</span><span class="p">)</span>
+<span class="linenos">286</span>    <span class="n">draw_x_squared_with_precomputed_values</span><span class="p">()</span>
+<span class="linenos">287</span>    <span class="n">use_plot_function_for_x_minus_onehalf_squared</span><span class="p">()</span>
+<span class="linenos">288</span>    <span class="n">use_plot_function_with_unnamed_function</span><span class="p">(</span><span class="n">elapsed_time_in_seconds</span><span class="p">)</span>
+<span class="linenos">289</span>    <span class="n">draw_circle</span><span class="p">()</span>
+<span class="linenos">290</span>
+<span class="linenos">291</span>    <span class="n">glfw</span><span class="o">.</span><span class="n">swap_buffers</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -298,16 +299,16 @@ should get you started with a bunch of example code.</p>
 in NDC.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">assignments/assignment1.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">112</span><span class="k">def</span> <span class="nf">draw_a_triangle</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">113</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">114</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_QUADS</span><span class="p">)</span>
-<span class="linenos">115</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">116</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">117</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">118</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="linenos">119</span>    <span class="n">glEnd</span><span class="p">()</span>
-<span class="linenos">120</span>
-<span class="linenos">121</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 91</span><span class="k">def</span><span class="w"> </span><span class="nf">draw_a_quadrilateral</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 92</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.578123</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos"> 93</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_QUADS</span><span class="p">)</span>
+<span class="linenos"> 94</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos"> 95</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos"> 96</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos"> 97</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos"> 98</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span>
 </pre></div>
 </div>
 </div>
@@ -319,22 +320,22 @@ this value to change the position of a triangle over time, and change
 the color.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">assignments/assignment1.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">235</span><span class="k">def</span> <span class="nf">draw_an_oscillating_triangle</span><span class="p">(</span><span class="n">elapsed_time_in_seconds</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">236</span>    <span class="c1"># math.sin uses radians</span>
-<span class="linenos">237</span>    <span class="n">offset_x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">elapsed_time_in_seconds</span><span class="p">)</span>
-<span class="linenos">238</span>    <span class="c1"># to use degrees, you would do</span>
-<span class="linenos">239</span>    <span class="c1"># offset_x = math.sin(math.radians(elapsed_time_in_seconds))</span>
-<span class="linenos">240</span>
-<span class="linenos">241</span>    <span class="n">float_between_0_and_1</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">elapsed_time_in_seconds</span><span class="p">))</span>
-<span class="linenos">242</span>    <span class="c1"># a float between 0 and 1 so that the color of the triagle changes over time</span>
-<span class="linenos">243</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="n">float_between_0_and_1</span><span class="p">,</span> <span class="n">float_between_0_and_1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">244</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">)</span>
-<span class="linenos">245</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">246</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">247</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="linenos">248</span>    <span class="n">glEnd</span><span class="p">()</span>
-<span class="linenos">249</span>
-<span class="linenos">250</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">214</span><span class="k">def</span><span class="w"> </span><span class="nf">draw_an_oscillating_triangle</span><span class="p">(</span><span class="n">elapsed_time_in_seconds</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">215</span>    <span class="c1"># math.sin uses radians</span>
+<span class="linenos">216</span>    <span class="n">offset_x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">elapsed_time_in_seconds</span><span class="p">)</span>
+<span class="linenos">217</span>    <span class="c1"># to use degrees, you would do</span>
+<span class="linenos">218</span>    <span class="c1"># offset_x = math.sin(math.radians(elapsed_time_in_seconds))</span>
+<span class="linenos">219</span>
+<span class="linenos">220</span>    <span class="n">float_between_0_and_1</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">elapsed_time_in_seconds</span><span class="p">))</span>
+<span class="linenos">221</span>    <span class="c1"># a float between 0 and 1 so that the color of the triagle changes over time</span>
+<span class="linenos">222</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="n">float_between_0_and_1</span><span class="p">,</span> <span class="n">float_between_0_and_1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">223</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_TRIANGLES</span><span class="p">)</span>
+<span class="linenos">224</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">225</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">226</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.0</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="linenos">227</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos">228</span>
+<span class="linenos">229</span>
 </pre></div>
 </div>
 </div>
@@ -346,74 +347,74 @@ Here’s an example of using GL_Lines, where line segments are
 expressed in pairs of glVertexs, as such, values need to be duplicated.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">assignments/assignment1.py</span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">126</span><span class="k">def</span> <span class="nf">draw_x_squared_with_precomputed_values</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">127</span>    <span class="c1"># f(x) = x^2</span>
-<span class="linenos">128</span>
-<span class="linenos">129</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">130</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_LINES</span><span class="p">)</span>
-<span class="linenos">131</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">132</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">105</span><span class="k">def</span><span class="w"> </span><span class="nf">draw_x_squared_with_precomputed_values</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">106</span>    <span class="c1"># f(x) = x^2</span>
+<span class="linenos">107</span>
+<span class="linenos">108</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">109</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_LINES</span><span class="p">)</span>
+<span class="linenos">110</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">111</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">)</span>
+<span class="linenos">112</span>
+<span class="linenos">113</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">)</span>
+<span class="linenos">114</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6400000000000001</span><span class="p">)</span>
+<span class="linenos">115</span>
+<span class="linenos">116</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6400000000000001</span><span class="p">)</span>
+<span class="linenos">117</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.48999999999999994</span><span class="p">)</span>
+<span class="linenos">118</span>
+<span class="linenos">119</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.48999999999999994</span><span class="p">)</span>
+<span class="linenos">120</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">)</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">)</span>
+<span class="linenos">123</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">126</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.16000000000000003</span><span class="p">)</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.16000000000000003</span><span class="p">)</span>
+<span class="linenos">129</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">)</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">)</span>
+<span class="linenos">132</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.04000000000000001</span><span class="p">)</span>
 <span class="linenos">133</span>
-<span class="linenos">134</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">)</span>
-<span class="linenos">135</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6400000000000001</span><span class="p">)</span>
+<span class="linenos">134</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.04000000000000001</span><span class="p">)</span>
+<span class="linenos">135</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.010000000000000002</span><span class="p">)</span>
 <span class="linenos">136</span>
-<span class="linenos">137</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6400000000000001</span><span class="p">)</span>
-<span class="linenos">138</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.48999999999999994</span><span class="p">)</span>
+<span class="linenos">137</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.010000000000000002</span><span class="p">)</span>
+<span class="linenos">138</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 <span class="linenos">139</span>
-<span class="linenos">140</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.48999999999999994</span><span class="p">)</span>
-<span class="linenos">141</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">)</span>
+<span class="linenos">140</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">141</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.010000000000000002</span><span class="p">)</span>
 <span class="linenos">142</span>
-<span class="linenos">143</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">)</span>
-<span class="linenos">144</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">143</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.010000000000000002</span><span class="p">)</span>
+<span class="linenos">144</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.04000000000000001</span><span class="p">)</span>
 <span class="linenos">145</span>
-<span class="linenos">146</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
-<span class="linenos">147</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.16000000000000003</span><span class="p">)</span>
+<span class="linenos">146</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.04000000000000001</span><span class="p">)</span>
+<span class="linenos">147</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">)</span>
 <span class="linenos">148</span>
-<span class="linenos">149</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.16000000000000003</span><span class="p">)</span>
-<span class="linenos">150</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">)</span>
+<span class="linenos">149</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">)</span>
+<span class="linenos">150</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.16000000000000003</span><span class="p">)</span>
 <span class="linenos">151</span>
-<span class="linenos">152</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">)</span>
-<span class="linenos">153</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.04000000000000001</span><span class="p">)</span>
+<span class="linenos">152</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.16000000000000003</span><span class="p">)</span>
+<span class="linenos">153</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
 <span class="linenos">154</span>
-<span class="linenos">155</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.04000000000000001</span><span class="p">)</span>
-<span class="linenos">156</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.010000000000000002</span><span class="p">)</span>
+<span class="linenos">155</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">156</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">)</span>
 <span class="linenos">157</span>
-<span class="linenos">158</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.010000000000000002</span><span class="p">)</span>
-<span class="linenos">159</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">158</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">)</span>
+<span class="linenos">159</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.48999999999999994</span><span class="p">)</span>
 <span class="linenos">160</span>
-<span class="linenos">161</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">162</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.010000000000000002</span><span class="p">)</span>
+<span class="linenos">161</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.48999999999999994</span><span class="p">)</span>
+<span class="linenos">162</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6400000000000001</span><span class="p">)</span>
 <span class="linenos">163</span>
-<span class="linenos">164</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.010000000000000002</span><span class="p">)</span>
-<span class="linenos">165</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.04000000000000001</span><span class="p">)</span>
+<span class="linenos">164</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6400000000000001</span><span class="p">)</span>
+<span class="linenos">165</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">)</span>
 <span class="linenos">166</span>
-<span class="linenos">167</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.04000000000000001</span><span class="p">)</span>
-<span class="linenos">168</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">)</span>
+<span class="linenos">167</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">)</span>
+<span class="linenos">168</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="linenos">169</span>
-<span class="linenos">170</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">)</span>
-<span class="linenos">171</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.16000000000000003</span><span class="p">)</span>
+<span class="linenos">170</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos">171</span>
 <span class="linenos">172</span>
-<span class="linenos">173</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.16000000000000003</span><span class="p">)</span>
-<span class="linenos">174</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
-<span class="linenos">175</span>
-<span class="linenos">176</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
-<span class="linenos">177</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">)</span>
-<span class="linenos">178</span>
-<span class="linenos">179</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">)</span>
-<span class="linenos">180</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.48999999999999994</span><span class="p">)</span>
-<span class="linenos">181</span>
-<span class="linenos">182</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.48999999999999994</span><span class="p">)</span>
-<span class="linenos">183</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6400000000000001</span><span class="p">)</span>
-<span class="linenos">184</span>
-<span class="linenos">185</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6400000000000001</span><span class="p">)</span>
-<span class="linenos">186</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">)</span>
-<span class="linenos">187</span>
-<span class="linenos">188</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">)</span>
-<span class="linenos">189</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">190</span>
-<span class="linenos">191</span>    <span class="n">glEnd</span><span class="p">()</span>
-<span class="linenos">192</span>
-<span class="linenos">193</span>
 </pre></div>
 </div>
 </div>
@@ -425,14 +426,14 @@ expressed in pairs of glVertexs, as such, values need to be duplicated.</p>
 <h4>Black Box<a class="headerlink" href="#black-box" title="Link to this heading">¶</a></h4>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">assignments/assignment1.py</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">223</span><span class="k">def</span> <span class="nf">use_plot_function_for_x_minus_onehalf_squared</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">224</span>    <span class="k">def</span> <span class="nf">x_minus_onehalf_squared</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="linenos">225</span>        <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-<span class="linenos">226</span>
-<span class="linenos">227</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">228</span>    <span class="n">plot</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">x_minus_onehalf_squared</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">interval</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-<span class="linenos">229</span>
-<span class="linenos">230</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">202</span><span class="k">def</span><span class="w"> </span><span class="nf">use_plot_function_for_x_minus_onehalf_squared</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">203</span>    <span class="k">def</span><span class="w"> </span><span class="nf">x_minus_onehalf_squared</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="linenos">204</span>        <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="linenos">205</span>
+<span class="linenos">206</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">207</span>    <span class="n">plot</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">x_minus_onehalf_squared</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">interval</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="linenos">208</span>
+<span class="linenos">209</span>
 </pre></div>
 </div>
 </div>
@@ -441,27 +442,27 @@ expressed in pairs of glVertexs, as such, values need to be duplicated.</p>
 <h4>Implementation (White Box)<a class="headerlink" href="#implementation-white-box" title="Link to this heading">¶</a></h4>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">assignments/assignment1.py</span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">198</span><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
-<span class="linenos">199</span>    <span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">],</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">200</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">201</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_LINES</span><span class="p">)</span>
-<span class="linenos">202</span>    <span class="n">glVertex2f</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fn</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="linenos">203</span>
-<span class="linenos">204</span>    <span class="c1"># &gt;&gt;&gt; range(0,10)</span>
-<span class="linenos">205</span>    <span class="c1"># range(0, 10)</span>
-<span class="linenos">206</span>    <span class="c1"># &gt;&gt;&gt; list(range(0,10))</span>
-<span class="linenos">207</span>    <span class="c1"># [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
-<span class="linenos">208</span>    <span class="c1"># &gt;&gt;&gt; list(range(0,10,2))</span>
-<span class="linenos">209</span>    <span class="c1"># [0, 2, 4, 6, 8]</span>
-<span class="linenos">210</span>    <span class="c1"># &gt;&gt;&gt; np.arange(.0,1.0,.2)</span>
-<span class="linenos">211</span>    <span class="c1"># array([. , .2, .4, .6, .8])</span>
-<span class="linenos">212</span>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">interval</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">):</span>
-<span class="linenos">213</span>        <span class="c1"># glVertex is here twice because line segments are assumed to be in pairs</span>
-<span class="linenos">214</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-<span class="linenos">215</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-<span class="linenos">216</span>    <span class="n">glEnd</span><span class="p">()</span>
-<span class="linenos">217</span>
-<span class="linenos">218</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">177</span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span>
+<span class="linenos">178</span>    <span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">],</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span>
+<span class="linenos">179</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">180</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_LINES</span><span class="p">)</span>
+<span class="linenos">181</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fn</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="linenos">182</span>
+<span class="linenos">183</span>    <span class="c1"># &gt;&gt;&gt; range(0,10)</span>
+<span class="linenos">184</span>    <span class="c1"># range(0, 10)</span>
+<span class="linenos">185</span>    <span class="c1"># &gt;&gt;&gt; list(range(0,10))</span>
+<span class="linenos">186</span>    <span class="c1"># [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="linenos">187</span>    <span class="c1"># &gt;&gt;&gt; list(range(0,10,2))</span>
+<span class="linenos">188</span>    <span class="c1"># [0, 2, 4, 6, 8]</span>
+<span class="linenos">189</span>    <span class="c1"># &gt;&gt;&gt; np.arange(.0,1.0,.2)</span>
+<span class="linenos">190</span>    <span class="c1"># array([. , .2, .4, .6, .8])</span>
+<span class="linenos">191</span>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">interval</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">):</span>
+<span class="linenos">192</span>        <span class="c1"># GL.glVertex is here twice because line segments are assumed to be in pairs</span>
+<span class="linenos">193</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="linenos">194</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="linenos">195</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos">196</span>
+<span class="linenos">197</span>
 </pre></div>
 </div>
 </div>
@@ -474,17 +475,17 @@ we don’t have to name a new function, we can instead make a new unnamed functi
 on the fly with lambda.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">assignments/assignment1.py</span><a class="headerlink" href="#id7" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">255</span><span class="k">def</span> <span class="nf">use_plot_function_with_unnamed_function</span><span class="p">(</span>
-<span class="linenos">256</span>    <span class="n">elapsed_time_in_seconds</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="linenos">257</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">258</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">259</span>    <span class="n">plot</span><span class="p">(</span>
-<span class="linenos">260</span>        <span class="n">fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">elapsed_time_in_seconds</span> <span class="o">*</span> <span class="mf">3.0</span><span class="p">),</span>
-<span class="linenos">261</span>        <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-<span class="linenos">262</span>        <span class="n">interval</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
-<span class="linenos">263</span>    <span class="p">)</span>
-<span class="linenos">264</span>
-<span class="linenos">265</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">234</span><span class="k">def</span><span class="w"> </span><span class="nf">use_plot_function_with_unnamed_function</span><span class="p">(</span>
+<span class="linenos">235</span>    <span class="n">elapsed_time_in_seconds</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="linenos">236</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">237</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">238</span>    <span class="n">plot</span><span class="p">(</span>
+<span class="linenos">239</span>        <span class="n">fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">elapsed_time_in_seconds</span> <span class="o">*</span> <span class="mf">3.0</span><span class="p">),</span>
+<span class="linenos">240</span>        <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<span class="linenos">241</span>        <span class="n">interval</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+<span class="linenos">242</span>    <span class="p">)</span>
+<span class="linenos">243</span>
+<span class="linenos">244</span>
 </pre></div>
 </div>
 </div>
@@ -494,27 +495,27 @@ on the fly with lambda.</p>
 <p>We can draw a circle by breaking it up into triangles.</p>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text">assignments/assignment1.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">270</span><span class="k">def</span> <span class="nf">draw_circle</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">271</span>    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">)</span>
-<span class="linenos">272</span>
-<span class="linenos">273</span>    <span class="n">theta_increment</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="linenos">274</span>
-<span class="linenos">275</span>    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="linenos">276</span>
-<span class="linenos">277</span>    <span class="n">scale_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="linenos">278</span>
-<span class="linenos">279</span>    <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">theta_increment</span><span class="p">):</span>
-<span class="linenos">280</span>        <span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="linenos">281</span>        <span class="n">glVertex2f</span><span class="p">(</span>
-<span class="linenos">282</span>            <span class="n">scale_radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">scale_radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-<span class="linenos">283</span>        <span class="p">)</span>
-<span class="linenos">284</span>        <span class="n">glVertex2f</span><span class="p">(</span>
-<span class="linenos">285</span>            <span class="n">scale_radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span> <span class="o">+</span> <span class="n">theta_increment</span><span class="p">),</span>
-<span class="linenos">286</span>            <span class="n">scale_radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span> <span class="o">+</span> <span class="n">theta_increment</span><span class="p">),</span>
-<span class="linenos">287</span>        <span class="p">)</span>
-<span class="linenos">288</span>    <span class="n">glEnd</span><span class="p">()</span>
-<span class="linenos">289</span>
-<span class="linenos">290</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">249</span><span class="k">def</span><span class="w"> </span><span class="nf">draw_circle</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">250</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL</span><span class="o">.</span><span class="n">GL_TRIANGLES</span><span class="p">)</span>
+<span class="linenos">251</span>
+<span class="linenos">252</span>    <span class="n">theta_increment</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="linenos">253</span>
+<span class="linenos">254</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">255</span>
+<span class="linenos">256</span>    <span class="n">scale_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="linenos">257</span>
+<span class="linenos">258</span>    <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">theta_increment</span><span class="p">):</span>
+<span class="linenos">259</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">260</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span>
+<span class="linenos">261</span>            <span class="n">scale_radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">scale_radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="linenos">262</span>        <span class="p">)</span>
+<span class="linenos">263</span>        <span class="n">GL</span><span class="o">.</span><span class="n">glVertex2f</span><span class="p">(</span>
+<span class="linenos">264</span>            <span class="n">scale_radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span> <span class="o">+</span> <span class="n">theta_increment</span><span class="p">),</span>
+<span class="linenos">265</span>            <span class="n">scale_radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span> <span class="o">+</span> <span class="n">theta_increment</span><span class="p">),</span>
+<span class="linenos">266</span>        <span class="p">)</span>
+<span class="linenos">267</span>    <span class="n">GL</span><span class="o">.</span><span class="n">glEnd</span><span class="p">()</span>
+<span class="linenos">268</span>
+<span class="linenos">269</span>
 </pre></div>
 </div>
 </div>
@@ -607,5 +608,6 @@ on the fly with lambda.</p>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

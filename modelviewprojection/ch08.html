@@ -5,9 +5,9 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Rotation Fixed - Sequence of Transformations - Demo 09" href="ch09.html"><link rel="prev" title="Rotations - Demo 07" href="ch07.html">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
         <title>Rotation Fix Attempt 1 - Demo 08 - Model View Projection 0.0.2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
@@ -222,6 +222,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot2d.html">Plot 2D</a></li>
 </ul>
 
 </div>
@@ -325,20 +326,20 @@ of being rotated around their <a class="reference internal" href="glossary.html#
 around a given point in world space, in this case, the paddle’s center.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">58</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="linenos">59</span><span class="k">class</span> <span class="nc">Vector2D</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">):</span>
-<span class="linenos">60</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 2D Vector</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">62</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="linenos">63</span><span class="k">class</span><span class="w"> </span><span class="nc">Vector2D</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">):</span>
+<span class="linenos">64</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 2D Vector</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">114</span><span class="k">def</span> <span class="nf">rotate_around</span><span class="p">(</span>
-<span class="linenos">115</span>    <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Vector2D</span>
-<span class="linenos">116</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">117</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">118</span>        <span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">center</span><span class="p">)]</span>
-<span class="linenos">119</span>    <span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">118</span><span class="k">def</span><span class="w"> </span><span class="nf">rotate_around</span><span class="p">(</span>
+<span class="linenos">119</span>    <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Vector2D</span>
+<span class="linenos">120</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">121</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">122</span>        <span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">center</span><span class="p">)]</span>
+<span class="linenos">123</span>    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -509,5 +510,6 @@ this code.</p>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

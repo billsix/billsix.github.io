@@ -5,9 +5,9 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Matrix Stacks - Demo 19" href="ch19.html"><link rel="prev" title="Moving Camera in 3D Space - Demo 17" href="ch17.html">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
         <title>3D Perspective - Demo 18 - Model View Projection 0.0.2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
@@ -222,6 +222,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot2d.html">Plot 2D</a></li>
 </ul>
 
 </div>
@@ -481,9 +482,9 @@ whatever point the line above intersects the line at z=nearZ.  Let’s call that
 </div>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo18.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">61</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="linenos">62</span><span class="k">class</span> <span class="nc">Vector3D</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">):</span>
-<span class="linenos">63</span>    <span class="n">z</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The z-component of the 3D Vector</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">65</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="linenos">66</span><span class="k">class</span><span class="w"> </span><span class="nc">Vector3D</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">):</span>
+<span class="linenos">67</span>    <span class="n">z</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The z-component of the 3D Vector</span>
 </pre></div>
 </div>
 </div>
@@ -492,61 +493,61 @@ whatever point the line above intersects the line at z=nearZ.  Let’s call that
 </div>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo18.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">199</span><span class="k">def</span> <span class="nf">perspective</span><span class="p">(</span>
-<span class="linenos">200</span>    <span class="n">field_of_view</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">near_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">far_z</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">201</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">202</span>    <span class="c1"># field_of_view, dataclasses.field of view, is angle of y</span>
-<span class="linenos">203</span>    <span class="c1"># aspect_ratio is x_width / y_width</span>
-<span class="linenos">204</span>
-<span class="linenos">205</span>    <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="n">near_z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">field_of_view</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-<span class="linenos">206</span>    <span class="n">right</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">top</span> <span class="o">*</span> <span class="n">aspect_ratio</span>
-<span class="linenos">207</span>
-<span class="linenos">208</span>    <span class="n">fn</span> <span class="o">=</span> <span class="n">ortho</span><span class="p">(</span>
-<span class="linenos">209</span>        <span class="n">left</span><span class="o">=-</span><span class="n">right</span><span class="p">,</span>
-<span class="linenos">210</span>        <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="p">,</span>
-<span class="linenos">211</span>        <span class="n">bottom</span><span class="o">=-</span><span class="n">top</span><span class="p">,</span>
-<span class="linenos">212</span>        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
-<span class="linenos">213</span>        <span class="n">near</span><span class="o">=</span><span class="n">near_z</span><span class="p">,</span>
-<span class="linenos">214</span>        <span class="n">far</span><span class="o">=</span><span class="n">far_z</span><span class="p">,</span>
-<span class="linenos">215</span>    <span class="p">)</span>
-<span class="linenos">216</span>
-<span class="linenos">217</span>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">218</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">)</span>
-<span class="linenos">219</span>        <span class="n">s1d</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos">220</span>        <span class="n">x_component</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">s1d</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
-<span class="linenos">221</span>        <span class="n">y_component</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">s1d</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
-<span class="linenos">222</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x_component</span><span class="p">,</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">)</span>
-<span class="linenos">223</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_component</span><span class="p">,</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">)</span>
-<span class="linenos">224</span>
-<span class="linenos">225</span>        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span>
-<span class="linenos">226</span>            <span class="n">x</span><span class="o">=</span><span class="n">x_component</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_component</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span>
-<span class="linenos">227</span>        <span class="p">)</span>
-<span class="linenos">228</span>        <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="p">)</span>
-<span class="linenos">229</span>
-<span class="linenos">230</span>    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">231</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">)</span>
-<span class="linenos">232</span>        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
-<span class="linenos">233</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">)</span>
-<span class="linenos">234</span>
-<span class="linenos">235</span>        <span class="n">inverse_s1d</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span>
-<span class="linenos">236</span>            <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-<span class="linenos">237</span>        <span class="p">)</span>
-<span class="linenos">238</span>        <span class="n">x_component</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">inverse_s1d</span><span class="p">(</span>
-<span class="linenos">239</span>            <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-<span class="linenos">240</span>        <span class="p">)</span>
-<span class="linenos">241</span>        <span class="n">y_component</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">inverse_s1d</span><span class="p">(</span>
-<span class="linenos">242</span>            <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="linenos">243</span>        <span class="p">)</span>
-<span class="linenos">244</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x_component</span><span class="p">,</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">)</span>
-<span class="linenos">245</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_component</span><span class="p">,</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">)</span>
-<span class="linenos">246</span>
-<span class="linenos">247</span>        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
-<span class="linenos">248</span>            <span class="n">x_component</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-<span class="linenos">249</span>            <span class="n">y_component</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-<span class="linenos">250</span>            <span class="n">rectangular_prism</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
-<span class="linenos">251</span>        <span class="p">)</span>
-<span class="linenos">252</span>
-<span class="linenos">253</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">203</span><span class="k">def</span><span class="w"> </span><span class="nf">perspective</span><span class="p">(</span>
+<span class="linenos">204</span>    <span class="n">field_of_view</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">near_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">far_z</span><span class="p">:</span> <span class="nb">float</span>
+<span class="linenos">205</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">206</span>    <span class="c1"># field_of_view, dataclasses.field of view, is angle of y</span>
+<span class="linenos">207</span>    <span class="c1"># aspect_ratio is x_width / y_width</span>
+<span class="linenos">208</span>
+<span class="linenos">209</span>    <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="n">near_z</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">field_of_view</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="linenos">210</span>    <span class="n">right</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">top</span> <span class="o">*</span> <span class="n">aspect_ratio</span>
+<span class="linenos">211</span>
+<span class="linenos">212</span>    <span class="n">fn</span> <span class="o">=</span> <span class="n">ortho</span><span class="p">(</span>
+<span class="linenos">213</span>        <span class="n">left</span><span class="o">=-</span><span class="n">right</span><span class="p">,</span>
+<span class="linenos">214</span>        <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="p">,</span>
+<span class="linenos">215</span>        <span class="n">bottom</span><span class="o">=-</span><span class="n">top</span><span class="p">,</span>
+<span class="linenos">216</span>        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+<span class="linenos">217</span>        <span class="n">near</span><span class="o">=</span><span class="n">near_z</span><span class="p">,</span>
+<span class="linenos">218</span>        <span class="n">far</span><span class="o">=</span><span class="n">far_z</span><span class="p">,</span>
+<span class="linenos">219</span>    <span class="p">)</span>
+<span class="linenos">220</span>
+<span class="linenos">221</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">222</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">)</span>
+<span class="linenos">223</span>        <span class="n">s1d</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<span class="linenos">224</span>        <span class="n">x_component</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">s1d</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
+<span class="linenos">225</span>        <span class="n">y_component</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">s1d</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+<span class="linenos">226</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x_component</span><span class="p">,</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">)</span>
+<span class="linenos">227</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_component</span><span class="p">,</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">)</span>
+<span class="linenos">228</span>
+<span class="linenos">229</span>        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span>
+<span class="linenos">230</span>            <span class="n">x</span><span class="o">=</span><span class="n">x_component</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_component</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">vector</span><span class="o">.</span><span class="n">z</span>
+<span class="linenos">231</span>        <span class="p">)</span>
+<span class="linenos">232</span>        <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="p">)</span>
+<span class="linenos">233</span>
+<span class="linenos">234</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">235</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">)</span>
+<span class="linenos">236</span>        <span class="n">rectangular_prism</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
+<span class="linenos">237</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rectangular_prism</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">)</span>
+<span class="linenos">238</span>
+<span class="linenos">239</span>        <span class="n">inverse_s1d</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span>
+<span class="linenos">240</span>            <span class="n">mu</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="n">near_z</span> <span class="o">/</span> <span class="n">vector</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<span class="linenos">241</span>        <span class="p">)</span>
+<span class="linenos">242</span>        <span class="n">x_component</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">inverse_s1d</span><span class="p">(</span>
+<span class="linenos">243</span>            <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="linenos">244</span>        <span class="p">)</span>
+<span class="linenos">245</span>        <span class="n">y_component</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">inverse_s1d</span><span class="p">(</span>
+<span class="linenos">246</span>            <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">rectangular_prism</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">247</span>        <span class="p">)</span>
+<span class="linenos">248</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x_component</span><span class="p">,</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">)</span>
+<span class="linenos">249</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_component</span><span class="p">,</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">)</span>
+<span class="linenos">250</span>
+<span class="linenos">251</span>        <span class="k">return</span> <span class="n">Vector3D</span><span class="p">(</span>
+<span class="linenos">252</span>            <span class="n">x_component</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+<span class="linenos">253</span>            <span class="n">y_component</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+<span class="linenos">254</span>            <span class="n">rectangular_prism</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
+<span class="linenos">255</span>        <span class="p">)</span>
+<span class="linenos">256</span>
+<span class="linenos">257</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -682,5 +683,6 @@ whatever point the line above intersects the line at z=nearZ.  Let’s call that
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

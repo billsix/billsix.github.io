@@ -5,9 +5,9 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Moving Camera in 3D Space - Demo 17" href="ch17.html"><link rel="prev" title="Adding Depth - Enable Depth Buffer - Demo 15" href="ch15.html">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
         <title>Lambda Stack - Demo 16 - Model View Projection 0.0.2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=acfd86a5" />
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
@@ -222,6 +222,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot2d.html">Plot 2D</a></li>
 </ul>
 
 </div>
@@ -481,26 +482,26 @@ as a variable, and we will be storing functions which transform
 a vector to another vector, through the “modelspace_to_ndc” method.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils3d</span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">270</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="linenos">271</span><span class="k">class</span> <span class="nc">FunctionStack</span><span class="p">:</span>
-<span class="linenos">272</span>    <span class="n">stack</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span>
-<span class="linenos">273</span>        <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[]</span>
-<span class="linenos">274</span>    <span class="p">)</span>
-<span class="linenos">275</span>
-<span class="linenos">276</span>    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">):</span>
-<span class="linenos">277</span>        <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
-<span class="linenos">278</span>
-<span class="linenos">279</span>    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">280</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-<span class="linenos">281</span>
-<span class="linenos">282</span>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="linenos">283</span>        <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-<span class="linenos">284</span>
-<span class="linenos">285</span>    <span class="k">def</span> <span class="nf">modelspace_to_ndc_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">286</span>        <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="p">)</span>
-<span class="linenos">287</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">274</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="linenos">275</span><span class="k">class</span><span class="w"> </span><span class="nc">FunctionStack</span><span class="p">:</span>
+<span class="linenos">276</span>    <span class="n">stack</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span>
+<span class="linenos">277</span>        <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[]</span>
+<span class="linenos">278</span>    <span class="p">)</span>
+<span class="linenos">279</span>
+<span class="linenos">280</span>    <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">):</span>
+<span class="linenos">281</span>        <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+<span class="linenos">282</span>
+<span class="linenos">283</span>    <span class="k">def</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">284</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">285</span>
+<span class="linenos">286</span>    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">287</span>        <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 <span class="linenos">288</span>
-<span class="linenos">289</span><span class="n">fn_stack</span> <span class="o">=</span> <span class="n">FunctionStack</span><span class="p">()</span>
+<span class="linenos">289</span>    <span class="k">def</span><span class="w"> </span><span class="nf">modelspace_to_ndc_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">290</span>        <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="p">)</span>
+<span class="linenos">291</span>
+<span class="linenos">292</span>
+<span class="linenos">293</span><span class="n">fn_stack</span> <span class="o">=</span> <span class="n">FunctionStack</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -508,35 +509,35 @@ a vector to another vector, through the “modelspace_to_ndc” method.</p>
 <p>Push identity onto the stack, which will will never pop off of the stack.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">tests/test_mathutils3d.py</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">162</span><span class="k">def</span> <span class="nf">test_fn_stack</span><span class="p">():</span>
-<span class="linenos">163</span>    <span class="n">identity</span><span class="p">:</span> <span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="linenos">164</span>
-<span class="linenos">165</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">identity</span><span class="p">)</span>
-<span class="linenos">166</span>    <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>
-<span class="linenos">167</span>
-<span class="linenos">168</span>    <span class="n">add_one</span><span class="p">:</span> <span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="linenos">169</span>
-<span class="linenos">170</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">add_one</span><span class="p">)</span>
-<span class="linenos">171</span>    <span class="k">assert</span> <span class="mi">2</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># x + 1 = 2</span>
-<span class="linenos">172</span>
-<span class="linenos">173</span>    <span class="n">multiply_by_2</span><span class="p">:</span> <span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="linenos">174</span>
-<span class="linenos">175</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">multiply_by_2</span><span class="p">)</span>  <span class="c1"># (x * 2) + 1 = 3</span>
-<span class="linenos">176</span>    <span class="k">assert</span> <span class="mi">3</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>
-<span class="linenos">177</span>
-<span class="linenos">178</span>    <span class="n">add_5</span><span class="p">:</span> <span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">156</span><span class="k">def</span><span class="w"> </span><span class="nf">test_fn_stack</span><span class="p">():</span>
+<span class="linenos">157</span>    <span class="n">identity</span><span class="p">:</span> <span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">158</span>
+<span class="linenos">159</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">identity</span><span class="p">)</span>
+<span class="linenos">160</span>    <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">161</span>
+<span class="linenos">162</span>    <span class="n">add_one</span><span class="p">:</span> <span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">163</span>
+<span class="linenos">164</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">add_one</span><span class="p">)</span>
+<span class="linenos">165</span>    <span class="k">assert</span> <span class="mi">2</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># x + 1 = 2</span>
+<span class="linenos">166</span>
+<span class="linenos">167</span>    <span class="n">multiply_by_2</span><span class="p">:</span> <span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">uniform_scale</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">168</span>
+<span class="linenos">169</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">multiply_by_2</span><span class="p">)</span>  <span class="c1"># (x * 2) + 1 = 3</span>
+<span class="linenos">170</span>    <span class="k">assert</span> <span class="mi">3</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">171</span>
+<span class="linenos">172</span>    <span class="n">add_5</span><span class="p">:</span> <span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="linenos">173</span>
+<span class="linenos">174</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">add_5</span><span class="p">)</span>  <span class="c1"># ((x + 5) * 2) + 1 = 13</span>
+<span class="linenos">175</span>    <span class="k">assert</span> <span class="mi">13</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">178</span>    <span class="k">assert</span> <span class="mi">3</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (x * 2) + 1 = 3</span>
 <span class="linenos">179</span>
-<span class="linenos">180</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">add_5</span><span class="p">)</span>  <span class="c1"># ((x + 5) * 2) + 1 = 13</span>
-<span class="linenos">181</span>    <span class="k">assert</span> <span class="mi">13</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">180</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">181</span>    <span class="k">assert</span> <span class="mi">2</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># x + 1 = 2</span>
 <span class="linenos">182</span>
 <span class="linenos">183</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-<span class="linenos">184</span>    <span class="k">assert</span> <span class="mi">3</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (x * 2) + 1 = 3</span>
-<span class="linenos">185</span>
-<span class="linenos">186</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-<span class="linenos">187</span>    <span class="k">assert</span> <span class="mi">2</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># x + 1 = 2</span>
-<span class="linenos">188</span>
-<span class="linenos">189</span>    <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-<span class="linenos">190</span>    <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># x = 1</span>
+<span class="linenos">184</span>    <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">mu3d</span><span class="o">.</span><span class="n">fn_stack</span><span class="o">.</span><span class="n">modelspace_to_ndc_fn</span><span class="p">()(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># x = 1</span>
 </pre></div>
 </div>
 </div>
@@ -855,7 +856,8 @@ to NDC transformations from the ModelView and Projection matrix stacks.</p>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/scripts/furo.js?v=46bd48cc"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

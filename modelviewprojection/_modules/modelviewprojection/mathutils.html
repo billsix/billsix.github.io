@@ -4,9 +4,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2025.09.25 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
         <title>modelviewprojection.mathutils - Model View Projection 0.0.2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=acfd86a5" />
+      <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../static/styles/furo.css?v=50c23ec3" />
     <link rel="stylesheet" type="text/css" href="../../static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../../static/custom.css?v=b6a38b70" />
@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../miscellany.html">Miscellany</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plot2d.html">Plot 2D</a></li>
 </ul>
 
 </div>
@@ -272,11 +273,11 @@
 <span class="c1"># Boston, MA 02111-1307, USA.</span>
 
 
-<span class="kn">import</span> <span class="nn">dataclasses</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dataclasses</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;Vector&quot;</span><span class="p">,</span>
@@ -293,11 +294,11 @@
 <div class="viewcode-block" id="Vector">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector">[docs]</a>
 <span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="k">class</span> <span class="nc">Vector</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Vector</span><span class="p">:</span>
     <span class="c1"># doc-region-begin begin define add</span>
 <div class="viewcode-block" id="Vector.__add__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.__add__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add together two Vectors, component-wise.</span>
 
@@ -346,7 +347,7 @@
     <span class="c1"># doc-region-begin define mul</span>
 <div class="viewcode-block" id="Vector.__mul__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.__mul__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Multiply the Vector by a scalar number, component-wise</span>
 
@@ -380,7 +381,7 @@
 
 <div class="viewcode-block" id="Vector.__neg__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.__neg__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Let :math:`\\vec{a}` and constant :math:`-1`:</span>
 
@@ -397,13 +398,13 @@
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">dataclasses</span><span class="o">.</span><span class="n">astuple</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
 
     <span class="c1"># doc-region-begin begin define subtract</span>
 <div class="viewcode-block" id="Vector.__sub__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.__sub__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
         <span class="c1"># doc-region-end begin define subtract</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. math::</span>
@@ -424,13 +425,13 @@
 
 <div class="viewcode-block" id="Vector.__rmul__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.__rmul__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">scalar</span></div>
 
 
 <div class="viewcode-block" id="Vector.isclose">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.isclose">[docs]</a>
-    <span class="k">def</span> <span class="nf">isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">all</span><span class="p">(</span>
             <span class="nb">bool</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
@@ -439,7 +440,7 @@
 
 <div class="viewcode-block" id="Vector.component_wise_with_index">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.component_wise_with_index">[docs]</a>
-    <span class="k">def</span> <span class="nf">component_wise_with_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">component_wise_with_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span>
             <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="p">)</span></div>
@@ -448,7 +449,7 @@
     <span class="c1"># The dot method uses the generic iterators provided by self and other</span>
 <div class="viewcode-block" id="Vector.dot">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.dot">[docs]</a>
-    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">NotImplemented</span>
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span>
@@ -461,7 +462,7 @@
         <span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
 
 
@@ -470,7 +471,7 @@
 <div class="viewcode-block" id="InvertibleFunction">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.InvertibleFunction">[docs]</a>
 <span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="k">class</span> <span class="nc">InvertibleFunction</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">InvertibleFunction</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class that wraps a function and its</span>
 <span class="sd">    inverse function.  The function takes</span>
@@ -483,13 +484,14 @@
         <span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">Vector</span>
     <span class="p">]</span>  <span class="c1">#: The inverse of the wrapped function</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Execute a function with the given value.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            func (typing.Callable[[Vector], Vector]): A function that takes a value of type Vector</span>
-<span class="sd">                                     and returns a value of the same type Vector.</span>
+<span class="sd">            func (typing.Callable[[Vector], Vector]): A function that takes a value of</span>
+<span class="sd">                                                      type Vector and returns a value</span>
+<span class="sd">                                                      of the same type Vector.</span>
 <span class="sd">            value (Vector): The input value to pass to the function</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Vector: The result of calling func(value). Will be the same type as the</span>
@@ -507,21 +509,59 @@
 <span class="sd">            ...</span>
 <span class="sd">            &gt;&gt;&gt; foo = InvertibleFunction(func=f, inverse=f_inv)</span>
 <span class="sd">            &gt;&gt;&gt; foo # doctest: +ELLIPSIS</span>
-<span class="sd">            InvertibleFunction(func=&lt;function f at 0x...&gt;, inverse=&lt;function f_inv at 0x...&gt;)</span>
+<span class="sd">            InvertibleFunction(func=&lt;...&gt;, inverse=&lt;...&gt;)</span>
 <span class="sd">            &gt;&gt;&gt; foo(5)</span>
 <span class="sd">            7</span>
 <span class="sd">            &gt;&gt;&gt; inverse(foo) # doctest: +ELLIPSIS</span>
-<span class="sd">            InvertibleFunction(func=&lt;function f_inv at 0x...&gt;, inverse=&lt;function f at 0x...&gt;)</span>
+<span class="sd">            InvertibleFunction(func=&lt;...&gt;, inverse=&lt;...&gt;)</span>
 <span class="sd">            &gt;&gt;&gt; inverse(foo)(foo(5))</span>
 <span class="sd">            5</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__matmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f2</span><span class="p">:</span> <span class="s2">&quot;InvertibleFunction&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InvertibleFunction&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override @ for function composition.  This is abusing the @ symbol,</span>
+<span class="sd">        which is normally for matrix multiplication.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            f2 (mathutils.InvertibleFunction): A function that self is composed with</span>
+<span class="sd">                                               and returns a value of the same type</span>
+<span class="sd">                                               Vector.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            InvertibleFunction: The composed function.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Nothing</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils import InvertibleFunction</span>
+<span class="sd">            &gt;&gt;&gt; from modelviewprojection.mathutils import inverse</span>
+<span class="sd">            &gt;&gt;&gt; def f(x):</span>
+<span class="sd">            ...     return 2 + x</span>
+<span class="sd">            ...</span>
+<span class="sd">            &gt;&gt;&gt; def f_inv(x):</span>
+<span class="sd">            ...     return x - 2</span>
+<span class="sd">            ...</span>
+<span class="sd">            &gt;&gt;&gt; foo = InvertibleFunction(func=f, inverse=f_inv)</span>
+<span class="sd">            &gt;&gt;&gt; foo(5)</span>
+<span class="sd">            7</span>
+<span class="sd">            &gt;&gt;&gt; (foo @ foo)(5)</span>
+<span class="sd">            9</span>
+<span class="sd">            &gt;&gt;&gt; inverse(foo @ foo)(5)</span>
+<span class="sd">            1</span>
+<span class="sd">            &gt;&gt;&gt; (foo @ f_inv)(5)</span>
+<span class="sd">            5</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">compose</span><span class="p">([</span><span class="bp">self</span><span class="p">,</span> <span class="n">f2</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rmatmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f2</span><span class="p">:</span> <span class="s2">&quot;InvertibleFunction&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InvertibleFunction&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">f2</span> <span class="o">@</span> <span class="bp">self</span></div>
 
 
 
 <div class="viewcode-block" id="inverse">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.inverse">[docs]</a>
-<span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">inverse</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the inverse of the InvertibleFunction</span>
 
@@ -544,11 +584,11 @@
 <span class="sd">        ...</span>
 <span class="sd">        &gt;&gt;&gt; foo = InvertibleFunction(func=f, inverse=f_inv)</span>
 <span class="sd">        &gt;&gt;&gt; foo # doctest: +ELLIPSIS</span>
-<span class="sd">        InvertibleFunction(func=&lt;function f at 0x...&gt;, inverse=&lt;function f_inv at 0x...&gt;)</span>
+<span class="sd">        InvertibleFunction(func=&lt;...&gt;, inverse=&lt;...&gt;)</span>
 <span class="sd">        &gt;&gt;&gt; foo(5)</span>
 <span class="sd">        7</span>
 <span class="sd">        &gt;&gt;&gt; inverse(foo) # doctest: +ELLIPSIS</span>
-<span class="sd">        InvertibleFunction(func=&lt;function f_inv at 0x...&gt;, inverse=&lt;function f at 0x...&gt;)</span>
+<span class="sd">        InvertibleFunction(func=&lt;...&gt;, inverse=&lt;...&gt;)</span>
 <span class="sd">        &gt;&gt;&gt; inverse(foo)(foo(5))</span>
 <span class="sd">        5</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -560,7 +600,7 @@
 
 <div class="viewcode-block" id="compose">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.compose">[docs]</a>
-<span class="k">def</span> <span class="nf">compose</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compose</span><span class="p">(</span>
     <span class="n">functions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">InvertibleFunction</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -596,12 +636,12 @@
 <span class="sd">        16</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">composed_fn</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">composed_fn</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">functions</span><span class="p">):</span>
             <span class="n">x</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
 
-    <span class="k">def</span> <span class="nf">inv_composed_fn</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inv_composed_fn</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">functions</span><span class="p">:</span>
             <span class="n">x</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
@@ -612,14 +652,17 @@
 
 <div class="viewcode-block" id="compose_intermediate_fns">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.compose_intermediate_fns">[docs]</a>
-<span class="k">def</span> <span class="nf">compose_intermediate_fns</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compose_intermediate_fns</span><span class="p">(</span>
     <span class="n">functions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">InvertibleFunction</span><span class="p">],</span> <span class="n">relative_basis</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">InvertibleFunction</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Like compose, but returns a list of all of the partial compositions</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import compose_intermediate_fns, InvertibleFunction, uniform_scale, translate</span>
+<span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import compose_intermediate_fns</span>
+<span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import InvertibleFunction</span>
+<span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import uniform_scale</span>
+<span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import translate</span>
 <span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils1d import Vector1D</span>
 <span class="sd">        &gt;&gt;&gt; from pytest import approx</span>
 <span class="sd">        &gt;&gt;&gt; m = 5.0</span>
@@ -659,14 +702,17 @@
 
 <div class="viewcode-block" id="compose_intermediate_fns_and_fn">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.compose_intermediate_fns_and_fn">[docs]</a>
-<span class="k">def</span> <span class="nf">compose_intermediate_fns_and_fn</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compose_intermediate_fns_and_fn</span><span class="p">(</span>
     <span class="n">functions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">InvertibleFunction</span><span class="p">],</span> <span class="n">relative_basis</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">InvertibleFunction</span><span class="p">,</span> <span class="n">InvertibleFunction</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Like compose, but returns a list of all of the partial compositions</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import compose_intermediate_fns_and_fn, InvertibleFunction, uniform_scale, translate</span>
+<span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import compose_intermediate_fns_and_fn</span>
+<span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import InvertibleFunction</span>
+<span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import uniform_scale</span>
+<span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils import translate</span>
 <span class="sd">        &gt;&gt;&gt; from modelviewprojection.mathutils1d import Vector1D</span>
 <span class="sd">        &gt;&gt;&gt; from pytest import approx</span>
 <span class="sd">        &gt;&gt;&gt; m = 5.0</span>
@@ -704,11 +750,11 @@
 <span class="c1"># doc-region-begin define translate</span>
 <div class="viewcode-block" id="translate">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.translate">[docs]</a>
-<span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">b</span>
 
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">b</span>
 
     <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span></div>
@@ -719,11 +765,11 @@
 <span class="c1"># doc-region-begin define uniform scale</span>
 <div class="viewcode-block" id="uniform_scale">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.uniform_scale">[docs]</a>
-<span class="k">def</span> <span class="nf">uniform_scale</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">uniform_scale</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">m</span>
 
-    <span class="k">def</span> <span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not invertible.  Scaling factor cannot be zero.&quot;</span><span class="p">)</span>
 
@@ -768,5 +814,6 @@
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/scripts/furo.js?v=46bd48cc"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>
