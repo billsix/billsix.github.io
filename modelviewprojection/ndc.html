@@ -274,8 +274,10 @@
 </div>
 <section id="drawing-in-ndc">
 <h2>Drawing in NDC<a class="headerlink" href="#drawing-in-ndc" title="Link to this heading">¶</a></h2>
-<p>Similar to the Framebuffer code, this is a notebook in which we will only use software to
-draw pictures of a framebuffer.  We use Normalized Device Coordinates instead of screenspace,
+<p>Similar to the Framebuffer code, this is a notebook in which we will
+only use software to
+draw pictures of a framebuffer.  We use Normalized Device
+Coordinates instead of screenspace,
 and by the end, we will make an animation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -307,7 +309,7 @@ and by the end, we will make an animation.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/fdec9de639d4851f3bc5ade1cd417496f34171bfe5e633efc2514ad041077cf0.png" src="images/fdec9de639d4851f3bc5ade1cd417496f34171bfe5e633efc2514ad041077cf0.png" />
+<img alt="images/c465ff75a591db3ed7637cb06ad86343beb9828d699b1f7a373c6875393624b0.png" src="images/c465ff75a591db3ed7637cb06ad86343beb9828d699b1f7a373c6875393624b0.png" />
 </div>
 </div>
 </section>
@@ -329,16 +331,22 @@ and by the end, we will make an animation.</p>
 </section>
 <section id="problem-2">
 <h2>Problem 2<a class="headerlink" href="#problem-2" title="Link to this heading">¶</a></h2>
-<p>Make a new picture below where the triangle is translated 0.3 units in NDC to the left</p>
+<p>Make a new picture below where the triangle is translated 0.3 units
+in NDC to the left</p>
 </section>
 <section id="create-function-from-ndc-to-screenspace">
 <h2>Create function from NDC to screenspace<a class="headerlink" href="#create-function-from-ndc-to-screenspace" title="Link to this heading">¶</a></h2>
-<p>Create a function to convert from NDC to screen space.  We compose 4 functions to achieve this</p>
-<p>First, translate x to the right one unit, y up on unit, to make the bottom left of the NDC region be at (0,0)</p>
-<p>Second, since the NDC square is two units wide, scale by 1/2, to make it have a width of 1, and a height of 1.</p>
+<p>Create a function to convert from NDC to screen space.  We compose
+4 functions to achieve this</p>
+<p>First, translate x to the right one unit, y up on unit, to make
+the bottom left of the NDC region be at (0,0)</p>
+<p>Second, since the NDC square is two units wide, scale by 1/2, to
+make it have a width of 1, and a height of 1.</p>
 <p>Third, scale by the width and height of the framebuffer.</p>
-<p>Fourth, translate -1/2 and -1/2, to make (0,0) of NDC map to the center of the pixel at (0,0)</p>
-<p>Inspired by “Fundamentals of Computer Graphics, Third Edition”, by Shirley and Marshner, page 60</p>
+<p>Fourth, translate -1/2 and -1/2, to make (0,0) of NDC map to
+the center of the pixel at (0,0)</p>
+<p>Inspired by “Fundamentals of Computer Graphics, Third Edition”,
+by Shirley and Marshner, page 60</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ndc_to_screen</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
@@ -409,7 +417,10 @@ and by the end, we will make an animation.</p>
 </section>
 <section id="move-the-triangle-in-ndc">
 <h2>Move the Triangle in NDC<a class="headerlink" href="#move-the-triangle-in-ndc" title="Link to this heading">¶</a></h2>
-<p>Now, we want to make the triangle move to a different position.  We will use compose to first translate the triangle by 0.5 units of NDC up, and then take the result and convert it from NDC to screenspace</p>
+<p>Now, we want to make the triangle move to a different
+position.  We will use compose to first translate the
+triangle by 0.5 units of NDC up, and then take the
+result and convert it from NDC to screenspace</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">move</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
@@ -462,7 +473,9 @@ and by the end, we will make an animation.</p>
 </div>
 </div>
 </div>
-<p>Now that we have the frames, we just need to save them to a video.  The details of how this works is a black box to use, it doesn’t really matter for our understanding.</p>
+<p>Now that we have the frames, we just need to save them to a
+video.  The details of how this works is a black box to
+use, it doesn’t really matter for our understanding.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np_frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">]</span>
@@ -483,7 +496,7 @@ MoviePy - Writing video animation.mp4
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:   0%|                                                                                             | 0/120 [00:00&lt;?, ?it/s, now=None]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:  59%|█████████████████████████████████████████████████                                  | 71/120 [00:00&lt;00:00, 708.09it/s, now=None]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:  62%|███████████████████████████████████████████████████▉                               | 75/120 [00:00&lt;00:00, 567.99it/s, now=None]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                 

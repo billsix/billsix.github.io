@@ -250,10 +250,15 @@
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="framebuffer">
 <span id="framebufferlabel"></span><h1>Framebuffer<a class="headerlink" href="#framebuffer" title="Link to this heading">¶</a></h1>
-<p>We are taking a detour, to learn more about framebuffers.  This section is written as a jupyter notebook,
-which is an interactive document with executable code, which can output values and images.</p>
-<p>You can run this either in spyder or in jupyter.  If using spyder, open “src/modelviewprojection/notebooksrc/framebuffer.py”, if using jupyter notebook, using jupyter, open “notebook/framebuffer.ipynb”</p>
-<p>We will be using a fake “framebuffer”, just a python class to represent a framebuffer, and see how it works.</p>
+<p>We are taking a detour, to learn more about framebuffers.  This section
+is written as a jupyter notebook,
+which is an interactive document with executable code, which can
+output values and images.</p>
+<p>You can run this either in spyder or in jupyter.  If using spyder,
+open “src/modelviewprojection/notebooksrc/framebuffer.py”, if
+using jupyter notebook, using jupyter, open “notebook/framebuffer.ipynb”</p>
+<p>We will be using a fake “framebuffer”, just a python class to
+represent a framebuffer, and see how it works.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copyright (c) 2025 William Emerison Six</span>
@@ -281,7 +286,9 @@ which is an interactive document with executable code, which can output values a
 </div>
 </div>
 </div>
-<p>The module below is our software implementation of a framebuffer, we will use the name “sr” for “software rendering”:</p>
+<p>The module below is our software implementation of a
+framebuffer, we will use the name “sr” for
+“software rendering”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">modelviewprojection.softwarerendering</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sr</span>
@@ -292,8 +299,10 @@ which is an interactive document with executable code, which can output values a
 </div>
 </div>
 </div>
-<p>Make a framebuffer, which is just a rectangular region of values.  We use keyword arguments to
-specify that the framebuffer should have a width of 100, and a height of 100</p>
+<p>Make a framebuffer, which is just a rectangular region of
+values.  We use keyword arguments to
+specify that the framebuffer should have a width
+of 100, and a height of 100</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show initial random framebuffer</span>
@@ -303,10 +312,11 @@ specify that the framebuffer should have a width of 100, and a height of 100</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/fe068644ac22dbdade71615aa471c6299db427c547fc9c44d30bd2fc6bbe4700.png" src="images/fe068644ac22dbdade71615aa471c6299db427c547fc9c44d30bd2fc6bbe4700.png" />
+<img alt="images/a669cb22fc3649ed3d30f33f91407fa592e47b9b5b87edefe663fbbb559edd44.png" src="images/a669cb22fc3649ed3d30f33f91407fa592e47b9b5b87edefe663fbbb559edd44.png" />
 </div>
 </div>
-<p>Well, that looks bad, as there is a bunch of random values for colors in the framebuffer.</p>
+<p>Well, that looks bad, as there is a bunch of random values
+for colors in the framebuffer.</p>
 <p>Draw a triangle in this framebuffer, using screenspace coordinates</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -322,7 +332,7 @@ specify that the framebuffer should have a width of 100, and a height of 100</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/34d7efa279d7c4fe69996788660871163b5af0ad9515089846b87cf43fa48e81.png" src="images/34d7efa279d7c4fe69996788660871163b5af0ad9515089846b87cf43fa48e81.png" />
+<img alt="images/ccbcf30b0cee0e081a7793eac44bfa15772ff4f6864485fe68de662b4cc699d1.png" src="images/ccbcf30b0cee0e081a7793eac44bfa15772ff4f6864485fe68de662b4cc699d1.png" />
 </div>
 </div>
 <p>Whoops!  That looks like trash.  We should change the background to
@@ -373,7 +383,8 @@ have all one color.  That’s what clear_framebuffer does</p>
 <img alt="images/be811f11dbc1efe024754fc51c3c84c9c242d361adce2b1f2d7bca549e57aa57.png" src="images/be811f11dbc1efe024754fc51c3c84c9c242d361adce2b1f2d7bca549e57aa57.png" />
 </div>
 </div>
-<p>Without clearing (as we want to keep the white triangle, let’s draw a red triangle at a different location in screenspace</p>
+<p>Without clearing (as we want to keep the white triangle, let’s
+draw a red triangle at a different location in screenspace</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw a red triangle</span>
@@ -401,7 +412,7 @@ have all one color.  That’s what clear_framebuffer does</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/b364e31788ce4735771a38811bf5a698dfd94c893dd8db53a901362c5659eaa2.png" src="images/b364e31788ce4735771a38811bf5a698dfd94c893dd8db53a901362c5659eaa2.png" />
+<img alt="images/d8cbd51e5d4fd2b30a6a0a17c6d7fa1230d0b39ff8820be3d70918446f499722.png" src="images/d8cbd51e5d4fd2b30a6a0a17c6d7fa1230d0b39ff8820be3d70918446f499722.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -443,7 +454,9 @@ have all one color.  That’s what clear_framebuffer does</p>
 <img alt="images/b2da661edfe0224e8fe7a217320ea6fc946f3094c61cbb56cd230273ae57144a.png" src="images/b2da661edfe0224e8fe7a217320ea6fc946f3094c61cbb56cd230273ae57144a.png" />
 </div>
 </div>
-<p>It makes sense that the triangles are in the lower left, OpenGL screenspace starts with 0,0 in the bottom left; the upper right is (width, height)</p>
+<p>It makes sense that the triangles are in the lower left, OpenGL
+screenspace starts with 0,0 in the bottom left; the upper
+right is (width, height)</p>
 </section>
 
         </article>

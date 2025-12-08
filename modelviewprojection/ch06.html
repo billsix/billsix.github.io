@@ -676,7 +676,7 @@ the respective components together, and create a new Vector2D.</p>
 </div>
 </div>
 <p>In a Python class, we can overload the ‘+’ symbol, to make
-objects addable, by implementing the <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector.__add__" title="modelviewprojection.mathutils1d.Vector.__add__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector.__add__()</span></code></a>
+objects addable, by implementing the <a class="reference internal" href="api.html#modelviewprojection.mathutils.Vector.__add__" title="modelviewprojection.mathutils.Vector.__add__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__add__</span></code></a>
 method.  The definition is just saying pairwise add each component.
 Don’t stress about understanding the implementation, look at the
 tests listed after.</p>
@@ -702,7 +702,7 @@ tests listed after.</p>
 </div>
 </div>
 <p>We can also model the opposite procedure, subtraction,
-by implementing the <a class="reference internal" href="api.html#modelviewprojection.mathutils.Vector.__sub__" title="modelviewprojection.mathutils.Vector.__sub__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.Vector.__sub__()</span></code></a>
+by implementing the <a class="reference internal" href="api.html#modelviewprojection.mathutils.Vector.__sub__" title="modelviewprojection.mathutils.Vector.__sub__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__sub__</span></code></a>
 method.</p>
 <div class="literal-block-wrapper docutils container" id="id17">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id17" title="Link to this code">¶</a></div>
@@ -718,7 +718,7 @@ method.</p>
 </div>
 <p>In our graphics code, instead of using “a+b”, we’ll use a more descriptive
 name: “translate”, which is implemented using the addition symbol.  But a few
-things to note, <a class="reference internal" href="api.html#modelviewprojection.mathutils.translate" title="modelviewprojection.mathutils.translate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.translate()</span></code></a>
+things to note, <a class="reference internal" href="api.html#modelviewprojection.mathutils.translate" title="modelviewprojection.mathutils.translate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">translate</span></code></a>
 is a function on the mathutils module, not a method
 on Vector2D class, and it’s wrapped in a class named
 <a class="reference internal" href="api.html#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">InvertibleFunction</span></code></a>.</p>
@@ -813,7 +813,7 @@ method.</p>
 </div>
 </div>
 <p>We can get the inverse of the procedure by the following
-<a class="reference internal" href="api.html#modelviewprojection.mathutils.inverse" title="modelviewprojection.mathutils.inverse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.inverse()</span></code></a>, procedure</p>
+<a class="reference internal" href="api.html#modelviewprojection.mathutils.inverse" title="modelviewprojection.mathutils.inverse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">inverse</span></code></a>, procedure</p>
 <div class="literal-block-wrapper docutils container" id="id25">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id25" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">283</span><span class="k">def</span><span class="w"> </span><span class="nf">inverse</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
@@ -847,7 +847,7 @@ that this object is on the right hand side of the multiplication.</p>
 <p>Just like we made a top level invertible function called “translate” for addition,
 we are going to do the same for multiplication, and call it “uniform_scale”.
 Notice in particular that the scalar is passed as an argument to
-<a class="reference internal" href="api.html#modelviewprojection.mathutils.uniform_scale" title="modelviewprojection.mathutils.uniform_scale"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.uniform_scale()</span></code></a>,
+<a class="reference internal" href="api.html#modelviewprojection.mathutils.uniform_scale" title="modelviewprojection.mathutils.uniform_scale"><code class="xref py py-meth docutils literal notranslate"><span class="pre">uniform_scale</span></code></a>,
 but the function for scaling “f”, and the inverse of “f” named “f_inv”, take a Vector2D.
 This is because we will be scaling many Vector2Ds using the same scaling factor.</p>
 <div class="literal-block-wrapper docutils container" id="id29">

@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "0543514e",
+   "id": "50b2bc53",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -13,7 +13,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "2688ef0d",
+   "id": "a05cf7aa",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -38,7 +38,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "019bbae1",
+   "id": "a15a6147",
    "metadata": {},
    "source": [
     "Problem 1\n",
@@ -48,7 +48,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "bdac83f6",
+   "id": "e6e98306",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -60,17 +60,21 @@
     "    compose_intermediate_fns,\n",
     ")\n",
     "from modelviewprojection.mathutils2d import rotate as R\n",
+    "from modelviewprojection.mathutils2d import scale as S\n",
     "from modelviewprojection.mathutils2d import translate as T\n",
     "from modelviewprojection.nbplotutils import (\n",
     "    create_basis,\n",
     "    create_graphs,\n",
+    "    create_unit_circle,\n",
+    "    create_x_and_y,\n",
+    "    draw_screen,\n",
     "    draw_triangle,\n",
     ")"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "64616ce5",
+   "id": "e34be2e4",
    "metadata": {},
    "source": [
     "Draw graph paper\n",
@@ -85,28 +89,33 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "204150ee",
+   "id": "3d37daf9",
    "metadata": {},
    "outputs": [],
    "source": [
     "with create_graphs():\n",
-    "    create_basis()"
+    "    create_basis()\n",
+    "    create_x_and_y()\n",
+    "    create_unit_circle()"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "5319b48e",
+   "id": "16416bc1",
    "metadata": {},
    "outputs": [],
    "source": [
     "with create_graphs():\n",
-    "    create_basis(fn=R(math.radians(53.130102)))"
+    "    fn = R(math.radians(53.130102))\n",
+    "    create_basis(fn=fn)\n",
+    "    create_x_and_y(fn=fn)\n",
+    "    create_unit_circle(fn=fn)"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "b11f166f",
+   "id": "905402d6",
    "metadata": {},
    "source": [
     "Draw relative graph paper\n",
@@ -122,22 +131,29 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "eb45514c",
+   "id": "e9e907a0",
    "metadata": {},
    "outputs": [],
    "source": [
     "with create_graphs():\n",
     "    create_basis(fn=R(0.0))\n",
+    "    create_x_and_y(fn=R(0.0))\n",
     "    create_basis(\n",
     "        fn=R(math.radians(45.0)),\n",
     "        xcolor=(0, 1, 0),\n",
     "        ycolor=(1, 1, 0),\n",
-    "    )"
+    "    )\n",
+    "    create_x_and_y(\n",
+    "        fn=R(math.radians(45.0)),\n",
+    "        xcolor=(0, 1, 0),\n",
+    "        ycolor=(1, 1, 0),\n",
+    "    )\n",
+    "    create_unit_circle(fn=fn)"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "aa0c8c1a",
+   "id": "b66a8fca",
    "metadata": {},
    "source": [
     "Draw relative graph paper, defined by composed functions\n",
@@ -151,24 +167,27 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "0455a462",
+   "id": "de4c2d2c",
    "metadata": {},
    "outputs": [],
    "source": [
     "with create_graphs():\n",
+    "    fn = compose(\n",
+    "        [\n",
+    "            R(math.radians(90.0)),\n",
+    "            T(Vector2D(x=2.0, y=0.0)),\n",
+    "        ]\n",
+    "    )\n",
     "    create_basis(\n",
-    "        fn=compose(\n",
-    "            [\n",
-    "                R(math.radians(90.0)),\n",
-    "                T(Vector2D(x=2.0, y=0.0)),\n",
-    "            ]\n",
-    "        ),\n",
-    "    )"
+    "        fn=fn,\n",
+    "    )\n",
+    "    create_x_and_y(fn=fn)\n",
+    "    create_unit_circle(fn=fn)"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "965d6669",
+   "id": "c7bb94ac",
    "metadata": {},
    "source": [
     "Composed functions, read bottom up\n",
@@ -182,23 +201,29 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "80efa68d",
-   "metadata": {},
+   "id": "182b610d",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
    "outputs": [],
    "source": [
     "for f in compose_intermediate_fns(\n",
     "    [\n",
     "        R(math.radians(90.0)),\n",
     "        T(Vector2D(x=2.0, y=0.0)),\n",
+    "        lambda x: x,\n",
     "    ]\n",
     "):\n",
     "    with create_graphs():\n",
-    "        create_basis(fn=f)"
+    "        create_basis(fn=f)\n",
+    "        create_x_and_y(fn=f)\n",
+    "        draw_triangle(fn=f)\n",
+    "        create_unit_circle(fn=f)"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "4f076b53",
+   "id": "51b36c43",
    "metadata": {},
    "source": [
     "Composed functions, read top down\n",
@@ -212,13 +237,13 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "7962d144",
+   "id": "3baec05a",
    "metadata": {},
    "outputs": [],
    "source": [
     "for f in compose_intermediate_fns(\n",
     "    [\n",
-    "        R(math.radians(0)),\n",
+    "        lambda x: x,\n",
     "        R(math.radians(90.0)),\n",
     "        T(Vector2D(x=2.0, y=0.0)),\n",
     "    ],\n",
@@ -226,8 +251,83 @@
     "):\n",
     "    with create_graphs():\n",
     "        create_basis(fn=f)\n",
-    "        draw_triangle(fn=f)"
+    "        create_x_and_y(fn=f)\n",
+    "        draw_triangle(fn=f)\n",
+    "        create_unit_circle(fn=f)"
    ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1bec03d5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "screen_width = 4\n",
+    "screen_height = 3\n",
+    "\n",
+    "for f in compose_intermediate_fns(\n",
+    "    [\n",
+    "        T(Vector2D(-0.5, -0.5)),\n",
+    "        S(screen_width, screen_height),\n",
+    "        S(0.5, 0.5),\n",
+    "        T(Vector2D(x=1.0, y=1.0)),\n",
+    "        lambda x: x,\n",
+    "    ],\n",
+    "    relative_basis=False,\n",
+    "):\n",
+    "    with create_graphs(graph_bounds=(6, 6)):\n",
+    "        # create_basis(fn=f)\n",
+    "        # create_x_and_y(fn=f)\n",
+    "        create_basis(fn=lambda x: x)\n",
+    "        # create_x_and_y(fn=lambda x: x)\n",
+    "        # draw_ndc(fn=f)\n",
+    "        draw_screen(width=screen_width, height=screen_height, fn=f)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6b65d242",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "screen_width = 4\n",
+    "screen_height = 3\n",
+    "\n",
+    "for f in compose_intermediate_fns(\n",
+    "    [\n",
+    "        T(Vector2D(-0.5, -0.5)),\n",
+    "        S(screen_width, screen_height),\n",
+    "        S(0.5, 0.5),\n",
+    "        T(Vector2D(x=1.0, y=1.0)),\n",
+    "    ],\n",
+    "    relative_basis=True,\n",
+    "):\n",
+    "    with create_graphs(graph_bounds=(6, 6)):\n",
+    "        # create_basis(fn=f)\n",
+    "        # create_x_and_y(fn=f)\n",
+    "        create_basis(fn=lambda x: x)\n",
+    "        # create_x_and_y(fn=lambda x: x)\n",
+    "        # draw_ndc(fn=f)\n",
+    "        draw_screen(width=screen_width, height=screen_height, fn=f)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f1013df7",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "363fe791",
+   "metadata": {},
+   "outputs": [],
+   "source": []
   }
  ],
  "metadata": {

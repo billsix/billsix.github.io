@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "b8786a46",
+   "id": "f65f4fda",
    "metadata": {},
    "source": [
     "(framebufferlabel)=\n",
@@ -11,21 +11,26 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b70acb3f",
+   "id": "852486fe",
    "metadata": {},
    "source": [
-    "We are taking a detour, to learn more about framebuffers.  This section is written as a jupyter notebook,\n",
-    "which is an interactive document with executable code, which can output values and images.\n",
+    "We are taking a detour, to learn more about framebuffers.  This section\n",
+    "is written as a jupyter notebook,\n",
+    "which is an interactive document with executable code, which can\n",
+    "output values and images.\n",
     "\n",
-    "You can run this either in spyder or in jupyter.  If using spyder, open \"src/modelviewprojection/notebooksrc/framebuffer.py\", if using jupyter notebook, using jupyter, open \"notebook/framebuffer.ipynb\"\n",
+    "You can run this either in spyder or in jupyter.  If using spyder,\n",
+    "open \"src/modelviewprojection/notebooksrc/framebuffer.py\", if\n",
+    "using jupyter notebook, using jupyter, open \"notebook/framebuffer.ipynb\"\n",
     "\n",
-    "We will be using a fake \"framebuffer\", just a python class to represent a framebuffer, and see how it works."
+    "We will be using a fake \"framebuffer\", just a python class to\n",
+    "represent a framebuffer, and see how it works."
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "eba6fb41",
+   "id": "03f67b05",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -54,18 +59,20 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e62d606d",
+   "id": "422fbe67",
    "metadata": {
     "lines_to_next_cell": 0
    },
    "source": [
-    "The module below is our software implementation of a framebuffer, we will use the name \"sr\" for \"software rendering\":"
+    "The module below is our software implementation of a\n",
+    "framebuffer, we will use the name \"sr\" for\n",
+    "\"software rendering\":"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "e161fd7a",
+   "id": "5ef37d1c",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -79,17 +86,19 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c6faed54",
+   "id": "e0106e58",
    "metadata": {},
    "source": [
-    "Make a framebuffer, which is just a rectangular region of values.  We use keyword arguments to\n",
-    "specify that the framebuffer should have a width of 100, and a height of 100"
+    "Make a framebuffer, which is just a rectangular region of\n",
+    "values.  We use keyword arguments to\n",
+    "specify that the framebuffer should have a width\n",
+    "of 100, and a height of 100"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "a94a750c",
+   "id": "bf8cc30b",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -102,10 +111,11 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9b691ce0",
+   "id": "a267d867",
    "metadata": {},
    "source": [
-    "Well, that looks bad, as there is a bunch of random values for colors in the framebuffer.\n",
+    "Well, that looks bad, as there is a bunch of random values\n",
+    "for colors in the framebuffer.\n",
     "\n",
     "Draw a triangle in this framebuffer, using screenspace coordinates"
    ]
@@ -113,7 +123,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "15d84f89",
+   "id": "3c28926d",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -131,7 +141,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "bf83dede",
+   "id": "7ac4caea",
    "metadata": {},
    "source": [
     "Whoops!  That looks like trash.  We should change the background to\n",
@@ -141,7 +151,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "e1d83fcc",
+   "id": "d3f7264a",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -153,7 +163,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "388ac0d4",
+   "id": "cfa3c846",
    "metadata": {},
    "source": [
     "I don't really want to draw on Red, let's switch it to black"
@@ -162,7 +172,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "8fef93f6",
+   "id": "9188c215",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -176,7 +186,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "526f0a7e",
+   "id": "370eb083",
    "metadata": {},
    "source": [
     "Let's clear again for no reason, and draw a white triangle in screenspace."
@@ -185,7 +195,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "d3315915",
+   "id": "32cfc4c8",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -204,16 +214,17 @@
   },
   {
    "cell_type": "markdown",
-   "id": "74043f51",
+   "id": "bdc8b890",
    "metadata": {},
    "source": [
-    "Without clearing (as we want to keep the white triangle, let's draw a red triangle at a different location in screenspace"
+    "Without clearing (as we want to keep the white triangle, let's\n",
+    "draw a red triangle at a different location in screenspace"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "b80ff13a",
+   "id": "33578c46",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -230,7 +241,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8d9e57c4",
+   "id": "4262dc7f",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -241,7 +252,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "8af89b3b",
+   "id": "1a663cc2",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -255,7 +266,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "91029eb1",
+   "id": "a88a9cbe",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -269,7 +280,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "bf589579",
+   "id": "b96e6204",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -294,16 +305,18 @@
   },
   {
    "cell_type": "markdown",
-   "id": "eb096d39",
+   "id": "e2db63b2",
    "metadata": {},
    "source": [
-    "It makes sense that the triangles are in the lower left, OpenGL screenspace starts with 0,0 in the bottom left; the upper right is (width, height)"
+    "It makes sense that the triangles are in the lower left, OpenGL\n",
+    "screenspace starts with 0,0 in the bottom left; the upper\n",
+    "right is (width, height)"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "ff0cbd0a",
+   "id": "e9f8e3e4",
    "metadata": {},
    "outputs": [],
    "source": []

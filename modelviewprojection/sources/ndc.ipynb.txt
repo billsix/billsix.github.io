@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "3e3938f0",
+   "id": "bf1ae05f",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -13,7 +13,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "403577b4",
+   "id": "3b2580bb",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -40,21 +40,23 @@
   },
   {
    "cell_type": "markdown",
-   "id": "0ef78680",
+   "id": "9dac149c",
    "metadata": {},
    "source": [
     "Drawing in NDC\n",
     "--------------\n",
     "\n",
-    "Similar to the Framebuffer code, this is a notebook in which we will only use software to\n",
-    "draw pictures of a framebuffer.  We use Normalized Device Coordinates instead of screenspace,\n",
+    "Similar to the Framebuffer code, this is a notebook in which we will\n",
+    "only use software to\n",
+    "draw pictures of a framebuffer.  We use Normalized Device\n",
+    "Coordinates instead of screenspace,\n",
     "and by the end, we will make an animation."
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "97d90c5d",
+   "id": "8278a3d3",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -75,7 +77,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "12a85f5a",
+   "id": "e057b4c3",
    "metadata": {},
    "source": [
     "Make Framebuffer\n",
@@ -87,7 +89,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "272fc9ea",
+   "id": "73a5f8f8",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -100,7 +102,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c395fba3",
+   "id": "a28ea103",
    "metadata": {},
    "source": [
     "Clear Framebuffer\n",
@@ -112,7 +114,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "786014cc",
+   "id": "2ee7e82e",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -125,40 +127,46 @@
   },
   {
    "cell_type": "markdown",
-   "id": "db693500",
+   "id": "99e074b5",
    "metadata": {},
    "source": [
     "Problem 2\n",
     "---------\n",
     "\n",
-    "Make a new picture below where the triangle is translated 0.3 units in NDC to the left"
+    "Make a new picture below where the triangle is translated 0.3 units\n",
+    "in NDC to the left"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "740ce1f3",
+   "id": "8ce23dfa",
    "metadata": {},
    "source": [
     "Create function from NDC to screenspace\n",
     "---------------------------------------\n",
     "\n",
-    "Create a function to convert from NDC to screen space.  We compose 4 functions to achieve this\n",
+    "Create a function to convert from NDC to screen space.  We compose\n",
+    "4 functions to achieve this\n",
     "\n",
-    "First, translate x to the right one unit, y up on unit, to make the bottom left of the NDC region be at (0,0)\n",
+    "First, translate x to the right one unit, y up on unit, to make\n",
+    "the bottom left of the NDC region be at (0,0)\n",
     "\n",
-    "Second, since the NDC square is two units wide, scale by 1/2, to make it have a width of 1, and a height of 1.\n",
+    "Second, since the NDC square is two units wide, scale by 1/2, to\n",
+    "make it have a width of 1, and a height of 1.\n",
     "\n",
     "Third, scale by the width and height of the framebuffer.\n",
     "\n",
-    "Fourth, translate -1/2 and -1/2, to make (0,0) of NDC map to the center of the pixel at (0,0)\n",
+    "Fourth, translate -1/2 and -1/2, to make (0,0) of NDC map to\n",
+    "the center of the pixel at (0,0)\n",
     "\n",
-    "Inspired by \"Fundamentals of Computer Graphics, Third Edition\", by Shirley and Marshner, page 60"
+    "Inspired by \"Fundamentals of Computer Graphics, Third Edition\",\n",
+    "by Shirley and Marshner, page 60"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "e79397e0",
+   "id": "655c4683",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -174,7 +182,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b1463699",
+   "id": "b1079d60",
    "metadata": {},
    "source": [
     "Create NDC data for triangle\n",
@@ -186,7 +194,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "faba1c1e",
+   "id": "b60c63b3",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -201,7 +209,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5c6a9f0c",
+   "id": "f6c531d7",
    "metadata": {},
    "source": [
     "Convert the NDC Vectors to Screenspace\n",
@@ -213,7 +221,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "845d6637",
+   "id": "23361557",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -226,7 +234,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "3d434335",
+   "id": "61f9a481",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -242,19 +250,22 @@
   },
   {
    "cell_type": "markdown",
-   "id": "54d82fa8",
+   "id": "844562d9",
    "metadata": {},
    "source": [
     "Move the Triangle in NDC\n",
     "------------------------\n",
     "\n",
-    "Now, we want to make the triangle move to a different position.  We will use compose to first translate the triangle by 0.5 units of NDC up, and then take the result and convert it from NDC to screenspace"
+    "Now, we want to make the triangle move to a different\n",
+    "position.  We will use compose to first translate the\n",
+    "triangle by 0.5 units of NDC up, and then take the\n",
+    "result and convert it from NDC to screenspace"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "0d059a86",
+   "id": "7dfd429a",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -269,7 +280,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "4907fedb",
+   "id": "c91e5b6d",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -281,7 +292,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "7de3b024",
+   "id": "d24a0fd3",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -306,16 +317,18 @@
   },
   {
    "cell_type": "markdown",
-   "id": "15d945bc",
+   "id": "f5306e86",
    "metadata": {},
    "source": [
-    "Now that we have the frames, we just need to save them to a video.  The details of how this works is a black box to use, it doesn't really matter for our understanding."
+    "Now that we have the frames, we just need to save them to a\n",
+    "video.  The details of how this works is a black box to\n",
+    "use, it doesn't really matter for our understanding."
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "aa60846d",
+   "id": "8cfea01c",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -331,7 +344,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "a28f8912",
+   "id": "10c50618",
    "metadata": {},
    "outputs": [],
    "source": []
@@ -339,7 +352,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "765e61af",
+   "id": "3199cd7f",
    "metadata": {},
    "outputs": [],
    "source": []
