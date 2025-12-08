@@ -3,12 +3,13 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Programming Project #1" href="programmingproj1.html"><link rel="prev" title="Draw A Rectangle - Demo 02" href="ch02.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Modelspace - Demo 06" href="ch06.html"><link rel="prev" title="Add Translate Method to Vector - Demo 05" href="ch05.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
         <title>Math Homework #1 - Model View Projection 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
     
@@ -196,28 +197,14 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Math Homework #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framebuffer.html">Framebuffer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ndc.html">NDC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programmingproj1.html">Programming Project #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vector - Demo 05</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Math Homework #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch16.html">Lambda Stack - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">Moving Camera in 3D Space - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
-<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
@@ -275,8 +262,9 @@ celsius to kelvin and for fahrenheit to celsius, implement in Python</p>
 <p>This book provides a math library in Python.  We import them here.</p>
 <p>We’ll use pytest’s approx
 method to test if two floating point values are close enough to the same
-value.  We import a type <a class="reference internal" href="api.html#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.InvertibleFunction</span></code></a>,
-<a class="reference internal" href="api.html#modelviewprojection.mathutils.compose" title="modelviewprojection.mathutils.compose"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.compose()</span></code></a>, <a class="reference internal" href="api.html#modelviewprojection.mathutils.inverse" title="modelviewprojection.mathutils.inverse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.inverse()</span></code></a></p>
+value.  We import a type <a class="reference internal" href="api.html#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">InvertibleFunction</span></code></a>,
+<a class="reference internal" href="api.html#modelviewprojection.mathutils.compose" title="modelviewprojection.mathutils.compose"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compose</span></code></a>,
+<a class="reference internal" href="api.html#modelviewprojection.mathutils.inverse" title="modelviewprojection.mathutils.inverse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">inverse</span></code></a></p>
 <p>Important note.  The links in the previous paragraphs are links to API documentation.
 API documentation is like a guidebook that explains how to use a library.  It tells
 you what functions, classes, and modules are available, what inputs they require,
@@ -297,28 +285,28 @@ and show you features that you might not realize exists.</p>
 </pre></div>
 </div>
 </div>
-<p>We can do addition on <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D</span></code></a> using “+”, <code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D.__add__()</span></code></p>
+<p>We can do addition on <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector1D</span></code></a> using “+”, <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector.__add__" title="modelviewprojection.mathutils1d.Vector.__add__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__add__</span></code></a></p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">60</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<p>We can do subtraction on <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D</span></code></a> using “-”, <code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D.__sub__()</span></code></p>
+<p>We can do subtraction on <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector1D</span></code></a> using “-”, <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector.__sub__" title="modelviewprojection.mathutils1d.Vector.__sub__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__sub__</span></code></a></p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">65</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<p>We can do multiply a scalar by  <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D</span></code></a> using “*”, <code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D.__mul__()</span></code></p>
+<p>We can do multiply a scalar by  <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector1D</span></code></a> using “*”, <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector.__mul__" title="modelviewprojection.mathutils1d.Vector.__mul__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__mul__</span></code></a></p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">70</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<p>We can do negate a  <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D</span></code></a> using “-”, <code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils1d.Vector1D.__neg__()</span></code></p>
+<p>We can do negate a  <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector1D" title="modelviewprojection.mathutils1d.Vector1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector1D</span></code></a> using “-”, <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector.__neg__" title="modelviewprojection.mathutils1d.Vector.__neg__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__neg__</span></code></a></p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">75</span><span class="o">-</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
@@ -327,10 +315,10 @@ and show you features that you might not realize exists.</p>
 </div>
 <section id="translate-implementation">
 <h3>Translate Implementation<a class="headerlink" href="#translate-implementation" title="Link to this heading">¶</a></h3>
-<p>Next we have a very import function, <a class="reference internal" href="api.html#modelviewprojection.mathutils.translate" title="modelviewprojection.mathutils.translate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.translate()</span></code></a>.  Read
+<p>Next we have a very import function, <a class="reference internal" href="api.html#modelviewprojection.mathutils.translate" title="modelviewprojection.mathutils.translate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">translate</span></code></a>.  Read
 the API documentation in the link, it’s a very important function.</p>
 <p>Translate is a function which partially binds a constant <code class="xref py py-class docutils literal notranslate"><span class="pre">Vector1D</span></code> to
-one of the arguments of <code class="xref py py-meth docutils literal notranslate"><span class="pre">Vector1D.__add__()</span></code>, thus creating
+one of the arguments of <a class="reference internal" href="api.html#modelviewprojection.mathutils1d.Vector.__add__" title="modelviewprojection.mathutils1d.Vector.__add__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__add__</span></code></a>, thus creating
 a new function of one argument.</p>
 <p>In high school math, you’d learn about classes of functions,  such as
 affine functions that follow the pattern
@@ -346,7 +334,7 @@ But could you generate a new function for a given <span class="math notranslate 
 <span class="math notranslate nohighlight">\(b\)</span>?</p>
 <p>Perhaps you could use notation such as <span class="math notranslate nohighlight">\(f_{m=2,b=3}(x)\)</span> to be a function <span class="math notranslate nohighlight">\(2 \times x + 3\)</span>,
 or <span class="math notranslate nohighlight">\(f(x; m=2,b=3)\)</span> to be a function <span class="math notranslate nohighlight">\(2 \times x + 3\)</span>.</p>
-<p>We will use the folliwng notation for translate, <span class="math notranslate nohighlight">\(T_{b}(x) = x + b\)</span>, where if
+<p>We will use the following notation for translate, <span class="math notranslate nohighlight">\(T_{b}(x) = x + b\)</span>, where if
 we specify a constant <span class="math notranslate nohighlight">\(b\)</span>, it will be notated as <span class="math notranslate nohighlight">\(T_{b=3}\)</span> equals an expression
 <span class="math notranslate nohighlight">\(x + 3\)</span>.</p>
 <p>Here, we call the translate function to create a new function, named “fn”,
@@ -371,7 +359,7 @@ or many times.</p>
 </div>
 </div>
 <p>Inverting such a function is done by negating <span class="math notranslate nohighlight">\(b\)</span>, so (<span class="math notranslate nohighlight">\({T_{b=2}}^{-1} \circ {T_{b=2}}) (x) = ({T_{b=-2}} \circ {T_{b=2}}) (x) = x\)</span></p>
-<p>To get the inverse in Python, we can call the <a class="reference internal" href="api.html#modelviewprojection.mathutils.inverse" title="modelviewprojection.mathutils.inverse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.inverse()</span></code></a> function
+<p>To get the inverse in Python, we can call the <a class="reference internal" href="api.html#modelviewprojection.mathutils.inverse" title="modelviewprojection.mathutils.inverse"><code class="xref py py-meth docutils literal notranslate"><span class="pre">inverse</span></code></a> function
 on our function, without having to worry about how it’s implemented.</p>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text">assignments/demo02/vec1.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
@@ -381,7 +369,8 @@ on our function, without having to worry about how it’s implemented.</p>
 </pre></div>
 </div>
 </div>
-<p>What’s nice about that is we can look at the implementation of <a class="reference internal" href="api.html#modelviewprojection.mathutils.translate" title="modelviewprojection.mathutils.translate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modelviewprojection.mathutils.translate()</span></code></a>
+<p>What’s nice about that is we can look at the implementation of
+<a class="reference internal" href="api.html#modelviewprojection.mathutils.translate" title="modelviewprojection.mathutils.translate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">translate</span></code></a>
 once, understand how it works internally, and then forget those details and treat
 it as an invertible <a class="reference external" href="https://en.wikipedia.org/wiki/Black_box">BlackBox</a>.</p>
 </section>
@@ -389,14 +378,14 @@ it as an invertible <a class="reference external" href="https://en.wikipedia.org
 <h4>Definition (White Box)<a class="headerlink" href="#definition-white-box" title="Link to this heading">¶</a></h4>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">452</span><span class="k">def</span><span class="w"> </span><span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">453</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">454</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">b</span>
-<span class="linenos">455</span>
-<span class="linenos">456</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">457</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">b</span>
-<span class="linenos">458</span>
-<span class="linenos">459</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">462</span><span class="k">def</span><span class="w"> </span><span class="nf">translate</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">463</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">464</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">b</span>
+<span class="linenos">465</span>
+<span class="linenos">466</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">467</span>        <span class="k">return</span> <span class="n">vector</span> <span class="o">-</span> <span class="n">b</span>
+<span class="linenos">468</span>
+<span class="linenos">469</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -496,23 +485,23 @@ the asserts all pass</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="programmingproj1.html">
+          <a class="next-page" href="ch06.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Programming Project #1</div>
+                <div class="title">Modelspace - Demo 06</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="ch02.html">
+          <a class="prev-page" href="ch05.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Draw A Rectangle - Demo 02</div>
+                <div class="title">Add Translate Method to Vector - Demo 05</div>
                 
               </div>
             </a>

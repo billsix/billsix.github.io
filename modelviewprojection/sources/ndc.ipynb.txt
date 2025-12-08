@@ -1,0 +1,357 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "3e3938f0",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "source": [
+    "# NDC"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "403577b4",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "\n",
+    "# Copyright (c) 2025 William Emerison Six\n",
+    "#\n",
+    "# This program is free software; you can redistribute it and/or\n",
+    "# modify it under the terms of the GNU General Public License\n",
+    "# as published by the Free Software Foundation; either version 2\n",
+    "# of the License, or (at your option) any later version.\n",
+    "#\n",
+    "# This program is distributed in the hope that it will be useful,\n",
+    "# but WITHOUT ANY WARRANTY; without even the implied warranty of\n",
+    "# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n",
+    "# GNU General Public License for more details.\n",
+    "#\n",
+    "# You should have received a copy of the GNU General Public License\n",
+    "# along with this program; if not, write to the Free Software\n",
+    "# Foundation, Inc., 59 Temple Place - Suite 330,\n",
+    "# Boston, MA 02111-1307, USA."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0ef78680",
+   "metadata": {},
+   "source": [
+    "Drawing in NDC\n",
+    "--------------\n",
+    "\n",
+    "Similar to the Framebuffer code, this is a notebook in which we will only use software to\n",
+    "draw pictures of a framebuffer.  We use Normalized Device Coordinates instead of screenspace,\n",
+    "and by the end, we will make an animation."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "97d90c5d",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "import warnings\n",
+    "\n",
+    "import IPython.display\n",
+    "import moviepy\n",
+    "import numpy as np\n",
+    "\n",
+    "import modelviewprojection.mathutils2d as mu2d\n",
+    "import modelviewprojection.softwarerendering as sr\n",
+    "\n",
+    "# turn warnings into exceptions\n",
+    "warnings.filterwarnings(\"error\", category=RuntimeWarning)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "12a85f5a",
+   "metadata": {},
+   "source": [
+    "Make Framebuffer\n",
+    "----------------\n",
+    "\n",
+    "Like in the Framebuffer notebook, we initialize a framebuffer in software."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "272fc9ea",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "# Show initial random framebuffer\n",
+    "fake_fb: sr.FrameBuffer = sr.FrameBuffer(width=400, height=300)\n",
+    "fake_fb.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c395fba3",
+   "metadata": {},
+   "source": [
+    "Clear Framebuffer\n",
+    "-----------------\n",
+    "\n",
+    "We clear it so that we have a blank slate."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "786014cc",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "# Clear to black and show\n",
+    "fake_fb.clear_framebuffer()\n",
+    "fake_fb.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "db693500",
+   "metadata": {},
+   "source": [
+    "Problem 2\n",
+    "---------\n",
+    "\n",
+    "Make a new picture below where the triangle is translated 0.3 units in NDC to the left"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "740ce1f3",
+   "metadata": {},
+   "source": [
+    "Create function from NDC to screenspace\n",
+    "---------------------------------------\n",
+    "\n",
+    "Create a function to convert from NDC to screen space.  We compose 4 functions to achieve this\n",
+    "\n",
+    "First, translate x to the right one unit, y up on unit, to make the bottom left of the NDC region be at (0,0)\n",
+    "\n",
+    "Second, since the NDC square is two units wide, scale by 1/2, to make it have a width of 1, and a height of 1.\n",
+    "\n",
+    "Third, scale by the width and height of the framebuffer.\n",
+    "\n",
+    "Fourth, translate -1/2 and -1/2, to make (0,0) of NDC map to the center of the pixel at (0,0)\n",
+    "\n",
+    "Inspired by \"Fundamentals of Computer Graphics, Third Edition\", by Shirley and Marshner, page 60"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e79397e0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ndc_to_screen: mu2d.InvertibleFunction = mu2d.compose(\n",
+    "    [\n",
+    "        mu2d.translate(mu2d.Vector2D(-0.5, -0.5)),\n",
+    "        mu2d.scale(fake_fb.width, fake_fb.height),\n",
+    "        mu2d.scale(0.5, 0.5),\n",
+    "        mu2d.translate(mu2d.Vector2D(x=1.0, y=1.0)),\n",
+    "    ]\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b1463699",
+   "metadata": {},
+   "source": [
+    "Create NDC data for triangle\n",
+    "----------------------------\n",
+    "\n",
+    "Create a list of Vectors to represent the three vertices of the triangle."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "faba1c1e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Example: draw a white triangle\n",
+    "\n",
+    "triangle_in_NDC: list[mu2d.Vector] = [\n",
+    "    mu2d.Vector2D(0.0, 0.0),\n",
+    "    mu2d.Vector2D(0.2, 0.0),\n",
+    "    mu2d.Vector2D(0.2, 0.2),\n",
+    "]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5c6a9f0c",
+   "metadata": {},
+   "source": [
+    "Convert the NDC Vectors to Screenspace\n",
+    "--------------------------------------\n",
+    "\n",
+    "For each vector, apply the function"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "845d6637",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "triangle_in_screen: list[mu2d.Vector] = [\n",
+    "    ndc_to_screen(x) for x in triangle_in_NDC\n",
+    "]\n",
+    "print(triangle_in_screen)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3d434335",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fake_fb.clear_framebuffer()\n",
+    "fake_fb.draw_filled_triangle(\n",
+    "    triangle_in_screen[0],\n",
+    "    triangle_in_screen[1],\n",
+    "    triangle_in_screen[2],\n",
+    "    color=(255, 255, 255),\n",
+    ")\n",
+    "fake_fb.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "54d82fa8",
+   "metadata": {},
+   "source": [
+    "Move the Triangle in NDC\n",
+    "------------------------\n",
+    "\n",
+    "Now, we want to make the triangle move to a different position.  We will use compose to first translate the triangle by 0.5 units of NDC up, and then take the result and convert it from NDC to screenspace"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0d059a86",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "move: mu2d.InvertibleFunction = mu2d.translate(mu2d.Vector2D(0, 0.5))\n",
+    "\n",
+    "triangle_in_screen = [\n",
+    "    mu2d.compose([ndc_to_screen, move])(x) for x in triangle_in_NDC\n",
+    "]\n",
+    "print(triangle_in_screen)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4907fedb",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fake_fb.clear_framebuffer()\n",
+    "fake_fb.draw_filled_triangle(*triangle_in_screen, color=(255, 255, 255))\n",
+    "fake_fb.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7de3b024",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "frames = []\n",
+    "\n",
+    "sixty_fps_times_2_sec = 120\n",
+    "\n",
+    "# Create 10 frames with simple animation\n",
+    "for i in range(sixty_fps_times_2_sec):\n",
+    "    fake_fb.clear_framebuffer()\n",
+    "    move: mu2d.InvertibleFunction = mu2d.translate(\n",
+    "        mu2d.Vector2D(0, 0.5 * (np.sin(np.pi / 60.0 * float(i))))\n",
+    "    )\n",
+    "\n",
+    "    triangle_in_screen = [\n",
+    "        mu2d.compose([ndc_to_screen, move])(x) for x in triangle_in_NDC\n",
+    "    ]\n",
+    "    fake_fb.draw_filled_triangle(*triangle_in_screen, color=(255, 255, 255))\n",
+    "\n",
+    "    frames.append(fake_fb.framebuffer)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "15d945bc",
+   "metadata": {},
+   "source": [
+    "Now that we have the frames, we just need to save them to a video.  The details of how this works is a black box to use, it doesn't really matter for our understanding."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "aa60846d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "np_frames = [np.array(img) for img in frames]\n",
+    "\n",
+    "frames_np = [np.array(img) for img in frames]\n",
+    "clip = moviepy.ImageSequenceClip(frames_np, fps=60)\n",
+    "clip.write_videofile(\"animation.mp4\", codec=\"libx264\")\n",
+    "\n",
+    "IPython.display.Video(\"animation.mp4\", embed=True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a28f8912",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "765e61af",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

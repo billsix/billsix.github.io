@@ -53,8 +53,6 @@ test in the code to demonstrate.
   * The parameter x is an int
 
 
-If you are unfamiliar with looking at the lines above, it's
-a session in the Python Read-Evaluate-Print loop, `read more here`_.
 
 As a harder example, if Python didn't have recursion, but it does
 have first class functions as values, the programmer could simulate
@@ -76,7 +74,7 @@ recursion by passing a function to itself as a parameter.
                work as intended. Instead of running the program by hand and guessing if the
                results are correct, you can write tests once and rerun them anytime you change
                the code. This makes it much easier to catch bugs early, gives you confidence
-               that new changes don’t break old features, and supports building larger, more
+               that new changes don't break old features, and supports building larger, more
                reliable programs over time.
 
 .. _read more here : https://realpython.com/interacting-with-python/

@@ -1,0 +1,8 @@
+[
+  {
+    "directory": "/mvp/book/docs/_static/tex_exp_to_png/builddir",
+    "command": "cc -ItexExpToPng.p -I. -I.. -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-6 -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu11 -O0 -g -pthread -MD -MQ texExpToPng.p/src_tex_exp_to_png.c.o -MF texExpToPng.p/src_tex_exp_to_png.c.o.d -o texExpToPng.p/src_tex_exp_to_png.c.o -c ../src/tex_exp_to_png.c",
+    "file": "../src/tex_exp_to_png.c",
+    "output": "texExpToPng.p/src_tex_exp_to_png.c.o"
+  }
+]

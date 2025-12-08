@@ -9,6 +9,7 @@
         <title>API Reference - Model View Projection 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
     
@@ -196,28 +197,14 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framebuffer.html">Framebuffer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ndc.html">NDC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programmingproj1.html">Programming Project #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vector - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch16.html">Lambda Stack - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">Moving Camera in 3D Space - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
-<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
@@ -427,6 +414,103 @@ results in a value of type T.</p>
 <span class="sig-name descname"><span class="pre">inverse</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#modelviewprojection.mathutils.Vector" title="modelviewprojection.mathutils.Vector"><span class="pre">Vector</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#modelviewprojection.mathutils.Vector" title="modelviewprojection.mathutils.Vector"><span class="pre">Vector</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#modelviewprojection.mathutils.InvertibleFunction.inverse" title="Link to this definition">¶</a></dt>
 <dd><p>The inverse of the wrapped function</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils.InvertibleFunction.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils.Vector" title="modelviewprojection.mathutils.Vector"><span class="pre">Vector</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.Vector" title="modelviewprojection.mathutils.Vector"><span class="pre">Vector</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils.html#InvertibleFunction.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils.InvertibleFunction.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Execute a function with the given value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="#modelviewprojection.mathutils.Vector" title="modelviewprojection.mathutils.Vector"><em>Vector</em></a><em>]</em><em>, </em><a class="reference internal" href="#modelviewprojection.mathutils.Vector" title="modelviewprojection.mathutils.Vector"><em>Vector</em></a><em>]</em>) – A function that takes a value of
+type Vector and returns a value
+of the same type Vector.</p></li>
+<li><p><strong>value</strong> (<a class="reference internal" href="#modelviewprojection.mathutils.Vector" title="modelviewprojection.mathutils.Vector"><em>Vector</em></a>) – The input value to pass to the function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The result of calling func(value). Will be the same type as the</dt><dd><p>input value.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#modelviewprojection.mathutils.Vector" title="modelviewprojection.mathutils.Vector">Vector</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">InvertibleFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">inverse</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span> <span class="o">=</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="n">f_inv</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span>
+<span class="go">InvertibleFunction(func=&lt;...&gt;, inverse=&lt;...&gt;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inverse</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+<span class="go">InvertibleFunction(func=&lt;...&gt;, inverse=&lt;...&gt;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inverse</span><span class="p">(</span><span class="n">foo</span><span class="p">)(</span><span class="n">foo</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils.InvertibleFunction.__matmul__">
+<span class="sig-name descname"><span class="pre">__matmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils.html#InvertibleFunction.__matmul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils.InvertibleFunction.__matmul__" title="Link to this definition">¶</a></dt>
+<dd><p>Override &#64; for function composition.  This is abusing the &#64; symbol,
+which is normally for matrix multiplication.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f2</strong> (<a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><em>mathutils.InvertibleFunction</em></a>) – A function that self is composed with
+and returns a value of the same type
+Vector.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The composed function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction">InvertibleFunction</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Nothing</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">InvertibleFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">inverse</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span> <span class="o">=</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="n">f_inv</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">foo</span> <span class="o">@</span> <span class="n">foo</span><span class="p">)(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inverse</span><span class="p">(</span><span class="n">foo</span> <span class="o">@</span> <span class="n">foo</span><span class="p">)(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">foo</span> <span class="o">@</span> <span class="n">f_inv</span><span class="p">)(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelviewprojection.mathutils.InvertibleFunction.__rmatmul__">
+<span class="sig-name descname"><span class="pre">__rmatmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction" title="modelviewprojection.mathutils.InvertibleFunction"><span class="pre">InvertibleFunction</span></a></span></span><a class="reference internal" href="_modules/modelviewprojection/mathutils.html#InvertibleFunction.__rmatmul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modelviewprojection.mathutils.InvertibleFunction.__rmatmul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1870,6 +1954,9 @@ subtraction symbol</p>
 <li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction</span></code></a><ul>
 <li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction.func"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction.func</span></code></a></li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction.inverse"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction.inverse</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction.__call__"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction.__matmul__"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction.__matmul__()</span></code></a></li>
+<li><a class="reference internal" href="#modelviewprojection.mathutils.InvertibleFunction.__rmatmul__"><code class="docutils literal notranslate"><span class="pre">InvertibleFunction.__rmatmul__()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#modelviewprojection.mathutils.inverse"><code class="docutils literal notranslate"><span class="pre">inverse()</span></code></a></li>

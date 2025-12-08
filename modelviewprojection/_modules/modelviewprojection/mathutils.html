@@ -8,6 +8,7 @@
         <title>modelviewprojection.mathutils - Model View Projection 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="../../static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../../static/custom.css?v=b6a38b70" />
     
@@ -195,28 +196,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ch01.html">Opening a Window - Demo 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ch02.html">Draw A Rectangle - Demo 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../mathhomework1.html">Math Homework #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../framebuffer.html">Framebuffer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ndc.html">NDC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../programmingproj1.html">Programming Project #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ch05.html">Add Translate Method to Vector - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mathhomework1.html">Math Homework #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ch06.html">Modelspace - Demo 06</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch07.html">Rotations - Demo 07</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch10.html">Camera Space - Demo 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch11.html">Relative Objects - Demo 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch12.html">Rotate the Square - Demo 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch14.html">Adding Depth - Z axis Demo 14</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch16.html">Lambda Stack - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch17.html">Moving Camera in 3D Space - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch18.html">3D Perspective - Demo 18</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch19.html">Matrix Stacks - Demo 19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch20.html">Shaders - Demo 20</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../perspective.html">Standard Perspective Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
@@ -299,6 +286,7 @@
 <div class="viewcode-block" id="Vector.__add__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.__add__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+        <span class="c1"># doc-region-end begin define add</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add together two Vectors, component-wise.</span>
 
@@ -342,12 +330,11 @@
 
         <span class="c1"># doc-region-end define add</span>
 
-    <span class="c1"># doc-region-end begin define add</span>
-
     <span class="c1"># doc-region-begin define mul</span>
 <div class="viewcode-block" id="Vector.__mul__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.__mul__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+        <span class="c1"># doc-region-end define mul</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Multiply the Vector by a scalar number, component-wise</span>
 
@@ -374,10 +361,10 @@
 <span class="sd">            &gt;&gt;&gt; a * 4</span>
 <span class="sd">            Vector3D(x=8, y=12, z=20)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># doc-region-begin define mul body</span>
         <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="o">*</span><span class="p">[</span><span class="n">scalar</span> <span class="o">*</span> <span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">astuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)])</span></div>
 
-
-    <span class="c1"># doc-region-end define mul</span>
+        <span class="c1"># doc-region-end define mul body</span>
 
 <div class="viewcode-block" id="Vector.__neg__">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.Vector.__neg__">[docs]</a>
@@ -467,11 +454,12 @@
 
 
 
-<span class="c1"># doc-region-begin define invertible function</span>
+<span class="c1"># doc-region-begin begin define invertible function</span>
 <div class="viewcode-block" id="InvertibleFunction">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.InvertibleFunction">[docs]</a>
 <span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">InvertibleFunction</span><span class="p">:</span>
+    <span class="c1"># doc-region-end begin define invertible function</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class that wraps a function and its</span>
 <span class="sd">    inverse function.  The function takes</span>
@@ -479,12 +467,18 @@
 <span class="sd">    results in a value of type T.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># doc-region-begin invertible function members</span>
     <span class="n">func</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">Vector</span><span class="p">]</span>  <span class="c1">#: The wrapped function</span>
     <span class="n">inverse</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span>
         <span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">Vector</span>
     <span class="p">]</span>  <span class="c1">#: The inverse of the wrapped function</span>
+    <span class="c1"># doc-region-end invertible function members</span>
 
+    <span class="c1"># doc-region-begin begin call</span>
+<div class="viewcode-block" id="InvertibleFunction.__call__">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.InvertibleFunction.__call__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="c1"># doc-region-end begin call</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Execute a function with the given value.</span>
 
@@ -517,8 +511,13 @@
 <span class="sd">            &gt;&gt;&gt; inverse(foo)(foo(5))</span>
 <span class="sd">            5</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1"># doc-region-begin call definition</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
 
+        <span class="c1"># doc-region-end call definition</span>
+
+<div class="viewcode-block" id="InvertibleFunction.__matmul__">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.InvertibleFunction.__matmul__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__matmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f2</span><span class="p">:</span> <span class="s2">&quot;InvertibleFunction&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InvertibleFunction&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Override @ for function composition.  This is abusing the @ symbol,</span>
@@ -552,16 +551,22 @@
 <span class="sd">            &gt;&gt;&gt; (foo @ f_inv)(5)</span>
 <span class="sd">            5</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">compose</span><span class="p">([</span><span class="bp">self</span><span class="p">,</span> <span class="n">f2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">compose</span><span class="p">([</span><span class="bp">self</span><span class="p">,</span> <span class="n">f2</span><span class="p">])</span></div>
 
+
+<div class="viewcode-block" id="InvertibleFunction.__rmatmul__">
+<a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.InvertibleFunction.__rmatmul__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__rmatmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f2</span><span class="p">:</span> <span class="s2">&quot;InvertibleFunction&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InvertibleFunction&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f2</span> <span class="o">@</span> <span class="bp">self</span></div>
+</div>
 
 
 
+<span class="c1"># doc-region-begin begin define inverse</span>
 <div class="viewcode-block" id="inverse">
 <a class="viewcode-back" href="../../api.html#modelviewprojection.mathutils.inverse">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">inverse</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+    <span class="c1"># doc-region-end begin define inverse</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the inverse of the InvertibleFunction</span>
 
@@ -593,9 +598,10 @@
 <span class="sd">        5</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># doc-region-begin inverse body</span>
     <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">inverse</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">func</span><span class="p">)</span></div>
 
-    <span class="c1"># doc-region-end define invertible function</span>
+    <span class="c1"># doc-region-end inverse body</span>
 
 
 <div class="viewcode-block" id="compose">

@@ -1,0 +1,588 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Programming Project #1" href="programmingproj1.html"><link rel="prev" title="Framebuffer" href="framebuffer.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
+        <title>NDC - Model View Projection 0.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Model View Projection 0.0.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Model View Projection 0.0.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framebuffer.html">Framebuffer</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">NDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programmingproj1.html">Programming Project #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vector - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot2d.html">Plot 2D</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/ndc.ipynb.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="ndc">
+<h1>NDC<a class="headerlink" href="#ndc" title="Link to this heading">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copyright (c) 2025 William Emerison Six</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software; you can redistribute it and/or</span>
+<span class="c1"># modify it under the terms of the GNU General Public License</span>
+<span class="c1"># as published by the Free Software Foundation; either version 2</span>
+<span class="c1"># of the License, or (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program; if not, write to the Free Software</span>
+<span class="c1"># Foundation, Inc., 59 Temple Place - Suite 330,</span>
+<span class="c1"># Boston, MA 02111-1307, USA.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="drawing-in-ndc">
+<h2>Drawing in NDC<a class="headerlink" href="#drawing-in-ndc" title="Link to this heading">¶</a></h2>
+<p>Similar to the Framebuffer code, this is a notebook in which we will only use software to
+draw pictures of a framebuffer.  We use Normalized Device Coordinates instead of screenspace,
+and by the end, we will make an animation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">IPython.display</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">moviepy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils2d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mu2d</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">modelviewprojection.softwarerendering</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sr</span>
+
+<span class="c1"># turn warnings into exceptions</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="make-framebuffer">
+<h2>Make Framebuffer<a class="headerlink" href="#make-framebuffer" title="Link to this heading">¶</a></h2>
+<p>Like in the Framebuffer notebook, we initialize a framebuffer in software.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show initial random framebuffer</span>
+<span class="n">fake_fb</span><span class="p">:</span> <span class="n">sr</span><span class="o">.</span><span class="n">FrameBuffer</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">FrameBuffer</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/fdec9de639d4851f3bc5ade1cd417496f34171bfe5e633efc2514ad041077cf0.png" src="images/fdec9de639d4851f3bc5ade1cd417496f34171bfe5e633efc2514ad041077cf0.png" />
+</div>
+</div>
+</section>
+<section id="clear-framebuffer">
+<h2>Clear Framebuffer<a class="headerlink" href="#clear-framebuffer" title="Link to this heading">¶</a></h2>
+<p>We clear it so that we have a blank slate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear to black and show</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/b2b12e2f72ed05c7af9b37a6a6301e19d3e59aa147e971124742c449cfba548a.png" src="images/b2b12e2f72ed05c7af9b37a6a6301e19d3e59aa147e971124742c449cfba548a.png" />
+</div>
+</div>
+</section>
+<section id="problem-2">
+<h2>Problem 2<a class="headerlink" href="#problem-2" title="Link to this heading">¶</a></h2>
+<p>Make a new picture below where the triangle is translated 0.3 units in NDC to the left</p>
+</section>
+<section id="create-function-from-ndc-to-screenspace">
+<h2>Create function from NDC to screenspace<a class="headerlink" href="#create-function-from-ndc-to-screenspace" title="Link to this heading">¶</a></h2>
+<p>Create a function to convert from NDC to screen space.  We compose 4 functions to achieve this</p>
+<p>First, translate x to the right one unit, y up on unit, to make the bottom left of the NDC region be at (0,0)</p>
+<p>Second, since the NDC square is two units wide, scale by 1/2, to make it have a width of 1, and a height of 1.</p>
+<p>Third, scale by the width and height of the framebuffer.</p>
+<p>Fourth, translate -1/2 and -1/2, to make (0,0) of NDC map to the center of the pixel at (0,0)</p>
+<p>Inspired by “Fundamentals of Computer Graphics, Third Edition”, by Shirley and Marshner, page 60</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ndc_to_screen</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)),</span>
+        <span class="n">mu2d</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">fake_fb</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">fake_fb</span><span class="o">.</span><span class="n">height</span><span class="p">),</span>
+        <span class="n">mu2d</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+        <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-ndc-data-for-triangle">
+<h2>Create NDC data for triangle<a class="headerlink" href="#create-ndc-data-for-triangle" title="Link to this heading">¶</a></h2>
+<p>Create a list of Vectors to represent the three vertices of the triangle.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: draw a white triangle</span>
+
+<span class="n">triangle_in_NDC</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="convert-the-ndc-vectors-to-screenspace">
+<h2>Convert the NDC Vectors to Screenspace<a class="headerlink" href="#convert-the-ndc-vectors-to-screenspace" title="Link to this heading">¶</a></h2>
+<p>For each vector, apply the function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triangle_in_screen</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">ndc_to_screen</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">triangle_in_NDC</span>
+<span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">triangle_in_screen</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Vector2D(x=199.5, y=149.5), Vector2D(x=239.5, y=149.5), Vector2D(x=239.5, y=179.5)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
+    <span class="n">triangle_in_screen</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">triangle_in_screen</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">triangle_in_screen</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/8f20bad3055b643a2641a11584464deff1dadb2a9cd84ea8649fd44b7b602924.png" src="images/8f20bad3055b643a2641a11584464deff1dadb2a9cd84ea8649fd44b7b602924.png" />
+</div>
+</div>
+</section>
+<section id="move-the-triangle-in-ndc">
+<h2>Move the Triangle in NDC<a class="headerlink" href="#move-the-triangle-in-ndc" title="Link to this heading">¶</a></h2>
+<p>Now, we want to make the triangle move to a different position.  We will use compose to first translate the triangle by 0.5 units of NDC up, and then take the result and convert it from NDC to screenspace</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">move</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+
+<span class="n">triangle_in_screen</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">([</span><span class="n">ndc_to_screen</span><span class="p">,</span> <span class="n">move</span><span class="p">])(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">triangle_in_NDC</span>
+<span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">triangle_in_screen</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Vector2D(x=199.5, y=224.5), Vector2D(x=239.5, y=224.5), Vector2D(x=239.5, y=254.5)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span><span class="o">*</span><span class="n">triangle_in_screen</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/52656b63f8084ae7238607551bd2aaa08002660966a24fbe012ab63808863713.png" src="images/52656b63f8084ae7238607551bd2aaa08002660966a24fbe012ab63808863713.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">sixty_fps_times_2_sec</span> <span class="o">=</span> <span class="mi">120</span>
+
+<span class="c1"># Create 10 frames with simple animation</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sixty_fps_times_2_sec</span><span class="p">):</span>
+    <span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
+    <span class="n">move</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
+        <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">60.0</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">))))</span>
+    <span class="p">)</span>
+
+    <span class="n">triangle_in_screen</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">([</span><span class="n">ndc_to_screen</span><span class="p">,</span> <span class="n">move</span><span class="p">])(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">triangle_in_NDC</span>
+    <span class="p">]</span>
+    <span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span><span class="o">*</span><span class="n">triangle_in_screen</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+
+    <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fake_fb</span><span class="o">.</span><span class="n">framebuffer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have the frames, we just need to save them to a video.  The details of how this works is a black box to use, it doesn’t really matter for our understanding.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np_frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">]</span>
+
+<span class="n">frames_np</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">]</span>
+<span class="n">clip</span> <span class="o">=</span> <span class="n">moviepy</span><span class="o">.</span><span class="n">ImageSequenceClip</span><span class="p">(</span><span class="n">frames_np</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">clip</span><span class="o">.</span><span class="n">write_videofile</span><span class="p">(</span><span class="s2">&quot;animation.mp4&quot;</span><span class="p">,</span> <span class="n">codec</span><span class="o">=</span><span class="s2">&quot;libx264&quot;</span><span class="p">)</span>
+
+<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Video</span><span class="p">(</span><span class="s2">&quot;animation.mp4&quot;</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MoviePy - Building video animation.mp4.
+MoviePy - Writing video animation.mp4
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:   0%|                                                                                             | 0/120 [00:00&lt;?, ?it/s, now=None]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:  59%|█████████████████████████████████████████████████                                  | 71/120 [00:00&lt;00:00, 708.09it/s, now=None]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MoviePy - Done !
+MoviePy - video ready animation.mp4
+</pre></div>
+</div>
+<div class="output text_html"><video controls  >
+ <source src="data:video/mp4;base64,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AAAAAQAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAAAwAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAABQAAAAABAAACAAAAAAEAAAAAAAAAAQAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAAAwAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAAAwAAAAABAAABAAAAAAEAAAQAAAAAAgAAAQAAAAABAAAEAAAAAAIAAAEAAAAAAQAABQAAAAABAAACAAAAAAEAAAAAAAAAAQAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAAAwAAAAABAAABAAAAAAEAAAQAAAAAAgAAAQAAAAABAAADAAAAAAEAAAEAAAAAAQAABQAAAAABAAACAAAAAAEAAAAAAAAAAQAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAABQAAAAABAAACAAAAAAEAAAAAAAAAAQAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAQAAAAAAgAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAABQAAAAABAAACAAAAAAEAAAAAAAAAAQAAAQAAAAABAAADAAAAAAEAAAEAAAAAAQAABAAAAAACAAABAAAAAAEAAAMAAAAAAQAAAQAAAAAcc3RzYwAAAAAAAAABAAAAAQAAAHgAAAABAAAB9HN0c3oAAAAAAAAAAAAAAHgAAAORAAAATgAAADgAAAAdAAAAIwAAADcAAAAgAAAAOAAAAB4AAAApAAAALQAAAEwAAAAvAAAAKQAAABsAAAAzAAAAHwAAAB8AAAAdAAAAOQAAAC0AAAAZAAAAHQAAADIAAAAeAAAAHAAAACsAAAAwAAAAKgAAABYAAAAoAAAAFQAAABUAAAAzAAAAGwAAACoAAAArAAAASgAAAB8AAAAcAAAAKAAAAE0AAAAdAAAAGwAAACsAAAA5AAAAHwAAAC0AAAAtAAAAGwAAACcAAAAuAAAAGwAAAEIAAAAiAAAAIQAAADEAAAAeAAAAGwAAADEAAAAvAAAAHgAAABsAAAApAAAAHwAAABsAAAAdAAAALAAAAB0AAAAfAAAAHwAAADAAAAAeAAAAKQAAACEAAAAaAAAAKAAAACsAAAA0AAAAHgAAAB0AAAAZAAAALAAAABwAAAAlAAAAJwAAACwAAAAaAAAAJgAAABsAAAAiAAAAGQAAAA4AAAAbAAAAJgAAAC4AAAAoAAAAKQAAACcAAAApAAAAHwAAAEgAAAAeAAAAGgAAAB8AAAA1AAAAJAAAABoAAAAaAAAALgAAACAAAAAtAAAAHwAAACwAAAAhAAAANgAAACAAAAAeAAAALQAAABwAAAAUc3RjbwAAAAAAAAABAAAAMAAAAGF1ZHRhAAAAWW1ldGEAAAAAAAAAIWhkbHIAAAAAAAAAAG1kaXJhcHBsAAAAAAAAAAAAAAAALGlsc3QAAAAkqXRvbwAAABxkYXRhAAAAAQAAAABMYXZmNjEuMS4xMDA=" type="video/mp4">
+ Your browser does not support the video tag.
+ </video></div></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="programmingproj1.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Programming Project #1</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="framebuffer.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Framebuffer</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020-2025, William Emerison Six
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">NDC</a><ul>
+<li><a class="reference internal" href="#drawing-in-ndc">Drawing in NDC</a></li>
+<li><a class="reference internal" href="#make-framebuffer">Make Framebuffer</a></li>
+<li><a class="reference internal" href="#clear-framebuffer">Clear Framebuffer</a></li>
+<li><a class="reference internal" href="#problem-2">Problem 2</a></li>
+<li><a class="reference internal" href="#create-function-from-ndc-to-screenspace">Create function from NDC to screenspace</a></li>
+<li><a class="reference internal" href="#create-ndc-data-for-triangle">Create NDC data for triangle</a></li>
+<li><a class="reference internal" href="#convert-the-ndc-vectors-to-screenspace">Convert the NDC Vectors to Screenspace</a></li>
+<li><a class="reference internal" href="#move-the-triangle-in-ndc">Move the Triangle in NDC</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=e3a6060d"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

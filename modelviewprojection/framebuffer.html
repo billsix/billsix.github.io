@@ -1,0 +1,504 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="NDC" href="ndc.html"><link rel="prev" title="Draw A Rectangle - Demo 02" href="ch02.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
+        <title>Framebuffer - Model View Projection 0.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Model View Projection 0.0.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">Model View Projection 0.0.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Framebuffer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ndc.html">NDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programmingproj1.html">Programming Project #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vector - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellany.html">Miscellany</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot2d.html">Plot 2D</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="sources/framebuffer.ipynb.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="framebuffer">
+<span id="framebufferlabel"></span><h1>Framebuffer<a class="headerlink" href="#framebuffer" title="Link to this heading">¶</a></h1>
+<p>We are taking a detour, to learn more about framebuffers.  This section is written as a jupyter notebook,
+which is an interactive document with executable code, which can output values and images.</p>
+<p>You can run this either in spyder or in jupyter.  If using spyder, open “src/modelviewprojection/notebooksrc/framebuffer.py”, if using jupyter notebook, using jupyter, open “notebook/framebuffer.ipynb”</p>
+<p>We will be using a fake “framebuffer”, just a python class to represent a framebuffer, and see how it works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copyright (c) 2025 William Emerison Six</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software; you can redistribute it and/or</span>
+<span class="c1"># modify it under the terms of the GNU General Public License</span>
+<span class="c1"># as published by the Free Software Foundation; either version 2</span>
+<span class="c1"># of the License, or (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program; if not, write to the Free Software</span>
+<span class="c1"># Foundation, Inc., 59 Temple Place - Suite 330,</span>
+<span class="c1"># Boston, MA 02111-1307, USA.</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils2d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mu2d</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The module below is our software implementation of a framebuffer, we will use the name “sr” for “software rendering”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">modelviewprojection.softwarerendering</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sr</span>
+
+<span class="c1"># turn warnings into exceptions</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Make a framebuffer, which is just a rectangular region of values.  We use keyword arguments to
+specify that the framebuffer should have a width of 100, and a height of 100</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show initial random framebuffer</span>
+<span class="n">fake_fb</span><span class="p">:</span> <span class="n">sr</span><span class="o">.</span><span class="n">FrameBuffer</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">FrameBuffer</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/fe068644ac22dbdade71615aa471c6299db427c547fc9c44d30bd2fc6bbe4700.png" src="images/fe068644ac22dbdade71615aa471c6299db427c547fc9c44d30bd2fc6bbe4700.png" />
+</div>
+</div>
+<p>Well, that looks bad, as there is a bunch of random values for colors in the framebuffer.</p>
+<p>Draw a triangle in this framebuffer, using screenspace coordinates</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: draw a white triangle</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/34d7efa279d7c4fe69996788660871163b5af0ad9515089846b87cf43fa48e81.png" src="images/34d7efa279d7c4fe69996788660871163b5af0ad9515089846b87cf43fa48e81.png" />
+</div>
+</div>
+<p>Whoops!  That looks like trash.  We should change the background to
+have all one color.  That’s what clear_framebuffer does</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear to red and show</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_color</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">RED</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/ada9f6638e9ebf2b7cf3afcf2318a1524c3baee8258a5ba5b37acb7b6014eb63.png" src="images/ada9f6638e9ebf2b7cf3afcf2318a1524c3baee8258a5ba5b37acb7b6014eb63.png" />
+</div>
+</div>
+<p>I don’t really want to draw on Red, let’s switch it to black</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear to black and show</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_color</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">BLACK</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/a6a350f02b6e5ef218cee8377ae5f1cf74e28ad0cd059b0678aed6532d97b03f.png" src="images/a6a350f02b6e5ef218cee8377ae5f1cf74e28ad0cd059b0678aed6532d97b03f.png" />
+</div>
+</div>
+<p>Let’s clear again for no reason, and draw a white triangle in screenspace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: draw a white triangle</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/be811f11dbc1efe024754fc51c3c84c9c242d361adce2b1f2d7bca549e57aa57.png" src="images/be811f11dbc1efe024754fc51c3c84c9c242d361adce2b1f2d7bca549e57aa57.png" />
+</div>
+</div>
+<p>Without clearing (as we want to keep the white triangle, let’s draw a red triangle at a different location in screenspace</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw a red triangle</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/31346b445ddc0a9278bf559914c5ec7981f9a209a10726e3d3bfd6c4479262db.png" src="images/31346b445ddc0a9278bf559914c5ec7981f9a209a10726e3d3bfd6c4479262db.png" />
+</div>
+</div>
+<p>Make a larger framebuffer</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show initial random framebuffer</span>
+<span class="n">fake_fb400</span><span class="p">:</span> <span class="n">sr</span><span class="o">.</span><span class="n">FrameBuffer</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">FrameBuffer</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">fake_fb400</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/b364e31788ce4735771a38811bf5a698dfd94c893dd8db53a901362c5659eaa2.png" src="images/b364e31788ce4735771a38811bf5a698dfd94c893dd8db53a901362c5659eaa2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear to black and show</span>
+<span class="n">fake_fb400</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
+<span class="n">fake_fb400</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/bbb03d618c0b80dcb5f820f09096e691c86a404d72f71b25371973f9df15f8d5.png" src="images/bbb03d618c0b80dcb5f820f09096e691c86a404d72f71b25371973f9df15f8d5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: draw a white triangle</span>
+<span class="n">fake_fb400</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
+<span class="n">fake_fb400</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fake_fb400</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+
+<span class="n">fake_fb400</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fake_fb400</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/5b087d029ac0ea4a5c3fc68f07f26dcc4ccac25326cbf292c9474c8b005b262f.png" src="images/5b087d029ac0ea4a5c3fc68f07f26dcc4ccac25326cbf292c9474c8b005b262f.png" />
+<img alt="images/b2da661edfe0224e8fe7a217320ea6fc946f3094c61cbb56cd230273ae57144a.png" src="images/b2da661edfe0224e8fe7a217320ea6fc946f3094c61cbb56cd230273ae57144a.png" />
+</div>
+</div>
+<p>It makes sense that the triangles are in the lower left, OpenGL screenspace starts with 0,0 in the bottom left; the upper right is (width, height)</p>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="ndc.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">NDC</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="ch02.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Draw A Rectangle - Demo 02</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020-2025, William Emerison Six
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="static/documentation_options.js?v=e3a6060d"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/scripts/furo.js?v=46bd48cc"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

@@ -9,6 +9,7 @@
         <title>Introduction - Model View Projection 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
+    <link rel="stylesheet" type="text/css" href="static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
     
@@ -196,28 +197,14 @@
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch01.html">Opening a Window - Demo 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch02.html">Draw A Rectangle - Demo 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framebuffer.html">Framebuffer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ndc.html">NDC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="programmingproj1.html">Programming Project #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch03.html">Window Resizing and Proportionality - Demo 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch04.html">Moving the Paddles - Keyboard Input - Demo 04</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch05.html">Add Translate Method to Vector - Demo 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathhomework1.html">Math Homework #1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch06.html">Modelspace - Demo 06</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch07.html">Rotations - Demo 07</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch08.html">Rotation Fix Attempt 1 - Demo 08</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch09.html">Rotation Fixed - Sequence of Transformations - Demo 09</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch10.html">Camera Space - Demo 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch11.html">Relative Objects - Demo 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch12.html">Rotate the Square - Demo 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch13.html">Rotate the Square Around Paddle 1 - Demo 13</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch14.html">Adding Depth - Z axis Demo 14</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch15.html">Adding Depth - Enable Depth Buffer - Demo 15</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch16.html">Lambda Stack - Demo 16</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch17.html">Moving Camera in 3D Space - Demo 17</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch18.html">3D Perspective - Demo 18</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch19.html">Matrix Stacks - Demo 19</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch20.html">Shaders - Demo 20</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch21.html">OpenGL3.3 Core Profile - Demo 21</a></li>
-<li class="toctree-l1"><a class="reference internal" href="perspective.html">Standard Perspective Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
@@ -406,28 +393,12 @@ prompt</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">shell</span> <span class="c1"># get a shell into the environment</span>
 </pre></div>
 </div>
-</section>
-<section id="spyder">
-<h4>Spyder<a class="headerlink" href="#spyder" title="Link to this heading">¶</a></h4>
-<p>To create the podman image for running the code in Spyder:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">spyderimage</span> <span class="c1"># make the OCI image that has the base image and Spyder IDE preinstalled</span>
+<p>Once in the shell, to run jupyter</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">jupyter</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
-<p>To run Spyder within the container</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">spyder</span> <span class="c1"># run spyder in the OCI container</span>
-</pre></div>
-</div>
-</section>
-<section id="jupyter-notebook">
-<h4>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">¶</a></h4>
-<p>To run Python code as jupyter notebooks, the following command will launch
-jupyter and a firefox web browser from within the container.</p>
-<p>Make the image</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">image</span>
-</pre></div>
-</div>
-<p>Run Jupyter notebook</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">jupyter</span> <span class="c1"># run jupyter notebook in a container</span>
+<p>Once in the shell, to run Spyder</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">spyder</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 </section>
@@ -436,7 +407,7 @@ jupyter and a firefox web browser from within the container.</p>
 <section id="getting-the-source-code">
 <h2>Getting the Source code<a class="headerlink" href="#getting-the-source-code" title="Link to this heading">¶</a></h2>
 <p>This book references source code, which is at <a class="reference external" href="https://github.com/billsix/modelviewprojection">https://github.com/billsix/modelviewprojection</a></p>
-<p>This documentation was generated from from commit 5e2c90fc21fb9bf43809352198a4600084463489</p>
+<p>This documentation was generated from from commit 7b3ec1933bdd75aa839deb1a8a40913544d0bcb3</p>
 </section>
 </section>
 
@@ -504,8 +475,6 @@ jupyter and a firefox web browser from within the container.</p>
 <li><a class="reference internal" href="#mac">Mac</a></li>
 <li><a class="reference internal" href="#podman-container">Podman Container</a><ul>
 <li><a class="reference internal" href="#command-line">Command Line</a></li>
-<li><a class="reference internal" href="#spyder">Spyder</a></li>
-<li><a class="reference internal" href="#jupyter-notebook">Jupyter Notebook</a></li>
 </ul>
 </li>
 </ul>

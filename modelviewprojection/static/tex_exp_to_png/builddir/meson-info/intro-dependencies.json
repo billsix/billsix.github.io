@@ -1,0 +1,41 @@
+[
+  {
+    "name": "glib-2.0",
+    "type": "pkgconfig",
+    "version": "2.86.2",
+    "compile_args": [
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib64/glib-2.0/include",
+      "-I/usr/include/sysprof-6",
+      "-pthread"
+    ],
+    "link_args": [
+      "/usr/lib64/libglib-2.0.so"
+    ],
+    "include_directories": [],
+    "sources": [],
+    "extra_files": [],
+    "dependencies": [],
+    "depends": [],
+    "meson_variables": [
+      "glib_dep"
+    ]
+  },
+  {
+    "name": "m",
+    "type": "library",
+    "version": "unknown",
+    "compile_args": [],
+    "link_args": [
+      "-lm"
+    ],
+    "include_directories": [],
+    "sources": [],
+    "extra_files": [],
+    "dependencies": [],
+    "depends": [],
+    "meson_variables": [
+      "math_dep"
+    ]
+  }
+]

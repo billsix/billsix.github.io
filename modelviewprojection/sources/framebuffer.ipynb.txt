@@ -1,0 +1,321 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "b8786a46",
+   "metadata": {},
+   "source": [
+    "(framebufferlabel)=\n",
+    "# Framebuffer"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b70acb3f",
+   "metadata": {},
+   "source": [
+    "We are taking a detour, to learn more about framebuffers.  This section is written as a jupyter notebook,\n",
+    "which is an interactive document with executable code, which can output values and images.\n",
+    "\n",
+    "You can run this either in spyder or in jupyter.  If using spyder, open \"src/modelviewprojection/notebooksrc/framebuffer.py\", if using jupyter notebook, using jupyter, open \"notebook/framebuffer.ipynb\"\n",
+    "\n",
+    "We will be using a fake \"framebuffer\", just a python class to represent a framebuffer, and see how it works."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "eba6fb41",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Copyright (c) 2025 William Emerison Six\n",
+    "#\n",
+    "# This program is free software; you can redistribute it and/or\n",
+    "# modify it under the terms of the GNU General Public License\n",
+    "# as published by the Free Software Foundation; either version 2\n",
+    "# of the License, or (at your option) any later version.\n",
+    "#\n",
+    "# This program is distributed in the hope that it will be useful,\n",
+    "# but WITHOUT ANY WARRANTY; without even the implied warranty of\n",
+    "# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n",
+    "# GNU General Public License for more details.\n",
+    "#\n",
+    "# You should have received a copy of the GNU General Public License\n",
+    "# along with this program; if not, write to the Free Software\n",
+    "# Foundation, Inc., 59 Temple Place - Suite 330,\n",
+    "# Boston, MA 02111-1307, USA.\n",
+    "\n",
+    "\n",
+    "import warnings\n",
+    "\n",
+    "import modelviewprojection.mathutils2d as mu2d"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e62d606d",
+   "metadata": {
+    "lines_to_next_cell": 0
+   },
+   "source": [
+    "The module below is our software implementation of a framebuffer, we will use the name \"sr\" for \"software rendering\":"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e161fd7a",
+   "metadata": {
+    "lines_to_next_cell": 0
+   },
+   "outputs": [],
+   "source": [
+    "import modelviewprojection.softwarerendering as sr\n",
+    "\n",
+    "# turn warnings into exceptions\n",
+    "warnings.filterwarnings(\"error\", category=RuntimeWarning)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c6faed54",
+   "metadata": {},
+   "source": [
+    "Make a framebuffer, which is just a rectangular region of values.  We use keyword arguments to\n",
+    "specify that the framebuffer should have a width of 100, and a height of 100"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a94a750c",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "# Show initial random framebuffer\n",
+    "fake_fb: sr.FrameBuffer = sr.FrameBuffer(width=100, height=100)\n",
+    "fake_fb.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9b691ce0",
+   "metadata": {},
+   "source": [
+    "Well, that looks bad, as there is a bunch of random values for colors in the framebuffer.\n",
+    "\n",
+    "Draw a triangle in this framebuffer, using screenspace coordinates"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "15d84f89",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "# Example: draw a white triangle\n",
+    "fake_fb.draw_filled_triangle(\n",
+    "    mu2d.Vector2D(50, 50),\n",
+    "    mu2d.Vector2D(50, 70),\n",
+    "    mu2d.Vector2D(70, 70),\n",
+    "    color=sr.WHITE,\n",
+    ")\n",
+    "fake_fb.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bf83dede",
+   "metadata": {},
+   "source": [
+    "Whoops!  That looks like trash.  We should change the background to\n",
+    "have all one color.  That's what clear_framebuffer does"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e1d83fcc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Clear to red and show\n",
+    "fake_fb.clear_color = sr.RED\n",
+    "fake_fb.clear_framebuffer()\n",
+    "fake_fb.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "388ac0d4",
+   "metadata": {},
+   "source": [
+    "I don't really want to draw on Red, let's switch it to black"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8fef93f6",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "# Clear to black and show\n",
+    "fake_fb.clear_color = sr.BLACK\n",
+    "fake_fb.clear_framebuffer()\n",
+    "fake_fb.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "526f0a7e",
+   "metadata": {},
+   "source": [
+    "Let's clear again for no reason, and draw a white triangle in screenspace."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d3315915",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "# Example: draw a white triangle\n",
+    "fake_fb.clear_framebuffer()\n",
+    "fake_fb.draw_filled_triangle(\n",
+    "    mu2d.Vector2D(50, 50),\n",
+    "    mu2d.Vector2D(50, 70),\n",
+    "    mu2d.Vector2D(70, 70),\n",
+    "    color=sr.WHITE,\n",
+    ")\n",
+    "fake_fb.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "74043f51",
+   "metadata": {},
+   "source": [
+    "Without clearing (as we want to keep the white triangle, let's draw a red triangle at a different location in screenspace"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b80ff13a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "# draw a red triangle\n",
+    "fake_fb.draw_filled_triangle(\n",
+    "    mu2d.Vector2D(50, 50),\n",
+    "    mu2d.Vector2D(30, 50),\n",
+    "    mu2d.Vector2D(30, 30),\n",
+    "    color=sr.RED,\n",
+    ")\n",
+    "fake_fb.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8d9e57c4",
+   "metadata": {
+    "lines_to_next_cell": 0
+   },
+   "source": [
+    "Make a larger framebuffer"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8af89b3b",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "# Show initial random framebuffer\n",
+    "fake_fb400: sr.FrameBuffer = sr.FrameBuffer(width=400, height=400)\n",
+    "fake_fb400.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "91029eb1",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "# Clear to black and show\n",
+    "fake_fb400.clear_framebuffer()\n",
+    "fake_fb400.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "bf589579",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Example: draw a white triangle\n",
+    "fake_fb400.clear_framebuffer()\n",
+    "fake_fb400.draw_filled_triangle(\n",
+    "    mu2d.Vector2D(50, 50),\n",
+    "    mu2d.Vector2D(50, 70),\n",
+    "    mu2d.Vector2D(70, 70),\n",
+    "    color=sr.WHITE,\n",
+    ")\n",
+    "fake_fb400.show_framebuffer()\n",
+    "\n",
+    "fake_fb400.draw_filled_triangle(\n",
+    "    mu2d.Vector2D(50, 50),\n",
+    "    mu2d.Vector2D(30, 50),\n",
+    "    mu2d.Vector2D(30, 30),\n",
+    "    color=sr.RED,\n",
+    ")\n",
+    "fake_fb400.show_framebuffer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "eb096d39",
+   "metadata": {},
+   "source": [
+    "It makes sense that the triangles are in the lower left, OpenGL screenspace starts with 0,0 in the bottom left; the upper right is (width, height)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ff0cbd0a",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
