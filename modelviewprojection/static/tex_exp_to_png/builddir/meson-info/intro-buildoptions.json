@@ -301,6 +301,38 @@
     "description": "Maximum number of linker processes to run or 0 for no limit"
   },
   {
+    "name": "b_lto",
+    "value": false,
+    "section": "base",
+    "machine": "any",
+    "type": "boolean",
+    "description": "Use link time optimization"
+  },
+  {
+    "name": "b_lto_threads",
+    "value": 0,
+    "section": "base",
+    "machine": "any",
+    "type": "integer",
+    "description": "Use multiple threads for Link Time Optimization"
+  },
+  {
+    "name": "b_pch",
+    "value": true,
+    "section": "base",
+    "machine": "any",
+    "type": "boolean",
+    "description": "Use precompiled headers"
+  },
+  {
+    "name": "b_asneeded",
+    "value": true,
+    "section": "base",
+    "machine": "any",
+    "type": "boolean",
+    "description": "Use -Wl,--as-needed when linking"
+  },
+  {
     "name": "b_pgo",
     "value": "off",
     "section": "base",
@@ -314,12 +346,17 @@
     "description": "Use profile guided optimization"
   },
   {
-    "name": "b_staticpic",
-    "value": true,
+    "name": "b_ndebug",
+    "value": "false",
     "section": "base",
     "machine": "any",
-    "type": "boolean",
-    "description": "Build static libraries as position independent"
+    "choices": [
+      "true",
+      "false",
+      "if-release"
+    ],
+    "type": "combo",
+    "description": "Disable asserts"
   },
   {
     "name": "b_colorout",
@@ -343,49 +380,12 @@
     "description": "Enable coverage tracking."
   },
   {
-    "name": "b_asneeded",
+    "name": "b_staticpic",
     "value": true,
     "section": "base",
     "machine": "any",
     "type": "boolean",
-    "description": "Use -Wl,--as-needed when linking"
-  },
-  {
-    "name": "b_lto",
-    "value": false,
-    "section": "base",
-    "machine": "any",
-    "type": "boolean",
-    "description": "Use link time optimization"
-  },
-  {
-    "name": "b_pch",
-    "value": true,
-    "section": "base",
-    "machine": "any",
-    "type": "boolean",
-    "description": "Use precompiled headers"
-  },
-  {
-    "name": "b_ndebug",
-    "value": "false",
-    "section": "base",
-    "machine": "any",
-    "choices": [
-      "true",
-      "false",
-      "if-release"
-    ],
-    "type": "combo",
-    "description": "Disable asserts"
-  },
-  {
-    "name": "b_lundef",
-    "value": true,
-    "section": "base",
-    "machine": "any",
-    "type": "boolean",
-    "description": "Use -Wl,--no-undefined when linking"
+    "description": "Build static libraries as position independent"
   },
   {
     "name": "b_sanitize",
@@ -396,12 +396,12 @@
     "description": "Code sanitizer to use"
   },
   {
-    "name": "b_lto_threads",
-    "value": 0,
+    "name": "b_lundef",
+    "value": true,
     "section": "base",
     "machine": "any",
-    "type": "integer",
-    "description": "Use multiple threads for Link Time Optimization"
+    "type": "boolean",
+    "description": "Use -Wl,--no-undefined when linking"
   },
   {
     "name": "b_pie",

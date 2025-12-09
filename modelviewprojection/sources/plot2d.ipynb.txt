@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "50b2bc53",
+   "id": "8e6f87e2",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -13,7 +13,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "a05cf7aa",
+   "id": "4fcbb00e",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -38,7 +38,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a15a6147",
+   "id": "41a83c1c",
    "metadata": {},
    "source": [
     "Problem 1\n",
@@ -48,20 +48,32 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "e6e98306",
+   "id": "f22dde4d",
    "metadata": {},
    "outputs": [],
    "source": [
     "import math\n",
     "\n",
+    "from IPython.display import Markdown, Math, display\n",
+    "\n",
+    "from modelviewprojection.mathutils import (\n",
+    "    identity,\n",
+    ")\n",
+    "from modelviewprojection.mathutils1d import (\n",
+    "    Vector1D,\n",
+    ")\n",
     "from modelviewprojection.mathutils2d import (\n",
     "    Vector2D,\n",
     "    compose,\n",
     "    compose_intermediate_fns,\n",
+    "    inverse,\n",
     ")\n",
     "from modelviewprojection.mathutils2d import rotate as R\n",
     "from modelviewprojection.mathutils2d import scale as S\n",
     "from modelviewprojection.mathutils2d import translate as T\n",
+    "from modelviewprojection.mathutils3d import (\n",
+    "    Vector3D,\n",
+    ")\n",
     "from modelviewprojection.nbplotutils import (\n",
     "    create_basis,\n",
     "    create_graphs,\n",
@@ -73,8 +85,98 @@
    ]
   },
   {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6d6f8ec1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "T(Vector1D(5))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "09ca6ade",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "S(5, 6)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d326fdea",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "inverse(T(Vector1D(5)))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "223a40be",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "T(Vector2D(5, 6))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "717e4896",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "T(Vector3D(5, 6, 7))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "bbe0ee9c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "inverse(T(Vector3D(5, 6, 7)))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0e37dc3c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "R(math.pi / 2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f8fe2ca3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "compose([R(math.pi / 2), T(Vector2D(5, 6))])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e66c07be",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "inverse(compose([R(math.pi / 2), T(Vector2D(5, 6))]))"
+   ]
+  },
+  {
    "cell_type": "markdown",
-   "id": "e34be2e4",
+   "id": "c3407355",
    "metadata": {},
    "source": [
     "Draw graph paper\n",
@@ -89,33 +191,23 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "3d37daf9",
-   "metadata": {},
+   "id": "f7eb334f",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
    "outputs": [],
    "source": [
+    "fn = R(math.radians(53.130102))\n",
     "with create_graphs():\n",
-    "    create_basis()\n",
-    "    create_x_and_y()\n",
-    "    create_unit_circle()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "16416bc1",
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "with create_graphs():\n",
-    "    fn = R(math.radians(53.130102))\n",
     "    create_basis(fn=fn)\n",
     "    create_x_and_y(fn=fn)\n",
-    "    create_unit_circle(fn=fn)"
+    "    create_unit_circle(fn=fn)\n",
+    "    display(Math(fn._repr_latex_()))"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "905402d6",
+   "id": "80231a11",
    "metadata": {},
    "source": [
     "Draw relative graph paper\n",
@@ -124,22 +216,22 @@
     "Draw two relative number lines, making a relative graph paper,\n",
     "but keep the original coordinate system on the left and bottom.\n",
     "Any point in the plane can be described using two different\n",
-    "graph papers.\n",
-    "\n"
+    "graph papers."
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "e9e907a0",
+   "id": "2ca3f54a",
    "metadata": {},
    "outputs": [],
    "source": [
+    "fn = R(math.radians(45.0))\n",
     "with create_graphs():\n",
     "    create_basis(fn=R(0.0))\n",
     "    create_x_and_y(fn=R(0.0))\n",
     "    create_basis(\n",
-    "        fn=R(math.radians(45.0)),\n",
+    "        fn=fn,\n",
     "        xcolor=(0, 1, 0),\n",
     "        ycolor=(1, 1, 0),\n",
     "    )\n",
@@ -148,12 +240,13 @@
     "        xcolor=(0, 1, 0),\n",
     "        ycolor=(1, 1, 0),\n",
     "    )\n",
-    "    create_unit_circle(fn=fn)"
+    "    create_unit_circle(fn=fn)\n",
+    "    display(Math(fn._repr_latex_()))"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "b66a8fca",
+   "id": "56e550a2",
    "metadata": {},
    "source": [
     "Draw relative graph paper, defined by composed functions\n",
@@ -167,27 +260,28 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "de4c2d2c",
+   "id": "4064671e",
    "metadata": {},
    "outputs": [],
    "source": [
+    "fn = compose(\n",
+    "    [\n",
+    "        R(math.radians(90.0)),\n",
+    "        T(Vector2D(x=2.0, y=0.0)),\n",
+    "    ]\n",
+    ")\n",
     "with create_graphs():\n",
-    "    fn = compose(\n",
-    "        [\n",
-    "            R(math.radians(90.0)),\n",
-    "            T(Vector2D(x=2.0, y=0.0)),\n",
-    "        ]\n",
-    "    )\n",
     "    create_basis(\n",
     "        fn=fn,\n",
     "    )\n",
     "    create_x_and_y(fn=fn)\n",
-    "    create_unit_circle(fn=fn)"
+    "    create_unit_circle(fn=fn)\n",
+    "    display(Math(fn._repr_latex_()))"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "c7bb94ac",
+   "id": "e974dd0e",
    "metadata": {},
    "source": [
     "Composed functions, read bottom up\n",
@@ -201,19 +295,21 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "182b610d",
+   "id": "3ad646c0",
    "metadata": {
     "lines_to_next_cell": 2
    },
    "outputs": [],
    "source": [
     "for f in compose_intermediate_fns(\n",
-    "    [\n",
-    "        R(math.radians(90.0)),\n",
-    "        T(Vector2D(x=2.0, y=0.0)),\n",
-    "        lambda x: x,\n",
-    "    ]\n",
+    "    [R(math.radians(90.0)), T(Vector2D(x=2.0, y=0.0)), identity()]\n",
     "):\n",
+    "    # TODO - figure out if I can render the latex as part of one markdown command,\n",
+    "    # if I were to uncomment out this line and other markdown lines,\n",
+    "    # the build of HTML would fail\n",
+    "\n",
+    "    # display(Markdown(\"---\"))\n",
+    "    display(Math(f._repr_latex_()))\n",
     "    with create_graphs():\n",
     "        create_basis(fn=f)\n",
     "        create_x_and_y(fn=f)\n",
@@ -223,7 +319,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "51b36c43",
+   "id": "3f53a44c",
    "metadata": {},
    "source": [
     "Composed functions, read top down\n",
@@ -237,18 +333,20 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "3baec05a",
+   "id": "763c82ee",
    "metadata": {},
    "outputs": [],
    "source": [
     "for f in compose_intermediate_fns(\n",
     "    [\n",
-    "        lambda x: x,\n",
+    "        identity(),\n",
     "        R(math.radians(90.0)),\n",
     "        T(Vector2D(x=2.0, y=0.0)),\n",
     "    ],\n",
     "    relative_basis=True,\n",
     "):\n",
+    "    # display(Markdown(\"---\"))\n",
+    "    display(Math(f._repr_latex_()))\n",
     "    with create_graphs():\n",
     "        create_basis(fn=f)\n",
     "        create_x_and_y(fn=f)\n",
@@ -259,7 +357,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "1bec03d5",
+   "id": "9c9e30a8",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -272,15 +370,17 @@
     "        S(screen_width, screen_height),\n",
     "        S(0.5, 0.5),\n",
     "        T(Vector2D(x=1.0, y=1.0)),\n",
-    "        lambda x: x,\n",
+    "        identity(),\n",
     "    ],\n",
     "    relative_basis=False,\n",
     "):\n",
+    "    # display(Markdown(\"---\"))\n",
+    "    display(Math(f._repr_latex_()))\n",
     "    with create_graphs(graph_bounds=(6, 6)):\n",
     "        # create_basis(fn=f)\n",
     "        # create_x_and_y(fn=f)\n",
-    "        create_basis(fn=lambda x: x)\n",
-    "        # create_x_and_y(fn=lambda x: x)\n",
+    "        create_basis(fn=identity())\n",
+    "        # create_x_and_y(fn=identity())\n",
     "        # draw_ndc(fn=f)\n",
     "        draw_screen(width=screen_width, height=screen_height, fn=f)"
    ]
@@ -288,7 +388,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6b65d242",
+   "id": "bc433d12",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -297,6 +397,7 @@
     "\n",
     "for f in compose_intermediate_fns(\n",
     "    [\n",
+    "        identity(),\n",
     "        T(Vector2D(-0.5, -0.5)),\n",
     "        S(screen_width, screen_height),\n",
     "        S(0.5, 0.5),\n",
@@ -304,11 +405,13 @@
     "    ],\n",
     "    relative_basis=True,\n",
     "):\n",
+    "    # display(Markdown(\"---\"))\n",
+    "    display(Math(f._repr_latex_()))\n",
     "    with create_graphs(graph_bounds=(6, 6)):\n",
     "        # create_basis(fn=f)\n",
     "        # create_x_and_y(fn=f)\n",
-    "        create_basis(fn=lambda x: x)\n",
-    "        # create_x_and_y(fn=lambda x: x)\n",
+    "        create_basis(fn=identity())\n",
+    "        # create_x_and_y(fn=identity())\n",
     "        # draw_ndc(fn=f)\n",
     "        draw_screen(width=screen_width, height=screen_height, fn=f)"
    ]
@@ -316,7 +419,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "f1013df7",
+   "id": "934213ad",
    "metadata": {},
    "outputs": [],
    "source": []
@@ -324,7 +427,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "363fe791",
+   "id": "aa45eb61",
    "metadata": {},
    "outputs": [],
    "source": []

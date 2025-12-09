@@ -321,12 +321,12 @@ around a given point in world space, in this case, the paddle’s center.</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">118</span><span class="k">def</span><span class="w"> </span><span class="nf">rotate_around</span><span class="p">(</span>
-<span class="linenos">119</span>    <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Vector2D</span>
-<span class="linenos">120</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">121</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">122</span>        <span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">center</span><span class="p">)]</span>
-<span class="linenos">123</span>    <span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">125</span><span class="k">def</span><span class="w"> </span><span class="nf">rotate_around</span><span class="p">(</span>
+<span class="linenos">126</span>    <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Vector2D</span>
+<span class="linenos">127</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">128</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<span class="linenos">129</span>        <span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">center</span><span class="p">)]</span>
+<span class="linenos">130</span>    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
