@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "32503fce",
+   "id": "12b5d3ce",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -13,7 +13,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6c0fd7ab",
+   "id": "c4a1873a",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -38,7 +38,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4367471e",
+   "id": "4ea1bc04",
    "metadata": {},
    "source": [
     "Problem 1\n",
@@ -48,7 +48,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "45f75197",
+   "id": "b10463f7",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -77,15 +77,17 @@
     "    create_graphs,\n",
     "    create_unit_circle,\n",
     "    create_x_and_y,\n",
+    "    draw_isoceles_triangle,\n",
+    "    draw_right_triangle,\n",
     "    draw_screen,\n",
-    "    draw_triangle,\n",
+    "    draw_second_right_triangle,\n",
     ")"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "b557f3be",
+   "id": "60ff8831",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -95,7 +97,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "40f68ab1",
+   "id": "368d2a3b",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -105,7 +107,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "c4ac03de",
+   "id": "5037a3bb",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -115,7 +117,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "5eb543c9",
+   "id": "c301c856",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -125,7 +127,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "674c1e54",
+   "id": "e4ee036e",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -135,7 +137,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "4190692f",
+   "id": "55ebcc01",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -145,7 +147,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "4b58740d",
+   "id": "a05d9eff",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -155,7 +157,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "f63d20f0",
+   "id": "5cf7472d",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -165,7 +167,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "a9fec12d",
+   "id": "f58b40da",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -174,7 +176,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9838da8a",
+   "id": "45d788a9",
    "metadata": {},
    "source": [
     "Draw graph paper\n",
@@ -189,14 +191,14 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "79f84c48",
+   "id": "a19e0aaa",
    "metadata": {
     "lines_to_next_cell": 2
    },
    "outputs": [],
    "source": [
     "fn = R(math.radians(53.130102))\n",
-    "with create_graphs() as axes:\n",
+    "with create_graphs(graph_bounds=(5, 5)) as axes:\n",
     "    create_basis(fn=fn)\n",
     "    create_x_and_y(fn=fn)\n",
     "    create_unit_circle(fn=fn)\n",
@@ -205,7 +207,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "faa165de",
+   "id": "893e0487",
    "metadata": {},
    "source": [
     "Draw relative graph paper\n",
@@ -220,12 +222,14 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "85353083",
-   "metadata": {},
+   "id": "6aeea883",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
    "outputs": [],
    "source": [
-    "fn = R(math.radians(45.0))\n",
-    "with create_graphs() as axes:\n",
+    "fn = R(math.radians(53.130102))\n",
+    "with create_graphs(graph_bounds=(5, 5)) as axes:\n",
     "    create_basis(fn=R(0.0))\n",
     "    create_x_and_y(fn=R(0.0))\n",
     "    create_basis(\n",
@@ -234,7 +238,7 @@
     "        ycolor=(1, 1, 0),\n",
     "    )\n",
     "    create_x_and_y(\n",
-    "        fn=R(math.radians(45.0)),\n",
+    "        fn=fn,\n",
     "        xcolor=(0, 1, 0),\n",
     "        ycolor=(1, 1, 0),\n",
     "    )\n",
@@ -244,7 +248,50 @@
   },
   {
    "cell_type": "markdown",
-   "id": "526bbbf2",
+   "id": "61fe5676",
+   "metadata": {},
+   "source": [
+    "Draw relative graph paper\n",
+    "-------------------------\n",
+    "\n",
+    "Draw two relative number lines, making a relative graph paper,\n",
+    "but keep the original coordinate system on the left and bottom.\n",
+    "Any point in the plane can be described using two different\n",
+    "graph papers."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "19284348",
+   "metadata": {
+    "lines_to_next_cell": 2
+   },
+   "outputs": [],
+   "source": [
+    "fn = R(math.radians(53.130102))\n",
+    "with create_graphs(graph_bounds=(5, 5)) as axes:\n",
+    "    create_basis(fn=R(0.0))\n",
+    "    create_x_and_y(fn=R(0.0))\n",
+    "    create_basis(\n",
+    "        fn=fn,\n",
+    "        xcolor=(0, 1, 0),\n",
+    "        ycolor=(1, 1, 0),\n",
+    "    )\n",
+    "    create_x_and_y(\n",
+    "        fn=fn,\n",
+    "        xcolor=(0, 1, 0),\n",
+    "        ycolor=(1, 1, 0),\n",
+    "    )\n",
+    "    create_unit_circle(fn=fn)\n",
+    "    draw_right_triangle()\n",
+    "    draw_second_right_triangle()\n",
+    "    axes.set_title(fn._repr_latex_())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "22be42ea",
    "metadata": {},
    "source": [
     "Draw relative graph paper, defined by composed functions\n",
@@ -258,7 +305,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6814d1a1",
+   "id": "812e97f1",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -279,7 +326,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f9471f3c",
+   "id": "3449d16d",
    "metadata": {},
    "source": [
     "Composed functions, read bottom up\n",
@@ -293,7 +340,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "41a5cff3",
+   "id": "ac96184f",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -307,14 +354,14 @@
     "    with create_graphs() as axes:\n",
     "        create_basis(fn=f)\n",
     "        create_x_and_y(fn=f)\n",
-    "        draw_triangle(fn=f)\n",
+    "        draw_isoceles_triangle(fn=f)\n",
     "        create_unit_circle(fn=f)\n",
     "        axes.set_title(f._repr_latex_())"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "69b0f1ef",
+   "id": "dc322cf5",
    "metadata": {},
    "source": [
     "Composed functions, read top down\n",
@@ -328,7 +375,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "3b6e2ca2",
+   "id": "e3c775fe",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -344,7 +391,7 @@
     "    with create_graphs() as axes:\n",
     "        create_basis(fn=f)\n",
     "        create_x_and_y(fn=f)\n",
-    "        draw_triangle(fn=f)\n",
+    "        draw_isoceles_triangle(fn=f)\n",
     "        create_unit_circle(fn=f)\n",
     "        axes.set_title(f._repr_latex_())"
    ]
@@ -352,7 +399,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "3ca5a908",
+   "id": "98cba5e0",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -383,10 +430,8 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "9866f2fe",
-   "metadata": {
-    "lines_to_next_cell": 0
-   },
+   "id": "ee388ff8",
+   "metadata": {},
    "outputs": [],
    "source": [
     "screen_width: int = 4\n",
@@ -410,22 +455,6 @@
     "        draw_screen(width=screen_width, height=screen_height, fn=f)\n",
     "        axes.set_title(f._repr_latex_())"
    ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "d9880b02",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "20ad2fee",
-   "metadata": {},
-   "outputs": [],
-   "source": []
   }
  ],
  "metadata": {

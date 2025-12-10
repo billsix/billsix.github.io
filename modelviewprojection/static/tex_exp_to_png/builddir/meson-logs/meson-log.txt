@@ -1,4 +1,4 @@
-Build started at 2025-12-10T01:44:04.140076
+Build started at 2025-12-10T09:31:05.658892
 Main binary: /usr/bin/python3
 Build Options: 
 Python system: Linux
@@ -30,7 +30,7 @@ This program has absolutely no warranty.
 -----------
 stderr:
 collect2 version 15.2.1 20251111 (Red Hat 15.2.1-4)
-/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-redhat-linux/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccpmoQHN.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/15/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/15 -L/usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/15/../../.. -L/lib -L/usr/lib --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-redhat-linux/15/crtend.o /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crtn.o
+/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-redhat-linux/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZnM0Ni.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/15/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/15 -L/usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/15/../../.. -L/lib -L/usr/lib --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-redhat-linux/15/crtend.o /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crtn.o
 -----------
 Sanity testing C compiler: cc
 Is cross compiler: False.
@@ -74,7 +74,7 @@ This program has absolutely no warranty.
 -----------
 stderr:
 collect2 version 15.2.1 20251111 (Red Hat 15.2.1-4)
-/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-redhat-linux/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxsOZ6n.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/15/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/15 -L/usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/15/../../.. -L/lib -L/usr/lib --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-redhat-linux/15/crtend.o /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crtn.o
+/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-redhat-linux/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/15/lto-wrapper -plugin-opt=-fresolution=/tmp/cc5CQzkk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/15/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/15 -L/usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/15/../../.. -L/lib -L/usr/lib --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-redhat-linux/15/crtend.o /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crtn.o
 -----------
 Sanity testing C compiler: cc
 Is cross compiler: False.
@@ -137,7 +137,7 @@ stdout:
 -lglib-2.0
 -----------
 Running compile:
-Working directory:  /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpww2lhvf3
+Working directory:  /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpmlst6s_k
 Code:
 
         #include<stddef.h>
@@ -147,7 +147,7 @@ Code:
             return 0;
         }
 -----------
-Command line: `cc /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpww2lhvf3/testfile.c -o /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpww2lhvf3/output.exe -D_FILE_OFFSET_BITS=64 -O0` -> 0
+Command line: `cc /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpmlst6s_k/testfile.c -o /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpmlst6s_k/output.exe -D_FILE_OFFSET_BITS=64 -O0` -> 0
 Program stdout:
 
 8
@@ -156,11 +156,11 @@ Program stderr:
 
 
 Running compile:
-Working directory:  /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpenrfhjh6
+Working directory:  /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpoycm34ma
 Code:
 
 -----------
-Command line: `cc /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpenrfhjh6/testfile.c -o /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpenrfhjh6/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
+Command line: `cc /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpoycm34ma/testfile.c -o /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpoycm34ma/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
 stdout:
 install: /usr/lib/gcc/x86_64-redhat-linux/15/
 programs: =/usr/libexec/gcc/x86_64-redhat-linux/15/:/usr/libexec/gcc/x86_64-redhat-linux/15/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/15/:/usr/lib/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/15/../../../../x86_64-redhat-linux/bin/x86_64-redhat-linux/15/:/usr/lib/gcc/x86_64-redhat-linux/15/../../../../x86_64-redhat-linux/bin/
@@ -168,12 +168,12 @@ libraries: =/usr/lib/gcc/x86_64-redhat-linux/15/:/usr/lib/gcc/x86_64-redhat-linu
 -----------
 Run-time dependency glib-2.0 found: YES 2.86.2
 Running compile:
-Working directory:  /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpom553rq7
+Working directory:  /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpgxljju30
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpom553rq7/testfile.c -o /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpom553rq7/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lm -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpgxljju30/testfile.c -o /mvp/book/docs/_static/tex_exp_to_png/builddir/meson-private/tmpgxljju30/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lm -Wl,--allow-shlib-undefined` -> 0
 Library m found: YES
 Build targets in project: 1
 

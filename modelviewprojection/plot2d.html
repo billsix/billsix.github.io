@@ -301,8 +301,10 @@
     <span class="n">create_graphs</span><span class="p">,</span>
     <span class="n">create_unit_circle</span><span class="p">,</span>
     <span class="n">create_x_and_y</span><span class="p">,</span>
+    <span class="n">draw_isoceles_triangle</span><span class="p">,</span>
+    <span class="n">draw_right_triangle</span><span class="p">,</span>
     <span class="n">draw_screen</span><span class="p">,</span>
-    <span class="n">draw_triangle</span><span class="p">,</span>
+    <span class="n">draw_second_right_triangle</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -434,7 +436,7 @@ to the numbers on the left and on the bottom.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">53.130102</span><span class="p">))</span>
-<span class="k">with</span> <span class="n">create_graphs</span><span class="p">()</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">create_graphs</span><span class="p">(</span><span class="n">graph_bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
     <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
     <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
     <span class="n">create_unit_circle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
@@ -443,7 +445,7 @@ to the numbers on the left and on the bottom.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/2bfdd34fded7c17f9aa4c17a77c2e543ea16526ddc9e1e7177eb449174a8c10a.svg" src="images/2bfdd34fded7c17f9aa4c17a77c2e543ea16526ddc9e1e7177eb449174a8c10a.svg" />
+<img alt="images/f6f17f4a4e19a6b4bcae5e50c9ab6ff1e9162a4f0a28b64cb524628e4edfa0b4.svg" src="images/f6f17f4a4e19a6b4bcae5e50c9ab6ff1e9162a4f0a28b64cb524628e4edfa0b4.svg" />
 </div>
 </div>
 </section>
@@ -455,8 +457,8 @@ Any point in the plane can be described using two different
 graph papers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">45.0</span><span class="p">))</span>
-<span class="k">with</span> <span class="n">create_graphs</span><span class="p">()</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">53.130102</span><span class="p">))</span>
+<span class="k">with</span> <span class="n">create_graphs</span><span class="p">(</span><span class="n">graph_bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
     <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
     <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
     <span class="n">create_basis</span><span class="p">(</span>
@@ -465,7 +467,7 @@ graph papers.</p>
         <span class="n">ycolor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">)</span>
     <span class="n">create_x_and_y</span><span class="p">(</span>
-        <span class="n">fn</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">45.0</span><span class="p">)),</span>
+        <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span>
         <span class="n">xcolor</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">ycolor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">)</span>
@@ -475,7 +477,41 @@ graph papers.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/44e5ff2e7c7c74f9e83f2966378ad31cad72a88ea24a0fb3d19dc0a3b192773f.svg" src="images/44e5ff2e7c7c74f9e83f2966378ad31cad72a88ea24a0fb3d19dc0a3b192773f.svg" />
+<img alt="images/0223caf9a269fb583e786cfac90517dfab1919962004f1c3aea94cfbfd675118.svg" src="images/0223caf9a269fb583e786cfac90517dfab1919962004f1c3aea94cfbfd675118.svg" />
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>Draw relative graph paper<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>Draw two relative number lines, making a relative graph paper,
+but keep the original coordinate system on the left and bottom.
+Any point in the plane can be described using two different
+graph papers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">53.130102</span><span class="p">))</span>
+<span class="k">with</span> <span class="n">create_graphs</span><span class="p">(</span><span class="n">graph_bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
+    <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
+    <span class="n">create_basis</span><span class="p">(</span>
+        <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span>
+        <span class="n">xcolor</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">ycolor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">create_x_and_y</span><span class="p">(</span>
+        <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span>
+        <span class="n">xcolor</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">ycolor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">create_unit_circle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
+    <span class="n">draw_right_triangle</span><span class="p">()</span>
+    <span class="n">draw_second_right_triangle</span><span class="p">()</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">fn</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/ecb19c86f6a12b594e61a29249c3e6d846827f81bdaf1b9e5639098fcdac2131.svg" src="images/ecb19c86f6a12b594e61a29249c3e6d846827f81bdaf1b9e5639098fcdac2131.svg" />
 </div>
 </div>
 </section>
@@ -503,7 +539,7 @@ in the order that they are applied, or in reverse order</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/01f5db7cd598a0d17a6125ff8cf21f70378925e8d8d5a600c08dea78021464aa.svg" src="images/01f5db7cd598a0d17a6125ff8cf21f70378925e8d8d5a600c08dea78021464aa.svg" />
+<img alt="images/22e7b88539939d395c068cec01d32a51ff08fef8942fda260ad703bfc820d9b2.svg" src="images/22e7b88539939d395c068cec01d32a51ff08fef8942fda260ad703bfc820d9b2.svg" />
 </div>
 </div>
 </section>
@@ -524,16 +560,16 @@ units on the left and bottom.</p>
     <span class="k">with</span> <span class="n">create_graphs</span><span class="p">()</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
         <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
-        <span class="n">draw_triangle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">draw_isoceles_triangle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">create_unit_circle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/b8df55cc793854dd3bfb8110542bdae4cf4e5e9f68b5a99019b54798815ef523.svg" src="images/b8df55cc793854dd3bfb8110542bdae4cf4e5e9f68b5a99019b54798815ef523.svg" />
-<img alt="images/9da4e1ad9ae7398f748679108cc4f64f41c48d779e29f6eb9c1ecab589f41344.svg" src="images/9da4e1ad9ae7398f748679108cc4f64f41c48d779e29f6eb9c1ecab589f41344.svg" />
-<img alt="images/062cd8392a09413ba71b212339f382ba3da21ef54bf57a2ecb0c6f631949f9f9.svg" src="images/062cd8392a09413ba71b212339f382ba3da21ef54bf57a2ecb0c6f631949f9f9.svg" />
+<img alt="images/b1692677a37a7ac251ce72ef629b8a94056417c516ec729e9ae35af9de49b846.svg" src="images/b1692677a37a7ac251ce72ef629b8a94056417c516ec729e9ae35af9de49b846.svg" />
+<img alt="images/8db94aea15578c443d856b1eaa01e91575feb6e6bc09b8248f300b347414f38e.svg" src="images/8db94aea15578c443d856b1eaa01e91575feb6e6bc09b8248f300b347414f38e.svg" />
+<img alt="images/4682e7c6fd5da0f97ff79ded35171f53842079261e4f5476e965c7222d80b5f7.svg" src="images/4682e7c6fd5da0f97ff79ded35171f53842079261e4f5476e965c7222d80b5f7.svg" />
 </div>
 </div>
 </section>
@@ -554,16 +590,16 @@ that relative graph paper.</p>
     <span class="k">with</span> <span class="n">create_graphs</span><span class="p">()</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
         <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
-        <span class="n">draw_triangle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">draw_isoceles_triangle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">create_unit_circle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/56bb526b6e1e3b7cddd94bb6218ce436b60f2671e867889b7d56e3f05dc666be.svg" src="images/56bb526b6e1e3b7cddd94bb6218ce436b60f2671e867889b7d56e3f05dc666be.svg" />
-<img alt="images/815b80bfb7e408d0d5767ba15d031faf52811ad0b7cb7805bf8ba54153a0c1c8.svg" src="images/815b80bfb7e408d0d5767ba15d031faf52811ad0b7cb7805bf8ba54153a0c1c8.svg" />
-<img alt="images/dc449992d3782ab5d1838d2b0939df60ca9049d0d815341dc81fd3d0d1d56e6f.svg" src="images/dc449992d3782ab5d1838d2b0939df60ca9049d0d815341dc81fd3d0d1d56e6f.svg" />
+<img alt="images/df332b76c811c9579d846b9b1224733b258ca336b011db993bf7fc322ca3b935.svg" src="images/df332b76c811c9579d846b9b1224733b258ca336b011db993bf7fc322ca3b935.svg" />
+<img alt="images/12485ba2da067774f408738225c41b40bfd6bff70b6807fe9a79fff25a0ae1ee.svg" src="images/12485ba2da067774f408738225c41b40bfd6bff70b6807fe9a79fff25a0ae1ee.svg" />
+<img alt="images/ceb19a6c3375dd8092a1d595125f8c09e16d05d9da39d15d525df7d537bcbb1a.svg" src="images/ceb19a6c3375dd8092a1d595125f8c09e16d05d9da39d15d525df7d537bcbb1a.svg" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -592,11 +628,11 @@ that relative graph paper.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/98d4eb2e681fa853ffb391a8dca1bdd65d3f6a63be7752664175c371792796a2.svg" src="images/98d4eb2e681fa853ffb391a8dca1bdd65d3f6a63be7752664175c371792796a2.svg" />
-<img alt="images/c84a77cccef67e1ce04e2aef82603c9579e921de38f0cc2aac8446b6471e62cb.svg" src="images/c84a77cccef67e1ce04e2aef82603c9579e921de38f0cc2aac8446b6471e62cb.svg" />
-<img alt="images/6775e09c120639f25ed0a7f2ad5e67caa1afb12e12de6568400a77eb401b55f3.svg" src="images/6775e09c120639f25ed0a7f2ad5e67caa1afb12e12de6568400a77eb401b55f3.svg" />
-<img alt="images/4252f78a246e653e86c8b28a2851bdba3fe7d53b90cbb2e86d0f7ad84c332fba.svg" src="images/4252f78a246e653e86c8b28a2851bdba3fe7d53b90cbb2e86d0f7ad84c332fba.svg" />
-<img alt="images/9d5ef4acdfcba99635b5d0834460d4c94aeab7bab68c7965fdada76eb8b30f90.svg" src="images/9d5ef4acdfcba99635b5d0834460d4c94aeab7bab68c7965fdada76eb8b30f90.svg" />
+<img alt="images/0954d39a75267d8a8c639cfc8bd9819c263addad3b4078b07f22243386aa772d.svg" src="images/0954d39a75267d8a8c639cfc8bd9819c263addad3b4078b07f22243386aa772d.svg" />
+<img alt="images/8453716ae7b95ba69bc74667ce1fe5e2342f58ba0c3ca7c239e569b385a30ed0.svg" src="images/8453716ae7b95ba69bc74667ce1fe5e2342f58ba0c3ca7c239e569b385a30ed0.svg" />
+<img alt="images/fd774e6a79f183fa5f217f26784eb83ac7da288fd661eaedff9b019e81bb4cb2.svg" src="images/fd774e6a79f183fa5f217f26784eb83ac7da288fd661eaedff9b019e81bb4cb2.svg" />
+<img alt="images/09e0c052c24a53517c7152681c2f2c12b493d99c920a5ceb6e977e628f89efb9.svg" src="images/09e0c052c24a53517c7152681c2f2c12b493d99c920a5ceb6e977e628f89efb9.svg" />
+<img alt="images/dc7e5f34eccccfc8159e7d345451a4c64f936c01c0171a98401d6a165c253fd6.svg" src="images/dc7e5f34eccccfc8159e7d345451a4c64f936c01c0171a98401d6a165c253fd6.svg" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -625,11 +661,11 @@ that relative graph paper.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/e57f24b78f6f037132ab416b080188e750331ef18bb72d07f9604dee92081d9f.svg" src="images/e57f24b78f6f037132ab416b080188e750331ef18bb72d07f9604dee92081d9f.svg" />
-<img alt="images/102b7e30240b0efed0e5f78aa6cea7b8e24b95e5a755c07770f74f266b2344a2.svg" src="images/102b7e30240b0efed0e5f78aa6cea7b8e24b95e5a755c07770f74f266b2344a2.svg" />
-<img alt="images/505b8b0adab308949509a67e3a01e8304a5da1a68a12a8434e31031a0a252a06.svg" src="images/505b8b0adab308949509a67e3a01e8304a5da1a68a12a8434e31031a0a252a06.svg" />
-<img alt="images/96072726c2c2793d0aa6e15abcc78a1242b311ce9ce866398560039490e937d3.svg" src="images/96072726c2c2793d0aa6e15abcc78a1242b311ce9ce866398560039490e937d3.svg" />
-<img alt="images/f51e7145e071b5504fe1fe6a34bac31e9c3fd0724701e39cf14ee9eb2fdf79e3.svg" src="images/f51e7145e071b5504fe1fe6a34bac31e9c3fd0724701e39cf14ee9eb2fdf79e3.svg" />
+<img alt="images/ad67a11fe1e762b16905f17fc4163818304ba522ab33e77328dcb3f8dadfbac6.svg" src="images/ad67a11fe1e762b16905f17fc4163818304ba522ab33e77328dcb3f8dadfbac6.svg" />
+<img alt="images/56adb6a32342aa61f231e905fc7d6608e945b89e8911e2532e72f83fcade8d7f.svg" src="images/56adb6a32342aa61f231e905fc7d6608e945b89e8911e2532e72f83fcade8d7f.svg" />
+<img alt="images/e4d1c3006448a2a8f60946b5426fa6268ca0493336ebbe27ebc93b23ac457d3c.svg" src="images/e4d1c3006448a2a8f60946b5426fa6268ca0493336ebbe27ebc93b23ac457d3c.svg" />
+<img alt="images/d508005515415a6cc7b2b39c9d5d8d8b8de6e6680aaffb747cc72639d5432ca3.svg" src="images/d508005515415a6cc7b2b39c9d5d8d8b8de6e6680aaffb747cc72639d5432ca3.svg" />
+<img alt="images/83429f212ba9d07e6d8e8c3539996f6cb976556c4c590038b34782e89faf767d.svg" src="images/83429f212ba9d07e6d8e8c3539996f6cb976556c4c590038b34782e89faf767d.svg" />
 </div>
 </div>
 </section>
@@ -686,6 +722,7 @@ that relative graph paper.</p>
 <li><a class="reference internal" href="#problem-1">Problem 1</a></li>
 <li><a class="reference internal" href="#draw-graph-paper">Draw graph paper</a></li>
 <li><a class="reference internal" href="#draw-relative-graph-paper">Draw relative graph paper</a></li>
+<li><a class="reference internal" href="#id1">Draw relative graph paper</a></li>
 <li><a class="reference internal" href="#draw-relative-graph-paper-defined-by-composed-functions">Draw relative graph paper, defined by composed functions</a></li>
 <li><a class="reference internal" href="#composed-functions-read-bottom-up">Composed functions, read bottom up</a></li>
 <li><a class="reference internal" href="#composed-functions-read-top-down">Composed functions, read top down</a></li>
