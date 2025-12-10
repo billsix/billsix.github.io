@@ -278,8 +278,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">display</span>
-
 <span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">identity</span><span class="p">,</span>
 <span class="p">)</span>
@@ -319,7 +317,7 @@
 <div class="cell_output docutils container">
 <div class="math-wrapper output text_latex docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[T_{&lt;5&gt;}\]</div>
+\[T_{&lt;[5]&gt;}\]</div>
 </div>
 </div>
 </div>
@@ -345,7 +343,7 @@
 <div class="cell_output docutils container">
 <div class="math-wrapper output text_latex docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[{T_{&lt;5&gt;}}^{-1}\]</div>
+\[T_{&lt;[-5]&gt;}\]</div>
 </div>
 </div>
 </div>
@@ -358,7 +356,7 @@
 <div class="cell_output docutils container">
 <div class="math-wrapper output text_latex docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[T_{&lt;5, 6&gt;}\]</div>
+\[T_{&lt;[5, 6]&gt;}\]</div>
 </div>
 </div>
 </div>
@@ -371,7 +369,7 @@
 <div class="cell_output docutils container">
 <div class="math-wrapper output text_latex docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[T_{&lt;5, 6, 7&gt;}\]</div>
+\[T_{&lt;[5, 6, 7]&gt;}\]</div>
 </div>
 </div>
 </div>
@@ -384,7 +382,7 @@
 <div class="cell_output docutils container">
 <div class="math-wrapper output text_latex docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[{T_{&lt;5, 6, 7&gt;}}^{-1}\]</div>
+\[T_{&lt;[-5, -6, -7]&gt;}\]</div>
 </div>
 </div>
 </div>
@@ -410,7 +408,7 @@
 <div class="cell_output docutils container">
 <div class="math-wrapper output text_latex docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[R_{&lt;1.5707963267948966&gt;} \circ T_{&lt;5, 6&gt;}\]</div>
+\[R_{&lt;1.5707963267948966&gt;} \circ T_{&lt;[5, 6]&gt;}\]</div>
 </div>
 </div>
 </div>
@@ -423,7 +421,7 @@
 <div class="cell_output docutils container">
 <div class="math-wrapper output text_latex docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[{T_{&lt;5, 6&gt;}}^{-1} \circ {R_{&lt;1.5707963267948966&gt;}}^{-1}\]</div>
+\[T_{&lt;[-5, -6]&gt;} \circ R_{&lt;-1.5707963267948966&gt;}\]</div>
 </div>
 </div>
 </div>
@@ -436,20 +434,16 @@ to the numbers on the left and on the bottom.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">53.130102</span><span class="p">))</span>
-<span class="k">with</span> <span class="n">create_graphs</span><span class="p">():</span>
+<span class="k">with</span> <span class="n">create_graphs</span><span class="p">()</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
     <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
     <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
     <span class="n">create_unit_circle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">fn</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">()))</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">fn</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle R_{&lt;0.9272952118204243&gt;}\]</div>
-</div>
-<img alt="images/6ffed745cd023405acd274e29062f2485dcaa7a72944e5aa40bfab9e59e7f339.svg" src="images/6ffed745cd023405acd274e29062f2485dcaa7a72944e5aa40bfab9e59e7f339.svg" />
+<img alt="images/2bfdd34fded7c17f9aa4c17a77c2e543ea16526ddc9e1e7177eb449174a8c10a.svg" src="images/2bfdd34fded7c17f9aa4c17a77c2e543ea16526ddc9e1e7177eb449174a8c10a.svg" />
 </div>
 </div>
 </section>
@@ -462,7 +456,7 @@ graph papers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">45.0</span><span class="p">))</span>
-<span class="k">with</span> <span class="n">create_graphs</span><span class="p">():</span>
+<span class="k">with</span> <span class="n">create_graphs</span><span class="p">()</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
     <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
     <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
     <span class="n">create_basis</span><span class="p">(</span>
@@ -476,16 +470,12 @@ graph papers.</p>
         <span class="n">ycolor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">)</span>
     <span class="n">create_unit_circle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">fn</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">()))</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">fn</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle R_{&lt;0.7853981633974483&gt;}\]</div>
-</div>
-<img alt="images/740da3b0cb050018fba255dd7ec43e7f799cb629427ebde2f2cbbb054bccbcd6.svg" src="images/740da3b0cb050018fba255dd7ec43e7f799cb629427ebde2f2cbbb054bccbcd6.svg" />
+<img alt="images/44e5ff2e7c7c74f9e83f2966378ad31cad72a88ea24a0fb3d19dc0a3b192773f.svg" src="images/44e5ff2e7c7c74f9e83f2966378ad31cad72a88ea24a0fb3d19dc0a3b192773f.svg" />
 </div>
 </div>
 </section>
@@ -502,22 +492,18 @@ in the order that they are applied, or in reverse order</p>
         <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)),</span>
     <span class="p">]</span>
 <span class="p">)</span>
-<span class="k">with</span> <span class="n">create_graphs</span><span class="p">():</span>
+<span class="k">with</span> <span class="n">create_graphs</span><span class="p">()</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
     <span class="n">create_basis</span><span class="p">(</span>
         <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
     <span class="n">create_unit_circle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">fn</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">()))</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">fn</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle R_{&lt;1.5707963267948966&gt;} \circ T_{&lt;2.0, 0.0&gt;}\]</div>
-</div>
-<img alt="images/732f91a875b1938331466d29bf07d0e9138774b32bda6fa150cd83f923655603.svg" src="images/732f91a875b1938331466d29bf07d0e9138774b32bda6fa150cd83f923655603.svg" />
+<img alt="images/01f5db7cd598a0d17a6125ff8cf21f70378925e8d8d5a600c08dea78021464aa.svg" src="images/01f5db7cd598a0d17a6125ff8cf21f70378925e8d8d5a600c08dea78021464aa.svg" />
 </div>
 </div>
 </section>
@@ -529,38 +515,25 @@ units on the left and bottom.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">compose_intermediate_fns</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">90.0</span><span class="p">)),</span> <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)),</span> <span class="n">identity</span><span class="p">()]</span>
+    <span class="p">[</span><span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">90.0</span><span class="p">)),</span> <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))]</span>
 <span class="p">):</span>
     <span class="c1"># TODO - figure out if I can render the latex as part of one markdown command,</span>
     <span class="c1"># if I were to uncomment out this line and other markdown lines,</span>
     <span class="c1"># the build of HTML would fail</span>
 
-    <span class="c1"># display(Markdown(&quot;---&quot;))</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">()))</span>
-    <span class="k">with</span> <span class="n">create_graphs</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">create_graphs</span><span class="p">()</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
         <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">draw_triangle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">create_unit_circle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle I\]</div>
-</div>
-<img alt="images/caa3d3daf9b45c54e738fa908f002b1e01ab552226ed2eb964099c589055a391.svg" src="images/caa3d3daf9b45c54e738fa908f002b1e01ab552226ed2eb964099c589055a391.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle T_{&lt;2.0, 0.0&gt;} \circ I\]</div>
-</div>
-<img alt="images/d33efa5e5f088b1d1929db81e9b93c5dbb050577af93c81bc79c13bbee035174.svg" src="images/d33efa5e5f088b1d1929db81e9b93c5dbb050577af93c81bc79c13bbee035174.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle R_{&lt;1.5707963267948966&gt;} \circ T_{&lt;2.0, 0.0&gt;} \circ I\]</div>
-</div>
-<img alt="images/1bfeae5435dec2a11b0c8dc1b2e2956fb4d734f98e5b179d97a2b4d1f76cc549.svg" src="images/1bfeae5435dec2a11b0c8dc1b2e2956fb4d734f98e5b179d97a2b4d1f76cc549.svg" />
+<img alt="images/b8df55cc793854dd3bfb8110542bdae4cf4e5e9f68b5a99019b54798815ef523.svg" src="images/b8df55cc793854dd3bfb8110542bdae4cf4e5e9f68b5a99019b54798815ef523.svg" />
+<img alt="images/9da4e1ad9ae7398f748679108cc4f64f41c48d779e29f6eb9c1ecab589f41344.svg" src="images/9da4e1ad9ae7398f748679108cc4f64f41c48d779e29f6eb9c1ecab589f41344.svg" />
+<img alt="images/062cd8392a09413ba71b212339f382ba3da21ef54bf57a2ecb0c6f631949f9f9.svg" src="images/062cd8392a09413ba71b212339f382ba3da21ef54bf57a2ecb0c6f631949f9f9.svg" />
 </div>
 </div>
 </section>
@@ -573,44 +546,30 @@ that relative graph paper.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">compose_intermediate_fns</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">identity</span><span class="p">(),</span>
         <span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">90.0</span><span class="p">)),</span>
-        <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)),</span>
+        <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)),</span>
     <span class="p">],</span>
     <span class="n">relative_basis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="c1"># display(Markdown(&quot;---&quot;))</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">()))</span>
-    <span class="k">with</span> <span class="n">create_graphs</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">create_graphs</span><span class="p">()</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
         <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">draw_triangle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">create_unit_circle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle I\]</div>
-</div>
-<img alt="images/d78d8837472ee9fe1bb6318d691460c132629ee305c7a37d01ef0235b3c70481.svg" src="images/d78d8837472ee9fe1bb6318d691460c132629ee305c7a37d01ef0235b3c70481.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle I \circ R_{&lt;1.5707963267948966&gt;}\]</div>
-</div>
-<img alt="images/278ff525aae3c5932a9ef45727da9a5ff6682d24fc09e988ff43e4b6f483a0ed.svg" src="images/278ff525aae3c5932a9ef45727da9a5ff6682d24fc09e988ff43e4b6f483a0ed.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle I \circ R_{&lt;1.5707963267948966&gt;} \circ T_{&lt;2.0, 0.0&gt;}\]</div>
-</div>
-<img alt="images/b70ee51fc353462934d0a4a47f645942a5bbef59c8139d0d9eb767cd706cdb97.svg" src="images/b70ee51fc353462934d0a4a47f645942a5bbef59c8139d0d9eb767cd706cdb97.svg" />
+<img alt="images/56bb526b6e1e3b7cddd94bb6218ce436b60f2671e867889b7d56e3f05dc666be.svg" src="images/56bb526b6e1e3b7cddd94bb6218ce436b60f2671e867889b7d56e3f05dc666be.svg" />
+<img alt="images/815b80bfb7e408d0d5767ba15d031faf52811ad0b7cb7805bf8ba54153a0c1c8.svg" src="images/815b80bfb7e408d0d5767ba15d031faf52811ad0b7cb7805bf8ba54153a0c1c8.svg" />
+<img alt="images/dc449992d3782ab5d1838d2b0939df60ca9049d0d815341dc81fd3d0d1d56e6f.svg" src="images/dc449992d3782ab5d1838d2b0939df60ca9049d0d815341dc81fd3d0d1d56e6f.svg" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">screen_width</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">screen_height</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">screen_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">screen_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
 
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">compose_intermediate_fns</span><span class="p">(</span>
     <span class="p">[</span>
@@ -618,58 +577,35 @@ that relative graph paper.</p>
         <span class="n">S</span><span class="p">(</span><span class="n">screen_width</span><span class="p">,</span> <span class="n">screen_height</span><span class="p">),</span>
         <span class="n">S</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
         <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)),</span>
-        <span class="n">identity</span><span class="p">(),</span>
     <span class="p">],</span>
     <span class="n">relative_basis</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="c1"># display(Markdown(&quot;---&quot;))</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">()))</span>
-    <span class="k">with</span> <span class="n">create_graphs</span><span class="p">(</span><span class="n">graph_bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
+    <span class="k">with</span> <span class="n">create_graphs</span><span class="p">(</span><span class="n">graph_bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
         <span class="c1"># create_basis(fn=f)</span>
         <span class="c1"># create_x_and_y(fn=f)</span>
         <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">identity</span><span class="p">())</span>
-        <span class="c1"># create_x_and_y(fn=identity())</span>
+        <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">identity</span><span class="p">())</span>
         <span class="c1"># draw_ndc(fn=f)</span>
         <span class="n">draw_screen</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">screen_width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">screen_height</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle I\]</div>
-</div>
-<img alt="images/9f4d986ddae10c73d4ef846910231b1c9d72b6ef6679f9d6cd24b1f7400f2e3b.svg" src="images/9f4d986ddae10c73d4ef846910231b1c9d72b6ef6679f9d6cd24b1f7400f2e3b.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle T_{&lt;1.0, 1.0&gt;} \circ I\]</div>
-</div>
-<img alt="images/268e60c069f4522ae5a71804679e4116fa664ef813b3c30d9b4d133608b87d99.svg" src="images/268e60c069f4522ae5a71804679e4116fa664ef813b3c30d9b4d133608b87d99.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle S_{&lt;0.5,0.5&gt;} \circ T_{&lt;1.0, 1.0&gt;} \circ I\]</div>
-</div>
-<img alt="images/c2804dce900527f9c84acfc3fe0bb6423ea14c81fce59b0196dcd7b13607a088.svg" src="images/c2804dce900527f9c84acfc3fe0bb6423ea14c81fce59b0196dcd7b13607a088.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle S_{&lt;4,3&gt;} \circ S_{&lt;0.5,0.5&gt;} \circ T_{&lt;1.0, 1.0&gt;} \circ I\]</div>
-</div>
-<img alt="images/9b93b193c9d022e931784544085d2554beaf75251f11b31f7aa38cb520fdcdb6.svg" src="images/9b93b193c9d022e931784544085d2554beaf75251f11b31f7aa38cb520fdcdb6.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle T_{&lt;-0.5, -0.5&gt;} \circ S_{&lt;4,3&gt;} \circ S_{&lt;0.5,0.5&gt;} \circ T_{&lt;1.0, 1.0&gt;} \circ I\]</div>
-</div>
-<img alt="images/1befe153dc693beb96d45a6b1997bf905d896b233c7d76a9d4fd5e595be055fe.svg" src="images/1befe153dc693beb96d45a6b1997bf905d896b233c7d76a9d4fd5e595be055fe.svg" />
+<img alt="images/98d4eb2e681fa853ffb391a8dca1bdd65d3f6a63be7752664175c371792796a2.svg" src="images/98d4eb2e681fa853ffb391a8dca1bdd65d3f6a63be7752664175c371792796a2.svg" />
+<img alt="images/c84a77cccef67e1ce04e2aef82603c9579e921de38f0cc2aac8446b6471e62cb.svg" src="images/c84a77cccef67e1ce04e2aef82603c9579e921de38f0cc2aac8446b6471e62cb.svg" />
+<img alt="images/6775e09c120639f25ed0a7f2ad5e67caa1afb12e12de6568400a77eb401b55f3.svg" src="images/6775e09c120639f25ed0a7f2ad5e67caa1afb12e12de6568400a77eb401b55f3.svg" />
+<img alt="images/4252f78a246e653e86c8b28a2851bdba3fe7d53b90cbb2e86d0f7ad84c332fba.svg" src="images/4252f78a246e653e86c8b28a2851bdba3fe7d53b90cbb2e86d0f7ad84c332fba.svg" />
+<img alt="images/9d5ef4acdfcba99635b5d0834460d4c94aeab7bab68c7965fdada76eb8b30f90.svg" src="images/9d5ef4acdfcba99635b5d0834460d4c94aeab7bab68c7965fdada76eb8b30f90.svg" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">screen_width</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">screen_height</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">screen_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">screen_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
 
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">compose_intermediate_fns</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">identity</span><span class="p">(),</span>
         <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)),</span>
         <span class="n">S</span><span class="p">(</span><span class="n">screen_width</span><span class="p">,</span> <span class="n">screen_height</span><span class="p">),</span>
         <span class="n">S</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
@@ -677,44 +613,23 @@ that relative graph paper.</p>
     <span class="p">],</span>
     <span class="n">relative_basis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="c1"># display(Markdown(&quot;---&quot;))</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">()))</span>
-    <span class="k">with</span> <span class="n">create_graphs</span><span class="p">(</span><span class="n">graph_bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
+    <span class="k">with</span> <span class="n">create_graphs</span><span class="p">(</span><span class="n">graph_bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
         <span class="c1"># create_basis(fn=f)</span>
         <span class="c1"># create_x_and_y(fn=f)</span>
         <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">identity</span><span class="p">())</span>
-        <span class="c1"># create_x_and_y(fn=identity())</span>
+        <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="c1"># draw_ndc(fn=f)</span>
         <span class="n">draw_screen</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">screen_width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">screen_height</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle I\]</div>
-</div>
-<img alt="images/e33ae88d4b621ae16ab1f85098acf88bf6c507fe7ae55e35debfec9a64382bdb.svg" src="images/e33ae88d4b621ae16ab1f85098acf88bf6c507fe7ae55e35debfec9a64382bdb.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle I \circ T_{&lt;-0.5, -0.5&gt;}\]</div>
-</div>
-<img alt="images/6ab2f214ff1975a0b5ece87532212b719eb27b4357f892fdee0c86cf5b5fc2f4.svg" src="images/6ab2f214ff1975a0b5ece87532212b719eb27b4357f892fdee0c86cf5b5fc2f4.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle I \circ T_{&lt;-0.5, -0.5&gt;} \circ S_{&lt;4,3&gt;}\]</div>
-</div>
-<img alt="images/81881d3b1a302e12fd93ace09bc177c8822e47e38ec4f7995694aab8a3343e2f.svg" src="images/81881d3b1a302e12fd93ace09bc177c8822e47e38ec4f7995694aab8a3343e2f.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle I \circ T_{&lt;-0.5, -0.5&gt;} \circ S_{&lt;4,3&gt;} \circ S_{&lt;0.5,0.5&gt;}\]</div>
-</div>
-<img alt="images/6dd9b03fc9b8eb111a611c57dce90dc4c5434b381b76ddd80fe556077c984d31.svg" src="images/6dd9b03fc9b8eb111a611c57dce90dc4c5434b381b76ddd80fe556077c984d31.svg" />
-<div class="math-wrapper output text_latex docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle I \circ T_{&lt;-0.5, -0.5&gt;} \circ S_{&lt;4,3&gt;} \circ S_{&lt;0.5,0.5&gt;} \circ T_{&lt;1.0, 1.0&gt;}\]</div>
-</div>
-<img alt="images/788009d036db19cc03111db7c53beb0b54dc7451d21a5283454ac37e79cc94c5.svg" src="images/788009d036db19cc03111db7c53beb0b54dc7451d21a5283454ac37e79cc94c5.svg" />
+<img alt="images/e57f24b78f6f037132ab416b080188e750331ef18bb72d07f9604dee92081d9f.svg" src="images/e57f24b78f6f037132ab416b080188e750331ef18bb72d07f9604dee92081d9f.svg" />
+<img alt="images/102b7e30240b0efed0e5f78aa6cea7b8e24b95e5a755c07770f74f266b2344a2.svg" src="images/102b7e30240b0efed0e5f78aa6cea7b8e24b95e5a755c07770f74f266b2344a2.svg" />
+<img alt="images/505b8b0adab308949509a67e3a01e8304a5da1a68a12a8434e31031a0a252a06.svg" src="images/505b8b0adab308949509a67e3a01e8304a5da1a68a12a8434e31031a0a252a06.svg" />
+<img alt="images/96072726c2c2793d0aa6e15abcc78a1242b311ce9ce866398560039490e937d3.svg" src="images/96072726c2c2793d0aa6e15abcc78a1242b311ce9ce866398560039490e937d3.svg" />
+<img alt="images/f51e7145e071b5504fe1fe6a34bac31e9c3fd0724701e39cf14ee9eb2fdf79e3.svg" src="images/f51e7145e071b5504fe1fe6a34bac31e9c3fd0724701e39cf14ee9eb2fdf79e3.svg" />
 </div>
 </div>
 </section>

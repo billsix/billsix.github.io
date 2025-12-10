@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "ea3c387d",
+   "id": "2a42209b",
    "metadata": {},
    "source": [
     "(framebufferlabel)=\n",
@@ -11,7 +11,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a182d35e",
+   "id": "96be244a",
    "metadata": {},
    "source": [
     "We are taking a detour, to learn more about framebuffers.  This section\n",
@@ -30,7 +30,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "c99d1b4b",
+   "id": "662c036e",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -59,7 +59,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6927c504",
+   "id": "99940b35",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -72,7 +72,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "85d4f0d2",
+   "id": "42ef5b3c",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -86,7 +86,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "aa5b710c",
+   "id": "c306d64e",
    "metadata": {},
    "source": [
     "Make a framebuffer, which is just a rectangular region of\n",
@@ -98,7 +98,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "3dac9b9c",
+   "id": "8a34dc62",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -111,7 +111,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5b617c20",
+   "id": "245cf20e",
    "metadata": {},
    "source": [
     "Well, that looks bad, as there is a bunch of random values\n",
@@ -123,7 +123,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "35169e8a",
+   "id": "2c0abea1",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -141,7 +141,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d85d0401",
+   "id": "ea332824",
    "metadata": {},
    "source": [
     "Whoops!  That looks like trash.  We should change the background to\n",
@@ -151,7 +151,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "b03831ec",
+   "id": "9f521745",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -163,7 +163,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "232a126d",
+   "id": "660d40da",
    "metadata": {},
    "source": [
     "I don't really want to draw on Red, let's switch it to black"
@@ -172,7 +172,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "9bd11122",
+   "id": "9b61e5fb",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -186,7 +186,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2406baf9",
+   "id": "96af7336",
    "metadata": {},
    "source": [
     "Let's clear again for no reason, and draw a white triangle in screenspace."
@@ -195,7 +195,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "3a7b9719",
+   "id": "45183144",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -214,7 +214,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "33ecdb11",
+   "id": "29586877",
    "metadata": {},
    "source": [
     "Without clearing (as we want to keep the white triangle, let's\n",
@@ -224,7 +224,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "cddd6b16",
+   "id": "c76df28b",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -241,7 +241,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "edbcebed",
+   "id": "871a1989",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -252,7 +252,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6cad2501",
+   "id": "cb6de91d",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -266,7 +266,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "4c1eaab5",
+   "id": "9a631467",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -280,7 +280,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "01cb0ab8",
+   "id": "35d0fb29",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -305,7 +305,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "774b3fd5",
+   "id": "a80c69d8",
    "metadata": {},
    "source": [
     "It makes sense that the triangles are in the lower left, OpenGL\n",
@@ -316,7 +316,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "180e255c",
+   "id": "26497447",
    "metadata": {},
    "outputs": [],
    "source": []
