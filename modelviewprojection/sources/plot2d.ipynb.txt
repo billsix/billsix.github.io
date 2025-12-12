@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "12b5d3ce",
+   "id": "a925cde1",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -13,7 +13,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "c4a1873a",
+   "id": "85eccde9",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -38,7 +38,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4ea1bc04",
+   "id": "546057e5",
    "metadata": {},
    "source": [
     "Problem 1\n",
@@ -48,30 +48,26 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "b10463f7",
+   "id": "79fc299c",
    "metadata": {},
    "outputs": [],
    "source": [
     "import math\n",
     "\n",
+    "import sympy\n",
+    "\n",
     "from modelviewprojection.mathutils import (\n",
-    "    identity,\n",
-    ")\n",
-    "from modelviewprojection.mathutils1d import (\n",
     "    Vector1D,\n",
-    ")\n",
-    "from modelviewprojection.mathutils2d import (\n",
     "    Vector2D,\n",
+    "    Vector3D,\n",
     "    compose,\n",
     "    compose_intermediate_fns,\n",
+    "    identity,\n",
     "    inverse,\n",
     ")\n",
-    "from modelviewprojection.mathutils2d import rotate as R\n",
-    "from modelviewprojection.mathutils2d import scale as S\n",
-    "from modelviewprojection.mathutils2d import translate as T\n",
-    "from modelviewprojection.mathutils3d import (\n",
-    "    Vector3D,\n",
-    ")\n",
+    "from modelviewprojection.mathutils import rotate as R\n",
+    "from modelviewprojection.mathutils import scale_non_uniform_2d as S\n",
+    "from modelviewprojection.mathutils import translate as T\n",
     "from modelviewprojection.nbplotutils import (\n",
     "    create_basis,\n",
     "    create_graphs,\n",
@@ -87,7 +83,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "60ff8831",
+   "id": "e5fc8b16",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -97,7 +93,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "368d2a3b",
+   "id": "9260ccc9",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -107,7 +103,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "5037a3bb",
+   "id": "6dc29933",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -117,7 +113,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "c301c856",
+   "id": "1df1bbd1",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -127,7 +123,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "e4ee036e",
+   "id": "0c823c80",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -137,7 +133,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "55ebcc01",
+   "id": "6208d471",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -147,36 +143,36 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "a05d9eff",
+   "id": "c6ea04cc",
    "metadata": {},
    "outputs": [],
    "source": [
-    "R(math.pi / 2)"
+    "R(sympy.pi / 2)"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "5cf7472d",
+   "id": "c0746822",
    "metadata": {},
    "outputs": [],
    "source": [
-    "compose([R(math.pi / 2), T(Vector2D(5, 6))])"
+    "compose([R(sympy.pi / 2), T(Vector2D(5, 6))])"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "f58b40da",
+   "id": "5d206a57",
    "metadata": {},
    "outputs": [],
    "source": [
-    "inverse(compose([R(math.pi / 2), T(Vector2D(5, 6))]))"
+    "inverse(compose([R(sympy.pi / 2), T(Vector2D(5, 6))]))"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "45d788a9",
+   "id": "3c4c1e88",
    "metadata": {},
    "source": [
     "Draw graph paper\n",
@@ -191,7 +187,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "a19e0aaa",
+   "id": "03f9781c",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -207,7 +203,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "893e0487",
+   "id": "4a7157c6",
    "metadata": {},
    "source": [
     "Draw relative graph paper\n",
@@ -222,7 +218,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6aeea883",
+   "id": "b7f47438",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -248,7 +244,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "61fe5676",
+   "id": "5d43c0cb",
    "metadata": {},
    "source": [
     "Draw relative graph paper\n",
@@ -263,7 +259,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "19284348",
+   "id": "c7daf249",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -291,7 +287,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "22be42ea",
+   "id": "35ff47fb",
    "metadata": {},
    "source": [
     "Draw relative graph paper, defined by composed functions\n",
@@ -305,13 +301,13 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "812e97f1",
+   "id": "4449935c",
    "metadata": {},
    "outputs": [],
    "source": [
     "fn = compose(\n",
     "    [\n",
-    "        R(math.radians(90.0)),\n",
+    "        R(sympy.pi / 4),\n",
     "        T(Vector2D(x=2.0, y=0.0)),\n",
     "    ]\n",
     ")\n",
@@ -326,7 +322,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3449d16d",
+   "id": "dd80ca55",
    "metadata": {},
    "source": [
     "Composed functions, read bottom up\n",
@@ -340,13 +336,11 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "ac96184f",
+   "id": "e872932e",
    "metadata": {},
    "outputs": [],
    "source": [
-    "for f in compose_intermediate_fns(\n",
-    "    [R(math.radians(90.0)), T(Vector2D(x=1.0, y=0.0))]\n",
-    "):\n",
+    "for f in compose_intermediate_fns([R(sympy.pi / 4), T(Vector2D(x=2.0, y=0.0))]):\n",
     "    # TODO - figure out if I can render the latex as part of one markdown command,\n",
     "    # if I were to uncomment out this line and other markdown lines,\n",
     "    # the build of HTML would fail\n",
@@ -354,14 +348,16 @@
     "    with create_graphs() as axes:\n",
     "        create_basis(fn=f)\n",
     "        create_x_and_y(fn=f)\n",
+    "        create_x_and_y()\n",
     "        draw_isoceles_triangle(fn=f)\n",
     "        create_unit_circle(fn=f)\n",
+    "        create_unit_circle()\n",
     "        axes.set_title(f._repr_latex_())"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "dc322cf5",
+   "id": "a119e57b",
    "metadata": {},
    "source": [
     "Composed functions, read top down\n",
@@ -375,7 +371,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "e3c775fe",
+   "id": "ceaaa7f6",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -383,7 +379,7 @@
    "source": [
     "for f in compose_intermediate_fns(\n",
     "    [\n",
-    "        R(math.radians(90.0)),\n",
+    "        R(sympy.pi / 4),\n",
     "        T(Vector2D(x=1.0, y=0.0)),\n",
     "    ],\n",
     "    relative_basis=True,\n",
@@ -399,7 +395,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "98cba5e0",
+   "id": "83560f30",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -430,7 +426,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "ee388ff8",
+   "id": "3c985434",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -455,6 +451,22 @@
     "        draw_screen(width=screen_width, height=screen_height, fn=f)\n",
     "        axes.set_title(f._repr_latex_())"
    ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c8bd58ea",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "00b0af9f",
+   "metadata": {},
+   "outputs": [],
+   "source": []
   }
  ],
  "metadata": {

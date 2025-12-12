@@ -9,7 +9,7 @@
         <title>Plot 2D - Model View Projection 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo.css?v=50c23ec3" />
-    <link rel="stylesheet" type="text/css" href="static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="static/custom.css?v=b6a38b70" />
     
@@ -278,24 +278,20 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">identity</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils1d</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Vector1D</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils2d</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Vector2D</span><span class="p">,</span>
+    <span class="n">Vector3D</span><span class="p">,</span>
     <span class="n">compose</span><span class="p">,</span>
     <span class="n">compose_intermediate_fns</span><span class="p">,</span>
+    <span class="n">identity</span><span class="p">,</span>
     <span class="n">inverse</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils2d</span><span class="w"> </span><span class="kn">import</span> <span class="n">rotate</span> <span class="k">as</span> <span class="n">R</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils2d</span><span class="w"> </span><span class="kn">import</span> <span class="n">scale</span> <span class="k">as</span> <span class="n">S</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils2d</span><span class="w"> </span><span class="kn">import</span> <span class="n">translate</span> <span class="k">as</span> <span class="n">T</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils3d</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">Vector3D</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">rotate</span> <span class="k">as</span> <span class="n">R</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">scale_non_uniform_2d</span> <span class="k">as</span> <span class="n">S</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">translate</span> <span class="k">as</span> <span class="n">T</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.nbplotutils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">create_basis</span><span class="p">,</span>
     <span class="n">create_graphs</span><span class="p">,</span>
@@ -390,40 +386,40 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="math-wrapper output text_latex docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[R_{&lt;1.5707963267948966&gt;}\]</div>
+\[R_{&lt;\frac{\pi}{2}&gt;}\]</div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compose</span><span class="p">([</span><span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compose</span><span class="p">([</span><span class="n">R</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="math-wrapper output text_latex docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[R_{&lt;1.5707963267948966&gt;} \circ T_{&lt;[5, 6]&gt;}\]</div>
+\[R_{&lt;\frac{\pi}{2}&gt;} \circ T_{&lt;[5, 6]&gt;}\]</div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inverse</span><span class="p">(</span><span class="n">compose</span><span class="p">([</span><span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inverse</span><span class="p">(</span><span class="n">compose</span><span class="p">([</span><span class="n">R</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))]))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="math-wrapper output text_latex docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[T_{&lt;[-5, -6]&gt;} \circ R_{&lt;-1.5707963267948966&gt;}\]</div>
+\[T_{&lt;[-5, -6]&gt;} \circ R_{&lt;- \frac{\pi}{2}&gt;}\]</div>
 </div>
 </div>
 </div>
@@ -445,7 +441,7 @@ to the numbers on the left and on the bottom.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/f6f17f4a4e19a6b4bcae5e50c9ab6ff1e9162a4f0a28b64cb524628e4edfa0b4.svg" src="images/f6f17f4a4e19a6b4bcae5e50c9ab6ff1e9162a4f0a28b64cb524628e4edfa0b4.svg" />
+<img alt="images/bbcbcc8d0b589e64d925e8a62720c56d90d61b25abebf4a52058a6149015104d.svg" src="images/bbcbcc8d0b589e64d925e8a62720c56d90d61b25abebf4a52058a6149015104d.svg" />
 </div>
 </div>
 </section>
@@ -477,7 +473,7 @@ graph papers.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/0223caf9a269fb583e786cfac90517dfab1919962004f1c3aea94cfbfd675118.svg" src="images/0223caf9a269fb583e786cfac90517dfab1919962004f1c3aea94cfbfd675118.svg" />
+<img alt="images/5642505cad68a39920160b1e3aa115da883c32404f68ee4fd95bc56872c0f32a.svg" src="images/5642505cad68a39920160b1e3aa115da883c32404f68ee4fd95bc56872c0f32a.svg" />
 </div>
 </div>
 </section>
@@ -511,7 +507,7 @@ graph papers.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/ecb19c86f6a12b594e61a29249c3e6d846827f81bdaf1b9e5639098fcdac2131.svg" src="images/ecb19c86f6a12b594e61a29249c3e6d846827f81bdaf1b9e5639098fcdac2131.svg" />
+<img alt="images/f46f83d3d3d1ae96f0cb19a3f73c38530aec5a4ca46544c54b99446a23395e16.svg" src="images/f46f83d3d3d1ae96f0cb19a3f73c38530aec5a4ca46544c54b99446a23395e16.svg" />
 </div>
 </div>
 </section>
@@ -524,7 +520,7 @@ in the order that they are applied, or in reverse order</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="n">compose</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">90.0</span><span class="p">)),</span>
+        <span class="n">R</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">),</span>
         <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)),</span>
     <span class="p">]</span>
 <span class="p">)</span>
@@ -539,7 +535,7 @@ in the order that they are applied, or in reverse order</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/22e7b88539939d395c068cec01d32a51ff08fef8942fda260ad703bfc820d9b2.svg" src="images/22e7b88539939d395c068cec01d32a51ff08fef8942fda260ad703bfc820d9b2.svg" />
+<img alt="images/458193d808ccc04016bf088e35a6c372d3e7a072ff1a2ec81fd0985f7e50d270.svg" src="images/458193d808ccc04016bf088e35a6c372d3e7a072ff1a2ec81fd0985f7e50d270.svg" />
 </div>
 </div>
 </section>
@@ -550,9 +546,7 @@ is applied first, and operations are relative to the
 units on the left and bottom.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">compose_intermediate_fns</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">90.0</span><span class="p">)),</span> <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))]</span>
-<span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">compose_intermediate_fns</span><span class="p">([</span><span class="n">R</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">),</span> <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))]):</span>
     <span class="c1"># TODO - figure out if I can render the latex as part of one markdown command,</span>
     <span class="c1"># if I were to uncomment out this line and other markdown lines,</span>
     <span class="c1"># the build of HTML would fail</span>
@@ -560,16 +554,18 @@ units on the left and bottom.</p>
     <span class="k">with</span> <span class="n">create_graphs</span><span class="p">()</span> <span class="k">as</span> <span class="n">axes</span><span class="p">:</span>
         <span class="n">create_basis</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">create_x_and_y</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">create_x_and_y</span><span class="p">()</span>
         <span class="n">draw_isoceles_triangle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
         <span class="n">create_unit_circle</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">create_unit_circle</span><span class="p">()</span>
         <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/b1692677a37a7ac251ce72ef629b8a94056417c516ec729e9ae35af9de49b846.svg" src="images/b1692677a37a7ac251ce72ef629b8a94056417c516ec729e9ae35af9de49b846.svg" />
-<img alt="images/8db94aea15578c443d856b1eaa01e91575feb6e6bc09b8248f300b347414f38e.svg" src="images/8db94aea15578c443d856b1eaa01e91575feb6e6bc09b8248f300b347414f38e.svg" />
-<img alt="images/4682e7c6fd5da0f97ff79ded35171f53842079261e4f5476e965c7222d80b5f7.svg" src="images/4682e7c6fd5da0f97ff79ded35171f53842079261e4f5476e965c7222d80b5f7.svg" />
+<img alt="images/b2cf0d8b14490d8f62c20786ce134bf2abe3de04560a26d156ca1944d5e0fc19.svg" src="images/b2cf0d8b14490d8f62c20786ce134bf2abe3de04560a26d156ca1944d5e0fc19.svg" />
+<img alt="images/758fdc4ddaf102e2a7cc1e0aa861e1899e14dfc96e4ca0b5392015e02e9cdb49.svg" src="images/758fdc4ddaf102e2a7cc1e0aa861e1899e14dfc96e4ca0b5392015e02e9cdb49.svg" />
+<img alt="images/263cd9158a810ab1d9d86e041c5413cf6cab6d02d874a6d1a18a72ec962fe12f.svg" src="images/263cd9158a810ab1d9d86e041c5413cf6cab6d02d874a6d1a18a72ec962fe12f.svg" />
 </div>
 </div>
 </section>
@@ -582,7 +578,7 @@ that relative graph paper.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">compose_intermediate_fns</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">R</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">90.0</span><span class="p">)),</span>
+        <span class="n">R</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">),</span>
         <span class="n">T</span><span class="p">(</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)),</span>
     <span class="p">],</span>
     <span class="n">relative_basis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -597,9 +593,9 @@ that relative graph paper.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/df332b76c811c9579d846b9b1224733b258ca336b011db993bf7fc322ca3b935.svg" src="images/df332b76c811c9579d846b9b1224733b258ca336b011db993bf7fc322ca3b935.svg" />
-<img alt="images/12485ba2da067774f408738225c41b40bfd6bff70b6807fe9a79fff25a0ae1ee.svg" src="images/12485ba2da067774f408738225c41b40bfd6bff70b6807fe9a79fff25a0ae1ee.svg" />
-<img alt="images/ceb19a6c3375dd8092a1d595125f8c09e16d05d9da39d15d525df7d537bcbb1a.svg" src="images/ceb19a6c3375dd8092a1d595125f8c09e16d05d9da39d15d525df7d537bcbb1a.svg" />
+<img alt="images/2c81bb6af1f13dac94d1e2d87111e032f1b90352d7e60c77bb2107c2d4a72fb4.svg" src="images/2c81bb6af1f13dac94d1e2d87111e032f1b90352d7e60c77bb2107c2d4a72fb4.svg" />
+<img alt="images/26a191925a8ef4b1f705be4765f27da3624ca96c820646bd43c580e8695bda63.svg" src="images/26a191925a8ef4b1f705be4765f27da3624ca96c820646bd43c580e8695bda63.svg" />
+<img alt="images/91052a0913f8cd373a382a35c2e21c65e1c9ef0727385700d558e1dcac2aaa76.svg" src="images/91052a0913f8cd373a382a35c2e21c65e1c9ef0727385700d558e1dcac2aaa76.svg" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -628,11 +624,11 @@ that relative graph paper.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/0954d39a75267d8a8c639cfc8bd9819c263addad3b4078b07f22243386aa772d.svg" src="images/0954d39a75267d8a8c639cfc8bd9819c263addad3b4078b07f22243386aa772d.svg" />
-<img alt="images/8453716ae7b95ba69bc74667ce1fe5e2342f58ba0c3ca7c239e569b385a30ed0.svg" src="images/8453716ae7b95ba69bc74667ce1fe5e2342f58ba0c3ca7c239e569b385a30ed0.svg" />
-<img alt="images/fd774e6a79f183fa5f217f26784eb83ac7da288fd661eaedff9b019e81bb4cb2.svg" src="images/fd774e6a79f183fa5f217f26784eb83ac7da288fd661eaedff9b019e81bb4cb2.svg" />
-<img alt="images/09e0c052c24a53517c7152681c2f2c12b493d99c920a5ceb6e977e628f89efb9.svg" src="images/09e0c052c24a53517c7152681c2f2c12b493d99c920a5ceb6e977e628f89efb9.svg" />
-<img alt="images/dc7e5f34eccccfc8159e7d345451a4c64f936c01c0171a98401d6a165c253fd6.svg" src="images/dc7e5f34eccccfc8159e7d345451a4c64f936c01c0171a98401d6a165c253fd6.svg" />
+<img alt="images/3a1581d13f62c8f49bcbe7e76e95e199e6e2b11f47f3fe6a03951871a535c386.svg" src="images/3a1581d13f62c8f49bcbe7e76e95e199e6e2b11f47f3fe6a03951871a535c386.svg" />
+<img alt="images/d8a4b416e9fcf6416fb4544cdf7ce17f66c0110c09fc322b6b8eaa31256f4daa.svg" src="images/d8a4b416e9fcf6416fb4544cdf7ce17f66c0110c09fc322b6b8eaa31256f4daa.svg" />
+<img alt="images/81c0e8ef6fbd9f5ecbcdb9834dbe0eb2e67b0ca07a6b5ee2caa5b4cb4984799b.svg" src="images/81c0e8ef6fbd9f5ecbcdb9834dbe0eb2e67b0ca07a6b5ee2caa5b4cb4984799b.svg" />
+<img alt="images/e3d8ef479a02dbd204816053bc47da0c1759b5c7d417ee3eae0351159a2afe1f.svg" src="images/e3d8ef479a02dbd204816053bc47da0c1759b5c7d417ee3eae0351159a2afe1f.svg" />
+<img alt="images/8f038b47696ab92b9a337e7d776459be4b5a730f83362427085957a53049e6a0.svg" src="images/8f038b47696ab92b9a337e7d776459be4b5a730f83362427085957a53049e6a0.svg" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -661,11 +657,11 @@ that relative graph paper.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/ad67a11fe1e762b16905f17fc4163818304ba522ab33e77328dcb3f8dadfbac6.svg" src="images/ad67a11fe1e762b16905f17fc4163818304ba522ab33e77328dcb3f8dadfbac6.svg" />
-<img alt="images/56adb6a32342aa61f231e905fc7d6608e945b89e8911e2532e72f83fcade8d7f.svg" src="images/56adb6a32342aa61f231e905fc7d6608e945b89e8911e2532e72f83fcade8d7f.svg" />
-<img alt="images/e4d1c3006448a2a8f60946b5426fa6268ca0493336ebbe27ebc93b23ac457d3c.svg" src="images/e4d1c3006448a2a8f60946b5426fa6268ca0493336ebbe27ebc93b23ac457d3c.svg" />
-<img alt="images/d508005515415a6cc7b2b39c9d5d8d8b8de6e6680aaffb747cc72639d5432ca3.svg" src="images/d508005515415a6cc7b2b39c9d5d8d8b8de6e6680aaffb747cc72639d5432ca3.svg" />
-<img alt="images/83429f212ba9d07e6d8e8c3539996f6cb976556c4c590038b34782e89faf767d.svg" src="images/83429f212ba9d07e6d8e8c3539996f6cb976556c4c590038b34782e89faf767d.svg" />
+<img alt="images/280dff6781e3ecd25eb5dca4bfcda37dd5d52966250b13a4350fe45b3e6ee99c.svg" src="images/280dff6781e3ecd25eb5dca4bfcda37dd5d52966250b13a4350fe45b3e6ee99c.svg" />
+<img alt="images/aff6939f1789ddf2c5dbfab64088b630ce6ab7f5d5b4d895c37e8702a3fd7830.svg" src="images/aff6939f1789ddf2c5dbfab64088b630ce6ab7f5d5b4d895c37e8702a3fd7830.svg" />
+<img alt="images/6b977af773df80bd4b1362f9da60053cd1b268fa3b44bed3f7a314bfaaed0b90.svg" src="images/6b977af773df80bd4b1362f9da60053cd1b268fa3b44bed3f7a314bfaaed0b90.svg" />
+<img alt="images/2fde5bd967b7662160123c1957181868c32fb6f4afd05025bb2ba53c19906827.svg" src="images/2fde5bd967b7662160123c1957181868c32fb6f4afd05025bb2ba53c19906827.svg" />
+<img alt="images/41dd22c623c377aabb8e612129b3275f8c899335a566083330c437f6ffd16915.svg" src="images/41dd22c623c377aabb8e612129b3275f8c899335a566083330c437f6ffd16915.svg" />
 </div>
 </div>
 </section>

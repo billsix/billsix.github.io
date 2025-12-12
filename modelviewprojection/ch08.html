@@ -312,21 +312,21 @@ of being rotated around their <a class="reference internal" href="glossary.html#
 <p>In this demo, we try to solve the problem by making a method to rotate
 around a given point in world space, in this case, the paddle’s center.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">62</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="linenos">63</span><span class="k">class</span><span class="w"> </span><span class="nc">Vector2D</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">):</span>
-<span class="linenos">64</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 2D Vector</span>
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">557</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="linenos">558</span><span class="k">class</span><span class="w"> </span><span class="nc">Vector1D</span><span class="p">(</span><span class="n">Vector</span><span class="p">):</span>
+<span class="linenos">559</span>    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The value of the 1D Vector</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">125</span><span class="k">def</span><span class="w"> </span><span class="nf">rotate_around</span><span class="p">(</span>
-<span class="linenos">126</span>    <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Vector2D</span>
-<span class="linenos">127</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">128</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">129</span>        <span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">center</span><span class="p">)]</span>
-<span class="linenos">130</span>    <span class="p">)</span>
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">643</span><span class="k">def</span><span class="w"> </span><span class="nf">rotate_around</span><span class="p">(</span>
+<span class="linenos">644</span>    <span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Vector2D</span>
+<span class="linenos">645</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">646</span>    <span class="k">return</span> <span class="n">compose</span><span class="p">(</span>
+<span class="linenos">647</span>        <span class="p">[</span><span class="n">translate</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">),</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">center</span><span class="p">)]</span>
+<span class="linenos">648</span>    <span class="p">)</span>
 </pre></div>
 </div>
 </div>

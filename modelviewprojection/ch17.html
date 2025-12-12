@@ -482,56 +482,56 @@ relative to camera space down to NDC, by moving the center of the rectangular
 prism to the origin, and scaling by the inverse of the width, height, and depth
 of the viewable region.</p>
 <div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils3d.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">179</span><span class="k">def</span><span class="w"> </span><span class="nf">ortho</span><span class="p">(</span>
-<span class="linenos">180</span>    <span class="n">left</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="linenos">181</span>    <span class="n">right</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="linenos">182</span>    <span class="n">bottom</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="linenos">183</span>    <span class="n">top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="linenos">184</span>    <span class="n">near</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="linenos">185</span>    <span class="n">far</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="linenos">186</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">187</span>    <span class="n">midpoint</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span>
-<span class="linenos">188</span>        <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">bottom</span> <span class="o">+</span> <span class="n">top</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="n">near</span> <span class="o">+</span> <span class="n">far</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
-<span class="linenos">189</span>    <span class="p">)</span>
-<span class="linenos">190</span>    <span class="n">length_x</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">191</span>    <span class="n">length_y</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">192</span>    <span class="n">length_z</span><span class="p">:</span> <span class="nb">float</span>
-<span class="linenos">193</span>    <span class="n">length_x</span><span class="p">,</span> <span class="n">length_y</span><span class="p">,</span> <span class="n">length_z</span> <span class="o">=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">,</span> <span class="n">top</span> <span class="o">-</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">far</span> <span class="o">-</span> <span class="n">near</span>
-<span class="linenos">194</span>
-<span class="linenos">195</span>    <span class="n">fn</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="linenos">196</span>        <span class="p">[</span>
-<span class="linenos">197</span>            <span class="n">scale</span><span class="p">(</span>
-<span class="linenos">198</span>                <span class="n">m_x</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">length_x</span><span class="p">),</span>
-<span class="linenos">199</span>                <span class="n">m_y</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">length_y</span><span class="p">),</span>
-<span class="linenos">200</span>                <span class="n">m_z</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">length_z</span><span class="p">)),</span>
-<span class="linenos">201</span>            <span class="p">),</span>
-<span class="linenos">202</span>            <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">midpoint</span><span class="p">),</span>
-<span class="linenos">203</span>        <span class="p">]</span>
-<span class="linenos">204</span>    <span class="p">)</span>
-<span class="linenos">205</span>
-<span class="linenos">206</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">207</span>        <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
-<span class="linenos">208</span>
-<span class="linenos">209</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">210</span>        <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
-<span class="linenos">211</span>
-<span class="linenos">212</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">,</span> <span class="s2">&quot;Ortho&quot;</span><span class="p">,</span> <span class="s2">&quot;Ortho Inv&quot;</span><span class="p">)</span>
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">785</span><span class="k">def</span><span class="w"> </span><span class="nf">ortho</span><span class="p">(</span>
+<span class="linenos">786</span>    <span class="n">left</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="linenos">787</span>    <span class="n">right</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="linenos">788</span>    <span class="n">bottom</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="linenos">789</span>    <span class="n">top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="linenos">790</span>    <span class="n">near</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="linenos">791</span>    <span class="n">far</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="linenos">792</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">793</span>    <span class="n">midpoint</span> <span class="o">=</span> <span class="n">Vector3D</span><span class="p">(</span>
+<span class="linenos">794</span>        <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">bottom</span> <span class="o">+</span> <span class="n">top</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="p">(</span><span class="n">near</span> <span class="o">+</span> <span class="n">far</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+<span class="linenos">795</span>    <span class="p">)</span>
+<span class="linenos">796</span>    <span class="n">length_x</span><span class="p">:</span> <span class="nb">float</span>
+<span class="linenos">797</span>    <span class="n">length_y</span><span class="p">:</span> <span class="nb">float</span>
+<span class="linenos">798</span>    <span class="n">length_z</span><span class="p">:</span> <span class="nb">float</span>
+<span class="linenos">799</span>    <span class="n">length_x</span><span class="p">,</span> <span class="n">length_y</span><span class="p">,</span> <span class="n">length_z</span> <span class="o">=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">,</span> <span class="n">top</span> <span class="o">-</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">far</span> <span class="o">-</span> <span class="n">near</span>
+<span class="linenos">800</span>
+<span class="linenos">801</span>    <span class="n">fn</span> <span class="o">=</span> <span class="n">compose</span><span class="p">(</span>
+<span class="linenos">802</span>        <span class="p">[</span>
+<span class="linenos">803</span>            <span class="n">scale_non_uniform_3d</span><span class="p">(</span>
+<span class="linenos">804</span>                <span class="n">m_x</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">length_x</span><span class="p">),</span>
+<span class="linenos">805</span>                <span class="n">m_y</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">length_y</span><span class="p">),</span>
+<span class="linenos">806</span>                <span class="n">m_z</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">length_z</span><span class="p">)),</span>
+<span class="linenos">807</span>            <span class="p">),</span>
+<span class="linenos">808</span>            <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">midpoint</span><span class="p">),</span>
+<span class="linenos">809</span>        <span class="p">]</span>
+<span class="linenos">810</span>    <span class="p">)</span>
+<span class="linenos">811</span>
+<span class="linenos">812</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">813</span>        <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+<span class="linenos">814</span>
+<span class="linenos">815</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">816</span>        <span class="k">return</span> <span class="n">inverse</span><span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">vector</span><span class="p">)</span>
+<span class="linenos">817</span>
+<span class="linenos">818</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">,</span> <span class="s2">&quot;Ortho&quot;</span><span class="p">,</span> <span class="s2">&quot;Ortho Inv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>We will make a wrapper function camera_space_to_ndc_space_fn which
 calls ortho, setting the size of the rectangular prism.</p>
 <div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils3d.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">276</span><span class="k">def</span><span class="w"> </span><span class="nf">cs_to_ndc_space_fn</span><span class="p">(</span>
-<span class="linenos">277</span>    <span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span>
-<span class="linenos">278</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">279</span>    <span class="k">return</span> <span class="n">perspective</span><span class="p">(</span>
-<span class="linenos">280</span>        <span class="n">field_of_view</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">near_z</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">far_z</span><span class="o">=-</span><span class="mf">1000.0</span>
-<span class="linenos">281</span>    <span class="p">)</span>
-<span class="linenos">282</span>
-<span class="linenos">283</span>
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">878</span><span class="k">def</span><span class="w"> </span><span class="nf">cs_to_ndc_space_fn</span><span class="p">(</span>
+<span class="linenos">879</span>    <span class="n">vector</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span>
+<span class="linenos">880</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">881</span>    <span class="k">return</span> <span class="n">perspective</span><span class="p">(</span>
+<span class="linenos">882</span>        <span class="n">field_of_view</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">aspect_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">near_z</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">far_z</span><span class="o">=-</span><span class="mf">1000.0</span>
+<span class="linenos">883</span>    <span class="p">)</span>
+<span class="linenos">884</span>
+<span class="linenos">885</span>
 </pre></div>
 </div>
 </div>

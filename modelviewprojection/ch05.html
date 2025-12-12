@@ -324,9 +324,9 @@ methods, which will be useful later on.</p>
 <h3>Data Structures<a class="headerlink" href="#data-structures" title="Link to this heading">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">src/modelviewprojection/demo05.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">62</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="linenos">63</span><span class="k">class</span><span class="w"> </span><span class="nc">Vector2D</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">):</span>
-<span class="linenos">64</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 2D Vector</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">557</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="linenos">558</span><span class="k">class</span><span class="w"> </span><span class="nc">Vector1D</span><span class="p">(</span><span class="n">Vector</span><span class="p">):</span>
+<span class="linenos">559</span>    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The value of the 1D Vector</span>
 </pre></div>
 </div>
 </div>
@@ -335,7 +335,7 @@ will be shifted by that amount.  This is a primitive that we will be using to tr
 from one space to another.</p>
 <p>If the reader wishes to use the data structures to test them out,
 import them and try the methods</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils2d</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vector</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vector</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
@@ -343,7 +343,7 @@ import them and try the methods</p>
 </div>
 <p>Note the use of “keyword arguments”.  Without using keyword
 arguments, the code might look like this:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils2d</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vector</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vector</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>

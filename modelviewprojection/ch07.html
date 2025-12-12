@@ -461,45 +461,47 @@ given properties of trigonometry.</p>
                                                  sin(\theta)*\vec{r}(\vec{a}; \pi/2 ) \text{ if } (\theta \ne \pi/2)\end{split}\end{aligned}\end{align} \]</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">62</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="linenos">63</span><span class="k">class</span><span class="w"> </span><span class="nc">Vector2D</span><span class="p">(</span><span class="n">mu1d</span><span class="o">.</span><span class="n">Vector1D</span><span class="p">):</span>
-<span class="linenos">64</span>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The y-component of the 2D Vector</span>
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">557</span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="linenos">558</span><span class="k">class</span><span class="w"> </span><span class="nc">Vector1D</span><span class="p">(</span><span class="n">Vector</span><span class="p">):</span>
+<span class="linenos">559</span>    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1">#: The value of the 1D Vector</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils2d.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 91</span><span class="k">def</span><span class="w"> </span><span class="nf">rotate_90_degrees</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos"> 92</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
-<span class="linenos"> 93</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">Vector2D</span><span class="p">)</span>
-<span class="linenos"> 94</span>        <span class="k">return</span> <span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-<span class="linenos"> 95</span>
-<span class="linenos"> 96</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
-<span class="linenos"> 97</span>        <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
-<span class="linenos"> 98</span>
-<span class="linenos"> 99</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">,</span> <span class="s2">&quot;R_{&lt;xy90&gt;}&quot;</span><span class="p">,</span> <span class="s2">&quot;R_{&lt;xy90&gt;}^{-1}&quot;</span><span class="p">)</span>
-<span class="linenos">100</span>
-<span class="linenos">101</span>
-<span class="linenos">102</span><span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">:</span>
-<span class="linenos">103</span>    <span class="n">r90</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">rotate_90_degrees</span><span class="p">()</span>
-<span class="linenos">104</span>
-<span class="linenos">105</span>    <span class="k">def</span><span class="w"> </span><span class="nf">create_rotate_function</span><span class="p">(</span>
-<span class="linenos">106</span>        <span class="n">perp</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">,</span>
-<span class="linenos">107</span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">],</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">]:</span>
-<span class="linenos">108</span>        <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">:</span>
-<span class="linenos">109</span>            <span class="n">parallel</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">*</span> <span class="n">vector</span>
-<span class="linenos">110</span>            <span class="n">perpendicular</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">Vector</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span> <span class="o">*</span> <span class="n">perp</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
-<span class="linenos">111</span>            <span class="k">return</span> <span class="n">parallel</span> <span class="o">+</span> <span class="n">perpendicular</span>
-<span class="linenos">112</span>
-<span class="linenos">113</span>        <span class="k">return</span> <span class="n">f</span>
-<span class="linenos">114</span>
-<span class="linenos">115</span>    <span class="k">return</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span><span class="p">(</span>
-<span class="linenos">116</span>        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">r90</span><span class="p">),</span>
-<span class="linenos">117</span>        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">r90</span><span class="p">)),</span>
-<span class="linenos">118</span>        <span class="sa">f</span><span class="s2">&quot;R_</span><span class="se">{{</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">angle_in_radians</span><span class="si">}</span><span class="s2">&gt;</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">,</span>
-<span class="linenos">119</span>        <span class="sa">f</span><span class="s2">&quot;R_</span><span class="se">{{</span><span class="s2">&lt;</span><span class="si">{</span><span class="o">-</span><span class="n">angle_in_radians</span><span class="si">}</span><span class="s2">&gt;</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">,</span>
-<span class="linenos">120</span>    <span class="p">)</span>
+<div class="code-block-caption"><span class="caption-text">src/modelviewprojection/mathutils.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">607</span><span class="k">def</span><span class="w"> </span><span class="nf">rotate_90_degrees</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">608</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">609</span>        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">Vector2D</span><span class="p">)</span>
+<span class="linenos">610</span>        <span class="k">return</span> <span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="n">vector</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="linenos">611</span>
+<span class="linenos">612</span>    <span class="k">def</span><span class="w"> </span><span class="nf">f_inv</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">613</span>        <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+<span class="linenos">614</span>
+<span class="linenos">615</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f_inv</span><span class="p">,</span> <span class="s2">&quot;R_{&lt;xy90&gt;}&quot;</span><span class="p">,</span> <span class="s2">&quot;R_{&lt;xy90&gt;}^{-1}&quot;</span><span class="p">)</span>
+<span class="linenos">616</span>
+<span class="linenos">617</span>
+<span class="linenos">618</span><span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InvertibleFunction</span><span class="p">:</span>
+<span class="linenos">619</span>    <span class="n">r90</span><span class="p">:</span> <span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">rotate_90_degrees</span><span class="p">()</span>
+<span class="linenos">620</span>
+<span class="linenos">621</span>    <span class="k">def</span><span class="w"> </span><span class="nf">create_rotate_function</span><span class="p">(</span>
+<span class="linenos">622</span>        <span class="n">perp</span><span class="p">:</span> <span class="n">InvertibleFunction</span><span class="p">,</span>
+<span class="linenos">623</span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">Vector</span><span class="p">]:</span>
+<span class="linenos">624</span>        <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="linenos">625</span>            <span class="n">parallel</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">))</span> <span class="o">*</span> <span class="n">vector</span>
+<span class="linenos">626</span>            <span class="n">perpendicular</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">))</span> <span class="o">*</span> <span class="n">perp</span><span class="p">(</span>
+<span class="linenos">627</span>                <span class="n">vector</span>
+<span class="linenos">628</span>            <span class="p">)</span>
+<span class="linenos">629</span>            <span class="k">return</span> <span class="n">parallel</span> <span class="o">+</span> <span class="n">perpendicular</span>
+<span class="linenos">630</span>
+<span class="linenos">631</span>        <span class="k">return</span> <span class="n">f</span>
+<span class="linenos">632</span>
+<span class="linenos">633</span>    <span class="k">return</span> <span class="n">InvertibleFunction</span><span class="p">(</span>
+<span class="linenos">634</span>        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">r90</span><span class="p">),</span>
+<span class="linenos">635</span>        <span class="n">create_rotate_function</span><span class="p">(</span><span class="n">inverse</span><span class="p">(</span><span class="n">r90</span><span class="p">)),</span>
+<span class="linenos">636</span>        <span class="sa">f</span><span class="s2">&quot;R_</span><span class="se">{{</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">sympy</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="n">angle_in_radians</span><span class="p">)</span><span class="si">}</span><span class="s2">&gt;</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="linenos">637</span>        <span class="sa">f</span><span class="s2">&quot;R_</span><span class="se">{{</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">sympy</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="o">-</span><span class="n">angle_in_radians</span><span class="p">)</span><span class="si">}</span><span class="s2">&gt;</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="linenos">638</span>    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
