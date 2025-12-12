@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "ac3687d2",
+   "id": "d1507515",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -13,7 +13,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "7f961b6b",
+   "id": "85c05313",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -40,7 +40,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c982447d",
+   "id": "fbcd57d2",
    "metadata": {},
    "source": [
     "Drawing in NDC\n",
@@ -56,7 +56,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "616bc01a",
+   "id": "e7f56698",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -68,7 +68,7 @@
     "import moviepy\n",
     "import numpy as np\n",
     "\n",
-    "import modelviewprojection.mathutils as mu2d\n",
+    "import modelviewprojection.mathutils as mu\n",
     "import modelviewprojection.softwarerendering as sr\n",
     "\n",
     "# turn warnings into exceptions\n",
@@ -77,7 +77,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "69dbfece",
+   "id": "cde91b5c",
    "metadata": {},
    "source": [
     "Make Framebuffer\n",
@@ -89,7 +89,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "1dc350cd",
+   "id": "6a5e835e",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -102,7 +102,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6d76ee84",
+   "id": "aecf3d4c",
    "metadata": {},
    "source": [
     "Clear Framebuffer\n",
@@ -114,7 +114,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "b93e5f1b",
+   "id": "256d30f8",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -127,7 +127,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "582c937c",
+   "id": "c13f5e37",
    "metadata": {},
    "source": [
     "Problem 2\n",
@@ -139,7 +139,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e0c7e572",
+   "id": "66e053d5",
    "metadata": {},
    "source": [
     "Create function from NDC to screenspace\n",
@@ -166,23 +166,23 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "ad7cf525",
+   "id": "ae3371df",
    "metadata": {},
    "outputs": [],
    "source": [
-    "ndc_to_screen: mu2d.InvertibleFunction = mu2d.compose(\n",
+    "ndc_to_screen: mu.InvertibleFunction = mu.compose(\n",
     "    [\n",
-    "        mu2d.translate(mu2d.Vector2D(-0.5, -0.5)),\n",
-    "        mu2d.scale(fake_fb.width, fake_fb.height),\n",
-    "        mu2d.scale(0.5, 0.5),\n",
-    "        mu2d.translate(mu2d.Vector2D(x=1.0, y=1.0)),\n",
+    "        mu.translate(mu.Vector2D(-0.5, -0.5)),\n",
+    "        mu.scale_non_uniform_2d(fake_fb.width, fake_fb.height),\n",
+    "        mu.scale_non_uniform_2d(0.5, 0.5),\n",
+    "        mu.translate(mu.Vector2D(x=1.0, y=1.0)),\n",
     "    ]\n",
     ")"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "ff10a5a6",
+   "id": "80069735",
    "metadata": {},
    "source": [
     "Create NDC data for triangle\n",
@@ -194,22 +194,22 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "401eea46",
+   "id": "85736ed6",
    "metadata": {},
    "outputs": [],
    "source": [
     "# Example: draw a white triangle\n",
     "\n",
-    "triangle_in_NDC: list[mu2d.Vector] = [\n",
-    "    mu2d.Vector2D(0.0, 0.0),\n",
-    "    mu2d.Vector2D(0.2, 0.0),\n",
-    "    mu2d.Vector2D(0.2, 0.2),\n",
+    "triangle_in_NDC: list[mu.Vector] = [\n",
+    "    mu.Vector2D(0.0, 0.0),\n",
+    "    mu.Vector2D(0.2, 0.0),\n",
+    "    mu.Vector2D(0.2, 0.2),\n",
     "]"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "dd63f800",
+   "id": "605bc721",
    "metadata": {},
    "source": [
     "Convert the NDC Vectors to Screenspace\n",
@@ -221,11 +221,11 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "2bc19412",
+   "id": "2d41fdf0",
    "metadata": {},
    "outputs": [],
    "source": [
-    "triangle_in_screen: list[mu2d.Vector] = [\n",
+    "triangle_in_screen: list[mu.Vector] = [\n",
     "    ndc_to_screen(x) for x in triangle_in_NDC\n",
     "]\n",
     "print(triangle_in_screen)"
@@ -234,7 +234,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "97fddd7f",
+   "id": "5284ca09",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -250,7 +250,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "95e4c37e",
+   "id": "b05345c7",
    "metadata": {},
    "source": [
     "Move the Triangle in NDC\n",
@@ -265,14 +265,14 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "9fb4cca3",
+   "id": "1c28f37a",
    "metadata": {},
    "outputs": [],
    "source": [
-    "move: mu2d.InvertibleFunction = mu2d.translate(mu2d.Vector2D(0, 0.5))\n",
+    "move: mu.InvertibleFunction = mu.translate(mu.Vector2D(0, 0.5))\n",
     "\n",
     "triangle_in_screen = [\n",
-    "    mu2d.compose([ndc_to_screen, move])(x) for x in triangle_in_NDC\n",
+    "    mu.compose([ndc_to_screen, move])(x) for x in triangle_in_NDC\n",
     "]\n",
     "print(triangle_in_screen)"
    ]
@@ -280,7 +280,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "d1ea6835",
+   "id": "6198f961",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -292,7 +292,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "a90bf79e",
+   "id": "a3f7c501",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -303,12 +303,12 @@
     "# Create 10 frames with simple animation\n",
     "for i in range(sixty_fps_times_2_sec):\n",
     "    fake_fb.clear_framebuffer()\n",
-    "    move: mu2d.InvertibleFunction = mu2d.translate(\n",
-    "        mu2d.Vector2D(0, 0.5 * (np.sin(np.pi / 60.0 * float(i))))\n",
+    "    move: mu.InvertibleFunction = mu.translate(\n",
+    "        mu.Vector2D(0, 0.5 * (np.sin(np.pi / 60.0 * float(i))))\n",
     "    )\n",
     "\n",
     "    triangle_in_screen = [\n",
-    "        mu2d.compose([ndc_to_screen, move])(x) for x in triangle_in_NDC\n",
+    "        mu.compose([ndc_to_screen, move])(x) for x in triangle_in_NDC\n",
     "    ]\n",
     "    fake_fb.draw_filled_triangle(*triangle_in_screen, color=(255, 255, 255))\n",
     "\n",
@@ -317,7 +317,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c3ce0133",
+   "id": "ae67b2ee",
    "metadata": {},
    "source": [
     "Now that we have the frames, we just need to save them to a\n",
@@ -328,7 +328,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "65530c09",
+   "id": "76cc24b9",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -344,7 +344,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "c0ae1322",
+   "id": "dc50cd90",
    "metadata": {},
    "outputs": [],
    "source": []
@@ -352,7 +352,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "19c04816",
+   "id": "cd47e1a1",
    "metadata": {},
    "outputs": [],
    "source": []

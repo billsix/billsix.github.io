@@ -287,7 +287,7 @@ and by the end, we will make an animation.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">moviepy</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mu2d</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mu</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">modelviewprojection.softwarerendering</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sr</span>
 
 <span class="c1"># turn warnings into exceptions</span>
@@ -309,7 +309,7 @@ and by the end, we will make an animation.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/3815c3a8112d6538d846cbbe0de99049da23d178798665c1d1a9eba24019b2bc.png" src="images/3815c3a8112d6538d846cbbe0de99049da23d178798665c1d1a9eba24019b2bc.png" />
+<img alt="images/f9e8211c94e26c19723024b2d95abc2fc925c7531cb7c2ee051b44722b8a5cb8.png" src="images/f9e8211c94e26c19723024b2d95abc2fc925c7531cb7c2ee051b44722b8a5cb8.png" />
 </div>
 </div>
 </section>
@@ -349,31 +349,14 @@ the center of the pixel at (0,0)</p>
 by Shirley and Marshner, page 60</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ndc_to_screen</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ndc_to_screen</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)),</span>
-        <span class="n">mu2d</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">fake_fb</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">fake_fb</span><span class="o">.</span><span class="n">height</span><span class="p">),</span>
-        <span class="n">mu2d</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
-        <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)),</span>
+        <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)),</span>
+        <span class="n">mu</span><span class="o">.</span><span class="n">scale_non_uniform_2d</span><span class="p">(</span><span class="n">fake_fb</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">fake_fb</span><span class="o">.</span><span class="n">height</span><span class="p">),</span>
+        <span class="n">mu</span><span class="o">.</span><span class="n">scale_non_uniform_2d</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+        <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)),</span>
     <span class="p">]</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">ndc_to_screen</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="p">[</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>         <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)),</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>         <span class="n">mu2d</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">fake_fb</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">fake_fb</span><span class="o">.</span><span class="n">height</span><span class="p">),</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="n">mu2d</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)),</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="p">)</span>
-
-<span class="ne">AttributeError</span>: module &#39;modelviewprojection.mathutils&#39; has no attribute &#39;scale&#39;
 </pre></div>
 </div>
 </div>
@@ -386,10 +369,10 @@ by Shirley and Marshner, page 60</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: draw a white triangle</span>
 
-<span class="n">triangle_in_NDC</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+<span class="n">triangle_in_NDC</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -401,10 +384,15 @@ by Shirley and Marshner, page 60</p>
 <p>For each vector, apply the function</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triangle_in_screen</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triangle_in_screen</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">Vector</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">ndc_to_screen</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">triangle_in_NDC</span>
 <span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">triangle_in_screen</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Vector2D(x=199.5, y=149.5), Vector2D(x=239.5, y=149.5), Vector2D(x=239.5, y=179.5)]
 </pre></div>
 </div>
 </div>
@@ -422,6 +410,9 @@ by Shirley and Marshner, page 60</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="images/8f20bad3055b643a2641a11584464deff1dadb2a9cd84ea8649fd44b7b602924.png" src="images/8f20bad3055b643a2641a11584464deff1dadb2a9cd84ea8649fd44b7b602924.png" />
+</div>
 </div>
 </section>
 <section id="move-the-triangle-in-ndc">
@@ -432,12 +423,17 @@ triangle by 0.5 units of NDC up, and then take the
 result and convert it from NDC to screenspace</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">move</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">move</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
 
 <span class="n">triangle_in_screen</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">([</span><span class="n">ndc_to_screen</span><span class="p">,</span> <span class="n">move</span><span class="p">])(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">triangle_in_NDC</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">([</span><span class="n">ndc_to_screen</span><span class="p">,</span> <span class="n">move</span><span class="p">])(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">triangle_in_NDC</span>
 <span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">triangle_in_screen</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Vector2D(x=199.5, y=224.5), Vector2D(x=239.5, y=224.5), Vector2D(x=239.5, y=254.5)]
 </pre></div>
 </div>
 </div>
@@ -450,6 +446,9 @@ result and convert it from NDC to screenspace</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="images/52656b63f8084ae7238607551bd2aaa08002660966a24fbe012ab63808863713.png" src="images/52656b63f8084ae7238607551bd2aaa08002660966a24fbe012ab63808863713.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -460,12 +459,12 @@ result and convert it from NDC to screenspace</p>
 <span class="c1"># Create 10 frames with simple animation</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sixty_fps_times_2_sec</span><span class="p">):</span>
     <span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
-    <span class="n">move</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
-        <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">60.0</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">))))</span>
+    <span class="n">move</span><span class="p">:</span> <span class="n">mu</span><span class="o">.</span><span class="n">InvertibleFunction</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span>
+        <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">60.0</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">))))</span>
     <span class="p">)</span>
 
     <span class="n">triangle_in_screen</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">([</span><span class="n">ndc_to_screen</span><span class="p">,</span> <span class="n">move</span><span class="p">])(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">triangle_in_NDC</span>
+        <span class="n">mu</span><span class="o">.</span><span class="n">compose</span><span class="p">([</span><span class="n">ndc_to_screen</span><span class="p">,</span> <span class="n">move</span><span class="p">])(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">triangle_in_NDC</span>
     <span class="p">]</span>
     <span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span><span class="o">*</span><span class="n">triangle_in_screen</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
 
@@ -489,6 +488,46 @@ use, it doesn’t really matter for our understanding.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MoviePy - Building video animation.mp4.
+MoviePy - Writing video animation.mp4
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:   0%|                            | 0/120 [00:00&lt;?, ?it/s, now=None]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:   2%|▎                   | 2/120 [00:00&lt;00:55,  2.12it/s, now=None]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:   2%|▌                   | 3/120 [00:01&lt;00:38,  3.04it/s, now=None]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:  22%|████               | 26/120 [00:01&lt;00:02, 37.75it/s, now=None]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:  57%|██████████▎       | 69/120 [00:01&lt;00:00, 107.93it/s, now=None]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index:  79%|██████████████▎   | 95/120 [00:01&lt;00:00, 138.77it/s, now=None]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frame_index: 100%|█████████████████| 120/120 [00:01&lt;00:00, 162.53it/s, now=None]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MoviePy - Done !
+MoviePy - video ready animation.mp4
+</pre></div>
+</div>
+<div class="output text_html"><video controls  >
+ <source src="data:video/mp4;base64,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AAAAAQAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAAAwAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAABQAAAAABAAACAAAAAAEAAAAAAAAAAQAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAAAwAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAAAwAAAAABAAABAAAAAAEAAAQAAAAAAgAAAQAAAAABAAAEAAAAAAIAAAEAAAAAAQAABQAAAAABAAACAAAAAAEAAAAAAAAAAQAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAAAwAAAAABAAABAAAAAAEAAAQAAAAAAgAAAQAAAAABAAADAAAAAAEAAAEAAAAAAQAABQAAAAABAAACAAAAAAEAAAAAAAAAAQAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAABQAAAAABAAACAAAAAAEAAAAAAAAAAQAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAQAAAAAAgAAAQAAAAABAAAFAAAAAAEAAAIAAAAAAQAAAAAAAAABAAABAAAAAAEAAAUAAAAAAQAAAgAAAAABAAAAAAAAAAEAAAEAAAAAAQAABQAAAAABAAACAAAAAAEAAAAAAAAAAQAAAQAAAAABAAADAAAAAAEAAAEAAAAAAQAABAAAAAACAAABAAAAAAEAAAMAAAAAAQAAAQAAAAAcc3RzYwAAAAAAAAABAAAAAQAAAHgAAAABAAAB9HN0c3oAAAAAAAAAAAAAAHgAAAORAAAATgAAADgAAAAdAAAAIwAAADcAAAAgAAAAOAAAAB4AAAApAAAALQAAAEwAAAAvAAAAKQAAABsAAAAzAAAAHwAAAB8AAAAdAAAAOQAAAC0AAAAZAAAAHQAAADIAAAAeAAAAHAAAACsAAAAwAAAAKgAAABYAAAAoAAAAFQAAABUAAAAzAAAAGwAAACoAAAArAAAASgAAAB8AAAAcAAAAKAAAAE0AAAAdAAAAGwAAACsAAAA5AAAAHwAAAC0AAAAtAAAAGwAAACcAAAAuAAAAGwAAAEIAAAAiAAAAIQAAADEAAAAeAAAAGwAAADEAAAAvAAAAHgAAABsAAAApAAAAHwAAABsAAAAdAAAALAAAAB0AAAAfAAAAHwAAADAAAAAeAAAAKQAAACEAAAAaAAAAKAAAACsAAAA0AAAAHgAAAB0AAAAZAAAALAAAABwAAAAlAAAAJwAAACwAAAAaAAAAJgAAABsAAAAiAAAAGQAAAA4AAAAbAAAAJgAAAC4AAAAoAAAAKQAAACcAAAApAAAAHwAAAEgAAAAeAAAAGgAAAB8AAAA1AAAAJAAAABoAAAAaAAAALgAAACAAAAAtAAAAHwAAACwAAAAhAAAANgAAACAAAAAeAAAALQAAABwAAAAUc3RjbwAAAAAAAAABAAAAMAAAAGF1ZHRhAAAAWW1ldGEAAAAAAAAAIWhkbHIAAAAAAAAAAG1kaXJhcHBsAAAAAAAAAAAAAAAALGlsc3QAAAAkqXRvbwAAABxkYXRhAAAAAQAAAABMYXZmNjEuMS4xMDA=" type="video/mp4">
+ Your browser does not support the video tag.
+ </video></div></div>
 </div>
 </section>
 </section>

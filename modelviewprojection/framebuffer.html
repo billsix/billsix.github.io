@@ -281,7 +281,7 @@ represent a framebuffer, and see how it works.</p>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mu2d</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">modelviewprojection.mathutils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mu</span>
 </pre></div>
 </div>
 </div>
@@ -312,7 +312,7 @@ of 100, and a height of 100</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="images/0095380aaf8d76980d1462ebfe248ba6dd2fa5c1c834c79016d6ac4d8469dd46.png" src="images/0095380aaf8d76980d1462ebfe248ba6dd2fa5c1c834c79016d6ac4d8469dd46.png" />
+<img alt="images/327603010e135b77aa6cbf5b999579e29230e91f1cc683b8170ea9df6f7e8b4b.png" src="images/327603010e135b77aa6cbf5b999579e29230e91f1cc683b8170ea9df6f7e8b4b.png" />
 </div>
 </div>
 <p>Well, that looks bad, as there is a bunch of random values
@@ -322,9 +322,9 @@ for colors in the framebuffer.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: draw a white triangle</span>
 <span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
     <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
@@ -332,39 +332,7 @@ for colors in the framebuffer.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Example: draw a white triangle</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
-
-<span class="nn">File /mvp/src/modelviewprojection/softwarerendering.py:98,</span> in <span class="ni">FrameBuffer.draw_filled_triangle</span><span class="nt">(self, p1, p2, p3, color)</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span> <span class="n">x3</span><span class="p">:</span> <span class="nb">int</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">y3</span><span class="p">:</span> <span class="nb">int</span>
-<span class="ne">---&gt; </span><span class="mi">98</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">screenspace_to_framebuffer</span><span class="p">(</span><span class="n">p1</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">screenspace_to_framebuffer</span><span class="p">(</span><span class="n">p2</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="n">x3</span><span class="p">,</span> <span class="n">y3</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">screenspace_to_framebuffer</span><span class="p">(</span><span class="n">p3</span><span class="p">))</span>
-
-<span class="nn">File /mvp/src/modelviewprojection/softwarerendering.py:72,</span> in <span class="ni">FrameBuffer.screenspace_to_framebuffer</span><span class="nt">(self, v)</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="k">def</span><span class="w"> </span><span class="nf">screenspace_to_framebuffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Convert from OpenGL-style coords to framebuffer array coords.&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="n">ss_to_fb</span> <span class="o">=</span> <span class="n">mu2d</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>         <span class="p">[</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>             <span class="n">mu2d</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)),</span>
-<span class="ne">---&gt; </span><span class="mi">72</span>             <span class="n">mu2d</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">m_x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m_y</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>         <span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="k">return</span> <span class="n">ss_to_fb</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-
-<span class="ne">AttributeError</span>: module &#39;modelviewprojection.mathutils&#39; has no attribute &#39;scale&#39;
-</pre></div>
-</div>
+<img alt="images/93c1feea90b7f1be9dd225e1304fa074bc7ccd9408897a988cc8ccabe35c5f6a.png" src="images/93c1feea90b7f1be9dd225e1304fa074bc7ccd9408897a988cc8ccabe35c5f6a.png" />
 </div>
 </div>
 <p>Whoops!  That looks like trash.  We should change the background to
@@ -378,6 +346,9 @@ have all one color.  That’s what clear_framebuffer does</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="images/ada9f6638e9ebf2b7cf3afcf2318a1524c3baee8258a5ba5b37acb7b6014eb63.png" src="images/ada9f6638e9ebf2b7cf3afcf2318a1524c3baee8258a5ba5b37acb7b6014eb63.png" />
+</div>
 </div>
 <p>I don’t really want to draw on Red, let’s switch it to black</p>
 <div class="cell docutils container">
@@ -389,6 +360,9 @@ have all one color.  That’s what clear_framebuffer does</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="images/a6a350f02b6e5ef218cee8377ae5f1cf74e28ad0cd059b0678aed6532d97b03f.png" src="images/a6a350f02b6e5ef218cee8377ae5f1cf74e28ad0cd059b0678aed6532d97b03f.png" />
+</div>
 </div>
 <p>Let’s clear again for no reason, and draw a white triangle in screenspace.</p>
 <div class="cell docutils container">
@@ -396,14 +370,17 @@ have all one color.  That’s what clear_framebuffer does</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: draw a white triangle</span>
 <span class="n">fake_fb</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
 <span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
     <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/be811f11dbc1efe024754fc51c3c84c9c242d361adce2b1f2d7bca549e57aa57.png" src="images/be811f11dbc1efe024754fc51c3c84c9c242d361adce2b1f2d7bca549e57aa57.png" />
 </div>
 </div>
 <p>Without clearing (as we want to keep the white triangle, let’s
@@ -412,14 +389,17 @@ draw a red triangle at a different location in screenspace</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw a red triangle</span>
 <span class="n">fake_fb</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
     <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">fake_fb</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/31346b445ddc0a9278bf559914c5ec7981f9a209a10726e3d3bfd6c4479262db.png" src="images/31346b445ddc0a9278bf559914c5ec7981f9a209a10726e3d3bfd6c4479262db.png" />
 </div>
 </div>
 <p>Make a larger framebuffer</p>
@@ -431,6 +411,9 @@ draw a red triangle at a different location in screenspace</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="images/57f3801fa385c2e25d7249df4643d86b4a6c925f4f7210bfd15dec84388ca79e.png" src="images/57f3801fa385c2e25d7249df4643d86b4a6c925f4f7210bfd15dec84388ca79e.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -440,28 +423,35 @@ draw a red triangle at a different location in screenspace</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="images/bbb03d618c0b80dcb5f820f09096e691c86a404d72f71b25371973f9df15f8d5.png" src="images/bbb03d618c0b80dcb5f820f09096e691c86a404d72f71b25371973f9df15f8d5.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: draw a white triangle</span>
 <span class="n">fake_fb400</span><span class="o">.</span><span class="n">clear_framebuffer</span><span class="p">()</span>
 <span class="n">fake_fb400</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
     <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">fake_fb400</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
 
 <span class="n">fake_fb400</span><span class="o">.</span><span class="n">draw_filled_triangle</span><span class="p">(</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
-    <span class="n">mu2d</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="n">mu</span><span class="o">.</span><span class="n">Vector2D</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
     <span class="n">color</span><span class="o">=</span><span class="n">sr</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">fake_fb400</span><span class="o">.</span><span class="n">show_framebuffer</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="images/5b087d029ac0ea4a5c3fc68f07f26dcc4ccac25326cbf292c9474c8b005b262f.png" src="images/5b087d029ac0ea4a5c3fc68f07f26dcc4ccac25326cbf292c9474c8b005b262f.png" />
+<img alt="images/b2da661edfe0224e8fe7a217320ea6fc946f3094c61cbb56cd230273ae57144a.png" src="images/b2da661edfe0224e8fe7a217320ea6fc946f3094c61cbb56cd230273ae57144a.png" />
 </div>
 </div>
 <p>It makes sense that the triangles are in the lower left, OpenGL

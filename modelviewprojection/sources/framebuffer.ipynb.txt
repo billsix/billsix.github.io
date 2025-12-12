@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "4f5534fa",
+   "id": "9d4ada3b",
    "metadata": {},
    "source": [
     "(framebufferlabel)=\n",
@@ -11,7 +11,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "10845dc4",
+   "id": "a13254d5",
    "metadata": {},
    "source": [
     "We are taking a detour, to learn more about framebuffers.  This section\n",
@@ -30,7 +30,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "c6fb76a7",
+   "id": "2dbcf661",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -54,12 +54,12 @@
     "\n",
     "import warnings\n",
     "\n",
-    "import modelviewprojection.mathutils as mu2d"
+    "import modelviewprojection.mathutils as mu"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "80700a18",
+   "id": "fce7c3ad",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -72,7 +72,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "1a9a03b0",
+   "id": "f4b8021b",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -86,7 +86,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ff9252e1",
+   "id": "0bf54d01",
    "metadata": {},
    "source": [
     "Make a framebuffer, which is just a rectangular region of\n",
@@ -98,7 +98,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "413905de",
+   "id": "65927081",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -111,7 +111,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a3598a67",
+   "id": "5a1c7403",
    "metadata": {},
    "source": [
     "Well, that looks bad, as there is a bunch of random values\n",
@@ -123,7 +123,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6a051f9e",
+   "id": "caf96d69",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -131,9 +131,9 @@
    "source": [
     "# Example: draw a white triangle\n",
     "fake_fb.draw_filled_triangle(\n",
-    "    mu2d.Vector2D(50, 50),\n",
-    "    mu2d.Vector2D(50, 70),\n",
-    "    mu2d.Vector2D(70, 70),\n",
+    "    mu.Vector2D(50, 50),\n",
+    "    mu.Vector2D(50, 70),\n",
+    "    mu.Vector2D(70, 70),\n",
     "    color=sr.WHITE,\n",
     ")\n",
     "fake_fb.show_framebuffer()"
@@ -141,7 +141,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "85c486ee",
+   "id": "420d73fe",
    "metadata": {},
    "source": [
     "Whoops!  That looks like trash.  We should change the background to\n",
@@ -151,7 +151,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6a8aa907",
+   "id": "038337c8",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -163,7 +163,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "aa10e9c1",
+   "id": "75ca8dfd",
    "metadata": {},
    "source": [
     "I don't really want to draw on Red, let's switch it to black"
@@ -172,7 +172,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "47846826",
+   "id": "45b06572",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -186,7 +186,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c33f9d29",
+   "id": "b9401bc5",
    "metadata": {},
    "source": [
     "Let's clear again for no reason, and draw a white triangle in screenspace."
@@ -195,7 +195,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "c7d650d3",
+   "id": "8a767d42",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -204,9 +204,9 @@
     "# Example: draw a white triangle\n",
     "fake_fb.clear_framebuffer()\n",
     "fake_fb.draw_filled_triangle(\n",
-    "    mu2d.Vector2D(50, 50),\n",
-    "    mu2d.Vector2D(50, 70),\n",
-    "    mu2d.Vector2D(70, 70),\n",
+    "    mu.Vector2D(50, 50),\n",
+    "    mu.Vector2D(50, 70),\n",
+    "    mu.Vector2D(70, 70),\n",
     "    color=sr.WHITE,\n",
     ")\n",
     "fake_fb.show_framebuffer()"
@@ -214,7 +214,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "af71b9eb",
+   "id": "63913417",
    "metadata": {},
    "source": [
     "Without clearing (as we want to keep the white triangle, let's\n",
@@ -224,16 +224,16 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "01c30668",
+   "id": "47b2388b",
    "metadata": {},
    "outputs": [],
    "source": [
     "\n",
     "# draw a red triangle\n",
     "fake_fb.draw_filled_triangle(\n",
-    "    mu2d.Vector2D(50, 50),\n",
-    "    mu2d.Vector2D(30, 50),\n",
-    "    mu2d.Vector2D(30, 30),\n",
+    "    mu.Vector2D(50, 50),\n",
+    "    mu.Vector2D(30, 50),\n",
+    "    mu.Vector2D(30, 30),\n",
     "    color=sr.RED,\n",
     ")\n",
     "fake_fb.show_framebuffer()"
@@ -241,7 +241,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9d4f69f0",
+   "id": "70da872b",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -252,7 +252,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "de5b010b",
+   "id": "22e2efe7",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -266,7 +266,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "870938d9",
+   "id": "313d504d",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -280,24 +280,24 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "7ec0ca2b",
+   "id": "4bb5937f",
    "metadata": {},
    "outputs": [],
    "source": [
     "# Example: draw a white triangle\n",
     "fake_fb400.clear_framebuffer()\n",
     "fake_fb400.draw_filled_triangle(\n",
-    "    mu2d.Vector2D(50, 50),\n",
-    "    mu2d.Vector2D(50, 70),\n",
-    "    mu2d.Vector2D(70, 70),\n",
+    "    mu.Vector2D(50, 50),\n",
+    "    mu.Vector2D(50, 70),\n",
+    "    mu.Vector2D(70, 70),\n",
     "    color=sr.WHITE,\n",
     ")\n",
     "fake_fb400.show_framebuffer()\n",
     "\n",
     "fake_fb400.draw_filled_triangle(\n",
-    "    mu2d.Vector2D(50, 50),\n",
-    "    mu2d.Vector2D(30, 50),\n",
-    "    mu2d.Vector2D(30, 30),\n",
+    "    mu.Vector2D(50, 50),\n",
+    "    mu.Vector2D(30, 50),\n",
+    "    mu.Vector2D(30, 30),\n",
     "    color=sr.RED,\n",
     ")\n",
     "fake_fb400.show_framebuffer()"
@@ -305,7 +305,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6d3b1e75",
+   "id": "c06e9542",
    "metadata": {},
    "source": [
     "It makes sense that the triangles are in the lower left, OpenGL\n",
@@ -316,7 +316,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "ba05fed7",
+   "id": "1ced36a5",
    "metadata": {},
    "outputs": [],
    "source": []
