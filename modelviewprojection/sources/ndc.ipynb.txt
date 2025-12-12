@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "d1507515",
+   "id": "3c46579b",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -13,7 +13,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "85c05313",
+   "id": "d52a95be",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -40,7 +40,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "fbcd57d2",
+   "id": "3162768d",
    "metadata": {},
    "source": [
     "Drawing in NDC\n",
@@ -56,7 +56,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "e7f56698",
+   "id": "cc38fe92",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -77,7 +77,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "cde91b5c",
+   "id": "23bcf0d2",
    "metadata": {},
    "source": [
     "Make Framebuffer\n",
@@ -89,7 +89,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6a5e835e",
+   "id": "c15c04a5",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -102,7 +102,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "aecf3d4c",
+   "id": "c7e9e438",
    "metadata": {},
    "source": [
     "Clear Framebuffer\n",
@@ -114,7 +114,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "256d30f8",
+   "id": "4564c39b",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -127,7 +127,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c13f5e37",
+   "id": "2c7cff5f",
    "metadata": {},
    "source": [
     "Problem 2\n",
@@ -139,7 +139,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "66e053d5",
+   "id": "3aea66fb",
    "metadata": {},
    "source": [
     "Create function from NDC to screenspace\n",
@@ -166,7 +166,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "ae3371df",
+   "id": "30c9ec04",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -182,7 +182,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "80069735",
+   "id": "2b5e2616",
    "metadata": {},
    "source": [
     "Create NDC data for triangle\n",
@@ -194,7 +194,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "85736ed6",
+   "id": "5395836b",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -209,7 +209,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "605bc721",
+   "id": "c5f6aae9",
    "metadata": {},
    "source": [
     "Convert the NDC Vectors to Screenspace\n",
@@ -221,7 +221,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "2d41fdf0",
+   "id": "8b5c8e5c",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -234,7 +234,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "5284ca09",
+   "id": "f72ad121",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -250,7 +250,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b05345c7",
+   "id": "021fc00f",
    "metadata": {},
    "source": [
     "Move the Triangle in NDC\n",
@@ -265,7 +265,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "1c28f37a",
+   "id": "9e545415",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -280,7 +280,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6198f961",
+   "id": "0df3d60f",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -292,7 +292,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "a3f7c501",
+   "id": "d11e2a85",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -317,7 +317,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ae67b2ee",
+   "id": "47f60c39",
    "metadata": {},
    "source": [
     "Now that we have the frames, we just need to save them to a\n",
@@ -328,7 +328,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "76cc24b9",
+   "id": "168576a0",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -344,7 +344,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "dc50cd90",
+   "id": "960691cd",
    "metadata": {},
    "outputs": [],
    "source": []
@@ -352,7 +352,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "cd47e1a1",
+   "id": "add89e65",
    "metadata": {},
    "outputs": [],
    "source": []
